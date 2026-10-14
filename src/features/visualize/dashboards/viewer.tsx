@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowDown, ArrowDownToLine, ArrowUp, ChevronsDown, Copy, Filter, Maximize2, MoreHorizontal, Sun, Table2, X } from 'lucide-react';
+import { ArrowDown, ArrowDownToLine, ArrowUp, ChevronsDown, Copy, Filter, Maximize2, MoreHorizontal, Pencil, Sun, Table2, X } from 'lucide-react';
 import { useRepository, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
 import { saveBlob, safeName } from '../echarts';
 import { describeFilter } from './FiltersPane';
@@ -19,6 +19,8 @@ export function VisualHeader({
   onFocus,
   onTable,
   onSpotlight,
+  onPersonalize,
+  personalized,
 }: {
   visual: DashboardVisual;
   output: VisualOutput | undefined;
@@ -29,6 +31,9 @@ export function VisualHeader({
   onFocus: () => void;
   onTable: () => void;
   onSpotlight: () => void;
+  /** Viewer personalization (when the author allows it). */
+  onPersonalize?: () => void;
+  personalized?: boolean;
 }) {
   const [menu, setMenu] = useState<'' | 'filters' | 'more'>('');
   const box = useRef<HTMLDivElement>(null);
@@ -38,7 +43,7 @@ export function VisualHeader({
     document.addEventListener('mousedown', close);
     return () => document.removeEventListener('mousedown', close);
   }, [menu]);
-  if (visual.type === 'text') return null;
+  if (visual.type === 'text' || visual.type === 'parameter' || visual.type === 'button' || visual.type === 'navigator') return null;
   const title = output?.title || visual.title || 'visual';
   const exportCsv = () => output?.data && saveBlob(new Blob([dataCsv(output.data)], { type: 'text/csv' }), `${safeName(title)}.csv`);
   const copyImage = async () => {
@@ -72,6 +77,11 @@ export function VisualHeader({
             <ChevronsDown size={12} />
           </button>
         </>
+      )}
+      {onPersonalize && (
+        <button type="button" title={personalized ? 'Personalized for you — change or reset' : 'Personalize this visual'} aria-pressed={!!personalized} onClick={onPersonalize} data-testid="vheader-personalize">
+          <Pencil size={12} />
+        </button>
       )}
       <button type="button" title="Focus mode" onClick={onFocus} data-testid="vheader-focus">
         <Maximize2 size={12} />

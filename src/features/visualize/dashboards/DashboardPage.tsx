@@ -3,16 +3,32 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, Check, Eraser, Filter, FilterX, Pencil, Sparkles, Undo2 } from 'lucide-react';
-import { useRepository, type DashboardFilter, type DashboardPage as Page, type DashboardVisual } from '@/lib/data';
+import { useRepository, type DashboardBookmark, type DashboardFilter, type DashboardPage as Page, type DashboardPersonalView, type DashboardVisual } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
 import { useVisualize } from '../context';
 import { ErrorNote, SkeletonBlock } from '../ui';
+import { LOCAL_TYPES, mobileVisuals, pruneOverrides } from './customize';
+import { newId } from './editor/catalog';
 import { describeFilter, FiltersPane } from './FiltersPane';
+import { safeUrl, type ButtonAction, type LocalContext } from './local';
+import { PersonalizePane, ViewsMenu } from './personalize';
 import { hierarchyOf, kpiIndexes, mergeMembers, pageRows, PAGE_WIDTH, ROW_PX, slicerKey, Tile, useDashboardRuntime, useWidth } from './runtime';
 import { slicerFilter } from './slicers';
 import { resolveMode, resolveTheme, themeStyle, useBuiltInThemes } from './theme';
 import { FocusOverlay, PointContextMenu, TooltipCard, VisualHeader, type PointMenu } from './viewer';
 import { tileStyle } from './visuals';
+
+type PersonalState = DashboardPersonalView['state'];
+
+function mergeOverride(previous: Partial<DashboardVisual> | undefined, change: Partial<DashboardVisual>): Partial<DashboardVisual> {
+  const next: Partial<DashboardVisual> = { ...(previous ?? {}), ...change };
+  if (change.format) {
+    const format: NonNullable<DashboardVisual['format']> = { ...(previous?.format ?? {}) };
+    for (const [section, value] of Object.entries(change.format)) format[section] = { ...(format[section] ?? {}), ...(value ?? {}) };
+    next.format = format;
+  } else if (previous?.format) next.format = previous.format;
+  return next;
+}
 
 interface Drillthrough {
   pageId: string;
@@ -39,16 +55,79 @@ export function DashboardPage() {
   const [menu, setMenu] = useState<PointMenu | null>(null);
   const [hover, setHover] = useState<{ visualId: string; filters: DashboardFilter[]; x: number; y: number } | null>(null);
   const [paneOpen, setPaneOpen] = useState(false);
+  const [personalizing, setPersonalizing] = useState('');
+  const [activeView, setActiveView] = useState<string | undefined>();
+  const [history, setHistory] = useState<string[]>([]);
+  const [undo, setUndo] = useState<NonNullable<PersonalState['visualOverrides']>[]>([]);
   const hoverTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  // The viewer's own view (saved per user; the author's dashboard never changes).
+  const personalView = useQuery({ queryKey: ['visualize', 'personal-view', dashboardId], queryFn: () => visualize.personalView(dashboardId), enabled: !!dashboardId, staleTime: Infinity, retry: false });
+  const [mine, setMine] = useState<PersonalState | null>(null);
+  const saved = useRef('');
+  useEffect(() => {
+    if (mine === null && (personalView.isSuccess || personalView.isError)) {
+      const state = personalView.data?.state ?? {};
+      saved.current = JSON.stringify(state);
+      setMine(state);
+    }
+  }, [mine, personalView.isSuccess, personalView.isError, personalView.data]);
+  const allowPersonalize = spec?.settings?.allowPersonalize !== false;
+  useEffect(() => {
+    if (!mine || !allowPersonalize || JSON.stringify(mine) === saved.current) return;
+    const timer = setTimeout(() => {
+      saved.current = JSON.stringify(mine);
+      void visualize.savePersonalView(dashboardId, mine).catch(() => undefined);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [mine, allowPersonalize, dashboardId, visualize]);
+  const personalOverrides = useMemo(() => pruneOverrides(mine?.visualOverrides, spec), [mine?.visualOverrides, spec]);
   const [canvas, width] = useWidth<HTMLDivElement>();
   const viewable = (spec?.pages ?? []).filter((item) => !item.hidden && (item.type ?? 'page') === 'page');
   const page = drillthrough
     ? spec?.pages.find((item) => item.id === drillthrough.pageId)
     : (spec?.pages.find((item) => item.id === pageId) ?? viewable[0] ?? spec?.pages[0]);
   const theme = resolveTheme(spec?.theme, themes.data?.themes);
-  const mode = resolveMode(spec?.mode, resolvedTheme === 'dark' ? 'dark' : 'light');
+  const appMode = resolvedTheme === 'dark' ? 'dark' : 'light';
+  const mode = mine?.mode === 'light' || mine?.mode === 'dark' ? mine.mode : mine?.mode === 'system' ? appMode : resolveMode(spec?.mode, appMode);
+  const density = mine?.density ?? spec?.density;
   const extraFilters = useMemo(() => [...(drillthrough?.filters ?? []), ...personal], [drillthrough, personal]);
-  const runtime = useDashboardRuntime({ spec, page, mode, dashboardId, extraFilters });
+  const runtime = useDashboardRuntime({ spec, page, mode, dashboardId, extraFilters, personal: personalOverrides });
+  const bookmarks = useMemo(() => [...(spec?.bookmarks ?? []), ...(mine?.bookmarks ?? [])], [spec?.bookmarks, mine?.bookmarks]);
+
+  const goTo = useCallback(
+    (id: string) => {
+      setHistory((current) => [...current.slice(-19), page?.id ?? '']);
+      setDrillthrough(null);
+      setPageId(id);
+    },
+    [page?.id],
+  );
+  const applyView = (bookmark: DashboardBookmark) => {
+    const target = spec?.pages.find((item) => item.id === bookmark.pageId) ?? page;
+    if (target && target.id !== page?.id) goTo(target.id);
+    runtime.apply(bookmark.state, target);
+    setActiveView(bookmark.id);
+  };
+  // Open with the viewer's default view, once.
+  const opened = useRef(false);
+  useEffect(() => {
+    if (opened.current || !spec || !mine) return;
+    opened.current = true;
+    const preferred = bookmarks.find((bookmark) => bookmark.id === mine.defaultBookmark);
+    if (preferred) applyView(preferred);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- applied once, when both are loaded
+  }, [spec, mine]);
+  const updateMine = (change: (state: PersonalState) => PersonalState) => setMine((current) => change(current ?? {}));
+  const resetAll = () => {
+    void visualize.resetPersonalView(dashboardId).catch(() => undefined);
+    saved.current = '{}';
+    setMine({});
+    setUndo([]);
+    setPersonal([]);
+    setActiveView(undefined);
+    runtime.apply({});
+    runtime.resetOverrides();
+  };
 
   useEffect(() => {
     setAssistantContext({ page: 'dashboard', title: record.data?.name });
@@ -74,6 +153,56 @@ export function DashboardPage() {
   if (record.error || !spec || !page) return <ErrorNote error={record.error ?? new Error('Dashboard not found.')} />;
 
   const { visuals, outputs, rendered, selection, setSelection, onSelect } = runtime;
+  const onAction = (action: ButtonAction) => {
+    switch (action.kind) {
+      case 'page':
+        if (action.pageId && spec.pages.some((item) => item.id === action.pageId)) goTo(action.pageId);
+        break;
+      case 'bookmark': {
+        const bookmark = bookmarks.find((item) => item.id === action.bookmarkId);
+        if (bookmark) applyView(bookmark);
+        break;
+      }
+      case 'back':
+        if (drillthrough) setDrillthrough(null);
+        else if (history.length) {
+          setPageId(history[history.length - 1]!);
+          setHistory(history.slice(0, -1));
+        }
+        break;
+      case 'clear_slicers':
+        runtime.clearSlicers();
+        break;
+      case 'apply_slicers':
+        runtime.applyPending();
+        break;
+      case 'url': {
+        const url = safeUrl(action.url);
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        break;
+      }
+      case 'toggle':
+        if (action.visualId) runtime.toggleVisual(action.visualId);
+        break;
+      case 'ask_ai':
+        setAssistantOpen(true);
+        break;
+      case 'reset':
+        resetAll();
+        break;
+    }
+  };
+  const local: LocalContext = { spec, pageId: page.id, parameters: runtime.parameters, setParameter: runtime.setParameter, bookmarks, activeBookmark: activeView, onAction };
+  const canPersonalize = (visual: DashboardVisual) => allowPersonalize && visual.allowPersonalize !== false && !LOCAL_TYPES.has(visual.type) && visual.type !== 'slicer' && visual.type !== 'chart' && visual.type !== 'python';
+  const changeOverride = (id: string, change: Partial<DashboardVisual> | null) => {
+    setUndo((current) => [...current.slice(-19), mine?.visualOverrides ?? {}]);
+    updateMine((state) => {
+      const overrides = { ...(state.visualOverrides ?? {}) };
+      if (change) overrides[id] = mergeOverride(overrides[id], change);
+      else delete overrides[id];
+      return { ...state, visualOverrides: overrides };
+    });
+  };
   const rowHeight = Math.max((width / PAGE_WIDTH) * ROW_PX, 1);
   const stacked = width > 0 && width < 640;
   const height = Math.max(...visuals.map((visual) => visual.layout.y + visual.layout.h), pageRows(page)) * rowHeight;
@@ -126,6 +255,7 @@ export function DashboardPage() {
         }}
         slicerValue={runtime.slicerValue(visual)}
         onSlicerChange={(value) => runtime.setSlicer(visual, value)}
+        local={local}
         data-drill={hierarchy ? String(level) : undefined}
       >
         {!stacked && (
@@ -138,6 +268,8 @@ export function DashboardPage() {
             onFocus={() => setFocus(visual.id)}
             onTable={() => setTables((current) => new Set(current.has(visual.id) ? [...current].filter((id) => id !== visual.id) : [...current, visual.id]))}
             onSpotlight={() => setSpotlight(spotlight === visual.id ? '' : visual.id)}
+            onPersonalize={canPersonalize(visual) ? () => setPersonalizing(personalizing === visual.id ? '' : visual.id) : undefined}
+            personalized={!!personalOverrides[visual.id]}
             drill={
               hierarchy
                 ? {
@@ -221,6 +353,26 @@ export function DashboardPage() {
               <FilterX size={12} aria-hidden /> {t('visualize.dashboards.clearSlicers', 'Clear all slicers')}
             </button>
           )}
+          {(bookmarks.length > 0 || allowPersonalize) && (
+            <ViewsMenu
+              author={spec.bookmarks ?? []}
+              personal={mine?.bookmarks ?? []}
+              active={activeView}
+              defaultView={mine?.defaultBookmark}
+              display={{ mode: mine?.mode ?? null, density: mine?.density ?? null }}
+              canSave={allowPersonalize}
+              onApply={applyView}
+              onSave={(name) => {
+                const bookmark: DashboardBookmark = { id: newId('view'), name, pageId: page.id, state: runtime.capture() };
+                updateMine((state) => ({ ...state, bookmarks: [...(state.bookmarks ?? []), bookmark].slice(-30) }));
+                setActiveView(bookmark.id);
+              }}
+              onDelete={(id) => updateMine((state) => ({ ...state, bookmarks: (state.bookmarks ?? []).filter((item) => item.id !== id), defaultBookmark: state.defaultBookmark === id ? undefined : state.defaultBookmark }))}
+              onDefault={(id) => updateMine((state) => ({ ...state, defaultBookmark: id }))}
+              onDisplay={(display) => updateMine((state) => ({ ...state, mode: display.mode, density: display.density }))}
+              onReset={resetAll}
+            />
+          )}
           {rendered.isFetching ? <span>{t('visualize.dashboards.updating', 'Updating…')}</span> : rendered.data && <span data-testid="render-time">{(rendered.data.meta.ms / 1000).toFixed(1)} s</span>}
           {showPane && (
             <button type="button" className="viz-chip" aria-pressed={paneOpen} onClick={() => setPaneOpen(!paneOpen)} data-testid="toggle-filters">
@@ -241,7 +393,7 @@ export function DashboardPage() {
       <div className="relative">
         <div
           className={`dash-canvas ${mode}`}
-          style={{ ...themeStyle(theme, mode, spec.density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }}
+          style={{ ...themeStyle(theme, mode, density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }}
           data-testid="dashboard-canvas"
           data-mode={mode}
           onMouseLeave={() => {
@@ -251,9 +403,10 @@ export function DashboardPage() {
         >
           <div ref={canvas} className={stacked ? 'dash-stack' : 'dash-grid'} style={stacked ? undefined : { height }}>
             {width > 0 &&
-              [...visuals]
-                .sort((a, b) => (stacked ? a.layout.y - b.layout.y || a.layout.x - b.layout.x : 0))
-                .map((visual) => tile(visual, stacked ? { height: Math.max(visual.layout.h * 24, 72) } : tileStyle(visual, rowHeight)))}
+              (stacked
+                ? // Phones: the page's mobile layout (or reading order), one visual per row.
+                  mobileVisuals(page, visuals).map(({ visual, h }) => tile(visual, { height: Math.max(h * 24, 56) }))
+                : visuals.map((visual) => tile(visual, tileStyle(visual, rowHeight))))}
           </div>
         </div>
         {showPane && paneOpen && (
@@ -282,7 +435,7 @@ export function DashboardPage() {
       </div>
       {focused && (
         <FocusOverlay onClose={() => setFocus('')}>
-          <div className={`dash-canvas ${mode} h-full`} style={themeStyle(theme, mode, spec.density)}>
+          <div className={`dash-canvas ${mode} h-full`} style={themeStyle(theme, mode, density)}>
             <div className="dash-grid h-full">{tile(focused, { left: 0, top: 0, width: '100%', height: '100%' }, true)}</div>
           </div>
         </FocusOverlay>
@@ -307,6 +460,28 @@ export function DashboardPage() {
           }}
         />
       )}
+      {personalizing &&
+        (() => {
+          const base = page.visuals.find((visual) => visual.id === personalizing);
+          const current = visuals.find((visual) => visual.id === personalizing);
+          if (!base || !current) return null;
+          return (
+            <PersonalizePane
+              visual={current}
+              base={base}
+              profiles={datasets.find((item) => item.id === base.data.datasetId)?.profile.columnProfiles ?? []}
+              canUndo={undo.length > 0}
+              onChange={(change) => changeOverride(base.id, change)}
+              onReset={() => changeOverride(base.id, null)}
+              onUndo={() => {
+                const previous = undo[undo.length - 1];
+                setUndo(undo.slice(0, -1));
+                updateMine((state) => ({ ...state, visualOverrides: previous ?? {} }));
+              }}
+              onClose={() => setPersonalizing('')}
+            />
+          );
+        })()}
       {hover && hoverPage && (
         <TooltipCard spec={spec} page={hoverPage} filters={[...filtersOn(hovered!), ...hover.filters]} theme={theme} mode={mode} dashboardId={dashboardId} x={hover.x} y={hover.y} />
       )}

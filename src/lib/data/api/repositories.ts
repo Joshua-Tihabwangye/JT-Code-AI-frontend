@@ -42,13 +42,12 @@ import type {
   VizQualityReport,
   VizRecommendation,
   VizRenderResult,
-  DashboardFilter,
   DashboardPersonalView,
   DashboardRecord,
   DashboardSpec,
   DashboardTheme,
   DashboardVersionInfo,
-  DashboardVisual,
+  SavedTheme,
   VisualsResponse,
 } from '../types';
 import type {
@@ -68,6 +67,7 @@ import type {
   ImageRepository,
   IntegrationRepository,
   KnowledgeRepository,
+  RenderVisualsInput,
   Repositories,
   SendMessageOptions,
   SignUpInput,
@@ -1075,10 +1075,19 @@ class ApiVisualizeRepository implements VisualizeRepository {
     const { data } = await api.get<{ themes: DashboardTheme[]; default: string }>('/visualize/themes/builtin/');
     return data;
   }
-  async renderVisuals(
-    input: { visuals: DashboardVisual[]; filters?: DashboardFilter[]; theme?: string | DashboardTheme; mode: 'light' | 'dark'; today?: string; dashboardId?: string },
-    signal?: AbortSignal,
-  ) {
+  async listThemes() {
+    const { data } = await api.get<SavedTheme[] | { results: SavedTheme[] }>('/visualize/themes/');
+    return Array.isArray(data) ? data : data.results;
+  }
+  async saveTheme(input: { id?: string; name: string; spec: DashboardTheme; isShared?: boolean }) {
+    const { id, ...body } = input;
+    const { data } = id ? await api.patch<SavedTheme>(`/visualize/themes/${id}/`, body) : await api.post<SavedTheme>('/visualize/themes/', body);
+    return data;
+  }
+  async deleteTheme(id: string) {
+    await api.delete(`/visualize/themes/${id}/`);
+  }
+  async renderVisuals(input: RenderVisualsInput, signal?: AbortSignal) {
     const { data } = await api.post<VisualsResponse>('/visualize/visuals/', input, { ...SLOW, signal });
     return data;
   }

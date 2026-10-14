@@ -1,8 +1,9 @@
 import { useState, type ReactNode } from 'react';
 import { RotateCcw, Search } from 'lucide-react';
-import type { DashboardPage, DashboardSpec, DashboardVisual, DashboardVisualType } from '@/lib/data';
+import type { ColumnProfile, DashboardPage, DashboardSpec, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
 import { humanize } from '../../ui';
 import { CANVAS_PRESETS, setFormat, syncGroupOf, syncSlicer } from './actions';
+import { AnalyticsSection, ButtonSection, ConditionalSection, NavigatorSection, ParameterSection, PythonSection } from './FormatExtras';
 
 type Update = (mutate: (visual: DashboardVisual) => DashboardVisual, merge?: string) => void;
 
@@ -23,6 +24,9 @@ interface Context {
   spec: DashboardSpec;
   pageId: string;
   onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void;
+  /** What Python drew for the selected visual (the Python console, errors). */
+  output?: VisualOutput;
+  profiles?: ColumnProfile[];
 }
 
 function value<T>(visual: DashboardVisual, section: string, key: string, fallback: T): T {
@@ -51,6 +55,34 @@ const set = (update: Update, section: string, key: string, merge = false) => (ne
   update((v) => setFormat(v, section, key, next), merge ? `${section}.${key}` : undefined);
 
 const SECTIONS: Section[] = [
+  {
+    key: 'python',
+    title: 'Python script',
+    types: ['python'],
+    formats: ['python'],
+    render: (visual, update, context) => <PythonSection visual={visual} update={update} output={context.output} />,
+  },
+  {
+    key: 'parameter',
+    title: 'Parameter',
+    types: ['parameter'],
+    formats: ['parameter'],
+    render: (visual, update, context) => <ParameterSection visual={visual} update={update} context={context} />,
+  },
+  {
+    key: 'button',
+    title: 'Button',
+    types: ['button'],
+    formats: ['button'],
+    render: (visual, update, context) => <ButtonSection visual={visual} update={update} context={context} />,
+  },
+  {
+    key: 'navigator',
+    title: 'Navigator',
+    types: ['navigator'],
+    formats: ['navigator'],
+    render: (visual, update) => <NavigatorSection visual={visual} update={update} />,
+  },
   {
     key: 'general',
     title: 'Title and position',
@@ -356,6 +388,20 @@ const SECTIONS: Section[] = [
     },
   },
   {
+    key: 'conditional',
+    title: 'Conditional formatting',
+    types: ['table', 'matrix', 'bar', 'column', 'card', 'kpi', 'multi_card'],
+    formats: ['conditional'],
+    render: (visual, update) => <ConditionalSection visual={visual} update={update} />,
+  },
+  {
+    key: 'analytics',
+    title: 'Analytics (reference lines, trend, forecast)',
+    types: ['bar', 'column', 'line', 'area', 'combo', 'scatter'],
+    formats: ['analytics'],
+    render: (visual, update) => <AnalyticsSection visual={visual} update={update} />,
+  },
+  {
     key: 'map',
     title: 'Map',
     types: ['map'],
@@ -488,7 +534,7 @@ export function FormatPane({
         <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search format options" aria-label="Search format options" />
       </label>
       {sections.map((section) => (
-        <details key={section.key} className="dash-format-section" open={['general', 'colors', 'labels', 'slicer', 'kpi'].includes(section.key) || !!search}>
+        <details key={section.key} className="dash-format-section" open={['general', 'colors', 'labels', 'slicer', 'kpi', 'python', 'parameter', 'button', 'navigator'].includes(section.key) || !!search} data-testid={`section-${section.key}`}>
           <summary>
             {section.title}
             {section.formats.some((key) => visual.format?.[key]) && (

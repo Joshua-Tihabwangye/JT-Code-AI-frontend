@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
-import { Calendar, Hash, Search, Sparkles, Type, X } from 'lucide-react';
-import type { ColumnProfile, DashboardFieldRef, DashboardVisual, DashboardWell } from '@/lib/data';
+import { ArrowLeftRight, Calendar, FunctionSquare, Hash, Search, Sparkles, Type, X } from 'lucide-react';
+import type { ColumnProfile, DashboardCalculation, DashboardFieldRef, DashboardSpec, DashboardVisual, DashboardWell } from '@/lib/data';
 import { OptionControl, SlotControl } from '../../controls';
 import { useVisualize } from '../../context';
 import { humanize } from '../../ui';
+import { CalculationsSection } from './CalcPanel';
 import { AGGREGATIONS, fieldKind, GRAINS, SHOW_VALUE_AS, suggestType, VISUAL_BY_TYPE, wellFor, wellItem, type WellSpec } from './catalog';
 
 const KIND_ICON = { numeric: Hash, datetime: Calendar, category: Type, any: Type } as const;
@@ -13,10 +14,14 @@ export function BuildPane({
   visual,
   update,
   onCreate,
+  spec: dashboard,
+  onSpec,
 }: {
   visual: DashboardVisual | undefined;
   update: (mutate: (visual: DashboardVisual) => DashboardVisual, merge?: string) => void;
   onCreate: (field: string, datasetId: string) => void;
+  spec: DashboardSpec;
+  onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void;
 }) {
   const { datasets, datasetId: pageDataset, catalog } = useVisualize();
   const [search, setSearch] = useState('');
@@ -49,6 +54,17 @@ export function BuildPane({
   };
 
   const suggestion = visual && spec?.wells.length ? suggestType(visual, kinds) : null;
+  const measureWell = spec?.wells.find((well) => well.measure);
+  /** A calculation or field parameter into the selected visual's values (or axis, for dimensions). */
+  const bind = (ref: DashboardFieldRef, measure: boolean) => {
+    if (!visual || !spec) return;
+    const well = measure ? measureWell : spec.wells.find((item) => !item.measure);
+    if (!well) return;
+    const current = visual.data.wells[well.key] ?? [];
+    setWell(well.key, current.length >= well.max ? [...current.slice(0, well.max - 1), ref] : [...current, ref]);
+  };
+  const useCalc = (calc: DashboardCalculation) => bind({ field: calc.name, calc: calc.id }, true);
+  const fieldParameters = (dashboard.parameters ?? []).filter((parameter) => parameter.kind === 'fields');
 
   return (
     <div className="space-y-3" data-testid="build-pane">
@@ -89,6 +105,21 @@ export function BuildPane({
           ))}
         </div>
       )}
+      {visual && spec && spec.wells.length > 0 && fieldParameters.length > 0 && (
+        <div className="space-y-1">
+          <span className="viz-label m-0">Field parameters — bind a well to a switcher</span>
+          <div className="flex flex-wrap gap-1">
+            {fieldParameters.map((parameter) =>
+              parameter.kind === 'fields' && parameter.options[0] ? (
+                <button key={parameter.id} type="button" className="viz-chip" onClick={() => bind({ ...parameter.options[0]!, param: parameter.id }, parameter.role === 'measure')} data-testid={`bind-param-${parameter.id}`}>
+                  <ArrowLeftRight size={12} aria-hidden /> {parameter.name}
+                </button>
+              ) : null,
+            )}
+          </div>
+        </div>
+      )}
+      {datasetId && <CalculationsSection spec={dashboard} datasetId={datasetId} profiles={profiles} onSpec={onSpec} onUse={visual && measureWell ? useCalc : undefined} />}
       <div>
         <div className="mb-1 flex items-center justify-between">
           <span className="viz-label m-0">{visual ? 'Fields — click or drag into a well' : 'Fields — click one to start a visual'}</span>
@@ -164,10 +195,12 @@ function Well({
         const kind = fieldKind(profiles.find((p) => p.name === item.field));
         return (
           <div key={`${item.field}-${index}`} className="dash-well-item">
-            <span className="truncate font-medium" title={item.field}>
-              {item.field === '*' ? 'Rows' : humanize(item.field)}
+            <span className="truncate font-medium" title={item.calc ? 'Calculation' : item.field}>
+              {item.calc && <FunctionSquare size={11} aria-hidden className="mr-1 inline" />}
+              {item.param && <ArrowLeftRight size={11} aria-label="Bound to a field parameter" className="mr-1 inline" />}
+              {item.field === '*' ? 'Rows' : item.calc ? item.field : humanize(item.field)}
             </span>
-            {well.measure && (
+            {well.measure && !item.calc && !item.param && (
               <select value={item.agg ?? 'sum'} onChange={(event) => patch(index, { agg: event.target.value })} aria-label={`Aggregation for ${item.field}`}>
                 {AGGREGATIONS.filter(([value]) => kind === 'numeric' || ['count', 'distinct', 'min', 'max', 'first', 'last'].includes(value)).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -185,6 +218,9 @@ function Well({
                   </option>
                 ))}
               </select>
+            )}
+            {well.measure && item.showValueAs === 'moving_avg' && (
+              <input type="number" min={2} max={60} value={item.window ?? 3} onChange={(event) => patch(index, { window: Number(event.target.value) })} aria-label="Moving average window" className="w-12" title="Periods" />
             )}
             {well.measure && (
               <select value={item.showValueAs ?? 'none'} onChange={(event) => patch(index, { showValueAs: event.target.value === 'none' ? undefined : event.target.value })} aria-label={`Show ${item.field} as`} title="Show value as">

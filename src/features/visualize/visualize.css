@@ -2279,3 +2279,382 @@ textarea.viz-field {
   flex: 1;
   min-width: 0;
 }
+
+/* --- Phase 4: customization ------------------------------------------------------------------- */
+
+.viz-chip.primary {
+  color: #fff;
+  border-color: transparent;
+  background: var(--viz-indigo);
+}
+
+.viz-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Parameters, buttons and navigators drawn on the canvas. */
+.dash-tile.local .dash-tile-inner {
+  justify-content: center;
+}
+
+.dash-tile.local.button .dash-tile-inner,
+.dash-tile.local.navigator .dash-tile-inner {
+  padding: 4px;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.dash-param {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  justify-content: center;
+}
+
+.dash-param-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dash-param-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dash-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-param input[type='range'] {
+  width: 100%;
+  accent-color: var(--dash-accent);
+}
+
+.dash-param-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.dash-param-tiles button,
+.dash-navigator button {
+  padding: 3px 10px;
+  border: 1px solid var(--dash-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--dash-text);
+  background: var(--dash-tile);
+  white-space: nowrap;
+}
+
+.dash-param-tiles button[aria-checked='true'],
+.dash-navigator button[aria-pressed='true'] {
+  color: #fff;
+  border-color: transparent;
+  background: var(--dash-accent);
+}
+
+.dash-navigator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.dash-button {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: calc(var(--dash-radius, 12px) * 0.75);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: filter 0.15s, background 0.15s;
+}
+
+.dash-button.primary {
+  color: #fff;
+  background: var(--dash-accent);
+}
+
+.dash-button.outline {
+  color: var(--dash-accent);
+  border: 1.5px solid var(--dash-accent);
+  background: var(--dash-tile);
+}
+
+.dash-button.ghost {
+  color: var(--dash-text);
+}
+
+.dash-button:hover {
+  filter: brightness(1.08);
+}
+
+.dash-button.ghost:hover,
+.dash-button.outline:hover {
+  background: color-mix(in srgb, var(--dash-accent) 10%, var(--dash-tile));
+}
+
+.dash-cell-icon {
+  margin-inline-end: 4px;
+  font-size: 0.7em;
+}
+
+/* Views menu and personalize pane. */
+.dash-views {
+  left: 0;
+  right: auto;
+  min-width: 260px;
+}
+
+.dash-view-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+}
+
+.dash-view-row > button {
+  padding: 4px;
+  border-radius: 6px;
+  color: inherit;
+}
+
+.dash-view-row > button[aria-pressed='true'] {
+  color: var(--dash-accent, var(--viz-indigo));
+  font-weight: 600;
+}
+
+.dash-view-row > button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--dash-accent, var(--viz-indigo)) 12%, transparent);
+}
+
+.dash-personalize {
+  position: fixed;
+  z-index: 95;
+  top: 5rem;
+  inset-inline-end: 1rem;
+  width: min(320px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 6rem);
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: 0 18px 44px -14px rgb(15 23 42 / 0.35);
+}
+
+/* Calculations, quick measures and parameters in the Build pane. */
+.dash-calc-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--viz-indigo) 4%, var(--card));
+}
+
+.dash-token {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  color: var(--muted-foreground);
+  background: var(--card);
+}
+
+.dash-token:hover {
+  color: var(--foreground);
+}
+
+.dash-token.field {
+  font-family: inherit;
+  color: var(--foreground);
+}
+
+.dash-token.param {
+  font-family: inherit;
+  color: var(--viz-violet);
+  border-color: color-mix(in srgb, var(--viz-violet) 40%, var(--border));
+}
+
+.dash-calc-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dash-calc-item > button:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-kind.calc {
+  color: var(--viz-violet);
+}
+
+.dash-rule {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.dash-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: pre;
+  tab-size: 4;
+}
+
+.dash-console {
+  max-height: 120px;
+  overflow: auto;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  white-space: pre-wrap;
+  color: #e2e8f0;
+  background: #0f172a;
+}
+
+/* Theme customizer. */
+.dash-dialog-backdrop {
+  position: fixed;
+  /* Above the editor's frames, handles and mini toolbar (z-index 900). */
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(15 23 42 / 0.35);
+}
+
+.dash-dialog {
+  display: flex;
+  width: min(560px, 100%);
+  max-height: calc(100dvh - 32px);
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 24px 60px -20px rgb(15 23 42 / 0.45);
+}
+
+.dash-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+}
+
+.dash-swatch-edit {
+  position: relative;
+  display: inline-flex;
+}
+
+.dash-swatch-edit button {
+  position: absolute;
+  top: -6px;
+  inset-inline-end: -6px;
+  display: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 14px;
+  color: #fff;
+  background: #64748b;
+}
+
+.dash-swatch-edit:hover button {
+  display: block;
+}
+
+.dash-theme-swatch.small {
+  width: 48px;
+  height: 14px;
+}
+
+/* Phone layout editor. */
+.dash-mobile-editor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.dash-phone {
+  display: flex;
+  width: 360px;
+  min-height: 560px;
+  flex-direction: column;
+  gap: var(--dash-gap, 10px);
+  padding: 18px 10px;
+  border: 8px solid #1e293b;
+  border-radius: 34px;
+  background: var(--dash-canvas);
+}
+
+.dash-phone-item {
+  position: relative;
+}
+
+.dash-phone-tools {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  z-index: 5;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--dash-tile);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+}
+
+.dash-phone-tools button {
+  padding: 3px;
+  border-radius: 5px;
+  color: var(--dash-muted);
+}
+
+.dash-phone-tools button:hover:not(:disabled) {
+  color: var(--dash-text);
+  background: color-mix(in srgb, var(--dash-accent) 12%, transparent);
+}
+
+.dash-phone-tools button:disabled {
+  opacity: 0.35;
+}
+
+.dash-mobile-side {
+  display: flex;
+  width: 220px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Format painter armed. */
+.dash-edit-grid.painting,
+.dash-edit-grid.painting .dash-edit-frame {
+  cursor: copy;
+}

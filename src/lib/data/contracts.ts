@@ -51,6 +51,7 @@ import type {
   DashboardRecord,
   DashboardSpec,
   DashboardTheme,
+  SavedTheme,
   DashboardVersionInfo,
   DashboardVisual,
   VisualsResponse,
@@ -399,7 +400,23 @@ export interface VisualizeRepository {
   savePersonalView(id: string, state: DashboardPersonalView['state']): Promise<DashboardPersonalView>;
   resetPersonalView(id: string): Promise<void>;
   builtInThemes(): Promise<{ themes: DashboardTheme[]; default: string }>;
-  renderVisuals(input: { visuals: DashboardVisual[]; filters?: DashboardFilter[]; theme?: string | DashboardTheme; mode: 'light' | 'dark'; today?: string; dashboardId?: string }, signal?: AbortSignal): Promise<VisualsResponse>;
+  listThemes(): Promise<SavedTheme[]>;
+  saveTheme(input: { id?: string; name: string; spec: DashboardTheme; isShared?: boolean }): Promise<SavedTheme>;
+  deleteTheme(id: string): Promise<void>;
+  renderVisuals(input: RenderVisualsInput, signal?: AbortSignal): Promise<VisualsResponse>;
+}
+
+export interface RenderVisualsInput {
+  visuals: DashboardVisual[];
+  filters?: DashboardFilter[];
+  theme?: string | DashboardTheme;
+  mode: 'light' | 'dark';
+  today?: string;
+  dashboardId?: string;
+  /** What-if parameter values by name, for calculated measures. */
+  parameters?: Record<string, number>;
+  /** The dashboard's calculations by name (calculations may use each other). */
+  calculations?: { name: string; expression: string }[];
 }
 
 export interface Repositories {

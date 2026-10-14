@@ -1,6 +1,8 @@
 import { useMemo, type CSSProperties } from 'react';
-import type { DashboardFilter, DashboardTheme, DashboardVisual, KpiData, VisualOutput, VisualTable } from '@/lib/data';
+import type { CellStyle, DashboardFilter, DashboardTheme, DashboardVisual, KpiData, VisualOutput, VisualTable } from '@/lib/data';
 import { EChart, type EChartClick } from '../EChart';
+import { LOCAL_TYPES } from './customize';
+import { LocalVisual, type LocalContext } from './local';
 import { SlicerVisual, type SlicerValue } from './slicers';
 import { kpiTileStyle } from './theme';
 
@@ -35,7 +37,7 @@ export function KpiCard({ kpi, theme, index }: { kpi: KpiData; theme: DashboardT
       <div className="dash-kpi-label" title={kpi.label}>
         {kpi.label}
       </div>
-      <div className="dash-kpi-value" title={kpi.value == null ? '' : String(kpi.value)}>
+      <div className="dash-kpi-value" title={kpi.value == null ? '' : String(kpi.value)} style={kpi.color && !inverted ? { color: kpi.color } : undefined}>
         {kpi.display}
       </div>
       <div className="dash-kpi-meta">
@@ -63,7 +65,9 @@ function Cards({ output }: { output: VisualOutput }) {
       {output.cards?.map((card) => (
         <div key={card.label} className="dash-card-item">
           <span className="dash-kpi-label">{card.label}</span>
-          <span className="dash-card-value">{card.display}</span>
+          <span className="dash-card-value" style={card.color ? { color: card.color } : undefined}>
+            {card.display}
+          </span>
         </div>
       ))}
     </div>
@@ -97,21 +101,32 @@ function TableVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler }
           </tr>
         </thead>
         <tbody>
-          {table.rows.map((row, index) => (
-            <tr key={index} onClick={(event) => onRow(index, event)} onContextMenu={(event) => onRow(index, event, 'menu')}>
-              {columns.map((column) => {
-                const value = row[column.key];
-                const peak = table.bars?.[column.key];
-                const share = typeof value === 'number' && peak ? Math.min(Math.abs(value) / peak, 1) : 0;
-                return (
-                  <td key={column.key} className={column.align === 'right' ? 'num' : ''}>
-                    {share > 0 && <span className="dash-bar" style={{ width: `${share * 100}%` }} aria-hidden />}
-                    <span className="relative">{formatCell(value, column.percent)}</span>
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
+          {table.rows.map((row, index) => {
+            const styles = (row._style ?? {}) as Record<string, CellStyle>;
+            return (
+              <tr key={index} onClick={(event) => onRow(index, event)} onContextMenu={(event) => onRow(index, event, 'menu')}>
+                {columns.map((column) => {
+                  const value = row[column.key];
+                  const peak = table.bars?.[column.key];
+                  const share = typeof value === 'number' && peak ? Math.min(Math.abs(value) / peak, 1) : 0;
+                  const style = styles[column.key];
+                  return (
+                    <td key={column.key} className={column.align === 'right' ? 'num' : ''} style={style ? { background: style.bg, color: style.color } : undefined}>
+                      {share > 0 && <span className="dash-bar" style={{ width: `${share * 100}%`, ...(style?.bar ? { background: style.bar, opacity: 0.35 } : {}) }} aria-hidden />}
+                      <span className="relative">
+                        {style?.icon && (
+                          <span className="dash-cell-icon" style={{ color: style.iconColor }} aria-hidden>
+                            {style.icon}
+                          </span>
+                        )}
+                        {formatCell(value, column.percent)}
+                      </span>
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
         {table.totals && (
           <tfoot>
@@ -147,12 +162,21 @@ function MatrixVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler 
         </thead>
         <tbody>
           {table.rows.map((row, index) => {
-            const cells = row.cells as { value: number | null; display: string; shade: number }[];
+            const cells = row.cells as { value: number | null; display: string; shade: number; style?: CellStyle }[];
             return (
               <tr key={index} onClick={(event) => onRow(index, event)} onContextMenu={(event) => onRow(index, event, 'menu')}>
                 <td>{String(row.label)}</td>
                 {cells.map((cell, cellIndex) => (
-                  <td key={cellIndex} className="num" style={{ background: `color-mix(in srgb, ${accent} ${Math.round(cell.shade * 100)}%, transparent)` }}>
+                  <td
+                    key={cellIndex}
+                    className="num"
+                    style={cell.style ? { background: cell.style.bg, color: cell.style.color } : { background: `color-mix(in srgb, ${accent} ${Math.round(cell.shade * 100)}%, transparent)` }}
+                  >
+                    {cell.style?.icon && (
+                      <span className="dash-cell-icon" style={{ color: cell.style.iconColor }} aria-hidden>
+                        {cell.style.icon}
+                      </span>
+                    )}
                     {cell.display}
                   </td>
                 ))}
@@ -201,6 +225,7 @@ export function VisualRenderer({
   slicerValue,
   onSlicerChange,
   asTable = false,
+  local,
 }: {
   visual: DashboardVisual;
   output: VisualOutput | undefined;
@@ -212,9 +237,12 @@ export function VisualRenderer({
   onSlicerChange?: (value: SlicerValue) => void;
   /** “Show as table”: the visual's numbers instead of the chart. */
   asTable?: boolean;
+  /** Parameter controls, buttons and navigators. */
+  local?: LocalContext;
 }) {
   const option = useMemo(() => output?.option, [output]);
   if (visual.type === 'text') return <p className="dash-text">{visual.text}</p>;
+  if (LOCAL_TYPES.has(visual.type)) return <LocalVisual visual={visual} context={local} />;
   if (!output) return <div className="dash-skeleton" aria-busy="true" />;
   if (output.status === 'error') return <p className="dash-message error">{output.message ?? 'This visual could not be drawn.'}</p>;
   if (output.status === 'empty') {
@@ -228,7 +256,7 @@ export function VisualRenderer({
     );
   }
   if (asTable && output.data) return <DataTable data={output.data} />;
-  if (output.kpi && (visual.type === 'kpi' || visual.type === 'card')) return <KpiCard kpi={output.kpi} theme={theme} index={kpiIndex} />;
+  if (output.kpi && (visual.type === 'kpi' || visual.type === 'card' || visual.type === 'python')) return <KpiCard kpi={output.kpi} theme={theme} index={kpiIndex} />;
   if (output.cards) return <Cards output={output} />;
   if (output.slicer) {
     const settings = (visual.format?.slicer ?? {}) as { style?: string; single?: boolean };

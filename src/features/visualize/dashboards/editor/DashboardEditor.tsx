@@ -22,9 +22,13 @@ import {
   LayoutTemplate,
   Loader2,
   Magnet,
+  Monitor,
   MousePointerClick,
+  Paintbrush,
   Palette,
   Plus,
+  Settings2,
+  Smartphone,
   Redo2,
   SendToBack,
   StretchHorizontal,
@@ -38,6 +42,8 @@ import { useRepository, type DashboardPage, type DashboardSpec, type DashboardVi
 import { useTheme } from '@/lib/theme';
 import { useVisualize } from '../../context';
 import { ErrorNote, SkeletonBlock } from '../../ui';
+import { paintFormat } from '../customize';
+import type { ButtonAction, LocalContext } from '../local';
 import { useDashboardRuntime, useWidth } from '../runtime';
 import { resolveMode, resolveTheme, themeStyle, useBuiltInThemes } from '../theme';
 import { captureThumbnail } from '../thumbnail';
@@ -64,12 +70,16 @@ import { BuildPane } from './BuildPane';
 import { EditorCanvas } from './Canvas';
 import { fieldKind, newId, suggestType, VISUAL_BY_TYPE, VISUALS, wellFor, wellItem } from './catalog';
 import { FiltersPane } from '../FiltersPane';
+import { PYTHON_STARTER } from './FormatExtras';
 import { FormatPane } from './FormatPane';
+import { MobileLayoutEditor } from './MobileLayout';
 import { SelectionPane } from './SelectionPane';
+import { ThemeDialog } from './ThemeDialog';
+import { ViewsPane } from './ViewsPane';
 import { currentPage, readClipboard, selectedVisuals, useEditor, writeClipboard } from './store';
 
 type Menu = 'insert' | 'arrange' | 'theme' | 'versions' | null;
-type PaneTab = 'build' | 'format' | 'filters' | 'selection';
+type PaneTab = 'build' | 'format' | 'filters' | 'selection' | 'views';
 const THUMBNAIL_EVERY_MS = 30_000;
 
 function isTyping(target: EventTarget | null): boolean {
@@ -99,6 +109,11 @@ export function DashboardEditor() {
   const [paneOpen, setPaneOpen] = useState(true);
   const [renamingPage, setRenamingPage] = useState('');
   const [interactions, setInteractions] = useState(false);
+  /** Format painter: the visual whose formatting the next clicked visual takes. */
+  const [painter, setPainter] = useState<string | null>(null);
+  /** The theme before the customize dialog opened (Cancel restores it). */
+  const [themeBefore, setThemeBefore] = useState<DashboardSpec['theme'] | null>(null);
+  const [layout, setLayout] = useState<'desktop' | 'phone'>('desktop');
   const [area, areaWidth] = useWidth<HTMLDivElement>();
   const lastThumbnail = useRef(0);
   const theme = resolveTheme(spec?.theme, themes.data?.themes);
@@ -110,6 +125,15 @@ export function DashboardEditor() {
   useEffect(() => {
     if (record.data && useEditor.getState().record?.id !== record.data.id) useEditor.getState().load(record.data);
   }, [record.data]);
+  // Format painter: the next visual selected takes the copied formatting.
+  useEffect(() => {
+    if (!painter || selected.length !== 1 || selected[0] === painter) return;
+    const state = useEditor.getState();
+    const current = currentPage(state);
+    const source = current?.visuals.find((visual) => visual.id === painter);
+    if (current && source) state.change((s) => mapVisuals(s, current.id, [selected[0]!], (target) => paintFormat(source, target)));
+    setPainter(null);
+  }, [painter, selected]);
   useEffect(() => {
     setAssistantContext({ page: 'dashboard-editor', title: record.data?.name });
   }, [record.data?.name, setAssistantContext]);
@@ -182,8 +206,14 @@ export function DashboardEditor() {
     });
     select([id]);
     setMenu(null);
-    setPane(type === 'text' ? 'format' : 'build');
+    setPane(['text', 'parameter', 'button', 'navigator'].includes(type) ? 'format' : 'build');
     setPaneOpen(true);
+  };
+  /** Sensible starting settings for visuals that need more than fields. */
+  const STARTERS: Partial<Record<DashboardVisualType, Partial<DashboardVisual>>> = {
+    button: { format: { button: { action: { kind: 'clear_slicers' } } } },
+    navigator: { format: { navigator: { kind: 'pages' } } },
+    python: { format: { python: { code: PYTHON_STARTER } } },
   };
   const createFromField = (field: string, datasetId: string) => {
     const profile = datasets.find((item) => item.id === datasetId)?.profile.columnProfiles?.find((p) => p.name === field);
@@ -264,6 +294,7 @@ export function DashboardEditor() {
         state.change((s) => removeVisuals(s, current.id, state.selected));
       } else if (key === 'escape') {
         state.select([]);
+        setPainter(null);
       } else if (key.startsWith('arrow') && state.selected.length) {
         event.preventDefault();
         const step = (event.shiftKey ? 4 : 1) * (state.snap ? 1 : 0.25);
@@ -293,6 +324,20 @@ export function DashboardEditor() {
   if (record.error || !spec || !page) return <ErrorNote error={record.error ?? new Error('Dashboard not found.')} />;
   if (record.data && record.data.role === 'viewer') return <ErrorNote error={new Error('You can view this dashboard but not edit it.')} />;
 
+  const editorAction = (action: ButtonAction) => {
+    if (action.kind === 'page' && action.pageId) editor.setPage(action.pageId);
+    else if (action.kind === 'bookmark') {
+      const bookmark = spec.bookmarks?.find((item) => item.id === action.bookmarkId);
+      if (bookmark) {
+        editor.setPage(bookmark.pageId);
+        runtime.apply(bookmark.state, spec.pages.find((item) => item.id === bookmark.pageId));
+      }
+    } else if (action.kind === 'clear_slicers') runtime.clearSlicers();
+    else if (action.kind === 'apply_slicers') runtime.applyPending();
+    else if (action.kind === 'toggle' && action.visualId) runtime.toggleVisual(action.visualId);
+  };
+  const local: LocalContext = { spec, pageId: page.id, parameters: runtime.parameters, setParameter: runtime.setParameter, bookmarks: spec.bookmarks ?? [], onAction: editorAction };
+  const selectedProfiles = datasets.find((item) => item.id === (single?.data.datasetId || mostUsedDataset(page) || activeDataset))?.profile.columnProfiles ?? [];
   const updatePage = (patch: Partial<DashboardPage>) => change((current) => mapPage(current, page.id, (p) => ({ ...p, ...patch })), { merge: `page.${Object.keys(patch).join(',')}` });
   const status = {
     saved: { icon: Check, text: t('visualize.editor.saved', 'Saved') },
@@ -334,7 +379,7 @@ export function DashboardEditor() {
                   <p className="dash-menu-title">{groupName}</p>
                   <div className="dash-menu-grid">
                     {VISUALS.filter((visual) => visual.group === groupName).map((visual) => (
-                      <button key={visual.type} type="button" onClick={() => insert(visual.type)} data-testid={`insert-${visual.type}`}>
+                      <button key={visual.type} type="button" onClick={() => insert(visual.type, STARTERS[visual.type])} data-testid={`insert-${visual.type}`}>
                         <visual.icon size={16} aria-hidden /> {visual.label}
                       </button>
                     ))}
@@ -440,6 +485,18 @@ export function DashboardEditor() {
                   </button>
                 ))}
               </div>
+              <button
+                type="button"
+                className="viz-chip mt-2"
+                onClick={() => {
+                  setThemeBefore(spec.theme);
+                  if (typeof spec.theme === 'string' && theme) change((s) => ({ ...s, theme: { ...theme, id: 'custom', name: `${theme.name} (custom)` } }));
+                  setMenu(null);
+                }}
+                data-testid="theme-customize"
+              >
+                <Settings2 size={12} aria-hidden /> Customize theme…
+              </button>
               <p className="dash-menu-title">Mode and density</p>
               <div className="viz-segment">
                 {(['system', 'light', 'dark'] as const).map((value) => (
@@ -467,6 +524,17 @@ export function DashboardEditor() {
           data-testid="edit-interactions"
         >
           <MousePointerClick size={14} aria-hidden /> {t('visualize.editor.interactions', 'Interactions')}
+        </button>
+        <button
+          type="button"
+          className="dash-menu-button"
+          aria-pressed={!!painter}
+          disabled={!single && !painter}
+          onClick={() => setPainter(painter ? null : (single?.id ?? null))}
+          title="Format painter: copy this visual's formatting, then click another visual"
+          data-testid="format-painter"
+        >
+          <Paintbrush size={14} aria-hidden />
         </button>
         <div className="dash-toolgroup">
           <button type="button" aria-pressed={snap} onClick={() => setOption({ snap: !snap })} title="Snap to grid (off = free positioning)" data-testid="toggle-snap">
@@ -564,11 +632,31 @@ export function DashboardEditor() {
         </div>
       )}
       {saveState === 'error' && <ErrorNote error={new Error(saveError)} />}
+      {themeBefore !== null && typeof spec.theme === 'object' && (
+        <ThemeDialog
+          theme={spec.theme}
+          mode={mode}
+          onChange={(next) => change((s) => ({ ...s, theme: next }), { merge: 'theme' })}
+          onClose={(keep) => {
+            if (!keep) change((s) => ({ ...s, theme: themeBefore }));
+            setThemeBefore(null);
+          }}
+        />
+      )}
 
       <div className="dash-editor-body">
         <div ref={area} className="dash-editor-canvas" onPointerDown={(event) => event.target === event.currentTarget && select([])}>
-          <div className={`dash-canvas ${mode}`} style={{ width: canvasWidth, ...themeStyle(theme, mode, spec.density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }} data-mode={mode}>
-            {canvasWidth > 0 && (
+          <div className={`dash-canvas ${mode}`} style={{ width: layout === 'phone' ? undefined : canvasWidth, ...themeStyle(theme, mode, spec.density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }} data-mode={mode}>
+            {layout === 'phone' ? (
+              <MobileLayoutEditor
+                page={page}
+                visuals={runtime.visuals}
+                outputs={runtime.outputs}
+                theme={theme}
+                local={local}
+                onChange={(next) => change((current) => mapPage(current, page.id, (p) => ({ ...p, mobileLayout: next })))}
+              />
+            ) : canvasWidth > 0 && (
               <EditorCanvas
                 outputs={runtime.outputs}
                 theme={theme}
@@ -581,6 +669,8 @@ export function DashboardEditor() {
                   setPaneOpen(true);
                 }}
                 interactionSource={interactions ? single : undefined}
+                local={local}
+                painting={!!painter}
               />
             )}
           </div>
@@ -592,22 +682,22 @@ export function DashboardEditor() {
           {paneOpen && (
             <>
               <div className="dash-pane-tabs" role="tablist">
-                {(['build', 'format', 'filters', 'selection'] as const).map((tab) => (
+                {(['build', 'format', 'filters', 'selection', 'views'] as const).map((tab) => (
                   <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`pane-${tab}`}>
-                    {tab === 'build' ? 'Build' : tab === 'format' ? 'Format' : tab === 'filters' ? 'Filters' : 'Selection'}
+                    {tab === 'build' ? 'Build' : tab === 'format' ? 'Format' : tab === 'filters' ? 'Filters' : tab === 'selection' ? 'Selection' : 'Views'}
                   </button>
                 ))}
               </div>
               <div className="dash-pane-body">
-                {selected.length > 1 && pane !== 'selection' && pane !== 'filters' && <p className="text-xs text-muted-foreground">{selected.length} visuals selected — use Arrange, or pick one to edit.</p>}
-                {pane === 'build' && selected.length <= 1 && <BuildPane visual={single} update={updateSelected} onCreate={createFromField} />}
+                {selected.length > 1 && pane !== 'selection' && pane !== 'filters' && pane !== 'views' && <p className="text-xs text-muted-foreground">{selected.length} visuals selected — use Arrange, or pick one to edit.</p>}
+                {pane === 'build' && selected.length <= 1 && <BuildPane visual={single} update={updateSelected} onCreate={createFromField} spec={spec} onSpec={(mutate) => change(mutate)} />}
                 {pane === 'format' && selected.length <= 1 && (
                   <FormatPane
                     visual={single}
                     update={updateSelected}
                     page={page}
                     updatePage={updatePage}
-                    context={{ spec, pageId: page.id, onSpec: (mutate) => change(mutate) }}
+                    context={{ spec, pageId: page.id, onSpec: (mutate) => change(mutate), output: single ? runtime.outputs[single.id] : undefined, profiles: selectedProfiles }}
                     fields={datasetFor('').fields.map((field) => field.name)}
                   />
                 )}
@@ -628,6 +718,18 @@ export function DashboardEditor() {
                   />
                 )}
                 {pane === 'selection' && <SelectionPane page={page} outputs={runtime.outputs} />}
+                {pane === 'views' && (
+                  <ViewsPane
+                    spec={spec}
+                    pageId={page.id}
+                    capture={runtime.capture}
+                    onApply={(bookmark) => {
+                      editor.setPage(bookmark.pageId);
+                      runtime.apply(bookmark.state, spec.pages.find((item) => item.id === bookmark.pageId));
+                    }}
+                    onSpec={(mutate) => change(mutate)}
+                  />
+                )}
               </div>
             </>
           )}
@@ -712,7 +814,15 @@ export function DashboardEditor() {
         >
           <Plus size={14} />
         </button>
-        <span className="ml-auto text-[11px] text-muted-foreground">
+        <div className="viz-segment ml-auto" role="group" aria-label="Layout">
+          <button type="button" aria-pressed={layout === 'desktop'} onClick={() => setLayout('desktop')} data-testid="layout-desktop" title="Desktop layout">
+            <Monitor size={13} aria-hidden />
+          </button>
+          <button type="button" aria-pressed={layout === 'phone'} onClick={() => setLayout('phone')} data-testid="layout-phone" title="Phone layout">
+            <Smartphone size={13} aria-hidden />
+          </button>
+        </div>
+        <span className="text-[11px] text-muted-foreground">
           {page.visuals.length} visual{page.visuals.length === 1 ? '' : 's'} · {runtime.rendered.isFetching ? 'updating…' : runtime.rendered.data ? `${(runtime.rendered.data.meta.ms / 1000).toFixed(1)} s` : ''}
         </span>
       </footer>

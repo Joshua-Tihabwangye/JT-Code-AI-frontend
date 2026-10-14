@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { useRepository, type DashboardFieldRef, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
+import { useRepository, type DashboardBookmarkState, type DashboardFieldRef, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
 import { useDebounced } from '../controls';
+import { LOCAL_TYPES, renderContext, resolveVisual, type ParameterValues } from './customize';
+import type { LocalContext } from './local';
 import { slicerFilter, VisualRenderer, type PointHandler, type SelectHandler, type SlicerValue } from './visuals';
 
 /** Pages are designed at 1280 px wide on a 24-column grid with 24 px rows, then scaled to fit. */
@@ -22,7 +24,7 @@ export function interaction(source: DashboardVisual, target: DashboardVisual): '
   const chosen = source.interactions?.[target.id];
   if (chosen) return chosen;
   // Slicers keep showing the user's own choice; a chart click never changes them.
-  if (target.type === 'text' || target.type === 'slicer') return 'none';
+  if (LOCAL_TYPES.has(target.type) || target.type === 'slicer') return 'none';
   return CHART_TYPES.has(target.type) ? 'highlight' : 'filter';
 }
 
@@ -126,6 +128,7 @@ export function useDashboardRuntime({
   dashboardId,
   interactive = true,
   extraFilters = [],
+  personal,
 }: {
   spec: DashboardSpec | undefined;
   page: DashboardPage | undefined;
@@ -134,6 +137,8 @@ export function useDashboardRuntime({
   interactive?: boolean;
   /** Filters from outside the page: a drill-through's member, a viewer's keep/exclude. */
   extraFilters?: DashboardFilter[];
+  /** A viewer's personal changes per visual (type, fields, format). */
+  personal?: Record<string, Partial<DashboardVisual>>;
 }) {
   const visualize = useRepository('visualize');
   const [slicers, setSlicers] = useState<Record<string, SlicerValue>>({});
@@ -143,7 +148,16 @@ export function useDashboardRuntime({
   const [drillMode, setDrillMode] = useState<Record<string, boolean>>({});
   const [overrides, setOverrides] = useState<Record<string, DashboardFilter | null>>({});
   const [outputs, setOutputs] = useState<Record<string, VisualOutput>>({});
-  const visuals = useMemo(() => (page?.visuals ?? []).filter((visual) => !visual.hidden), [page]);
+  const [parameters, setParameters] = useState<ParameterValues>({});
+  /** Visibility set by a bookmark or button (overrides the author's ``hidden``). */
+  const [visibility, setVisibility] = useState<Record<string, boolean>>({});
+  const visuals = useMemo(
+    () =>
+      (page?.visuals ?? [])
+        .filter((visual) => (visibility[visual.id] === undefined ? !visual.hidden : !visibility[visual.id]))
+        .map((visual) => resolveVisual(visual, spec, parameters, personal?.[visual.id])),
+    [page, spec, parameters, personal, visibility],
+  );
   const applyWithButton = (spec?.settings as { applyMode?: string } | undefined)?.applyMode === 'button';
 
   useEffect(() => {
@@ -176,7 +190,7 @@ export function useDashboardRuntime({
     const source = selection ? visuals.find((visual) => visual.id === selection.source) : undefined;
     const chosen = selection ? mergeMembers(selection.members) : [];
     const prepared = visuals
-      .filter((visual) => visual.type !== 'text')
+      .filter((visual) => !LOCAL_TYPES.has(visual.type))
       .map((visual) => {
         let next = drilled({ ...visual, data: { ...visual.data, filters: effective.visual[visual.id] ?? [] } }, drill[visual.id]);
         if (source && chosen.length && visual.id !== source.id) {
@@ -195,8 +209,9 @@ export function useDashboardRuntime({
       mode,
       today: new Date().toISOString().slice(0, 10),
       dashboardId,
+      ...renderContext(spec, parameters),
     };
-  }, [spec, page, visuals, outputs, slicers, selection, mode, dashboardId, effective, drill, extraFilters]);
+  }, [spec, page, visuals, outputs, slicers, selection, mode, dashboardId, effective, drill, extraFilters, parameters]);
   const debounced = useDebounced(request, 150);
   const rendered = useQuery({
     queryKey: ['visualize', 'visuals', debounced],
@@ -209,6 +224,11 @@ export function useDashboardRuntime({
   useEffect(() => {
     if (rendered.data) setOutputs((current) => ({ ...current, ...Object.fromEntries(rendered.data.visuals.map((output) => [output.id, output])) }));
   }, [rendered.data]);
+  // Text, parameter controls, buttons and navigators need nothing from the server.
+  const allOutputs = useMemo(() => {
+    const local = visuals.filter((visual) => LOCAL_TYPES.has(visual.type)).map((visual): [string, VisualOutput] => [visual.id, { id: visual.id, type: visual.type, status: 'ok', title: visual.title }]);
+    return { ...outputs, ...Object.fromEntries(local) };
+  }, [outputs, visuals]);
 
   const drillInto = (visual: DashboardVisual, filters: DashboardFilter[]) => {
     const hierarchy = hierarchyOf(visual);
@@ -246,10 +266,41 @@ export function useDashboardRuntime({
   };
   const slicerValue = (visual: DashboardVisual) => (pending ?? slicers)[slicerKey(visual)];
 
+  /** The page's interactive state, for a bookmark. */
+  const capture = (): DashboardBookmarkState => ({
+    slicers: { ...slicers },
+    overrides: { ...overrides },
+    drill: { ...drill },
+    parameters: { ...parameters },
+    hidden: (page?.visuals ?? []).filter((visual) => (visibility[visual.id] === undefined ? visual.hidden : visibility[visual.id])).map((visual) => visual.id),
+  });
+  const apply = (state: DashboardBookmarkState, target: DashboardPage | undefined = page) => {
+    setSlicers((state.slicers ?? {}) as Record<string, SlicerValue>);
+    setPending(null);
+    setOverrides(state.overrides ?? {});
+    setDrill((state.drill ?? {}) as Record<string, DrillState>);
+    setParameters(state.parameters ?? {});
+    setSelection(null);
+    const hidden = new Set(state.hidden ?? []);
+    setVisibility(state.hidden ? Object.fromEntries((target?.visuals ?? []).map((visual) => [visual.id, hidden.has(visual.id)])) : {});
+  };
+
   return {
     visuals,
-    outputs,
+    outputs: allOutputs,
     rendered,
+    parameters,
+    setParameter: (id: string, value: number) => setParameters((current) => ({ ...current, [id]: value })),
+    setParameters,
+    visibility,
+    toggleVisual: (id: string, visible?: boolean) =>
+      setVisibility((current) => {
+        const author = page?.visuals.find((visual) => visual.id === id)?.hidden ?? false;
+        const hidden = current[id] === undefined ? author : current[id];
+        return { ...current, [id]: visible === undefined ? !hidden : !visible };
+      }),
+    capture,
+    apply,
     slicers,
     setSlicers,
     setSlicer,
@@ -311,6 +362,7 @@ export function Tile({
   asTable,
   slicerValue,
   onSlicerChange,
+  local,
   title,
   children,
   ...rest
@@ -326,13 +378,17 @@ export function Tile({
   asTable?: boolean;
   slicerValue?: SlicerValue;
   onSlicerChange?: (value: SlicerValue) => void;
+  local?: LocalContext;
   /** Replaces the title (the editor's inline rename). */
   title?: ReactNode;
   children?: ReactNode;
 } & Record<`data-${string}`, string | undefined>) {
   const isKpi = visual.type === 'kpi' || visual.type === 'card';
+  const isLocal = LOCAL_TYPES.has(visual.type);
   const tileFormat = (visual.format?.tile ?? {}) as { background?: string; border?: string; radius?: number; shadow?: boolean };
-  const showTitle = !isKpi && visual.type !== 'text' && (visual.format?.title as { show?: boolean } | undefined)?.show !== false;
+  // Text, parameters, buttons and navigators show a title only when the author turns it on.
+  const titleFormat = visual.format?.title as { show?: boolean } | undefined;
+  const showTitle = !isKpi && (isLocal ? titleFormat?.show === true : titleFormat?.show !== false);
   const inner: CSSProperties = {
     ...(tileFormat.background ? { background: tileFormat.background } : {}),
     ...(tileFormat.border ? { borderColor: tileFormat.border } : {}),
@@ -341,10 +397,10 @@ export function Tile({
   };
   return (
     <section
-      className={`dash-tile${isKpi ? ' kpi' : ''}${visual.type === 'slicer' ? ' slicer' : ''} ${className}`}
+      className={`dash-tile${isKpi ? ' kpi' : ''}${visual.type === 'slicer' ? ' slicer' : ''}${isLocal ? ` local ${visual.type}` : ''} ${className}`}
       style={style}
       data-testid={`tile-${visual.id}`}
-      data-status={visual.type === 'text' ? 'ok' : (output?.status ?? 'loading')}
+      data-status={isLocal ? 'ok' : (output?.status ?? 'loading')}
       aria-label={visual.altText || output?.title || visual.title || visual.type}
       {...rest}
     >
@@ -357,7 +413,7 @@ export function Tile({
             </h2>
           ))}
         <div className="dash-tile-body">
-          <VisualRenderer visual={visual} output={output} theme={theme} kpiIndex={kpiIndex} onSelect={onSelect} onPoint={onPoint} asTable={asTable} slicerValue={slicerValue} onSlicerChange={onSlicerChange} />
+          <VisualRenderer visual={visual} output={output} theme={theme} kpiIndex={kpiIndex} onSelect={onSelect} onPoint={onPoint} asTable={asTable} slicerValue={slicerValue} onSlicerChange={onSlicerChange} local={local} />
         </div>
       </div>
       {children}

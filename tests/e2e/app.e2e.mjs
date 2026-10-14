@@ -67,6 +67,21 @@ async function clickText(page, selector, pattern) {
   await handle.asElement().click();
 }
 
+/** Sets a React-controlled input (range, text) and fires the events React listens to. */
+async function setInput(page, selector, value) {
+  await page.waitForSelector(selector);
+  await page.$eval(
+    selector,
+    (el, v) => {
+      const proto = el.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : el.tagName === 'SELECT' ? HTMLSelectElement.prototype : HTMLInputElement.prototype;
+      Object.getOwnPropertyDescriptor(proto, 'value').set.call(el, v);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    String(value),
+  );
+}
+
 /** Clicks through the DOM (for links scrolled out of view inside the app's scroll container). */
 async function domClick(page, selector) {
   await page.waitForSelector(selector);
@@ -486,6 +501,124 @@ async function main() {
       await fitsOnScreen(page, 'drillthrough');
       await domClick(page, '[data-testid="drillthrough-back"]');
       await page.waitForSelector('[data-testid="tile-matrix"]');
+    });
+
+    await step(page, 'dashboards: customize — calculations, what-if, conditional formatting, Python, theme, views, phone layout', async () => {
+      await domClick(page, '[data-testid="edit-dashboard"]');
+      await page.waitForSelector('[data-testid="editor-canvas"]', { timeout: 60_000 });
+      await domClick(page, '[data-testid="page-0"]');
+      await page.waitForSelector('[data-testid="frame-kpi-0"] .dash-tile[data-status="ok"]', { timeout: 60_000 });
+      await page.click('[data-testid="frame-kpi-0"] .dash-kpi-label');
+      await domClick(page, '[data-testid="pane-build"]');
+      // A calculated measure, checked by Python before saving.
+      const calculation = async (name, expression, format) => {
+        await domClick(page, '[data-testid="new-calculation"]');
+        await setInput(page, '[data-testid="calc-name"]', name);
+        await setInput(page, '[data-testid="calc-expression"]', expression);
+        if (format) await page.select('[data-testid="calc-editor"] select', format);
+        await domClick(page, '[data-testid="calc-check"]');
+        await waitForText(page, '[data-testid="calc-preview"]', /^= .+ over all rows/, 60_000);
+        await domClick(page, '[data-testid="calc-save"]');
+        await page.waitForSelector(`[data-testid="calc-${name}"]`);
+      };
+      await calculation('Margin', 'DIVIDE(SUM([profit]), SUM([revenue]))', 'percent');
+      const insertCard = async (calc) => {
+        await domClick(page, '[data-testid="insert-menu"]');
+        await domClick(page, '[data-testid="insert-card"]');
+        const id = await page.$eval('.dash-edit-frame.selected', (el) => el.getAttribute('data-testid').replace('frame-', ''));
+        await domClick(page, `[data-testid="calc-${calc}"]`);
+        await page.waitForSelector(`[data-testid="frame-${id}"] .dash-tile[data-status="ok"] .dash-kpi-value`, { timeout: 60_000 });
+        return id;
+      };
+      const marginCard = await insertCard('Margin');
+      await waitForText(page, `[data-testid="frame-${marginCard}"] .dash-kpi-value`, /%$/, 10_000);
+      // A what-if parameter and a calculation that uses it.
+      await domClick(page, '[data-testid="insert-menu"]');
+      await domClick(page, '[data-testid="insert-parameter"]');
+      await setInput(page, '[data-testid="parameter-name"]', 'Price change');
+      await domClick(page, '[data-testid="parameter-save"]');
+      await page.waitForSelector('[data-testid^="param-slider-"]');
+      await domClick(page, '[data-testid="pane-build"]');
+      await calculation('Projected', 'SUM([revenue]) * (1 + [Price change])');
+      const projectedCard = await insertCard('Projected');
+      // Conditional formatting on the matrix: a colour scale replaces the heat shading.
+      await page.click('[data-testid="frame-matrix"] .dash-tile-title');
+      await domClick(page, '[data-testid="pane-format"]');
+      await domClick(page, '[data-testid="section-conditional"] summary');
+      await domClick(page, '[data-testid="add-conditional"]');
+      await page.waitForFunction(() => [...document.querySelectorAll('[data-testid="frame-matrix"] td.num')].some((td) => /rgb\(254, 226, 226\)/.test(td.getAttribute('style') ?? '')), { timeout: 60_000 });
+      // Analytics: an average line on the trend.
+      await page.click('[data-testid="frame-trend"] .dash-tile-title');
+      await domClick(page, '[data-testid="section-analytics"] summary');
+      await domClick(page, '[data-testid="add-analytics"]');
+      await page.waitForSelector('[data-testid="frame-trend"] .dash-tile[data-status="ok"]', { timeout: 60_000 });
+      // A Python visual over two fields (the starter script draws a bar chart).
+      await domClick(page, '[data-testid="insert-menu"]');
+      await domClick(page, '[data-testid="insert-python"]');
+      const python = await page.$eval('.dash-edit-frame.selected', (el) => el.getAttribute('data-testid'));
+      await domClick(page, '[data-testid="field-region"]');
+      await domClick(page, '[data-testid="field-revenue"]');
+      await page.waitForSelector(`[data-testid="${python}"] .dash-tile[data-status="ok"] canvas`, { timeout: 90_000 });
+      // Format painter: the Python visual takes the matrix's look.
+      await page.click('[data-testid="frame-matrix"] .dash-tile-title');
+      await domClick(page, '[data-testid="format-painter"]');
+      await page.waitForSelector('[data-testid="editor-canvas"].painting');
+      await page.click(`[data-testid="${python}"] .dash-tile-title`);
+      await page.waitForFunction(() => !document.querySelector('[data-testid="editor-canvas"].painting'));
+      // Theme: customize with a palette from a brand colour.
+      await domClick(page, '[data-testid="theme-menu"]');
+      await domClick(page, '[data-testid="theme-customize"]');
+      await page.waitForSelector('[data-testid="theme-dialog"]');
+      await domClick(page, '[data-testid="theme-generate"]');
+      await page.screenshot({ path: `${SHOTS}/theme-dialog.png` });
+      await domClick(page, '[data-testid="theme-apply"]');
+      // An author view and the phone layout.
+      await domClick(page, '[data-testid="pane-views"]');
+      await setInput(page, '[data-testid="author-view-name"]', 'Start');
+      await domClick(page, '[data-testid="add-author-view"]');
+      await page.waitForSelector('[data-testid="author-view-0"]');
+      await domClick(page, '[data-testid="layout-phone"]');
+      await domClick(page, '[data-testid="mobile-auto"]');
+      await page.waitForSelector('[data-testid^="mobile-item-"]');
+      await page.screenshot({ path: `${SHOTS}/editor-phone.png` });
+      await domClick(page, '[data-testid="layout-desktop"]');
+      await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+      await fitsOnScreen(page, 'editor-customized');
+      await domClick(page, '[data-testid="done-editing"]');
+      await page.waitForSelector(`[data-testid="tile-${projectedCard}"][data-status="ok"]`, { timeout: 60_000 });
+      globalThis.projectedCard = projectedCard;
+    });
+
+    await step(page, 'dashboards: viewer — what-if slider, personalize a visual, personal views', async () => {
+      const projected = `[data-testid="tile-${globalThis.projectedCard}"] .dash-kpi-value`;
+      const before = await textOf(page, projected);
+      await setInput(page, '[data-testid^="param-slider-"]', '0.3');
+      await page.waitForFunction((sel, was) => document.querySelector(sel)?.textContent !== was, { timeout: 60_000 }, projected, before);
+      // Personalize the matrix as a table, only for me; it survives a reload.
+      await domClick(page, '[data-testid="vheader-matrix"] [data-testid="vheader-personalize"]');
+      await page.waitForSelector('[data-testid="personalize-pane"]');
+      await page.select('[data-testid="personalize-type"]', 'table');
+      // A table lists the matrix's row and column fields side by side.
+      await waitForText(page, '[data-testid="tile-matrix"] .dash-table thead th', /^Channel$/);
+      await page.waitForSelector('[data-testid="vheader-matrix"] [data-testid="vheader-personalize"][aria-pressed="true"]');
+      await fitsOnScreen(page, 'personalized');
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await page.reload({ waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="vheader-matrix"] [data-testid="vheader-personalize"][aria-pressed="true"]', { timeout: 60_000 });
+      // A personal view, then reset everything to the author's dashboard.
+      await domClick(page, '[data-testid="views-menu"]');
+      await setInput(page, '[data-testid="view-name"]', 'Mine');
+      await domClick(page, '[data-testid="save-view"]');
+      await waitForText(page, '[data-testid="views-menu"]', /Mine/, 5_000);
+      await page.screenshot({ path: `${SHOTS}/views-menu.png` });
+      // Dark mode just for me (the author's dashboard keeps its own setting).
+      await domClick(page, '[data-testid="personal-mode-dark"]');
+      await page.waitForSelector('[data-testid="dashboard-canvas"][data-mode="dark"]');
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      await fitsOnScreen(page, 'personal-dark');
+      await domClick(page, '[data-testid="reset-personal"]');
+      await page.waitForSelector('[data-testid="dashboard-canvas"][data-mode="light"]');
+      await page.waitForSelector('[data-testid="vheader-matrix"] [data-testid="vheader-personalize"][aria-pressed="false"]', { timeout: 30_000 });
     });
 
     await step(page, 'settings: edit and save the profile', async () => {

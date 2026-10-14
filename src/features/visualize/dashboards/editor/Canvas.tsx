@@ -2,9 +2,10 @@ import { useRef, useState, type CSSProperties, type PointerEvent as ReactPointer
 import { ArrowDownWideNarrow, Ban, Copy, Filter, Highlighter, List, Paintbrush, Tag, Trash2 } from 'lucide-react';
 import type { DashboardTheme, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
 import { interaction, kpiIndexes, PAGE_WIDTH, ROW_PX, Tile } from '../runtime';
+import type { LocalContext } from '../local';
 import type { SlicerValue } from '../visuals';
 import { clamp, expandGroups, mapVisuals, pageHeightRows, pasteVisuals, removeVisuals, round, setFormat } from './actions';
-import { COMPATIBLE, VISUAL_BY_TYPE } from './catalog';
+import { COMPATIBLE, retype, VISUAL_BY_TYPE } from './catalog';
 import { currentPage, useEditor } from './store';
 
 type Box = { x: number; y: number; w: number; h: number };
@@ -59,6 +60,8 @@ export function EditorCanvas({
   onSlicerChange,
   onFormat,
   interactionSource,
+  local,
+  painting = false,
 }: {
   outputs: Record<string, VisualOutput>;
   theme: DashboardTheme | undefined;
@@ -69,6 +72,10 @@ export function EditorCanvas({
   onFormat: () => void;
   /** Edit interactions: how clicking this visual affects each other visual. */
   interactionSource?: DashboardVisual;
+  /** Parameter controls, buttons and navigators (they work in the editor too). */
+  local?: LocalContext;
+  /** Format painter armed: the next visual clicked takes the copied formatting. */
+  painting?: boolean;
 }) {
   const state = useEditor();
   const { selected, select, change, checkpoint, snap, gridlines } = state;
@@ -234,7 +241,7 @@ export function EditorCanvas({
     change((spec) => mapVisuals(spec, pageId, [id], mutate), merge ? { merge } : {});
 
   return (
-    <div ref={grid} className={`dash-grid dash-edit-grid ${mode}`} style={gridStyle} onPointerDown={startMarquee} data-testid="editor-canvas">
+    <div ref={grid} className={`dash-grid dash-edit-grid ${mode}${painting ? ' painting' : ''}`} style={gridStyle} onPointerDown={startMarquee} data-testid="editor-canvas">
       {/* The page boundary: content below it scrolls on a 16:9 page. */}
       <div className="dash-page-edge" style={{ top: pageHeightRows({ ...page, visuals: [] }) * rowHeight }} aria-hidden />
       {visible.map((visual) => {
@@ -268,6 +275,7 @@ export function EditorCanvas({
               onSelect={() => undefined}
               slicerValue={slicerValue(visual)}
               onSlicerChange={(value) => onSlicerChange(visual, value)}
+              local={local}
               title={
                 editingTitle === visual.id ? (
                   <input
@@ -350,7 +358,7 @@ function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; on
       {options.length > 0 && (
         <select
           value={visual.type}
-          onChange={(event) => update((v) => ({ ...v, type: event.target.value as DashboardVisualType }))}
+          onChange={(event) => update((v) => retype(v, event.target.value as DashboardVisualType))}
           aria-label="Visual type"
           data-testid="minibar-type"
         >

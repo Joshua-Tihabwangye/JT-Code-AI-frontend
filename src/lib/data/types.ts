@@ -633,7 +633,11 @@ export type DashboardVisualType =
   | 'matrix'
   | 'slicer'
   | 'text'
-  | 'chart';
+  | 'chart'
+  | 'python'
+  | 'parameter'
+  | 'button'
+  | 'navigator';
 
 export type DashboardWell =
   | 'category'
@@ -654,6 +658,42 @@ export interface DashboardFieldRef {
   agg?: string;
   showValueAs?: string;
   label?: string;
+  /** Bound to a field parameter: the viewer's choice replaces this field. */
+  param?: string;
+  /** A calculated measure (``spec.calculations``) by id; ``expr`` is filled in when rendering. */
+  calc?: string;
+  expr?: string;
+  format?: 'number' | 'percent' | 'currency';
+  /** Moving average window (show value as → moving average). */
+  window?: number;
+}
+
+export interface DashboardCalculation {
+  id: string;
+  name: string;
+  expression: string;
+  format?: 'number' | 'percent' | 'currency';
+  datasetId?: string;
+}
+
+export type DashboardParameter =
+  | { id: string; name: string; kind: 'whatif'; min: number; max: number; step: number; default: number; format?: 'number' | 'percent' | 'currency' }
+  | { id: string; name: string; kind: 'fields'; role: 'measure' | 'dimension'; options: DashboardFieldRef[]; default: number };
+
+export interface DashboardBookmarkState {
+  slicers?: Record<string, unknown>;
+  overrides?: Record<string, DashboardFilter | null>;
+  drill?: Record<string, unknown>;
+  parameters?: Record<string, number>;
+  /** Visuals of the page hidden by this view (buttons and bookmarks toggle visibility). */
+  hidden?: string[];
+}
+
+export interface DashboardBookmark {
+  id: string;
+  name: string;
+  pageId: string;
+  state: DashboardBookmarkState;
 }
 
 export interface DashboardFilter {
@@ -693,6 +733,8 @@ export interface DashboardPage {
   /** Drill-through pages: clicking a member of one of these fields elsewhere can open this page. */
   drillthroughFields?: string[];
   visuals: DashboardVisual[];
+  /** Phone layout: visuals in one column, in order, each with its own height in grid rows. */
+  mobileLayout?: { visualId: string; y: number; h: number }[];
 }
 
 export interface DashboardThemeColors {
@@ -728,9 +770,9 @@ export interface DashboardSpec {
   density?: 'compact' | 'comfortable';
   settings?: { allowPersonalize?: boolean; showFiltersPane?: boolean; lockFilters?: boolean; defaultPageId?: string; applyMode?: 'instant' | 'button' };
   filters?: DashboardFilter[];
-  parameters?: Record<string, unknown>[];
-  calculations?: Record<string, unknown>[];
-  bookmarks?: Record<string, unknown>[];
+  parameters?: DashboardParameter[];
+  calculations?: DashboardCalculation[];
+  bookmarks?: DashboardBookmark[];
   syncGroups?: Record<string, unknown>[];
   pages: DashboardPage[];
 }
@@ -762,12 +804,41 @@ export interface DashboardVersionInfo {
 export interface DashboardPersonalView {
   id: string;
   name: string;
-  state: { visualOverrides?: Record<string, Partial<DashboardVisual>>; slicers?: Record<string, unknown>; filters?: DashboardFilter[]; pageId?: string; mode?: string | null; density?: string | null };
+  state: {
+    visualOverrides?: Record<string, Partial<DashboardVisual>>;
+    slicers?: Record<string, unknown>;
+    filters?: DashboardFilter[];
+    pageId?: string;
+    mode?: 'light' | 'dark' | 'system' | null;
+    density?: 'compact' | 'comfortable' | null;
+    bookmarks?: DashboardBookmark[];
+    defaultBookmark?: string;
+    parameters?: Record<string, number>;
+  };
   isDefault: boolean;
   updatedAt: string;
 }
 
+export interface SavedTheme {
+  id: string;
+  name: string;
+  spec: DashboardTheme;
+  isShared: boolean;
+  ownerId: string;
+}
+
+/** Conditional formatting of one value (Python decides; the browser paints). */
+export interface CellStyle {
+  bg?: string;
+  color?: string;
+  icon?: string;
+  iconColor?: string;
+  bar?: string;
+}
+
 export interface KpiData {
+  /** Conditional formatting: the value's colour. */
+  color?: string;
   label: string;
   value: number | null;
   display: string;
@@ -818,13 +889,15 @@ export interface VisualOutput {
   option?: ChartOption;
   map?: string;
   kpi?: KpiData;
-  cards?: { label: string; value: number | null; display: string }[];
+  cards?: { label: string; value: number | null; display: string; color?: string }[];
   table?: VisualTable;
   slicer?: SlicerData;
   data?: ChartTable;
   selectors?: { category?: (DashboardFilter | null)[]; series?: (DashboardFilter | null)[]; columns?: (DashboardFilter | null)[]; names?: string[] };
   notes?: string[];
   truncated?: boolean;
+  /** Python visuals: what the script printed. */
+  console?: string;
 }
 
 export interface VisualsResponse {

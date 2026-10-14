@@ -3,7 +3,11 @@ import {
   BarChart3,
   BarChartHorizontal,
   BarChart4,
+  Code2,
+  Compass,
   Filter,
+  MousePointerClick,
+  SlidersVertical,
   Gauge,
   Grid3x3,
   Hash,
@@ -43,16 +47,17 @@ export interface VisualSpec {
 const category = (label = 'Category (X axis)', max = 1): WellSpec => ({ key: 'category', label, accepts: ['category', 'datetime', 'numeric'], max, measure: false });
 const values = (label = 'Values', max = 6): WellSpec => ({ key: 'values', label, accepts: ['numeric', 'category', 'datetime', 'any'], max, measure: true });
 const legend: WellSpec = { key: 'legend', label: 'Legend (split by)', accepts: ['category'], max: 1, measure: false };
+const multiples: WellSpec = { key: 'smallMultiples', label: 'Small multiples (one chart per)', accepts: ['category', 'datetime'], max: 1, measure: false };
 
 export const VISUALS: VisualSpec[] = [
   { type: 'kpi', label: 'KPI card', icon: Hash, group: 'Cards', size: { w: 4, h: 5 }, wells: [values('Value', 1), { key: 'target', label: 'Target', accepts: ['numeric'], max: 1, measure: true }, { ...category('Trend over (date)'), accepts: ['datetime'] }] },
   { type: 'card', label: 'Card', icon: Hash, group: 'Cards', size: { w: 4, h: 4 }, wells: [values('Value', 1)] },
   { type: 'multi_card', label: 'Multi-card', icon: LayoutGrid, group: 'Cards', size: { w: 8, h: 4 }, wells: [values('Values', 6)] },
   { type: 'gauge', label: 'Gauge', icon: Gauge, group: 'Cards', size: { w: 6, h: 8 }, wells: [values('Value', 1), { key: 'target', label: 'Target', accepts: ['numeric'], max: 1, measure: true }] },
-  { type: 'column', label: 'Column chart', icon: BarChart3, group: 'Charts', size: { w: 8, h: 10 }, wells: [category(), values(), legend] },
-  { type: 'bar', label: 'Bar chart', icon: BarChartHorizontal, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Category (Y axis)'), values(), legend] },
-  { type: 'line', label: 'Line chart', icon: LineChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend] },
-  { type: 'area', label: 'Area chart', icon: AreaChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend] },
+  { type: 'column', label: 'Column chart', icon: BarChart3, group: 'Charts', size: { w: 8, h: 10 }, wells: [category(), values(), legend, multiples] },
+  { type: 'bar', label: 'Bar chart', icon: BarChartHorizontal, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Category (Y axis)'), values(), legend, multiples] },
+  { type: 'line', label: 'Line chart', icon: LineChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend, multiples] },
+  { type: 'area', label: 'Area chart', icon: AreaChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend, multiples] },
   { type: 'combo', label: 'Combo (bar + line)', icon: BarChart4, group: 'Charts', size: { w: 12, h: 10 }, wells: [category(), values('Columns', 2), { key: 'secondaryValues', label: 'Line (second axis)', accepts: ['numeric', 'any'], max: 2, measure: true }] },
   { type: 'donut', label: 'Donut', icon: PieChart, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Slices'), values('Value', 1)] },
   { type: 'pie', label: 'Pie', icon: PieChart, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Slices'), values('Value', 1)] },
@@ -65,7 +70,11 @@ export const VISUALS: VisualSpec[] = [
   { type: 'table', label: 'Table', icon: Table2, group: 'Tables', size: { w: 12, h: 12 }, wells: [category('Columns (group by)', 4), values('Values', 8)] },
   { type: 'matrix', label: 'Matrix', icon: Grid3x3, group: 'Tables', size: { w: 12, h: 12 }, wells: [{ key: 'rows', label: 'Rows', accepts: ['category', 'datetime'], max: 2, measure: false }, { key: 'columns', label: 'Columns', accepts: ['category', 'datetime'], max: 1, measure: false }, values('Values', 1)] },
   { type: 'slicer', label: 'Slicer', icon: SlidersHorizontal, group: 'Slicers', size: { w: 6, h: 3 }, wells: [{ key: 'category', label: 'Field', accepts: ['category', 'datetime', 'numeric'], max: 1, measure: false }] },
+  { type: 'parameter', label: 'Parameter (what-if or field switcher)', icon: SlidersVertical, group: 'Slicers', size: { w: 6, h: 3 }, wells: [] },
   { type: 'text', label: 'Text box', icon: Type, group: 'Other', size: { w: 8, h: 3 }, wells: [] },
+  { type: 'button', label: 'Button', icon: MousePointerClick, group: 'Other', size: { w: 4, h: 2 }, wells: [] },
+  { type: 'navigator', label: 'Page / view navigator', icon: Compass, group: 'Other', size: { w: 12, h: 2 }, wells: [] },
+  { type: 'python', label: 'Python visual', icon: Code2, group: 'Other', size: { w: 8, h: 10 }, wells: [values('Fields for the script', 12)] },
 ];
 
 export const VISUAL_BY_TYPE = Object.fromEntries(VISUALS.map((visual) => [visual.type, visual])) as Record<DashboardVisualType, VisualSpec>;
@@ -92,6 +101,8 @@ export const SHOW_VALUE_AS: [string, string][] = [
   ['diff_prev', 'Difference from previous'],
   ['pct_diff_prev', '% difference from previous'],
   ['rank', 'Rank'],
+  ['moving_avg', 'Moving average'],
+  ['yoy_pct', '% change vs last year'],
 ];
 
 export const GRAINS: [NonNullable<DashboardFieldRef['grain']>, string][] = [
@@ -166,4 +177,33 @@ let counter = 0;
 export function newId(prefix: string): string {
   counter += 1;
   return `${prefix}-${Date.now().toString(36)}${counter.toString(36)}`.slice(0, 40);
+}
+
+const GROUP_WELLS: DashboardWell[] = ['category', 'rows', 'columns', 'legend', 'details', 'smallMultiples'];
+const MEASURE_WELLS: DashboardWell[] = ['values', 'secondaryValues', 'size', 'target'];
+
+/** A visual switched to another type, its fields moved to the wells that type has
+ *  (e.g. a matrix's rows and columns become a table's columns). */
+export function retype(visual: DashboardVisual, type: DashboardVisualType): DashboardVisual {
+  const target = VISUAL_BY_TYPE[type];
+  if (!target || !target.wells.length) return { ...visual, type };
+  const wells = visual.data.wells;
+  const next: Partial<Record<DashboardWell, DashboardFieldRef[]>> = {};
+  const used = new Set<DashboardFieldRef>();
+  for (const well of target.wells) {
+    const kept = (wells[well.key] ?? []).slice(0, well.max);
+    if (kept.length) {
+      next[well.key] = kept;
+      kept.forEach((ref) => used.add(ref));
+    }
+  }
+  const pool = (keys: DashboardWell[]) => keys.flatMap((key) => wells[key] ?? []).filter((ref) => !used.has(ref));
+  for (const well of target.wells) {
+    if (next[well.key]) continue;
+    const taken = pool(well.measure ? MEASURE_WELLS : GROUP_WELLS).slice(0, well.max);
+    if (!taken.length) continue;
+    next[well.key] = well.measure ? taken.map((ref) => ({ ...ref, agg: ref.agg ?? 'sum' })) : taken.map(({ agg: _agg, showValueAs: _show, ...ref }) => ref);
+    taken.forEach((ref) => used.add(ref));
+  }
+  return { ...visual, type, data: { ...visual.data, wells: next } };
 }
