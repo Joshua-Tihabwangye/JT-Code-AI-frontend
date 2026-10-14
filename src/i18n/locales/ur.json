@@ -9,7 +9,9 @@
     "history": "تاریخچہ",
     "billing": "بلنگ",
     "settings": "ترتیبات",
-    "integrations": "انٹیگریشنز"
+    "integrations": "انٹیگریشنز",
+    "analytics": "ڈیٹا تجزیات",
+    "visualize": "ڈیٹا ویژولائزیشن"
   },
   "common": {
     "saveChanges": "تبدیلیاں محفوظ کریں",

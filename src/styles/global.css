@@ -850,7 +850,6 @@ html.dark .glass { background: rgba(10, 20, 34, .7); }
   padding: 1rem 1.5rem 0;
   pointer-events: auto;
 }
-.main-content > .page-scroll { margin-top: -4rem; }
 .chat-landing {
   position: relative;
   z-index: 1;

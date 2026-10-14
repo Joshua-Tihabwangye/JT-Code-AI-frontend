@@ -9,7 +9,9 @@
     "history": "历史记录",
     "billing": "账单",
     "settings": "设置",
-    "integrations": "集成"
+    "integrations": "集成",
+    "analytics": "数据分析",
+    "visualize": "数据可视化"
   },
   "common": {
     "saveChanges": "保存更改",

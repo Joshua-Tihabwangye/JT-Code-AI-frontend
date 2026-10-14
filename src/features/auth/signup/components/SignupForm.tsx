@@ -14,7 +14,7 @@ import { SubmitButton } from './SubmitButton';
 import { useSignupForm } from '../hooks/useSignupForm';
 import { signup } from '../services/signup.service';
 import type { SignupPayload } from '../types';
-import { supabase } from '@/lib/supabase';
+import { signInWithProvider } from '@/lib/supabase';
 import '../styles/signup.css';
 
 interface Props {
@@ -24,6 +24,7 @@ interface Props {
 export function SignupForm({ onSignedUp }: Props) {
   const { t } = useTranslation();
   const [submitError, setSubmitError] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [loadingProvider, setLoadingProvider] = useState<'google' | 'apple' | null>(null);
 
   const handleSignup = async (payload: SignupPayload) => {
@@ -31,6 +32,10 @@ export function SignupForm({ onSignedUp }: Props) {
     const result = await signup(payload);
     if (result.error) {
       setSubmitError(result.error);
+      return;
+    }
+    if (result.needsConfirmation) {
+      setConfirmEmail(payload.email);
       return;
     }
     onSignedUp();
@@ -45,12 +50,13 @@ export function SignupForm({ onSignedUp }: Props) {
     setSubmitError('');
     setLoadingProvider(provider);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({ provider });
+      const { error, redirected } = await signInWithProvider(provider);
       if (error) {
-        setSubmitError(error.message);
+        setSubmitError(error);
         return;
       }
-      onSignedUp();
+      // Real providers redirect the browser; the session arrives on /sso-callback.
+      if (!redirected) onSignedUp();
     } finally {
       setLoadingProvider(null);
     }
@@ -132,6 +138,7 @@ export function SignupForm({ onSignedUp }: Props) {
         <TermsField form={form} />
 
         {submitError && <div className="form-error">{submitError}</div>}
+        {confirmEmail && <div className="form-success" role="status">{t('signup.confirmEmail', { email: confirmEmail })}</div>}
 
         <SubmitButton isSubmitting={isSubmitting} label={t('signup.submit')} />
       </form>

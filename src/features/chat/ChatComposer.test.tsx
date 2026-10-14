@@ -5,8 +5,11 @@ import '../../i18n/config';
 
 const PLACEHOLDER = 'Message JT-Code…';
 
-function setScrollHeight(el: HTMLElement, value: number) {
-  Object.defineProperty(el, 'scrollHeight', {
+// The composer measures wrapped height on a hidden mirror textarea (never the
+// controlled field), so the simulated layout height goes on the mirror.
+function setScrollHeight(field: HTMLElement, value: number) {
+  const mirror = field.parentElement?.querySelector<HTMLTextAreaElement>('.composer__field-mirror');
+  Object.defineProperty(mirror ?? field, 'scrollHeight', {
     configurable: true,
     get: () => value,
   });
@@ -136,7 +139,7 @@ describe('ChatComposer', () => {
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     fireEvent.change(textarea, { target: { value: '  say hi  ' } });
     fireEvent.click(container.querySelector('button.send')!);
-    expect(onSubmit).toHaveBeenCalledWith('say hi');
+    expect(onSubmit).toHaveBeenCalledWith('say hi', []);
   });
 
   it('clears the input after submitting', () => {

@@ -9,7 +9,9 @@
     "history": "Historia",
     "billing": "Malipo",
     "settings": "Mipangilio",
-    "integrations": "Viunganishi"
+    "integrations": "Viunganishi",
+    "analytics": "Uchanganuzi wa Data",
+    "visualize": "Uonyeshaji wa Data"
   },
   "common": {
     "saveChanges": "Hifadhi mabadiliko",

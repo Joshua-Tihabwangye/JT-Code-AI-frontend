@@ -9,7 +9,9 @@
     "history": "기록",
     "billing": "결제",
     "settings": "설정",
-    "integrations": "통합"
+    "integrations": "통합",
+    "analytics": "데이터 분석",
+    "visualize": "데이터 시각화"
   },
   "common": {
     "saveChanges": "변경 사항 저장",

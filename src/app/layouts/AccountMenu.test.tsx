@@ -10,6 +10,10 @@ vi.mock('@/lib/supabase', () => ({
 }));
 
 // Mock react-i18next
+vi.mock('@/lib/data/useAccount', () => ({
+  useAccount: () => ({ data: undefined }),
+}));
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {

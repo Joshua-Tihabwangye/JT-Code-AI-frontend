@@ -9,7 +9,9 @@
     "history": "Geçmiş",
     "billing": "Faturalandırma",
     "settings": "Ayarlar",
-    "integrations": "Entegrasyonlar"
+    "integrations": "Entegrasyonlar",
+    "analytics": "Veri Analitiği",
+    "visualize": "Veri Görselleştirme"
   },
   "common": {
     "saveChanges": "Değişiklikleri kaydet",

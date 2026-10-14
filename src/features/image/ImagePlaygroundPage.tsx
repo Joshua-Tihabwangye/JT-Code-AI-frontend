@@ -1,7 +1,8 @@
-import { useState, useEffect, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useApiClient, apiErrorMessage } from '@/lib/api/client';
-import { generateImage, understandImage, editImage } from '@/features/image/api';
+import { apiErrorMessage } from '@/lib/api/http';
+import { useRepository, type ImageGeneration } from '@/lib/data';
 import { Button, Input, Textarea, Card, CardContent, CardHeader, CardTitle, Alert, Spinner, Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/components';
 import { Plus, Download, Upload, X, Image as ImageIcon, Wand2, ScanLine, PenTool, Trash2 } from 'lucide-react';
 
@@ -23,11 +24,26 @@ interface HistoryItem {
   timestamp: number;
 }
 
-const HISTORY_KEY = 'jt-code-image-history';
+const SIZE_TO_ASPECT: Record<string, string> = { '1024x1024': '1:1', '1792x1024': '16:9', '1024x1792': '9:16' };
+const ASPECT_TO_SIZE: Record<string, string> = { '1:1': '1024x1024', '16:9': '1792x1024', '9:16': '1024x1792' };
+
+function toHistoryItem(generation: ImageGeneration): HistoryItem {
+  return {
+    id: generation.id,
+    prompt: generation.prompt,
+    imageUrl: generation.images[0]?.url ?? '',
+    type: generation.mode,
+    size: ASPECT_TO_SIZE[generation.aspectRatio] ?? '1024x1024',
+    style: generation.style || 'auto',
+    count: generation.imageCount,
+    timestamp: Date.parse(generation.createdAt),
+  };
+}
 
 export function ImagePlaygroundPage() {
   const { t, i18n } = useTranslation();
-  const client = useApiClient();
+  const images = useRepository('images');
+  const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<string>('generate');
   const [prompt, setPrompt] = useState('');
   const [negativePrompt, setNegativePrompt] = useState('');
@@ -41,7 +57,9 @@ export function ImagePlaygroundPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [showMoreOptions, setShowMoreOptions] = useState(false);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const generations = useQuery({ queryKey: ['images', 'generations'], queryFn: () => images.listGenerations() });
+  const history: HistoryItem[] = (generations.data ?? []).map(toHistoryItem);
+  const refreshHistory = () => queryClient.invalidateQueries({ queryKey: ['images', 'generations'] });
 
   const templates = [
     { id: 'photo', label: t('images.templatePhoto') },
@@ -63,25 +81,6 @@ export function ImagePlaygroundPage() {
     { value: 'natural', label: t('images.styleNatural') },
   ];
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(HISTORY_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as HistoryItem[];
-        setHistory(Array.isArray(parsed) ? parsed : []);
-      }
-    } catch {
-      // ignore corrupted storage
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-    } catch {
-      // ignore storage errors (e.g. quota exceeded)
-    }
-  }, [history]);
 
   function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -106,13 +105,17 @@ export function ImagePlaygroundPage() {
 
   function deleteHistoryItem(id: string, event: React.MouseEvent) {
     event.stopPropagation();
-    setHistory((prev) => prev.filter((item) => item.id !== id));
+    images
+      .deleteGeneration(id)
+      .then(refreshHistory)
+      .catch((err: unknown) => setError(apiErrorMessage(err)));
   }
 
   function clearHistory() {
-    if (confirm(t('images.clearHistoryConfirm'))) {
-      setHistory([]);
-    }
+    if (!confirm(t('images.clearHistoryConfirm'))) return;
+    Promise.all(history.map((item) => images.deleteGeneration(item.id)))
+      .then(refreshHistory)
+      .catch((err: unknown) => setError(apiErrorMessage(err)));
   }
 
   function restoreHistoryItem(item: HistoryItem) {
@@ -142,32 +145,22 @@ export function ImagePlaygroundPage() {
     setBusy(true);
     setError('');
     try {
-      const result = await generateImage(client, {
+      const generation = await images.generate({
         prompt,
-        negative_prompt: negativePrompt || undefined,
+        negativePrompt: negativePrompt || undefined,
         model: 'auto',
-        size,
-        quality: 'standard',
-        n: imageCount,
+        aspectRatio: SIZE_TO_ASPECT[size] ?? '1:1',
+        style: style === 'auto' ? '' : style,
+        imageCount,
       });
-      const newImages: GeneratedImage[] = result.data.map((img) => ({
-        id: crypto.randomUUID(),
-        url: img.url || img.b64_json || '',
+      const newImages: GeneratedImage[] = generation.images.map((img) => ({
+        id: img.id,
+        url: img.url,
         prompt,
         type: 'generate',
       }));
       setGeneratedImages((prev) => [...newImages, ...prev]);
-      const newHistoryItems: HistoryItem[] = newImages.map((img) => ({
-        id: img.id,
-        prompt,
-        imageUrl: img.url,
-        type: 'generate',
-        size,
-        style,
-        count: imageCount,
-        timestamp: Date.now(),
-      }));
-      setHistory((prev) => [...newHistoryItems, ...prev]);
+      void refreshHistory();
     } catch (err) {
       setError(apiErrorMessage(err));
     } finally {
@@ -184,20 +177,8 @@ export function ImagePlaygroundPage() {
     setError('');
     try {
       const question = prompt || t('images.defaultQuestion');
-      const result = await understandImage(client, inputImage, question);
-      const description = result.description || result.text || t('images.errors.noResult');
-      setUnderstandingResult(description);
-      const historyItem: HistoryItem = {
-        id: crypto.randomUUID(),
-        prompt: question,
-        imageUrl: inputImagePreview || '',
-        type: 'understand',
-        size,
-        style,
-        count: 1,
-        timestamp: Date.now(),
-      };
-      setHistory((prev) => [historyItem, ...prev]);
+      const answer = await images.understand(inputImagePreview ?? '', question);
+      setUnderstandingResult(answer || t('images.errors.noResult'));
     } catch (err) {
       setError(apiErrorMessage(err));
     } finally {
@@ -213,27 +194,18 @@ export function ImagePlaygroundPage() {
     setBusy(true);
     setError('');
     try {
-      const result = await editImage(client, inputImage, prompt, { model: 'auto', size, n: 1 });
-      if (result.data?.[0]?.url) {
-        const newImage: GeneratedImage = {
-          id: crypto.randomUUID(),
-          url: result.data[0].url,
-          prompt,
-          type: 'edit',
-        };
-        setGeneratedImages((prev) => [newImage, ...prev]);
-        const historyItem: HistoryItem = {
-          id: newImage.id,
-          prompt,
-          imageUrl: newImage.url,
-          type: 'edit',
-          size,
-          style,
-          count: 1,
-          timestamp: Date.now(),
-        };
-        setHistory((prev) => [historyItem, ...prev]);
-      }
+      const generation = await images.edit({
+        prompt,
+        instruction: prompt,
+        referenceImageRef: inputImagePreview ?? '',
+        model: 'auto',
+        aspectRatio: SIZE_TO_ASPECT[size] ?? '1:1',
+        style: style === 'auto' ? '' : style,
+        imageCount: 1,
+      });
+      const newImages: GeneratedImage[] = generation.images.map((img) => ({ id: img.id, url: img.url, prompt, type: 'edit' }));
+      setGeneratedImages((prev) => [...newImages, ...prev]);
+      void refreshHistory();
     } catch (err) {
       setError(apiErrorMessage(err));
     } finally {

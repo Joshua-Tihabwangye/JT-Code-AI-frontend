@@ -1,181 +1,80 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type PropsWithChildren,
-} from 'react';
-import type { SupabaseClient, Session, User as SupabaseUser } from '@supabase/supabase-js';
-import {
-  createSession,
-  createUser,
-  consumeResetCode,
-  getResetCodeRecord,
-  findOrCreateOAuthUser,
-  findUserByEmail,
-  getCurrentUser,
-  getSession,
-  issueResetCode,
-  setSession,
-  subscribeAuth,
-  updateUserPassword,
-  verifyCredentials,
-  type LocalSession,
-  type StoredUser,
-} from '@/lib/localAuth';
+import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react';
+import { createClient, type Session, type SupabaseClient, type User as SupabaseUser } from '@supabase/supabase-js';
+import { config } from '@/lib/config';
+import { getCurrentUser, getSession, subscribeAuth } from '@/lib/localAuth';
+import { localSupabase, localSupabaseClient, toSession, toSupabaseUser } from '@/lib/localSupabase';
 
 export type { User as SupabaseUser } from '@supabase/supabase-js';
 
-function toSupabaseUser(stored: StoredUser | null): SupabaseUser | null {
-  if (!stored) return null;
-  const fullName = `${stored.firstName} ${stored.lastName}`.trim();
-  return {
-    id: stored.id,
-    email: stored.email,
-    app_metadata: {},
-    user_metadata: {
-      first_name: stored.firstName,
-      last_name: stored.lastName,
-      full_name: fullName,
-      contact: stored.contact,
-      country: stored.countryName,
-      timezone: stored.timezone,
-      avatar_url: stored.avatarUrl,
-    },
-    aud: 'authenticated',
-    created_at: stored.createdAt,
-  };
+// API mode talks to the real Supabase Auth (the local gateway on :54321 in
+// development, the hosted project in production). Mock mode keeps the
+// localStorage stand-in so the UI can be demoed without any backend.
+const realAuth = config.dataMode === 'api';
+
+export const supabase: SupabaseClient = realAuth
+  ? createClient(config.supabaseUrl, config.supabaseAnonKey, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' },
+    })
+  : localSupabaseClient;
+
+/** Current access token for API calls (refreshed by supabase-js when needed). */
+export async function getAccessToken(): Promise<string | null> {
+  const { data } = await supabase.auth.getSession();
+  return data.session?.access_token ?? null;
 }
 
-function toSession(session: LocalSession, stored: StoredUser): Session {
-  return {
-    access_token: session.accessToken,
-    token_type: 'bearer',
-    expires_in: 999999999,
-    refresh_token: 'local',
-    user: toSupabaseUser(stored) as SupabaseUser,
-  } as unknown as Session;
+export type OAuthProvider = 'google' | 'apple';
+
+/**
+ * Starts provider sign-in. Real mode redirects the browser to the provider and
+ * back to /sso-callback; it first checks that the provider is enabled in
+ * Supabase Auth so users never land on a raw error page.
+ */
+export async function signInWithProvider(provider: OAuthProvider): Promise<{ error?: string; redirected?: boolean }> {
+  if (!realAuth) {
+    const { error } = localSupabase.auth.signInWithOAuth({ provider });
+    return error ? { error: String(error) } : {};
+  }
+  try {
+    const response = await fetch(`${config.supabaseUrl}/auth/v1/settings`, { headers: { apikey: config.supabaseAnonKey } });
+    const settings = (await response.json()) as { external?: Record<string, boolean> };
+    if (!settings.external?.[provider]) {
+      return { error: `Sign-in with ${provider === 'google' ? 'Google' : 'Apple'} is not enabled. Use your email and password.` };
+    }
+  } catch {
+    return { error: 'Cannot reach the sign-in service. Check your connection and try again.' };
+  }
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: `${window.location.origin}/sso-callback` },
+  });
+  return error ? { error: error.message } : { redirected: true };
 }
 
-const noopChain = new Proxy(function () {}, {
-  get: () => noopChain,
-  apply: () => noopChain,
-}) as unknown as { [key: string]: unknown };
-
-const storageStub = {
-  from: () => ({
-    upload: () => Promise.resolve({ data: { path: '' }, error: null }),
-    getPublicUrl: () => ({ data: { publicUrl: '' } }),
-    remove: () => Promise.resolve({ data: [], error: null }),
-  }),
-};
-
-function metaString(value: unknown): string {
-  return typeof value === 'string' ? value : '';
+/** Step 1 of password recovery: Supabase emails a one-time recovery code. */
+export async function requestPasswordReset(email: string): Promise<{ error?: string; demoCode?: string }> {
+  if (!realAuth) {
+    const result = localSupabase.auth.resetPasswordForEmail(email);
+    if (result.error) return { error: result.error.message };
+    return { demoCode: 'resetCode' in result.data ? result.data.resetCode : undefined };
+  }
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/forgot-password`,
+  });
+  return error ? { error: error.message } : {};
 }
 
-export const supabase = {
-  auth: {
-    signUp({ email, password, options }: { email: string; password: string; options?: { data?: Record<string, unknown> } }) {
-      if (findUserByEmail(email)) {
-        return { data: { user: null, session: null }, error: { message: 'An account with this email already exists.' } };
-      }
-      const meta = options?.data ?? {};
-      const user = createUser({
-        email,
-        password,
-        firstName: metaString(meta.first_name) || metaString(meta.firstName),
-        lastName: metaString(meta.last_name) || metaString(meta.lastName),
-        contact: metaString(meta.contact),
-        countryCode: metaString(meta.country),
-        countryName: metaString(meta.countryName) || metaString(meta.country),
-        dialCode: metaString(meta.dialCode),
-        timezone: metaString(meta.timezone),
-      });
-      const session = createSession(user.id);
-      setSession(session);
-      return { data: { user: toSupabaseUser(user), session: toSession(session, user) }, error: null };
-    },
-    signInWithPassword({ email, password }: { email: string; password: string }) {
-      const user = verifyCredentials(email, password);
-      if (!user) {
-        return { data: { user: null, session: null }, error: { message: 'Invalid email or password.' } };
-      }
-      const session = createSession(user.id);
-      setSession(session);
-      return { data: { user: toSupabaseUser(user), session: toSession(session, user) }, error: null };
-    },
-    signInWithOAuth({ provider }: { provider?: string }) {
-      const name = String(provider ?? 'oauth').replace(/[^a-z0-9]/gi, '').toLowerCase();
-      const user = findOrCreateOAuthUser(name);
-      const session = createSession(user.id);
-      setSession(session);
-      return { data: { user: toSupabaseUser(user), session: toSession(session, user), provider }, error: null };
-    },
-    signOut() {
-      setSession(null);
-      return { error: null };
-    },
-    getSession() {
-      const session = getSession();
-      const user = session ? getCurrentUser() : null;
-      return { data: { session: session && user ? toSession(session, user) : null }, error: null };
-    },
-    getUser() {
-      const user = getCurrentUser();
-      return { data: { user: user ? toSupabaseUser(user) : null }, error: null };
-    },
-    onAuthStateChange(callback: (event: string, session: Session | null) => void) {
-      const unsubscribe = subscribeAuth(() => {
-        const session = getSession();
-        const user = session ? getCurrentUser() : null;
-        callback(session ? 'SIGNED_IN' : 'SIGNED_OUT', session && user ? toSession(session, user) : null);
-      });
-      return { data: { subscription: { unsubscribe } } };
-    },
-    resetPasswordForEmail(email: string) {
-      if (!findUserByEmail(email)) {
-        return { data: {}, error: { message: 'No account exists for that email address.' } };
-      }
-      const record = issueResetCode(email);
-      return { data: { email: record.email, resetCode: record.code }, error: null };
-    },
-    async resetPassword({
-      email,
-      code,
-      newPassword,
-    }: {
-      email: string;
-      code: string;
-      newPassword: string;
-    }) {
-      const record = getResetCodeRecord(email);
-      if (!record || record.code !== code) {
-        return { data: {}, error: { message: 'Invalid or expired reset code.' } };
-      }
-      const ok = updateUserPassword(record.email, newPassword);
-      if (!ok) {
-        return { data: {}, error: { message: 'Sign in to reset your password.' } };
-      }
-      consumeResetCode(record.email, code);
-      return { data: {}, error: null };
-    },
-    exchangeCodeForSession() {
-      const session = getSession();
-      const user = session ? getCurrentUser() : null;
-      return {
-        data: { session: session && user ? toSession(session, user) : null, user: user ? toSupabaseUser(user) : null },
-        error: null,
-      };
-    },
-  },
-  storage: storageStub,
-  from: () => noopChain,
-  channel: () => noopChain,
-  removeChannel: () => noopChain,
-  rpc: () => noopChain,
-} as unknown as SupabaseClient;
+/** Step 2: verify the emailed code (which signs the user in) and set the new password. */
+export async function resetPasswordWithCode(email: string, code: string, newPassword: string): Promise<{ error?: string }> {
+  if (!realAuth) {
+    const result = localSupabase.auth.resetPassword({ email, code, newPassword });
+    return result.error ? { error: result.error.message } : {};
+  }
+  const verified = await supabase.auth.verifyOtp({ email, token: code, type: 'recovery' });
+  if (verified.error) return { error: verified.error.message };
+  const updated = await supabase.auth.updateUser({ password: newPassword });
+  return updated.error ? { error: updated.error.message } : {};
+}
 
 export type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
 
@@ -197,24 +96,58 @@ const AuthContext = createContext<AuthState>({
   isSignedOut: true,
 });
 
-export function SupabaseProvider({ children }: PropsWithChildren) {
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [session, setSessionState] = useState<Session | null>(null);
+function useRealAuthState() {
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
-  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    void supabase.auth.getSession().then(({ data }) => {
+      if (!active) return;
+      setSession(data.session);
+      setLoading(false);
+    });
+    const { data } = supabase.auth.onAuthStateChange((_event, next) => {
+      setSession(next);
+      setLoading(false);
+    });
+    return () => {
+      active = false;
+      data.subscription.unsubscribe();
+    };
+  }, []);
+
+  return { session, user: session?.user ?? null, loading };
+}
+
+function useLocalAuthState() {
+  const [state, setState] = useState<{ session: Session | null; user: SupabaseUser | null; loading: boolean }>({
+    session: null,
+    user: null,
+    loading: true,
+  });
 
   useEffect(() => {
     const sync = () => {
       const activeSession = getSession();
       const stored = activeSession ? getCurrentUser() : null;
-      setUser(stored ? toSupabaseUser(stored) : null);
-      setSessionState(activeSession && stored ? toSession(activeSession, stored) : null);
-      setLoading(false);
-      setInitialized(true);
+      setState({
+        user: stored ? toSupabaseUser(stored) : null,
+        session: activeSession && stored ? toSession(activeSession, stored) : null,
+        loading: false,
+      });
     };
     sync();
     return subscribeAuth(sync);
   }, []);
+
+  return state;
+}
+
+const useAuthState = realAuth ? useRealAuthState : useLocalAuthState;
+
+export function SupabaseProvider({ children }: PropsWithChildren) {
+  const { session, user, loading } = useAuthState();
 
   const value = useMemo<AuthState>(
     () => ({
@@ -222,10 +155,10 @@ export function SupabaseProvider({ children }: PropsWithChildren) {
       user,
       session,
       loading,
-      isSignedIn: !!user && initialized,
-      isSignedOut: !user && initialized,
+      isSignedIn: !loading && !!user,
+      isSignedOut: !loading && !user,
     }),
-    [user, session, loading, initialized],
+    [user, session, loading],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -240,11 +173,9 @@ export function useSupabase(): SupabaseClient {
 }
 
 export function useSession(): Session | null {
-  const { session } = useAuth();
-  return session;
+  return useAuth().session;
 }
 
 export function useUser(): SupabaseUser | null {
-  const { user } = useAuth();
-  return user;
+  return useAuth().user;
 }
