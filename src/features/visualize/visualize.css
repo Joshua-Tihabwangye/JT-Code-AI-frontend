@@ -1940,3 +1940,342 @@ textarea.viz-field {
   border-radius: 9px;
   color: var(--muted-foreground);
 }
+
+/* --- Dashboard interactivity (phase 3) ----------------------------------------------------- */
+.dash-vheader {
+  position: absolute;
+  z-index: 6;
+  top: calc(var(--dash-gap) / 2 + 4px);
+  right: calc(var(--dash-gap) / 2 + 6px);
+  display: flex;
+  gap: 1px;
+  padding: 2px;
+  border: 1px solid var(--dash-border);
+  border-radius: 8px;
+  background: var(--dash-tile);
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.dash-tile:hover .dash-vheader,
+.dash-tile:focus-within .dash-vheader,
+.dash-vheader.open {
+  opacity: 1;
+}
+
+.dash-vheader > button {
+  display: inline-flex;
+  min-width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 6px;
+  color: var(--dash-muted);
+}
+
+.dash-vheader > button:hover,
+.dash-vheader > button[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--dash-accent) 15%, transparent);
+  color: var(--dash-accent);
+}
+
+.dash-vheader > button:disabled {
+  opacity: 0.35;
+}
+
+.dash-popover {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 8px;
+  border: 1px solid var(--dash-border, var(--border));
+  border-radius: 10px;
+  background: var(--dash-tile, var(--card));
+  color: var(--dash-text, var(--foreground));
+  box-shadow: 0 14px 34px -12px rgb(0 0 0 / 0.4);
+}
+
+.dash-popover.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.dash-popover.menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.dash-popover.menu button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--dash-accent, var(--viz-indigo)) 12%, transparent);
+}
+
+.dash-popover.menu button:disabled {
+  opacity: 0.4;
+}
+
+.dash-context {
+  position: fixed;
+  top: 0;
+  right: auto;
+}
+
+.dash-tile.dimmed {
+  opacity: 0.25;
+  transition: opacity 0.15s;
+}
+
+.dash-focus {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  padding: 32px;
+  background: rgb(15 23 42 / 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.dash-focus > .dash-canvas {
+  height: 100%;
+}
+
+.dash-focus .dash-grid > .dash-tile {
+  position: absolute;
+}
+
+.dash-focus-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.dash-tooltip-page {
+  position: fixed;
+  z-index: 80;
+  padding: 4px;
+  pointer-events: none;
+  box-shadow: 0 18px 40px -14px rgb(0 0 0 / 0.5);
+}
+
+.dash-active-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--viz-soft);
+  color: var(--viz-indigo);
+  font-weight: 600;
+}
+
+.dash-active-chip button {
+  text-decoration: underline;
+}
+
+.dash-filters-aside {
+  /* A drawer over the canvas: opening it must not reflow (and squash) the page. */
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 30;
+  width: min(280px, 100%);
+  box-shadow: 0 12px 32px rgb(15 23 42 / 0.18);
+  max-height: calc(100dvh - 7rem);
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.dash-filter-card {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+}
+
+.dash-filter-card button {
+  color: var(--muted-foreground);
+}
+
+.dash-filter-values {
+  display: flex;
+  max-height: 200px;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.dash-filter-values .dash-slicer-option {
+  color: var(--foreground);
+}
+
+.dash-filter-values .dash-check {
+  border-color: var(--border);
+  color: var(--viz-indigo);
+}
+
+.dash-sync-table {
+  width: 100%;
+  font-size: 0.74rem;
+}
+
+.dash-sync-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+.dash-sync-table td {
+  padding: 2px 0;
+}
+
+.dash-sync-table td:first-child {
+  max-width: 130px;
+}
+
+.dash-interact {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 3px;
+  padding: 8px;
+  border-radius: var(--dash-radius);
+  background: color-mix(in srgb, var(--dash-canvas) 35%, transparent);
+  cursor: default;
+}
+
+.dash-interact button {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dash-border);
+  border-radius: 8px;
+  background: var(--dash-tile);
+  color: var(--dash-muted);
+}
+
+.dash-interact button[aria-pressed='true'] {
+  border-color: var(--dash-accent);
+  background: var(--dash-accent);
+  color: #fff;
+}
+
+/* Slicer styles */
+.dash-slicer-rangebox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-dual-range {
+  position: relative;
+  height: 16px;
+}
+
+.dash-dual-range input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  accent-color: var(--dash-accent);
+}
+
+.dash-dual-range input::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+
+.dash-dual-range input::-moz-range-thumb {
+  pointer-events: auto;
+}
+
+.dash-slicer-relative {
+  display: flex;
+  gap: 4px;
+}
+
+.dash-slicer-relative select,
+.dash-slicer-relative input {
+  min-width: 0;
+  height: 30px;
+  padding: 0 6px;
+  border: 1px solid var(--dash-border);
+  border-radius: 8px;
+  background: var(--dash-canvas);
+  color: var(--dash-text);
+  font-size: 0.76rem;
+}
+
+.dash-slicer-relative input {
+  flex: 1;
+}
+
+.dash-slicer-relative input[type='number'] {
+  width: 56px;
+  flex: none;
+}
+
+.dash-slicer-list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.dash-slicer-list button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  text-align: left;
+}
+
+.dash-slicer-list button[aria-pressed='true'] {
+  background: transparent;
+  color: var(--dash-text);
+  font-weight: 600;
+}
+
+.dash-tree {
+  display: flex;
+  flex-direction: column;
+  padding-left: 14px;
+}
+
+.dash-tree.root {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  padding-left: 0;
+}
+
+.dash-tree-row {
+  display: flex;
+  align-items: center;
+}
+
+.dash-tree-row .dash-slicer-option {
+  flex: 1;
+  min-width: 0;
+}

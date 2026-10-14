@@ -391,6 +391,103 @@ async function main() {
       await fitsOnScreen(page, 'dashboards-home');
     });
 
+    await step(page, 'dashboards: interact — multi-select, filters pane, table, focus, drill, interactions, drill-through', async () => {
+      await domClick(page, '[data-testid="dashboard-list"] a');
+      await page.waitForSelector('[data-testid="tile-matrix"][data-status="ok"]', { timeout: 60_000 });
+      const kpi = (id) => page.$eval(`[data-testid="tile-${id}"] .dash-kpi-value`, (el) => el.textContent);
+      const kpiIs = (id, test, value) =>
+        page.waitForFunction((sel, same, v) => (document.querySelector(sel)?.textContent === v) === same, { timeout: 60_000 }, `[data-testid="tile-${id}"] .dash-kpi-value`, test, value);
+      const rowClick = (index, ctrlKey = false) =>
+        page.$eval(`[data-testid="tile-matrix"] tbody tr:nth-child(${index + 1})`, (el, ctrl) => el.dispatchEvent(new MouseEvent('click', { bubbles: true, ctrlKey: ctrl })), ctrlKey);
+      const total = await kpi('kpi-0');
+      // Ctrl-click adds a second matrix row to the selection.
+      await rowClick(0);
+      await kpiIs('kpi-0', false, total);
+      const one = await kpi('kpi-0');
+      await rowClick(1, true);
+      await kpiIs('kpi-0', false, one);
+      await page.keyboard.press('Escape');
+      await kpiIs('kpi-0', true, total);
+      // The filters pane opens and closes.
+      const paneOpen = !!(await page.$('[data-testid="filters-pane"]'));
+      await domClick(page, '[data-testid="toggle-filters"]');
+      await page.waitForFunction((was) => !!document.querySelector('[data-testid="filters-pane"]') !== was, { timeout: 5_000 }, paneOpen);
+      if (!paneOpen) await fitsOnScreen(page, 'dashboard-filters-pane');
+      await domClick(page, '[data-testid="toggle-filters"]');
+      // Visual header: show as table and back, focus mode and Esc.
+      await domClick(page, '[data-testid="vheader-trend"] [data-testid="vheader-more"]');
+      await domClick(page, '[data-testid="menu-show-table"]');
+      await page.waitForSelector('[data-testid="tile-trend"] [data-testid="visual-as-table"]');
+      await domClick(page, '[data-testid="vheader-trend"] [data-testid="vheader-more"]');
+      await domClick(page, '[data-testid="menu-show-table"]');
+      await page.waitForFunction(() => !document.querySelector('[data-testid="tile-trend"] [data-testid="visual-as-table"]'));
+      await domClick(page, '[data-testid="vheader-trend"] [data-testid="vheader-focus"]');
+      await page.waitForSelector('[data-testid="focus-mode"] [data-testid="tile-trend"][data-status="ok"]', { timeout: 60_000 });
+      await page.screenshot({ path: `${SHOTS}/focus-mode.png` });
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('[data-testid="focus-mode"]'));
+      // Drill the monthly trend down to days, then up to quarters and back to months.
+      const drill = async (button, level) => {
+        await domClick(page, `[data-testid="vheader-trend"] [data-testid="${button}"]`);
+        await page.waitForSelector(`[data-testid="tile-trend"][data-drill="${level}"][data-status="ok"]`, { timeout: 60_000 });
+      };
+      await page.waitForSelector('[data-testid="tile-trend"][data-drill="2"]');
+      await drill('drill-next', 3);
+      await drill('drill-up', 2);
+      await drill('drill-up', 1);
+      await drill('drill-next', 2);
+      // Editor: clicks on the matrix stop affecting the first KPI; page 2 becomes a drill-through page.
+      const rowField = (await textOf(page, '[data-testid="tile-matrix"] thead th')).trim().toLowerCase();
+      await domClick(page, '[data-testid="edit-dashboard"]');
+      await page.waitForSelector('[data-testid="frame-matrix"] .dash-tile[data-status="ok"]', { timeout: 60_000 });
+      await page.click('[data-testid="frame-matrix"] .dash-tile-title');
+      await page.waitForSelector('[data-testid="frame-matrix"].selected');
+      await domClick(page, '[data-testid="edit-interactions"]');
+      await domClick(page, '[data-testid="interact-kpi-0-none"]');
+      await page.waitForSelector('[data-testid="interact-kpi-0-none"][aria-pressed="true"]');
+      await fitsOnScreen(page, 'editor-interactions');
+      await domClick(page, '[data-testid="edit-interactions"]');
+      await domClick(page, '[data-testid="page-1"]');
+      await domClick(page, '[data-testid="insert-menu"]');
+      await domClick(page, '[data-testid="insert-card"]');
+      await domClick(page, '[data-testid="field-revenue"]');
+      const card = await page.$eval('.dash-edit-frame.selected', (el) => el.getAttribute('data-testid'));
+      await page.waitForSelector(`[data-testid="${card}"] .dash-tile[data-status="ok"]`, { timeout: 60_000 });
+      const cardTotal = await textOf(page, `[data-testid="${card}"] .dash-kpi-value`);
+      const area = await (await page.$('[data-testid="editor-canvas"]')).boundingBox();
+      await page.mouse.click(area.x + area.width - 30, area.y + 200);
+      await page.waitForFunction(() => !document.querySelector('.dash-edit-frame.selected'));
+      await domClick(page, '[data-testid="pane-format"]');
+      await page.select('[data-testid="format-page-type"]', 'drillthrough');
+      await clickText(page, '[data-testid="drillthrough-fields"] button', new RegExp(`^${rowField.replace(/[^\w ]/g, '.')}$`, 'i'));
+      await page.waitForSelector('[data-testid="drillthrough-fields"] button[aria-pressed="true"]');
+      await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+      await domClick(page, '[data-testid="done-editing"]');
+      await page.waitForSelector('[data-testid="tile-matrix"][data-status="ok"]', { timeout: 60_000 });
+      // The matrix no longer filters the first KPI, but still filters the second.
+      const second = await kpi('kpi-1');
+      await rowClick(0);
+      await kpiIs('kpi-1', false, second);
+      if ((await kpi('kpi-0')) !== total) throw new Error('the matrix still filters kpi-0 after setting its interaction to none');
+      await page.keyboard.press('Escape');
+      await kpiIs('kpi-1', true, second);
+      // Right-click a row → drill through to the detail page, filtered to that member; Back returns.
+      await page.$eval('[data-testid="tile-matrix"] tbody tr', (el) => {
+        const box = el.getBoundingClientRect();
+        el.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: box.left + 20, clientY: box.top + 5 }));
+      });
+      await page.waitForSelector('[data-testid="point-menu"]');
+      await domClick(page, '[data-testid="point-menu"] [data-testid^="drillthrough-"]');
+      await page.waitForSelector('[data-testid="drillthrough-back"]');
+      await waitForText(page, '[data-testid="drillthrough-filters"]', / · \S/, 5_000);
+      await page.waitForSelector('[data-testid^="tile-"][data-status="ok"] .dash-kpi-value', { timeout: 60_000 });
+      const detail = await textOf(page, '[data-testid^="tile-"] .dash-kpi-value');
+      if (detail === cardTotal) throw new Error(`the drill-through page is not filtered (${detail})`);
+      await fitsOnScreen(page, 'drillthrough');
+      await domClick(page, '[data-testid="drillthrough-back"]');
+      await page.waitForSelector('[data-testid="tile-matrix"]');
+    });
+
     await step(page, 'settings: edit and save the profile', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle0' });
       await waitForText(page, 'body', new RegExp(email.replace(/[.@]/g, '\\$&')));

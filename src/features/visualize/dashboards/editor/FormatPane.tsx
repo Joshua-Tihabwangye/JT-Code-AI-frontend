@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { RotateCcw, Search } from 'lucide-react';
-import type { DashboardPage, DashboardVisual, DashboardVisualType } from '@/lib/data';
-import { CANVAS_PRESETS, setFormat } from './actions';
+import type { DashboardPage, DashboardSpec, DashboardVisual, DashboardVisualType } from '@/lib/data';
+import { humanize } from '../../ui';
+import { CANVAS_PRESETS, setFormat, syncGroupOf, syncSlicer } from './actions';
 
 type Update = (mutate: (visual: DashboardVisual) => DashboardVisual, merge?: string) => void;
 
@@ -14,7 +15,14 @@ interface Section {
   types: DashboardVisualType[] | 'all';
   /** The format sections this pane section edits (reset clears them). */
   formats: string[];
-  render: (visual: DashboardVisual, update: Update) => ReactNode;
+  render: (visual: DashboardVisual, update: Update, context: Context) => ReactNode;
+}
+
+/** The rest of the dashboard, for sections that reach beyond one visual (sync, tooltip pages). */
+interface Context {
+  spec: DashboardSpec;
+  pageId: string;
+  onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void;
 }
 
 function value<T>(visual: DashboardVisual, section: string, key: string, fallback: T): T {
@@ -263,18 +271,89 @@ const SECTIONS: Section[] = [
     title: 'Slicer',
     types: ['slicer'],
     formats: ['slicer'],
-    render: (visual, update) => (
-      <Row label="Style">
-        <select className="viz-field" value={value(visual, 'slicer', 'style', '')} onChange={(event) => set(update, 'slicer', 'style')(event.target.value || undefined)} data-testid="format-slicer-style">
-          <option value="">Automatic</option>
-          <option value="dropdown">Dropdown</option>
-          <option value="list">List</option>
-          <option value="tiles">Buttons</option>
-          <option value="between">Number range</option>
-          <option value="date_range">Date range</option>
-        </select>
-      </Row>
-    ),
+    render: (visual, update, context) => {
+      const group = syncGroupOf(visual);
+      const pages = context.spec.pages.filter((p) => (p.type ?? 'page') !== 'tooltip');
+      return (
+        <>
+          <Row label="Style">
+            <select className="viz-field" value={value(visual, 'slicer', 'style', '')} onChange={(event) => set(update, 'slicer', 'style')(event.target.value || undefined)} data-testid="format-slicer-style">
+              <option value="">Automatic</option>
+              <option value="dropdown">Dropdown</option>
+              <option value="list">List</option>
+              <option value="tiles">Buttons</option>
+              <option value="between">Number range</option>
+              <option value="date_range">Date range</option>
+              <option value="relative">Relative date</option>
+              <option value="input">Type a value</option>
+              <option value="hierarchy">Hierarchy (add more fields)</option>
+            </select>
+          </Row>
+          <Toggle label="Single choice" checked={value(visual, 'slicer', 'single', false)} onChange={(single) => set(update, 'slicer', 'single')(single || undefined)} />
+          <p className="viz-label mt-2">Sync across pages</p>
+          <table className="dash-sync-table" data-testid="sync-slicers">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>Sync</th>
+                <th>Visible</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pages.map((p) => {
+                const copy = p.id === context.pageId ? visual : p.visuals.find((v) => v.type === 'slicer' && group && syncGroupOf(v) === group);
+                const synced = !!copy;
+                return (
+                  <tr key={p.id}>
+                    <td className="truncate">{p.name}</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={synced}
+                        disabled={p.id === context.pageId}
+                        onChange={(event) => context.onSpec((spec) => syncSlicer(spec, context.pageId, visual.id, p.id, event.target.checked, true))}
+                        aria-label={`Sync to ${p.name}`}
+                        data-testid={`sync-${p.id}`}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={synced && !copy.hidden}
+                        disabled={!synced}
+                        onChange={(event) => context.onSpec((spec) => syncSlicer(spec, context.pageId, visual.id, p.id, true, event.target.checked))}
+                        aria-label={`Visible on ${p.name}`}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      );
+    },
+  },
+  {
+    key: 'tooltip',
+    title: 'Tooltip',
+    types: ['bar', 'column', 'line', 'area', 'combo', 'donut', 'pie', 'treemap', 'funnel', 'waterfall', 'scatter', 'map', 'table', 'matrix'],
+    formats: ['tooltip'],
+    render: (visual, update, context) => {
+      const pages = context.spec.pages.filter((p) => p.type === 'tooltip');
+      return (
+        <Row label="Tooltip page">
+          <select className="viz-field" value={value(visual, 'tooltip', 'page', '')} onChange={(event) => set(update, 'tooltip', 'page')(event.target.value || undefined)} data-testid="format-tooltip-page">
+            <option value="">{pages.length ? 'Default tooltip' : 'Make a page a tooltip page first'}</option>
+            {pages.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+        </Row>
+      );
+    },
   },
   {
     key: 'map',
@@ -297,7 +376,22 @@ const SECTIONS: Section[] = [
 ];
 
 /** Per-visual formatting (theme defaults until changed), or the page's canvas when nothing is selected. */
-export function FormatPane({ visual, update, page, updatePage }: { visual: DashboardVisual | undefined; update: Update; page: DashboardPage | undefined; updatePage: (patch: Partial<DashboardPage>) => void }) {
+export function FormatPane({
+  visual,
+  update,
+  page,
+  updatePage,
+  context,
+  fields,
+}: {
+  visual: DashboardVisual | undefined;
+  update: Update;
+  page: DashboardPage | undefined;
+  updatePage: (patch: Partial<DashboardPage>) => void;
+  context: Context;
+  /** Fields of the page's datasets (drill-through fields). */
+  fields: string[];
+}) {
   const [search, setSearch] = useState('');
   if (!visual) {
     if (!page) return null;
@@ -332,6 +426,57 @@ export function FormatPane({ visual, update, page, updatePage }: { visual: Dashb
             <RotateCcw size={12} aria-hidden /> Theme background
           </button>
         )}
+        <Row label="Page type">
+          <select
+            className="viz-field"
+            value={page.type ?? 'page'}
+            onChange={(event) => {
+              const type = event.target.value as NonNullable<DashboardPage['type']>;
+              updatePage(type === 'tooltip' ? { type, canvas: { ...page.canvas, preset: 'custom', width: 1280, height: 960 } } : { type });
+            }}
+            data-testid="format-page-type"
+          >
+            <option value="page">Page</option>
+            <option value="drillthrough">Drill-through (detail)</option>
+            <option value="tooltip">Tooltip</option>
+          </select>
+        </Row>
+        {page.type === 'tooltip' && <p className="text-[11px] text-muted-foreground">Shown small when hovering points of visuals that pick it under Format → Tooltip.</p>}
+        {page.type === 'drillthrough' && (
+          <div className="space-y-1">
+            <p className="text-[11px] text-muted-foreground">Right-click a member of one of these fields on another page → “Drill through”.</p>
+            <div className="flex flex-wrap gap-1" data-testid="drillthrough-fields">
+              {fields.map((field) => {
+                const on = (page.drillthroughFields ?? []).includes(field);
+                return (
+                  <button
+                    key={field}
+                    type="button"
+                    className="viz-chip"
+                    aria-pressed={on}
+                    onClick={() => updatePage({ drillthroughFields: on ? (page.drillthroughFields ?? []).filter((f) => f !== field) : [...(page.drillthroughFields ?? []), field].slice(0, 5) })}
+                  >
+                    {humanize(field)}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        <p className="viz-label mt-3">Dashboard</p>
+        <Row label="Slicers apply">
+          <select
+            className="viz-field"
+            value={context.spec.settings?.applyMode ?? 'instant'}
+            onChange={(event) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, applyMode: event.target.value as 'instant' | 'button' } }))}
+            data-testid="format-apply-mode"
+          >
+            <option value="instant">Immediately</option>
+            <option value="button">With an Apply button</option>
+          </select>
+        </Row>
+        <Toggle label="Filters pane for viewers" checked={context.spec.settings?.showFiltersPane !== false} onChange={(show) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, showFiltersPane: show } }))} />
+        <Toggle label="Viewers may personalize" checked={context.spec.settings?.allowPersonalize !== false} onChange={(allow) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, allowPersonalize: allow } }))} />
       </div>
     );
   }
@@ -363,7 +508,7 @@ export function FormatPane({ visual, update, page, updatePage }: { visual: Dashb
               </button>
             )}
           </summary>
-          <div className="space-y-1.5 pt-1">{section.render(visual, update)}</div>
+          <div className="space-y-1.5 pt-1">{section.render(visual, update, context)}</div>
         </details>
       ))}
     </div>

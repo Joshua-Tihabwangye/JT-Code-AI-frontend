@@ -690,6 +690,8 @@ export interface DashboardPage {
   type?: 'page' | 'tooltip' | 'drillthrough';
   canvas?: { preset?: string; width?: number; height?: number; background?: string };
   filters?: DashboardFilter[];
+  /** Drill-through pages: clicking a member of one of these fields elsewhere can open this page. */
+  drillthroughFields?: string[];
   visuals: DashboardVisual[];
 }
 
@@ -724,7 +726,7 @@ export interface DashboardSpec {
   theme: string | DashboardTheme;
   mode: 'light' | 'dark' | 'system';
   density?: 'compact' | 'comfortable';
-  settings?: { allowPersonalize?: boolean; showFiltersPane?: boolean; lockFilters?: boolean; defaultPageId?: string };
+  settings?: { allowPersonalize?: boolean; showFiltersPane?: boolean; lockFilters?: boolean; defaultPageId?: string; applyMode?: 'instant' | 'button' };
   filters?: DashboardFilter[];
   parameters?: Record<string, unknown>[];
   calculations?: Record<string, unknown>[];
@@ -781,6 +783,17 @@ export interface SlicerData {
   options?: { value: string | number | boolean | null; label: string; count: number }[];
   range?: { min: number | string | null; max: number | string | null };
   truncated?: boolean;
+  /** Hierarchy slicers: the level fields and the tree of members. */
+  fields?: string[];
+  tree?: SlicerNode[];
+}
+
+export interface SlicerNode {
+  value: string | number | boolean | null;
+  label: string;
+  field: string;
+  count: number;
+  children: SlicerNode[];
 }
 
 export interface VisualTable {

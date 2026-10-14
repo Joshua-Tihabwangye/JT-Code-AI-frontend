@@ -1,7 +1,7 @@
 import { useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
-import { ArrowDownWideNarrow, Copy, Paintbrush, Tag, Trash2, List } from 'lucide-react';
+import { ArrowDownWideNarrow, Ban, Copy, Filter, Highlighter, List, Paintbrush, Tag, Trash2 } from 'lucide-react';
 import type { DashboardTheme, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
-import { kpiIndexes, PAGE_WIDTH, ROW_PX, Tile } from '../runtime';
+import { interaction, kpiIndexes, PAGE_WIDTH, ROW_PX, Tile } from '../runtime';
 import type { SlicerValue } from '../visuals';
 import { clamp, expandGroups, mapVisuals, pageHeightRows, pasteVisuals, removeVisuals, round, setFormat } from './actions';
 import { COMPATIBLE, VISUAL_BY_TYPE } from './catalog';
@@ -55,17 +55,20 @@ export function EditorCanvas({
   theme,
   mode,
   width,
-  slicers,
+  slicerValue,
   onSlicerChange,
   onFormat,
+  interactionSource,
 }: {
   outputs: Record<string, VisualOutput>;
   theme: DashboardTheme | undefined;
   mode: 'light' | 'dark';
   width: number;
-  slicers: Record<string, SlicerValue>;
-  onSlicerChange: (id: string, value: SlicerValue) => void;
+  slicerValue: (visual: DashboardVisual) => SlicerValue;
+  onSlicerChange: (visual: DashboardVisual, value: SlicerValue) => void;
   onFormat: () => void;
+  /** Edit interactions: how clicking this visual affects each other visual. */
+  interactionSource?: DashboardVisual;
 }) {
   const state = useEditor();
   const { selected, select, change, checkpoint, snap, gridlines } = state;
@@ -263,8 +266,8 @@ export function EditorCanvas({
               kpiIndex={kpis[visual.id] ?? -1}
               style={{ position: 'absolute', inset: 0, padding: 'calc(var(--dash-gap) / 2)' }}
               onSelect={() => undefined}
-              slicerValue={slicers[visual.id]}
-              onSlicerChange={(value) => onSlicerChange(visual.id, value)}
+              slicerValue={slicerValue(visual)}
+              onSlicerChange={(value) => onSlicerChange(visual, value)}
               title={
                 editingTitle === visual.id ? (
                   <input
@@ -293,6 +296,24 @@ export function EditorCanvas({
                 aria-label="Text"
                 onBlur={(event) => update(visual.id, (v) => ({ ...v, text: event.target.value }))}
               />
+            )}
+            {interactionSource && interactionSource.id !== visual.id && visual.type !== 'text' && (
+              <div className="dash-interact" data-no-drag onPointerDown={(event) => event.stopPropagation()} data-testid={`interact-${visual.id}`}>
+                {(['filter', 'highlight', 'none'] as const).map((how) => (
+                  <button
+                    key={how}
+                    type="button"
+                    aria-pressed={interaction(interactionSource, visual) === how}
+                    title={how === 'filter' ? 'Filter: show only the clicked data' : how === 'highlight' ? 'Highlight: fade the rest' : 'None: not affected'}
+                    onClick={() =>
+                      update(interactionSource.id, (source) => ({ ...source, interactions: { ...(source.interactions ?? {}), [visual.id]: how } }))
+                    }
+                    data-testid={`interact-${visual.id}-${how}`}
+                  >
+                    {how === 'filter' ? <Filter size={13} /> : how === 'highlight' ? <Highlighter size={13} /> : <Ban size={13} />}
+                  </button>
+                ))}
+              </div>
             )}
             {single?.id === visual.id && !visual.locked && (
               <>

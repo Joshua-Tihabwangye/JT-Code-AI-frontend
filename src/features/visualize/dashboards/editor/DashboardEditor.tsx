@@ -22,6 +22,7 @@ import {
   LayoutTemplate,
   Loader2,
   Magnet,
+  MousePointerClick,
   Palette,
   Plus,
   Redo2,
@@ -62,12 +63,13 @@ import {
 import { BuildPane } from './BuildPane';
 import { EditorCanvas } from './Canvas';
 import { fieldKind, newId, suggestType, VISUAL_BY_TYPE, VISUALS, wellFor, wellItem } from './catalog';
+import { FiltersPane } from '../FiltersPane';
 import { FormatPane } from './FormatPane';
 import { SelectionPane } from './SelectionPane';
 import { currentPage, readClipboard, selectedVisuals, useEditor, writeClipboard } from './store';
 
 type Menu = 'insert' | 'arrange' | 'theme' | 'versions' | null;
-type PaneTab = 'build' | 'format' | 'selection';
+type PaneTab = 'build' | 'format' | 'filters' | 'selection';
 const THUMBNAIL_EVERY_MS = 30_000;
 
 function isTyping(target: EventTarget | null): boolean {
@@ -96,6 +98,7 @@ export function DashboardEditor() {
   const [pane, setPane] = useState<PaneTab>('build');
   const [paneOpen, setPaneOpen] = useState(true);
   const [renamingPage, setRenamingPage] = useState('');
+  const [interactions, setInteractions] = useState(false);
   const [area, areaWidth] = useWidth<HTMLDivElement>();
   const lastThumbnail = useRef(0);
   const theme = resolveTheme(spec?.theme, themes.data?.themes);
@@ -273,6 +276,19 @@ export function DashboardEditor() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  /** Which dataset (and kind) a field belongs to on this page — for filter cards. */
+  function datasetFor(field: string) {
+    const used = [...new Set((page?.visuals ?? []).map((visual) => visual.data.datasetId).filter(Boolean))];
+    if (!used.length && activeDataset) used.push(activeDataset);
+    const profiles = used.map((id) => ({ id, profile: datasets.find((item) => item.id === id)?.profile.columnProfiles ?? [] }));
+    const match = profiles.find((entry) => entry.profile.some((p) => p.name === field)) ?? profiles[0];
+    return {
+      datasetId: match?.id,
+      kind: match?.profile.find((p) => p.name === field)?.kind ?? 'categorical',
+      fields: (match?.profile ?? []).map((p) => ({ name: p.name, kind: p.kind })),
+    };
+  }
+
   if (record.isLoading || (record.data && !spec)) return <SkeletonBlock height={520} />;
   if (record.error || !spec || !page) return <ErrorNote error={record.error ?? new Error('Dashboard not found.')} />;
   if (record.data && record.data.role === 'viewer') return <ErrorNote error={new Error('You can view this dashboard but not edit it.')} />;
@@ -442,6 +458,16 @@ export function DashboardEditor() {
             </div>
           )}
         </div>
+        <button
+          type="button"
+          className="dash-menu-button"
+          aria-pressed={interactions}
+          onClick={() => setInteractions(!interactions)}
+          title="Choose how clicking the selected visual affects each other visual"
+          data-testid="edit-interactions"
+        >
+          <MousePointerClick size={14} aria-hidden /> {t('visualize.editor.interactions', 'Interactions')}
+        </button>
         <div className="dash-toolgroup">
           <button type="button" aria-pressed={snap} onClick={() => setOption({ snap: !snap })} title="Snap to grid (off = free positioning)" data-testid="toggle-snap">
             <Magnet size={15} />
@@ -548,12 +574,13 @@ export function DashboardEditor() {
                 theme={theme}
                 mode={mode}
                 width={canvasWidth - 20}
-                slicers={runtime.slicers}
-                onSlicerChange={(id, value) => runtime.setSlicers((current) => ({ ...current, [id]: value }))}
+                slicerValue={runtime.slicerValue}
+                onSlicerChange={runtime.setSlicer}
                 onFormat={() => {
                   setPane('format');
                   setPaneOpen(true);
                 }}
+                interactionSource={interactions ? single : undefined}
               />
             )}
           </div>
@@ -565,16 +592,41 @@ export function DashboardEditor() {
           {paneOpen && (
             <>
               <div className="dash-pane-tabs" role="tablist">
-                {(['build', 'format', 'selection'] as const).map((tab) => (
+                {(['build', 'format', 'filters', 'selection'] as const).map((tab) => (
                   <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`pane-${tab}`}>
-                    {tab === 'build' ? 'Build' : tab === 'format' ? 'Format' : 'Selection'}
+                    {tab === 'build' ? 'Build' : tab === 'format' ? 'Format' : tab === 'filters' ? 'Filters' : 'Selection'}
                   </button>
                 ))}
               </div>
               <div className="dash-pane-body">
-                {selected.length > 1 && pane !== 'selection' && <p className="text-xs text-muted-foreground">{selected.length} visuals selected — use Arrange, or pick one to edit.</p>}
+                {selected.length > 1 && pane !== 'selection' && pane !== 'filters' && <p className="text-xs text-muted-foreground">{selected.length} visuals selected — use Arrange, or pick one to edit.</p>}
                 {pane === 'build' && selected.length <= 1 && <BuildPane visual={single} update={updateSelected} onCreate={createFromField} />}
-                {pane === 'format' && selected.length <= 1 && <FormatPane visual={single} update={updateSelected} page={page} updatePage={updatePage} />}
+                {pane === 'format' && selected.length <= 1 && (
+                  <FormatPane
+                    visual={single}
+                    update={updateSelected}
+                    page={page}
+                    updatePage={updatePage}
+                    context={{ spec, pageId: page.id, onSpec: (mutate) => change(mutate) }}
+                    fields={datasetFor('').fields.map((field) => field.name)}
+                  />
+                )}
+                {pane === 'filters' && (
+                  <FiltersPane
+                    spec={spec}
+                    page={page}
+                    visual={single}
+                    editable
+                    datasetFor={datasetFor}
+                    onEdit={(level, edit, visualId) =>
+                      change((current) => {
+                        if (level === 'dashboard') return { ...current, filters: edit(current.filters ?? []) };
+                        if (level === 'page') return mapPage(current, page.id, (p) => ({ ...p, filters: edit(p.filters ?? []) }));
+                        return mapVisuals(current, page.id, [visualId!], (v) => ({ ...v, data: { ...v.data, filters: edit(v.data.filters ?? []) } }));
+                      })
+                    }
+                  />
+                )}
                 {pane === 'selection' && <SelectionPane page={page} outputs={runtime.outputs} />}
               </div>
             </>

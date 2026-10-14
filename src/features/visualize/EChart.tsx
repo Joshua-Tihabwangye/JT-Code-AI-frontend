@@ -10,6 +10,7 @@ export interface EChartClick {
   seriesName?: string;
   dataIndex?: number;
   name?: string;
+  event?: { event?: MouseEvent };
 }
 
 interface ChartInstance {
@@ -26,17 +27,27 @@ export function EChart({
   height = 420,
   testId = 'echart',
   onClick,
+  onContextMenu,
+  onHover,
 }: {
   option: ChartOption;
   height?: number | string;
   testId?: string;
   onClick?: (params: EChartClick) => void;
+  /** Right-click on a data point (drill through, keep only, exclude). */
+  onContextMenu?: (params: EChartClick, event: MouseEvent) => void;
+  /** Pointer over a data point (``null`` when it leaves) — report-page tooltips. */
+  onHover?: (params: EChartClick | null, event: MouseEvent | null) => void;
 }) {
   const visualize = useRepository('visualize');
   const element = useRef<HTMLDivElement>(null);
   const chart = useRef<ChartInstance | null>(null);
   const clickHandler = useRef(onClick);
   clickHandler.current = onClick;
+  const menuHandler = useRef(onContextMenu);
+  menuHandler.current = onContextMenu;
+  const hoverHandler = useRef(onHover);
+  hoverHandler.current = onHover;
   const [ready, setReady] = useState(false);
   const [error, setError] = useState('');
 
@@ -49,6 +60,15 @@ export function EChart({
         if (!chart.current) {
           chart.current = echarts.init(element.current, null, { renderer: 'canvas' }) as unknown as ChartInstance;
           chart.current.on('click', (params) => clickHandler.current?.(params));
+          chart.current.on('contextmenu', (params) => {
+            const native = params.event?.event;
+            if (native && menuHandler.current) {
+              native.preventDefault();
+              menuHandler.current(params, native);
+            }
+          });
+          chart.current.on('mouseover', (params) => hoverHandler.current?.(params, params.event?.event ?? null));
+          chart.current.on('mouseout', () => hoverHandler.current?.(null, null));
         }
         chart.current.setOption(hydrate(option), true);
         setReady(true);

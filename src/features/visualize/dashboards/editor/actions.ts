@@ -217,3 +217,27 @@ export function round(value: number): number {
 export function clamp(value: number, low: number, high: number): number {
   return Math.min(Math.max(value, low), high);
 }
+
+// --- Slicer sync ---------------------------------------------------------------------------------
+
+export function syncGroupOf(visual: DashboardVisual | undefined): string | undefined {
+  return (visual?.format?.slicer as { syncGroup?: string } | undefined)?.syncGroup;
+}
+
+/** Sync a slicer onto another page (same choice everywhere): adds a copy — visible or hidden — or
+ *  removes it. The group id is created on first use and stored on every copy. */
+export function syncSlicer(spec: DashboardSpec, fromPageId: string, visualId: string, targetPageId: string, sync: boolean, visible: boolean): DashboardSpec {
+  const source = spec.pages.find((page) => page.id === fromPageId)?.visuals.find((visual) => visual.id === visualId);
+  if (!source) return spec;
+  const group = syncGroupOf(source) ?? newId('sync');
+  let next = syncGroupOf(source) ? spec : mapVisuals(spec, fromPageId, [visualId], (visual) => setFormat(visual, 'slicer', 'syncGroup', group));
+  if (targetPageId === fromPageId) return mapVisuals(next, fromPageId, [visualId], (visual) => ({ ...visual, hidden: !visible }));
+  const target = next.pages.find((page) => page.id === targetPageId);
+  if (!target) return next;
+  const existing = target.visuals.find((visual) => visual.type === 'slicer' && syncGroupOf(visual) === group);
+  if (!sync) return existing ? removeVisuals(next, targetPageId, [existing.id]) : next;
+  if (existing) return mapVisuals(next, targetPageId, [existing.id], (visual) => ({ ...visual, hidden: !visible }));
+  const copy: DashboardVisual = { ...structuredClone(source), id: newId('slicer'), hidden: !visible, format: { ...(source.format ?? {}), slicer: { ...(source.format?.slicer ?? {}), syncGroup: group } } };
+  next = mapPage(next, targetPageId, (page) => ({ ...page, visuals: [...page.visuals, copy] }));
+  return next;
+}
