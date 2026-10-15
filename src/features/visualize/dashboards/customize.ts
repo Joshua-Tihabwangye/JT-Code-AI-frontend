@@ -1,7 +1,9 @@
 import type { DashboardBookmark, DashboardCalculation, DashboardFieldRef, DashboardPage, DashboardParameter, DashboardSpec, DashboardVisual, DashboardWell } from '@/lib/data';
 
 /** Visuals the browser draws itself (no query): text, parameter controls, buttons, navigators. */
-export const LOCAL_TYPES = new Set<DashboardVisual['type']>(['text', 'parameter', 'button', 'navigator']);
+export const LOCAL_TYPES = new Set<DashboardVisual['type']>(['text', 'parameter', 'button', 'navigator', 'snapshot']);
+/** Local visuals that are controls (no title or tile chrome unless the author adds it). */
+export const CONTROL_TYPES = new Set<DashboardVisual['type']>(['text', 'parameter', 'button', 'navigator']);
 
 /** Current parameter values by parameter id: a number for what-if, the option index for fields. */
 export type ParameterValues = Record<string, number>;
@@ -58,10 +60,13 @@ export function resolveVisual(visual: DashboardVisual, spec: DashboardSpec | und
 }
 
 /** What calculated measures may reference, sent with every render. */
-export function renderContext(spec: DashboardSpec | undefined, values: ParameterValues): { parameters: Record<string, number>; calculations: { name: string; expression: string }[] } {
+export function renderContext(
+  spec: DashboardSpec | undefined,
+  values: ParameterValues,
+): { parameters: Record<string, number>; calculations: { name: string; expression: string }[]; relationships: NonNullable<DashboardSpec['relationships']> } {
   const parameters: Record<string, number> = {};
   for (const parameter of spec?.parameters ?? []) if (parameter.kind === 'whatif') parameters[parameter.name] = parameterValue(parameter, values);
-  return { parameters, calculations: (spec?.calculations ?? []).map((calc) => ({ name: calc.name, expression: calc.expression })) };
+  return { parameters, calculations: (spec?.calculations ?? []).map((calc) => ({ name: calc.name, expression: calc.expression })), relationships: spec?.relationships ?? [] };
 }
 
 /** Personal overrides for visuals that still exist (the author may have deleted some). */

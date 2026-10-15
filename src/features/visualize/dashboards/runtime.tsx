@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useRepository, type DashboardBookmarkState, type DashboardFieldRef, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
 import { useDebounced } from '../controls';
-import { LOCAL_TYPES, renderContext, resolveVisual, type ParameterValues } from './customize';
+import { CONTROL_TYPES, LOCAL_TYPES, renderContext, resolveVisual, type ParameterValues } from './customize';
 import type { LocalContext } from './local';
 import { slicerFilter, VisualRenderer, type PointHandler, type SelectHandler, type SlicerValue } from './visuals';
 
@@ -385,10 +385,11 @@ export function Tile({
 } & Record<`data-${string}`, string | undefined>) {
   const isKpi = visual.type === 'kpi' || visual.type === 'card';
   const isLocal = LOCAL_TYPES.has(visual.type);
+  const isControl = CONTROL_TYPES.has(visual.type);
   const tileFormat = (visual.format?.tile ?? {}) as { background?: string; border?: string; radius?: number; shadow?: boolean };
   // Text, parameters, buttons and navigators show a title only when the author turns it on.
   const titleFormat = visual.format?.title as { show?: boolean } | undefined;
-  const showTitle = !isKpi && (isLocal ? titleFormat?.show === true : titleFormat?.show !== false);
+  const showTitle = !isKpi && (isControl ? titleFormat?.show === true : titleFormat?.show !== false);
   const inner: CSSProperties = {
     ...(tileFormat.background ? { background: tileFormat.background } : {}),
     ...(tileFormat.border ? { borderColor: tileFormat.border } : {}),
@@ -397,7 +398,7 @@ export function Tile({
   };
   return (
     <section
-      className={`dash-tile${isKpi ? ' kpi' : ''}${visual.type === 'slicer' ? ' slicer' : ''}${isLocal ? ` local ${visual.type}` : ''} ${className}`}
+      className={`dash-tile${isKpi ? ' kpi' : ''}${visual.type === 'slicer' ? ' slicer' : ''}${isControl ? ` local ${visual.type}` : ''} ${className}`}
       style={style}
       data-testid={`tile-${visual.id}`}
       data-status={isLocal ? 'ok' : (output?.status ?? 'loading')}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FunctionSquare, Pencil, Plus, SlidersVertical, Sparkles, Trash2, X } from 'lucide-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { BookmarkPlus, FunctionSquare, Library, Pencil, Plus, SlidersVertical, Sparkles, Trash2, X } from 'lucide-react';
 import { useRepository, type ColumnProfile, type DashboardCalculation, type DashboardFieldRef, type DashboardParameter, type DashboardSpec } from '@/lib/data';
 import { humanize } from '../../ui';
 import { QUICK_MEASURES, renderContext } from '../customize';
@@ -22,8 +23,17 @@ export function CalculationsSection({
   /** Put a calculation into the selected visual's values. */
   onUse?: (calc: DashboardCalculation) => void;
 }) {
+  const visualize = useRepository('visualize');
+  const queryClient = useQueryClient();
   const [editing, setEditing] = useState<DashboardCalculation | null>(null);
   const [quick, setQuick] = useState(false);
+  const [library, setLibrary] = useState(false);
+  const measures = useQuery({ queryKey: ['visualize', 'measures', datasetId], queryFn: () => visualize.listMeasures(datasetId), enabled: library });
+  const toLibrary = useMutation({
+    mutationFn: (calc: DashboardCalculation) => visualize.saveMeasure({ name: calc.name, expression: calc.expression, format: calc.format ?? 'number', datasetId }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['visualize', 'measures'] }),
+  });
+  const taken = (name: string) => (spec.calculations ?? []).some((calc) => calc.name.toLowerCase() === name.toLowerCase());
   const calcs = (spec.calculations ?? []).filter((calc) => !calc.datasetId || calc.datasetId === datasetId);
   const save = (calc: DashboardCalculation) => {
     onSpec((current) => {
@@ -38,6 +48,9 @@ export function CalculationsSection({
       <div className="flex items-center justify-between">
         <span className="viz-label m-0">Calculations</span>
         <span className="flex gap-1">
+          <button type="button" className="viz-chip" aria-pressed={library} onClick={() => setLibrary(!library)} data-testid="measures-library" title="Measures saved for the whole organization">
+            <Library size={12} aria-hidden /> Library
+          </button>
           <button type="button" className="viz-chip" onClick={() => (setQuick(true), setEditing(null))} data-testid="quick-measure">
             <Sparkles size={12} aria-hidden /> Quick measure
           </button>
@@ -56,6 +69,29 @@ export function CalculationsSection({
           }}
         />
       )}
+      {library && (
+        <div className="dash-calc-editor" data-testid="library-panel">
+          {measures.isLoading && <p className="text-[11px] text-muted-foreground">Loading…</p>}
+          {measures.data?.length === 0 && <p className="text-[11px] text-muted-foreground">No saved measures yet: save one with the bookmark icon next to a calculation.</p>}
+          {measures.data?.map((measure) => (
+            <div key={measure.id} className="flex items-center gap-1 text-xs">
+              <FunctionSquare size={12} aria-hidden className="dash-kind calc" />
+              <span className="flex-1 truncate" title={measure.expression}>
+                {measure.name}
+              </span>
+              <button
+                type="button"
+                className="viz-chip"
+                disabled={taken(measure.name)}
+                onClick={() => onSpec((current) => ({ ...current, calculations: [...(current.calculations ?? []), { id: newId('calc'), name: measure.name, expression: measure.expression, format: measure.format, datasetId }] }))}
+                data-testid={`library-add-${measure.name}`}
+              >
+                {taken(measure.name) ? 'Added' : 'Add'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
       {editing && <CalcEditor calc={editing} spec={spec} datasetId={datasetId} profiles={profiles} onCancel={() => setEditing(null)} onSave={save} />}
       <ul className="dash-fields">
         {calcs.map((calc) => (
@@ -63,6 +99,9 @@ export function CalculationsSection({
             <button type="button" disabled={!onUse} onClick={() => onUse?.(calc)} title={onUse ? `${calc.expression} — click to add` : calc.expression} data-testid={`calc-${calc.name}`}>
               <FunctionSquare size={12} aria-hidden className="dash-kind calc" />
               <span className="truncate">{calc.name}</span>
+            </button>
+            <button type="button" className="viz-icon-button" disabled={toLibrary.isPending} onClick={() => toLibrary.mutate(calc)} aria-label={`Save ${calc.name} to the measures library`} title="Save to the measures library" data-testid={`library-save-${calc.name}`}>
+              <BookmarkPlus size={11} />
             </button>
             <button type="button" className="viz-icon-button" onClick={() => setEditing(calc)} aria-label={`Edit ${calc.name}`}>
               <Pencil size={11} />

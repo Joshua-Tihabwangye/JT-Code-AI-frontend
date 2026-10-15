@@ -48,6 +48,7 @@ import type {
   DashboardTheme,
   DashboardVersionInfo,
   SavedTheme,
+  DashboardMeasure,
   VisualsResponse,
 } from '../types';
 import type {
@@ -1086,6 +1087,26 @@ class ApiVisualizeRepository implements VisualizeRepository {
   }
   async deleteTheme(id: string) {
     await api.delete(`/visualize/themes/${id}/`);
+  }
+  async recommend(datasetId: string, chart?: string) {
+    const { data } = await api.get<{ recommendations: VizRecommendation[]; fields?: VizFields }>(`/visualize/datasets/${datasetId}/recommend/`, { params: chart ? { chart } : {} });
+    return data;
+  }
+  async listMeasures(datasetId?: string) {
+    const { data } = await api.get<DashboardMeasure[] | { results: DashboardMeasure[] }>('/visualize/measures/', { params: datasetId ? { datasetId } : {} });
+    return Array.isArray(data) ? data : data.results;
+  }
+  async saveMeasure(input: Omit<DashboardMeasure, 'id' | 'ownerId'> & { id?: string }) {
+    const { id, ...body } = input;
+    const { data } = id ? await api.patch<DashboardMeasure>(`/visualize/measures/${id}/`, body) : await api.post<DashboardMeasure>('/visualize/measures/', body);
+    return data;
+  }
+  async deleteMeasure(id: string) {
+    await api.delete(`/visualize/measures/${id}/`);
+  }
+  async exportDashboard(id: string, input: { format: 'xlsx' | 'html' | 'pdf' | 'json'; mode?: 'light' | 'dark'; images?: { title: string; image: string }[] }) {
+    const { data } = await api.post<Blob>(`/visualize/dashboards/${id}/export/`, input, { ...SLOW, responseType: 'blob' });
+    return data;
   }
   async renderVisuals(input: RenderVisualsInput, signal?: AbortSignal) {
     const { data } = await api.post<VisualsResponse>('/visualize/visuals/', input, { ...SLOW, signal });

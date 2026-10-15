@@ -36,7 +36,7 @@ describe('parameters and calculations', () => {
   });
 
   it('sends what-if values by name and every calculation', () => {
-    expect(renderContext(spec, {})).toEqual({ parameters: { 'Price change': 0.1 }, calculations: [{ name: 'Margin', expression: 'DIVIDE(SUM([profit]), SUM([revenue]))' }] });
+    expect(renderContext(spec, {})).toEqual({ parameters: { 'Price change': 0.1 }, calculations: [{ name: 'Margin', expression: 'DIVIDE(SUM([profit]), SUM([revenue]))' }], relationships: [] });
     expect(renderContext(spec, { lift: -0.2 }).parameters['Price change']).toBe(-0.2);
   });
 });

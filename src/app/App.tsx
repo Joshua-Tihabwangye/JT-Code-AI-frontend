@@ -15,10 +15,9 @@ import { BillingPage } from '@/features/billing/BillingPage';
 import { SettingsPage } from '@/features/settings/SettingsPage';
 import { HistoryPage } from '@/features/history/HistoryPage';
 import { VisualizeLayout } from '@/features/visualize/VisualizeLayout';
-import { OverviewPage } from '@/features/visualize/pages/OverviewPage';
 import { DataPage } from '@/features/visualize/pages/DataPage';
 import { GalleryPage } from '@/features/visualize/pages/GalleryPage';
-import { StudioPage } from '@/features/visualize/pages/StudioPage';
+import { ExplorePage } from '@/features/visualize/pages/ExplorePage';
 import { PredictPage } from '@/features/visualize/pages/PredictPage';
 import { ReportsPage } from '@/features/visualize/pages/ReportsPage';
 import { DashboardPage } from '@/features/visualize/dashboards/DashboardPage';
@@ -52,10 +51,12 @@ export function App() {
         {/* Data Analytics is now part of Data Visualization (Data → Organize). */}
         <Route path="analytics" element={<Navigate to="/app/visualize/data" replace />} />
         <Route path="visualize" element={<RequireAuth><VisualizeLayout /></RequireAuth>}>
-          <Route index element={<OverviewPage />} />
+          <Route index element={<DashboardsHome />} />
           <Route path="data" element={<DataPage />} />
           <Route path="gallery" element={<GalleryPage />} />
-          <Route path="studio" element={<StudioPage />} />
+          <Route path="explore" element={<ExplorePage />} />
+          {/* Studio became Explore. */}
+          <Route path="studio" element={<Navigate to="/app/visualize/explore" replace />} />
           <Route path="predict" element={<PredictPage />} />
           <Route path="reports" element={<ReportsPage />} />
           <Route path="dashboards" element={<DashboardsHome />} />

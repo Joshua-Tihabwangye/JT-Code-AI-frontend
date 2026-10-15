@@ -662,12 +662,12 @@
   },
   "visualize": {
     "tabs": {
-      "overview": "Overview",
+      "dashboards": "Dashboards",
       "data": "Data",
-      "gallery": "Chart gallery",
-      "studio": "Studio",
+      "gallery": "Gallery",
       "predict": "Predict",
-      "reports": "Reports"
+      "reports": "Reports",
+      "explore": "Explore"
     },
     "askAi": "Ask AI",
     "hero": {

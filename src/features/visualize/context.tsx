@@ -108,7 +108,8 @@ export function VisualizeProvider({ children }: { children: ReactNode }) {
       openStudio: (draft) => {
         if (draft.datasetId) setDatasetId(draft.datasetId);
         setStudioDraft(draft);
-        void navigate('/app/visualize/studio');
+        // Studio became Explore: the draft opens there as a gallery chart.
+        void navigate('/app/visualize/explore');
       },
       openPredict: (draft) => {
         if (draft.datasetId) setDatasetId(draft.datasetId);

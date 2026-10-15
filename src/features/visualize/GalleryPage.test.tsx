@@ -44,7 +44,7 @@ function renderGallery() {
         <VisualizeProvider>
           <Routes>
             <Route path="/app/visualize/gallery" element={<GalleryPage />} />
-            <Route path="/app/visualize/studio" element={<p>Studio open</p>} />
+            <Route path="/app/visualize/explore" element={<p>Explore open</p>} />
           </Routes>
         </VisualizeProvider>
       </MemoryRouter>
@@ -53,7 +53,7 @@ function renderGallery() {
 }
 
 describe('GalleryPage', () => {
-  it('groups charts by family, filters by search and opens the Studio', async () => {
+  it('groups charts by family, filters by search and opens Explore', async () => {
     renderGallery();
     await screen.findByTestId('gallery-chart-bar');
     expect(screen.getByTestId('gallery-chart-roc_curve')).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe('GalleryPage', () => {
     await waitFor(() => expect(screen.queryByTestId('gallery-chart-bar')).not.toBeInTheDocument());
 
     fireEvent.click(screen.getByTestId('gallery-chart-roc_curve'));
-    expect(await screen.findByText('Studio open')).toBeInTheDocument();
+    expect(await screen.findByText('Explore open')).toBeInTheDocument();
   });
 });
 

@@ -3,6 +3,7 @@ import { RotateCcw, Search } from 'lucide-react';
 import type { ColumnProfile, DashboardPage, DashboardSpec, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
 import { humanize } from '../../ui';
 import { CANVAS_PRESETS, setFormat, syncGroupOf, syncSlicer } from './actions';
+import { RelationshipsSection } from './Relationships';
 import { AnalyticsSection, ButtonSection, ConditionalSection, NavigatorSection, ParameterSection, PythonSection } from './FormatExtras';
 
 type Update = (mutate: (visual: DashboardVisual) => DashboardVisual, merge?: string) => void;
@@ -523,6 +524,7 @@ export function FormatPane({
         </Row>
         <Toggle label="Filters pane for viewers" checked={context.spec.settings?.showFiltersPane !== false} onChange={(show) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, showFiltersPane: show } }))} />
         <Toggle label="Viewers may personalize" checked={context.spec.settings?.allowPersonalize !== false} onChange={(allow) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, allowPersonalize: allow } }))} />
+        <RelationshipsSection spec={context.spec} onSpec={context.onSpec} />
       </div>
     );
   }

@@ -2658,3 +2658,660 @@ textarea.viz-field {
 .dash-edit-grid.painting .dash-edit-frame {
   cursor: copy;
 }
+
+/* --- Phase 5 ------------------------------------------------------------------------------------ */
+
+.dash-snapshot-note {
+  flex: none;
+  font-size: 0.65rem;
+  color: var(--dash-muted);
+  text-align: end;
+}
+
+.dash-dialog.narrow {
+  width: min(420px, 100%);
+}
+
+.viz-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Explore (replaces Studio). */
+.explore {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.explore-types {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.explore-types > button[data-testid^='explore-type-'] {
+  width: 44px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  --viz-indigo: #94a3b8;
+}
+
+.explore-types > button[aria-pressed='true'] {
+  border-color: var(--viz-indigo, #6366f1);
+  box-shadow: 0 0 0 2px color-mix(in srgb, #6366f1 25%, transparent);
+  --viz-indigo: #6366f1;
+}
+
+.explore-types > button:disabled {
+  opacity: 0.4;
+}
+
+.explore-suggestions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.explore-suggestion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  text-align: start;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.explore-suggestion:hover {
+  border-color: #6366f1;
+  transform: translateY(-1px);
+}
+
+.explore-suggestion-chart {
+  position: relative;
+  display: block;
+  height: 72px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.explore-suggestion-chart .dash-tile-inner {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.explore-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 10px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .explore-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  min-height: 440px;
+}
+
+.explore-card {
+  position: relative;
+  border-radius: var(--dash-radius, 12px);
+  cursor: pointer;
+  outline: none;
+}
+
+.explore-card.selected {
+  grid-column: 1 / -1;
+  grid-row: span 2;
+}
+
+.explore-card.selected .dash-tile-inner,
+.explore-card:focus-visible .dash-tile-inner {
+  outline: 2px solid var(--dash-accent);
+  outline-offset: -1px;
+}
+
+.explore-card-number {
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  inset-inline-end: 10px;
+  font-size: 0.65rem;
+  color: var(--dash-muted);
+}
+
+.explore-insight {
+  position: absolute;
+  inset-inline: 12px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--dash-muted);
+}
+
+.explore-card.selected .dash-tile-body {
+  padding-bottom: 18px;
+}
+
+.explore-pane {
+  position: sticky;
+  top: 8px;
+  max-height: calc(100dvh - 140px);
+}
+
+.explore-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.explore-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.viz-dataset-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--muted-foreground);
+}
+
+.viz-dataset-pick select {
+  max-width: 180px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  font-size: 0.8rem;
+  color: var(--foreground);
+  outline: none;
+}
+
+.viz-start {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.viz-library-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.viz-library-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+/* Gallery cards: a picture of the chart, one short line, required fields; actions on hover. */
+.viz-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.viz-gallery-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.viz-gallery-card:hover,
+.viz-gallery-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: var(--viz-shadow);
+}
+
+.viz-gallery-open {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 10px 12px 12px;
+  text-align: start;
+}
+
+.viz-gallery-thumb {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--c, #6366f1) 8%, var(--card));
+}
+
+.viz-field-chip {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  color: var(--muted-foreground);
+}
+
+.viz-gallery-actions {
+  position: absolute;
+  top: 8px;
+  inset-inline: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.viz-gallery-card:hover .viz-gallery-actions,
+.viz-gallery-card:focus-within .viz-gallery-actions {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .viz-gallery-actions {
+    position: static;
+    padding: 0 10px 10px;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Data tab: compact toolbar, menus, quality bars, applied steps. */
+.viz-data-toolbar {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.viz-menu-anchor {
+  position: relative;
+}
+
+.viz-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 4px);
+  inset-inline-start: 0;
+  display: flex;
+  min-width: 230px;
+  flex-direction: column;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 14px 34px -12px rgb(15 23 42 / 0.3);
+}
+
+.viz-menu[hidden] {
+  display: none;
+}
+
+.viz-menu > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  text-align: start;
+}
+
+.viz-menu > button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--viz-indigo) 10%, transparent);
+}
+
+.viz-menu > button:disabled {
+  opacity: 0.45;
+}
+
+.viz-menu-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 8px 6px;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+}
+
+.viz-quality-bar {
+  display: flex;
+  height: 4px;
+  margin-top: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.viz-quality-bar .valid {
+  background: #10b981;
+}
+
+.viz-quality-bar .error {
+  background: #ef4444;
+}
+
+.viz-quality-bar .empty {
+  background: #94a3b8;
+}
+
+.viz-profile-value {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.viz-value-actions {
+  position: absolute;
+  inset-inline-end: 0;
+  display: none;
+  gap: 2px;
+  padding: 1px;
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.viz-profile-value:hover .viz-value-actions,
+.viz-profile-value:focus-within .viz-value-actions {
+  display: flex;
+}
+
+.viz-value-actions button {
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  color: var(--viz-indigo);
+}
+
+.viz-value-actions button:hover {
+  background: color-mix(in srgb, var(--viz-indigo) 12%, transparent);
+}
+
+.viz-insight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.viz-transform {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 290px;
+  gap: 10px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .viz-transform {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viz-transform-catalogue,
+.viz-transform-steps {
+  display: flex;
+  max-height: 70vh;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.viz-transform-kind {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  text-align: start;
+}
+
+.viz-transform-kind:hover {
+  background: color-mix(in srgb, var(--viz-indigo) 10%, transparent);
+}
+
+.viz-transform-preview {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.viz-transform-table {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.viz-transform-empty {
+  display: flex;
+  min-height: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+}
+
+.viz-step {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.75rem;
+}
+
+.viz-step.selected {
+  border-color: var(--viz-indigo);
+  background: color-mix(in srgb, var(--viz-indigo) 8%, transparent);
+}
+
+.viz-step.off {
+  opacity: 0.5;
+}
+
+.viz-step > button:not(:first-child) {
+  padding: 3px;
+  border-radius: 5px;
+  color: var(--muted-foreground);
+}
+
+.viz-step > button:disabled {
+  opacity: 0.35;
+}
+
+.viz-step-editor,
+.viz-step-save {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* Predict: a step wizard on the left, results on the right. */
+.predict-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .predict-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.predict-wizard {
+  position: sticky;
+  top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.predict-step {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.predict-step.open {
+  border-color: color-mix(in srgb, var(--viz-indigo) 55%, var(--border));
+}
+
+.predict-step-head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.predict-step-number {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: #fff;
+  background: var(--muted-foreground);
+}
+
+.predict-step.open .predict-step-number,
+.predict-step.done .predict-step-number {
+  background: var(--viz-indigo);
+}
+
+.predict-step-body {
+  padding: 0 12px 12px;
+}
+
+.predict-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--c, var(--viz-indigo));
+}
+
+.predict-task[aria-pressed='true'] {
+  border-color: var(--c, var(--viz-indigo));
+  background: color-mix(in srgb, var(--c, var(--viz-indigo)) 12%, var(--card));
+}
+
+.viz-how summary {
+  list-style: revert;
+}
+
+.viz-export-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+}
+
+.viz-export-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: start;
+  color: var(--foreground);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.viz-export-option:hover:not(:disabled) {
+  border-color: var(--viz-indigo);
+  transform: translateY(-1px);
+}
+
+.viz-export-option:disabled {
+  opacity: 0.5;
+}
+
+.viz-export-option svg {
+  color: var(--viz-indigo);
+}
+
+/* Data tables outside a dashboard tile flow with the page (inside tiles they fill the tile). */
+.viz-transform-table.dash-table-wrap,
+.explore-drawer .dash-table-wrap {
+  position: relative;
+  inset: auto;
+}
+
+.viz-gallery-actions .viz-chip {
+  white-space: nowrap;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  background: var(--card);
+}

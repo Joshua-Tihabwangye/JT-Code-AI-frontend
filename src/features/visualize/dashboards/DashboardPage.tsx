@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, Check, Eraser, Filter, FilterX, Pencil, Sparkles, Undo2 } from 'lucide-react';
@@ -7,6 +7,8 @@ import { useRepository, type DashboardBookmark, type DashboardFilter, type Dashb
 import { useTheme } from '@/lib/theme';
 import { useVisualize } from '../context';
 import { ErrorNote, SkeletonBlock } from '../ui';
+import { saveBlob, safeName } from '../echarts';
+import { capturePage, whenDrawn } from './capture';
 import { LOCAL_TYPES, mobileVisuals, pruneOverrides } from './customize';
 import { newId } from './editor/catalog';
 import { describeFilter, FiltersPane } from './FiltersPane';
@@ -93,6 +95,43 @@ export function DashboardPage() {
   const extraFilters = useMemo(() => [...(drillthrough?.filters ?? []), ...personal], [drillthrough, personal]);
   const runtime = useDashboardRuntime({ spec, page, mode, dashboardId, extraFilters, personal: personalOverrides });
   const bookmarks = useMemo(() => [...(spec?.bookmarks ?? []), ...(mine?.bookmarks ?? [])], [spec?.bookmarks, mine?.bookmarks]);
+
+  // Exports from Reports: ?export=pdf|png paints every page here, then downloads.
+  const [params, setParams] = useSearchParams();
+  const exporting = params.get('export');
+  const [exportNote, setExportNote] = useState('');
+  const exported = useRef(false);
+  useEffect(() => {
+    if ((exporting !== 'pdf' && exporting !== 'png') || !spec || exported.current) return;
+    exported.current = true;
+    const pages = spec.pages.filter((item) => !item.hidden && (item.type ?? 'page') === 'page');
+    void (async () => {
+      try {
+        const images: { title: string; image: string }[] = [];
+        for (const [index, item] of pages.entries()) {
+          setExportNote(`Painting page ${index + 1} of ${pages.length}…`);
+          setDrillthrough(null);
+          setPageId(item.id);
+          await whenDrawn(document, item.id);
+          const canvas = document.querySelector<HTMLElement>('[data-testid="dashboard-canvas"]');
+          if (canvas) images.push({ title: item.name, image: await capturePage(canvas) });
+        }
+        const name = safeName(record.data?.name ?? 'dashboard');
+        if (exporting === 'pdf') {
+          setExportNote('Building the PDF…');
+          saveBlob(await visualize.exportDashboard(dashboardId, { format: 'pdf', images }), `${name}.pdf`);
+        } else {
+          for (const { title, image } of images) saveBlob(await (await fetch(image)).blob(), `${name}-${safeName(title)}.png`);
+        }
+        setExportNote(`Exported ${images.length} page${images.length === 1 ? '' : 's'}.`);
+      } catch (error) {
+        setExportNote(error instanceof Error ? error.message : 'The export failed.');
+      } finally {
+        setParams({}, { replace: true });
+        exported.current = false;
+      }
+    })();
+  }, [exporting, spec, dashboardId, record.data?.name, setParams, visualize]);
 
   const goTo = useCallback(
     (id: string) => {
@@ -373,7 +412,12 @@ export function DashboardPage() {
               onReset={resetAll}
             />
           )}
-          {rendered.isFetching ? <span>{t('visualize.dashboards.updating', 'Updating…')}</span> : rendered.data && <span data-testid="render-time">{(rendered.data.meta.ms / 1000).toFixed(1)} s</span>}
+          {exportNote && (
+            <span className="dash-active-chip" role="status" data-testid="export-status">
+              {exportNote}
+            </span>
+          )}
+          {rendered.isFetching ? <span data-updating="true">{t('visualize.dashboards.updating', 'Updating…')}</span> : rendered.data && <span data-testid="render-time">{(rendered.data.meta.ms / 1000).toFixed(1)} s</span>}
           {showPane && (
             <button type="button" className="viz-chip" aria-pressed={paneOpen} onClick={() => setPaneOpen(!paneOpen)} data-testid="toggle-filters">
               <Filter size={12} aria-hidden /> {t('visualize.dashboards.filters', 'Filters')}
@@ -396,6 +440,7 @@ export function DashboardPage() {
           style={{ ...themeStyle(theme, mode, density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }}
           data-testid="dashboard-canvas"
           data-mode={mode}
+          data-page={page.id}
           onMouseLeave={() => {
             clearTimeout(hoverTimer.current);
             setHover(null);

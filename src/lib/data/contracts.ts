@@ -52,6 +52,8 @@ import type {
   DashboardSpec,
   DashboardTheme,
   SavedTheme,
+  DashboardMeasure,
+  DashboardRelationship,
   DashboardVersionInfo,
   DashboardVisual,
   VisualsResponse,
@@ -340,7 +342,19 @@ export interface VizPredictInput {
 }
 
 /** Cleaning steps plus the shared declarative transform (validated server-side). */
+/** One applied step (``op`` plus its settings), run in order by Python. */
+export interface VizPipelineStep {
+  op: string;
+  enabled?: boolean;
+  label?: string;
+  [setting: string]: unknown;
+}
+
 export interface VizOrganizeSteps {
+  /** Applied steps (replaces ``clean``/``transform`` when present). */
+  pipeline?: VizPipelineStep[];
+  /** Preview after this step (0-based). */
+  upto?: number;
   clean?: {
     drop_columns?: string[];
     rename?: Record<string, string>;
@@ -356,7 +370,8 @@ export interface VizOrganizeSteps {
 
 export type SaveChartInput =
   | (VizRenderInput & { title?: string; description?: string; isShared?: boolean })
-  | { resultId: string; chartIndex: number; title?: string; description?: string; isShared?: boolean };
+  | { resultId: string; chartIndex: number; title?: string; description?: string; isShared?: boolean }
+  | { visual: DashboardVisual; title?: string; description?: string; isShared?: boolean };
 
 export interface VisualizeRepository {
   catalog(): Promise<VizCatalog>;
@@ -369,6 +384,8 @@ export interface VisualizeRepository {
   updateDataset(datasetId: string, patch: { name?: string; isShared?: boolean }): Promise<Dataset>;
   worldMap(): Promise<Record<string, unknown>>;
   insights(datasetId: string): Promise<{ insights: VizInsight[]; recommendations: VizRecommendation[] }>;
+  /** Rule-based chart suggestions; with ``chart``, also that chart's best field mapping. */
+  recommend(datasetId: string, chart?: string): Promise<{ recommendations: VizRecommendation[]; fields?: VizFields }>;
   suggestFields(datasetId: string, chartType: string): Promise<VizFields>;
   organizePreview(datasetId: string, steps: VizOrganizeSteps): Promise<{ profile: DatasetProfile; preview: Record<string, unknown>[] }>;
   organizeSave(datasetId: string, steps: VizOrganizeSteps, name: string): Promise<Dataset>;
@@ -401,6 +418,10 @@ export interface VisualizeRepository {
   resetPersonalView(id: string): Promise<void>;
   builtInThemes(): Promise<{ themes: DashboardTheme[]; default: string }>;
   listThemes(): Promise<SavedTheme[]>;
+  listMeasures(datasetId?: string): Promise<DashboardMeasure[]>;
+  saveMeasure(input: Omit<DashboardMeasure, 'id' | 'ownerId'> & { id?: string }): Promise<DashboardMeasure>;
+  deleteMeasure(id: string): Promise<void>;
+  exportDashboard(id: string, input: { format: 'xlsx' | 'html' | 'pdf' | 'json'; mode?: 'light' | 'dark'; images?: { title: string; image: string }[] }): Promise<Blob>;
   saveTheme(input: { id?: string; name: string; spec: DashboardTheme; isShared?: boolean }): Promise<SavedTheme>;
   deleteTheme(id: string): Promise<void>;
   renderVisuals(input: RenderVisualsInput, signal?: AbortSignal): Promise<VisualsResponse>;
@@ -417,6 +438,7 @@ export interface RenderVisualsInput {
   parameters?: Record<string, number>;
   /** The dashboard's calculations by name (calculations may use each other). */
   calculations?: { name: string; expression: string }[];
+  relationships?: DashboardRelationship[];
 }
 
 export interface Repositories {

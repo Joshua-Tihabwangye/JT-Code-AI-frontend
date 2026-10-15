@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Copy, LayoutDashboard, Plus, Sparkles, Trash2 } from 'lucide-react';
+import { Copy, Database, LayoutDashboard, Library, Plus, Rocket, Sparkles, Trash2 } from 'lucide-react';
 import { useRepository } from '@/lib/data';
 import { ConfirmDialog } from '@/shared/components';
 import { useVisualize } from '../context';
+import { ChartThumb } from '../thumbs';
 import { ErrorNote, SkeletonBlock } from '../ui';
 
 /** The module home: your dashboards, and a one-click starter dashboard from any dataset. */
@@ -14,8 +15,18 @@ export function DashboardsHome() {
   const navigate = useNavigate();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
-  const { datasets, datasetId, setAssistantContext } = useVisualize();
+  const { datasets, datasetId, setDatasetId, refreshDatasets, catalog, setAssistantContext } = useVisualize();
   const [source, setSource] = useState('');
+  const [filter, setFilter] = useState<'all' | 'mine' | 'shared'>('all');
+  const charts = useQuery({ queryKey: ['visualize', 'charts'], queryFn: () => visualize.listCharts() });
+  const loadSample = useMutation({
+    mutationFn: (sampleId: string) => visualize.createSample(sampleId),
+    onSuccess: async (dataset) => {
+      await refreshDatasets();
+      setDatasetId(dataset.id);
+      setSource(dataset.id);
+    },
+  });
   const [removing, setRemoving] = useState<{ id: string; name: string } | null>(null);
   const dashboards = useQuery({ queryKey: ['visualize', 'dashboards'], queryFn: () => visualize.listDashboards() });
 
@@ -71,7 +82,27 @@ export function DashboardsHome() {
           <Sparkles size={15} aria-hidden /> {create.isPending ? t('visualize.dashboards.building', 'Building…') : t('visualize.dashboards.auto', 'Build dashboard')}
         </button>
       </header>
-      <ErrorNote error={create.error ?? blank.error ?? duplicate.error ?? remove.error ?? dashboards.error} />
+      <ErrorNote error={create.error ?? blank.error ?? duplicate.error ?? remove.error ?? dashboards.error ?? loadSample.error} />
+      {catalog && (
+        <div className="viz-start" data-testid="start-row">
+          <span className="viz-label m-0">{datasets.length ? t('visualize.home.more', 'More data') : t('visualize.home.start', 'Start here')}</span>
+          <Link to="/app/visualize/data" className="viz-chip" data-testid="hero-import">
+            <Database size={13} aria-hidden /> {t('visualize.home.import', 'Upload or paste data')}
+          </Link>
+          {catalog.samples.map((sample) => (
+            <button key={sample.id} type="button" className="viz-chip" title={sample.description} disabled={loadSample.isPending} onClick={() => loadSample.mutate(sample.id)} data-testid={`sample-${sample.id}`}>
+              <Rocket size={13} aria-hidden /> {loadSample.isPending && loadSample.variables === sample.id ? t('visualize.home.loading', 'Loading…') : sample.name}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="viz-segment" role="group" aria-label="Show">
+        {(['all', 'mine', 'shared'] as const).map((value) => (
+          <button key={value} type="button" aria-pressed={filter === value} onClick={() => setFilter(value)} data-testid={`dashboards-${value}`}>
+            {value === 'all' ? 'All' : value === 'mine' ? 'Mine' : 'Shared with me'}
+          </button>
+        ))}
+      </div>
       {dashboards.isLoading && <SkeletonBlock height={160} />}
       {dashboards.data && !dashboards.data.length && (
         <div className="viz-card viz-card-pad py-10 text-center text-sm text-muted-foreground">
@@ -80,7 +111,9 @@ export function DashboardsHome() {
         </div>
       )}
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" data-testid="dashboard-list">
-        {dashboards.data?.map((dashboard) => (
+        {dashboards.data
+          ?.filter((dashboard) => filter === 'all' || (filter === 'mine' ? dashboard.role === 'owner' : dashboard.role !== 'owner'))
+          .map((dashboard) => (
           <article key={dashboard.id} className="viz-card overflow-hidden">
             <Link to={`/app/visualize/dashboards/${dashboard.id}`} className="block">
               <div className="dash-thumb">
@@ -107,6 +140,26 @@ export function DashboardsHome() {
           </article>
         ))}
       </div>
+      {(charts.data?.length ?? 0) > 0 && (
+        <section className="space-y-2" data-testid="my-visuals">
+          <div className="flex items-center gap-2">
+            <Library size={16} aria-hidden />
+            <h2 className="text-sm font-semibold">{t('visualize.home.library', 'My visuals')}</h2>
+            <Link to="/app/visualize/reports" className="ml-auto text-xs text-muted-foreground hover:underline">
+              {t('visualize.home.allVisuals', 'All saved visuals')}
+            </Link>
+          </div>
+          <div className="viz-library-strip">
+            {charts.data!.slice(0, 8).map((chart) => (
+              <article key={chart.id} className="viz-library-item" title={chart.title}>
+                <ChartThumb id={chart.config.visual?.type ?? chart.chartType.replace(/^(prediction|visual):/, '')} />
+                <span className="truncate text-xs">{chart.title}</span>
+              </article>
+            ))}
+          </div>
+          <p className="text-[11px] text-muted-foreground">{t('visualize.home.libraryHint', 'Insert any of them into a dashboard from the editor’s Insert menu.')}</p>
+        </section>
+      )}
       <ConfirmDialog
         open={!!removing}
         title={t('visualize.dashboards.deleteTitle', 'Delete dashboard?')}

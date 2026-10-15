@@ -395,12 +395,16 @@ export function DashboardEditor() {
                     <button
                       key={chart.id}
                       type="button"
-                      onClick={() =>
-                        insert('chart', {
-                          data: { datasetId: chart.datasetId!, wells: {} },
-                          format: { chart: { chartType: chart.chartType, fields: chart.config.fields ?? {}, options: chart.config.options ?? {} }, title: { text: chart.title } },
-                        })
-                      }
+                      onClick={() => {
+                        const saved = chart.config.visual;
+                        // Visuals saved from Explore come back as they were; gallery charts as chart visuals.
+                        if (saved) insert(saved.type, { data: saved.data, format: { ...(saved.format ?? {}), title: { ...(saved.format?.title ?? {}), text: chart.title } } });
+                        else
+                          insert('chart', {
+                            data: { datasetId: chart.datasetId!, wells: {} },
+                            format: { chart: { chartType: chart.chartType, fields: chart.config.fields ?? {}, options: chart.config.options ?? {} }, title: { text: chart.title } },
+                          });
+                      }}
                     >
                       <LayoutTemplate size={16} aria-hidden /> <span className="truncate">{chart.title}</span>
                     </button>

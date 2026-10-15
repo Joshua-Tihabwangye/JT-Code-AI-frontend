@@ -273,6 +273,8 @@ export interface ColumnProfile {
   std?: number | null;
   median?: number | null;
   topValues?: { value: string; count: number }[];
+  /** Numeric columns: counts in 12 equal-width bins (profile sparkline). */
+  histogram?: number[];
   trueCount?: number;
 }
 
@@ -544,6 +546,9 @@ export interface VizInsight {
   title: string;
   detail: string;
   chart?: VizChartSuggestion;
+  /** Compact card: ≤ 6 words and one number (the sentence stays in title/detail). */
+  headline?: string;
+  value?: string;
 }
 
 export interface VizRecommendation extends VizChartSuggestion {
@@ -599,7 +604,7 @@ export interface SavedChart {
   chartType: string;
   datasetId: string | null;
   datasetName: string;
-  config: { fields?: VizFields; options?: VizOptions; style?: VizStyle; prediction?: string };
+  config: { fields?: VizFields; options?: VizOptions; style?: VizStyle; prediction?: string; visual?: DashboardVisual };
   option: ChartOption | null;
   explanation: Partial<ChartExplanation>;
   stats: VizStat[];
@@ -637,7 +642,8 @@ export type DashboardVisualType =
   | 'python'
   | 'parameter'
   | 'button'
-  | 'navigator';
+  | 'navigator'
+  | 'snapshot';
 
 export type DashboardWell =
   | 'category'
@@ -687,6 +693,22 @@ export interface DashboardBookmarkState {
   parameters?: Record<string, number>;
   /** Visuals of the page hidden by this view (buttons and bookmarks toggle visibility). */
   hidden?: string[];
+}
+
+export interface DashboardRelationship {
+  from: { datasetId: string; field: string };
+  to: { datasetId: string; field: string };
+}
+
+/** A saved calculation in the organization's measures library. */
+export interface DashboardMeasure {
+  id: string;
+  name: string;
+  expression: string;
+  format: 'number' | 'percent' | 'currency';
+  description?: string;
+  datasetId?: string | null;
+  ownerId?: string;
 }
 
 export interface DashboardBookmark {
@@ -774,6 +796,8 @@ export interface DashboardSpec {
   calculations?: DashboardCalculation[];
   bookmarks?: DashboardBookmark[];
   syncGroups?: Record<string, unknown>[];
+  /** Links between datasets so slicers filter across them. */
+  relationships?: DashboardRelationship[];
   pages: DashboardPage[];
 }
 
@@ -898,6 +922,8 @@ export interface VisualOutput {
   truncated?: boolean;
   /** Python visuals: what the script printed. */
   console?: string;
+  /** A ≤ 15-word reading of the chart (who leads, or the change over time). */
+  insight?: string | null;
 }
 
 export interface VisualsResponse {

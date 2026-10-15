@@ -1,10 +1,11 @@
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   BarChart3,
   BarChartBig,
   Box,
   BrainCircuit,
   Calendar,
+  ChevronDown,
   Download,
   Lightbulb,
   Globe2,
@@ -269,6 +270,34 @@ export function DataTableModal({ title, table, onClose }: { title: string; table
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** A compact toolbar menu: a button that opens a list (closes on outside click or Escape). */
+export function MenuButton({ label, icon: Icon, children, testId, disabled = false }: { label: string; icon: LucideIcon; children: ReactNode; testId?: string; disabled?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: MouseEvent) => !box.current?.contains(event.target as Node) && setOpen(false);
+    const key = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
+    document.addEventListener('mousedown', close);
+    document.addEventListener('keydown', key);
+    return () => {
+      document.removeEventListener('mousedown', close);
+      document.removeEventListener('keydown', key);
+    };
+  }, [open]);
+  return (
+    <div ref={box} className="viz-menu-anchor">
+      <button type="button" className="viz-chip" aria-expanded={open} disabled={disabled} onClick={() => setOpen(!open)} data-testid={testId}>
+        <Icon size={14} aria-hidden /> {label} <ChevronDown size={12} aria-hidden />
+      </button>
+      {/* Kept in the page while closed (hidden) so its file inputs and actions stay reachable. */}
+      <div className="viz-menu" role="menu" hidden={!open} onClick={(event) => (event.target as HTMLElement).closest('[data-close]') && setOpen(false)}>
+        {children}
       </div>
     </div>
   );

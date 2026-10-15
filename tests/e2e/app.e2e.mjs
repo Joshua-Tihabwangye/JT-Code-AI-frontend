@@ -176,14 +176,17 @@ async function main() {
       await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/);
     });
 
-    await step(page, 'visualize: the sidebar door opens the tool overview', async () => {
+    await step(page, 'visualize: the sidebar door opens the dashboards home with one module bar', async () => {
       await page.click('a[href="/app/visualize"]');
-      await page.waitForSelector('[data-testid="visualize-overview"]');
-      await page.waitForFunction(() => document.querySelectorAll('[data-testid="category-tiles"] > a').length === 10, { timeout: 30_000 });
+      await page.waitForSelector('[data-testid="dashboards-home"]');
+      await page.waitForSelector('[data-testid="viz-header"] [data-testid="module-dataset"]');
+      const tabs = await page.$$eval('[data-testid="viz-header"] nav a', (links) => links.map((link) => link.textContent?.trim()));
+      if (tabs.join('|') !== 'Dashboards|Data|Explore|Predict|Gallery|Reports') throw new Error(`module bar: ${tabs.join(', ')}`);
+      await page.waitForSelector('[data-testid="start-row"] [data-testid="sample-retail_sales"]');
     });
 
-    await step(page, 'data: paste a dataset in the ribbon, scan its quality and fix it', async () => {
-      await domClick(page, 'a[href="/app/visualize/data"]');
+    await step(page, 'data: paste a dataset, scan its quality, fix it with applied steps', async () => {
+      await domClick(page, '[data-testid="tab-data"]');
       await page.waitForSelector('[data-testid="data-ribbon"]');
       await domClick(page, '[data-testid="toggle-paste"]');
       await page.waitForSelector('[data-testid="import-paste"]');
@@ -193,15 +196,16 @@ async function main() {
       );
       await domClick(page, '[data-testid="import-submit"]');
       await waitForText(page, '[data-testid="data-grid"]', /order_id/, 60_000);
-      // One name field (the dataset's own); new data is named after its file.
-      if (await page.$('input[aria-label="New dataset name"]')) throw new Error('the ribbon still has a second name field');
       await page.waitForSelector('[data-pinned] [data-testid="go-predict"]');
+      await page.waitForSelector('[data-testid="data-toolbar"] [data-testid="menu-download"]');
       await fitsOnScreen(page, 'data-home');
       await domClick(page, '[data-testid="ribbon-quality"]');
       await domClick(page, '[data-testid="scan-quality"]');
       await waitForText(page, '[data-testid="issue-list"]', /Duplicate row/, 90_000);
       await waitForText(page, '[data-testid="issue-list"]', /Placeholder value/);
       await waitForText(page, '[data-testid="issue-list"]', /Missing ID/);
+      await page.waitForSelector('[data-testid="quality-chips"] [data-testid="quality-chip-duplicate_row"]');
+      await page.waitForSelector('[data-testid="quality-bar-amount"] .error');
       await fitsOnScreen(page, 'data-quality');
       await page.waitForSelector('[data-testid="data-grid"] td[data-flag]', { timeout: 60_000 });
       // The scan changes nothing; the person deletes the duplicate row and saves.
@@ -211,79 +215,85 @@ async function main() {
       await domClick(page, '[data-testid="save-edits"]');
       await page.select('[data-testid="issue-filter"]', '');
       await waitForText(page, '[data-testid="data-grid"]', /5 rows/, 60_000);
+      // A one-click fix becomes an applied step; add a calculated column and save a new dataset.
+      await domClick(page, '[data-testid="fix-placeholder"]');
+      await page.waitForSelector('[data-testid="applied-steps"] [data-testid="step-0"]');
+      await waitForText(page, '[data-testid="transform-preview-label"]', /After step 1 · 5 rows/, 60_000);
+      await setInput(page, '[data-testid="transform-search"]', 'formula');
+      await domClick(page, '[data-testid="add-step-calculated_column"]');
+      await setInput(page, '[data-testid="step-field-name"]', 'double');
+      await setInput(page, '[data-testid="step-field-expression"]', '[amount] * 2');
+      await waitForText(page, '[data-testid="transform-preview"] thead', /double/, 60_000);
+      await fitsOnScreen(page, 'data-transform');
+      await setInput(page, '[data-testid="transform-name"]', 'Orders cleaned');
+      await domClick(page, '[data-testid="transform-save"]');
+      await page.waitForFunction(() => /Orders cleaned/.test(document.querySelector('[data-testid="module-dataset"]')?.selectedOptions[0]?.textContent ?? ''), { timeout: 60_000 });
     });
 
-    await step(page, 'visualize: load a sample and explore the data', async () => {
-      await domClick(page, 'a[href="/app/visualize"]');
-      await page.waitForSelector('[data-testid="sample-list"] > div');
-      const load = await page.waitForFunction(
-        () => [...document.querySelectorAll('[data-testid="sample-list"] > div')].find((el) => /Retail sales/.test(el.textContent ?? ''))?.querySelector('button'),
-      );
-      await load.asElement().click();
-      await page.waitForSelector('[data-testid="visualize-data"]', { timeout: 60_000 });
+    await step(page, 'visualize: load a sample from the home, see profile and short insights', async () => {
+      await domClick(page, '[data-testid="tab-dashboards"]');
+      await domClick(page, '[data-testid="sample-retail_sales"]');
+      await page.waitForFunction(() => /Retail sales/.test(document.querySelector('[data-testid="module-dataset"]')?.selectedOptions[0]?.textContent ?? ''), { timeout: 60_000 });
+      await domClick(page, '[data-testid="tab-data"]');
       await waitForText(page, '[data-testid="active-dataset"]', /Retail sales/, 60_000);
       await waitForText(page, '[data-testid="data-grid"]', /revenue/, 60_000);
+      await domClick(page, '[data-testid="ribbon-profile"]');
+      await page.waitForSelector('[data-testid="profile-revenue"] [data-testid="profile-histogram"]', { timeout: 60_000 });
       await domClick(page, '[data-testid="ribbon-insights"]');
+      await page.waitForSelector('[data-testid="insights-panel"] [data-testid^="insight-"]', { timeout: 60_000 });
       await page.waitForSelector('[data-testid="recommendations"] button', { timeout: 60_000 });
+      await fitsOnScreen(page, 'data-insights');
     });
 
-    await step(page, 'visualize: pick a chart in the gallery and build a multi-chart page', async () => {
-      await domClick(page, 'a[href="/app/visualize/gallery"]');
+    await step(page, 'gallery: thumbnails, recommendations, and a chart opened in Explore', async () => {
+      await domClick(page, '[data-testid="tab-gallery"]');
       await page.waitForSelector('[data-testid="gallery-search"]');
+      await page.waitForSelector('[data-testid="gallery-recommended"] [data-testid^="gallery-chart-"]', { timeout: 60_000 });
+      const pictures = await page.$$eval('[data-testid^="gallery-chart-"] svg[data-thumb]', (svgs) => new Set(svgs.map((svg) => svg.getAttribute('data-thumb'))).size);
+      if (pictures < 20) throw new Error(`only ${pictures} different chart pictures`);
       const toolbar = await page.$eval('[data-testid="gallery-toolbar"]', (el) => el.getBoundingClientRect().height);
       if (toolbar > 80) throw new Error(`the gallery toolbar wraps onto several lines (${toolbar}px)`);
       await fitsOnScreen(page, 'gallery');
       await page.type('[data-testid="gallery-search"]', 'violin');
       await domClick(page, '[data-testid="gallery-chart-violin"]');
-      await page.waitForSelector('[data-testid="studio-ribbon"]');
-      await page.waitForSelector('[data-testid="studio-chart-0"][data-ready="true"]', { timeout: 90_000 });
-      await waitForText(page, '[data-testid="chart-panel-0"] [data-testid="chart-explanation"]', /How to read it/);
-      await page.select('[data-testid="studio-chart-type"]', 'bar');
-      await page.waitForFunction(() => (document.querySelector('[data-testid="slot-x"]')?.value ?? '') !== '', { timeout: 60_000 });
-      await page.waitForSelector('[data-testid="studio-chart-0"][data-ready="true"]', { timeout: 90_000 });
-      await domClick(page, '[data-testid="ribbon-layout"]');
-      await page.select('[data-testid="chart-count"]', '4');
-      for (const index of [1, 2, 3]) await page.waitForSelector(`[data-testid="studio-chart-${index}"][data-ready="true"]`, { timeout: 120_000 });
-      // Insert one more chart of the person's choice, then read its organized data.
-      await domClick(page, '[data-testid="ribbon-insert"]');
-      await fitsOnScreen(page, 'studio-insert');
-      await page.select('[data-testid="insert-chart-type"]', 'pie');
-      await domClick(page, '[data-testid="insert-chart"]');
-      await page.waitForSelector('[data-testid="studio-chart-4"][data-ready="true"]', { timeout: 120_000 });
-      await domClick(page, '[data-testid="view-data-0"]');
-      await page.waitForSelector('[data-testid="chart-data-modal"] table tbody tr', { timeout: 30_000 });
-      await domClick(page, '[data-testid="chart-data-modal"] button[aria-label="Close"]');
-      await domClick(page, '[data-testid="ribbon-export"]');
-      const [workbook] = await Promise.all([
-        page.waitForResponse((response) => response.url().includes('/visualize/workbook/'), { timeout: 120_000 }),
-        domClick(page, '[data-testid="excel-with-charts"]'),
-      ]);
-      if (workbook.status() !== 200) throw new Error(`Excel + charts failed with ${workbook.status()}`);
-      await domClick(page, '[data-testid="save-chart"]');
-      await waitForText(page, 'body', /Saved “/, 60_000);
+      await page.waitForSelector('[data-testid="explore"]');
+      await page.waitForSelector('[data-testid="explore-card-0"] .dash-tile[data-status="ok"] canvas', { timeout: 90_000 });
     });
 
-    await step(page, 'studio: a bar with a category and no value draws counts', async () => {
-      await domClick(page, 'a[href="/app/visualize/studio"]');
-      await domClick(page, '[data-testid="ribbon-chart"]');
-      await page.select('[data-testid="studio-chart-type"]', 'bar');
-      await page.waitForFunction(() => (document.querySelector('[data-testid="slot-x"]')?.value ?? '') !== '', { timeout: 60_000 });
-      await page.select('[data-testid="slot-x"]', 'channel');
-      if (await page.$('[data-testid="slot-y"]')) await page.select('[data-testid="slot-y"]', '');
-      await page.waitForFunction(() => /Count by channel/.test(document.querySelector('[data-testid="chart-panel-0"]')?.textContent ?? ''), { timeout: 60_000 });
-      await page.waitForSelector('[data-testid="studio-chart-0"][data-ready="true"]', { timeout: 60_000 });
-      await domClick(page, '[data-testid="view-data-0"]');
-      const rows = await page.$$eval('[data-testid="chart-data-modal"] tbody tr', (trs) => trs.length);
-      if (rows !== 3) throw new Error(`expected 3 channels, got ${rows}`);
-      await fitsOnScreen(page, 'studio-counts');
-      await domClick(page, '[data-testid="chart-data-modal"] button[aria-label="Close"]');
+    await step(page, 'explore: counts by channel, the data behind it, suggestions, save and pin', async () => {
+      await domClick(page, '[data-testid="explore-add"]');
+      const card = await page.$$eval('[data-testid^="explore-card-"]', (cards) => cards.length - 1);
+      await page.waitForSelector(`[data-testid="explore-card-${card}"].selected .dash-tile[data-status="ok"]`, { timeout: 60_000 });
+      // A bar with a category and no value draws counts (the old Studio bug).
+      await domClick(page, '[data-testid="explore-type-bar"]');
+      await domClick(page, '[data-testid="explore-pane-build"]');
+      for (const well of ['values', 'category']) {
+        while (await page.$(`[data-testid="well-${well}"] .dash-well-item button`)) await domClick(page, `[data-testid="well-${well}"] .dash-well-item button`);
+      }
+      await domClick(page, '[data-testid="field-channel"]');
+      await waitForText(page, `[data-testid="explore-card-${card}"] .dash-tile-title`, /Count by channel/, 60_000);
+      await page.waitForSelector('[data-testid="explore-insight"]', { timeout: 60_000 });
+      await domClick(page, '[data-testid="explore-view-data"]');
+      await page.waitForFunction(() => document.querySelectorAll('[data-testid="explore-drawer"] [data-testid="visual-as-table"] tbody tr').length === 3, { timeout: 30_000 });
+      await domClick(page, '[data-testid="explore-drawer-query"]');
+      await waitForText(page, '[data-testid="explore-query"]', /Count of rows by Channel/);
+      await page.waitForSelector('[data-testid="explore-suggestion-0"]', { timeout: 60_000 });
+      await fitsOnScreen(page, 'explore');
+      await domClick(page, '[data-testid="explore-save"]');
+      await waitForText(page, '[data-testid="explore-save"]', /Saved to My visuals/, 60_000);
+      await domClick(page, '[data-testid="explore-pin"]');
+      await page.waitForSelector('[data-testid="pin-dialog"]');
+      await page.select('[data-testid="pin-dashboard"]', 'new');
+      await setInput(page, '[data-testid="pin-new-name"]', 'Pinned from Explore');
+      await domClick(page, '[data-testid="pin-confirm"]');
+      await page.waitForSelector('[data-testid="pin-done"]', { timeout: 60_000 });
+      await domClick(page, '[data-testid="pin-dialog"] button');
     });
 
-    await step(page, 'visualize: run a forecast', async () => {
-      await domClick(page, 'a[href="/app/visualize/predict"]');
+    await step(page, 'visualize: run a forecast in the wizard and pin it', async () => {
+      await domClick(page, '[data-testid="tab-predict"]');
       await page.waitForSelector('[data-testid="visualize-predict"]');
       await page.waitForSelector('[data-testid="predict-ribbon"]');
-      await page.waitForSelector('[data-testid="viz-home"]');
       await domClick(page, '[data-testid="task-forecast"]');
       await page.select('#slot-date', 'date');
       await page.select('#slot-target', 'revenue');
@@ -292,7 +302,9 @@ async function main() {
       await domClick(page, '[data-testid="run-prediction"]');
       await page.waitForSelector('[data-testid="prediction-metrics"]', { timeout: 120_000 });
       await page.waitForSelector('[data-testid="prediction-chart-forecast"][data-ready="true"]', { timeout: 60_000 });
-      await waitForText(page, '[data-testid="prediction-results"]', /How to read it/);
+      if (await page.$('[data-testid="prediction-results"] table.viz-table')) throw new Error('the raw results table is still shown');
+      await domClick(page, '[data-testid="prediction-how"] summary');
+      await waitForText(page, '[data-testid="prediction-how"]', /How to read it/);
       await fitsOnScreen(page, 'predict-results');
       const [excel] = await Promise.all([
         page.waitForResponse((response) => response.url().includes('/predict/results/') && response.url().includes('type=xlsx'), { timeout: 120_000 }),
@@ -302,9 +314,18 @@ async function main() {
       await domClick(page, '[data-testid="prediction-data-forecast"]');
       await page.waitForSelector('[data-testid="chart-data-modal"] table tbody tr', { timeout: 30_000 });
       await domClick(page, '[data-testid="chart-data-modal"] button[aria-label="Close"]');
+      await domClick(page, '[data-testid="prediction-pin-forecast"]');
+      await page.waitForSelector('[data-testid="pin-dialog"] [data-testid="pin-page"] option', { timeout: 30_000 });
+      await page.waitForSelector('[data-testid="pin-confirm"]:not([disabled])', { timeout: 30_000 });
+      await domClick(page, '[data-testid="pin-confirm"]');
+      await page.waitForSelector('[data-testid="pin-done"]', { timeout: 60_000 });
+      // The pinned forecast is a live line with a forecast line on that dashboard.
+      await domClick(page, '[data-testid="pin-open"]');
+      await page.waitForSelector('[data-testid="dashboard-canvas"] .dash-tile[data-status="ok"] canvas', { timeout: 90_000 });
     });
 
-    await step(page, 'visualize: ask the AI assistant and open its suggestion', async () => {
+    await step(page, 'visualize: ask the AI assistant and open its suggestion in Explore', async () => {
+      await page.goto(`${BASE}/app/visualize/explore`, { waitUntil: 'networkidle2' });
       await domClick(page, '[data-testid="open-assistant"]');
       await page.waitForSelector('[data-testid="assistant-prompt"]');
       await fitsOnScreen(page, 'assistant-drawer');
@@ -312,17 +333,29 @@ async function main() {
       await page.keyboard.press('Enter');
       await page.waitForSelector('[data-testid="assistant-answer"]', { timeout: 90_000 });
       await domClick(page, '[data-testid="assistant-open-studio"]');
-      await page.waitForSelector('[data-testid="studio-chart-0"][data-ready="true"]', { timeout: 90_000 });
+      await page.waitForSelector('[data-testid="explore-card-0"] .dash-tile[data-status="ok"]', { timeout: 90_000 });
     });
 
-    await step(page, 'visualize: saved charts appear in My visuals', async () => {
-      await domClick(page, 'a[href="/app/visualize/reports"]');
+    await step(page, 'reports: saved visuals and the export hub', async () => {
+      await domClick(page, '[data-testid="tab-reports"]');
       await page.waitForSelector('[data-testid="saved-charts"] .viz-card', { timeout: 30_000 });
+      await page.waitForSelector('[data-testid="report-export"] [data-testid="export-xlsx"]');
+      // The new module pages in dark mode.
+      await domClick(page, '.sidebar-footer button');
+      await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
+      await fitsOnScreen(page, 'reports-dark');
+      for (const tab of ['gallery', 'explore', 'data']) {
+        await domClick(page, `[data-testid="tab-${tab}"]`);
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await fitsOnScreen(page, `${tab}-dark`);
+      }
+      await domClick(page, '.sidebar-footer button');
+      await page.waitForFunction(() => !document.documentElement.classList.contains('dark'));
     });
 
     await step(page, 'dashboards: build one from a dataset, then filter it with a click and a slicer', async () => {
       if (await page.$('[data-testid="assistant-panel"]')) await page.keyboard.press('Escape');
-      await domClick(page, 'a[href="/app/visualize/dashboards"]');
+      await domClick(page, '[data-testid="tab-dashboards"]');
       await page.waitForSelector('[data-testid="dashboards-home"]');
       const option = await page.$$eval('[data-testid="new-dashboard-dataset"] option', (options) => options.find((o) => /Retail sales/.test(o.textContent ?? ''))?.value);
       if (option) await page.select('[data-testid="new-dashboard-dataset"]', option);
@@ -619,6 +652,25 @@ async function main() {
       await domClick(page, '[data-testid="reset-personal"]');
       await page.waitForSelector('[data-testid="dashboard-canvas"][data-mode="light"]');
       await page.waitForSelector('[data-testid="vheader-matrix"] [data-testid="vheader-personalize"][aria-pressed="false"]', { timeout: 30_000 });
+    });
+
+    await step(page, 'reports: export a dashboard as Excel, JSON and a PDF painted page by page', async () => {
+      await page.goto(`${BASE}/app/visualize/reports`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="report-dashboard"] option');
+      await fitsOnScreen(page, 'reports');
+      for (const format of ['xlsx', 'json']) {
+        const [response] = await Promise.all([
+          page.waitForResponse((r) => r.url().includes('/export/') && r.request().method() === 'POST', { timeout: 120_000 }),
+          domClick(page, `[data-testid="export-${format}"]`),
+        ]);
+        if (response.status() !== 200) throw new Error(`${format} export failed with ${response.status()}`);
+      }
+      const [pdf] = await Promise.all([
+        page.waitForResponse((r) => r.url().includes('/export/') && r.request().method() === 'POST', { timeout: 180_000 }),
+        domClick(page, '[data-testid="export-pdf"]'),
+      ]);
+      if (pdf.status() !== 200 || pdf.headers()['content-type'] !== 'application/pdf') throw new Error(`PDF export failed with ${pdf.status()}`);
+      await waitForText(page, '[data-testid="export-status"]', /Exported \d+ page/, 60_000);
     });
 
     await step(page, 'settings: edit and save the profile', async () => {

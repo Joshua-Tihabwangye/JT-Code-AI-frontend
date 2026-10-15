@@ -1,5 +1,6 @@
 import { ArrowLeft, Bookmark, ExternalLink, Eye, FilterX, Check, Sparkles, RotateCcw, type LucideIcon, ChevronRight } from 'lucide-react';
 import type { DashboardBookmark, DashboardParameter, DashboardSpec, DashboardVisual } from '@/lib/data';
+import { EChart } from '../EChart';
 import { parameterValue, type ParameterValues } from './customize';
 
 /** What a button does when clicked (``format.button.action``). */
@@ -120,8 +121,25 @@ function humanizeField(field: string): string {
   return field.replace(/[_-]+/g, ' ').replace(/\b\w/g, (ch) => ch.toUpperCase());
 }
 
+/** A frozen chart (pinned from Predict): drawn from its stored option, dated. */
+function Snapshot({ visual }: { visual: DashboardVisual }) {
+  const snapshot = (visual.format?.snapshot ?? {}) as { option?: Record<string, unknown>; takenAt?: string; source?: string };
+  if (!snapshot.option) return <p className="dash-message">This snapshot has no chart.</p>;
+  return (
+    <div className="flex h-full flex-col">
+      <div className="min-h-0 flex-1">
+        <EChart option={snapshot.option} height="100%" testId={`visual-${visual.id}`} />
+      </div>
+      <p className="dash-snapshot-note" title={snapshot.source}>
+        Snapshot{snapshot.takenAt ? ` · ${new Date(snapshot.takenAt).toLocaleDateString()}` : ''}
+      </p>
+    </div>
+  );
+}
+
 /** Parameter controls, buttons and page/bookmark navigators. */
 export function LocalVisual({ visual, context }: { visual: DashboardVisual; context: LocalContext | undefined }) {
+  if (visual.type === 'snapshot') return <Snapshot visual={visual} />;
   if (!context) return null;
   if (visual.type === 'parameter') {
     const settings = (visual.format?.parameter ?? {}) as { id?: string; style?: string };
