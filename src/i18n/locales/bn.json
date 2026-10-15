@@ -9,7 +9,9 @@
     "history": "হিস্টোরি",
     "billing": "বিলিং",
     "settings": "সেটিংস",
-    "integrations": "ইন্টিগ্রেশন"
+    "integrations": "ইন্টিগ্রেশন",
+    "analytics": "ডেটা বিশ্লেষণ",
+    "visualize": "ডেটা ভিজ্যুয়ালাইজেশন"
   },
   "common": {
     "saveChanges": "পরিবর্তন সংরক্ষণ করুন",

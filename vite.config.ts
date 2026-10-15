@@ -26,6 +26,8 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    // jt-code-frontend/ and jt-code-backend/ are old committed snapshots, not the app.
+    exclude: ['**/node_modules/**', 'dist/**', 'jt-code-frontend/**', 'jt-code-backend/**', 'tests/integration/**'],
     css: true,
     globals: true,
   },

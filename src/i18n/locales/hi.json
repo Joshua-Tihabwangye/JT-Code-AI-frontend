@@ -9,7 +9,9 @@
     "history": "इतिहास",
     "billing": "बिलिंग",
     "settings": "सेटिंग्स",
-    "integrations": "इंटीग्रेशन"
+    "integrations": "इंटीग्रेशन",
+    "analytics": "डेटा विश्लेषण",
+    "visualize": "डेटा विज़ुअलाइज़ेशन"
   },
   "common": {
     "saveChanges": "बदलाव सहेजें",

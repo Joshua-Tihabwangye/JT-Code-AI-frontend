@@ -1,47 +1,21 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useApiClient, apiErrorMessage } from '@/lib/api/client';
+import { useSearchParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { Paperclip, Plus, Square } from 'lucide-react';
 import { ChatComposer } from '@/features/chat/ChatComposer';
 import { ChatBackground } from '@/features/chat/ChatBackground';
-import { createChatRequest, createConversation, streamChatRequest } from '@/features/chat/api';
-import { useBillingStore } from '@/features/billing/store';
 import { useAuth } from '@/lib/supabase';
-import type { ChatRequest } from '@/features/chat/types';
+import { useRepository } from '@/lib/data';
+import { apiErrorMessage } from '@/lib/api/http';
+import { Button } from '@/shared/components';
 
-interface LocalMessage {
+interface ThreadMessage {
   id: string;
-  role: 'user' | 'assistant' | 'system' | 'tool';
+  role: 'user' | 'assistant' | 'system';
   content: string;
-  status?: 'sending' | 'streaming' | 'complete' | 'error';
-  metadata?: Record<string, unknown>;
-}
-
-type ChatPersistenceMode = 'ephemeral' | 'persistent';
-
-const CHAT_HISTORY_KEY = 'jt-code-chat-history';
-
-function saveChatSession(messages: LocalMessage[], conversationId: string | null, persistenceMode: ChatPersistenceMode) {
-  if (persistenceMode !== 'persistent' || !conversationId || messages.length <= 1) return;
-  const title = messages.find((m) => m.role === 'user')?.content.slice(0, 60) || 'New chat';
-  const lastAssistant = [...messages].reverse().find((m: LocalMessage) => m.role === 'assistant' && m.status === 'complete');
-  const preview = lastAssistant?.content.slice(0, 120) || '';
-  const item = {
-    id: conversationId,
-    title,
-    preview,
-    messages: messages.length,
-    updatedAt: new Date().toISOString(),
-  };
-  try {
-    const saved = JSON.parse(localStorage.getItem(CHAT_HISTORY_KEY) || '[]') as unknown[];
-    const filtered = Array.isArray(saved) ? saved.filter((s: unknown) => {
-      const record = s as { id?: string };
-      return record.id !== item.id;
-    }) : [];
-    localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify([item, ...filtered].slice(0, 50)));
-  } catch {
-    // ignore
-  }
+  status: 'complete' | 'streaming' | 'error' | 'canceled';
+  attachments?: string[];
 }
 
 /**
@@ -87,160 +61,182 @@ function useTypingSequence(segments: string[], speed = 60) {
   return { displayed, done };
 }
 
+const titleFrom = (text: string) => text.replace(/\s+/g, ' ').trim().slice(0, 60) || 'New chat';
+
 export function ChatPage() {
   const { t } = useTranslation();
-  const client = useApiClient();
   const { isSignedIn } = useAuth();
-  const persistenceMode: ChatPersistenceMode = isSignedIn ? 'persistent' : 'ephemeral';
-  const conversationId = useRef<string | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = useState<LocalMessage[]>([
-    { id: 'welcome', role: 'assistant', content: t('chat.welcome'), status: 'complete' },
-  ]);
+  const chat = useRepository('chat');
+  const files = useRepository('files');
+  const queryClient = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const openedId = searchParams.get('c');
+
+  const [conversationId, setConversationId] = useState<string | null>(openedId);
+  const [messages, setMessages] = useState<ThreadMessage[]>([]);
   const [busy, setBusy] = useState(false);
-
+  const [status, setStatus] = useState('');
+  const [loadError, setLoadError] = useState('');
+  const endRef = useRef<HTMLDivElement>(null);
   const headline = useTypingSequence([t('chat.headlineLead'), t('chat.headlineAccent')], 160);
-  const hasConversation = messages.length > 1;
+  const persistenceMode = isSignedIn ? 'persistent' : 'ephemeral';
 
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // Open a conversation from History (/app/chat?c=<id>), or start fresh.
+  useEffect(() => {
+    if (!isSignedIn) return;
+    if (!openedId) {
+      setConversationId(null);
+      setMessages([]);
+      return;
+    }
+    let active = true;
+    setLoadError('');
+    setConversationId(openedId);
+    chat
+      .getMessages(openedId)
+      .then((loaded) => {
+        if (!active) return;
+        setMessages(
+          loaded
+            .filter((m) => m.role !== 'system')
+            .map((m) => ({ id: m.id, role: m.role, content: m.content, status: m.status === 'streaming' ? 'complete' : m.status })),
+        );
+      })
+      .catch((error: unknown) => active && setLoadError(apiErrorMessage(error)));
+    return () => {
+      active = false;
+    };
+  }, [openedId, isSignedIn, chat]);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [messages]);
+
+  const updateAssistant = useCallback((id: string, patch: (message: ThreadMessage) => ThreadMessage) => {
+    setMessages((current) => current.map((message) => (message.id === id ? patch(message) : message)));
   }, []);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, scrollToBottom]);
+  async function send(text: string, attachments: File[] = []) {
+    const assistantId = crypto.randomUUID();
+    setMessages((current) => [
+      ...current,
+      { id: crypto.randomUUID(), role: 'user', content: text, status: 'complete', attachments: attachments.map((f) => f.name) },
+      { id: assistantId, role: 'assistant', content: '', status: 'streaming' },
+    ]);
 
-  const loadConversations = useCallback(() => {
-    if (!isSignedIn) return;
-    // conversations state managed separately; sidebar handles history via /app/history route
-  }, [isSignedIn]);
-
-  useEffect(() => {
-    void loadConversations();
-  }, [loadConversations]);
-
-  async function send(text: string) {
-    setBusy(true);
-    const userMessageId = crypto.randomUUID();
-    setMessages((current) => [...current, { id: userMessageId, role: 'user', content: text, status: 'complete' }]);
-    if (persistenceMode === 'persistent') {
-      useBillingStore.getState().consumeCredits(5, 'Chat');
+    if (!isSignedIn) {
+      // Guests can try the composer; answers need an account (and its credits).
+      updateAssistant(assistantId, (m) => ({ ...m, content: t('chat.guestEphemeralReply'), status: 'complete' }));
+      return;
     }
 
-    const assistantId = crypto.randomUUID();
-    setMessages((current) => [...current, { id: assistantId, role: 'assistant', content: '', status: 'streaming' }]);
-
+    setBusy(true);
+    setStatus('queued');
     try {
-      if (persistenceMode === 'ephemeral') {
-        window.setTimeout(() => {
-          setMessages((current) => current.map((message) =>
-            message.id === assistantId
-              ? { ...message, content: t('chat.guestEphemeralReply'), status: 'complete' }
-              : message
-          ));
-          setBusy(false);
-        }, 350);
-        return;
+      let id = conversationId;
+      if (!id) {
+        const conversation = await chat.createConversation(titleFrom(text));
+        id = conversation.id;
+        setConversationId(id);
+        setSearchParams({ c: id }, { replace: true });
       }
-
-      if (!conversationId.current) {
-        const conversation = await createConversation(client);
-        conversationId.current = conversation.id;
-        void loadConversations();
+      for (const file of attachments) {
+        const uploaded = await files.upload({ file });
+        await files.attachToChat(uploaded.id, id);
       }
-
-      const request = await createChatRequest(client, {
-        conversationId: conversationId.current,
-        chatInput: text,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        locale: navigator.language,
+      const reply = await chat.sendMessage({
+        conversationId: id,
+        content: text,
+        model: 'auto',
+        onStatus: setStatus,
+        onToken: (token) => updateAssistant(assistantId, (m) => ({ ...m, content: m.content + token })),
       });
-
-      await streamChatRequest(client, request.id, ({ type, data }) => {
-        setMessages((current) => current.map((message) => {
-          if (message.id !== assistantId) return message;
-          if (type === 'failed') {
-            const errorData = data as { message?: string };
-            return { ...message, content: errorData.message ?? t('chat.requestFailed'), status: 'error' };
-          }
-          const updated = data as Partial<ChatRequest>;
-          return { ...message, content: updated.outputText || t('chat.statusRunning', { status: updated.status ?? 'running' }), status: 'streaming' };
-        }));
-      });
-
-      setMessages((current) => {
-        const updated: LocalMessage[] = current.map((message) =>
-          message.id === assistantId ? { ...message, status: 'complete' } : message
-        );
-        saveChatSession(updated, conversationId.current, persistenceMode);
-        return updated;
-      });
+      updateAssistant(assistantId, (m) => ({
+        ...m,
+        content: reply.content || m.content,
+        status: reply.status === 'streaming' ? 'complete' : reply.status,
+      }));
     } catch (error) {
-      setMessages((current) => {
-        const updated: LocalMessage[] = current.map((message) =>
-          message.id === assistantId
-            ? { ...message, content: apiErrorMessage(error), status: 'error' }
-            : message
-        );
-        saveChatSession(updated, conversationId.current, persistenceMode);
-        return updated;
-      });
+      updateAssistant(assistantId, (m) => ({ ...m, content: apiErrorMessage(error), status: 'error' }));
     } finally {
       setBusy(false);
+      setStatus('');
+      void queryClient.invalidateQueries({ queryKey: ['conversations'] });
+      void queryClient.invalidateQueries({ queryKey: ['billing'] });
     }
   }
 
-  if (!hasConversation) {
-    return (
-      <section className="chat-workspace" data-persistence-mode={persistenceMode}>
-        <ChatBackground />
+  function stop() {
+    if (conversationId) chat.cancelGeneration(conversationId);
+  }
 
+  function newChat() {
+    setSearchParams({});
+    setConversationId(null);
+    setMessages([]);
+  }
+
+  const hasThread = messages.length > 0 || !!loadError;
+  return (
+    <section className="chat-workspace" data-persistence-mode={persistenceMode}>
+      <ChatBackground />
+
+      {hasThread ? (
+        <>
+          <div className="chat-scroll" aria-live="polite">
+            <div className="message-list">
+              {loadError && <div className="message error">{loadError}</div>}
+              {messages.map((message) => (
+                <article key={message.id} className={`message ${message.role} ${message.status}`} data-testid={`message-${message.role}`}>
+                  <span className="message-role">{message.role === 'user' ? t('chat.you') : t('chat.assistant')}</span>
+                  {message.content ? (
+                    <p className="whitespace-pre-wrap">{message.content}</p>
+                  ) : (
+                    <p className="text-muted-foreground">{t('chat.statusRunning', { status: status || 'running' })}</p>
+                  )}
+                  {message.attachments && message.attachments.length > 0 && (
+                    <p className="mt-2 flex flex-wrap gap-2 text-xs opacity-80">
+                      {message.attachments.map((name) => (
+                        <span key={name} className="inline-flex items-center gap-1"><Paperclip size={12} /> {name}</span>
+                      ))}
+                    </p>
+                  )}
+                  {message.status === 'canceled' && <p className="mt-1 text-xs text-muted-foreground">{t('chat.stopped')}</p>}
+                </article>
+              ))}
+              <div ref={endRef} />
+            </div>
+          </div>
+          <div className="relative z-[1] pb-4">
+            <div className="mb-2 flex justify-center gap-2">
+              {busy ? (
+                <Button variant="outline" size="sm" onClick={stop} className="gap-1.5">
+                  <Square size={14} /> {t('chat.stop')}
+                </Button>
+              ) : (
+                <Button variant="ghost" size="sm" onClick={newChat} className="gap-1.5" data-testid="new-chat">
+                  <Plus size={16} /> {t('chat.newChat')}
+                </Button>
+              )}
+            </div>
+            <ChatComposer disabled={busy} onSubmit={send} placeholder={t('chat.composerPlaceholder')} />
+          </div>
+        </>
+      ) : (
         <div className="chat-landing pointer-events-auto">
           <section className="chat-landing-content">
             <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 w-[520px] h-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_70%)] opacity-[0.08] dark:opacity-[0.18] blur-3xl" />
-
             <h1 className="chat-headline relative text-center my-4">
               {headline.displayed[0]}
               <span className="chat-headline-accent">{headline.displayed[1]}</span>
               {!headline.done && <span className="chat-cursor" />}
             </h1>
-
             <div className="relative w-full max-w-[720px] flex flex-col items-center gap-4 mt-12">
               <ChatComposer disabled={busy} onSubmit={send} placeholder={t('chat.composerPlaceholder')} />
             </div>
           </section>
         </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="chat-workspace" data-persistence-mode={persistenceMode}>
-      <ChatBackground />
-
-      <div className="chat-scroll">
-        <div className="message-list">
-          {messages.map((message) => (
-            <article
-              key={message.id}
-              className={`message ${message.role}${message.status === 'streaming' ? ' streaming' : ''}${message.status === 'error' ? ' error' : ''}`}
-            >
-              <span className="message-role">
-                {message.role === 'user' ? t('chat.roleYou') : t('chat.roleAssistant')}
-              </span>
-              <p>
-                {message.content}
-                {message.status === 'streaming' && <span className="chat-cursor" />}
-              </p>
-            </article>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-      </div>
-
-      <div className="relative z-10 px-4 pb-6 pt-2">
-        <ChatComposer disabled={busy} onSubmit={send} placeholder={t('chat.composerPlaceholder')} />
-      </div>
+      )}
     </section>
   );
 }

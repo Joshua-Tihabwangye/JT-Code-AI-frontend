@@ -4,21 +4,13 @@ import { ArrowLeft, CheckCircle2, KeyRound, Mail, ShieldCheck } from 'lucide-rea
 import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from '@/auth/AuthLayout';
 import { Input } from '@/shared/components/Input';
-import { supabase } from '@/lib/supabase';
+import { requestPasswordReset, resetPasswordWithCode } from '@/lib/supabase';
 
 type Stage = 'email' | 'sent' | 'reset' | 'complete';
 
 export default function ForgotPasswordPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const auth = supabase.auth as typeof supabase.auth & {
-    resetPasswordForEmail(email: string): { data?: { resetCode?: string }; error?: { message?: string } | null };
-    resetPassword(input: {
-      email: string;
-      code: string;
-      newPassword: string;
-    }): { data?: unknown; error?: { message?: string } | null };
-  };
   const [stage, setStage] = useState<Stage>('email');
   const [email, setEmail] = useState('');
   const [resetCode, setResetCode] = useState('');
@@ -35,15 +27,14 @@ export default function ForgotPasswordPage() {
     setSuccessMsg('');
     setIsLoading(true);
     try {
-      const result = await auth.resetPasswordForEmail(email);
-      const error = result.error;
-      if (error) {
-        setErrorMsg(error.message || t('forgot.errors.sendFailed'));
+      const result = await requestPasswordReset(email);
+      if (result.error) {
+        setErrorMsg(result.error || t('forgot.errors.sendFailed'));
         return;
       }
-      const nextResetCode = String((result as { data?: { resetCode?: string } }).data?.resetCode ?? '000000');
-      setResetCode(nextResetCode);
-      setCode(nextResetCode);
+      // Only the offline demo (mock mode) knows the code; real resets email it.
+      setResetCode(result.demoCode ?? '');
+      setCode(result.demoCode ?? '');
       setStage('sent');
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : t('forgot.errors.unexpected'));
@@ -63,13 +54,9 @@ export default function ForgotPasswordPage() {
 
     setIsLoading(true);
     try {
-      const { error } = await auth.resetPassword({
-        email,
-        code,
-        newPassword,
-      });
+      const { error } = await resetPasswordWithCode(email, code.trim(), newPassword);
       if (error) {
-        setErrorMsg(error.message || t('forgot.errors.resetFailed'));
+        setErrorMsg(error || t('forgot.errors.resetFailed'));
         return;
       }
       setSuccessMsg(t('forgot.updatedMessage'));
@@ -130,13 +117,19 @@ export default function ForgotPasswordPage() {
               </p>
             </div>
 
-            <div className="reset-code-card">
-              <span>{t('forgot.mockResetCode')}</span>
-              <strong>{resetCode}</strong>
+            {resetCode ? (
+              <div className="reset-code-card">
+                <span>{t('forgot.mockResetCode')}</span>
+                <strong>{resetCode}</strong>
+                <button type="button" className="secondary-button" onClick={() => setStage('reset')}>
+                  {t('forgot.useCodeNow')}
+                </button>
+              </div>
+            ) : (
               <button type="button" className="secondary-button" onClick={() => setStage('reset')}>
-                {t('forgot.useCodeNow')}
+                {t('forgot.enterEmailedCode')}
               </button>
-            </div>
+            )}
 
             <button type="button" className="text-link" onClick={() => setStage('reset')}>
               {t('forgot.haveCode')}

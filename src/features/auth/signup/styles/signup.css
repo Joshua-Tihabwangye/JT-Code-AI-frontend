@@ -491,6 +491,16 @@
   font-weight: 500;
 }
 
+.form-success {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--primary) 12%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  color: var(--text, inherit);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 /* Signup sections — NO border-top separators, only spacing */
 .signup-section {
   display: grid;

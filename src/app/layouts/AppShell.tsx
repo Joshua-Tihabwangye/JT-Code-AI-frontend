@@ -5,6 +5,7 @@ import {
   Image as ImageIcon,
   History,
   CreditCard,
+  ChartSpline,
   Sun,
   Moon,
   PanelLeftClose,
@@ -26,6 +27,7 @@ const publicNav = [
 
 const authenticatedNav = [
   { nameKey: 'history', href: '/app/history', icon: History },
+  { nameKey: 'visualize', href: '/app/visualize', icon: ChartSpline },
   { nameKey: 'billing', href: '/app/billing', icon: CreditCard },
 ];
 

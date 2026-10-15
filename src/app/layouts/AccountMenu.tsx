@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Settings, LogOut, Keyboard, User as UserIcon, LogIn, type LucideIcon } from 'lucide-react';
 import { Avatar, Badge } from '@/shared/components';
 import { supabase, useAuth, useUser } from '@/lib/supabase';
+import { useAccount } from '@/lib/data/useAccount';
 
 interface AccountMenuProps {
   collapsed: boolean;
@@ -19,14 +20,19 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
 
+  // The API profile is the source of truth (Settings edits it); Supabase metadata covers first paint.
+  const account = useAccount().data;
+  const accountName = `${account?.firstName ?? ''} ${account?.lastName ?? ''}`.trim();
   const displayName =
+    accountName ||
     String(user?.user_metadata?.full_name ?? '') ||
     String(user?.user_metadata?.name ?? '') ||
     user?.email ||
     t('menu.account');
-  const email = user?.email ?? '';
-  const avatarUrl = typeof user?.user_metadata?.avatar_url === 'string' ? user.user_metadata.avatar_url : undefined;
-  const plan = String(user?.user_metadata?.plan ?? 'Free');
+  const email = account?.email ?? user?.email ?? '';
+  const avatarUrl = account?.avatarUrl ?? undefined;
+  const planSlug = account?.plan ?? 'free';
+  const plan = planSlug.charAt(0).toUpperCase() + planSlug.slice(1);
 
   useEffect(() => {
     if (!open) return;

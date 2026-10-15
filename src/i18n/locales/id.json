@@ -9,7 +9,9 @@
     "history": "Riwayat",
     "billing": "Penagihan",
     "settings": "Pengaturan",
-    "integrations": "Integrasi"
+    "integrations": "Integrasi",
+    "analytics": "Analitik Data",
+    "visualize": "Visualisasi Data"
   },
   "common": {
     "saveChanges": "Simpan perubahan",

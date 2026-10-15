@@ -9,7 +9,9 @@
     "history": "История",
     "billing": "Оплата",
     "settings": "Настройки",
-    "integrations": "Интеграции"
+    "integrations": "Интеграции",
+    "analytics": "Анализ данных",
+    "visualize": "Визуализация данных"
   },
   "common": {
     "saveChanges": "Сохранить изменения",

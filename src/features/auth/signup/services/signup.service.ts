@@ -3,10 +3,12 @@ import { supabase } from '@/lib/supabase';
 
 export interface SignupResult {
   error?: string;
+  /** Supabase requires email confirmation before the first sign-in. */
+  needsConfirmation?: boolean;
 }
 
 export async function signup(payload: SignupPayload): Promise<SignupResult> {
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: payload.email,
     password: payload.password,
     options: {
@@ -23,5 +25,5 @@ export async function signup(payload: SignupPayload): Promise<SignupResult> {
   });
 
   if (error) return { error: error.message };
-  return {};
+  return data.session ? {} : { needsConfirmation: true };
 }

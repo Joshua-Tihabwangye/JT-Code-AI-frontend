@@ -5,7 +5,7 @@ import { Plus, Send, Paperclip, Image as ImageIcon, FileText, X, ChevronDown, Mi
 
 interface Props {
   disabled?: boolean;
-  onSubmit: (text: string) => Promise<void>;
+  onSubmit: (text: string, attachments: File[]) => Promise<void>;
   placeholder?: string;
 }
 
@@ -105,9 +105,10 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
     event.preventDefault();
     const value = text.trim();
     if (!value || disabled) return;
+    const files = attachments;
     setText('');
     setAttachments([]);
-    await onSubmit(value);
+    await onSubmit(value, files);
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {

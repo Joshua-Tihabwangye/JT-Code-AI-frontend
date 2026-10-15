@@ -9,7 +9,9 @@
     "history": "History",
     "billing": "Billing",
     "settings": "Settings",
-    "integrations": "Integrations"
+    "integrations": "Integrations",
+    "analytics": "Data Analytics",
+    "visualize": "Data Visualization"
   },
   "common": {
     "saveChanges": "Save changes",
@@ -158,7 +160,8 @@
     "privacyLink": "Privacy Policy",
     "termsHelp": "You can review these legal pages before you finish signing up.",
     "submit": "Create account",
-    "haveAccountQuestion": "Already have an account?"
+    "haveAccountQuestion": "Already have an account?",
+    "confirmEmail": "Almost there! We sent a confirmation link to {{email}}. Open it, then sign in."
   },
   "forgot": {
     "resetTitle": "Reset your password",
@@ -169,7 +172,7 @@
     "backToSignIn": "Back to sign in",
     "checkTitle": "Check your email",
     "checkDesc": "We sent a reset message to <0>{{email}}</0>. The code below will unlock the next step.",
-    "checkDescPlain": "We sent a reset message to {{email}}. The code below will unlock the next step.",
+    "checkDescPlain": "We sent a reset code to {{email}}. Enter it on the next step to choose a new password.",
     "mockResetCode": "Reset code",
     "useCodeNow": "Use this code now",
     "haveCode": "I already have a reset code",
@@ -189,7 +192,8 @@
       "resetFailed": "Could not reset your password.",
       "mismatch": "Passwords do not match.",
       "unexpected": "An unexpected error occurred."
-    }
+    },
+    "enterEmailedCode": "Enter the code from the email"
   },
   "authErrors": {
     "firstNameRequired": "First name is required.",
@@ -222,7 +226,7 @@
     "composerPlaceholder": "Message JT-Code…",
     "composerPlaceholderBusy": "Processing...",
     "conversation": "Conversation",
-    "newChat": "New Chat",
+    "newChat": "New chat",
     "startNewChatTitle": "Start New Chat?",
     "startNewChatDesc": "Your current conversation will be saved. You can continue it later from the history.",
     "you": "You",
@@ -231,7 +235,10 @@
     "requestFailed": "The request failed.",
     "statusRunning": "Status: {{status}}…",
     "defaultPlan": "Free",
-    "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+    "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+    "assistant": "JT-Code",
+    "stop": "Stop generating",
+    "stopped": "Stopped."
   },
   "composer": {
     "attach": "Attach",
@@ -312,7 +319,17 @@
     "emptyTitle": "No history yet",
     "emptyDesc": "Start a chat and your conversations will appear here.",
     "startChatting": "Start chatting",
-    "deleteItemAria": "Delete {{title}}"
+    "deleteItemAria": "Delete {{title}}",
+    "searchPlaceholder": "Search conversations",
+    "archived": "Archived",
+    "openAria": "Open {{title}}",
+    "pinned": "Pinned",
+    "untitled": "Untitled conversation",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "archive": "Archive",
+    "unarchive": "Restore from archive",
+    "export": "Export as Markdown"
   },
   "billing": {
     "eyebrow": "Billing",
@@ -330,7 +347,14 @@
     "usage": {
       "title": "Credits usage",
       "usedOf": "{{used}} used of {{limit}} this month",
-      "left": "{{amount}} left"
+      "left": "{{amount}} left",
+      "thisMonth": "{{amount}} credits used this month",
+      "types": {
+        "chat": "Chat",
+        "images": "Images",
+        "documents": "Documents",
+        "agent": "Agents"
+      }
     },
     "plans": {
       "title": "Choose the plan that's right for you",
@@ -399,7 +423,9 @@
       "cardNumberLabel": "Card number",
       "expiryLabel": "Expiry",
       "cvcLabel": "CVC",
-      "savedToast": "Payment method saved"
+      "savedToast": "Payment method saved",
+      "none": "No payment method on file",
+      "manage": "Manage payment methods"
     },
     "invoices": {
       "title": "Recent invoices",
@@ -409,7 +435,9 @@
       "date": "Date",
       "description": "Description",
       "amount": "Amount",
-      "status": "Status"
+      "status": "Status",
+      "empty": "No invoices yet.",
+      "download": "Download invoice"
     },
     "topup": {
       "title": "Add Credits",
@@ -418,7 +446,10 @@
       "estimatedCredits": "Estimated Credits",
       "confirm": "Add ${{amount}} credits",
       "success": "Credits added successfully",
-      "invalidAmount": "Enter a valid amount"
+      "invalidAmount": "Enter a valid amount",
+      "processing": "Payment received. Credits appear as soon as Stripe confirms it.",
+      "failed": "The payment could not be completed.",
+      "payNow": "Pay now"
     },
     "checkout": {
       "title": "Complete your purchase",
@@ -427,7 +458,25 @@
       "billedMonthly": "Billed monthly",
       "pay": "Pay {{amount}}",
       "enterPhone": "Enter the phone number for Mobile Money.",
-      "activated": "{{name}} plan activated — payment successful"
+      "activated": "{{name}} plan activated — payment successful",
+      "returned": "Thanks! Your subscription will update as soon as Stripe confirms the payment.",
+      "cancelled": "Checkout was cancelled; nothing was charged."
+    },
+    "subscription": {
+      "endsAtPeriodEnd": "Ends at the end of this billing period",
+      "freeMonthly": "Free credits renew monthly",
+      "reactivate": "Resume subscription",
+      "cancel": "Cancel subscription",
+      "cancelConfirm": "Cancel your subscription at the end of the current period?"
+    },
+    "wallet": {
+      "saved": "Billing settings saved.",
+      "reserved": "{{amount}} reserved for running jobs",
+      "autoRecharge": "Auto-recharge",
+      "autoRechargeDesc": "Top up automatically when credits fall below the threshold.",
+      "threshold": "Threshold (credits)",
+      "spendingLimit": "Monthly limit (credits)",
+      "noLimit": "No limit"
     }
   },
   "legal": {
@@ -491,6 +540,140 @@
     "changePhoto": "Click to change photo",
     "profileUpdated": "Profile updated successfully",
     "updateProfileError": "Failed to update profile",
-    "uploadAvatarError": "Failed to upload avatar"
+    "uploadAvatarError": "Failed to upload avatar",
+    "eyebrow": "Settings",
+    "avatarUpdated": "Profile picture updated.",
+    "removePhoto": "Remove photo",
+    "passwordChanged": "Your password was changed.",
+    "passwordMismatch": "The new passwords do not match.",
+    "workspace": "Workspace",
+    "workspaceDesc": "Your organization in JT-Code. Conversations, files and credits belong to it.",
+    "workspaceName": "Workspace name",
+    "workspaceUpdated": "Workspace renamed.",
+    "password": "Password",
+    "passwordDesc": "Change the password you use to sign in.",
+    "currentPassword": "Current password",
+    "newPassword": "New password (8+ characters)",
+    "confirmPassword": "Confirm new password",
+    "changePassword": "Change password"
+  },
+  "analytics": {
+    "eyebrow": "Data Analytics",
+    "title": "Data Analytics",
+    "subtitle": "Upload a CSV, explore its columns, run analyses and turn the results into charts.",
+    "upload": {
+      "title": "Add a dataset",
+      "name": "Name",
+      "namePlaceholder": "e.g. Q3 sales",
+      "file": "CSV file (up to 25 MB)",
+      "or": "— or paste CSV —",
+      "paste": "CSV text",
+      "pastePlaceholder": "region,revenue\nEast,120\nWest,80",
+      "submit": "Add dataset",
+      "limits": "UTF-8 CSV with a header row; up to 100,000 rows and 200 columns.",
+      "needData": "Choose a CSV file or paste CSV text."
+    },
+    "datasets": "Datasets",
+    "noDatasets": "No datasets yet.",
+    "datasetMeta": "{{rows}} rows · {{columns}} columns",
+    "emptyTitle": "No dataset selected",
+    "emptyDesc": "Add a CSV on the left to start analysing.",
+    "deleteDataset": "Delete",
+    "deleteConfirm": "Delete this dataset with its analyses and charts?",
+    "profilePending": "Column statistics appear after the first analysis of an uploaded file.",
+    "profile": {
+      "column": "Column",
+      "kind": "Type",
+      "missing": "Missing",
+      "distinct": "Distinct",
+      "summary": "Summary"
+    },
+    "builder": {
+      "title": "Analyse",
+      "filters": "Filters",
+      "addFilter": "Add filter",
+      "noFilters": "No filters: every row is included.",
+      "removeFilter": "Remove filter",
+      "column": "Column",
+      "operator": "Operator",
+      "value": "Value",
+      "inPlaceholder": "a, b, c",
+      "groupBy": "Group by",
+      "aggregate": "Aggregate",
+      "ofColumn": "Of column",
+      "allNumeric": "All numeric columns",
+      "sortBy": "Sort by",
+      "direction": "Direction",
+      "asc": "Ascending",
+      "desc": "Descending",
+      "limit": "Row limit",
+      "none": "None",
+      "run": "Run analysis",
+      "cost": "Each analysis uses 10 credits; charts are free."
+    },
+    "operators": {
+      "eq": "equals",
+      "ne": "not equal",
+      "gt": ">",
+      "gte": "≥",
+      "lt": "<",
+      "lte": "≤",
+      "contains": "contains",
+      "in": "is one of"
+    },
+    "aggregates": {
+      "count": "Count rows",
+      "sum": "Sum",
+      "mean": "Average",
+      "min": "Minimum",
+      "max": "Maximum"
+    },
+    "status": {
+      "queued": "Queued",
+      "running": "Running",
+      "completed": "Completed",
+      "failed": "Failed",
+      "ready": "Ready"
+    },
+    "results": {
+      "title": "Results",
+      "rows": "{{count}} rows (showing {{shown}})",
+      "download": "Download CSV",
+      "retry": "Retry",
+      "pickRun": "Analysis run"
+    },
+    "charts": {
+      "title": "Charts",
+      "kind": "Chart",
+      "x": "X axis",
+      "y": "Y axis (numeric)",
+      "chartTitle": "Title",
+      "create": "Create chart",
+      "delete": "Delete chart",
+      "noImage": "Charts render on the server in API mode."
+    },
+    "chartKinds": {
+      "bar": "Bar",
+      "line": "Line",
+      "scatter": "Scatter",
+      "area": "Area",
+      "histogram": "Histogram",
+      "box": "Box",
+      "pie": "Pie"
+    }
+  },
+  "visualize": {
+    "tabs": {
+      "dashboards": "Dashboards",
+      "data": "Data",
+      "gallery": "Gallery",
+      "predict": "Predict",
+      "reports": "Reports",
+      "explore": "Explore"
+    },
+    "askAi": "Ask AI",
+    "hero": {
+      "title": "Data Visualization Studio"
+    }
   }
 }

@@ -9,7 +9,7 @@ import { SubmitButton } from './SubmitButton';
 import { useSignInForm } from '../hooks/useSignInForm';
 import { signin } from '../services/signin.service';
 import type { SignInPayload } from '../types';
-import { supabase } from '@/lib/supabase';
+import { signInWithProvider } from '@/lib/supabase';
 import '../styles/signin.css';
 
 interface Props {
@@ -37,12 +37,13 @@ export function SignInForm({ onSignedIn }: Props) {
     setSubmitError('');
     setLoadingProvider(provider);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({ provider });
+      const { error, redirected } = await signInWithProvider(provider);
       if (error) {
-        setSubmitError(error.message);
+        setSubmitError(error);
         return;
       }
-      onSignedIn();
+      // Real providers redirect the browser; the session arrives on /sso-callback.
+      if (!redirected) onSignedIn();
     } finally {
       setLoadingProvider(null);
     }

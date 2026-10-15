@@ -1,8 +1,11 @@
+/** Backend error envelope ({code,message,details,requestId}); some views send plain DRF {detail}. */
 export interface ApiErrorBody {
-  detail?: string;
   code?: string;
+  message?: string;
+  details?: Record<string, unknown> | null;
+  detail?: string;
   errors?: Record<string, string[]>;
-  traceId?: string;
+  requestId?: string;
 }
 
 export interface Paginated<T> {

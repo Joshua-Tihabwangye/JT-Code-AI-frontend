@@ -1,5 +1,7 @@
 import { KEYS } from './keys';
 import { simulate } from './latency';
+import { MockAnalyticsRepository } from './analytics';
+import { createMockVisualizeRepository } from './visualize';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -43,6 +45,7 @@ import type {
   KnowledgeRepository,
   Repositories,
   SendMessageOptions,
+  TopupIntent,
 } from '../contracts';
 
 function uid(prefix: string): string {
@@ -310,6 +313,31 @@ class MockAccountRepository implements AccountRepository {
       await users.upsert(user);
     });
   }
+
+  async uploadAvatar(file: File): Promise<Account> {
+    return simulate('account.avatar', async () => {
+      const avatarUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result : '');
+        reader.onerror = () => reject(new Error('Could not read the image.'));
+        reader.readAsDataURL(file);
+      });
+      const next: Account = { ...(await this.getAccount()), avatarUrl };
+      await writeValue(KEYS.account, next);
+      return next;
+    });
+  }
+
+  async removeAvatar(): Promise<Account> {
+    const next: Account = { ...(await this.getAccount()), avatarUrl: null };
+    await writeValue(KEYS.account, next);
+    return next;
+  }
+
+  async deleteAccount(): Promise<void> {
+    await writeValue(KEYS.account, null);
+    await writeValue(KEYS.session, null);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -564,7 +592,7 @@ class MockBillingRepository implements BillingRepository {
     });
   }
 
-  async topup(amountUsd: number): Promise<Wallet> {
+  async topup(amountUsd: number): Promise<TopupIntent> {
     return simulate('billing.topup', async () => {
       const wallet = await this.getWallet();
       const credits = Math.round(amountUsd / wallet.creditValueUsd);
@@ -581,11 +609,12 @@ class MockBillingRepository implements BillingRepository {
       };
       const all = await readValue<Invoice[]>(KEYS.invoices, []);
       await writeValue(KEYS.invoices, [invoice, ...all]);
-      return wallet;
+      // Demo mode: the payment is applied immediately; there is nothing to confirm.
+      return { clientSecret: '', paymentIntentId: invoice.id, credits, publishableKey: '' };
     });
   }
 
-  async createCheckout(planSlug: PlanSlug, interval: 'month' | 'year'): Promise<Subscription> {
+  async createCheckout(planSlug: PlanSlug, interval: 'month' | 'year'): Promise<{ checkoutUrl: string }> {
     return simulate('billing.checkout', async () => {
       const plans = await this.getPlans();
       const plan = plans.find((p) => p.slug === planSlug);
@@ -605,11 +634,11 @@ class MockBillingRepository implements BillingRepository {
       await writeValue(KEYS.subscription, subscription);
       const account = await readValue<Account | null>(KEYS.account, null);
       if (account) await writeValue(KEYS.account, { ...account, plan: planSlug });
-      return subscription;
+      return { checkoutUrl: '/app/billing?checkout=success' };
     });
   }
 
-  async cancelSubscription(): Promise<Subscription> {
+  async cancelSubscription(): Promise<Subscription | null> {
     return simulate('billing.cancel', async () => {
       const sub = await this.requireSubscription();
       const next = { ...sub, cancelAtPeriodEnd: true, status: 'canceled' as const };
@@ -618,7 +647,7 @@ class MockBillingRepository implements BillingRepository {
     });
   }
 
-  async reactivate(): Promise<Subscription> {
+  async reactivate(): Promise<Subscription | null> {
     return simulate('billing.reactivate', async () => {
       const sub = await this.requireSubscription();
       const next = { ...sub, cancelAtPeriodEnd: false, status: 'active' as const };
@@ -627,12 +656,8 @@ class MockBillingRepository implements BillingRepository {
     });
   }
 
-  async updatePaymentMethod(method: Omit<PaymentMethod, 'id'>): Promise<PaymentMethod> {
-    return simulate('billing.payment', async () => {
-      const next: PaymentMethod = { id: uid('pm'), ...method };
-      await writeValue(KEYS.paymentMethod, next);
-      return next;
-    });
+  openBillingPortal(): Promise<string> {
+    return Promise.resolve('/app/billing');
   }
 
   async getPaymentMethod(): Promise<PaymentMethod | null> {
@@ -1181,5 +1206,7 @@ export function createMockRepositories(): Repositories {
     documents: new MockDocumentsRepository(),
     integrations: new MockIntegrationRepository(),
     knowledge: new MockKnowledgeRepository(),
+    analytics: new MockAnalyticsRepository(),
+    visualize: createMockVisualizeRepository(),
   };
 }

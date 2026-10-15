@@ -1,25 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAuth } from '@/lib/supabase';
-import { useApiClient } from '@/lib/api/client';
 import { queryClient } from '@/lib/queryClient';
 import { config } from '@/lib/config';
-import { getUserProfile } from '@/features/settings/api';
-import { getSubscription, getWallet, getUsage } from '@/features/billing/api';
+import { useRepositories } from '@/lib/data';
 
 export function AppDataInitializer() {
-  const { isSignedIn, loading } = useAuth();
-  const client = useApiClient();
+  const { isSignedIn, loading, user } = useAuth();
+  const repositories = useRepositories();
+  const previousUser = useRef<string | null | undefined>(undefined);
+
+  // Cached server data belongs to one user: drop it whenever the signed-in user changes.
+  useEffect(() => {
+    if (loading) return;
+    const current = user?.id ?? null;
+    if (previousUser.current !== undefined && previousUser.current !== current) queryClient.clear();
+    previousUser.current = current;
+  }, [loading, user?.id]);
 
   useEffect(() => {
-    // In mock mode the repositories own all data; never call the backend.
-    if (config.dataMode === 'mock') return;
-    if (loading || !isSignedIn) return;
-
-    void queryClient.prefetchQuery({ queryKey: ['user-profile'], queryFn: () => getUserProfile(client) });
-    void queryClient.prefetchQuery({ queryKey: ['subscription'], queryFn: () => getSubscription(client) });
-    void queryClient.prefetchQuery({ queryKey: ['wallet'], queryFn: () => getWallet(client) });
-    void queryClient.prefetchQuery({ queryKey: ['usage'], queryFn: () => getUsage(client) });
-  }, [loading, isSignedIn, client]);
+    if (config.dataMode === 'mock' || loading || !isSignedIn) return;
+    void queryClient.prefetchQuery({ queryKey: ['account'], queryFn: () => repositories.account.getAccount() });
+    void queryClient.prefetchQuery({ queryKey: ['billing', 'wallet'], queryFn: () => repositories.billing.getWallet() });
+    void queryClient.prefetchQuery({ queryKey: ['billing', 'usage'], queryFn: () => repositories.billing.getUsage() });
+  }, [loading, isSignedIn, repositories]);
 
   return null;
 }

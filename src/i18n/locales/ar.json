@@ -9,7 +9,9 @@
     "history": "السجل",
     "billing": "الفوترة",
     "settings": "الإعدادات",
-    "integrations": "التكاملات"
+    "integrations": "التكاملات",
+    "analytics": "تحليلات البيانات",
+    "visualize": "تصوير البيانات"
   },
   "common": {
     "saveChanges": "حفظ التغييرات",

@@ -6,7 +6,8 @@ import tseslint from 'typescript-eslint';
 import reactPlugin from 'eslint-plugin-react';
 
 export default tseslint.config(
-  { ignores: ['dist', 'coverage', 'node_modules', '.vite', 'vite-env.d.ts'] },
+  // jt-code-frontend/ and jt-code-backend/ are old committed snapshots, not part of the app (src/).
+  { ignores: ['dist', 'coverage', 'node_modules', '.vite', 'vite-env.d.ts', 'jt-code-frontend', 'jt-code-backend'] },
   {
     extends: [
       js.configs.recommended,
@@ -17,7 +18,7 @@ export default tseslint.config(
       ecmaVersion: 2022,
       globals: globals.browser,
       parserOptions: {
-        project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        project: ['./tsconfig.app.json', './tsconfig.node.json', './tsconfig.integration.json'],
         tsconfigRootDir: import.meta.dirname,
       },
     },

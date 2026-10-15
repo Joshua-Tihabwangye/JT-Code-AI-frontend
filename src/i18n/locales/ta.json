@@ -9,7 +9,9 @@
     "history": "வரலாறு",
     "billing": "பில்லிங்",
     "settings": "அமைப்புகள்",
-    "integrations": "ஒருங்கிணைப்புகள்"
+    "integrations": "ஒருங்கிணைப்புகள்",
+    "analytics": "தரவு பகுப்பாய்வு",
+    "visualize": "தரவு காட்சிப்படுத்தல்"
   },
   "common": {
     "saveChanges": "மாற்றங்களைச் சேமி",

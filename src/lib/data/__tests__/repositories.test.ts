@@ -96,8 +96,9 @@ describe('Mock repository: billing accounting', () => {
   it('tops up credits and creates an invoice', async () => {
     const repos = makeRepos();
     const before = await repos.billing.getWallet();
-    const after = await repos.billing.topup(10);
-    expect(after.balance).toBe(before.balance + 1000);
+    const intent = await repos.billing.topup(10);
+    expect(intent.credits).toBe(1000);
+    expect((await repos.billing.getWallet()).balance).toBe(before.balance + 1000);
     expect((await repos.billing.listInvoices()).length).toBeGreaterThan(0);
   });
 
@@ -111,9 +112,9 @@ describe('Mock repository: billing accounting', () => {
   it('cancels and reactivates a subscription', async () => {
     const repos = makeRepos();
     const canceled = await repos.billing.cancelSubscription();
-    expect(canceled.cancelAtPeriodEnd).toBe(true);
+    expect(canceled?.cancelAtPeriodEnd).toBe(true);
     const reactivated = await repos.billing.reactivate();
-    expect(reactivated.cancelAtPeriodEnd).toBe(false);
+    expect(reactivated?.cancelAtPeriodEnd).toBe(false);
   });
 
   it('consumes credits from wallet and usage', async () => {

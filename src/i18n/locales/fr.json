@@ -9,7 +9,9 @@
     "history": "Historique",
     "billing": "Facturation",
     "settings": "Paramètres",
-    "integrations": "Intégrations"
+    "integrations": "Intégrations",
+    "analytics": "Analyse de données",
+    "visualize": "Visualisation des données"
   },
   "common": {
     "saveChanges": "Enregistrer les modifications",
