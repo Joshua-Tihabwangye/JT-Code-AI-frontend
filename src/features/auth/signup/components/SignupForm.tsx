@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { SignupHeader } from './SignupHeader';
 import { SocialAuthButtons } from '../../components/SocialAuthButtons';
+import { PasswordStrengthMeter } from './PasswordStrengthMeter';
 import { NameFields } from './NameFields';
 import { EmailField } from './EmailField';
 import { PasswordField } from './PasswordField';
@@ -60,19 +61,6 @@ export function SignupForm({ onSignedUp }: Props) {
     <section className="signup-card auth-card">
       <SignupHeader />
 
-      <SocialAuthButtons
-          onGoogle={() => void handleOAuth('google')}
-          onApple={() => void handleOAuth('apple')}
-          disabled={isSubmitting}
-          loadingProvider={loadingProvider}
-        />
-
-      <div className="signup-divider">
-        <span />
-        <span>{t('common.or')}</span>
-        <span />
-      </div>
-
       <form
         onSubmit={(event) => {
           void form.handleSubmit(submit)(event);
@@ -80,54 +68,40 @@ export function SignupForm({ onSignedUp }: Props) {
         noValidate
         className="signup-form"
       >
-        <div className="signup-section">
-          <h2 className="signup-section__title">{t('signup.section.profile')}</h2>
-          <NameFields form={form} />
-        </div>
+        <NameFields form={form} />
 
-        <div className="signup-section">
-          <h2 className="signup-section__title">{t('signup.section.account')}</h2>
-          <EmailField form={form} />
+        <DialCodeField form={form} />
 
-          <PasswordField
-            form={form}
-            field="password"
-            label={t('signup.passwordLabel')}
-            placeholder={t('signup.passwordPlaceholder')}
-            autoComplete="new-password"
-            helper={
-              <p className="password-requirement">
-                {t('signup.requirements.singleRule')}
-              </p>
-            }
-          />
+        <EmailField form={form} />
 
-          <PasswordField
-            form={form}
-            field="confirmPassword"
-            label={t('signup.confirmPasswordLabel')}
-            placeholder={t('signup.confirmPasswordPlaceholder')}
-            autoComplete="new-password"
-            helper={(
-              <div className={`password-match ${confirmPassword ? (confirmPassword === password ? 'is-ok' : 'is-error') : ''}`}>
-                {confirmPassword && confirmPassword === password
-                  ? t('signup.matchOk')
-                  : confirmPassword
-                    ? t('signup.matchError')
-                    : t('signup.matchHint')}
-              </div>
-            )}
-          />
-        </div>
-
-        <div className="signup-section">
-          <h2 className="signup-section__title">{t('signup.section.region')}</h2>
-          <div className="signup-grid signup-grid--two">
-            <DialCodeField form={form} />
-            <PhoneField form={form} />
-          </div>
+        <div className="signup-grid signup-grid--two">
+          <PhoneField form={form} />
           <TimezoneField form={form} />
         </div>
+
+        <PasswordField
+          form={form}
+          field="password"
+          label={t('signup.passwordLabel')}
+          placeholder={t('signup.passwordPlaceholder')}
+          autoComplete="new-password"
+          helper={<PasswordStrengthMeter password={password ?? ''} />}
+        />
+
+        <PasswordField
+          form={form}
+          field="confirmPassword"
+          label={t('signup.confirmPasswordLabel')}
+          placeholder={t('signup.confirmPasswordPlaceholder')}
+          autoComplete="new-password"
+          helper={
+            confirmPassword ? (
+              <div className={`password-match ${confirmPassword === password ? 'is-ok' : 'is-error'}`}>
+                {confirmPassword === password ? t('signup.matchOk') : t('signup.matchError')}
+              </div>
+            ) : null
+          }
+        />
 
         <TermsField form={form} />
 
@@ -135,6 +109,20 @@ export function SignupForm({ onSignedUp }: Props) {
 
         <SubmitButton isSubmitting={isSubmitting} label={t('signup.submit')} />
       </form>
+
+      <div className="signup-divider">
+        <span />
+        <span>{t('common.or')}</span>
+        <span />
+      </div>
+
+      <SocialAuthButtons
+        onGoogle={() => void handleOAuth('google')}
+        onApple={() => void handleOAuth('apple')}
+        disabled={isSubmitting}
+        loadingProvider={loadingProvider}
+        layout="vertical"
+      />
 
       <footer className="signup-footer">
         <span>{t('signup.haveAccountQuestion')}</span>

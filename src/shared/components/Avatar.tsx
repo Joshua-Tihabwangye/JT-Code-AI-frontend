@@ -19,6 +19,7 @@ const sizes = {
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, src, alt, fallback, size = 'md', ...props }, ref) => {
     const [imageError, setImageError] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     if (!src || imageError) {
       const initials = fallback?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || '?';
@@ -27,6 +28,8 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           ref={ref}
           className={clsx(
             'inline-flex items-center justify-center rounded-full bg-primary font-medium text-primary-foreground',
+            'shadow-sm ring-1 ring-black/5 dark:ring-white/10',
+            'transition-transform duration-150',
             sizes[size],
             className
           )}
@@ -40,15 +43,28 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={clsx('relative inline-flex shrink-0 overflow-hidden rounded-full', sizes[size], className)}
+        className={clsx(
+          'relative inline-flex shrink-0 overflow-hidden rounded-full bg-muted',
+          'shadow-sm ring-1 ring-black/5 dark:ring-white/10',
+          sizes[size],
+          className
+        )}
         {...props}
       >
         <img
           src={src}
           alt={alt || fallback || 'Avatar'}
-          className="aspect-square h-full w-full object-cover"
+          className={clsx(
+            'aspect-square h-full w-full object-cover',
+            'transition-opacity duration-300',
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          )}
+          onLoad={() => setImageLoaded(true)}
           onError={() => setImageError(true)}
         />
+        {!imageLoaded && (
+          <div className="absolute inset-0 animate-pulse bg-muted" />
+        )}
       </div>
     );
   }
@@ -73,7 +89,11 @@ export const AvatarFallback = forwardRef<HTMLDivElement, { children?: React.Reac
   ({ className, children, ...props }, ref) => (
     <div
       ref={ref}
-      className={clsx('flex h-full w-full items-center justify-center rounded-full bg-primary font-medium text-primary-foreground', className)}
+      className={clsx(
+        'flex h-full w-full items-center justify-center rounded-full bg-primary font-medium text-primary-foreground',
+        'shadow-sm ring-1 ring-black/5 dark:ring-white/10',
+        className
+      )}
       {...props}
     >
       {children}

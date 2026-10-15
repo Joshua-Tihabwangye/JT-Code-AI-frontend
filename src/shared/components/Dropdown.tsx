@@ -46,7 +46,9 @@ export function Dropdown({
       {isOpen && (
         <div
           className={clsx(
-            'absolute z-50 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg',
+            'absolute z-50 min-w-[180px] rounded-md border bg-popover p-1 text-popover-foreground',
+            'shadow-lg ring-1 ring-black/5 dark:ring-white/10',
+            'dropdown-enter',
             align === 'right' ? 'right-0' : 'left-0',
             above ? 'bottom-full -mt-2' : 'mt-2'
           )}
@@ -62,7 +64,12 @@ export function DropdownItem({ className, onClick, children, ...props }: HTMLAtt
   return (
     <button
       className={clsx(
-        'flex w-full items-center rounded-sm px-3 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        'flex w-full items-center rounded-sm px-3 py-1.5 text-sm outline-none',
+        'transition-colors duration-100',
+        'hover:bg-accent hover:text-accent-foreground',
+        'focus:bg-accent focus:text-accent-foreground',
+        'active:scale-[0.98]',
+        'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className
       )}
       onClick={() => { onClick?.(); }}

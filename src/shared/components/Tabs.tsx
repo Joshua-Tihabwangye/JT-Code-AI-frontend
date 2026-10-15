@@ -52,7 +52,11 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
   ({ className, children, ...props }, ref) => (
     <div
       ref={ref}
-      className={clsx('inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground', className)}
+      className={clsx(
+        'inline-flex h-10 items-center justify-center gap-1 rounded-lg bg-muted p-1 text-muted-foreground',
+        'border border-border/60 shadow-inner',
+        className
+      )}
       role="tablist"
       aria-orientation="horizontal"
       {...props}
@@ -77,10 +81,13 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
       <button
         ref={ref}
         className={clsx(
-          'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium',
+          'transition-all duration-200 ease-out',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1',
+          'disabled:pointer-events-none disabled:opacity-50',
           isActive
-            ? 'bg-background text-foreground shadow-sm'
-            : 'data-[state=inactive]:hover:bg-muted/50 data-[state=inactive]:hover:text-foreground',
+            ? 'bg-background text-foreground shadow-md ring-1 ring-black/5 dark:ring-white/10'
+            : 'hover:bg-background/60 hover:text-foreground active:scale-[0.97]',
           className
         )}
         role="tab"
@@ -117,7 +124,8 @@ export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
       <div
         ref={ref}
         className={clsx(
-          'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          'mt-3 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          isActive && 'alert-enter',
           className
         )}
         role="tabpanel"

@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 interface SocialAuthButtonsProps {
   onGoogle?: () => void;
   onApple?: () => void;
   disabled?: boolean;
   loadingProvider?: 'google' | 'apple' | null;
+  /** Defaults to horizontal; authentication screens can request a vertical stack. */
+  layout?: 'horizontal' | 'vertical';
 }
 
 function GoogleIcon() {
@@ -43,10 +46,11 @@ export function SocialAuthButtons({
   onApple,
   disabled,
   loadingProvider = null,
+  layout = 'horizontal',
 }: SocialAuthButtonsProps) {
   const { t } = useTranslation();
   return (
-    <div className="social-auth-grid">
+    <div className={clsx('social-auth-grid', layout === 'vertical' && 'social-auth-grid--vertical')}>
       <button
         type="button"
         className="social-auth-button"
@@ -54,7 +58,7 @@ export function SocialAuthButtons({
         disabled={disabled}
       >
         <GoogleIcon />
-        <span>{loadingProvider === 'google' ? t('signin.connecting') : t('signin.google')}</span>
+        <span>{loadingProvider === 'google' ? t('signin.connecting') : t('signin.signInWithGoogle')}</span>
       </button>
       <button
         type="button"
@@ -63,7 +67,7 @@ export function SocialAuthButtons({
         disabled={disabled}
       >
         <AppleIcon />
-        <span>{loadingProvider === 'apple' ? t('signin.connecting') : t('signin.apple')}</span>
+        <span>{loadingProvider === 'apple' ? t('signin.connecting') : t('signin.signInWithApple')}</span>
       </button>
     </div>
   );

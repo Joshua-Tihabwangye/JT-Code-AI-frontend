@@ -15,15 +15,19 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     };
     const variants = {
       ghost: 'hover:bg-accent hover:text-accent-foreground',
-      outline: 'border border-input bg-background hover:bg-accent',
-      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+      outline: 'border border-input bg-background hover:bg-accent hover:border-ring/40',
+      secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
     };
     return (
       <button
         ref={ref}
         type={type}
         className={clsx(
-          'inline-flex items-center justify-center rounded-md text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center rounded-md text-muted-foreground',
+          'transition-all duration-150 ease-out',
+          'hover:scale-105 active:scale-95',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          'disabled:pointer-events-none disabled:opacity-50 disabled:hover:scale-100',
           sizes[size],
           variants[variant],
           className,

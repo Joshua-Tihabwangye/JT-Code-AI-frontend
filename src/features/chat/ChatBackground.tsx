@@ -15,6 +15,8 @@ export function ChatBackground() {
     let width = 0;
     let height = 0;
     let time = 0;
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let reduceMotion = motionPreference.matches;
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -23,31 +25,31 @@ export function ChatBackground() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (reduceMotion) draw();
     }
 
     function getPalette(): { bg: string; colors: [string, string, string, string, string] } {
       const isDark = document.documentElement.classList.contains('dark');
       return isDark
         ? {
-            bg: '#050b14',
-            // purple -> violet -> cyan blend, subtle in dark mode
+            bg: '#091321',
+            // Use the workspace's blue palette in both themes.
             colors: [
-              'rgba(168, 85, 247, 0.24)',
-              'rgba(139, 92, 246, 0.21)',
-              'rgba(99, 102, 241, 0.18)',
-              'rgba(59, 130, 246, 0.15)',
-              'rgba(14, 165, 233, 0.12)',
+              'rgba(96, 165, 250, 0.16)',
+              'rgba(59, 130, 246, 0.14)',
+              'rgba(37, 99, 235, 0.12)',
+              'rgba(96, 165, 250, 0.1)',
+              'rgba(59, 130, 246, 0.08)',
             ],
           }
         : {
-            bg: '#f6f7f9',
-            // clearer but still refined purple/blue blend in light mode
+            bg: '#f5f8fc',
             colors: [
-              'rgba(124, 58, 237, 0.30)',
-              'rgba(99, 102, 241, 0.27)',
-              'rgba(59, 130, 246, 0.24)',
-              'rgba(14, 165, 233, 0.20)',
-              'rgba(168, 85, 247, 0.17)',
+              'rgba(37, 99, 235, 0.14)',
+              'rgba(59, 130, 246, 0.12)',
+              'rgba(96, 165, 250, 0.1)',
+              'rgba(37, 99, 235, 0.09)',
+              'rgba(59, 130, 246, 0.07)',
             ],
           };
     }
@@ -128,22 +130,33 @@ export function ChatBackground() {
       ctx.fillStyle = fadeGradient;
       ctx.fillRect(0, 0, width, height);
 
-      time += 0.008;
-      animationId = requestAnimationFrame(draw);
+      if (!reduceMotion) {
+        time += 0.008;
+        animationId = requestAnimationFrame(draw);
+      }
+    }
+
+    function handleMotionPreferenceChange(event: MediaQueryListEvent) {
+      reduceMotion = event.matches;
+      cancelAnimationFrame(animationId);
+      time = 0;
+      draw();
     }
 
     resize();
     draw();
 
     window.addEventListener('resize', resize);
+    motionPreference.addEventListener('change', handleMotionPreferenceChange);
     const observer = new MutationObserver(() => {
-      // Theme changes are picked up in the draw loop.
+      if (reduceMotion) draw();
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
+      motionPreference.removeEventListener('change', handleMotionPreferenceChange);
       observer.disconnect();
     };
   }, []);

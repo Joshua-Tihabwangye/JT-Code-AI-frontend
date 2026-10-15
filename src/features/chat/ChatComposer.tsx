@@ -64,7 +64,6 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
 
     const measured = mirror.scrollHeight;
     const next = Math.min(Math.max(measured, MIN_TEXTAREA_HEIGHT), MAX_TEXTAREA_HEIGHT);
-    if (typeof window !== 'undefined') { const n = ((window as any).__rz = ((window as any).__rz || 0) + 1); if (n <= 25) console.log('RESIZE', n, 'valLen=' + source.value.length, 'next=' + next, 'exp=' + (Math.round((Math.max(measured - ((parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)) || 0)) / (parseFloat(style.lineHeight) || 20))) > 1)); }
     setFieldHeight(next);
     setFieldOverflow(measured > MAX_TEXTAREA_HEIGHT ? 'auto' : 'hidden');
 
@@ -178,7 +177,7 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
         className="composer__field"
         style={{ height: fieldHeight, overflowY: fieldOverflow }}
         value={text}
-        onChange={(event) => { if (typeof window !== 'undefined') { const n = ((window as any).__oc = ((window as any).__oc || 0) + 1); if (n <= 25) console.log('ONCHANGE', n, 'valLen=' + event.target.value.length); } setText(event.target.value); }}
+        onChange={(event) => setText(event.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={resolvedPlaceholder}
         rows={1}
@@ -208,7 +207,7 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
             }}
           >
             <span>{activeModel}</span>
-            <ChevronDown size={14} />
+            <ChevronDown size={14} className={clsx('transition-transform duration-150', showModelMenu && 'rotate-180')} />
           </button>
           {showModelMenu && (
             <div className="composer__model-menu" role="menu">
@@ -282,7 +281,12 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
             >
               {file.type.startsWith('image/') ? <ImageIcon size={12} /> : <FileText size={12} />}
               <span className="truncate max-w-[140px]">{file.name}</span>
-              <button type="button" onClick={() => removeAttachment(index)} className="hover:text-foreground">
+              <button
+                type="button"
+                onClick={() => removeAttachment(index)}
+                aria-label={t('composer.removeAttachment', { name: file.name })}
+                className="rounded-sm p-0.5 text-muted-foreground transition-colors hover:bg-background/60 hover:text-foreground"
+              >
                 <X size={12} />
               </button>
             </span>

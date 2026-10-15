@@ -4,6 +4,7 @@ import {
   useContext,
   useMemo,
   useState,
+  type CSSProperties,
   type ReactNode,
 } from 'react';
 import { CheckCircle2, AlertTriangle, XCircle, Info, X } from 'lucide-react';
@@ -78,7 +79,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {toasts.map((t) => {
           const Icon = ICONS[t.variant];
           return (
-            <div key={t.id} className="toast" role="status">
+            <div
+              key={t.id}
+              className="toast"
+              role="status"
+              style={{ '--toast-accent': ACCENT[t.variant] } as CSSProperties}
+            >
               <Icon size={18} style={{ color: ACCENT[t.variant] }} aria-hidden className="mt-0.5 shrink-0" />
               <div className="min-w-0">
                 <div className="toast-title">{t.title}</div>

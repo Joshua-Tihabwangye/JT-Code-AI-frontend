@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 export default function TermsPage() {
   const { t } = useTranslation();
   return (
-    <main className="legal-page">
-      <section className="legal-card">
+    <main className="auth-page legal-page">
+      <section className="auth-card legal-card">
         <p className="legal-eyebrow">{t('legal.terms.eyebrow')}</p>
         <h1>{t('legal.terms.title')}</h1>
         <p>

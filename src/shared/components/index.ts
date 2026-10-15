@@ -8,6 +8,7 @@ export { Select } from './Select';
 export { Textarea } from './Textarea';
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
 export { Modal } from './Modal';
+export { PhoneNumberInput } from './PhoneNumberInput';
 export { ConfirmDialog } from './ConfirmDialog';
 export { Spinner } from './Spinner';
 export { Skeleton } from './Skeleton';

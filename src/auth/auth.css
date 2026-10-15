@@ -506,17 +506,22 @@ a { color: var(--azure); text-decoration: none; }
   place-items: center;
   padding: 2rem;
   background:
-    radial-gradient(900px 500px at 12% 0%, color-mix(in srgb, var(--azure) 8%, transparent), transparent 56%),
-    linear-gradient(180deg, color-mix(in srgb, var(--panel) 55%, var(--bg)), var(--bg));
+    radial-gradient(780px 520px at 9% 8%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 68%),
+    radial-gradient(680px 460px at 96% 92%, color-mix(in srgb, var(--primary) 7%, transparent), transparent 70%),
+    var(--background);
 }
 
 .legal-card {
   width: min(100%, 760px);
   padding: clamp(1.5rem, 3vw, 2.2rem);
-  border: 1px solid var(--border);
-  border-radius: 1.5rem;
-  background: var(--panel);
-  box-shadow: 0 24px 60px -36px rgba(0, 0, 0, 0.35);
+  border: 1px solid color-mix(in srgb, var(--primary) 13%, var(--border));
+  border-radius: 1.75rem;
+  background: linear-gradient(180deg, var(--card), color-mix(in srgb, var(--card) 97%, var(--primary)));
+  box-shadow: 0 1px 2px rgba(16, 42, 77, .05), 0 0 44px -20px color-mix(in srgb, var(--primary) 34%, transparent), 0 22px 58px -34px rgba(16, 42, 77, .3);
+}
+.auth-page.legal-page {
+  display: grid;
+  place-items: center;
 }
 
 .legal-card h1 {
@@ -614,4 +619,391 @@ a { color: var(--azure); text-decoration: none; }
   .auth-back-button { padding: 0 0.7rem; }
   .auth-shell { padding: clamp(3rem, 6vw, 5rem) 1rem 1.5rem; }
   .auth-shell__panel { width: min(100%, 600px); }
+}
+
+/* ==========================================================================
+   Auth pages: "midnight glow" design, built to match the approved mockup.
+   Scoped to .auth-page so nothing outside the auth screens is affected.
+   ========================================================================== */
+
+@keyframes auth-orb-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(12px, 16px, 0) scale(1.035); }
+}
+@keyframes auth-bubble-rise {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate(var(--bubble-drift, 20px), -70vh) scale(var(--bubble-grow, 1.15)); opacity: 0; }
+}
+
+/* ---- Palette (dark is the design; light gets a matching light version) ---- */
+.auth-page {
+  --a-bg: #040b2e;
+  --a-bg-2: #07175f;
+  --a-bg-3: #030821;
+  --a-card-top: rgba(8, 22, 78, 0.86);
+  --a-card-bot: rgba(3, 10, 48, 0.9);
+  --a-field: rgba(10, 26, 88, 0.72);
+  --a-field-solid: #0a1a58;
+  --a-line: #2c52da;
+  --a-line-soft: rgba(72, 112, 255, 0.5);
+  --a-text: #ffffff;
+  --a-muted: #a9b7f0;
+  --a-link: #1fb0ff;
+  --a-btn-1: #1a5fff;
+  --a-btn-2: #2cb4ff;
+  --a-orb-1: #2a5cf2;
+  --a-orb-2: #1d48dc;
+  --a-orb-rim: rgba(150, 190, 255, 0.55);
+  --a-glow: rgba(38, 92, 245, 0.5);
+  --a-icon-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239db0f5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+  --a-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239db0f5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='11' x='3' y='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+
+  /* Remap the variables the existing auth/sign-up styles already use, so every
+     auth page (sign in, sign up, forgot password) picks up the new palette. */
+  --text: var(--a-text);
+  --foreground: var(--a-text);
+  --muted-text: var(--a-muted);
+  --muted-foreground: var(--a-muted);
+  --panel: var(--a-field);
+  --secondary: var(--a-field);
+  --border: var(--a-line-soft);
+  --azure: var(--a-link);
+  --azure-2: var(--a-btn-1);
+  --bg: var(--a-bg);
+
+  color: var(--a-text);
+  background:
+    radial-gradient(520px 440px at 6% 56%, rgba(70, 45, 210, 0.26), transparent 70%),
+    radial-gradient(560px 460px at 96% 20%, rgba(32, 96, 255, 0.2), transparent 70%),
+    radial-gradient(700px 420px at 18% 102%, rgba(32, 84, 235, 0.24), transparent 70%),
+    radial-gradient(900px 640px at 50% 42%, rgba(26, 60, 190, 0.3), transparent 72%),
+    linear-gradient(165deg, var(--a-bg-2), var(--a-bg) 60%, var(--a-bg-3));
+}
+
+html:not(.dark) .auth-page {
+  --a-bg: #eef3ff;
+  --a-bg-2: #dce7ff;
+  --a-bg-3: #e6eeff;
+  --a-card-top: rgba(255, 255, 255, 0.95);
+  --a-card-bot: rgba(247, 250, 255, 0.95);
+  --a-field: #f2f6ff;
+  --a-field-solid: #f2f6ff;
+  --a-line: #8fa9f2;
+  --a-line-soft: #b9c8f4;
+  --a-text: #0a1450;
+  --a-muted: #52629b;
+  --a-link: #0a6fe0;
+  --a-orb-1: #7ea3ff;
+  --a-orb-2: #5f8bff;
+  --a-orb-rim: rgba(255, 255, 255, 0.7);
+  --a-glow: rgba(90, 130, 255, 0.35);
+  --a-icon-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236f84c8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+  --a-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236f84c8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='11' x='3' y='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+}
+
+/* ---- Two big corner orbs, bleeding in from off-screen (gently floating) ---- */
+.auth-page--centered {
+  --orb: clamp(300px, 34vw, 560px);
+  position: relative;
+}
+.auth-page--centered::before,
+.auth-page--centered::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+.auth-page--centered::before {
+  width: var(--orb);
+  height: var(--orb);
+  top: calc(var(--orb) * -0.56);
+  left: calc(var(--orb) * -0.34);
+  background: radial-gradient(circle at 72% 72%, var(--a-orb-1) 0%, var(--a-orb-2) 100%);
+  box-shadow: 0 0 140px 24px var(--a-glow), inset -16px -16px 70px var(--a-orb-rim);
+  animation: auth-orb-float 14s ease-in-out infinite;
+}
+.auth-page--centered::after {
+  width: calc(var(--orb) * 1.2);
+  height: calc(var(--orb) * 1.2);
+  bottom: calc(var(--orb) * -0.62);
+  right: calc(var(--orb) * -0.36);
+  background: radial-gradient(circle at 28% 28%, var(--a-orb-1) 0%, var(--a-orb-2) 100%);
+  box-shadow: 0 0 150px 28px var(--a-glow), inset 16px 16px 80px var(--a-orb-rim);
+  animation: auth-orb-float 16s ease-in-out -6s infinite reverse;
+}
+.auth-page--centered > * { position: relative; z-index: 1; }
+
+/* ---- Small floating bubbles (decorative spans rendered by AuthLayout) ---- */
+.auth-shell { position: relative; isolation: isolate; }
+.auth-bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.auth-bubbles span {
+  position: absolute;
+  bottom: -10%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(130, 175, 255, 0.55), rgba(40, 92, 245, 0.08) 70%);
+  box-shadow: inset 0 0 8px rgba(160, 200, 255, 0.35);
+  animation: auth-bubble-rise linear infinite;
+}
+.auth-bubbles span:nth-child(1) { left: 8%;  width: 34px; height: 34px; --bubble-drift: 24px;  animation-duration: 14s; animation-delay: 0s; }
+.auth-bubbles span:nth-child(2) { left: 22%; width: 18px; height: 18px; --bubble-drift: -16px; animation-duration: 10s; animation-delay: 2s; }
+.auth-bubbles span:nth-child(3) { left: 38%; width: 46px; height: 46px; --bubble-drift: 30px;  animation-duration: 18s; animation-delay: 1s; }
+.auth-bubbles span:nth-child(4) { left: 55%; width: 24px; height: 24px; --bubble-drift: -20px; animation-duration: 12s; animation-delay: 4s; }
+.auth-bubbles span:nth-child(5) { left: 68%; width: 30px; height: 30px; --bubble-drift: 18px;  animation-duration: 16s; animation-delay: 3s; }
+.auth-bubbles span:nth-child(6) { left: 82%; width: 20px; height: 20px; --bubble-drift: -24px; animation-duration: 11s; animation-delay: 5s; }
+.auth-bubbles span:nth-child(7) { left: 92%; width: 40px; height: 40px; --bubble-drift: -14px; animation-duration: 20s; animation-delay: 6s; }
+
+/* ---- Layout: card centered, top bar floats (logo now lives inside the card) ---- */
+.auth-page .auth-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  justify-content: flex-end;
+}
+.auth-page .auth-topbar .brand { display: none; }
+.auth-page .auth-shell { padding: 5rem 1.25rem 2.5rem; }
+.auth-page .auth-shell__panel { width: min(100%, 520px); }
+
+/* ---- The card ---- */
+.auth-page .auth-card {
+  position: relative;
+  padding: 2.5rem 2.25rem 2rem;
+  border-radius: 1.75rem;
+  border: 1px solid var(--a-line);
+  background: linear-gradient(180deg, var(--a-card-top), var(--a-card-bot));
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 1px rgba(80, 120, 255, 0.14),
+    0 0 64px -6px var(--a-glow),
+    0 40px 90px -40px rgba(0, 0, 0, 0.65);
+}
+.auth-page .signin-card { max-width: 480px; margin-inline: auto; }
+
+/* ---- Logo + heading ---- */
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 0 1.4rem;
+}
+.auth-logo__mark {
+  width: 3.6rem;
+  height: auto;
+  flex: none;
+  filter: drop-shadow(0 6px 18px rgba(60, 90, 255, 0.55));
+}
+.auth-logo__word {
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--a-text);
+}
+.auth-logo__word span {
+  background: linear-gradient(90deg, #22b4ff, #4a62ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.auth-page .signup-header { text-align: center; margin-bottom: 1.75rem; }
+.auth-page .signup-header h1 {
+  font-size: clamp(2rem, 4.6vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--a-text);
+}
+.auth-page .signup-header p { margin: 0.6rem 0 0; color: var(--a-muted); font-size: 1rem; }
+
+/* ---- Form rhythm + labels ---- */
+.auth-page .signup-form { margin-top: 0; gap: 1.1rem; }
+.auth-page .form-field { gap: 0.5rem; }
+.auth-page .form-field > label { color: var(--a-text); font-size: 0.95rem; font-weight: 700; }
+.auth-page .form-field input::placeholder { color: color-mix(in srgb, var(--a-muted) 70%, transparent); }
+
+/* ---- Sign-in fields: taller, with the mail / lock icons from the mockup ---- */
+.auth-page .signin-card .form-field input[name="email"] {
+  height: 3rem;
+  padding-left: 2.9rem;
+  border-radius: 0.9rem;
+  font-size: 1rem;
+  background-image: var(--a-icon-mail);
+  background-repeat: no-repeat;
+  background-position: 1rem 50%;
+  background-size: 1.15rem;
+}
+.auth-page .signin-card .password-input { border-radius: 0.9rem; }
+.auth-page .signin-card .password-input input[name="password"] {
+  height: 3rem;
+  padding-left: 2.9rem;
+  font-size: 1rem;
+  background-image: var(--a-icon-lock);
+  background-repeat: no-repeat;
+  background-position: 1rem 50%;
+  background-size: 1.15rem;
+}
+
+/* Password show/hide: icon only, like the mockup (the "Show" text is hidden) */
+.auth-page .password-toggle {
+  font-size: 0;
+  gap: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--a-muted);
+}
+.auth-page .password-toggle svg { width: 1.2rem; height: 1.2rem; }
+.auth-page .password-toggle:hover { color: var(--a-text); border: none; }
+
+/* Chrome autofill should keep the dark field instead of turning white/yellow */
+.auth-page input:-webkit-autofill,
+.auth-page input:-webkit-autofill:hover,
+.auth-page input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--a-text);
+  caret-color: var(--a-text);
+  box-shadow: 0 0 0 1000px var(--a-field-solid) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* ---- Forgot-password link ---- */
+.auth-page .form-options a { color: var(--a-link); font-size: 0.9rem; font-weight: 600; }
+
+/* ---- Primary button: bright blue gradient, glow, and an arrow ---- */
+.auth-page .primary-button,
+.auth-page .signup-submit {
+  height: 3.2rem;
+  border: 1px solid rgba(120, 190, 255, 0.55);
+  border-radius: 0.95rem;
+  background: linear-gradient(90deg, var(--a-btn-1), var(--a-btn-2));
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 34px -8px rgba(34, 150, 255, 0.7);
+}
+.auth-page .primary-button:hover:not(:disabled),
+.auth-page .signup-submit:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 14px 42px -8px rgba(34, 150, 255, 0.85);
+}
+.auth-page .primary-button::after,
+.auth-page .signup-submit::after {
+  content: "\2192";
+  display: inline-block;
+  margin-left: 0.6rem;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+.auth-page .primary-button:hover:not(:disabled)::after,
+.auth-page .signup-submit:hover:not(:disabled)::after { transform: translateX(4px); }
+.auth-page .primary-button:disabled::after,
+.auth-page .signup-submit:disabled::after { content: none; }
+
+/* Calmer blue treatment shared by every authentication screen. */
+.auth-page {
+  --a-bg: #091321;
+  --a-bg-2: #101d30;
+  --a-bg-3: #091321;
+  --a-card-top: rgba(16, 29, 48, .97);
+  --a-card-bot: rgba(16, 29, 48, .97);
+  --a-field: rgba(9, 19, 33, .78);
+  --a-field-solid: #091321;
+  --a-line: #315b91;
+  --a-line-soft: rgba(125, 166, 220, .26);
+  --a-text: #edf4ff;
+  --a-muted: #a7b8d1;
+  --a-link: #72adff;
+  --a-btn-1: #2563c9;
+  --a-btn-2: #3985ec;
+  --a-orb-1: #28599b;
+  --a-orb-2: #183b70;
+  --a-orb-rim: rgba(142, 185, 239, .14);
+  --a-glow: rgba(53, 117, 207, .2);
+  background:
+    radial-gradient(780px 540px at 9% 10%, rgba(39, 91, 159, .14), transparent 68%),
+    radial-gradient(700px 520px at 96% 90%, rgba(34, 88, 155, .1), transparent 70%),
+    linear-gradient(155deg, var(--a-bg-2), var(--a-bg) 62%, var(--a-bg-3));
+}
+html:not(.dark) .auth-page {
+  --a-bg: #f5f8fc;
+  --a-bg-2: #f5f8fc;
+  --a-bg-3: #f5f8fc;
+  --a-card-top: rgba(255, 255, 255, .98);
+  --a-card-bot: rgba(250, 252, 255, .99);
+  --a-field: #f7f9fd;
+  --a-field-solid: #f7f9fd;
+  --a-line: #d6e1ef;
+  --a-line-soft: #d6e1ef;
+  --a-text: #182a43;
+  --a-muted: #65758d;
+  --a-link: #2563c9;
+  --a-orb-1: #a8c7f2;
+  --a-orb-2: #d5e4f8;
+  --a-orb-rim: rgba(255, 255, 255, .38);
+  --a-glow: rgba(68, 119, 190, .11);
+}
+.auth-page--centered::before, .auth-page--centered::after { opacity: .38; }
+.auth-page .auth-card {
+  border-color: var(--a-line-soft);
+  box-shadow: 0 1px 2px rgba(16, 42, 77, .05), 0 0 48px -18px color-mix(in srgb, var(--a-btn-2) 46%, transparent), 0 22px 58px -34px rgba(16, 42, 77, .3);
+}
+.auth-page .primary-button, .auth-page .signup-submit {
+  border-color: transparent;
+  background: linear-gradient(110deg, var(--a-btn-1), var(--a-btn-2));
+  box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--a-btn-1) 65%, transparent);
+}
+.auth-page .primary-button:hover:not(:disabled), .auth-page .signup-submit:hover:not(:disabled) {
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--a-btn-1) 72%, transparent);
+}
+
+/* ---- "or" divider + vertically stacked social buttons ---- */
+.auth-page .signup-divider { margin: 1.5rem 0 1.25rem; gap: 1rem; color: var(--a-muted); }
+.auth-page .social-auth-grid { gap: 0.9rem; }
+.auth-page .social-auth-button,
+.auth-page .social-button {
+  height: 3rem;
+  border-radius: 0.9rem;
+  font-weight: 600;
+}
+.auth-page .social-auth-button:hover:not(:disabled),
+.auth-page .social-button:hover:not(:disabled) {
+  border-color: var(--a-link);
+  background: color-mix(in srgb, var(--a-link) 10%, var(--a-field));
+}
+
+/* ---- Footer line inside the card ---- */
+.auth-page .signup-footer { margin-top: 1.5rem; color: var(--a-muted); }
+.auth-page .signup-footer a {
+  margin-left: 0.4rem;
+  color: var(--a-link);
+  font-weight: 700;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 1px;
+}
+
+/* ---- Other auth pages (forgot password etc.) share the same field look ---- */
+.auth-page .input-wrapper { background: var(--a-field); border-color: var(--a-line-soft); }
+.auth-page .input-wrapper:focus-within {
+  border-color: var(--a-link);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--a-link) 22%, transparent);
+}
+
+@media (max-width: 520px) {
+  .auth-page .auth-card { padding: 1.75rem 1.25rem 1.5rem; border-radius: 1.4rem; }
+  .auth-logo__mark { width: 3rem; }
+  .auth-logo__word { font-size: 1.6rem; }
 }
