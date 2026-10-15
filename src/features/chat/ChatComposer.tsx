@@ -208,7 +208,7 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
             }}
           >
             <span>{activeModel}</span>
-            <ChevronDown size={14} />
+            <ChevronDown size={14} className={clsx('transition-transform duration-150', showModelMenu && 'rotate-180')} />
           </button>
           {showModelMenu && (
             <div className="composer__model-menu" role="menu">
@@ -282,7 +282,12 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
             >
               {file.type.startsWith('image/') ? <ImageIcon size={12} /> : <FileText size={12} />}
               <span className="truncate max-w-[140px]">{file.name}</span>
-              <button type="button" onClick={() => removeAttachment(index)} className="hover:text-foreground">
+              <button
+                type="button"
+                onClick={() => removeAttachment(index)}
+                aria-label={t('composer.removeAttachment', { name: file.name })}
+                className="rounded-sm p-0.5 text-muted-foreground transition-colors hover:bg-background/60 hover:text-foreground"
+              >
                 <X size={12} />
               </button>
             </span>

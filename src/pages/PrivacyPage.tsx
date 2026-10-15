@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 export default function PrivacyPage() {
   const { t } = useTranslation();
   return (
-    <main className="legal-page">
-      <section className="legal-card">
+    <main className="auth-page legal-page">
+      <section className="auth-card legal-card">
         <p className="legal-eyebrow">{t('legal.privacy.eyebrow')}</p>
         <h1>{t('legal.privacy.title')}</h1>
         <p>

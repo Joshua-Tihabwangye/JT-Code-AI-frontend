@@ -28,9 +28,6 @@ export function TimezoneField({ form }: Props) {
           </option>
         ))}
       </select>
-      <p className="field-help">
-        {t('signup.timezone.help')}
-      </p>
       {form.formState.errors.timezone?.message && (
         <p className="field-error">{t(form.formState.errors.timezone.message)}</p>
       )}

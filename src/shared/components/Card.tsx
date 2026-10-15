@@ -1,13 +1,23 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 
-type CardProps = HTMLAttributes<HTMLDivElement>;
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /** Adds a gentle lift on hover. Use it only for cards the person can choose or click. */
+  interactive?: boolean;
+}
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, interactive = false, ...props }, ref) => (
     <div
       ref={ref}
-      className={clsx('rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow hover:shadow-md', className)}
+      className={clsx(
+        'rounded-lg border bg-card text-card-foreground shadow-sm',
+        'transition-all duration-200 ease-out',
+        interactive
+          ? 'hover:-translate-y-0.5 hover:shadow-lg hover:border-ring/30'
+          : '',
+        className
+      )}
       {...props}
     />
   )
@@ -30,7 +40,7 @@ CardTitle.displayName = 'CardTitle';
 
 export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={clsx('text-sm text-muted-foreground', className)} {...props} />
+    <p ref={ref} className={clsx('text-sm text-muted-foreground leading-relaxed', className)} {...props} />
   )
 );
 CardDescription.displayName = 'CardDescription';

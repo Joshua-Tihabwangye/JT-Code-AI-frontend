@@ -11,7 +11,9 @@ interface ErrorStateProps {
 export function ErrorState({ title = 'Something went wrong', description, onRetry, retryLabel = 'Try again' }: ErrorStateProps) {
   return (
     <div className="error-state" role="alert">
-      <AlertTriangle size={28} className="text-destructive" aria-hidden />
+      <div className="error-state-icon" aria-hidden>
+        <AlertTriangle size={28} className="text-destructive" />
+      </div>
       <h3 className="error-state-title">{title}</h3>
       {description && <p className="error-state-description">{description}</p>}
       {onRetry && (

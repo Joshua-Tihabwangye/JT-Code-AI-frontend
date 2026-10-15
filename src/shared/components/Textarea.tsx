@@ -22,8 +22,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={clsx(
-            'flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 transition-all',
-            error && 'border-destructive focus-visible:ring-destructive',
+            'flex min-h-[80px] w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm leading-relaxed',
+            'placeholder:text-muted-foreground',
+            'transition-all duration-150 ease-out',
+            'hover:border-ring/40',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:border-ring',
+            'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-input',
+            error && 'border-destructive focus-visible:ring-destructive hover:border-destructive',
             className
           )}
           aria-invalid={error ? 'true' : 'false'}
@@ -31,7 +36,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p id={`${textareaId}-error`} className="mt-1.5 text-sm text-destructive" role="alert">
+          <p id={`${textareaId}-error`} className="mt-1.5 text-sm text-destructive alert-enter" role="alert">
             {error}
           </p>
         )}

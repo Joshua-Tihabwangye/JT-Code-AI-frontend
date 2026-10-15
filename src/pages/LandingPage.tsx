@@ -1,13 +1,31 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Sparkles, Code2, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/lib/supabase';
 
 export function LandingPage() {
   const { isSignedIn } = useAuth();
   const { t } = useTranslation();
 
+  const features = [
+    { title: t('landing.feature1Title'), desc: t('landing.feature1Desc'), Icon: Sparkles },
+    { title: t('landing.feature2Title'), desc: t('landing.feature2Desc'), Icon: Code2 },
+    { title: t('landing.feature3Title'), desc: t('landing.feature3Desc'), Icon: ShieldCheck },
+  ];
+
   return (
     <main className="landing">
+      {/* Purely decorative — floating bubble orbs behind the hero, no data or logic */}
+      <div className="landing-bubbles" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+
       <header className="landing-header">
         <div className="brand"><span className="brand-mark">JT</span><span>JT-Code</span></div>
         <div className="header-actions">
@@ -32,9 +50,15 @@ export function LandingPage() {
         )}
       </section>
       <section className="feature-grid" aria-label={t('landing.foundationsLabel')}>
-        <article><h2>{t('landing.feature1Title')}</h2><p>{t('landing.feature1Desc')}</p></article>
-        <article><h2>{t('landing.feature2Title')}</h2><p>{t('landing.feature2Desc')}</p></article>
-        <article><h2>{t('landing.feature3Title')}</h2><p>{t('landing.feature3Desc')}</p></article>
+        {features.map(({ title, desc, Icon }) => (
+          <article key={title}>
+            <div className="feature-icon" aria-hidden="true">
+              <Icon size={20} />
+            </div>
+            <h2>{title}</h2>
+            <p>{desc}</p>
+          </article>
+        ))}
       </section>
     </main>
   );

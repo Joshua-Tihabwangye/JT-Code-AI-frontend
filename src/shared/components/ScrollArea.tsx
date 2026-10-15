@@ -48,8 +48,8 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
             <div
               ref={scrollbarRef}
               className={clsx(
-                'absolute right-0 top-0 bottom-0 w-2 transition-opacity duration-200',
-                'bg-transparent hover:bg-muted/30 rounded-l'
+                'absolute right-0 top-0 bottom-0 w-2.5 transition-opacity duration-200',
+                'bg-transparent hover:bg-muted/40 rounded-l-full'
               )}
               style={{
                 opacity: showScrollbar ? 1 : 0,
@@ -57,17 +57,21 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
               }}
             >
               <div
-                className="absolute right-1 h-6 w-1.5 rounded-full bg-border/50 transition-all duration-200"
+                className="absolute right-1 w-1.5 rounded-full bg-border transition-all duration-200 hover:bg-muted-foreground/60"
                 style={{
-                  top: scrollAreaRef.current ? (scrollY / scrollAreaRef.current.scrollHeight) * 100 : 0,
-                  height: scrollAreaRef.current ? `${(scrollAreaRef.current.clientHeight / scrollAreaRef.current.scrollHeight) * 100}%` : 'auto',
+                  top: scrollAreaRef.current
+                    ? `${(scrollY / scrollAreaRef.current.scrollHeight) * 100}%`
+                    : 0,
+                  height: scrollAreaRef.current
+                    ? `${(scrollAreaRef.current.clientHeight / scrollAreaRef.current.scrollHeight) * 100}%`
+                    : 'auto',
                 }}
               />
             </div>
             <div
               className={clsx(
-                'absolute left-0 right-0 bottom-0 h-2 transition-opacity duration-200',
-                'bg-transparent hover:bg-muted/30 rounded-t'
+                'absolute left-0 right-0 bottom-0 h-2.5 transition-opacity duration-200',
+                'bg-transparent hover:bg-muted/40 rounded-t-full'
               )}
               style={{
                 opacity: showScrollbar ? 1 : 0,
@@ -75,10 +79,14 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
               }}
             >
               <div
-                className="absolute bottom-1 left-0 h-1.5 w-6 rounded-full bg-border/50 transition-all duration-200"
+                className="absolute bottom-1 h-1.5 rounded-full bg-border transition-all duration-200 hover:bg-muted-foreground/60"
                 style={{
-                  left: scrollAreaRef.current ? (scrollX / scrollAreaRef.current.scrollWidth) * 100 : 0,
-                  width: scrollAreaRef.current ? `${(scrollAreaRef.current.clientWidth / scrollAreaRef.current.scrollWidth) * 100}%` : 'auto',
+                  left: scrollAreaRef.current
+                    ? `${(scrollX / scrollAreaRef.current.scrollWidth) * 100}%`
+                    : 0,
+                  width: scrollAreaRef.current
+                    ? `${(scrollAreaRef.current.clientWidth / scrollAreaRef.current.scrollWidth) * 100}%`
+                    : 'auto',
                 }}
               />
             </div>

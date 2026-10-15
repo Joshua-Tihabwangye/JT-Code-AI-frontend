@@ -8,7 +8,7 @@ import { apiErrorMessage } from '@/lib/api/http';
 import { getOrganization, updateOrganization } from '@/features/settings/api';
 import { useApiClient } from '@/lib/api/client';
 import { config } from '@/lib/config';
-import { Alert, Button, Input, PasswordInput, Select } from '@/shared/components';
+import { Alert, Button, Input, PasswordInput, PhoneNumberInput, Select, Spinner } from '@/shared/components';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -170,7 +170,7 @@ export function SettingsPage() {
           <h1>{t('settings.title')}</h1>
           <p className="text-sm text-muted-foreground mt-1">{t('settings.subtitle')}</p>
         </div>
-        {!editing && (
+        {!editing && !account.isPending && (
           <Button type="button" variant="outline" size="sm" onClick={() => setEditing(true)} aria-label={t('settings.editProfile')}>
             <Pencil size={16} aria-hidden />
             <span>{t('settings.edit')}</span>
@@ -190,18 +190,24 @@ export function SettingsPage() {
       )}
       {account.isError && <Alert variant="destructive" className="mb-4">{apiErrorMessage(account.error)}</Alert>}
 
-      <div className="space-y-10 max-w-4xl mx-auto">
-        <div className="flex items-center gap-4">
+      <div className="settings-layout space-y-10 max-w-4xl mx-auto">
+        {account.isPending && (
+          <div className="settings-loading" role="status" aria-live="polite">
+            <Spinner size="sm" />
+            <span>{t('common.loading')}</span>
+          </div>
+        )}
+        <div className="settings-profile-summary flex items-center gap-4">
           <label
-            className={`relative ${editing ? 'cursor-pointer group' : 'cursor-default'}`}
+            className={`settings-avatar-button relative ${editing ? 'cursor-pointer group' : 'cursor-default'}`}
             title={editing ? t('settings.changePhoto') : undefined}
             aria-label={editing ? t('settings.changePhoto') : undefined}
           >
-            <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition group-hover:opacity-80">
+            <div className="settings-avatar-frame w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition group-hover:opacity-80">
               {avatarUrl ? (
                 <img src={avatarUrl} alt={t('settings.profilePicture')} className="w-full h-full object-cover" />
               ) : (
-                <User size={36} className="text-muted-foreground" />
+                <User size={36} className="text-muted-foreground" aria-hidden="true" />
               )}
             </div>
             {editing && (
@@ -234,7 +240,7 @@ export function SettingsPage() {
           </div>
         </div>
 
-        <section>
+        <section className="settings-panel">
           <div className="mb-5">
             <h2 className="text-lg font-semibold text-foreground">{t('settings.profileInformation')}</h2>
             <p className="text-sm text-muted-foreground">{t('settings.profileInformationDesc')}</p>
@@ -247,32 +253,39 @@ export function SettingsPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <Input label={t('settings.email')} type="email" value={account.data?.email ?? ''} readOnly aria-readonly="true" />
               <div className="w-full">
-                <label htmlFor="country" className="block text-sm font-medium text-foreground mb-1.5">{t('settings.country')}</label>
-                <Select id="country" options={countryOptions} value={form.countryCode} disabled={!editing} onChange={(e) => changeCountry(e.target.value)} />
+                <label htmlFor="country" className="block text-sm font-medium text-foreground mb-1.5">
+                  {t('settings.country')}
+                </label>
+                <Select
+                  id="country"
+                  options={countryOptions}
+                  value={form.countryCode}
+                  disabled={!editing}
+                  onChange={(e) => changeCountry(e.target.value)}
+                />
                 <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.countryHelp')}</p>
               </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="w-full">
-                <label htmlFor="contact" className="block text-sm font-medium text-foreground mb-1.5">{t('settings.contact')}</label>
-                <input
+                <PhoneNumberInput
                   id="contact"
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
+                  label={t('settings.contact')}
+                  dialCode={selectedCountry?.dialCode}
                   value={form.contact}
                   placeholder={selectedCountry?.phonePlaceholder ?? t('settings.contact')}
                   onChange={(e) => setForm({ ...form, contact: e.target.value })}
                   onBlur={(e) => formatContact(e.target.value)}
                   disabled={!editing}
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-60"
                 />
                 <p className="mt-1.5 text-sm text-muted-foreground">
                   {t('settings.contactHelp', { country: selectedCountry?.name ?? t('settings.yourCountry') })}
                 </p>
               </div>
               <div className="w-full">
-                <label htmlFor="timezone" className="block text-sm font-medium text-foreground mb-1.5">{t('settings.timezone')}</label>
+                <label htmlFor="timezone" className="block text-sm font-medium text-foreground mb-1.5">
+                  {t('settings.timezone')}
+                </label>
                 <Select
                   id="timezone"
                   options={timezoneOptions}
@@ -357,7 +370,7 @@ export function SettingsPage() {
           </form>
         </section>
 
-        <section>
+        <section className="settings-danger-panel">
           <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>
           <p className="text-sm text-muted-foreground mb-4">{t('settings.deleteAccountDesc')}</p>
           <Button

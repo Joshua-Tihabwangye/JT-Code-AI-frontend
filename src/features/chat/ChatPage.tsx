@@ -18,24 +18,45 @@ interface ThreadMessage {
   attachments?: string[];
 }
 
-function useTypingText(text: string, speed = 60) {
-  const [displayed, setDisplayed] = useState('');
+/**
+ * Types out a sequence of text segments one after another, so a headline
+ * can be split into differently-styled parts (e.g. a plain lead-in and a
+ * colored accent) while still animating as one continuous typing effect.
+ */
+function useTypingSequence(segments: string[], speed = 60) {
+  const [segmentIndex, setSegmentIndex] = useState(0);
+  const [displayed, setDisplayed] = useState<string[]>(() => segments.map(() => ''));
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let i = 0;
-    setDisplayed('');
+    setDisplayed(segments.map(() => ''));
+    setSegmentIndex(0);
     setDone(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [segments.join('\u0000')]);
+
+  useEffect(() => {
+    if (done || segmentIndex >= segments.length) {
+      if (!done) setDone(true);
+      return;
+    }
+    const text = segments[segmentIndex] ?? '';
+    let i = 0;
     const interval = setInterval(() => {
       i += 1;
-      setDisplayed(text.slice(0, i));
+      setDisplayed((prev) => {
+        const next = [...prev];
+        next[segmentIndex] = text.slice(0, i);
+        return next;
+      });
       if (i >= text.length) {
         clearInterval(interval);
-        setDone(true);
+        setSegmentIndex((prev) => prev + 1);
       }
     }, speed);
     return () => clearInterval(interval);
-  }, [text, speed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [segmentIndex, speed, done]);
 
   return { displayed, done };
 }
@@ -57,7 +78,8 @@ export function ChatPage() {
   const [status, setStatus] = useState('');
   const [loadError, setLoadError] = useState('');
   const endRef = useRef<HTMLDivElement>(null);
-  const headline = useTypingText(t('chat.headline'), 160);
+  const headline = useTypingSequence([t('chat.headlineLead'), t('chat.headlineAccent')], 160);
+  const persistenceMode = isSignedIn ? 'persistent' : 'ephemeral';
 
   // Open a conversation from History (/app/chat?c=<id>), or start fresh.
   useEffect(() => {
@@ -155,9 +177,8 @@ export function ChatPage() {
   }
 
   const hasThread = messages.length > 0 || !!loadError;
-
   return (
-    <section className="chat-workspace" data-persistence-mode={isSignedIn ? 'persistent' : 'ephemeral'}>
+    <section className="chat-workspace" data-persistence-mode={persistenceMode}>
       <ChatBackground />
 
       {hasThread ? (
@@ -206,7 +227,8 @@ export function ChatPage() {
           <section className="chat-landing-content">
             <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 w-[520px] h-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_70%)] opacity-[0.08] dark:opacity-[0.18] blur-3xl" />
             <h1 className="chat-headline relative text-center my-4">
-              {headline.displayed}
+              {headline.displayed[0]}
+              <span className="chat-headline-accent">{headline.displayed[1]}</span>
               {!headline.done && <span className="chat-cursor" />}
             </h1>
             <div className="relative w-full max-w-[720px] flex flex-col items-center gap-4 mt-12">
