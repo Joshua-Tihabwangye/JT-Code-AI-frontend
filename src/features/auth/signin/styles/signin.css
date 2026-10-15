@@ -9,3 +9,29 @@
   font-weight: 600;
   font-size: 0.85rem;
 }
+
+/* Email/password now leads, so it sits right under the header instead
+   of waiting on the social buttons and divider above it. */
+.signin-form--primary {
+  margin-top: 0.35rem;
+}
+
+/* The divider now separates the form from the social row underneath,
+   so it needs breathing room on both sides instead of sitting flush. */
+.signin-divider--secondary {
+  margin: 1.5rem 0 1rem;
+}
+
+/* Keep the sign-in provider buttons in the same vertical layout used by sign-up. */
+.social-auth-grid--vertical {
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+}
+
+/* The sign-in card is narrower than the shared 640px auth shell panel.
+   Capped and centered on its own, so the sign-up page (which still
+   needs the wider two-column field grid) is unaffected. */
+.signin-card {
+  max-width: 400px;
+  margin-inline: auto;
+}

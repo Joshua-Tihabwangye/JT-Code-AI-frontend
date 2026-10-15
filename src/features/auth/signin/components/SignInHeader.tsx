@@ -5,7 +5,6 @@ export function SignInHeader() {
   return (
     <header className="signup-header">
       <h1>{t('signin.title')}</h1>
-      <p>{t('signin.subtitle')}</p>
     </header>
   );
 }

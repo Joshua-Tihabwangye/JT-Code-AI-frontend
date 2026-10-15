@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { CountryCode } from 'libphonenumber-js';
-import { Phone } from 'lucide-react';
 import type { UseFormReturn } from 'react-hook-form';
 import type { SignupSchema } from '../schema';
 import { formatPhoneNumberForCountry } from '../../lib/phone';
 import { getCountryMetadata } from '../../lib/countryMetadata';
-import { Input } from '@/shared/components/Input';
+import { PhoneNumberInput } from '@/shared/components';
 
 interface Props {
   form: UseFormReturn<SignupSchema>;
@@ -25,14 +24,11 @@ export function PhoneField({ form }: Props) {
 
   return (
     <div className="form-field">
-      <Input
+      <PhoneNumberInput
         id="contact"
         label={t('signup.phone.label')}
-        type="tel"
-        inputMode="tel"
-        autoComplete="tel"
+        dialCode={country?.dialCode}
         placeholder={placeholder}
-        leftIcon={<Phone size={16} aria-hidden />}
         {...contactField}
         onBlur={(event) => {
           void contactField.onBlur(event);

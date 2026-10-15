@@ -324,7 +324,7 @@ export function ImagePlaygroundPage() {
     'w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-all';
 
   return (
-    <section className="workspace">
+    <section className="workspace image-playground">
       <header className="workspace-header">
         <div>
           <p className="eyebrow">{t('images.eyebrow')}</p>
@@ -398,21 +398,33 @@ export function ImagePlaygroundPage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
             <div className="space-y-4">
               {!inputImagePreview ? (
-                <div className="border-2 border-dashed border-border rounded-md p-8 text-center cursor-pointer transition-colors hover:border-primary hover:bg-secondary/30" onClick={() => document.getElementById('image-edit-upload')?.click()}>
-                  <Upload size={32} className="mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">{t('images.uploadToEdit')}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{t('images.fileTypesHint')}</p>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-controls="image-edit-upload"
+                  className="image-upload-zone"
+                  onClick={() => document.getElementById('image-edit-upload')?.click()}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      document.getElementById('image-edit-upload')?.click();
+                    }
+                  }}
+                >
+                  <span className="image-upload-icon"><Upload size={22} /></span>
+                  <p className="image-upload-title">{t('images.uploadToEdit')}</p>
+                  <p className="image-upload-hint">{t('images.fileTypesHint')}</p>
                   <input id="image-edit-upload" type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </div>
               ) : (
-                <div className="relative rounded-md overflow-hidden border border-border">
+                <div className="image-upload-preview">
                   <img src={inputImagePreview} alt="Upload preview" className="w-full max-h-[200px] object-cover" />
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
                     onClick={clearImage}
-                    className="absolute top-2 right-2 w-7 h-7 p-0"
+                  className="absolute top-3 right-3 w-8 h-8 p-0"
                   >
                     <X size={14} />
                   </Button>
@@ -456,21 +468,33 @@ export function ImagePlaygroundPage() {
           <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
             <div className="space-y-4">
               {!inputImagePreview ? (
-                <div className="border-2 border-dashed border-border rounded-md p-8 text-center cursor-pointer transition-colors hover:border-primary hover:bg-secondary/30" onClick={() => document.getElementById('image-understand-upload')?.click()}>
-                  <Upload size={32} className="mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">{t('images.uploadToAnalyze')}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{t('images.fileTypesHint')}</p>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-controls="image-understand-upload"
+                  className="image-upload-zone"
+                  onClick={() => document.getElementById('image-understand-upload')?.click()}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      document.getElementById('image-understand-upload')?.click();
+                    }
+                  }}
+                >
+                  <span className="image-upload-icon"><Upload size={22} /></span>
+                  <p className="image-upload-title">{t('images.uploadToAnalyze')}</p>
+                  <p className="image-upload-hint">{t('images.fileTypesHint')}</p>
                   <input id="image-understand-upload" type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </div>
               ) : (
-                <div className="relative rounded-md overflow-hidden border border-border">
+                <div className="image-upload-preview">
                   <img src={inputImagePreview} alt="Upload preview" className="w-full max-h-[200px] object-cover" />
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
                     onClick={clearImage}
-                    className="absolute top-2 right-2 w-7 h-7 p-0"
+                  className="absolute top-3 right-3 w-8 h-8 p-0"
                   >
                     <X size={14} />
                   </Button>

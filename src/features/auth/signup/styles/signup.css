@@ -27,6 +27,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.65rem;
 }
+.social-auth-grid--vertical {
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+}
 .social-auth-button {
   display: flex;
   align-items: center;
@@ -155,6 +159,28 @@
   padding: 0 0.85rem;
   color: var(--text);
   font-size: 0.95rem;
+}
+.password-strength {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.password-strength li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--muted-text);
+  transition: color 0.15s ease;
+}
+.password-strength li.is-met {
+  color: var(--success);
+}
+.password-strength svg {
+  flex: none;
 }
 .password-toggle {
   display: inline-flex;

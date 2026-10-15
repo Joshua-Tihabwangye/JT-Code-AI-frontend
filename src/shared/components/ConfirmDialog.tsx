@@ -25,22 +25,24 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   return (
     <Modal
-      isOpen={open}
-      onClose={onCancel}
-      title={title}
-      description={typeof description === 'string' ? description : undefined}
-      size="sm"
-      role="alertdialog"
-      aria-modal="true"
-    >
+
+  isOpen={open}
+  onClose={onCancel}
+  title={title}
+  description={typeof description === 'string' ? description : undefined}
+  size="sm"
+  role="alertdialog"
+  aria-modal="true"
+  hideCloseButton
+>
       {description && typeof description !== 'string' ? (
-        <div className="text-sm text-muted-foreground">{description}</div>
+        <div className="text-sm text-muted-foreground leading-relaxed">{description}</div>
       ) : null}
-      <div className="mt-5 flex justify-end gap-2">
+      <div className="mt-6 flex justify-end gap-2.5">
         <Button variant="outline" onClick={onCancel}>
           {cancelLabel}
         </Button>
-        <Button variant={destructive ? 'destructive' : 'primary'} onClick={onConfirm}>
+        <Button variant={destructive ? 'destructive' : 'primary'} onClick={onConfirm} autoFocus>
           {confirmLabel}
         </Button>
       </div>

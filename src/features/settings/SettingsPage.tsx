@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useUser, supabase } from '@/lib/supabase';
 import { useApiClient } from '@/lib/api/client';
 import { getUserProfile, updateUserProfile, deleteAccount } from '@/features/settings/api';
-import { Button, Input, Select, Alert } from '@/shared/components';
+import { Button, Input, Select, Alert, PhoneNumberInput, Spinner } from '@/shared/components';
 import { User, Pencil } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { apiErrorMessage } from '@/lib/api/client';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 import type { UserProfile } from '@/features/settings/api';
@@ -29,6 +30,7 @@ export function SettingsPage() {
   const [success, setSuccess] = useState('');
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
+  const avatarInputRef = useRef<HTMLInputElement>(null);
 
   const user = useQuery({ queryKey: ['user-profile'], queryFn: () => getUserProfile(client) });
 
@@ -96,6 +98,12 @@ export function SettingsPage() {
 
   function handleProfileSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const hasProfileContent = [profileForm.first_name, profileForm.last_name, profileForm.contact]
+      .some((value) => typeof value === 'string' && value.trim().length > 0);
+    if (!hasProfileContent) {
+      setError('Add a first name, last name, or contact number before saving your profile.');
+      return;
+    }
     const payload = { ...profileForm };
     delete payload.email;
     if (avatarUrl) {
@@ -175,7 +183,7 @@ export function SettingsPage() {
           <h1>{t('settings.title')}</h1>
           <p className="text-sm text-muted-foreground mt-1">{t('settings.subtitle')}</p>
         </div>
-        {!editing && (
+        {!editing && !user.isPending && (
           <Button type="button" variant="outline" size="sm" onClick={() => setEditing(true)} aria-label={t('settings.editProfile')}>
             <Pencil size={16} aria-hidden />
             <span>{t('settings.edit')}</span>
@@ -194,26 +202,52 @@ export function SettingsPage() {
         </Alert>
       )}
 
-      <div className="space-y-10 max-w-4xl mx-auto">
-        <div className="flex items-center gap-4">
-          <label className={`relative ${editing ? 'cursor-pointer group' : 'cursor-default'}`} title={editing ? t('settings.changePhoto') : undefined} aria-label={editing ? t('settings.changePhoto') : undefined}>
-            <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition group-hover:opacity-80">
+      <div className="settings-layout max-w-4xl mx-auto">
+        {user.isPending && (
+          <div className="settings-loading" role="status" aria-live="polite">
+            <Spinner size="sm" />
+            <span>{t('common.loading')}</span>
+          </div>
+        )}
+        {user.isError && (
+          <Alert variant="destructive" role="alert">
+            {apiErrorMessage(user.error)}
+          </Alert>
+        )}
+        <div className="settings-profile-summary">
+          {editing ? (
+            <button
+              type="button"
+              className="settings-avatar-button"
+              title={t('settings.changePhoto')}
+              onClick={() => avatarInputRef.current?.click()}
+              aria-label={t('settings.changePhoto')}
+            >
+              <span className="settings-avatar-frame">
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <User size={36} className="text-muted-foreground" aria-hidden="true" />
+                )}
+              </span>
+            </button>
+          ) : (
+            <div className="settings-avatar-frame">
               {avatarUrl ? (
-                <img src={avatarUrl} alt="Profile picture" className="w-full h-full object-cover" />
+                <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
               ) : (
-                <User size={36} className="text-muted-foreground" />
+                <User size={36} className="text-muted-foreground" aria-hidden="true" />
               )}
             </div>
-            {editing && <input type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />}
-          </label>
+          )}
+          {editing && <input ref={avatarInputRef} type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />}
           <div>
             <div className="text-base font-semibold text-foreground">{displayName}</div>
             <div className="text-sm text-muted-foreground">{supabaseUser?.email || profileForm.email}</div>
-            {editing && <p className="text-xs text-muted-foreground mt-1">{t('settings.changePhoto')}</p>}
           </div>
         </div>
 
-        <section>
+        <section className="settings-panel">
           <div className="mb-5">
             <h2 className="text-lg font-semibold text-foreground">{t('settings.profileInformation')}</h2>
             <p className="text-sm text-muted-foreground">{t('settings.profileInformationDesc')}</p>
@@ -242,31 +276,19 @@ export function SettingsPage() {
                   disabled={!editing}
                   onChange={(e) => handleCountryChange(e.target.value)}
                 />
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {t('settings.countryHelp')}
-                </p>
               </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="w-full">
-                <label htmlFor="contact" className="block text-sm font-medium text-foreground mb-1.5">
-                  {t('settings.contact')}
-                </label>
-                  <input
-                    id="contact"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    value={profileForm.contact || ''}
-                    placeholder={selectedCountry?.phonePlaceholder ?? t('settings.contact')}
-                    onChange={(e) => handleProfileChange('contact', e.target.value)}
-                    onBlur={(e) => handleContactBlur(e.target.value)}
-                    disabled={!editing}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:opacity-60"
-                  />
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {t('settings.contactHelp', { country: selectedCountry?.name ?? t('settings.yourCountry') })}
-                </p>
+                <PhoneNumberInput
+                  id="contact"
+                  label={t('settings.contact')}
+                  dialCode={selectedCountry?.dialCode}
+                  value={profileForm.contact || ''}
+                  onChange={(e) => handleProfileChange('contact', e.target.value)}
+                  onBlur={(e) => handleContactBlur(e.target.value)}
+                  disabled={!editing}
+                />
               </div>
               <div className="w-full">
                 <label htmlFor="timezone" className="block text-sm font-medium text-foreground mb-1.5">
@@ -280,9 +302,6 @@ export function SettingsPage() {
                     disabled={!editing || !timezoneOptions.length}
                     onChange={(e) => handleProfileChange('timezone', e.target.value)}
                   />
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {t('settings.timezoneHelp')}
-                </p>
               </div>
             </div>
 
@@ -297,7 +316,7 @@ export function SettingsPage() {
           </form>
         </section>
 
-        <section>
+        <section className="settings-danger-panel">
           <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>
           <p className="text-sm text-muted-foreground mb-4">{t('settings.deleteAccountDesc')}</p>
           <Button

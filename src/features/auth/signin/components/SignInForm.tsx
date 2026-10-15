@@ -51,23 +51,14 @@ export function SignInForm({ onSignedIn }: Props) {
   const isSubmitting = form.formState.isSubmitting || !!loadingProvider;
 
   return (
-    <section className="signup-card auth-card">
+    <section className="signup-card auth-card signin-card">
       <SignInHeader />
 
-      <SocialAuthButtons
-        onGoogle={() => void handleOAuth('google')}
-        onApple={() => void handleOAuth('apple')}
-        disabled={isSubmitting}
-        loadingProvider={loadingProvider}
-      />
-
-      <div className="signup-divider">
-        <span />
-        <span>{t('common.or')}</span>
-        <span />
-      </div>
-
-      <form onSubmit={(event) => { void form.handleSubmit(submit)(event); }} noValidate className="signup-form">
+      <form
+        onSubmit={(event) => { void form.handleSubmit(submit)(event); }}
+        noValidate
+        className="signup-form signin-form--primary"
+      >
         <EmailField form={form} />
         <PasswordField form={form} />
 
@@ -79,6 +70,20 @@ export function SignInForm({ onSignedIn }: Props) {
 
         <SubmitButton isSubmitting={isSubmitting} label={t('signin.submit')} />
       </form>
+
+      <div className="signup-divider signin-divider--secondary">
+        <span />
+        <span>{t('common.or')}</span>
+        <span />
+      </div>
+
+      <SocialAuthButtons
+        onGoogle={() => void handleOAuth('google')}
+        onApple={() => void handleOAuth('apple')}
+        disabled={isSubmitting}
+        loadingProvider={loadingProvider}
+        layout="vertical"
+      />
 
       <footer className="signup-footer">
         <span>{t('signin.noAccount')}</span>
