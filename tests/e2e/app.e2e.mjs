@@ -340,13 +340,19 @@ async function main() {
       await domClick(page, '[data-testid="tab-reports"]');
       await page.waitForSelector('[data-testid="saved-charts"] .viz-card', { timeout: 30_000 });
       await page.waitForSelector('[data-testid="report-export"] [data-testid="export-xlsx"]');
-      // The new module pages in dark mode.
+      // The new module pages in dark mode (the assistant drawer from the step before is closed first).
+      if (await page.$('[data-testid="assistant-panel"]')) await page.keyboard.press('Escape');
+      if (await page.$('[data-testid="assistant-panel"]')) await domClick(page, '.viz-drawer-backdrop');
+      await page.waitForFunction(() => !document.querySelector('[data-testid="assistant-panel"]'), { timeout: 10_000 });
       await domClick(page, '.sidebar-footer button');
       await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       await fitsOnScreen(page, 'reports-dark');
-      for (const tab of ['gallery', 'explore', 'data']) {
+      for (const [tab, root] of [['gallery', 'visualize-gallery'], ['explore', 'explore'], ['data', 'visualize-data']]) {
         await domClick(page, `[data-testid="tab-${tab}"]`);
-        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await page.waitForSelector(`[data-testid="${root}"]`);
+        await page.waitForFunction(() => document.querySelectorAll('.dash-tile').length === 0 || (!document.querySelector('.dash-tile[data-status="loading"]') && document.querySelector('.dash-tile canvas')), { timeout: 60_000 });
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         await fitsOnScreen(page, `${tab}-dark`);
       }
       await domClick(page, '.sidebar-footer button');

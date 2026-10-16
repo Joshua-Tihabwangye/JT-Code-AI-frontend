@@ -152,7 +152,7 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
                         onClick={() => openStudio({ chartType: action.chartType, fields: action.fields, options: action.options, title: action.title })}
                         data-testid="assistant-open-studio"
                       >
-                        <Wand2 size={14} aria-hidden /> {t('visualize.assistant.openStudio', 'Open in Studio')}
+                        <Wand2 size={14} aria-hidden /> {t('visualize.assistant.openExplore', 'Open in Explore')}
                       </Button>
                     </div>
                   );
