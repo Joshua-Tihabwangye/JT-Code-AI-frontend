@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { useRepository, type DashboardBookmarkState, type DashboardFieldRef, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
+import { useRepository, type RenderVisualsInput, type VisualsResponse, type DashboardBookmarkState, type DashboardFieldRef, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardTheme, type DashboardVisual, type VisualOutput } from '@/lib/data';
 import { useDebounced } from '../controls';
 import { CONTROL_TYPES, LOCAL_TYPES, renderContext, resolveVisual, type ParameterValues } from './customize';
 import type { LocalContext } from './local';
@@ -129,6 +129,7 @@ export function useDashboardRuntime({
   interactive = true,
   extraFilters = [],
   personal,
+  render,
 }: {
   spec: DashboardSpec | undefined;
   page: DashboardPage | undefined;
@@ -139,6 +140,8 @@ export function useDashboardRuntime({
   extraFilters?: DashboardFilter[];
   /** A viewer's personal changes per visual (type, fields, format). */
   personal?: Record<string, Partial<DashboardVisual>>;
+  /** Draws the page some other way (a public shared link); gets the parameter values by id too. */
+  render?: { key: string; draw: (input: RenderVisualsInput, signal: AbortSignal, parameters: ParameterValues) => Promise<VisualsResponse> };
 }) {
   const visualize = useRepository('visualize');
   const [slicers, setSlicers] = useState<Record<string, SlicerValue>>({});
@@ -213,9 +216,13 @@ export function useDashboardRuntime({
     };
   }, [spec, page, visuals, outputs, slicers, selection, mode, dashboardId, effective, drill, extraFilters, parameters]);
   const debounced = useDebounced(request, 150);
+  const parametersRef = useRef(parameters);
+  useEffect(() => {
+    parametersRef.current = parameters;
+  }, [parameters]);
   const rendered = useQuery({
-    queryKey: ['visualize', 'visuals', debounced],
-    queryFn: ({ signal }) => visualize.renderVisuals(debounced!, signal),
+    queryKey: ['visualize', 'visuals', render?.key ?? '', debounced],
+    queryFn: ({ signal }) => (render ? render.draw(debounced!, signal, parametersRef.current) : visualize.renderVisuals(debounced!, signal)),
     enabled: !!debounced && debounced.visuals.length > 0,
     placeholderData: keepPreviousData,
     staleTime: 60_000,
@@ -364,6 +371,7 @@ export function Tile({
   onSlicerChange,
   local,
   title,
+  onOpen,
   children,
   ...rest
 }: {
@@ -381,6 +389,8 @@ export function Tile({
   local?: LocalContext;
   /** Replaces the title (the editor's inline rename). */
   title?: ReactNode;
+  /** Keyboard viewing: the tile can be focused (Tab, arrow keys move between tiles); Enter opens it. */
+  onOpen?: () => void;
   children?: ReactNode;
 } & Record<`data-${string}`, string | undefined>) {
   const isKpi = visual.type === 'kpi' || visual.type === 'card';
@@ -403,6 +413,8 @@ export function Tile({
       data-testid={`tile-${visual.id}`}
       data-status={isLocal ? 'ok' : (output?.status ?? 'loading')}
       aria-label={visual.altText || output?.title || visual.title || visual.type}
+      tabIndex={onOpen ? 0 : undefined}
+      onKeyDown={onOpen ? (event) => tileKey(event, onOpen) : undefined}
       {...rest}
     >
       <div className="dash-tile-inner" style={inner}>
@@ -420,6 +432,23 @@ export function Tile({
       {children}
     </section>
   );
+}
+
+/** Enter opens the focused tile; arrow keys move to the next or previous tile in reading order. */
+function tileKey(event: ReactKeyboardEvent<HTMLElement>, onOpen: () => void) {
+  if (event.target !== event.currentTarget) return;
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    onOpen();
+    return;
+  }
+  const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 0;
+  if (!step) return;
+  event.preventDefault();
+  const tiles = [...(event.currentTarget.parentElement?.querySelectorAll<HTMLElement>(':scope > .dash-tile[tabindex="0"]') ?? [])];
+  const ordered = tiles.sort((a, b) => a.offsetTop - b.offsetTop || a.offsetLeft - b.offsetLeft);
+  const index = ordered.indexOf(event.currentTarget);
+  ordered[(index + step + ordered.length) % ordered.length]?.focus();
 }
 
 /** KPI tiles take theme colours in order; this numbers them as they appear on the page. */

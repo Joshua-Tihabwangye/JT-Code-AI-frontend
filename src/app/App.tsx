@@ -23,6 +23,7 @@ import { ReportsPage } from '@/features/visualize/pages/ReportsPage';
 import { DashboardPage } from '@/features/visualize/dashboards/DashboardPage';
 import { DashboardsHome } from '@/features/visualize/dashboards/DashboardsHome';
 import { DashboardEditor } from '@/features/visualize/dashboards/editor/DashboardEditor';
+import { SharedDashboardPage } from '@/features/visualize/dashboards/SharedDashboardPage';
 
 export function App() {
   return (
@@ -66,6 +67,10 @@ export function App() {
         <Route path="billing" element={<RequireAuth><BillingPage /></RequireAuth>} />
         <Route path="settings" element={<RequireAuth><SettingsPage /></RequireAuth>} />
       </Route>
+
+      {/* Public, read-only dashboards from a share link or an embed (no sign-in). */}
+      <Route path="/share/:token" element={<SharedDashboardPage />} />
+      <Route path="/embed/:token" element={<SharedDashboardPage embed />} />
 
       {/* 404 */}
       <Route path="*" element={<NotFoundPage />} />

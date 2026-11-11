@@ -643,7 +643,8 @@ export type DashboardVisualType =
   | 'parameter'
   | 'button'
   | 'navigator'
-  | 'snapshot';
+  | 'snapshot'
+  | 'summary';
 
 export type DashboardWell =
   | 'category'
@@ -924,9 +925,109 @@ export interface VisualOutput {
   console?: string;
   /** A ≤ 15-word reading of the chart (who leads, or the change over time). */
   insight?: string | null;
+  /** Summary visuals: up to three short sentences, every number computed from the data. */
+  summary?: { bullets: string[] };
 }
 
 export interface VisualsResponse {
   visuals: VisualOutput[];
   meta: { visuals: number; cachedVisuals: number; cachedQueries: number; sqlQueries: number; engineRuns: number; ms: number };
+}
+
+/** A dashboard template: the roles it needs (mapped to dataset columns) and what it builds. */
+export interface DashboardTemplateRole {
+  key: string;
+  label: string;
+  kind: 'numeric' | 'category' | 'datetime';
+  required: boolean;
+}
+
+export interface DashboardTemplate {
+  id: string;
+  name: string;
+  description: string;
+  color: string;
+  roles: DashboardTemplateRole[];
+  visualTypes: DashboardVisualType[];
+  /** The suggested column for each role (with a dataset). */
+  guess?: Record<string, string>;
+}
+
+export interface AIUsage {
+  credits: string;
+}
+
+/** A page proposed by the AI (or the free rules), shown as a preview before it is applied. */
+export interface AIPageProposal {
+  page: DashboardPage;
+  calculations: DashboardCalculation[];
+  parameters: DashboardParameter[];
+  source: 'ai' | 'rules';
+  usage: AIUsage;
+}
+
+export interface AIAnswer {
+  answer: string;
+  visual: DashboardVisual;
+  filters: DashboardFilter[];
+  output: VisualOutput;
+  source: 'ai' | 'rules';
+  usage: AIUsage;
+}
+
+export interface AIFormatResult {
+  spec: DashboardSpec;
+  changes: { theme?: string; mode?: string; density?: string; tidy?: boolean };
+  source: 'ai' | 'rules';
+  usage: AIUsage;
+}
+
+export interface AISuggestion {
+  visual: DashboardVisual;
+  reason: string;
+  name: string;
+}
+
+export interface ChangeExplanation {
+  headline: string;
+  lines: string[];
+  drivers: { field: string; member: string; change: number; share: number | null }[];
+  current: number;
+  previous: number;
+  period: string[];
+  previousPeriod: string[];
+}
+
+export interface DashboardShareLink {
+  id: string;
+  kind: 'link' | 'embed';
+  name: string;
+  prefix: string;
+  createdBy: string;
+  createdAt: string;
+  expiresAt: string | null;
+  revokedAt: string | null;
+  lastUsedAt: string | null;
+  /** Only in the response that creates the link. */
+  token?: string;
+}
+
+export interface SharedDashboard {
+  id: string;
+  name: string;
+  description: string;
+  kind: 'link' | 'embed';
+  spec: DashboardSpec;
+  /** The theme, resolved (public viewers cannot list the built-in themes). */
+  theme: DashboardTheme | null;
+  updatedAt: string;
+}
+
+/** A shared dashboard's visual, by id, with the viewer's interactive state. */
+export interface SharedVisualRequest {
+  id: string;
+  filters?: DashboardFilter[];
+  highlight?: DashboardFilter[];
+  /** The drill level (index into the visual's hierarchy). */
+  level?: number;
 }

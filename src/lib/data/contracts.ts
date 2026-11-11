@@ -56,6 +56,16 @@ import type {
   DashboardRelationship,
   DashboardVersionInfo,
   DashboardVisual,
+  AIAnswer,
+  AIFormatResult,
+  AIPageProposal,
+  AISuggestion,
+  ChangeExplanation,
+  DashboardFieldRef,
+  DashboardShareLink,
+  DashboardTemplate,
+  SharedDashboard,
+  SharedVisualRequest,
   VisualsResponse,
 } from './types';
 
@@ -425,6 +435,19 @@ export interface VisualizeRepository {
   saveTheme(input: { id?: string; name: string; spec: DashboardTheme; isShared?: boolean }): Promise<SavedTheme>;
   deleteTheme(id: string): Promise<void>;
   renderVisuals(input: RenderVisualsInput, signal?: AbortSignal): Promise<VisualsResponse>;
+  // Templates, AI (metered as chat messages, free rules when the model is unavailable), sharing.
+  dashboardTemplates(datasetId?: string): Promise<DashboardTemplate[]>;
+  dashboardFromTemplate(input: { templateId: string; datasetId: string; mapping: Record<string, string>; name?: string }): Promise<DashboardRecord>;
+  aiPage(input: { datasetId: string; prompt: string; dashboardId?: string }): Promise<AIPageProposal>;
+  aiAsk(input: { datasetId: string; question: string; filters?: DashboardFilter[]; theme?: string | DashboardTheme; mode?: 'light' | 'dark'; dashboardId?: string }): Promise<AIAnswer>;
+  aiFormat(input: { prompt: string; spec: DashboardSpec }): Promise<AIFormatResult>;
+  aiSuggest(input: { datasetId: string; visuals?: DashboardVisual[]; dashboardId?: string }): Promise<AISuggestion[]>;
+  explainChange(input: { datasetId: string; measure: DashboardFieldRef; dateField: string; period: [string, string]; grain?: 'year' | 'quarter' | 'month' | 'week' | 'day'; filters?: DashboardFilter[]; dashboardId?: string }): Promise<ChangeExplanation>;
+  shareLinks(dashboardId: string): Promise<DashboardShareLink[]>;
+  createShareLink(dashboardId: string, input: { kind: 'link' | 'embed'; name?: string; expiresAt?: string | null }): Promise<DashboardShareLink>;
+  revokeShareLink(dashboardId: string, linkId: string): Promise<void>;
+  sharedDashboard(token: string): Promise<SharedDashboard>;
+  sharedVisuals(token: string, input: { visuals: SharedVisualRequest[]; filters?: DashboardFilter[]; parameters?: Record<string, number>; mode: 'light' | 'dark'; today?: string }, signal?: AbortSignal): Promise<VisualsResponse>;
 }
 
 export interface RenderVisualsInput {

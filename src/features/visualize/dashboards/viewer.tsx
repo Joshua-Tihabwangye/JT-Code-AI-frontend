@@ -133,6 +133,7 @@ export function PointContextMenu({
   onKeep,
   onExclude,
   onDrillthrough,
+  onExplain,
   onClose,
 }: {
   menu: PointMenu;
@@ -140,6 +141,8 @@ export function PointContextMenu({
   onKeep: () => void;
   onExclude: () => void;
   onDrillthrough: (page: DashboardPage) => void;
+  /** A point in time on a trend: why the value changed versus the period before. */
+  onExplain?: () => void;
   onClose: () => void;
 }) {
   const box = useRef<HTMLDivElement>(null);
@@ -163,6 +166,11 @@ export function PointContextMenu({
           Drill through ▸ {page.name}
         </button>
       ))}
+      {onExplain && (
+        <button type="button" role="menuitem" onClick={onExplain} data-testid="explain-change">
+          Explain this change
+        </button>
+      )}
       <button type="button" role="menuitem" onClick={onKeep} data-testid="keep-only">
         Keep only
       </button>

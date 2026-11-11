@@ -29,6 +29,8 @@ import {
   Plus,
   Settings2,
   Smartphone,
+  Sparkles,
+  Wand2,
   Redo2,
   SendToBack,
   StretchHorizontal,
@@ -42,6 +44,7 @@ import { useRepository, type DashboardPage, type DashboardSpec, type DashboardVi
 import { useTheme } from '@/lib/theme';
 import { useVisualize } from '../../context';
 import { ErrorNote, SkeletonBlock } from '../../ui';
+import { AIPageComposer, AutoFormatDialog, SuggestPanel } from '../ai';
 import { paintFormat } from '../customize';
 import type { ButtonAction, LocalContext } from '../local';
 import { useDashboardRuntime, useWidth } from '../runtime';
@@ -78,7 +81,7 @@ import { ThemeDialog } from './ThemeDialog';
 import { ViewsPane } from './ViewsPane';
 import { currentPage, readClipboard, selectedVisuals, useEditor, writeClipboard } from './store';
 
-type Menu = 'insert' | 'arrange' | 'theme' | 'versions' | null;
+type Menu = 'insert' | 'arrange' | 'theme' | 'versions' | 'ai' | null;
 type PaneTab = 'build' | 'format' | 'filters' | 'selection' | 'views';
 const THUMBNAIL_EVERY_MS = 30_000;
 
@@ -114,6 +117,7 @@ export function DashboardEditor() {
   /** The theme before the customize dialog opened (Cancel restores it). */
   const [themeBefore, setThemeBefore] = useState<DashboardSpec['theme'] | null>(null);
   const [layout, setLayout] = useState<'desktop' | 'phone'>('desktop');
+  const [aiDialog, setAiDialog] = useState<'page' | 'format' | null>(null);
   const [area, areaWidth] = useWidth<HTMLDivElement>();
   const lastThumbnail = useRef(0);
   const theme = resolveTheme(spec?.theme, themes.data?.themes);
@@ -519,6 +523,29 @@ export function DashboardEditor() {
             </div>
           )}
         </div>
+        <div className="dash-menu-anchor">
+          <button type="button" className="dash-menu-button" onClick={() => setMenu(menu === 'ai' ? null : 'ai')} aria-expanded={menu === 'ai'} data-testid="ai-menu">
+            <Sparkles size={14} aria-hidden /> {t('visualize.editor.ai', 'AI')}
+          </button>
+          {menu === 'ai' && (
+            <div className="dash-menu wide" onPointerDown={(event) => event.stopPropagation()} role="menu">
+              <div className="flex gap-2">
+                <button type="button" className="viz-chip" onClick={() => (setAiDialog('page'), setMenu(null))} data-testid="ai-new-page">
+                  <Sparkles size={12} aria-hidden /> Page from a prompt…
+                </button>
+                <button type="button" className="viz-chip" onClick={() => (setAiDialog('format'), setMenu(null))} data-testid="ai-auto-format">
+                  <Wand2 size={12} aria-hidden /> Auto-format…
+                </button>
+              </div>
+              <p className="dash-menu-title">Suggested visuals</p>
+              <SuggestPanel
+                datasetId={mostUsedDataset(page) || activeDataset}
+                visuals={page.visuals}
+                onAdd={(visual) => insert(visual.type, { data: visual.data, format: visual.format })}
+              />
+            </div>
+          )}
+        </div>
         <button
           type="button"
           className="dash-menu-button"
@@ -636,6 +663,35 @@ export function DashboardEditor() {
         </div>
       )}
       {saveState === 'error' && <ErrorNote error={new Error(saveError)} />}
+      {aiDialog === 'format' && <AutoFormatDialog spec={spec} onApply={(next) => change(() => next)} onClose={() => setAiDialog(null)} />}
+      {aiDialog === 'page' && (
+        <div className="dash-dialog-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && setAiDialog(null)}>
+          <div className="dash-dialog" role="dialog" aria-label="New page from a prompt" data-testid="ai-page-dialog">
+            <header className="flex items-center gap-2">
+              <Sparkles size={16} aria-hidden />
+              <h2 className="flex-1 text-sm font-semibold">New page from a prompt</h2>
+            </header>
+            <AIPageComposer
+              datasetId={mostUsedDataset(page) || activeDataset}
+              dashboardId={dashboardId}
+              applyLabel="Add page"
+              onCancel={() => setAiDialog(null)}
+              onApply={(proposal) => {
+                const id = spec.pages.some((item) => item.id === proposal.page.id) ? newId('page') : proposal.page.id;
+                const byId = <T extends { id: string }>(current: T[] | undefined, extra: T[]) => [...(current ?? []), ...extra.filter((item) => !(current ?? []).some((c) => c.id === item.id))];
+                change((current) => ({
+                  ...current,
+                  calculations: byId(current.calculations, proposal.calculations),
+                  parameters: byId(current.parameters, proposal.parameters),
+                  pages: [...current.pages, { ...proposal.page, id }],
+                }));
+                editor.setPage(id);
+                setAiDialog(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
       {themeBefore !== null && typeof spec.theme === 'object' && (
         <ThemeDialog
           theme={spec.theme}

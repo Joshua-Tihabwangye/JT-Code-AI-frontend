@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Copy, Database, LayoutDashboard, Library, Plus, Rocket, Sparkles, Trash2 } from 'lucide-react';
+import { Copy, Database, LayoutDashboard, LayoutTemplate, Library, Plus, Rocket, Sparkles, Trash2, Wand2 } from 'lucide-react';
 import { useRepository } from '@/lib/data';
 import { ConfirmDialog } from '@/shared/components';
 import { useVisualize } from '../context';
 import { ChartThumb } from '../thumbs';
 import { ErrorNote, SkeletonBlock } from '../ui';
+import { NewDashboardDialog, type NewDashboardMode } from './NewDashboardDialog';
 
 /** The module home: your dashboards, and a one-click starter dashboard from any dataset. */
 export function DashboardsHome() {
@@ -28,6 +29,7 @@ export function DashboardsHome() {
     },
   });
   const [removing, setRemoving] = useState<{ id: string; name: string } | null>(null);
+  const [starting, setStarting] = useState<NewDashboardMode | null>(null);
   const dashboards = useQuery({ queryKey: ['visualize', 'dashboards'], queryFn: () => visualize.listDashboards() });
 
   useEffect(() => {
@@ -78,8 +80,14 @@ export function DashboardsHome() {
         <button type="button" className="viz-chip h-9" disabled={blank.isPending} onClick={() => blank.mutate()} data-testid="blank-dashboard">
           <Plus size={14} aria-hidden /> {t('visualize.dashboards.blank', 'Blank')}
         </button>
+        <button type="button" className="viz-chip h-9" disabled={!datasets.length} onClick={() => setStarting('template')} data-testid="template-dashboard">
+          <LayoutTemplate size={14} aria-hidden /> {t('visualize.dashboards.template', 'Template')}
+        </button>
+        <button type="button" className="viz-chip h-9" disabled={!datasets.length} onClick={() => setStarting('ai')} data-testid="ai-dashboard">
+          <Sparkles size={14} aria-hidden /> {t('visualize.askAi', 'Ask AI')}
+        </button>
         <button type="button" className="viz-primary inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-semibold text-white" disabled={!datasets.length || create.isPending} onClick={() => create.mutate()} data-testid="auto-dashboard">
-          <Sparkles size={15} aria-hidden /> {create.isPending ? t('visualize.dashboards.building', 'Building…') : t('visualize.dashboards.auto', 'Build dashboard')}
+          <Wand2 size={15} aria-hidden /> {create.isPending ? t('visualize.dashboards.building', 'Building…') : t('visualize.dashboards.auto', 'Build dashboard')}
         </button>
       </header>
       <ErrorNote error={create.error ?? blank.error ?? duplicate.error ?? remove.error ?? dashboards.error ?? loadSample.error} />
@@ -160,6 +168,7 @@ export function DashboardsHome() {
           <p className="text-[11px] text-muted-foreground">{t('visualize.home.libraryHint', 'Insert any of them into a dashboard from the editor’s Insert menu.')}</p>
         </section>
       )}
+      {starting && <NewDashboardDialog initial={starting} onClose={() => setStarting(null)} />}
       <ConfirmDialog
         open={!!removing}
         title={t('visualize.dashboards.deleteTitle', 'Delete dashboard?')}

@@ -257,6 +257,15 @@ export function VisualRenderer({
   }
   if (asTable && output.data) return <DataTable data={output.data} />;
   if (output.kpi && (visual.type === 'kpi' || visual.type === 'card' || visual.type === 'python')) return <KpiCard kpi={output.kpi} theme={theme} index={kpiIndex} />;
+  if (output.summary) {
+    return (
+      <ul className="dash-summary" data-testid={`summary-${visual.id}`}>
+        {output.summary.bullets.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>
+    );
+  }
   if (output.cards) return <Cards output={output} />;
   if (output.slicer) {
     const settings = (visual.format?.slicer ?? {}) as { style?: string; single?: boolean };

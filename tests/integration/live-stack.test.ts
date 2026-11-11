@@ -12,6 +12,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createApiRepositories } from '@/lib/data/api/repositories';
+import { renderContext, resolveVisual } from '@/features/visualize/dashboards/customize';
 import { apiErrorMessage, http } from '@/lib/api/http';
 import { resetPasswordWithCode, supabase } from '@/lib/supabase';
 import type { Repositories, VizFields } from '@/lib/data';
@@ -409,11 +410,32 @@ describe('data visualization', () => {
     expect(dashboard.role).toBe('owner');
     const page = dashboard.spec!.pages[0]!;
     expect(page.visuals.filter((v) => v.type === 'kpi').length).toBeGreaterThanOrEqual(6);
-    const drawn = await repos.visualize.renderVisuals({ visuals: page.visuals, mode: 'dark', theme: 'midnight', dashboardId: dashboard.id });
-    expect(drawn.visuals.every((v) => v.status === 'ok')).toBe(true);
-    const east = await repos.visualize.renderVisuals({ visuals: page.visuals, mode: 'dark', theme: 'midnight', filters: [{ field: 'region', op: 'in', value: ['East'] }] });
+    // As the app does: field parameters and calculations resolved, their context sent along.
+    const visuals = page.visuals.map((visual) => resolveVisual(visual, dashboard.spec, {}));
+    const context = renderContext(dashboard.spec, {});
+    const drawn = await repos.visualize.renderVisuals({ visuals, ...context, mode: 'dark', theme: 'midnight', dashboardId: dashboard.id });
+    expect(drawn.visuals.filter((v) => v.status !== 'ok')).toEqual([]);
+    const east = await repos.visualize.renderVisuals({ visuals, ...context, mode: 'dark', theme: 'midnight', filters: [{ field: 'region', op: 'in', value: ['East'] }] });
     const kpi = (visuals: typeof drawn.visuals) => visuals.find((v) => v.id === 'kpi-0')!.kpi!.value!;
     expect(kpi(east.visuals)).toBeLessThan(kpi(drawn.visuals));
+    // Templates, the AI page (free rules when no model answers), explain a change, a public link.
+    const templates = await repos.visualize.dashboardTemplates(sample.id);
+    expect(templates).toHaveLength(9);
+    const sales = templates.find((item) => item.id === 'sales')!;
+    const fromTemplate = await repos.visualize.dashboardFromTemplate({ templateId: 'sales', datasetId: sample.id, mapping: sales.guess ?? {} });
+    expect(fromTemplate.spec!.pages[0]!.visuals.length).toBeGreaterThanOrEqual(12);
+    const proposal = await repos.visualize.aiPage({ datasetId: sample.id, prompt: 'Profit by product and channel with the monthly trend' });
+    expect(proposal.page.visuals.length).toBeGreaterThan(2);
+    const explained = await repos.visualize.explainChange({ datasetId: sample.id, measure: { field: 'revenue', agg: 'sum' }, dateField: 'date', period: ['2025-11-01T00:00:00', '2025-11-30T23:59:59'], grain: 'month' });
+    expect(explained.headline).toMatch(/^Revenue is (up|down|unchanged)/);
+    const link = await repos.visualize.createShareLink(fromTemplate.id, { kind: 'link', name: 'Integration' });
+    const shared = await repos.visualize.sharedDashboard(link.token!);
+    expect(shared.spec.settings?.allowPersonalize).toBe(false);
+    const sharedDrawn = await repos.visualize.sharedVisuals(link.token!, { visuals: [{ id: 'kpi-0' }, { id: 'main', level: 0 }], mode: 'light' });
+    expect(sharedDrawn.visuals.map((v) => v.status)).toEqual(['ok', 'ok']);
+    await repos.visualize.revokeShareLink(fromTemplate.id, link.id);
+    await expectApiError(repos.visualize.sharedDashboard(link.token!), /not valid/i);
+    await repos.visualize.deleteDashboard(fromTemplate.id);
     const gallery = await repos.visualize.renderVisuals({
       visuals: [{ id: 'violin', type: 'chart', layout: { x: 0.25, y: 0, w: 8, h: 8 }, data: { datasetId: sample.id, wells: {} }, format: { chart: { chartType: 'violin', fields: { y: 'revenue', x: 'channel' } } } }],
       mode: 'light',

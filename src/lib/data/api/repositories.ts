@@ -50,6 +50,18 @@ import type {
   SavedTheme,
   DashboardMeasure,
   VisualsResponse,
+  AIAnswer,
+  AIFormatResult,
+  AIPageProposal,
+  AISuggestion,
+  ChangeExplanation,
+  DashboardShareLink,
+  DashboardTemplate,
+  SharedDashboard,
+  SharedVisualRequest,
+  DashboardFieldRef,
+  DashboardFilter,
+  DashboardVisual,
 } from '../types';
 import type {
   AccountRepository,
@@ -1110,6 +1122,53 @@ class ApiVisualizeRepository implements VisualizeRepository {
   }
   async renderVisuals(input: RenderVisualsInput, signal?: AbortSignal) {
     const { data } = await api.post<VisualsResponse>('/visualize/visuals/', input, { ...SLOW, signal });
+    return data;
+  }
+  async dashboardTemplates(datasetId?: string) {
+    const { data } = await api.get<{ templates: DashboardTemplate[] }>('/visualize/dashboards/templates/', { params: datasetId ? { datasetId } : {} });
+    return data.templates;
+  }
+  async dashboardFromTemplate(input: { templateId: string; datasetId: string; mapping: Record<string, string>; name?: string }) {
+    const { data } = await api.post<DashboardRecord>('/visualize/dashboards/from-template/', input, SLOW);
+    return data;
+  }
+  async aiPage(input: { datasetId: string; prompt: string; dashboardId?: string }) {
+    const { data } = await api.post<AIPageProposal>('/visualize/ai/page/', input, SLOW);
+    return data;
+  }
+  async aiAsk(input: { datasetId: string; question: string; filters?: DashboardFilter[]; theme?: string | DashboardTheme; mode?: 'light' | 'dark'; dashboardId?: string }) {
+    const { data } = await api.post<AIAnswer>('/visualize/ai/ask/', input, SLOW);
+    return data;
+  }
+  async aiFormat(input: { prompt: string; spec: DashboardSpec }) {
+    const { data } = await api.post<AIFormatResult>('/visualize/ai/format/', input, SLOW);
+    return data;
+  }
+  async aiSuggest(input: { datasetId: string; visuals?: DashboardVisual[]; dashboardId?: string }) {
+    const { data } = await api.post<{ suggestions: AISuggestion[] }>('/visualize/ai/suggest/', input);
+    return data.suggestions;
+  }
+  async explainChange(input: { datasetId: string; measure: DashboardFieldRef; dateField: string; period: [string, string]; grain?: 'year' | 'quarter' | 'month' | 'week' | 'day'; filters?: DashboardFilter[]; dashboardId?: string }) {
+    const { data } = await api.post<ChangeExplanation>('/visualize/explain/', input, SLOW);
+    return data;
+  }
+  async shareLinks(dashboardId: string) {
+    const { data } = await api.get<DashboardShareLink[]>(`/visualize/dashboards/${dashboardId}/share-links/`);
+    return data;
+  }
+  async createShareLink(dashboardId: string, input: { kind: 'link' | 'embed'; name?: string; expiresAt?: string | null }) {
+    const { data } = await api.post<DashboardShareLink>(`/visualize/dashboards/${dashboardId}/share-links/`, input);
+    return data;
+  }
+  async revokeShareLink(dashboardId: string, linkId: string) {
+    await api.delete(`/visualize/dashboards/${dashboardId}/share-links/${linkId}/`);
+  }
+  async sharedDashboard(token: string) {
+    const { data } = await api.get<SharedDashboard>(`/visualize/shared/${encodeURIComponent(token)}/`);
+    return data;
+  }
+  async sharedVisuals(token: string, input: { visuals: SharedVisualRequest[]; filters?: DashboardFilter[]; parameters?: Record<string, number>; mode: 'light' | 'dark'; today?: string }, signal?: AbortSignal) {
+    const { data } = await api.post<VisualsResponse>(`/visualize/shared/${encodeURIComponent(token)}/visuals/`, input, { ...SLOW, signal });
     return data;
   }
 }
