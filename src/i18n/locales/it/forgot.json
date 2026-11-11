@@ -1,0 +1,27 @@
+{
+  "resetTitle": "Reimposta la password",
+  "emailLabel": "Indirizzo email",
+  "sendCode": "Invia codice di reimpostazione",
+  "sending": "Invio in corso…",
+  "backToSignIn": "Torna all'accesso",
+  "checkTitle": "Controlla la tua email",
+  "useCodeNow": "Usa subito questo codice",
+  "haveCode": "Ho già un codice di reimpostazione",
+  "newPasswordTitle": "Crea una nuova password",
+  "newPasswordDesc": "Inserisci il codice di reimpostazione e scegli una nuova password per {{email}}.",
+  "codeLabel": "Codice di reimpostazione",
+  "newPasswordLabel": "Nuova password",
+  "confirmPasswordLabel": "Conferma password",
+  "updating": "Aggiornamento…",
+  "resetButton": "Reimposta password",
+  "backToCode": "Torna al passaggio del codice",
+  "updatedTitle": "Password aggiornata",
+  "updatedMessage": "La tua password è stata aggiornata. Puoi accedere con la nuova password.",
+  "returnToSignIn": "Torna all'accesso",
+  "errors": {
+    "sendFailed": "Impossibile inviare il link per la reimpostazione della password.",
+    "resetFailed": "Impossibile reimpostare la password.",
+    "mismatch": "Le password non coincidono.",
+    "unexpected": "Si è verificato un errore imprevisto."
+  }
+}

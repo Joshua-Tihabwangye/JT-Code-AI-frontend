@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   AlertOctagon,
@@ -55,6 +55,7 @@ import {
   type VizPipelineStep,
   type VizQualityReport,
 } from '@/lib/data';
+import { formatNumber } from '@/i18n/format';
 import { Button, ConfirmDialog } from '@/shared/components';
 import { useVisualize } from '../context';
 import { safeName, saveBlob } from '../echarts';
@@ -62,7 +63,7 @@ import { Ribbon, RibbonField, RibbonGroup } from '../Ribbon';
 import { PinDialog, type PinnableVisual } from '../dashboards/PinDialog';
 import { ChartThumb } from '../thumbs';
 import { colorVar, ErrorNote, formatValue, humanize, KindBadge, MenuButton, SkeletonBlock } from '../ui';
-import { fixFor, KIND_BY_OP, newStep } from './data/steps';
+import { fixFor, kindLabel, newStep } from './data/steps';
 import { TransformWorkspace } from './data/Transform';
 
 type RibbonTabId = 'home' | 'quality' | 'transform' | 'profile' | 'insights';
@@ -74,11 +75,17 @@ const KIND_STYLE: Record<string, { color: string; icon: LucideIcon }> = {
   boolean: { color: '#f59e0b', icon: ToggleLeft },
   text: { color: '#64748b', icon: Type },
 };
-const SEVERITY: Record<string, { color: string; icon: LucideIcon; label: string }> = {
-  error: { color: '#ef4444', icon: AlertOctagon, label: 'Must fix' },
-  warning: { color: '#f59e0b', icon: AlertTriangle, label: 'Should check' },
-  info: { color: '#0ea5e9', icon: Info, label: 'Good to know' },
+const SEVERITY: Record<string, { color: string; icon: LucideIcon; labelKey: string }> = {
+  error: { color: '#ef4444', icon: AlertOctagon, labelKey: 'visualize.data.severity.error' },
+  warning: { color: '#f59e0b', icon: AlertTriangle, labelKey: 'visualize.data.severity.warning' },
+  info: { color: '#0ea5e9', icon: Info, labelKey: 'visualize.data.severity.info' },
 };
+/** A share (0–1) as a percentage in the chosen language. */
+const percent = (share: number, digits = 1) => formatNumber(share, { style: 'percent', minimumFractionDigits: digits, maximumFractionDigits: digits });
+/** A column kind's name (known kinds are translated; anything else is shown as it is). */
+function kindName(t: (key: string) => string, kind: string): string {
+  return kind in KIND_STYLE ? t(`visualize.data.kinds.${kind}`) : kind;
+}
 
 function cellKey(row: number, column: string) {
   return `${row}\u0000${column}`;
@@ -86,6 +93,7 @@ function cellKey(row: number, column: string) {
 
 /** A titled, collapsible workspace panel under the ribbon. */
 function Workspace({ title, subtitle, icon: Icon, color, children, actions }: { title: string; subtitle?: string; icon: LucideIcon; color: string; children: React.ReactNode; actions?: React.ReactNode }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(true);
   return (
     <section className="viz-workspace space-y-3" style={colorVar(color)} data-testid="data-workspace">
@@ -102,7 +110,7 @@ function Workspace({ title, subtitle, icon: Icon, color, children, actions }: { 
         <div className="flex items-center gap-2">
           {actions}
           <button type="button" className="viz-chip" onClick={() => setOpen(!open)} aria-expanded={open}>
-            {open ? <ChevronUp size={13} aria-hidden /> : <ChevronDown size={13} aria-hidden />} {open ? 'Hide' : 'Show'}
+            {open ? <ChevronUp size={13} aria-hidden /> : <ChevronDown size={13} aria-hidden />} {open ? t('visualize.data.hide') : t('visualize.data.show')}
           </button>
         </div>
       </header>
@@ -114,15 +122,16 @@ function Workspace({ title, subtitle, icon: Icon, color, children, actions }: { 
 /* --- Check quality ------------------------------------------------------------------------- */
 
 function QualityRibbon({ report, loading, onScan, filter, setFilter, hidden, setHidden }: { report: VizQualityReport | undefined; loading: boolean; onScan: () => void; filter: string; setFilter: (value: string) => void; hidden: Set<string>; setHidden: (value: Set<string>) => void }) {
+  const { t } = useTranslation();
   return (
     <>
-      <RibbonGroup title="Scan">
+      <RibbonGroup title={t('visualize.data.quality.scan')}>
         <button type="button" className="viz-tool" style={colorVar('#10b981')} onClick={onScan} disabled={loading} data-testid="scan-quality">
           {loading ? <RefreshCw size={20} className="animate-spin" aria-hidden /> : <ScanSearch size={20} aria-hidden />}
-          {report ? 'Re-scan' : 'Check data'}
+          {report ? t('visualize.data.quality.rescan') : t('visualize.data.quality.check')}
         </button>
       </RibbonGroup>
-      <RibbonGroup title="Highlight colours (click to hide)">
+      <RibbonGroup title={t('visualize.data.quality.legend')}>
         <div className="flex max-w-[520px] flex-wrap gap-1.5" data-testid="issue-legend">
           {report?.types.map((type) => (
             <button
@@ -138,18 +147,18 @@ function QualityRibbon({ report, loading, onScan, filter, setFilter, hidden, set
                 setHidden(next);
               }}
             >
-              <span className="h-2.5 w-2.5 rounded-full" style={{ background: type.color }} /> {type.label} · {type.count.toLocaleString()}
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: type.color }} /> {type.label} · {formatNumber(type.count)}
             </button>
           ))}
-          {!report && <span className="text-xs text-muted-foreground">Run a check to see the colour key.</span>}
-          {report && !report.types.length && <span className="text-sm text-emerald-600">No issues found 🎉</span>}
+          {!report && <span className="text-xs text-muted-foreground">{t('visualize.data.quality.legendEmpty')}</span>}
+          {report && !report.types.length && <span className="text-sm text-emerald-600">{t('visualize.data.quality.noIssues')}</span>}
         </div>
       </RibbonGroup>
-      <RibbonGroup title="Show rows">
-        <RibbonField label="Rows in the table" width={210}>
-          <select className="viz-field" value={filter} onChange={(event) => setFilter(event.target.value)} aria-label="Row filter" data-testid="issue-filter" disabled={!report}>
-            <option value="">All rows</option>
-            <option value="issues">Only rows with issues</option>
+      <RibbonGroup title={t('visualize.data.quality.showRows')}>
+        <RibbonField label={t('visualize.data.quality.rowsInTable')} width={210}>
+          <select className="viz-field" value={filter} onChange={(event) => setFilter(event.target.value)} aria-label={t('visualize.data.quality.rowFilter')} data-testid="issue-filter" disabled={!report}>
+            <option value="">{t('visualize.data.quality.allRows')}</option>
+            <option value="issues">{t('visualize.data.quality.onlyIssues')}</option>
             {report?.types.map((type) => (
               <option key={type.type} value={type.type}>
                 {type.label}
@@ -163,6 +172,7 @@ function QualityRibbon({ report, loading, onScan, filter, setFilter, hidden, set
 }
 
 function IssueCard({ issue, onShow, onFix }: { issue: VizIssue; onShow: () => void; onFix: (steps: VizPipelineStep[]) => void }) {
+  const { t } = useTranslation();
   const fix = fixFor(issue);
   return (
     <article className="flex gap-3 rounded-xl border border-border bg-[var(--card)] p-3" style={{ borderLeft: `4px solid ${issue.color}` }}>
@@ -172,21 +182,21 @@ function IssueCard({ issue, onShow, onFix }: { issue: VizIssue; onShow: () => vo
           <b className="text-sm">{issue.label}</b>
           {issue.column && <span className="viz-badge" style={colorVar('#64748b')}>{issue.column}</span>}
           <span className="ml-auto text-sm font-bold" style={{ color: issue.color }}>
-            {issue.count.toLocaleString()}
+            {formatNumber(issue.count)}
           </span>
         </div>
         <p className="text-xs">{issue.detail}</p>
         <p className="text-xs text-muted-foreground">💡 {issue.suggestion}</p>
-        {issue.examples.length > 0 && <p className="truncate text-[11px] text-muted-foreground">e.g. {issue.examples.slice(0, 5).join(' · ')}</p>}
+        {issue.examples.length > 0 && <p className="truncate text-[11px] text-muted-foreground">{t('visualize.data.quality.examples', { examples: issue.examples.slice(0, 5).join(' · ') })}</p>}
       </div>
       <div className="flex flex-col gap-1 self-start">
         {issue.rows.length > 0 && (
           <button type="button" className="viz-chip" onClick={onShow}>
-            <Eye size={12} aria-hidden /> Rows
+            <Eye size={12} aria-hidden /> {t('visualize.data.quality.rows')}
           </button>
         )}
         {fix && (
-          <button type="button" className="viz-chip primary" onClick={() => onFix(fix.steps)} title="Adds a step in Transform; nothing changes until you save" data-testid={`fix-${issue.type}`}>
+          <button type="button" className="viz-chip primary" onClick={() => onFix(fix.steps)} title={t('visualize.data.quality.fixTitle')} data-testid={`fix-${issue.type}`}>
             <Wand2 size={12} aria-hidden /> {fix.label}
           </button>
         )}
@@ -196,10 +206,13 @@ function IssueCard({ issue, onShow, onFix }: { issue: VizIssue; onShow: () => vo
 }
 
 function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: { report: VizQualityReport | undefined; loading: boolean; error: unknown; filter: string; setFilter: (value: string) => void; onFix: (steps: VizPipelineStep[]) => void }) {
+  const { t } = useTranslation();
   if (!report && !loading && !error) {
     return (
-      <Workspace title="Data quality report" subtitle="Python checks — no AI and nothing is changed" icon={ListChecks} color="#10b981">
-        <p className="text-sm text-muted-foreground">Press <b>Check data</b>: problems are coloured in the table and each comes with a one-click fix.</p>
+      <Workspace title={t('visualize.data.quality.title')} subtitle={t('visualize.data.quality.subtitle')} icon={ListChecks} color="#10b981">
+        <p className="text-sm text-muted-foreground">
+          <Trans i18nKey="visualize.data.quality.intro" components={{ b: <b /> }} />
+        </p>
       </Workspace>
     );
   }
@@ -208,7 +221,7 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
   const scoreColor = score >= 98 ? '#10b981' : score >= 90 ? '#f59e0b' : '#ef4444';
   const bySeverity = (['error', 'warning', 'info'] as const).map((level) => ({ level, items: report?.issues.filter((issue) => issue.severity === level) ?? [] }));
   return (
-    <Workspace title="Data quality report" subtitle="Python checks — no AI and nothing is changed" icon={ListChecks} color="#10b981">
+    <Workspace title={t('visualize.data.quality.title')} subtitle={t('visualize.data.quality.subtitle')} icon={ListChecks} color="#10b981">
       <ErrorNote error={error} />
       {report && (
         <>
@@ -218,22 +231,22 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
                 <div className="absolute inset-1.5 flex items-center justify-center rounded-full bg-[var(--card)] text-sm font-bold">{Math.round(score)}</div>
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Quality score</p>
+                <p className="text-xs text-muted-foreground">{t('visualize.data.quality.score')}</p>
                 <p className="font-semibold" style={{ color: scoreColor }}>
-                  {score >= 98 ? 'Excellent' : score >= 90 ? 'Needs a look' : 'Needs work'}
+                  {score >= 98 ? t('visualize.data.quality.excellent') : score >= 90 ? t('visualize.data.quality.needsLook') : t('visualize.data.quality.needsWork')}
                 </p>
               </div>
             </div>
             {[
-              { label: 'Issues found', value: report.summary.issues, color: '#ef4444' },
-              { label: 'Rows affected', value: report.summary.affectedRows, color: '#f59e0b' },
-              { label: 'Cells flagged', value: report.summary.flaggedCells, color: '#8b5cf6' },
-              { label: 'Rows × columns checked', value: `${report.summary.rows.toLocaleString()} × ${report.summary.columns}`, color: '#0ea5e9' },
+              { label: t('visualize.data.quality.issuesFound'), value: report.summary.issues, color: '#ef4444' },
+              { label: t('visualize.data.quality.rowsAffected'), value: report.summary.affectedRows, color: '#f59e0b' },
+              { label: t('visualize.data.quality.cellsFlagged'), value: report.summary.flaggedCells, color: '#8b5cf6' },
+              { label: t('visualize.data.quality.checked'), value: `${formatNumber(report.summary.rows)} × ${formatNumber(report.summary.columns)}`, color: '#0ea5e9' },
             ].map((tile) => (
               <div key={tile.label} className="viz-tile" style={colorVar(tile.color)}>
                 <p className="text-xs text-muted-foreground">{tile.label}</p>
                 <p className="text-2xl font-bold" style={{ color: tile.color }}>
-                  {typeof tile.value === 'number' ? tile.value.toLocaleString() : tile.value}
+                  {typeof tile.value === 'number' ? formatNumber(tile.value) : tile.value}
                 </p>
               </div>
             ))}
@@ -241,7 +254,7 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
           <div className="flex flex-wrap gap-1.5" data-testid="quality-chips">
             {report.types.map((type) => (
               <button key={type.type} type="button" className="viz-chip" style={colorVar(type.color)} aria-pressed={filter === type.type} onClick={() => setFilter(filter === type.type ? '' : type.type)} data-testid={`quality-chip-${type.type}`}>
-                <span className="h-2 w-2 rounded-full" style={{ background: type.color }} /> {type.label} · {type.count.toLocaleString()}
+                <span className="h-2 w-2 rounded-full" style={{ background: type.color }} /> {type.label} · {formatNumber(type.count)}
               </button>
             ))}
           </div>
@@ -251,12 +264,12 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
               return (
                 <div key={level} className="space-y-2">
                   <h3 className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: meta.color }}>
-                    <meta.icon size={15} aria-hidden /> {meta.label} · {items.length}
+                    <meta.icon size={15} aria-hidden /> {t(meta.labelKey)} · {formatNumber(items.length)}
                   </h3>
                   {items.map((issue) => (
                     <IssueCard key={issue.id} issue={issue} onShow={() => setFilter(issue.type)} onFix={onFix} />
                   ))}
-                  {!items.length && <p className="rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">Nothing here.</p>}
+                  {!items.length && <p className="rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">{t('visualize.data.quality.nothingHere')}</p>}
                 </div>
               );
             })}
@@ -270,32 +283,33 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
 /* --- Column profile ------------------------------------------------------------------------- */
 
 function ProfileRibbon({ search, setSearch, kind, setKind, sort, setSort }: { search: string; setSearch: (v: string) => void; kind: string; setKind: (v: string) => void; sort: string; setSort: (v: string) => void }) {
+  const { t } = useTranslation();
   return (
     <>
-      <RibbonGroup title="Find">
-        <RibbonField label="Column name" width={200}>
+      <RibbonGroup title={t('visualize.data.profile.find')}>
+        <RibbonField label={t('visualize.data.profile.columnName')} width={200}>
           <div className="relative">
             <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden />
-            <input className="viz-field pl-8" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search columns" aria-label="Search columns" />
+            <input className="viz-field pl-8" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t('visualize.data.profile.searchColumns')} aria-label={t('visualize.data.profile.searchColumns')} />
           </div>
         </RibbonField>
       </RibbonGroup>
-      <RibbonGroup title="Type">
+      <RibbonGroup title={t('visualize.data.profile.type')}>
         <div className="flex flex-wrap gap-1.5">
           {['all', 'numeric', 'categorical', 'datetime', 'boolean'].map((value) => (
             <button key={value} type="button" className="viz-chip" style={colorVar(KIND_STYLE[value]?.color)} aria-pressed={kind === value} onClick={() => setKind(value)}>
-              {value === 'all' ? 'All types' : value}
+              {value === 'all' ? t('visualize.data.profile.allTypes') : kindName(t, value)}
             </button>
           ))}
         </div>
       </RibbonGroup>
-      <RibbonGroup title="Order">
-        <RibbonField label="Sort by" width={170}>
-          <select className="viz-field" value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort columns">
-            <option value="position">Dataset order</option>
-            <option value="name">Name</option>
-            <option value="missing">Most missing</option>
-            <option value="distinct">Most distinct</option>
+      <RibbonGroup title={t('visualize.data.profile.order')}>
+        <RibbonField label={t('visualize.data.profile.sortBy')} width={170}>
+          <select className="viz-field" value={sort} onChange={(event) => setSort(event.target.value)} aria-label={t('visualize.data.profile.sortColumns')}>
+            <option value="position">{t('visualize.data.profile.sort.position')}</option>
+            <option value="name">{t('visualize.data.profile.sort.name')}</option>
+            <option value="missing">{t('visualize.data.profile.sort.missing')}</option>
+            <option value="distinct">{t('visualize.data.profile.sort.distinct')}</option>
           </select>
         </RibbonField>
       </RibbonGroup>
@@ -304,9 +318,10 @@ function ProfileRibbon({ search, setSearch, kind, setKind, sort, setSort }: { se
 }
 
 function Histogram({ counts, color }: { counts: number[]; color: string }) {
+  const { t } = useTranslation();
   const peak = Math.max(1, ...counts);
   return (
-    <svg viewBox={`0 0 ${counts.length * 6} 24`} className="h-6 w-full" preserveAspectRatio="none" aria-label="Distribution" data-testid="profile-histogram">
+    <svg viewBox={`0 0 ${counts.length * 6} 24`} className="h-6 w-full" preserveAspectRatio="none" aria-label={t('visualize.data.profile.distribution')} data-testid="profile-histogram">
       {counts.map((count, index) => (
         <rect key={index} x={index * 6 + 0.5} y={24 - (count / peak) * 24} width={5} height={(count / peak) * 24} fill={color} rx={0.8} />
       ))}
@@ -315,24 +330,25 @@ function Histogram({ counts, color }: { counts: number[]; color: string }) {
 }
 
 function ProfileDetails({ profile, onClose }: { profile: ColumnProfile; onClose: () => void }) {
+  const { t } = useTranslation();
   const rows: [string, unknown][] = [
-    ['Type', profile.kind],
-    ['Filled', `${((1 - profile.nullRatio) * 100).toFixed(1)}%`],
-    ['Blank', profile.nulls],
-    ['Distinct', profile.distinct],
-    ['Minimum', profile.min],
-    ['25th percentile', (profile as { p25?: number }).p25],
-    ['Median', profile.median],
-    ['Average', profile.mean],
-    ['75th percentile', (profile as { p75?: number }).p75],
-    ['Maximum', profile.max],
-    ['Standard deviation', profile.std],
+    [t('visualize.data.stats.type'), kindName(t, profile.kind)],
+    [t('visualize.data.stats.filled'), percent(1 - profile.nullRatio)],
+    [t('visualize.data.stats.blank'), profile.nulls],
+    [t('visualize.data.stats.distinct'), profile.distinct],
+    [t('visualize.data.stats.min'), profile.min],
+    [t('visualize.data.stats.p25'), (profile as { p25?: number }).p25],
+    [t('visualize.data.stats.median'), profile.median],
+    [t('visualize.data.stats.mean'), profile.mean],
+    [t('visualize.data.stats.p75'), (profile as { p75?: number }).p75],
+    [t('visualize.data.stats.max'), profile.max],
+    [t('visualize.data.stats.std'), profile.std],
   ];
   return (
-    <aside className="dash-personalize" role="dialog" aria-label={`${profile.name} details`} data-testid="profile-details">
+    <aside className="dash-personalize" role="dialog" aria-label={t('visualize.data.profile.details', { name: profile.name })} data-testid="profile-details">
       <div className="flex items-center justify-between">
         <p className="font-semibold">{humanize(profile.name)}</p>
-        <button type="button" className="viz-icon-button" onClick={onClose} aria-label="Close">
+        <button type="button" className="viz-icon-button" onClick={onClose} aria-label={t('visualize.data.close')}>
           <X size={14} />
         </button>
       </div>
@@ -349,12 +365,12 @@ function ProfileDetails({ profile, onClose }: { profile: ColumnProfile; onClose:
       </dl>
       {(profile.topValues?.length ?? 0) > 0 && (
         <>
-          <p className="viz-label mt-3">Most common</p>
+          <p className="viz-label mt-3">{t('visualize.data.profile.mostCommon')}</p>
           <ul className="space-y-0.5 text-xs">
             {profile.topValues!.map((value) => (
               <li key={value.value} className="flex justify-between gap-2">
                 <span className="truncate">{value.value}</span>
-                <span className="text-muted-foreground">{value.count.toLocaleString()}</span>
+                <span className="text-muted-foreground">{formatNumber(value.count)}</span>
               </li>
             ))}
           </ul>
@@ -365,12 +381,13 @@ function ProfileDetails({ profile, onClose }: { profile: ColumnProfile; onClose:
 }
 
 function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: ColumnProfile[]; search: string; kind: string; sort: string; onStep: (steps: VizPipelineStep[]) => void }) {
+  const { t } = useTranslation();
   const [details, setDetails] = useState<ColumnProfile | null>(null);
   const shown = profiles
     .filter((profile) => (kind === 'all' || profile.kind === kind) && profile.name.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => (sort === 'name' ? a.name.localeCompare(b.name) : sort === 'missing' ? b.nullRatio - a.nullRatio : sort === 'distinct' ? b.distinct - a.distinct : 0));
   return (
-    <Workspace title="Column profile" subtitle={`${shown.length} of ${profiles.length} columns`} icon={Table2} color="#6366f1">
+    <Workspace title={t('visualize.data.profile.title')} subtitle={t('visualize.data.profile.subtitle', { shown: formatNumber(shown.length), total: formatNumber(profiles.length) })} icon={Table2} color="#6366f1">
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" data-testid="profile-cards">
         {shown.map((profile) => {
           const style = KIND_STYLE[profile.kind] ?? KIND_STYLE.text!;
@@ -385,7 +402,7 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
                 className="flex cursor-pointer items-center justify-between gap-2 px-3 py-1.5"
                 style={{ background: `color-mix(in srgb, ${style.color} 12%, transparent)` }}
                 onClick={() => setDetails(profile)}
-                title="Full statistics"
+                title={t('visualize.data.profile.fullStats')}
               >
                 <span className="flex min-w-0 items-center gap-1.5 font-semibold">
                   <style.icon size={14} style={{ color: style.color }} aria-hidden />
@@ -402,16 +419,16 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
                 {profile.histogram && <Histogram counts={profile.histogram} color={style.color} />}
                 <div className="flex items-center gap-3">
                   <div className="relative h-11 w-11 flex-shrink-0 rounded-full" style={{ background: `conic-gradient(${filled > 0.8 ? '#10b981' : '#f59e0b'} ${filled * 360}deg, var(--muted) 0deg)` }}>
-                    <div className="absolute inset-1 flex items-center justify-center rounded-full bg-[var(--card)] text-[10px] font-bold">{Math.round(filled * 100)}%</div>
+                    <div className="absolute inset-1 flex items-center justify-center rounded-full bg-[var(--card)] text-[10px] font-bold">{percent(filled, 0)}</div>
                   </div>
                   <dl className="grid flex-1 grid-cols-2 gap-x-2">
-                    <dt className="text-muted-foreground">Filled</dt>
-                    <dd className="text-right font-medium">{(filled * 100).toFixed(1)}%</dd>
-                    <dt className="text-muted-foreground">Distinct</dt>
-                    <dd className="text-right font-medium">{profile.distinct.toLocaleString()}</dd>
+                    <dt className="text-muted-foreground">{t('visualize.data.stats.filled')}</dt>
+                    <dd className="text-right font-medium">{percent(filled)}</dd>
+                    <dt className="text-muted-foreground">{t('visualize.data.stats.distinct')}</dt>
+                    <dd className="text-right font-medium">{formatNumber(profile.distinct)}</dd>
                     {profile.kind === 'numeric' && (
                       <>
-                        <dt className="text-muted-foreground">Average</dt>
+                        <dt className="text-muted-foreground">{t('visualize.data.stats.mean')}</dt>
                         <dd className="text-right font-medium">{formatValue(profile.mean)}</dd>
                       </>
                     )}
@@ -420,11 +437,11 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
                 {numericRange && (
                   <div>
                     <div className="relative h-2 rounded-full" style={{ background: `linear-gradient(90deg, ${style.color}33, ${style.color})` }}>
-                      <span className="absolute -top-1 h-4 w-1 rounded bg-[var(--foreground)]" style={{ left: `${position}%` }} title="Median" />
+                      <span className="absolute -top-1 h-4 w-1 rounded bg-[var(--foreground)]" style={{ left: `${position}%` }} title={t('visualize.data.stats.median')} />
                     </div>
                     <div className="mt-1 flex justify-between text-[11px] text-muted-foreground">
                       <span>{formatValue(profile.min)}</span>
-                      <span>median {formatValue(profile.median)}</span>
+                      <span>{t('visualize.data.profile.medianValue', { value: formatValue(profile.median) })}</span>
                       <span>{formatValue(profile.max)}</span>
                     </div>
                   </div>
@@ -444,14 +461,14 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
                         <span className="h-2 rounded-full" style={{ width: `${(value.count / max) * 45}%`, background: style.color }} />
                         <span className="text-muted-foreground">{value.count}</span>
                         <span className="viz-value-actions">
-                          <button type="button" title="Keep only these rows" onClick={() => onStep([{ ...newStep('filter_rows'), conditions: [{ field: profile.name, op: 'in', value: [value.value] }] }])} data-testid={`keep-${profile.name}-${value.value}`}>
-                            Keep
+                          <button type="button" title={t('visualize.data.profile.keepTitle')} onClick={() => onStep([{ ...newStep('filter_rows'), conditions: [{ field: profile.name, op: 'in', value: [value.value] }] }])} data-testid={`keep-${profile.name}-${value.value}`}>
+                            {t('visualize.data.profile.keep')}
                           </button>
-                          <button type="button" title="Exclude these rows" onClick={() => onStep([{ ...newStep('filter_rows'), mode: 'remove', conditions: [{ field: profile.name, op: 'in', value: [value.value] }] }])}>
-                            Exclude
+                          <button type="button" title={t('visualize.data.profile.excludeTitle')} onClick={() => onStep([{ ...newStep('filter_rows'), mode: 'remove', conditions: [{ field: profile.name, op: 'in', value: [value.value] }] }])}>
+                            {t('visualize.data.profile.exclude')}
                           </button>
-                          <button type="button" title="Replace this value" onClick={() => onStep([{ ...newStep('replace_values', profile.name), find: value.value, replace: '' }])}>
-                            Replace
+                          <button type="button" title={t('visualize.data.profile.replaceTitle')} onClick={() => onStep([{ ...newStep('replace_values', profile.name), find: value.value, replace: '' }])}>
+                            {t('visualize.data.profile.replace')}
                           </button>
                         </span>
                       </li>
@@ -470,35 +487,36 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
 
 /* --- Insights --------------------------------------------------------------------------------- */
 
-const INSIGHT_STYLE: Record<string, { color: string; icon: LucideIcon; label: string }> = {
-  overview: { color: '#6366f1', icon: Database, label: 'Overview' },
-  quality: { color: '#f59e0b', icon: AlertTriangle, label: 'Data quality' },
-  correlation: { color: '#ec4899', icon: Sparkles, label: 'Relationships' },
-  distribution: { color: '#10b981', icon: Hash, label: 'Distributions' },
-  outliers: { color: '#ef4444', icon: AlertOctagon, label: 'Outliers' },
-  composition: { color: '#8b5cf6', icon: Type, label: 'Composition' },
-  trend: { color: '#0ea5e9', icon: TrendingUp, label: 'Trends' },
-  comparison: { color: '#14b8a6', icon: Table2, label: 'Comparisons' },
+const INSIGHT_STYLE: Record<string, { color: string; icon: LucideIcon; labelKey: string }> = {
+  overview: { color: '#6366f1', icon: Database, labelKey: 'visualize.data.insights.kinds.overview' },
+  quality: { color: '#f59e0b', icon: AlertTriangle, labelKey: 'visualize.data.insights.kinds.quality' },
+  correlation: { color: '#ec4899', icon: Sparkles, labelKey: 'visualize.data.insights.kinds.correlation' },
+  distribution: { color: '#10b981', icon: Hash, labelKey: 'visualize.data.insights.kinds.distribution' },
+  outliers: { color: '#ef4444', icon: AlertOctagon, labelKey: 'visualize.data.insights.kinds.outliers' },
+  composition: { color: '#8b5cf6', icon: Type, labelKey: 'visualize.data.insights.kinds.composition' },
+  trend: { color: '#0ea5e9', icon: TrendingUp, labelKey: 'visualize.data.insights.kinds.trend' },
+  comparison: { color: '#14b8a6', icon: Table2, labelKey: 'visualize.data.insights.kinds.comparison' },
 };
 
 function InsightsRibbon({ kinds, kind, setKind, onRefresh, loading }: { kinds: string[]; kind: string; setKind: (v: string) => void; onRefresh: () => void; loading: boolean }) {
+  const { t } = useTranslation();
   return (
     <>
-      <RibbonGroup title="Show">
+      <RibbonGroup title={t('visualize.data.insights.show')}>
         <div className="flex max-w-[620px] flex-wrap gap-1.5">
           <button type="button" className="viz-chip" aria-pressed={kind === 'all'} onClick={() => setKind('all')}>
-            All
+            {t('visualize.data.insights.all')}
           </button>
           {kinds.map((value) => (
             <button key={value} type="button" className="viz-chip" style={colorVar(INSIGHT_STYLE[value]?.color)} aria-pressed={kind === value} onClick={() => setKind(value)}>
-              {INSIGHT_STYLE[value]?.label ?? value}
+              {INSIGHT_STYLE[value] ? t(INSIGHT_STYLE[value].labelKey) : value}
             </button>
           ))}
         </div>
       </RibbonGroup>
-      <RibbonGroup title="Refresh">
+      <RibbonGroup title={t('visualize.data.insights.refresh')}>
         <button type="button" className="viz-tool" onClick={onRefresh} disabled={loading}>
-          <RefreshCw size={18} className={loading ? 'animate-spin' : ''} aria-hidden /> Recalculate
+          <RefreshCw size={18} className={loading ? 'animate-spin' : ''} aria-hidden /> {t('visualize.data.insights.recalculate')}
         </button>
       </RibbonGroup>
     </>
@@ -506,13 +524,14 @@ function InsightsRibbon({ kinds, kind, setKind, onRefresh, loading }: { kinds: s
 }
 
 function InsightsWorkspace({ insights, recommendations, kind, loading, error }: { insights: VizInsight[]; recommendations: { chartType: string; name: string; category: string; reason: string; fields: Record<string, string | string[]>; options?: Record<string, string | number | boolean> }[]; kind: string; loading: boolean; error: unknown }) {
+  const { t } = useTranslation();
   const { catalog, openStudio, datasetId } = useVisualize();
   const [pinning, setPinning] = useState<{ visual: PinnableVisual; title: string } | null>(null);
   const [open, setOpen] = useState('');
   if (loading && !insights.length) return <SkeletonBlock height={220} />;
   const shown = insights.filter((item) => kind === 'all' || item.kind === kind);
   return (
-    <Workspace title="Insights" subtitle="Found by pandas and SciPy — no AI credits used" icon={Lightbulb} color="#f59e0b">
+    <Workspace title={t('visualize.data.insights.title')} subtitle={t('visualize.data.insights.subtitle')} icon={Lightbulb} color="#f59e0b">
       <ErrorNote error={error} />
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-testid="insights-panel">
         {shown.map((insight) => {
@@ -523,7 +542,7 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
               <div className="flex items-start gap-2">
                 <div className="min-w-0 flex-1">
                   <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: style.color }}>
-                    {style.label}
+                    {t(style.labelKey)}
                   </p>
                   <p className="line-clamp-2 text-sm font-semibold" title={insight.title}>
                     {insight.headline ?? insight.title}
@@ -541,13 +560,13 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
                 )}
               </div>
               <div className="flex flex-wrap items-center gap-1">
-                <button type="button" className="viz-icon-button" aria-expanded={open === insight.id} onClick={() => setOpen(open === insight.id ? '' : insight.id)} aria-label="Why" title="What this means">
+                <button type="button" className="viz-icon-button" aria-expanded={open === insight.id} onClick={() => setOpen(open === insight.id ? '' : insight.id)} aria-label={t('visualize.data.insights.why')} title={t('visualize.data.insights.whyTitle')}>
                   <Info size={13} />
                 </button>
                 {chart && (
                   <>
                     <button type="button" className="viz-chip" onClick={() => openStudio({ ...chart, datasetId })}>
-                      Explore
+                      {t('visualize.data.insights.explore')}
                     </button>
                     <button
                       type="button"
@@ -555,7 +574,7 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
                       onClick={() => setPinning({ title: insight.headline ?? insight.title, visual: { type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType: chart.chartType, fields: chart.fields ?? {}, options: chart.options ?? {} } } } })}
                       data-testid={`insight-pin-${insight.id}`}
                     >
-                      <Pin size={12} aria-hidden /> Add to dashboard
+                      <Pin size={12} aria-hidden /> {t('visualize.data.insights.addToDashboard')}
                     </button>
                   </>
                 )}
@@ -572,7 +591,7 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
       {pinning && <PinDialog visual={pinning.visual} title={pinning.title} onClose={() => setPinning(null)} />}
       {recommendations.length > 0 && (
         <div>
-          <h3 className="mb-2 text-sm font-semibold">Suggested charts</h3>
+          <h3 className="mb-2 text-sm font-semibold">{t('visualize.data.insights.suggested')}</h3>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4" data-testid="recommendations">
             {recommendations.map((item) => {
               const category = catalog?.categories.find((entry) => entry.id === item.category);
@@ -653,11 +672,11 @@ export function DataPage() {
         active={tab}
         onChange={(id) => setTab(id as RibbonTabId)}
         tabs={[
-          { id: 'home', label: t('visualize.data.home', 'Home'), icon: Home },
-          { id: 'quality', label: t('visualize.data.quality', 'Check quality'), icon: ListChecks },
-          { id: 'transform', label: pipeline.length ? `${t('visualize.data.transform', 'Transform')} · ${pipeline.length}` : t('visualize.data.transform', 'Transform'), icon: Eraser },
-          { id: 'profile', label: t('visualize.data.profile', 'Column profile'), icon: Table2 },
-          { id: 'insights', label: t('visualize.data.insightsTab', 'Insights'), icon: Lightbulb },
+          { id: 'home', label: t('visualize.data.tabs.home'), icon: Home },
+          { id: 'quality', label: t('visualize.data.tabs.quality'), icon: ListChecks },
+          { id: 'transform', label: pipeline.length ? t('visualize.data.tabs.transformCount', { n: formatNumber(pipeline.length) }) : t('visualize.data.tabs.transform'), icon: Eraser },
+          { id: 'profile', label: t('visualize.data.tabs.profile'), icon: Table2 },
+          { id: 'insights', label: t('visualize.data.tabs.insights'), icon: Lightbulb },
         ]}
         aside={dataset ? <span className="hidden text-xs text-muted-foreground md:inline">{dataset.name}</span> : null}
       >
@@ -666,14 +685,14 @@ export function DataPage() {
           <QualityRibbon report={quality.data} loading={quality.isFetching} onScan={() => (scanned ? void quality.refetch() : setScanned(true))} filter={filter} setFilter={setFilter} hidden={hidden} setHidden={setHidden} />
         )}
         {tab === 'transform' && (
-          <RibbonGroup title={t('visualize.data.quick', 'Quick clean-up')}>
+          <RibbonGroup title={t('visualize.data.quick')}>
             {(['remove_duplicates', 'trim', 'remove_blank_rows'] as const).map((op) => (
               <button key={op} type="button" className="viz-tool" disabled={!dataset} onClick={() => addSteps([newStep(op)])} data-testid={`quick-${op}`}>
-                <Wand2 size={18} aria-hidden /> {KIND_BY_OP[op]!.label}
+                <Wand2 size={18} aria-hidden /> {kindLabel(op)}
               </button>
             ))}
             <button type="button" className="viz-tool" disabled={!pipeline.length} onClick={() => setPipeline([])}>
-              <RotateCcw size={18} aria-hidden /> {t('visualize.data.clearSteps', 'Clear steps')}
+              <RotateCcw size={18} aria-hidden /> {t('visualize.data.clearSteps')}
             </button>
           </RibbonGroup>
         )}
@@ -691,7 +710,7 @@ export function DataPage() {
       ) : (
         <div className="viz-card viz-card-pad flex flex-col items-center gap-2 py-12 text-center text-sm text-muted-foreground">
           <Database size={28} aria-hidden />
-          {t('visualize.data.pick', 'Add data from the Home tab: upload a file, paste CSV or load a sample.')}
+          {t('visualize.data.pick')}
         </div>
       )}
     </div>
@@ -722,7 +741,7 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
     mutationFn: async (input: { file?: File; csv?: string; sample?: string }) => {
       // New data is named after its file or sample; the single “Name” field renames it afterwards.
       if (input.file) return visualize.importFile(input.file);
-      if (input.csv !== undefined) return analytics.createDataset({ name: 'Pasted data', csv: input.csv });
+      if (input.csv !== undefined) return analytics.createDataset({ name: t('visualize.data.home.pastedName'), csv: input.csv });
       return visualize.createSample(input.sample || catalog?.samples[0]?.id || 'retail_sales');
     },
     onSuccess: async (created) => {
@@ -768,9 +787,9 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
   return (
     <>
       <div className="viz-data-toolbar" data-testid="data-toolbar">
-        <MenuButton label={dataset ? dataset.name : t('visualize.data.dataset', 'Dataset')} icon={Database} testId="menu-dataset" disabled={!dataset}>
+        <MenuButton label={dataset ? dataset.name : t('visualize.data.home.dataset')} icon={Database} testId="menu-dataset" disabled={!dataset}>
           <label className="viz-menu-field">
-            <span>{t('visualize.data.rename', 'Name')}</span>
+            <span>{t('visualize.data.home.rename')}</span>
             <input
               className="viz-field h-8"
               value={name}
@@ -778,12 +797,12 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
               onChange={(event) => setName(event.target.value)}
               onBlur={() => dataset && name.trim() && name.trim() !== dataset.name && update.mutate({ name: name.trim() })}
               onKeyDown={(event) => event.key === 'Enter' && event.currentTarget.blur()}
-              aria-label="Dataset name"
+              aria-label={t('visualize.data.home.datasetName')}
               data-testid="dataset-name"
             />
           </label>
           <button type="button" role="menuitem" disabled={!dataset} onClick={() => dataset && update.mutate({ isShared: !dataset.isShared })} data-close>
-            <Share2 size={14} aria-hidden /> {dataset?.isShared ? 'Stop sharing' : 'Share with my workspace'}
+            <Share2 size={14} aria-hidden /> {dataset?.isShared ? t('visualize.data.home.stopSharing') : t('visualize.data.home.share')}
           </button>
           <input
             ref={replace}
@@ -797,14 +816,14 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
             }}
             data-testid="replace-file"
           />
-          <button type="button" role="menuitem" disabled={!dataset || busy} onClick={() => replace.current?.click()} title="Fixed it in Excel? Re-upload to replace this dataset's data." data-close>
-            <FileUp size={14} aria-hidden /> Re-upload a corrected file
+          <button type="button" role="menuitem" disabled={!dataset || busy} onClick={() => replace.current?.click()} title={t('visualize.data.home.reuploadTitle')} data-close>
+            <FileUp size={14} aria-hidden /> {t('visualize.data.home.reupload')}
           </button>
           <button type="button" role="menuitem" className="text-destructive" disabled={!dataset} onClick={() => setConfirmDelete(true)} data-close>
-            <Trash2 size={14} aria-hidden /> Delete dataset
+            <Trash2 size={14} aria-hidden /> {t('visualize.data.home.deleteDataset')}
           </button>
         </MenuButton>
-        <MenuButton label={t('visualize.data.add', 'Add data')} icon={Plus} testId="menu-add">
+        <MenuButton label={t('visualize.data.home.add')} icon={Plus} testId="menu-add">
           <input
             ref={upload}
             type="file"
@@ -817,52 +836,52 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
             }}
             data-testid="import-file"
           />
-          <button type="button" role="menuitem" onClick={() => upload.current?.click()} disabled={busy} title="CSV, TSV, TXT, JSON, JSONL or Excel (.xlsx)" data-close>
-            <Upload size={14} aria-hidden /> Upload a file
+          <button type="button" role="menuitem" onClick={() => upload.current?.click()} disabled={busy} title={t('visualize.data.home.uploadFormats')} data-close>
+            <Upload size={14} aria-hidden /> {t('visualize.data.home.upload')}
           </button>
           <button type="button" role="menuitem" onClick={() => setPasting(!pasting)} data-testid="toggle-paste" data-close>
-            <ClipboardPaste size={14} aria-hidden /> Paste CSV
+            <ClipboardPaste size={14} aria-hidden /> {t('visualize.data.home.paste')}
           </button>
-          <p className="dash-menu-title">Samples</p>
+          <p className="dash-menu-title">{t('visualize.data.home.samples')}</p>
           {catalog?.samples.map((item) => (
             <button key={item.id} type="button" role="menuitem" disabled={busy} onClick={() => create.mutate({ sample: item.id })} title={item.description} data-testid={`load-sample-${item.id}`} data-close>
               <Rocket size={14} aria-hidden /> {item.name}
             </button>
           ))}
         </MenuButton>
-        <MenuButton label={t('visualize.data.download', 'Download')} icon={Download} testId="menu-download" disabled={!dataset}>
+        <MenuButton label={t('visualize.data.home.download')} icon={Download} testId="menu-download" disabled={!dataset}>
           <button type="button" role="menuitem" disabled={!dataset || exporter.isPending} onClick={() => exporter.mutate({ type: 'csv' })} data-testid="export-csv" data-close>
             <Download size={14} aria-hidden /> CSV
           </button>
           <button type="button" role="menuitem" disabled={!dataset || exporter.isPending} onClick={() => exporter.mutate({ type: 'xlsx' })} data-testid="export-xlsx" data-close>
-            <FileSpreadsheet size={14} aria-hidden /> Excel (values and profile)
+            <FileSpreadsheet size={14} aria-hidden /> {t('visualize.data.home.excel')}
           </button>
           <button type="button" role="menuitem" disabled={!dataset || exporter.isPending} onClick={() => exporter.mutate({ type: 'xlsx', graphs: true })} data-testid="export-xlsx-charts" data-close>
-            <BarChart3 size={14} aria-hidden /> Excel with charts
+            <BarChart3 size={14} aria-hidden /> {t('visualize.data.home.excelCharts')}
           </button>
           <button type="button" role="menuitem" disabled={!dataset || exporter.isPending} onClick={() => exporter.mutate({ type: 'json' })} data-testid="export-json" data-close>
             <FileJson size={14} aria-hidden /> JSON
           </button>
         </MenuButton>
-        {exporter.isPending && <RefreshCw size={14} className="animate-spin text-muted-foreground" aria-label="Preparing download" />}
+        {exporter.isPending && <RefreshCw size={14} className="animate-spin text-muted-foreground" aria-label={t('visualize.data.home.preparing')} />}
         <span className="flex-1" />
         <span className="text-xs text-muted-foreground" data-testid="active-dataset">
-          {dataset ? `${dataset.name} · ${(dataset.profile.rows ?? dataset.rowCount ?? 0).toLocaleString()} rows` : ''}
+          {dataset ? t('visualize.data.home.active', { name: dataset.name, rows: formatNumber(dataset.profile.rows ?? dataset.rowCount ?? 0) }) : ''}
         </span>
       </div>
       {pasting && (
-        <RibbonGroup title={t('visualize.data.paste', 'Paste CSV')} grow>
+        <RibbonGroup title={t('visualize.data.home.paste')} grow>
           <textarea
             className="viz-field font-mono text-xs"
             rows={4}
             value={csv}
             onChange={(event) => setCsv(event.target.value)}
             placeholder={'region,product,revenue\nEast,A,120'}
-            aria-label="CSV text"
+            aria-label={t('visualize.data.home.csvText')}
             data-testid="import-paste"
           />
           <Button size="sm" className="viz-primary gap-1.5" disabled={!csv.trim()} isLoading={create.isPending} onClick={() => create.mutate({ csv })} data-testid="import-submit">
-            <Plus size={14} aria-hidden /> Add dataset
+            <Plus size={14} aria-hidden /> {t('visualize.data.home.addDataset')}
           </Button>
         </RibbonGroup>
       )}
@@ -871,22 +890,22 @@ function HomeTab({ dataset, onDeleted }: { dataset: Dataset | undefined; onDelet
           <ErrorNote error={error} />
         </RibbonGroup>
       ) : null}
-      <RibbonGroup title={t('visualize.data.next', 'Next')} pinned>
+      <RibbonGroup title={t('visualize.data.home.next')} pinned>
         <button type="button" className="viz-tool" disabled={!dataset} onClick={() => openStudio({ chartType: 'bar', datasetId })} data-testid="go-visualize">
-          <Wand2 size={18} aria-hidden /> Explore
+          <Wand2 size={18} aria-hidden /> {t('visualize.data.home.explore')}
         </button>
         <button type="button" className="viz-tool predict" disabled={!dataset} onClick={() => openPredict({ task: 'forecast', datasetId })} data-testid="go-predict">
-          <BrainCircuit size={18} aria-hidden /> Predict
+          <BrainCircuit size={18} aria-hidden /> {t('visualize.data.home.predict')}
         </button>
         <button type="button" className="viz-primary inline-flex h-9 items-center gap-1.5 self-center rounded-lg px-3 text-sm font-semibold text-white" disabled={!dataset || build.isPending} onClick={() => build.mutate()} data-testid="build-dashboard">
-          <Sparkles size={15} aria-hidden /> {build.isPending ? 'Building…' : 'Build dashboard →'}
+          <Sparkles size={15} aria-hidden /> {build.isPending ? t('visualize.data.home.building') : t('visualize.data.home.buildDashboard')}
         </button>
       </RibbonGroup>
       <ConfirmDialog
         open={confirmDelete}
-        title={t('visualize.data.deleteTitle', 'Delete dataset?')}
-        description={t('visualize.data.deleteText', 'This removes {{name}} and its analysis results. Saved charts keep their snapshot.', { name: dataset?.name ?? '' })}
-        confirmLabel={t('common.delete', 'Delete')}
+        title={t('visualize.data.home.deleteTitle')}
+        description={t('visualize.data.home.deleteText', { name: dataset?.name ?? '' })}
+        confirmLabel={t('visualize.data.home.delete')}
         destructive
         onConfirm={() => remove.mutate()}
         onCancel={() => setConfirmDelete(false)}
@@ -911,6 +930,7 @@ function DataGrid({
   filter: string;
   hidden: Set<string>;
 }) {
+  const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
   const { refreshDatasets } = useVisualize();
@@ -962,21 +982,22 @@ function DataGrid({
             {dataset.name}
           </h1>
           <p className="text-xs text-muted-foreground">
-            {(preview.data?.datasetRows ?? dataset.rowCount ?? 0).toLocaleString()} rows · {columns.length} columns
-            {filter && ` · showing ${total.toLocaleString()} ${filter === 'issues' ? 'rows with issues' : (meta[filter]?.label ?? filter).toLowerCase() + ' rows'}`}
-            {' · '}double-click a cell to correct it
+            {t('visualize.data.grid.size', { rows: formatNumber(preview.data?.datasetRows ?? dataset.rowCount ?? 0), columns: formatNumber(columns.length) })}
+            {filter && ` · ${filter === 'issues' ? t('visualize.data.grid.showingIssues', { count: total, rows: formatNumber(total) }) : t('visualize.data.grid.showingType', { count: total, rows: formatNumber(total), label: (meta[filter]?.label ?? filter).toLowerCase() })}`}
+            {' · '}
+            {t('visualize.data.grid.editHint')}
           </p>
         </div>
         {pending > 0 && (
           <div className="flex items-center gap-2" data-testid="pending-edits">
             <span className="text-xs text-muted-foreground">
-              {edits.size} cell edit(s), {deletes.size} row(s) to delete
+              {t('visualize.data.grid.pending', { edits: formatNumber(edits.size), deletes: formatNumber(deletes.size) })}
             </span>
             <Button size="sm" variant="outline" className="gap-1" onClick={() => { setEdits(new Map()); setDeletes(new Set()); }}>
-              <RotateCcw size={13} aria-hidden /> Discard
+              <RotateCcw size={13} aria-hidden /> {t('visualize.data.grid.discard')}
             </Button>
             <Button size="sm" className="viz-primary gap-1" isLoading={save.isPending} onClick={() => save.mutate()} data-testid="save-edits">
-              <Save size={13} aria-hidden /> Save changes
+              <Save size={13} aria-hidden /> {t('visualize.data.grid.save')}
             </Button>
           </div>
         )}
@@ -997,7 +1018,7 @@ function DataGrid({
                     {health && (
                       <div
                         className="viz-quality-bar"
-                        title={`${(health.valid * 100).toFixed(1)}% valid · ${(health.error * 100).toFixed(1)}% with problems · ${(health.empty * 100).toFixed(1)}% empty`}
+                        title={t('visualize.data.grid.health', { valid: percent(health.valid), error: percent(health.error), empty: percent(health.empty) })}
                         data-testid={`quality-bar-${column}`}
                       >
                         <span className="valid" style={{ width: `${health.valid * 100}%` }} />
@@ -1023,7 +1044,7 @@ function DataGrid({
                     <button
                       type="button"
                       className="mr-1 rounded p-0.5 hover:bg-accent hover:text-destructive"
-                      aria-label={deleted ? `Keep row ${position + 1}` : `Delete row ${position + 1}`}
+                      aria-label={deleted ? t('visualize.data.grid.keepRow', { row: position + 1 }) : t('visualize.data.grid.deleteRow', { row: position + 1 })}
                       onClick={() => {
                         const next = new Set(deletes);
                         if (next.has(position)) next.delete(position);
@@ -1054,7 +1075,7 @@ function DataGrid({
                           <input
                             autoFocus
                             defaultValue={value == null ? '' : formatValue(value).replace(/,/g, '')}
-                            aria-label={`Edit ${column} in row ${position + 1}`}
+                            aria-label={t('visualize.data.grid.editCell', { column, row: position + 1 })}
                             onBlur={(event) => {
                               const next = new Map(edits);
                               next.set(key, { row: position, column, value: event.target.value });
@@ -1080,13 +1101,13 @@ function DataGrid({
       </div>
       <div className="flex items-center justify-between text-xs text-muted-foreground">
         <span>
-          Rows {total ? offset + 1 : 0}–{Math.min(offset + PAGE, total)} of {total.toLocaleString()}
+          {t('visualize.data.grid.range', { from: formatNumber(total ? offset + 1 : 0), to: formatNumber(Math.min(offset + PAGE, total)), total: formatNumber(total) })}
         </span>
         <div className="flex gap-1">
-          <Button size="sm" variant="outline" disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - PAGE))} aria-label="Previous rows">
+          <Button size="sm" variant="outline" disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - PAGE))} aria-label={t('visualize.data.grid.previous')}>
             <ChevronLeft size={14} />
           </Button>
-          <Button size="sm" variant="outline" disabled={offset + PAGE >= total} onClick={() => setOffset(offset + PAGE)} aria-label="Next rows">
+          <Button size="sm" variant="outline" disabled={offset + PAGE >= total} onClick={() => setOffset(offset + PAGE)} aria-label={t('visualize.data.grid.next')}>
             <ChevronRight size={14} />
           </Button>
         </div>

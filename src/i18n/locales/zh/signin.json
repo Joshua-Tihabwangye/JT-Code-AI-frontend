@@ -1,0 +1,15 @@
+{
+  "title": "欢迎回来",
+  "subtitle": "登录以继续使用 JT-Code",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "连接中…",
+  "emailLabel": "电子邮箱地址",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "密码",
+  "passwordPlaceholder": "请输入密码",
+  "forgotPassword": "忘记密码？",
+  "submit": "登录",
+  "noAccount": "还没有账号？",
+  "createAccount": "创建账号"
+}

@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "eyebrow": "문의",
+    "title": "JT-Code 도움 받기",
+    "backToSignIn": "로그인으로 돌아가기",
+    "createAccount": "계정 만들기"
+  },
+  "privacy": {
+    "eyebrow": "개인정보 처리방침",
+    "title": "JT-Code 개인정보",
+    "signIn": "로그인",
+    "readTerms": "약관 읽기"
+  },
+  "terms": {
+    "eyebrow": "서비스 약관",
+    "title": "JT-Code 약관",
+    "createAccount": "계정 만들기",
+    "contactSupport": "지원팀에 문의"
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없음",
+    "returnHome": "JT-Code로 돌아가기"
+  }
+}

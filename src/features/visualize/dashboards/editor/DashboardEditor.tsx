@@ -42,6 +42,7 @@ import { apiErrorMessage, apiErrorStatus } from '@/lib/api/http';
 import { useAppStore } from '@/lib/appStore';
 import { useRepository, type DashboardPage, type DashboardSpec, type DashboardVisual, type DashboardVisualType } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
+import { formatDateTime, formatNumber } from '@/i18n/format';
 import { useVisualize } from '../../context';
 import { ErrorNote, SkeletonBlock } from '../../ui';
 import { AIPageComposer, AutoFormatDialog, SuggestPanel } from '../ai';
@@ -71,7 +72,7 @@ import {
 } from './actions';
 import { BuildPane } from './BuildPane';
 import { EditorCanvas } from './Canvas';
-import { fieldKind, newId, suggestType, VISUAL_BY_TYPE, VISUALS, wellFor, wellItem } from './catalog';
+import { fieldKind, newId, suggestType, VISUAL_BY_TYPE, VISUAL_GROUPS, VISUALS, wellFor, wellItem } from './catalog';
 import { FiltersPane } from '../FiltersPane';
 import { PYTHON_STARTER } from './FormatExtras';
 import { FormatPane } from './FormatPane';
@@ -325,8 +326,8 @@ export function DashboardEditor() {
   }
 
   if (record.isLoading || (record.data && !spec)) return <SkeletonBlock height={520} />;
-  if (record.error || !spec || !page) return <ErrorNote error={record.error ?? new Error('Dashboard not found.')} />;
-  if (record.data && record.data.role === 'viewer') return <ErrorNote error={new Error('You can view this dashboard but not edit it.')} />;
+  if (record.error || !spec || !page) return <ErrorNote error={record.error ?? new Error(t('visualize.editor.notFound'))} />;
+  if (record.data && record.data.role === 'viewer') return <ErrorNote error={new Error(t('visualize.editor.viewOnly'))} />;
 
   const editorAction = (action: ButtonAction) => {
     if (action.kind === 'page' && action.pageId) editor.setPage(action.pageId);
@@ -344,53 +345,53 @@ export function DashboardEditor() {
   const selectedProfiles = datasets.find((item) => item.id === (single?.data.datasetId || mostUsedDataset(page) || activeDataset))?.profile.columnProfiles ?? [];
   const updatePage = (patch: Partial<DashboardPage>) => change((current) => mapPage(current, page.id, (p) => ({ ...p, ...patch })), { merge: `page.${Object.keys(patch).join(',')}` });
   const status = {
-    saved: { icon: Check, text: t('visualize.editor.saved', 'Saved') },
-    dirty: { icon: Loader2, text: t('visualize.editor.unsaved', 'Unsaved changes') },
-    saving: { icon: Loader2, text: t('visualize.editor.saving', 'Saving…') },
-    conflict: { icon: CloudOff, text: t('visualize.editor.conflict', 'Changed elsewhere') },
-    error: { icon: CloudOff, text: t('visualize.editor.failed', 'Not saved') },
+    saved: { icon: Check, text: t('visualize.editor.saved') },
+    dirty: { icon: Loader2, text: t('visualize.editor.unsaved') },
+    saving: { icon: Loader2, text: t('visualize.editor.saving') },
+    conflict: { icon: CloudOff, text: t('visualize.editor.conflict') },
+    error: { icon: CloudOff, text: t('visualize.editor.failed') },
   }[saveState];
 
   return (
     <div className="dash-editor" data-testid="dashboard-editor" onPointerDown={() => menu && setMenu(null)}>
       <header className="dash-editor-bar" onPointerDown={(event) => event.stopPropagation()}>
-        <Link to={`/app/visualize/dashboards/${dashboardId}`} className="viz-icon-button" aria-label={t('visualize.editor.close', 'Back to view')}>
+        <Link to={`/app/visualize/dashboards/${dashboardId}`} className="viz-icon-button" aria-label={t('visualize.editor.close')}>
           <ArrowLeft size={16} aria-hidden />
         </Link>
         <input
           className="dash-name-input"
           value={editor.record?.name ?? ''}
           onChange={(event) => useEditor.setState((state) => ({ record: state.record ? { ...state.record, name: event.target.value } : null, saveState: 'dirty' }))}
-          aria-label="Dashboard name"
+          aria-label={t('visualize.editor.dashboardName')}
           data-testid="editor-name"
         />
         <div className="dash-toolgroup">
-          <button type="button" onClick={undo} disabled={!editor.past.length} title="Undo (Ctrl+Z)" aria-label="Undo" data-testid="undo">
+          <button type="button" onClick={undo} disabled={!editor.past.length} title={t('visualize.editor.undoShortcut')} aria-label={t('visualize.editor.undo')} data-testid="undo">
             <Undo2 size={15} />
           </button>
-          <button type="button" onClick={redo} disabled={!editor.future.length} title="Redo (Ctrl+Y)" aria-label="Redo" data-testid="redo">
+          <button type="button" onClick={redo} disabled={!editor.future.length} title={t('visualize.editor.redoShortcut')} aria-label={t('visualize.editor.redo')} data-testid="redo">
             <Redo2 size={15} />
           </button>
         </div>
         <div className="dash-menu-anchor">
           <button type="button" className="dash-menu-button primary" onClick={() => setMenu(menu === 'insert' ? null : 'insert')} aria-expanded={menu === 'insert'} data-testid="insert-menu">
-            <Plus size={14} aria-hidden /> {t('visualize.editor.insert', 'Insert')}
+            <Plus size={14} aria-hidden /> {t('visualize.editor.insert')}
           </button>
           {menu === 'insert' && (
             <div className="dash-menu wide" onPointerDown={(event) => event.stopPropagation()} role="menu">
-              {(['Cards', 'Charts', 'Tables', 'Slicers', 'Other'] as const).map((groupName) => (
-                <div key={groupName}>
-                  <p className="dash-menu-title">{groupName}</p>
+              {VISUAL_GROUPS.map((groupName) => (
+                <div key={groupName.id}>
+                  <p className="dash-menu-title">{t(groupName.labelKey)}</p>
                   <div className="dash-menu-grid">
-                    {VISUALS.filter((visual) => visual.group === groupName).map((visual) => (
+                    {VISUALS.filter((visual) => visual.group === groupName.id).map((visual) => (
                       <button key={visual.type} type="button" onClick={() => insert(visual.type, STARTERS[visual.type])} data-testid={`insert-${visual.type}`}>
-                        <visual.icon size={16} aria-hidden /> {visual.label}
+                        <visual.icon size={16} aria-hidden /> {t(visual.labelKey)}
                       </button>
                     ))}
                   </div>
                 </div>
               ))}
-              <p className="dash-menu-title">{t('visualize.editor.library', 'From My visuals')}</p>
+              <p className="dash-menu-title">{t('visualize.editor.library')}</p>
               <div className="dash-menu-grid">
                 {charts.data
                   ?.filter((chart) => chart.datasetId && !chart.chartType.startsWith('prediction:'))
@@ -413,18 +414,18 @@ export function DashboardEditor() {
                       <LayoutTemplate size={16} aria-hidden /> <span className="truncate">{chart.title}</span>
                     </button>
                   ))}
-                {!charts.data?.some((chart) => chart.datasetId) && <span className="text-xs text-muted-foreground">Save charts in the Studio to reuse them here.</span>}
+                {!charts.data?.some((chart) => chart.datasetId) && <span className="text-xs text-muted-foreground">{t('visualize.editor.libraryEmpty')}</span>}
               </div>
             </div>
           )}
         </div>
         <div className="dash-menu-anchor">
           <button type="button" className="dash-menu-button" onClick={() => setMenu(menu === 'arrange' ? null : 'arrange')} disabled={!selected.length} data-testid="arrange-menu">
-            <BringToFront size={14} aria-hidden /> {t('visualize.editor.arrange', 'Arrange')}
+            <BringToFront size={14} aria-hidden /> {t('visualize.editor.arrange')}
           </button>
           {menu === 'arrange' && (
             <div className="dash-menu" onPointerDown={(event) => event.stopPropagation()} role="menu">
-              <p className="dash-menu-title">Align</p>
+              <p className="dash-menu-title">{t('visualize.editor.align.title')}</p>
               <div className="dash-icon-row">
                 {(
                   [
@@ -436,38 +437,38 @@ export function DashboardEditor() {
                     ['bottom', AlignEndHorizontal],
                   ] as const
                 ).map(([op, Icon]) => (
-                  <button key={op} type="button" title={`Align ${op}`} disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => align(s, p, ids, op))} data-testid={`align-${op}`}>
+                  <button key={op} type="button" title={t(`visualize.editor.align.${op}`)} disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => align(s, p, ids, op))} data-testid={`align-${op}`}>
                     <Icon size={15} />
                   </button>
                 ))}
               </div>
-              <p className="dash-menu-title">Distribute and size</p>
+              <p className="dash-menu-title">{t('visualize.editor.distributeAndSize')}</p>
               <div className="dash-icon-row">
-                <button type="button" title="Distribute horizontally" disabled={selected.length < 3} onClick={() => arrange((s, p, ids) => distribute(s, p, ids, 'horizontal'))}>
+                <button type="button" title={t('visualize.editor.distributeHorizontally')} disabled={selected.length < 3} onClick={() => arrange((s, p, ids) => distribute(s, p, ids, 'horizontal'))}>
                   <StretchHorizontal size={15} />
                 </button>
-                <button type="button" title="Distribute vertically" disabled={selected.length < 3} onClick={() => arrange((s, p, ids) => distribute(s, p, ids, 'vertical'))}>
+                <button type="button" title={t('visualize.editor.distributeVertically')} disabled={selected.length < 3} onClick={() => arrange((s, p, ids) => distribute(s, p, ids, 'vertical'))}>
                   <StretchVertical size={15} />
                 </button>
-                <button type="button" title="Match width" disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => matchSize(s, p, ids, 'w', ids[0]!))}>
-                  W
+                <button type="button" title={t('visualize.editor.matchWidth')} disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => matchSize(s, p, ids, 'w', ids[0]!))}>
+                  {t('visualize.editor.matchWidthShort')}
                 </button>
-                <button type="button" title="Match height" disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => matchSize(s, p, ids, 'h', ids[0]!))}>
-                  H
+                <button type="button" title={t('visualize.editor.matchHeight')} disabled={selected.length < 2} onClick={() => arrange((s, p, ids) => matchSize(s, p, ids, 'h', ids[0]!))}>
+                  {t('visualize.editor.matchHeightShort')}
                 </button>
               </div>
-              <p className="dash-menu-title">Layer</p>
+              <p className="dash-menu-title">{t('visualize.editor.layer')}</p>
               <div className="dash-icon-row">
-                <button type="button" title="Bring to front" onClick={() => arrange((s, p, ids) => layer(s, p, ids, 'front'))}>
+                <button type="button" title={t('visualize.editor.bringToFront')} onClick={() => arrange((s, p, ids) => layer(s, p, ids, 'front'))}>
                   <BringToFront size={15} />
                 </button>
-                <button type="button" title="Send to back" onClick={() => arrange((s, p, ids) => layer(s, p, ids, 'back'))}>
+                <button type="button" title={t('visualize.editor.sendToBack')} onClick={() => arrange((s, p, ids) => layer(s, p, ids, 'back'))}>
                   <SendToBack size={15} />
                 </button>
-                <button type="button" title="Duplicate (Ctrl+D)" onClick={duplicateSelected}>
+                <button type="button" title={t('visualize.editor.duplicateShortcut')} onClick={duplicateSelected}>
                   <Copy size={15} />
                 </button>
-                <button type="button" title="Delete" onClick={deleteSelected}>
+                <button type="button" title={t('visualize.editor.delete')} onClick={deleteSelected}>
                   <Trash2 size={15} />
                 </button>
               </div>
@@ -476,11 +477,11 @@ export function DashboardEditor() {
         </div>
         <div className="dash-menu-anchor">
           <button type="button" className="dash-menu-button" onClick={() => setMenu(menu === 'theme' ? null : 'theme')} data-testid="theme-menu">
-            <Palette size={14} aria-hidden /> {t('visualize.editor.theme', 'Theme')}
+            <Palette size={14} aria-hidden /> {t('visualize.editor.theme')}
           </button>
           {menu === 'theme' && (
             <div className="dash-menu wide" onPointerDown={(event) => event.stopPropagation()} role="menu">
-              <p className="dash-menu-title">Theme</p>
+              <p className="dash-menu-title">{t('visualize.editor.theme')}</p>
               <div className="dash-theme-grid">
                 {themes.data?.themes.map((option) => (
                   <button key={option.id} type="button" aria-pressed={(typeof spec.theme === 'string' ? spec.theme : spec.theme.id) === option.id} onClick={() => change((s) => ({ ...s, theme: option.id }))} data-testid={`theme-${option.id}`}>
@@ -498,25 +499,25 @@ export function DashboardEditor() {
                 className="viz-chip mt-2"
                 onClick={() => {
                   setThemeBefore(spec.theme);
-                  if (typeof spec.theme === 'string' && theme) change((s) => ({ ...s, theme: { ...theme, id: 'custom', name: `${theme.name} (custom)` } }));
+                  if (typeof spec.theme === 'string' && theme) change((s) => ({ ...s, theme: { ...theme, id: 'custom', name: t('visualize.editor.customThemeName', { name: theme.name }) } }));
                   setMenu(null);
                 }}
                 data-testid="theme-customize"
               >
-                <Settings2 size={12} aria-hidden /> Customize theme…
+                <Settings2 size={12} aria-hidden /> {t('visualize.editor.customizeTheme')}
               </button>
-              <p className="dash-menu-title">Mode and density</p>
+              <p className="dash-menu-title">{t('visualize.editor.modeAndDensity')}</p>
               <div className="viz-segment">
                 {(['system', 'light', 'dark'] as const).map((value) => (
                   <button key={value} type="button" aria-pressed={spec.mode === value} onClick={() => change((s) => ({ ...s, mode: value }))}>
-                    {value === 'system' ? 'Follow app' : value[0]!.toUpperCase() + value.slice(1)}
+                    {t(`visualize.editor.modes.${value}`)}
                   </button>
                 ))}
               </div>
               <div className="viz-segment mt-1">
                 {(['comfortable', 'compact'] as const).map((value) => (
                   <button key={value} type="button" aria-pressed={(spec.density ?? 'comfortable') === value} onClick={() => change((s) => ({ ...s, density: value }))}>
-                    {value[0]!.toUpperCase() + value.slice(1)}
+                    {t(`visualize.editor.density.${value}`)}
                   </button>
                 ))}
               </div>
@@ -525,19 +526,19 @@ export function DashboardEditor() {
         </div>
         <div className="dash-menu-anchor">
           <button type="button" className="dash-menu-button" onClick={() => setMenu(menu === 'ai' ? null : 'ai')} aria-expanded={menu === 'ai'} data-testid="ai-menu">
-            <Sparkles size={14} aria-hidden /> {t('visualize.editor.ai', 'AI')}
+            <Sparkles size={14} aria-hidden /> {t('visualize.editor.ai')}
           </button>
           {menu === 'ai' && (
             <div className="dash-menu wide" onPointerDown={(event) => event.stopPropagation()} role="menu">
               <div className="flex gap-2">
                 <button type="button" className="viz-chip" onClick={() => (setAiDialog('page'), setMenu(null))} data-testid="ai-new-page">
-                  <Sparkles size={12} aria-hidden /> Page from a prompt…
+                  <Sparkles size={12} aria-hidden /> {t('visualize.editor.pageFromPrompt')}
                 </button>
                 <button type="button" className="viz-chip" onClick={() => (setAiDialog('format'), setMenu(null))} data-testid="ai-auto-format">
-                  <Wand2 size={12} aria-hidden /> Auto-format…
+                  <Wand2 size={12} aria-hidden /> {t('visualize.editor.autoFormat')}
                 </button>
               </div>
-              <p className="dash-menu-title">Suggested visuals</p>
+              <p className="dash-menu-title">{t('visualize.editor.suggestedVisuals')}</p>
               <SuggestPanel
                 datasetId={mostUsedDataset(page) || activeDataset}
                 visuals={page.visuals}
@@ -551,10 +552,10 @@ export function DashboardEditor() {
           className="dash-menu-button"
           aria-pressed={interactions}
           onClick={() => setInteractions(!interactions)}
-          title="Choose how clicking the selected visual affects each other visual"
+          title={t('visualize.editor.interactionsHint')}
           data-testid="edit-interactions"
         >
-          <MousePointerClick size={14} aria-hidden /> {t('visualize.editor.interactions', 'Interactions')}
+          <MousePointerClick size={14} aria-hidden /> {t('visualize.editor.interactions')}
         </button>
         <button
           type="button"
@@ -562,23 +563,23 @@ export function DashboardEditor() {
           aria-pressed={!!painter}
           disabled={!single && !painter}
           onClick={() => setPainter(painter ? null : (single?.id ?? null))}
-          title="Format painter: copy this visual's formatting, then click another visual"
+          title={t('visualize.editor.formatPainter')}
           data-testid="format-painter"
         >
           <Paintbrush size={14} aria-hidden />
         </button>
         <div className="dash-toolgroup">
-          <button type="button" aria-pressed={snap} onClick={() => setOption({ snap: !snap })} title="Snap to grid (off = free positioning)" data-testid="toggle-snap">
+          <button type="button" aria-pressed={snap} onClick={() => setOption({ snap: !snap })} title={t('visualize.editor.snap')} data-testid="toggle-snap">
             <Magnet size={15} />
           </button>
-          <button type="button" aria-pressed={gridlines} onClick={() => setOption({ gridlines: !gridlines })} title="Gridlines">
+          <button type="button" aria-pressed={gridlines} onClick={() => setOption({ gridlines: !gridlines })} title={t('visualize.editor.gridlines')}>
             <Grid2x2 size={15} />
           </button>
-          <select value={String(zoom)} onChange={(event) => setOption({ zoom: event.target.value === 'fit' ? 'fit' : Number(event.target.value) })} aria-label="Zoom" className="dash-zoom">
-            <option value="fit">Fit</option>
+          <select value={String(zoom)} onChange={(event) => setOption({ zoom: event.target.value === 'fit' ? 'fit' : Number(event.target.value) })} aria-label={t('visualize.editor.zoom')} className="dash-zoom">
+            <option value="fit">{t('visualize.editor.zoomFit')}</option>
             {[0.5, 0.75, 1, 1.25, 1.5, 2].map((value) => (
               <option key={value} value={value}>
-                {value * 100}%
+                {formatNumber(value, { style: 'percent' })}
               </option>
             ))}
           </select>
@@ -593,7 +594,7 @@ export function DashboardEditor() {
             }}
             data-testid="versions-menu"
           >
-            <History size={14} aria-hidden /> {t('visualize.editor.versions', 'Versions')}
+            <History size={14} aria-hidden /> {t('visualize.editor.versions')}
           </button>
           {menu === 'versions' && (
             <div className="dash-menu" onPointerDown={(event) => event.stopPropagation()} role="menu">
@@ -603,21 +604,21 @@ export function DashboardEditor() {
                 onClick={() =>
                   void (async () => {
                     await save();
-                    await visualize.saveDashboardVersion(dashboardId, `Saved ${new Date().toLocaleString()}`);
+                    await visualize.saveDashboardVersion(dashboardId, t('visualize.editor.versionName', { date: formatDateTime(new Date()) }));
                     await versions.refetch();
                   })()
                 }
                 data-testid="save-version"
               >
-                <Plus size={12} aria-hidden /> Save this version
+                <Plus size={12} aria-hidden /> {t('visualize.editor.saveVersion')}
               </button>
               <ul className="dash-versions">
                 {versions.data?.map((version) => (
                   <li key={version.number}>
                     <span>
-                      <b>v{version.number}</b> {version.name}
+                      <b>{t('visualize.editor.versionNumber', { number: version.number })}</b> {version.name}
                       <br />
-                      <small>{new Date(version.createdAt).toLocaleString()}</small>
+                      <small>{formatDateTime(version.createdAt)}</small>
                     </span>
                     <button
                       type="button"
@@ -630,7 +631,7 @@ export function DashboardEditor() {
                         })()
                       }
                     >
-                      Restore
+                      {t('visualize.editor.restore')}
                     </button>
                   </li>
                 ))}
@@ -647,18 +648,18 @@ export function DashboardEditor() {
             void navigate(`/app/visualize/dashboards/${dashboardId}`);
           })()
         } data-testid="done-editing">
-          {t('visualize.editor.done', 'Done')}
+          {t('visualize.editor.done')}
         </button>
       </header>
 
       {saveState === 'conflict' && (
         <div className="dash-conflict" role="alert">
-          {t('visualize.editor.conflictText', 'Someone saved this dashboard while you were editing.')}
+          {t('visualize.editor.conflictText')}
           <button type="button" onClick={() => void record.refetch().then((fresh) => fresh.data && useEditor.getState().load(fresh.data))}>
-            {t('visualize.editor.reload', 'Load their version')}
+            {t('visualize.editor.reload')}
           </button>
           <button type="button" onClick={() => void save(true)}>
-            {t('visualize.editor.overwrite', 'Keep mine')}
+            {t('visualize.editor.overwrite')}
           </button>
         </div>
       )}
@@ -666,15 +667,15 @@ export function DashboardEditor() {
       {aiDialog === 'format' && <AutoFormatDialog spec={spec} onApply={(next) => change(() => next)} onClose={() => setAiDialog(null)} />}
       {aiDialog === 'page' && (
         <div className="dash-dialog-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && setAiDialog(null)}>
-          <div className="dash-dialog" role="dialog" aria-label="New page from a prompt" data-testid="ai-page-dialog">
+          <div className="dash-dialog" role="dialog" aria-label={t('visualize.editor.newPageFromPrompt')} data-testid="ai-page-dialog">
             <header className="flex items-center gap-2">
               <Sparkles size={16} aria-hidden />
-              <h2 className="flex-1 text-sm font-semibold">New page from a prompt</h2>
+              <h2 className="flex-1 text-sm font-semibold">{t('visualize.editor.newPageFromPrompt')}</h2>
             </header>
             <AIPageComposer
               datasetId={mostUsedDataset(page) || activeDataset}
               dashboardId={dashboardId}
-              applyLabel="Add page"
+              applyLabel={t('visualize.editor.addPage')}
               onCancel={() => setAiDialog(null)}
               onApply={(proposal) => {
                 const id = spec.pages.some((item) => item.id === proposal.page.id) ? newId('page') : proposal.page.id;
@@ -735,8 +736,8 @@ export function DashboardEditor() {
             )}
           </div>
         </div>
-        <aside className={`dash-pane${paneOpen ? '' : ' closed'}`} aria-label="Editor pane">
-          <button type="button" className="dash-pane-toggle" onClick={() => setPaneOpen(!paneOpen)} aria-label={paneOpen ? 'Hide pane' : 'Show pane'}>
+        <aside className={`dash-pane${paneOpen ? '' : ' closed'}`} aria-label={t('visualize.editor.pane.label')}>
+          <button type="button" className="dash-pane-toggle" onClick={() => setPaneOpen(!paneOpen)} aria-label={paneOpen ? t('visualize.editor.pane.hide') : t('visualize.editor.pane.show')}>
             {paneOpen ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
           </button>
           {paneOpen && (
@@ -744,12 +745,12 @@ export function DashboardEditor() {
               <div className="dash-pane-tabs" role="tablist">
                 {(['build', 'format', 'filters', 'selection', 'views'] as const).map((tab) => (
                   <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`pane-${tab}`}>
-                    {tab === 'build' ? 'Build' : tab === 'format' ? 'Format' : tab === 'filters' ? 'Filters' : tab === 'selection' ? 'Selection' : 'Views'}
+                    {t(`visualize.editor.pane.${tab}`)}
                   </button>
                 ))}
               </div>
               <div className="dash-pane-body">
-                {selected.length > 1 && pane !== 'selection' && pane !== 'filters' && pane !== 'views' && <p className="text-xs text-muted-foreground">{selected.length} visuals selected — use Arrange, or pick one to edit.</p>}
+                {selected.length > 1 && pane !== 'selection' && pane !== 'filters' && pane !== 'views' && <p className="text-xs text-muted-foreground">{t('visualize.editor.multiSelected', { count: selected.length })}</p>}
                 {pane === 'build' && selected.length <= 1 && <BuildPane visual={single} update={updateSelected} onCreate={createFromField} spec={spec} onSpec={(mutate) => change(mutate)} />}
                 {pane === 'format' && selected.length <= 1 && (
                   <FormatPane
@@ -803,7 +804,7 @@ export function DashboardEditor() {
               <input
                 autoFocus
                 defaultValue={item.name}
-                aria-label="Page name"
+                aria-label={t('visualize.editor.pages.name')}
                 onBlur={(event) => {
                   const name = event.target.value.trim();
                   if (name) change((s) => mapPage(s, item.id, (p) => ({ ...p, name })));
@@ -812,21 +813,21 @@ export function DashboardEditor() {
                 onKeyDown={(event) => event.key === 'Enter' && event.currentTarget.blur()}
               />
             ) : (
-              <button type="button" onClick={() => editor.setPage(item.id)} onDoubleClick={() => setRenamingPage(item.id)} title="Double-click to rename" data-testid={`page-${index}`}>
+              <button type="button" onClick={() => editor.setPage(item.id)} onDoubleClick={() => setRenamingPage(item.id)} title={t('visualize.editor.pages.rename')} data-testid={`page-${index}`}>
                 {item.hidden && <EyeOff size={11} aria-hidden />} {item.name}
               </button>
             )}
             {item.id === page.id && (
               <span className="dash-page-actions">
-                <button type="button" title="Move left" disabled={index === 0} onClick={() => change((s) => movePage(s, item.id, -1))}>
+                <button type="button" title={t('visualize.editor.pages.moveLeft')} disabled={index === 0} onClick={() => change((s) => movePage(s, item.id, -1))}>
                   <ChevronLeft size={12} />
                 </button>
-                <button type="button" title="Move right" disabled={index === spec.pages.length - 1} onClick={() => change((s) => movePage(s, item.id, 1))}>
+                <button type="button" title={t('visualize.editor.pages.moveRight')} disabled={index === spec.pages.length - 1} onClick={() => change((s) => movePage(s, item.id, 1))}>
                   <ChevronRight size={12} />
                 </button>
                 <button
                   type="button"
-                  title="Duplicate page"
+                  title={t('visualize.editor.pages.duplicate')}
                   onClick={() => {
                     let id = '';
                     change((s) => {
@@ -839,12 +840,12 @@ export function DashboardEditor() {
                 >
                   <Copy size={12} />
                 </button>
-                <button type="button" title={item.hidden ? 'Show page to viewers' : 'Hide page from viewers'} onClick={() => change((s) => mapPage(s, item.id, (p) => ({ ...p, hidden: !p.hidden })))}>
+                <button type="button" title={item.hidden ? t('visualize.editor.pages.show') : t('visualize.editor.pages.hide')} onClick={() => change((s) => mapPage(s, item.id, (p) => ({ ...p, hidden: !p.hidden })))}>
                   <EyeOff size={12} />
                 </button>
                 <button
                   type="button"
-                  title="Delete page"
+                  title={t('visualize.editor.pages.delete')}
                   disabled={spec.pages.length < 2}
                   onClick={() => {
                     change((s) => removePage(s, item.id));
@@ -869,21 +870,21 @@ export function DashboardEditor() {
             });
             editor.setPage(id);
           }}
-          aria-label="Add page"
+          aria-label={t('visualize.editor.addPage')}
           data-testid="add-page"
         >
           <Plus size={14} />
         </button>
-        <div className="viz-segment ml-auto" role="group" aria-label="Layout">
-          <button type="button" aria-pressed={layout === 'desktop'} onClick={() => setLayout('desktop')} data-testid="layout-desktop" title="Desktop layout">
+        <div className="viz-segment ml-auto" role="group" aria-label={t('visualize.editor.layout.label')}>
+          <button type="button" aria-pressed={layout === 'desktop'} onClick={() => setLayout('desktop')} data-testid="layout-desktop" title={t('visualize.editor.layout.desktop')}>
             <Monitor size={13} aria-hidden />
           </button>
-          <button type="button" aria-pressed={layout === 'phone'} onClick={() => setLayout('phone')} data-testid="layout-phone" title="Phone layout">
+          <button type="button" aria-pressed={layout === 'phone'} onClick={() => setLayout('phone')} data-testid="layout-phone" title={t('visualize.editor.layout.phone')}>
             <Smartphone size={13} aria-hidden />
           </button>
         </div>
         <span className="text-[11px] text-muted-foreground">
-          {page.visuals.length} visual{page.visuals.length === 1 ? '' : 's'} · {runtime.rendered.isFetching ? 'updating…' : runtime.rendered.data ? `${(runtime.rendered.data.meta.ms / 1000).toFixed(1)} s` : ''}
+          {t('visualize.editor.visualsCount', { count: page.visuals.length })} · {runtime.rendered.isFetching ? t('visualize.editor.updating') : runtime.rendered.data ? t('visualize.editor.seconds', { value: formatNumber(runtime.rendered.data.meta.ms / 1000, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) }) : ''}
         </span>
       </footer>
     </div>

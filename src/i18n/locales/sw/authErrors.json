@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "Jina la kwanza linahitajika.",
+  "firstNameTooLong": "Jina la kwanza ni refu mno.",
+  "lastNameRequired": "Jina la ukoo linahitajika.",
+  "lastNameTooLong": "Jina la ukoo ni refu mno.",
+  "invalidEmail": "Weka barua pepe sahihi.",
+  "passwordMinLength": "Nenosiri lazima liwe na angalau herufi 8.",
+  "passwordLetter": "Nenosiri lazima liwe na angalau herufi moja.",
+  "passwordUppercase": "Nenosiri lazima liwe na herufi kubwa.",
+  "passwordLowercase": "Nenosiri lazima liwe na herufi ndogo.",
+  "passwordNumber": "Nenosiri lazima liwe na nambari.",
+  "selectCountry": "Chagua nchi yako.",
+  "selectDialCode": "Chagua msimbo wa kupiga.",
+  "phoneRequired": "Weka nambari yako ya simu.",
+  "invalidPhone": "Weka nambari ya simu sahihi kwa nchi iliyochaguliwa.",
+  "selectTimezone": "Chagua saa za eneo lako.",
+  "acceptTerms": "Lazima ukubali Masharti na Sera ya Faragha.",
+  "passwordsDoNotMatch": "Manenosiri hayalingani.",
+  "passwordRequired": "Weka nenosiri lako.",
+  "authenticationFailed": "Uthibitishaji umeshindikana.",
+  "finishingSignIn": "Inakamilisha kuingia…",
+  "redirecting": "Inaelekeza upya…"
+}

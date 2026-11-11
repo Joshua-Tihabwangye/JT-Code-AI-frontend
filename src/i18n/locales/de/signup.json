@@ -1,0 +1,52 @@
+{
+  "title": "Erstelle dein Konto",
+  "subtitle": "Starte deine Reise mit JT-Code",
+  "firstNameLabel": "Vorname",
+  "lastNameLabel": "Nachname",
+  "emailLabel": "E-Mail-Adresse",
+  "passwordLabel": "Passwort",
+  "passwordPlaceholder": "Lege ein Passwort fest",
+  "confirmPasswordLabel": "Passwort bestätigen",
+  "confirmPasswordPlaceholder": "Bestätige dein Passwort",
+  "requirements": {
+    "title": "Passwort-Anforderungen",
+    "minLength": "Mindestens 8 Zeichen",
+    "uppercase": "Ein Großbuchstabe",
+    "lowercase": "Ein Kleinbuchstabe",
+    "number": "Eine Zahl",
+    "singleRule": "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Buchstaben und eine Zahl enthalten."
+  },
+  "matchOk": "Die Passwörter stimmen überein.",
+  "matchError": "Die Passwörter stimmen noch nicht überein.",
+  "matchHint": "Gib dein Passwort zur Bestätigung erneut ein.",
+  "country": {
+    "label": "Land",
+    "searchPlaceholder": "Land suchen",
+    "selectedAria": "Land {{name}} ausgewählt",
+    "noMatch": "Keine Länder entsprechen „{{query}}“.",
+    "help": "Das ausgewählte Land aktualisiert deine Vorwahl, die Telefonvalidierung und Zeitzonenvorschläge."
+  },
+  "dialCode": {
+    "label": "Vorwahl",
+    "help": "Du kannst den Standardcode überschreiben, wenn du dich für eine andere Anrufregion registrierst."
+  },
+  "phone": {
+    "label": "Kontakt / Telefonnummer",
+    "defaultPlaceholder": "Telefonnummer eingeben",
+    "help": "Verwende das in {{country}} übliche Telefonnummer-Format.",
+    "yourCountry": "dein Land"
+  },
+  "timezone": {
+    "label": "Zeitzone",
+    "empty": "Keine Zeitzone verfügbar",
+    "help": "Vorgeschlagene Zeitzonen werden nach dem ausgewählten Land gefiltert, aber du kannst sie überschreiben."
+  },
+  "note": "Das ausgewählte Land aktualisiert Telefonvalidierung und Zeitzonenvorschläge automatisch.",
+  "termsPrefix": "Ich akzeptiere die ",
+  "termsLink": "Nutzungsbedingungen",
+  "termsMiddle": " und die ",
+  "privacyLink": "Datenschutzerklärung",
+  "termsHelp": "Du kannst diese Rechtsseiten prüfen, bevor du die Registrierung abschließt.",
+  "submit": "Konto erstellen",
+  "haveAccountQuestion": "Hast du bereits ein Konto?"
+}

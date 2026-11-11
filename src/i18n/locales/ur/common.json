@@ -1,0 +1,18 @@
+{
+  "saveChanges": "تبدیلیاں محفوظ کریں",
+  "cancel": "منسوخ کریں",
+  "search": "تلاش کریں",
+  "signOut": "سائن آؤٹ",
+  "loading": "لوڈ ہو رہا ہے…",
+  "close": "بند کریں",
+  "back": "واپس",
+  "or": "یا",
+  "pleaseWait": "براہ کرم انتظار کریں…",
+  "error": "خرابی",
+  "show": "دکھائیں",
+  "hide": "چھپائیں",
+  "default": "ڈیفالٹ",
+  "creditsUnit": "کریڈٹس",
+  "messagesCount_one": "{{count}} پیغام",
+  "messagesCount_other": "{{count}} پیغامات"
+}

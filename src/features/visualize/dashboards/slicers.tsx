@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check, ChevronDown, ChevronRight, Minus, Search, X } from 'lucide-react';
+import { formatNumber } from '@/i18n/format';
 import type { DashboardFilter, DashboardVisual, SlicerData, SlicerNode } from '@/lib/data';
 
 type Primitive = string | number | boolean | null;
@@ -72,24 +74,25 @@ function RangeSlicer({ slicer, value, onChange }: { slicer: SlicerData; value: S
   const max = isDate ? String(slicer.range?.max ?? '').slice(0, 10) : String(slicer.range?.max ?? '');
   const low = Number(value?.from ?? min);
   const high = Number(value?.to ?? max);
+  const { t } = useTranslation();
   const span = Number(max) - Number(min);
   const step = span > 0 ? Math.max(span / 200, Number.isInteger(Number(min)) && Number.isInteger(Number(max)) ? 1 : 0.01) : 1;
   return (
     <div className="dash-slicer-rangebox" data-testid="slicer-range">
       <div className="dash-slicer-range">
-        <input type={isDate ? 'date' : 'number'} value={value?.from ?? min} min={min} max={max} onChange={(event) => onChange({ ...value, from: event.target.value })} aria-label={`${slicer.label} from`} />
+        <input type={isDate ? 'date' : 'number'} value={value?.from ?? min} min={min} max={max} onChange={(event) => onChange({ ...value, from: event.target.value })} aria-label={t('visualize.dashboards.slicer.from', { field: slicer.label })} />
         <span aria-hidden>–</span>
-        <input type={isDate ? 'date' : 'number'} value={value?.to ?? max} min={min} max={max} onChange={(event) => onChange({ ...value, to: event.target.value })} aria-label={`${slicer.label} to`} />
+        <input type={isDate ? 'date' : 'number'} value={value?.to ?? max} min={min} max={max} onChange={(event) => onChange({ ...value, to: event.target.value })} aria-label={t('visualize.dashboards.slicer.to', { field: slicer.label })} />
         {(value?.from || value?.to) && (
-          <button type="button" className="dash-icon" onClick={() => onChange(undefined)} aria-label="Clear">
+          <button type="button" className="dash-icon" onClick={() => onChange(undefined)} aria-label={t('visualize.dashboards.slicer.clear')}>
             <X size={13} />
           </button>
         )}
       </div>
       {!isDate && span > 0 && (
         <div className="dash-dual-range">
-          <input type="range" min={min} max={max} step={step} value={low} onChange={(event) => onChange({ ...value, from: String(Math.min(Number(event.target.value), high)) })} aria-label={`${slicer.label} minimum`} />
-          <input type="range" min={min} max={max} step={step} value={high} onChange={(event) => onChange({ ...value, to: String(Math.max(Number(event.target.value), low)) })} aria-label={`${slicer.label} maximum`} />
+          <input type="range" min={min} max={max} step={step} value={low} onChange={(event) => onChange({ ...value, from: String(Math.min(Number(event.target.value), high)) })} aria-label={t('visualize.dashboards.slicer.minimum', { field: slicer.label })} />
+          <input type="range" min={min} max={max} step={step} value={high} onChange={(event) => onChange({ ...value, to: String(Math.max(Number(event.target.value), low)) })} aria-label={t('visualize.dashboards.slicer.maximum', { field: slicer.label })} />
         </div>
       )}
     </div>
@@ -97,22 +100,23 @@ function RangeSlicer({ slicer, value, onChange }: { slicer: SlicerData; value: S
 }
 
 function RelativeSlicer({ value, onChange }: { value: SlicerValue; onChange: (value: SlicerValue) => void }) {
+  const { t } = useTranslation();
   const relative = value?.relative ?? { mode: 'last' as const, n: 3, unit: 'month' as const };
   const set = (patch: Partial<typeof relative>) => onChange({ relative: { ...relative, ...patch } });
   return (
     <div className="dash-slicer-relative" data-testid="slicer-relative">
-      <select value={value?.relative ? relative.mode : ''} onChange={(event) => (event.target.value ? set({ mode: event.target.value as typeof relative.mode }) : onChange(undefined))} aria-label="Period">
-        <option value="">All time</option>
-        <option value="last">Last</option>
-        <option value="this">This</option>
-        <option value="next">Next</option>
+      <select value={value?.relative ? relative.mode : ''} onChange={(event) => (event.target.value ? set({ mode: event.target.value as typeof relative.mode }) : onChange(undefined))} aria-label={t('visualize.dashboards.slicer.period')}>
+        <option value="">{t('visualize.dashboards.slicer.allTime')}</option>
+        <option value="last">{t('visualize.dashboards.filters.modes.last')}</option>
+        <option value="this">{t('visualize.dashboards.filters.modes.this')}</option>
+        <option value="next">{t('visualize.dashboards.filters.modes.next')}</option>
       </select>
-      {value?.relative && relative.mode !== 'this' && <input type="number" min={1} max={999} value={relative.n} onChange={(event) => set({ n: Math.max(1, Number(event.target.value) || 1) })} aria-label="How many" />}
+      {value?.relative && relative.mode !== 'this' && <input type="number" min={1} max={999} value={relative.n} onChange={(event) => set({ n: Math.max(1, Number(event.target.value) || 1) })} aria-label={t('visualize.dashboards.slicer.howMany')} />}
       {value?.relative && (
-        <select value={relative.unit} onChange={(event) => set({ unit: event.target.value as typeof relative.unit })} aria-label="Unit">
+        <select value={relative.unit} onChange={(event) => set({ unit: event.target.value as typeof relative.unit })} aria-label={t('visualize.dashboards.slicer.unit')}>
           {['day', 'week', 'month', 'quarter', 'year'].map((unit) => (
             <option key={unit} value={unit}>
-              {relative.mode === 'this' ? unit : `${unit}s`}
+              {t(`visualize.dashboards.filters.units.${unit}`, { count: relative.mode === 'this' ? 1 : relative.n })}
             </option>
           ))}
         </select>
@@ -122,19 +126,20 @@ function RelativeSlicer({ value, onChange }: { value: SlicerValue; onChange: (va
 }
 
 function InputSlicer({ slicer, value, onChange }: { slicer: SlicerData; value: SlicerValue; onChange: (value: SlicerValue) => void }) {
+  const { t } = useTranslation();
   const input = value?.input ?? { op: 'contains' as const, text: '' };
   return (
     <div className="dash-slicer-relative" data-testid="slicer-input">
-      <select value={input.op} onChange={(event) => onChange({ input: { ...input, op: event.target.value as typeof input.op } })} aria-label="Operator">
-        <option value="contains">contains</option>
-        <option value="starts_with">starts with</option>
-        <option value="eq">is</option>
+      <select value={input.op} onChange={(event) => onChange({ input: { ...input, op: event.target.value as typeof input.op } })} aria-label={t('visualize.dashboards.slicer.operator')}>
+        <option value="contains">{t('visualize.dashboards.filters.ops.contains')}</option>
+        <option value="starts_with">{t('visualize.dashboards.filters.ops.starts_with')}</option>
+        <option value="eq">{t('visualize.dashboards.filters.ops.eq')}</option>
         <option value="gt">&gt;</option>
         <option value="gte">≥</option>
         <option value="lt">&lt;</option>
         <option value="lte">≤</option>
       </select>
-      <input value={input.text} onChange={(event) => onChange(event.target.value ? { input: { ...input, text: event.target.value } } : undefined)} placeholder={`Type a ${slicer.label.toLowerCase()}`} aria-label={`${slicer.label} value`} />
+      <input value={input.text} onChange={(event) => onChange(event.target.value ? { input: { ...input, text: event.target.value } } : undefined)} placeholder={t('visualize.dashboards.slicer.typeValue', { field: slicer.label.toLowerCase() })} aria-label={t('visualize.dashboards.slicer.value', { field: slicer.label })} />
     </div>
   );
 }
@@ -144,6 +149,7 @@ function pathKey(path: Primitive[]): string {
 }
 
 function HierarchySlicer({ tree, value, onChange }: { tree: SlicerNode[]; value: SlicerValue; onChange: (value: SlicerValue) => void }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState<Set<string>>(new Set());
   const chosen = new Set((value?.paths ?? []).map(pathKey));
   const toggle = (path: Primitive[]) => {
@@ -168,7 +174,7 @@ function HierarchySlicer({ tree, value, onChange }: { tree: SlicerNode[]; value:
         <li key={key}>
           <div className="dash-tree-row">
             {node.children.length ? (
-              <button type="button" className="dash-icon" onClick={() => setOpen((current) => new Set(current.has(key) ? [...current].filter((k) => k !== key) : [...current, key]))} aria-label={open.has(key) ? 'Collapse' : 'Expand'}>
+              <button type="button" className="dash-icon" onClick={() => setOpen((current) => new Set(current.has(key) ? [...current].filter((k) => k !== key) : [...current, key]))} aria-label={open.has(key) ? t('visualize.dashboards.slicer.collapse') : t('visualize.dashboards.slicer.expand')}>
                 {open.has(key) ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
               </button>
             ) : (
@@ -177,7 +183,7 @@ function HierarchySlicer({ tree, value, onChange }: { tree: SlicerNode[]; value:
             <button type="button" className="dash-slicer-option" role="treeitem" aria-selected={chosen.has(key)} onClick={() => toggle(path)}>
               <span className="dash-check">{chosen.has(key) ? <Check size={12} /> : partial ? <Minus size={12} /> : null}</span>
               <span className="truncate">{node.label}</span>
-              <span className="ml-auto text-[10px] opacity-60">{node.count.toLocaleString()}</span>
+              <span className="ml-auto text-[10px] opacity-60">{formatNumber(node.count)}</span>
             </button>
           </div>
           {open.has(key) && node.children.length > 0 && <ul className="dash-tree">{render(node.children, path)}</ul>}
@@ -193,6 +199,7 @@ function HierarchySlicer({ tree, value, onChange }: { tree: SlicerNode[]; value:
 
 /** A slicer in any style: dropdown, list, buttons, number/date range, relative date, input, hierarchy. */
 export function SlicerVisual({ slicer, value, onChange, style, single }: { slicer: SlicerData; value: SlicerValue; onChange: (value: SlicerValue) => void; style?: string; single?: boolean }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const box = useOutside(open, () => setOpen(false));
@@ -232,7 +239,7 @@ export function SlicerVisual({ slicer, value, onChange, style, single }: { slice
       </div>
     );
   }
-  const label = selected.size === 0 ? 'All' : selected.size === 1 ? (options.find((o) => selected.has(String(o.value)))?.label ?? '1 selected') : `${selected.size} selected`;
+  const label = selected.size === 0 ? t('visualize.dashboards.slicer.all') : selected.size === 1 ? (options.find((o) => selected.has(String(o.value)))?.label ?? t('visualize.dashboards.slicer.selected', { count: 1 })) : t('visualize.dashboards.slicer.selected', { count: selected.size });
   const shown = options.filter((option) => !search || option.label.toLowerCase().includes(search.toLowerCase()));
   return (
     <div className="dash-slicer" ref={box}>
@@ -254,21 +261,21 @@ export function SlicerVisual({ slicer, value, onChange, style, single }: { slice
                   setSearch('');
                 }
               }}
-              placeholder="Search, or paste a list"
-              aria-label={`Search ${slicer.label}`}
+              placeholder={t('visualize.dashboards.slicer.searchPlaceholder')}
+              aria-label={t('visualize.dashboards.slicer.search', { field: slicer.label })}
               data-testid="slicer-search"
             />
           </label>
           {!single && (
             <button type="button" className="dash-slicer-option" onClick={() => onChange(undefined)}>
-              <span className="dash-check">{selected.size === 0 && <Check size={12} />}</span> Select all
+              <span className="dash-check">{selected.size === 0 && <Check size={12} />}</span> {t('visualize.dashboards.slicer.selectAll')}
             </button>
           )}
           {shown.map((option) => (
             <button key={option.label} type="button" role="option" aria-selected={selected.has(String(option.value))} className="dash-slicer-option" onClick={() => toggle(option)}>
               <span className="dash-check">{selected.has(String(option.value)) && <Check size={12} />}</span>
               <span className="truncate">{option.label}</span>
-              <span className="ml-auto text-[10px] opacity-60">{option.count.toLocaleString()}</span>
+              <span className="ml-auto text-[10px] opacity-60">{formatNumber(option.count)}</span>
             </button>
           ))}
         </div>

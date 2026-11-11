@@ -1,0 +1,116 @@
+{
+  "eyebrow": "Faturalandırma",
+  "title": "Faturalandırma ve Krediler",
+  "subtitle": "Planınızı, kredilerinizi ve ödeme bilgilerinizi yönetin. Sınırsız üretmeye devam etmek için dilediğiniz zaman kredi ekleyin.",
+  "addCredits": "Kredi ekle",
+  "summary": {
+    "currentPlan": "Mevcut plan",
+    "availableCredits": "Kullanılabilir krediler",
+    "renewsOn": "Yenilenme tarihi",
+    "renewsHelper": "Faturalandırma döneminizin sonunda",
+    "managePlan": "Planı yönet →",
+    "addCreditsAction": "Kredi ekle →"
+  },
+  "usage": {
+    "title": "Kredi kullanımı",
+    "usedOf": "Bu ay {{limit}} kredinin {{used}} kadarı kullanıldı",
+    "left": "{{amount}} kaldı"
+  },
+  "plans": {
+    "title": "Size uygun planı seçin",
+    "allInclude": "Tüm planlar şunları içerir: Güvenli faturalandırma, dilediğiniz zaman iptal, %99,9 çalışma süresi",
+    "ribbonCurrent": "Mevcut plan",
+    "ribbonSelected": "Seçildi",
+    "currentCta": "Mevcut plan",
+    "chooseCta": "{{name}} seç",
+    "perMonth": "/ay",
+    "customPrice": "Özel",
+    "fallbackDescription": "Büyüyen kullanıcı kitlesi için",
+    "fallbackFeature1": "Ayda {{credits}} kredi",
+    "fallbackFeature2": "Standart destek",
+    "descriptions": {
+      "free": "Başlayan bireyler için",
+      "pro": "Profesyoneller ve ileri düzey kullanıcılar için",
+      "team": "Ekipler ve kuruluşlar için",
+      "business": "Büyüyen ekipler için"
+    },
+    "features": {
+      "free": [
+        "Ayda 1.000 kredi",
+        "GPT-4o mini erişimi",
+        "Temel yapay zeka araçları",
+        "Topluluk desteği"
+      ],
+      "pro": [
+        "Ayda 2.000 kredi",
+        "GPT-4o erişimi",
+        "Gelişmiş yapay zeka araçları",
+        "Öncelikli destek",
+        "Yeni özelliklere erken erişim"
+      ],
+      "team": [
+        "Kullanıcı başına ayda 5.000 kredi",
+        "GPT-4o erişimi",
+        "Ekip çalışma alanı",
+        "Gelişmiş yönetici kontrolleri",
+        "Öncelikli destek ve SLA"
+      ],
+      "business": [
+        "Özel krediler",
+        "Ayrıcalıklı destek",
+        "SSO ve denetim kayıtları",
+        "Özel yapay zeka modelleri",
+        "SLA garantisi"
+      ]
+    }
+  },
+  "payment": {
+    "title": "Ödeme yöntemi",
+    "billingCountry": "Faturalandırma ülkesi",
+    "ugandaHint": "Uganda: Kart veya Mobile Money (MTN / Airtel) ile ödeyin.",
+    "otherHint": "Kart veya PayPal ile ödeyin.",
+    "addMethod": "Ödeme yöntemi ekle",
+    "makeDefault": "Varsayılan yap",
+    "methods": {
+      "card": "Kart",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Kart",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Telefon numarası",
+    "cardNumberLabel": "Kart numarası",
+    "expiryLabel": "Son kullanma",
+    "cvcLabel": "CVC",
+    "savedToast": "Ödeme yöntemi kaydedildi"
+  },
+  "invoices": {
+    "title": "Son faturalar",
+    "viewAll": "Tüm faturaları görüntüle",
+    "allTitle": "Tüm Faturalar",
+    "allSubtitle": "JT-Code — faturalandırma geçmişi",
+    "date": "Tarih",
+    "description": "Açıklama",
+    "amount": "Tutar",
+    "status": "Durum"
+  },
+  "topup": {
+    "title": "Kredi Ekle",
+    "description": "Hesabınız için ek kredi satın alın",
+    "amountLabel": "Tutar (USD)",
+    "estimatedCredits": "Tahmini Kredi",
+    "confirm": "${{amount}} tutarında kredi ekle",
+    "success": "Krediler başarıyla eklendi",
+    "invalidAmount": "Geçerli bir tutar girin"
+  },
+  "checkout": {
+    "title": "Satın alımınızı tamamlayın",
+    "planSuffix": "{{name}} Planı",
+    "customPricing": "Özel fiyatlandırma",
+    "billedMonthly": "Aylık faturalandırılır",
+    "pay": "{{amount}} öde",
+    "enterPhone": "Mobile Money için telefon numarasını girin.",
+    "activated": "{{name}} planı etkinleştirildi — ödeme başarılı"
+  }
+}

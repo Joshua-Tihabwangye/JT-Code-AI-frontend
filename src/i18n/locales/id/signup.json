@@ -1,0 +1,52 @@
+{
+  "title": "Buat akun Anda",
+  "subtitle": "Mulai perjalanan Anda dengan JT-Code",
+  "firstNameLabel": "Nama depan",
+  "lastNameLabel": "Nama belakang",
+  "emailLabel": "Alamat email",
+  "passwordLabel": "Kata sandi",
+  "passwordPlaceholder": "Buat kata sandi",
+  "confirmPasswordLabel": "Konfirmasi kata sandi",
+  "confirmPasswordPlaceholder": "Konfirmasi kata sandi Anda",
+  "requirements": {
+    "title": "Persyaratan kata sandi",
+    "minLength": "Minimal 8 karakter",
+    "uppercase": "Satu huruf besar",
+    "lowercase": "Satu huruf kecil",
+    "number": "Satu angka",
+    "singleRule": "Kata sandi harus minimal 8 karakter dan menyertakan setidaknya satu huruf dan satu angka."
+  },
+  "matchOk": "Kata sandi cocok.",
+  "matchError": "Kata sandi belum cocok.",
+  "matchHint": "Masukkan ulang kata sandi Anda untuk mengonfirmasi.",
+  "country": {
+    "label": "Negara",
+    "searchPlaceholder": "Cari negara",
+    "selectedAria": "Negara terpilih {{name}}",
+    "noMatch": "Tidak ada negara yang cocok dengan “{{query}}”.",
+    "help": "Negara yang dipilih memperbarui kode telepon, validasi nomor telepon, dan saran zona waktu Anda."
+  },
+  "dialCode": {
+    "label": "Kode telepon",
+    "help": "Anda dapat mengganti kode bawaan jika mendaftar untuk wilayah telepon yang berbeda."
+  },
+  "phone": {
+    "label": "Kontak / nomor telepon",
+    "defaultPlaceholder": "Masukkan nomor telepon",
+    "help": "Gunakan format nomor telepon yang umum digunakan di {{country}}.",
+    "yourCountry": "negara Anda"
+  },
+  "timezone": {
+    "label": "Zona waktu",
+    "empty": "Tidak ada zona waktu yang tersedia",
+    "help": "Zona waktu yang disarankan difilter berdasarkan negara yang dipilih, tetapi Anda dapat menggantinya."
+  },
+  "note": "Negara yang dipilih otomatis memperbarui validasi nomor telepon dan saran zona waktu.",
+  "termsPrefix": "Saya menyetujui ",
+  "termsLink": "Syarat",
+  "termsMiddle": " dan ",
+  "privacyLink": "Kebijakan Privasi",
+  "termsHelp": "Anda dapat meninjau halaman legal ini sebelum menyelesaikan pendaftaran.",
+  "submit": "Buat akun",
+  "haveAccountQuestion": "Sudah punya akun?"
+}

@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "eyebrow": "தொடர்பு",
+    "title": "JT-Code உதவியைப் பெறுங்கள்",
+    "backToSignIn": "உள்நுழைவுக்குத் திரும்பு",
+    "createAccount": "கணக்கை உருவாக்கு"
+  },
+  "privacy": {
+    "eyebrow": "தனியுரிமைக் கொள்கை",
+    "title": "JT-Code தனியுரிமை",
+    "signIn": "உள்நுழை",
+    "readTerms": "விதிமுறைகளைப் படி"
+  },
+  "terms": {
+    "eyebrow": "சேவை விதிமுறைகள்",
+    "title": "JT-Code விதிமுறைகள்",
+    "createAccount": "கணக்கை உருவாக்கு",
+    "contactSupport": "ஆதரவைத் தொடர்பு கொள்"
+  },
+  "notFound": {
+    "title": "பக்கம் கிடைக்கவில்லை",
+    "returnHome": "JT-Code-க்குத் திரும்பு"
+  }
+}

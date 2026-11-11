@@ -1,0 +1,15 @@
+{
+  "title": "С возвращением",
+  "subtitle": "Войдите, чтобы продолжить работу с JT-Code",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Подключение…",
+  "emailLabel": "Электронная почта",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Пароль",
+  "passwordPlaceholder": "Введите пароль",
+  "forgotPassword": "Забыли пароль?",
+  "submit": "Войти",
+  "noAccount": "Нет аккаунта?",
+  "createAccount": "Создать аккаунт"
+}

@@ -1,0 +1,17 @@
+{
+  "openApp": "JT-Code'u aç",
+  "signIn": "Oturum aç",
+  "createAccount": "Hesap oluştur",
+  "eyebrow": "WEB + MOBİL YAPAY ZEKA ASİSTANI",
+  "headline": "Sorular, dosyalar, araştırma ve üretim için tek bir net çalışma alanı.",
+  "copy": "JT-Code, bu platformun tamamında kullanılan tek asistan adıdır. Web istemcisi React ve TypeScript ile geliştirilmiştir; kimlik doğrulama Supabase Auth tarafından yönetilir ve tüm iş mantığına ait durum Django API'de saklanır.",
+  "continueToWorkspace": "Çalışma alanına devam et",
+  "startWith": "JT-Code ile başlayın",
+  "foundationsLabel": "Platform temelleri",
+  "feature1Title": "Güvenli kimlik",
+  "feature1Desc": "Supabase Auth oturumları, korumalı her işlem öncesinde Django tarafından yeniden doğrulanır.",
+  "feature2Title": "Dayanıklı veri",
+  "feature2Desc": "Supabase üzerinde barındırılan PostgreSQL, işlemsel verilerin tek doğruluk kaynağı olmaya devam eder.",
+  "feature3Title": "Yönetilen varlıklar",
+  "feature3Desc": "Cloudinary imzalı yüklemeler, sırları tarayıcının dışında tutar."
+}

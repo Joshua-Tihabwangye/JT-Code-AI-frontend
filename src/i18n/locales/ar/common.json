@@ -1,0 +1,18 @@
+{
+  "saveChanges": "حفظ التغييرات",
+  "cancel": "إلغاء",
+  "search": "بحث",
+  "signOut": "تسجيل الخروج",
+  "loading": "جارٍ التحميل…",
+  "close": "إغلاق",
+  "back": "رجوع",
+  "or": "أو",
+  "pleaseWait": "يرجى الانتظار…",
+  "error": "خطأ",
+  "show": "إظهار",
+  "hide": "إخفاء",
+  "default": "افتراضي",
+  "creditsUnit": "رصيد",
+  "messagesCount_one": "{{count}} رسالة",
+  "messagesCount_other": "{{count}} رسائل"
+}

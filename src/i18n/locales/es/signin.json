@@ -1,0 +1,15 @@
+{
+  "title": "Bienvenido de nuevo",
+  "subtitle": "Inicia sesión para continuar en JT-Code",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Conectando…",
+  "emailLabel": "Correo electrónico",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Contraseña",
+  "passwordPlaceholder": "Introduce tu contraseña",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "submit": "Iniciar sesión",
+  "noAccount": "¿No tienes una cuenta?",
+  "createAccount": "Crear cuenta"
+}

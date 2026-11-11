@@ -1,0 +1,15 @@
+{
+  "title": "おかえりなさい",
+  "subtitle": "JT-Code を続けるにはサインインしてください",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "接続中…",
+  "emailLabel": "メールアドレス",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "パスワード",
+  "passwordPlaceholder": "パスワードを入力",
+  "forgotPassword": "パスワードをお忘れですか？",
+  "submit": "サインイン",
+  "noAccount": "アカウントをお持ちでないですか？",
+  "createAccount": "アカウント作成"
+}

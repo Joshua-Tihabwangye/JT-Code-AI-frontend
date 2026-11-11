@@ -1,0 +1,17 @@
+{
+  "headline": "今日は何を作りましょうか？",
+  "welcome": "こんにちは！私は JT-Code です。今日は何を作りますか？",
+  "composerPlaceholder": "JT-Code にメッセージ…",
+  "composerPlaceholderBusy": "処理中...",
+  "conversation": "会話",
+  "newChat": "新しいチャット",
+  "startNewChatTitle": "新しいチャットを開始しますか？",
+  "startNewChatDesc": "現在の会話は保存されます。後ほど履歴から続きを行えます。",
+  "you": "あなた",
+  "streaming": "ストリーミング中...",
+  "errorBadge": "エラー",
+  "requestFailed": "リクエストに失敗しました。",
+  "statusRunning": "ステータス: {{status}}…",
+  "defaultPlan": "フリー",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

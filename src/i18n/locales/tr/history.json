@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Geçmiş",
+  "title": "Geçmiş",
+  "subtitle": "Son sohbetleriniz ve oturumlarınız.",
+  "clearHistory": "Geçmişi temizle",
+  "clearConfirm": "Tüm sohbet geçmişi silinsin mi?",
+  "emptyTitle": "Henüz geçmiş yok",
+  "emptyDesc": "Bir sohbet başlatın; konuşmalarınız burada görünecek.",
+  "startChatting": "Sohbete başla",
+  "deleteItemAria": "{{title}} öğesini sil"
+}

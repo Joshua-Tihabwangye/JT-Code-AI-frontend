@@ -1,0 +1,9 @@
+{
+  "placeholder": "Sohbetlerde, görsellerde, dosyalarda, belgelerde ara…",
+  "noResults": "Sonuç bulunamadı.",
+  "conversation": "Konuşma",
+  "generatedImage": "Oluşturulan görsel",
+  "imageType": "Görsel · {{style}}",
+  "file": "Dosya",
+  "document": "Belge"
+}

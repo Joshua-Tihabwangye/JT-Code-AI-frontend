@@ -1,0 +1,27 @@
+{
+  "resetTitle": "Restablece tu contraseña",
+  "emailLabel": "Correo electrónico",
+  "sendCode": "Enviar código de restablecimiento",
+  "sending": "Enviando…",
+  "backToSignIn": "Volver a iniciar sesión",
+  "checkTitle": "Revisa tu correo",
+  "useCodeNow": "Usa este código ahora",
+  "haveCode": "Ya tengo un código de restablecimiento",
+  "newPasswordTitle": "Crea una nueva contraseña",
+  "newPasswordDesc": "Introduce el código de restablecimiento y elige una nueva contraseña para {{email}}.",
+  "codeLabel": "Código de restablecimiento",
+  "newPasswordLabel": "Nueva contraseña",
+  "confirmPasswordLabel": "Confirmar contraseña",
+  "updating": "Actualizando…",
+  "resetButton": "Restablecer contraseña",
+  "backToCode": "Volver al paso del código",
+  "updatedTitle": "Contraseña actualizada",
+  "updatedMessage": "Tu contraseña se ha actualizado. Ya puedes iniciar sesión con la nueva contraseña.",
+  "returnToSignIn": "Volver a iniciar sesión",
+  "errors": {
+    "sendFailed": "No se pudo enviar el enlace de restablecimiento de contraseña.",
+    "resetFailed": "No se pudo restablecer tu contraseña.",
+    "mismatch": "Las contraseñas no coinciden.",
+    "unexpected": "Se produjo un error inesperado."
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "eyebrow": "Billing",
+  "title": "Billing & Credits",
+  "subtitle": "Manage your plan, credits, and payment details. Add credits anytime to keep building without limits.",
+  "addCredits": "Add credits",
+  "summary": {
+    "currentPlan": "Current plan",
+    "availableCredits": "Available credits",
+    "renewsOn": "Renews on",
+    "renewsHelper": "At the end of your billing period",
+    "managePlan": "Manage plan →",
+    "addCreditsAction": "Add credits →"
+  },
+  "usage": {
+    "title": "Credits usage",
+    "usedOf": "{{used}} used of {{limit}} this month",
+    "left": "{{amount}} left",
+    "thisMonth": "{{amount}} credits used this month",
+    "types": {
+      "chat": "Chat",
+      "images": "Images",
+      "documents": "Documents",
+      "agent": "Agents"
+    }
+  },
+  "plans": {
+    "title": "Choose the plan that's right for you",
+    "allInclude": "All plans include: Secure billing, cancel anytime, 99.9% uptime",
+    "ribbonCurrent": "Current plan",
+    "ribbonSelected": "Selected",
+    "currentCta": "Current plan",
+    "chooseCta": "Choose {{name}}",
+    "perMonth": "/month",
+    "customPrice": "Custom",
+    "fallbackDescription": "For growing users",
+    "fallbackFeature1": "{{credits}} credits / month",
+    "fallbackFeature2": "Standard support",
+    "descriptions": {
+      "free": "For individuals getting started",
+      "pro": "For professionals and power users",
+      "team": "For teams and organizations",
+      "business": "For scaling teams"
+    },
+    "features": {
+      "free": [
+        "1,000 credits / month",
+        "Access to GPT-4o mini",
+        "Basic AI tools",
+        "Community support"
+      ],
+      "pro": [
+        "2,000 credits / month",
+        "Access to GPT-4o",
+        "Advanced AI tools",
+        "Priority support",
+        "Early access to new features"
+      ],
+      "team": [
+        "5,000 credits / user / month",
+        "Access to GPT-4o",
+        "Team workspace",
+        "Advanced admin controls",
+        "Priority support & SLA"
+      ],
+      "business": [
+        "Custom credits",
+        "Dedicated support",
+        "SSO & audit logs",
+        "Custom AI models",
+        "SLA guarantee"
+      ]
+    }
+  },
+  "payment": {
+    "title": "Payment method",
+    "billingCountry": "Billing country",
+    "ugandaHint": "Uganda: pay with Card or Mobile Money (MTN / Airtel).",
+    "otherHint": "Pay with Card or PayPal.",
+    "addMethod": "Add payment method",
+    "makeDefault": "Make default",
+    "methods": {
+      "card": "Card",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Card",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Phone number",
+    "cardNumberLabel": "Card number",
+    "expiryLabel": "Expiry",
+    "cvcLabel": "CVC",
+    "savedToast": "Payment method saved",
+    "none": "No payment method on file",
+    "manage": "Manage payment methods"
+  },
+  "invoices": {
+    "title": "Recent invoices",
+    "viewAll": "View all invoices",
+    "allTitle": "All Invoices",
+    "allSubtitle": "JT-Code — billing history",
+    "date": "Date",
+    "description": "Description",
+    "amount": "Amount",
+    "status": "Status",
+    "empty": "No invoices yet.",
+    "download": "Download invoice"
+  },
+  "topup": {
+    "title": "Add Credits",
+    "description": "Purchase additional credits for your account",
+    "amountLabel": "Amount (USD)",
+    "estimatedCredits": "Estimated Credits",
+    "confirm": "Add ${{amount}} credits",
+    "success": "Credits added successfully",
+    "invalidAmount": "Enter a valid amount",
+    "processing": "Payment received. Credits appear as soon as Stripe confirms it.",
+    "failed": "The payment could not be completed.",
+    "payNow": "Pay now"
+  },
+  "checkout": {
+    "title": "Complete your purchase",
+    "planSuffix": "{{name}} Plan",
+    "customPricing": "Custom pricing",
+    "billedMonthly": "Billed monthly",
+    "pay": "Pay {{amount}}",
+    "enterPhone": "Enter the phone number for Mobile Money.",
+    "activated": "{{name}} plan activated — payment successful",
+    "returned": "Thanks! Your subscription will update as soon as Stripe confirms the payment.",
+    "cancelled": "Checkout was cancelled; nothing was charged."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Ends at the end of this billing period",
+    "freeMonthly": "Free credits renew monthly",
+    "reactivate": "Resume subscription",
+    "cancel": "Cancel subscription",
+    "cancelConfirm": "Cancel your subscription at the end of the current period?"
+  },
+  "wallet": {
+    "saved": "Billing settings saved.",
+    "reserved": "{{amount}} reserved for running jobs",
+    "autoRecharge": "Auto-recharge",
+    "autoRechargeDesc": "Top up automatically when credits fall below the threshold.",
+    "threshold": "Threshold (credits)",
+    "spendingLimit": "Monthly limit (credits)",
+    "noLimit": "No limit"
+  }
+}

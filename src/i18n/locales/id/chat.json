@@ -1,0 +1,17 @@
+{
+  "headline": "Apa yang kita bangun hari ini?",
+  "welcome": "Halo! Saya JT-Code. Apa yang kita bangun hari ini?",
+  "composerPlaceholder": "Kirim pesan ke JT-Code…",
+  "composerPlaceholderBusy": "Memproses...",
+  "conversation": "Percakapan",
+  "newChat": "Obrolan Baru",
+  "startNewChatTitle": "Mulai obrolan baru?",
+  "startNewChatDesc": "Percakapan Anda saat ini akan disimpan. Anda dapat melanjutkannya nanti dari riwayat.",
+  "you": "Anda",
+  "streaming": "Sedang menstrim...",
+  "errorBadge": "Kesalahan",
+  "requestFailed": "Permintaan gagal.",
+  "statusRunning": "Status: {{status}}…",
+  "defaultPlan": "Gratis",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

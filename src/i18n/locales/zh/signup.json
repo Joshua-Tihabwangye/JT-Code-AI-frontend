@@ -1,0 +1,52 @@
+{
+  "title": "创建您的账号",
+  "subtitle": "开启您的 JT-Code 之旅",
+  "firstNameLabel": "名字",
+  "lastNameLabel": "姓氏",
+  "emailLabel": "电子邮箱地址",
+  "passwordLabel": "密码",
+  "passwordPlaceholder": "设置密码",
+  "confirmPasswordLabel": "确认密码",
+  "confirmPasswordPlaceholder": "再次输入密码",
+  "requirements": {
+    "title": "密码要求",
+    "minLength": "至少 8 个字符",
+    "uppercase": "包含一个大写字母",
+    "lowercase": "包含一个小写字母",
+    "number": "包含一个数字",
+    "singleRule": "密码必须至少包含8个字符，并且至少包含一个字母和一个数字。"
+  },
+  "matchOk": "两次输入的密码一致。",
+  "matchError": "两次输入的密码还不一致。",
+  "matchHint": "请再次输入密码以确认。",
+  "country": {
+    "label": "国家/地区",
+    "searchPlaceholder": "搜索国家/地区",
+    "selectedAria": "已选择国家/地区 {{name}}",
+    "noMatch": "没有匹配“{{query}}”的国家/地区。",
+    "help": "所选国家/地区会更新您的区号、电话号码校验和时区建议。"
+  },
+  "dialCode": {
+    "label": "区号",
+    "help": "如果您要在其他拨号区域注册，可以自行修改默认区号。"
+  },
+  "phone": {
+    "label": "联系方式 / 电话号码",
+    "defaultPlaceholder": "请输入电话号码",
+    "help": "请使用 {{country}} 常用的电话号码格式。",
+    "yourCountry": "您所在的国家/地区"
+  },
+  "timezone": {
+    "label": "时区",
+    "empty": "无可用时区",
+    "help": "时区建议会按所选国家/地区筛选，但您也可以自行选择。"
+  },
+  "note": "所选国家/地区会自动更新电话号码校验和时区建议。",
+  "termsPrefix": "我同意",
+  "termsLink": "条款",
+  "termsMiddle": "和",
+  "privacyLink": "隐私政策",
+  "termsHelp": "完成注册前，您可以先查阅这些法律页面。",
+  "submit": "创建账号",
+  "haveAccountQuestion": "已经有账号了？"
+}

@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "eyebrow": "Контакты",
+    "title": "Помощь по JT-Code",
+    "backToSignIn": "Вернуться ко входу",
+    "createAccount": "Создать аккаунт"
+  },
+  "privacy": {
+    "eyebrow": "Политика конфиденциальности",
+    "title": "Конфиденциальность JT-Code",
+    "signIn": "Войти",
+    "readTerms": "Читать условия"
+  },
+  "terms": {
+    "eyebrow": "Условия использования",
+    "title": "Условия JT-Code",
+    "createAccount": "Создать аккаунт",
+    "contactSupport": "Связаться с поддержкой"
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "returnHome": "Вернуться в JT-Code"
+  }
+}

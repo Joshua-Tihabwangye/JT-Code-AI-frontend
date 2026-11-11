@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "Укажите имя.",
+  "firstNameTooLong": "Имя слишком длинное.",
+  "lastNameRequired": "Укажите фамилию.",
+  "lastNameTooLong": "Фамилия слишком длинная.",
+  "invalidEmail": "Введите корректный адрес электронной почты.",
+  "passwordMinLength": "Пароль должен содержать минимум 8 символов.",
+  "passwordLetter": "Пароль должен содержать хотя бы одну букву.",
+  "passwordUppercase": "Пароль должен содержать заглавную букву.",
+  "passwordLowercase": "Пароль должен содержать строчную букву.",
+  "passwordNumber": "Пароль должен содержать цифру.",
+  "selectCountry": "Выберите свою страну.",
+  "selectDialCode": "Выберите код набора.",
+  "phoneRequired": "Введите номер телефона.",
+  "invalidPhone": "Введите корректный номер телефона для выбранной страны.",
+  "selectTimezone": "Выберите свой часовой пояс.",
+  "acceptTerms": "Вы должны принять Условия использования и Политику конфиденциальности.",
+  "passwordsDoNotMatch": "Пароли не совпадают.",
+  "passwordRequired": "Введите пароль.",
+  "authenticationFailed": "Не удалось выполнить вход.",
+  "finishingSignIn": "Завершаем вход…",
+  "redirecting": "Перенаправление…"
+}

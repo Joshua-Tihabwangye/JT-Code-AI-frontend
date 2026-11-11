@@ -1,4 +1,6 @@
 import { ArrowLeft, Bookmark, ExternalLink, Eye, FilterX, Check, Sparkles, RotateCcw, type LucideIcon, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { formatDate, formatNumber } from '@/i18n/format';
 import type { DashboardBookmark, DashboardParameter, DashboardSpec, DashboardVisual } from '@/lib/data';
 import { EChart } from '../EChart';
 import { parameterValue, type ParameterValues } from './customize';
@@ -15,16 +17,17 @@ export type ButtonAction =
   | { kind: 'ask_ai' }
   | { kind: 'reset' };
 
+/** Button actions and the i18n key of each one's default button text. */
 export const BUTTON_ACTIONS: [ButtonAction['kind'], string][] = [
-  ['page', 'Go to page'],
-  ['bookmark', 'Apply a view (bookmark)'],
-  ['back', 'Back'],
-  ['clear_slicers', 'Clear all slicers'],
-  ['apply_slicers', 'Apply slicers'],
-  ['toggle', 'Show / hide a visual'],
-  ['url', 'Open a web link'],
-  ['ask_ai', 'Ask AI'],
-  ['reset', 'Reset to default'],
+  ['page', 'visualize.format.button.actions.page'],
+  ['bookmark', 'visualize.format.button.actions.bookmark'],
+  ['back', 'visualize.format.button.actions.back'],
+  ['clear_slicers', 'visualize.format.button.actions.clearSlicers'],
+  ['apply_slicers', 'visualize.format.button.actions.applySlicers'],
+  ['toggle', 'visualize.format.button.actions.toggle'],
+  ['url', 'visualize.format.button.actions.url'],
+  ['ask_ai', 'visualize.format.button.actions.askAi'],
+  ['reset', 'visualize.format.button.actions.reset'],
 ];
 
 const ICONS: Partial<Record<ButtonAction['kind'], LucideIcon>> = {
@@ -61,9 +64,10 @@ export function safeUrl(url: string | undefined): string | null {
   }
 }
 
-function formatNumber(value: number, format: string | undefined): string {
-  if (format === 'percent') return `${(value * 100).toFixed(Math.abs(value) < 0.1 ? 1 : 0)}%`;
-  const text = value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+/** A parameter's value as shown on its control, in the chosen language. */
+function formatParameterValue(value: number, format: string | undefined): string {
+  if (format === 'percent') return formatNumber(value, { style: 'percent', maximumFractionDigits: Math.abs(value) < 0.1 ? 1 : 0 });
+  const text = formatNumber(value, { maximumFractionDigits: 2 });
   return format === 'currency' ? `$${text}` : text;
 }
 
@@ -74,7 +78,7 @@ function ParameterControl({ parameter, context, style }: { parameter: DashboardP
       <div className="dash-param" data-testid={`param-${parameter.id}`}>
         <div className="dash-param-head">
           <span className="dash-kpi-label">{parameter.name}</span>
-          <output className="dash-param-value">{formatNumber(value, parameter.format)}</output>
+          <output className="dash-param-value">{formatParameterValue(value, parameter.format)}</output>
         </div>
         <input
           type="range"
@@ -123,15 +127,16 @@ function humanizeField(field: string): string {
 
 /** A frozen chart (pinned from Predict): drawn from its stored option, dated. */
 function Snapshot({ visual }: { visual: DashboardVisual }) {
+  const { t } = useTranslation();
   const snapshot = (visual.format?.snapshot ?? {}) as { option?: Record<string, unknown>; takenAt?: string; source?: string };
-  if (!snapshot.option) return <p className="dash-message">This snapshot has no chart.</p>;
+  if (!snapshot.option) return <p className="dash-message">{t('visualize.dashboards.local.snapshotEmpty')}</p>;
   return (
     <div className="flex h-full flex-col">
       <div className="min-h-0 flex-1">
         <EChart option={snapshot.option} height="100%" testId={`visual-${visual.id}`} />
       </div>
       <p className="dash-snapshot-note" title={snapshot.source}>
-        Snapshot{snapshot.takenAt ? ` · ${new Date(snapshot.takenAt).toLocaleDateString()}` : ''}
+        {snapshot.takenAt ? t('visualize.dashboards.local.snapshotOn', { date: formatDate(snapshot.takenAt) }) : t('visualize.dashboards.local.snapshot')}
       </p>
     </div>
   );
@@ -139,12 +144,13 @@ function Snapshot({ visual }: { visual: DashboardVisual }) {
 
 /** Parameter controls, buttons and page/bookmark navigators. */
 export function LocalVisual({ visual, context }: { visual: DashboardVisual; context: LocalContext | undefined }) {
+  const { t } = useTranslation();
   if (visual.type === 'snapshot') return <Snapshot visual={visual} />;
   if (!context) return null;
   if (visual.type === 'parameter') {
     const settings = (visual.format?.parameter ?? {}) as { id?: string; style?: string };
     const parameter = context.spec.parameters?.find((item) => item.id === settings.id);
-    if (!parameter) return <p className="dash-message">Choose a parameter in Format → Parameter.</p>;
+    if (!parameter) return <p className="dash-message">{t('visualize.dashboards.local.chooseParameter')}</p>;
     return <ParameterControl parameter={parameter} context={context} style={settings.style} />;
   }
   if (visual.type === 'button') {
@@ -154,16 +160,16 @@ export function LocalVisual({ visual, context }: { visual: DashboardVisual; cont
     return (
       <button type="button" className={`dash-button ${settings.fill ?? 'primary'}`} onClick={() => context.onAction(action)} data-testid={`button-${visual.id}`}>
         {Icon && <Icon size={14} aria-hidden />}
-        <span>{settings.text || BUTTON_ACTIONS.find(([kind]) => kind === action.kind)?.[1] || 'Button'}</span>
+        <span>{settings.text || t(BUTTON_ACTIONS.find(([kind]) => kind === action.kind)?.[1] ?? 'visualize.dashboards.local.button')}</span>
       </button>
     );
   }
   if (visual.type === 'navigator') {
     const settings = (visual.format?.navigator ?? {}) as { kind?: 'pages' | 'bookmarks' };
     if (settings.kind === 'bookmarks') {
-      if (!context.bookmarks.length) return <p className="dash-message">Add views (bookmarks) to list them here.</p>;
+      if (!context.bookmarks.length) return <p className="dash-message">{t('visualize.dashboards.local.noViews')}</p>;
       return (
-        <nav className="dash-navigator" aria-label="Views">
+        <nav className="dash-navigator" aria-label={t('visualize.dashboards.local.views')}>
           {context.bookmarks.map((bookmark) => (
             <button key={bookmark.id} type="button" aria-pressed={bookmark.id === context.activeBookmark} onClick={() => context.onAction({ kind: 'bookmark', bookmarkId: bookmark.id })}>
               {bookmark.name}
@@ -174,7 +180,7 @@ export function LocalVisual({ visual, context }: { visual: DashboardVisual; cont
     }
     const pages = context.spec.pages.filter((page) => (page.type ?? 'page') === 'page' && !page.hidden);
     return (
-      <nav className="dash-navigator" aria-label="Pages" data-testid={`navigator-${visual.id}`}>
+      <nav className="dash-navigator" aria-label={t('visualize.dashboards.local.pages')} data-testid={`navigator-${visual.id}`}>
         {pages.map((page) => (
           <button key={page.id} type="button" aria-pressed={page.id === context.pageId} onClick={() => context.onAction({ kind: 'page', pageId: page.id })}>
             {page.name}

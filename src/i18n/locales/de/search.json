@@ -1,0 +1,9 @@
+{
+  "placeholder": "Chats, Bilder, Dateien, Dokumente durchsuchen…",
+  "noResults": "Keine Ergebnisse gefunden.",
+  "conversation": "Unterhaltung",
+  "generatedImage": "Generiertes Bild",
+  "imageType": "Bild · {{style}}",
+  "file": "Datei",
+  "document": "Dokument"
+}

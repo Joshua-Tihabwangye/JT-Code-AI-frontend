@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Historial",
+  "title": "Historial",
+  "subtitle": "Tus chats y sesiones recientes.",
+  "clearHistory": "Borrar historial",
+  "clearConfirm": "¿Borrar todo el historial de chats?",
+  "emptyTitle": "Aún no hay historial",
+  "emptyDesc": "Inicia un chat y tus conversaciones aparecerán aquí.",
+  "startChatting": "Empezar a chatear",
+  "deleteItemAria": "Eliminar {{title}}"
+}

@@ -1,0 +1,15 @@
+{
+  "title": "తిరిగి స్వాగతం",
+  "subtitle": "JT-Codeకు కొనసాగడానికి సైన్ ఇన్ చేయండి",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "కనెక్ట్ అవుతోంది…",
+  "emailLabel": "ఇమెయిల్ చిరునామా",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "పాస్‌వర్డ్",
+  "passwordPlaceholder": "మీ పాస్‌వర్డ్‌ను నమోదు చేయండి",
+  "forgotPassword": "పాస్‌వర్డ్ మర్చిపోయిందా?",
+  "submit": "సైన్ ఇన్",
+  "noAccount": "ఖాతా లేదా?",
+  "createAccount": "ఖాతా సృష్టించండి"
+}

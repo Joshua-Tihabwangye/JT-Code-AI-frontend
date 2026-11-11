@@ -1,0 +1,14 @@
+{
+  "title": "Chart gallery",
+  "subtitle": "{{count}} chart types — open one in Explore and it fills in your columns.",
+  "search": "Search charts, e.g. “forecast”, “share”",
+  "searchLabel": "Search charts",
+  "level": "Level",
+  "allLevels": "All levels",
+  "essentialShort": "Essential",
+  "advancedShort": "Advanced",
+  "all": "All",
+  "recommended": "Recommended for {{name}}",
+  "recommendedHint": "Picked from your columns — open one to see it with your data.",
+  "empty": "No chart matches that search."
+}

@@ -1,0 +1,27 @@
+{
+  "resetTitle": "パスワードをリセット",
+  "emailLabel": "メールアドレス",
+  "sendCode": "リセットコードを送信",
+  "sending": "送信中…",
+  "backToSignIn": "サインインに戻る",
+  "checkTitle": "メールをご確認ください",
+  "useCodeNow": "今すぐこのコードを使用",
+  "haveCode": "リセットコードを既にお持ちです",
+  "newPasswordTitle": "新しいパスワードを作成",
+  "newPasswordDesc": "リセットコードを入力し、{{email}} の新しいパスワードを設定してください。",
+  "codeLabel": "リセットコード",
+  "newPasswordLabel": "新しいパスワード",
+  "confirmPasswordLabel": "パスワード（確認）",
+  "updating": "更新中…",
+  "resetButton": "パスワードをリセット",
+  "backToCode": "コードのステップに戻る",
+  "updatedTitle": "パスワードを更新しました",
+  "updatedMessage": "パスワードが更新されました。新しいパスワードでサインインできます。",
+  "returnToSignIn": "サインインに戻る",
+  "errors": {
+    "sendFailed": "パスワードリセットリンクを送信できませんでした。",
+    "resetFailed": "パスワードをリセットできませんでした。",
+    "mismatch": "パスワードが一致しません。",
+    "unexpected": "予期しないエラーが発生しました。"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "మొదటి పేరు అవసరం.",
+  "firstNameTooLong": "మొదటి పేరు చాలా పొడవుగా ఉంది.",
+  "lastNameRequired": "చివరి పేరు అవసరం.",
+  "lastNameTooLong": "చివరి పేరు చాలా పొడవుగా ఉంది.",
+  "invalidEmail": "సరైన ఇమెయిల్ చిరునామాను నమోదు చేయండి.",
+  "passwordMinLength": "పాస్‌వర్డ్‌లో కనీసం 8 అక్షరాలు ఉండాలి.",
+  "passwordLetter": "పాస్‌వర్డ్‌లో కనీసం ఒక అక్షరం ఉండాలి.",
+  "passwordUppercase": "పాస్‌వర్డ్‌లో ఒక పెద్దక్షరం ఉండాలి.",
+  "passwordLowercase": "పాస్‌వర్డ్‌లో ఒక చిన్నక్షరం ఉండాలి.",
+  "passwordNumber": "పాస్‌వర్డ్‌లో ఒక సంఖ్య ఉండాలి.",
+  "selectCountry": "మీ దేశాన్ని ఎంచుకోండి.",
+  "selectDialCode": "డయల్ కోడ్‌ను ఎంచుకోండి.",
+  "phoneRequired": "మీ ఫోన్ నంబర్‌ను నమోదు చేయండి.",
+  "invalidPhone": "ఎంచుకున్న దేశానికి సరైన ఫోన్ నంబర్‌ను నమోదు చేయండి.",
+  "selectTimezone": "మీ టైమ్‌జోన్‌ను ఎంచుకోండి.",
+  "acceptTerms": "మీరు నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరించాలి.",
+  "passwordsDoNotMatch": "పాస్‌వర్డ్‌లు సరిపోలలేదు.",
+  "passwordRequired": "మీ పాస్‌వర్డ్‌ను నమోదు చేయండి.",
+  "authenticationFailed": "ప్రామాణీకరణ విఫలమైంది.",
+  "finishingSignIn": "సైన్ ఇన్ పూర్తవుతోంది…",
+  "redirecting": "దారి మళ్లించబడుతోంది…"
+}

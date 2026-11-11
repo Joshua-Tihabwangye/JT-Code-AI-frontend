@@ -1,0 +1,17 @@
+{
+  "headline": "O que vamos construir hoje?",
+  "welcome": "Olá! Eu sou o JT-Code. O que vamos construir hoje?",
+  "composerPlaceholder": "Mensagem para o JT-Code…",
+  "composerPlaceholderBusy": "Processando...",
+  "conversation": "Conversa",
+  "newChat": "Novo Chat",
+  "startNewChatTitle": "Iniciar novo chat?",
+  "startNewChatDesc": "Sua conversa atual será salva. Você pode continuá-la depois pelo histórico.",
+  "you": "Você",
+  "streaming": "Transmitindo...",
+  "errorBadge": "Erro",
+  "requestFailed": "A requisição falhou.",
+  "statusRunning": "Status: {{status}}…",
+  "defaultPlan": "Grátis",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, type LucideIcon } from 'lucide-react';
 
 export interface RibbonTab {
@@ -23,6 +24,7 @@ export function Ribbon({
   aside?: ReactNode;
   testId?: string;
 }) {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="viz-ribbon" data-testid={testId}>
@@ -49,8 +51,8 @@ export function Ribbon({
             type="button"
             className="rounded-md p-1 text-muted-foreground hover:bg-accent"
             onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand ribbon' : 'Collapse ribbon'}
-            title={collapsed ? 'Expand ribbon' : 'Collapse ribbon'}
+            aria-label={collapsed ? t('visualize.ui.expandRibbon') : t('visualize.ui.collapseRibbon')}
+            title={collapsed ? t('visualize.ui.expandRibbon') : t('visualize.ui.collapseRibbon')}
           >
             {collapsed ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
           </button>

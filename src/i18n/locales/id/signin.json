@@ -1,0 +1,15 @@
+{
+  "title": "Selamat datang kembali",
+  "subtitle": "Masuk untuk melanjutkan ke JT-Code",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Menyambungkan…",
+  "emailLabel": "Alamat email",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Kata sandi",
+  "passwordPlaceholder": "Masukkan kata sandi Anda",
+  "forgotPassword": "Lupa kata sandi?",
+  "submit": "Masuk",
+  "noAccount": "Belum punya akun?",
+  "createAccount": "Buat akun"
+}

@@ -1,0 +1,17 @@
+{
+  "openApp": "打开 JT-Code",
+  "signIn": "登录",
+  "createAccount": "创建账号",
+  "eyebrow": "网页 + 移动端 AI 助手",
+  "headline": "一个清晰的工作区，问答、文件、研究与创作尽在其中。",
+  "copy": "JT-Code 是本平台通用的唯一助手名称。Web 客户端采用 React 与 TypeScript；身份验证由 Supabase Auth 处理，所有业务状态都保存在 Django API 中。",
+  "continueToWorkspace": "继续进入工作区",
+  "startWith": "从 JT-Code 开始",
+  "foundationsLabel": "平台基石",
+  "feature1Title": "安全的身份认证",
+  "feature1Desc": "在每次受保护的操作之前，Django 都会再次验证 Supabase Auth 会话。",
+  "feature2Title": "持久的数据",
+  "feature2Desc": "由 Supabase 托管的 PostgreSQL 始终是事务数据的唯一可信来源。",
+  "feature3Title": "托管的资源",
+  "feature3Desc": "经过签名的 Cloudinary 上传让密钥远离浏览器。"
+}

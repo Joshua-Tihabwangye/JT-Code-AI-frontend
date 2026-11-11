@@ -1,0 +1,18 @@
+{
+  "saveChanges": "Save changes",
+  "cancel": "Cancel",
+  "search": "Search",
+  "signOut": "Sign out",
+  "loading": "Loading…",
+  "close": "Close",
+  "back": "Back",
+  "or": "or",
+  "pleaseWait": "Please wait…",
+  "error": "Error",
+  "show": "Show",
+  "hide": "Hide",
+  "default": "Default",
+  "creditsUnit": "credits",
+  "messagesCount_one": "{{count}} message",
+  "messagesCount_other": "{{count}} messages"
+}

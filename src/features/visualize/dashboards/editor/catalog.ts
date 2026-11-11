@@ -23,97 +23,113 @@ import {
   Type,
   type LucideIcon,
 } from 'lucide-react';
+import i18n from '@/i18n/config';
 import type { ColumnProfile, DashboardFieldRef, DashboardVisual, DashboardVisualType, DashboardWell } from '@/lib/data';
 
 export type FieldKind = 'numeric' | 'datetime' | 'category' | 'any';
 
 export interface WellSpec {
   key: DashboardWell;
-  label: string;
+  /** i18n key of the well's name; `label` is that name in the chosen language. */
+  labelKey: string;
+  readonly label: string;
   accepts: FieldKind[];
   max: number;
   /** Values wells aggregate (sum, average, …); category wells group. */
   measure: boolean;
 }
 
+/** Insert-menu groups (identifiers; `labelKey` is the title shown). */
+export type VisualGroup = 'Cards' | 'Charts' | 'Tables' | 'Slicers' | 'Other';
+export const VISUAL_GROUPS: { id: VisualGroup; labelKey: string }[] = [
+  { id: 'Cards', labelKey: 'visualize.catalog.groups.cards' },
+  { id: 'Charts', labelKey: 'visualize.catalog.groups.charts' },
+  { id: 'Tables', labelKey: 'visualize.catalog.groups.tables' },
+  { id: 'Slicers', labelKey: 'visualize.catalog.groups.slicers' },
+  { id: 'Other', labelKey: 'visualize.catalog.groups.other' },
+];
+
 export interface VisualSpec {
   type: DashboardVisualType;
-  label: string;
+  /** i18n key of the visual's name; `label` is that name in the chosen language. */
+  labelKey: string;
+  readonly label: string;
   icon: LucideIcon;
-  group: 'Cards' | 'Charts' | 'Tables' | 'Slicers' | 'Other';
+  group: VisualGroup;
   size: { w: number; h: number };
   wells: WellSpec[];
 }
 
-const category = (label = 'Category (X axis)', max = 1): WellSpec => ({ key: 'category', label, accepts: ['category', 'datetime', 'numeric'], max, measure: false });
-const values = (label = 'Values', max = 6): WellSpec => ({ key: 'values', label, accepts: ['numeric', 'category', 'datetime', 'any'], max, measure: true });
-const legend: WellSpec = { key: 'legend', label: 'Legend (split by)', accepts: ['category'], max: 1, measure: false };
-const multiples: WellSpec = { key: 'smallMultiples', label: 'Small multiples (one chart per)', accepts: ['category', 'datetime'], max: 1, measure: false };
+/** `label` is translated each time it is read (never at import), so it follows the chosen language. */
+function labelled<T extends { labelKey: string }>(item: T): T & { readonly label: string } {
+  return Object.defineProperty(item, 'label', { get: () => i18n.t(item.labelKey), enumerable: true }) as T & { readonly label: string };
+}
+/** A `[value, label, labelKey]` option whose label is translated when read. */
+function option<V extends string>(value: V, labelKey: string): [V, string, string] {
+  const tuple = [value, '', labelKey] as [V, string, string];
+  return Object.defineProperty(tuple, 1, { get: () => i18n.t(labelKey), enumerable: true });
+}
+
+const W = 'visualize.catalog.wells.';
+const well = (key: DashboardWell, label: string, accepts: FieldKind[], max: number, measure: boolean): WellSpec => labelled({ key, labelKey: W + label, accepts, max, measure });
+const category = (label = 'categoryX', max = 1, accepts: FieldKind[] = ['category', 'datetime', 'numeric']): WellSpec => well('category', label, accepts, max, false);
+const values = (label = 'values', max = 6): WellSpec => well('values', label, ['numeric', 'category', 'datetime', 'any'], max, true);
+const legend = () => well('legend', 'legend', ['category'], 1, false);
+const multiples = () => well('smallMultiples', 'smallMultiples', ['category', 'datetime'], 1, false);
+const target = () => well('target', 'target', ['numeric'], 1, true);
+const visual = (type: DashboardVisualType, icon: LucideIcon, group: VisualGroup, size: { w: number; h: number }, wells: WellSpec[]): VisualSpec =>
+  labelled({ type, labelKey: `visualize.catalog.visuals.${type}`, icon, group, size, wells });
 
 export const VISUALS: VisualSpec[] = [
-  { type: 'kpi', label: 'KPI card', icon: Hash, group: 'Cards', size: { w: 4, h: 5 }, wells: [values('Value', 1), { key: 'target', label: 'Target', accepts: ['numeric'], max: 1, measure: true }, { ...category('Trend over (date)'), accepts: ['datetime'] }] },
-  { type: 'card', label: 'Card', icon: Hash, group: 'Cards', size: { w: 4, h: 4 }, wells: [values('Value', 1)] },
-  { type: 'multi_card', label: 'Multi-card', icon: LayoutGrid, group: 'Cards', size: { w: 8, h: 4 }, wells: [values('Values', 6)] },
-  { type: 'summary', label: 'Smart summary', icon: Sparkles, group: 'Cards', size: { w: 8, h: 6 }, wells: [values('Measure', 1), category('Break down by')] },
-  { type: 'gauge', label: 'Gauge', icon: Gauge, group: 'Cards', size: { w: 6, h: 8 }, wells: [values('Value', 1), { key: 'target', label: 'Target', accepts: ['numeric'], max: 1, measure: true }] },
-  { type: 'column', label: 'Column chart', icon: BarChart3, group: 'Charts', size: { w: 8, h: 10 }, wells: [category(), values(), legend, multiples] },
-  { type: 'bar', label: 'Bar chart', icon: BarChartHorizontal, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Category (Y axis)'), values(), legend, multiples] },
-  { type: 'line', label: 'Line chart', icon: LineChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend, multiples] },
-  { type: 'area', label: 'Area chart', icon: AreaChart, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('X axis (date or category)'), values(), legend, multiples] },
-  { type: 'combo', label: 'Combo (bar + line)', icon: BarChart4, group: 'Charts', size: { w: 12, h: 10 }, wells: [category(), values('Columns', 2), { key: 'secondaryValues', label: 'Line (second axis)', accepts: ['numeric', 'any'], max: 2, measure: true }] },
-  { type: 'donut', label: 'Donut', icon: PieChart, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Slices'), values('Value', 1)] },
-  { type: 'pie', label: 'Pie', icon: PieChart, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Slices'), values('Value', 1)] },
-  { type: 'treemap', label: 'Treemap', icon: Grid3x3, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Groups'), values('Size', 1)] },
-  { type: 'funnel', label: 'Funnel', icon: Filter, group: 'Charts', size: { w: 8, h: 10 }, wells: [category('Stages'), values('Value', 1)] },
-  { type: 'waterfall', label: 'Waterfall', icon: BarChart3, group: 'Charts', size: { w: 12, h: 10 }, wells: [category('Steps'), values('Change', 1)] },
-  { type: 'scatter', label: 'Scatter / bubble', icon: ScatterChart, group: 'Charts', size: { w: 8, h: 10 }, wells: [{ key: 'details', label: 'Points (one per)', accepts: ['category'], max: 1, measure: false }, values('X and Y (then size)', 2), { key: 'size', label: 'Bubble size', accepts: ['numeric'], max: 1, measure: true }] },
-  { type: 'map', label: 'Map', icon: Map, group: 'Charts', size: { w: 8, h: 12 }, wells: [category('Country'), values('Colour by', 1)] },
-  { type: 'chart', label: 'Gallery chart…', icon: Shapes, group: 'Charts', size: { w: 8, h: 10 }, wells: [] },
-  { type: 'table', label: 'Table', icon: Table2, group: 'Tables', size: { w: 12, h: 12 }, wells: [category('Columns (group by)', 4), values('Values', 8)] },
-  { type: 'matrix', label: 'Matrix', icon: Grid3x3, group: 'Tables', size: { w: 12, h: 12 }, wells: [{ key: 'rows', label: 'Rows', accepts: ['category', 'datetime'], max: 2, measure: false }, { key: 'columns', label: 'Columns', accepts: ['category', 'datetime'], max: 1, measure: false }, values('Values', 1)] },
-  { type: 'slicer', label: 'Slicer', icon: SlidersHorizontal, group: 'Slicers', size: { w: 6, h: 3 }, wells: [{ key: 'category', label: 'Field', accepts: ['category', 'datetime', 'numeric'], max: 1, measure: false }] },
-  { type: 'parameter', label: 'Parameter (what-if or field switcher)', icon: SlidersVertical, group: 'Slicers', size: { w: 6, h: 3 }, wells: [] },
-  { type: 'text', label: 'Text box', icon: Type, group: 'Other', size: { w: 8, h: 3 }, wells: [] },
-  { type: 'button', label: 'Button', icon: MousePointerClick, group: 'Other', size: { w: 4, h: 2 }, wells: [] },
-  { type: 'navigator', label: 'Page / view navigator', icon: Compass, group: 'Other', size: { w: 12, h: 2 }, wells: [] },
-  { type: 'python', label: 'Python visual', icon: Code2, group: 'Other', size: { w: 8, h: 10 }, wells: [values('Fields for the script', 12)] },
+  visual('kpi', Hash, 'Cards', { w: 4, h: 5 }, [values('value', 1), target(), category('trendOver', 1, ['datetime'])]),
+  visual('card', Hash, 'Cards', { w: 4, h: 4 }, [values('value', 1)]),
+  visual('multi_card', LayoutGrid, 'Cards', { w: 8, h: 4 }, [values('values', 6)]),
+  visual('summary', Sparkles, 'Cards', { w: 8, h: 6 }, [values('measure', 1), category('breakDownBy')]),
+  visual('gauge', Gauge, 'Cards', { w: 6, h: 8 }, [values('value', 1), target()]),
+  visual('column', BarChart3, 'Charts', { w: 8, h: 10 }, [category(), values(), legend(), multiples()]),
+  visual('bar', BarChartHorizontal, 'Charts', { w: 8, h: 10 }, [category('categoryY'), values(), legend(), multiples()]),
+  visual('line', LineChart, 'Charts', { w: 12, h: 10 }, [category('xAxis'), values(), legend(), multiples()]),
+  visual('area', AreaChart, 'Charts', { w: 12, h: 10 }, [category('xAxis'), values(), legend(), multiples()]),
+  visual('combo', BarChart4, 'Charts', { w: 12, h: 10 }, [category(), values('columns', 2), well('secondaryValues', 'secondLine', ['numeric', 'any'], 2, true)]),
+  visual('donut', PieChart, 'Charts', { w: 8, h: 10 }, [category('slices'), values('value', 1)]),
+  visual('pie', PieChart, 'Charts', { w: 8, h: 10 }, [category('slices'), values('value', 1)]),
+  visual('treemap', Grid3x3, 'Charts', { w: 8, h: 10 }, [category('groups'), values('size', 1)]),
+  visual('funnel', Filter, 'Charts', { w: 8, h: 10 }, [category('stages'), values('value', 1)]),
+  visual('waterfall', BarChart3, 'Charts', { w: 12, h: 10 }, [category('steps'), values('change', 1)]),
+  visual('scatter', ScatterChart, 'Charts', { w: 8, h: 10 }, [well('details', 'points', ['category'], 1, false), values('xAndY', 2), well('size', 'bubbleSize', ['numeric'], 1, true)]),
+  visual('map', Map, 'Charts', { w: 8, h: 12 }, [category('country'), values('colourBy', 1)]),
+  visual('chart', Shapes, 'Charts', { w: 8, h: 10 }, []),
+  visual('table', Table2, 'Tables', { w: 12, h: 12 }, [category('columnsGroupBy', 4), values('values', 8)]),
+  visual('matrix', Grid3x3, 'Tables', { w: 12, h: 12 }, [well('rows', 'rows', ['category', 'datetime'], 2, false), well('columns', 'columns', ['category', 'datetime'], 1, false), values('values', 1)]),
+  visual('slicer', SlidersHorizontal, 'Slicers', { w: 6, h: 3 }, [well('category', 'field', ['category', 'datetime', 'numeric'], 1, false)]),
+  visual('parameter', SlidersVertical, 'Slicers', { w: 6, h: 3 }, []),
+  visual('text', Type, 'Other', { w: 8, h: 3 }, []),
+  visual('button', MousePointerClick, 'Other', { w: 4, h: 2 }, []),
+  visual('navigator', Compass, 'Other', { w: 12, h: 2 }, []),
+  visual('python', Code2, 'Other', { w: 8, h: 10 }, [values('scriptFields', 12)]),
 ];
 
 export const VISUAL_BY_TYPE = Object.fromEntries(VISUALS.map((visual) => [visual.type, visual])) as Record<DashboardVisualType, VisualSpec>;
 
-export const AGGREGATIONS: [string, string][] = [
-  ['sum', 'Sum'],
-  ['avg', 'Average'],
-  ['count', 'Count'],
-  ['distinct', 'Distinct count'],
-  ['min', 'Minimum'],
-  ['max', 'Maximum'],
-  ['median', 'Median'],
-  ['std', 'Std deviation'],
-  ['first', 'First'],
-  ['last', 'Last'],
-];
+/** `[value, label, labelKey]`; the label is translated when read. */
+export const AGGREGATIONS: [string, string, string][] = ['sum', 'avg', 'count', 'distinct', 'min', 'max', 'median', 'std', 'first', 'last'].map((value) => option(value, `visualize.catalog.aggregations.${value}`));
 
-export const SHOW_VALUE_AS: [string, string][] = [
-  ['none', 'Value'],
-  ['pct_total', '% of grand total'],
-  ['pct_row', '% of row total'],
-  ['pct_column', '% of column total'],
-  ['running_total', 'Running total'],
-  ['diff_prev', 'Difference from previous'],
-  ['pct_diff_prev', '% difference from previous'],
-  ['rank', 'Rank'],
-  ['moving_avg', 'Moving average'],
-  ['yoy_pct', '% change vs last year'],
-];
+export const SHOW_VALUE_AS: [string, string, string][] = (
+  [
+    ['none', 'value'],
+    ['pct_total', 'pctTotal'],
+    ['pct_row', 'pctRow'],
+    ['pct_column', 'pctColumn'],
+    ['running_total', 'runningTotal'],
+    ['diff_prev', 'diffPrev'],
+    ['pct_diff_prev', 'pctDiffPrev'],
+    ['rank', 'rank'],
+    ['moving_avg', 'movingAvg'],
+    ['yoy_pct', 'yoyPct'],
+  ] as const
+).map(([value, key]) => option(value, `visualize.catalog.showValueAs.${key}`));
 
-export const GRAINS: [NonNullable<DashboardFieldRef['grain']>, string][] = [
-  ['year', 'Year'],
-  ['quarter', 'Quarter'],
-  ['month', 'Month'],
-  ['week', 'Week'],
-  ['day', 'Day'],
-];
+export const GRAINS: [NonNullable<DashboardFieldRef['grain']>, string, string][] = (['year', 'quarter', 'month', 'week', 'day'] as const).map((value) => option(value, `visualize.catalog.grains.${value}`));
 
 /** Types a visual can switch to while keeping its fields (the mini toolbar's type picker). */
 export const COMPATIBLE: Partial<Record<DashboardVisualType, DashboardVisualType[]>> = {

@@ -1,3 +1,5 @@
+import i18n from '@/i18n/config';
+import { getCurrentUser } from '@/lib/localAuth';
 import { KEYS } from './keys';
 import { simulate } from './latency';
 import { MockAnalyticsRepository } from './analytics';
@@ -127,7 +129,7 @@ class MockAuthRepository implements AuthRepository {
   }) {
     return simulate('auth.signUp', async () => {
       const existing = (await users.all()).find((u) => u.email.toLowerCase() === input.email.toLowerCase());
-      if (existing) throw new Error('An account with this email already exists.');
+      if (existing) throw new Error(i18n.t('errors.anAccountWithThisEmail'));
       const user: StoredUser = {
         id: uid('user'),
         email: input.email.trim(),
@@ -170,7 +172,7 @@ class MockAuthRepository implements AuthRepository {
     return simulate('auth.signIn', async () => {
       const user = (await users.all()).find((u) => u.email.toLowerCase() === email.toLowerCase());
       if (!user || user.passwordHash !== hashPassword(password)) {
-        throw new Error('Invalid email or password.');
+        throw new Error(i18n.t('errors.invalidEmailOrPassword'));
       }
       const session = this.makeSession(user.id);
       await writeValue(KEYS.session, session);
@@ -250,12 +252,12 @@ class MockAuthRepository implements AuthRepository {
 
   async resetPassword(code: string, newPassword: string) {
     await simulate('auth.resetConfirm', async () => {
-      if (code !== '000000') throw new Error('Invalid or expired reset code.');
+      if (code !== '000000') throw new Error(i18n.t('errors.invalidOrExpiredResetCode'));
       // In mock mode we cannot map the code back to a user reliably; require the
       // caller to be authenticated. Real backend would validate the code.
       const session = await this.getSession();
       const user = session ? (await users.all()).find((u) => u.id === session.userId) : null;
-      if (!user) throw new Error('Sign in to reset your password.');
+      if (!user) throw new Error(i18n.t('errors.signInToResetYour'));
       user.passwordHash = hashPassword(newPassword);
       await users.upsert(user);
     });
@@ -284,10 +286,33 @@ class MockAuthRepository implements AuthRepository {
 // ---------------------------------------------------------------------------
 
 class MockAccountRepository implements AccountRepository {
+  /** The signed-in local user's account. Sign-in is local (src/lib/localAuth.ts); the stored
+   *  account follows whoever is signed in, so the sidebar and Settings show that user. */
   async getAccount(): Promise<Account> {
-    const account = await readValue<Account | null>(KEYS.account, null);
-    if (!account) throw new Error('No account found. Please sign in.');
-    return account;
+    const stored = await readValue<Account | null>(KEYS.account, null);
+    const user = getCurrentUser();
+    if (user && stored?.id !== user.id) {
+      const account: Account = {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        contact: user.contact,
+        countryCode: user.countryCode,
+        countryName: user.countryName,
+        dialCode: user.dialCode,
+        timezone: user.timezone,
+        avatarUrl: user.avatarUrl,
+        createdAt: user.createdAt,
+        termsAccepted: true,
+        privacyAccepted: true,
+        plan: stored?.plan ?? 'free',
+      };
+      await writeValue(KEYS.account, account);
+      return account;
+    }
+    if (!stored) throw new Error(i18n.t('errors.noAccount'));
+    return stored;
   }
 
   async updateAccount(update: AccountUpdate): Promise<Account> {
@@ -301,13 +326,13 @@ class MockAccountRepository implements AccountRepository {
 
   async changePassword(change: PasswordChange): Promise<void> {
     await simulate('account.password', async () => {
-      if (change.newPassword !== change.confirmPassword) throw new Error('Passwords do not match.');
+      if (change.newPassword !== change.confirmPassword) throw new Error(i18n.t('errors.passwordsDoNotMatch'));
       const session = await readValue<AuthSession | null>(KEYS.session, null);
-      if (!session) throw new Error('Sign in to change your password.');
+      if (!session) throw new Error(i18n.t('errors.signInToChangeYour'));
       const user = (await users.all()).find((u) => u.id === session.userId);
-      if (!user) throw new Error('Account not found.');
+      if (!user) throw new Error(i18n.t('errors.accountNotFound'));
       if (user.passwordHash && user.passwordHash !== hashPassword(change.currentPassword)) {
-        throw new Error('Current password is incorrect.');
+        throw new Error(i18n.t('errors.currentPasswordIsIncorrect'));
       }
       user.passwordHash = hashPassword(change.newPassword);
       await users.upsert(user);
@@ -319,7 +344,7 @@ class MockAccountRepository implements AccountRepository {
       const avatarUrl = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result : '');
-        reader.onerror = () => reject(new Error('Could not read the image.'));
+        reader.onerror = () => reject(new Error(i18n.t('errors.couldNotReadTheImage')));
         reader.readAsDataURL(file);
       });
       const next: Account = { ...(await this.getAccount()), avatarUrl };
@@ -345,7 +370,7 @@ class MockAccountRepository implements AccountRepository {
 // ---------------------------------------------------------------------------
 
 function placeholderReply(prompt: string): string {
-  return `Here is a mock response to: "${prompt.slice(0, 80)}". In mock mode the assistant returns deterministic text so the UI can exercise streaming, retry and persistence without a backend.`;
+  return i18n.t('errors.mockReply', { prompt: prompt.slice(0, 80) });
 }
 
 class MockChatRepository implements ChatRepository {
@@ -482,7 +507,7 @@ class MockChatRepository implements ChatRepository {
 
   private async requireConversation(id: string): Promise<Conversation> {
     const conversation = await conversations.get(id);
-    if (!conversation) throw new Error('Conversation not found.');
+    if (!conversation) throw new Error(i18n.t('errors.conversationNotFound'));
     return conversation;
   }
 
@@ -618,7 +643,7 @@ class MockBillingRepository implements BillingRepository {
     return simulate('billing.checkout', async () => {
       const plans = await this.getPlans();
       const plan = plans.find((p) => p.slug === planSlug);
-      if (!plan) throw new Error('Plan not found.');
+      if (!plan) throw new Error(i18n.t('errors.planNotFound'));
       const now = new Date().toISOString();
       const subscription: Subscription = {
         id: uid('sub'),
@@ -691,7 +716,7 @@ class MockBillingRepository implements BillingRepository {
   async downloadInvoice(id: string): Promise<Blob> {
     return simulate('billing.invoice', async () => {
       const invoice = await this.getInvoice(id);
-      if (!invoice) throw new Error('Invoice not found.');
+      if (!invoice) throw new Error(i18n.t('errors.invoiceNotFound'));
       const body = `JT-Code Invoice\nNumber: ${invoice.number}\nDate: ${invoice.date}\nAmount: $${(invoice.amountCents / 100).toFixed(2)}\nStatus: ${invoice.status}\n\n${invoice.description}`;
       return new Blob([body], { type: 'application/pdf' });
     });
@@ -703,7 +728,7 @@ class MockBillingRepository implements BillingRepository {
 
   private async requireSubscription(): Promise<Subscription> {
     const sub = await this.getSubscription();
-    if (!sub) throw new Error('No active subscription.');
+    if (!sub) throw new Error(i18n.t('errors.noActiveSubscription'));
     return sub;
   }
 }
@@ -828,7 +853,7 @@ class MockImageRepository implements ImageRepository {
 
   private async require(id: string): Promise<ImageGeneration> {
     const generation = await images.get(id);
-    if (!generation) throw new Error('Image generation not found.');
+    if (!generation) throw new Error(i18n.t('errors.imageGenerationNotFound'));
     return generation;
   }
 }
@@ -853,7 +878,7 @@ class MockFilesRepository implements FilesRepository {
       let sent = 0;
       const step = Math.max(1, Math.floor(total / 10));
       while (sent < total) {
-        if (options.signal?.aborted) throw new Error('Upload canceled.');
+        if (options.signal?.aborted) throw new Error(i18n.t('errors.uploadCanceled'));
         sent = Math.min(total, sent + step);
         options.onProgress?.(Math.round((sent / total) * 100));
         await new Promise((r) => setTimeout(r, 25));
@@ -895,7 +920,7 @@ class MockFilesRepository implements FilesRepository {
   async download(id: string): Promise<Blob> {
     const item = await this.require(id);
     const blob = await getBlob(item.blobKey);
-    if (!blob) throw new Error('File content unavailable.');
+    if (!blob) throw new Error(i18n.t('errors.fileContentUnavailable'));
     return blob;
   }
 
@@ -908,7 +933,7 @@ class MockFilesRepository implements FilesRepository {
 
   private async require(id: string): Promise<FileItem> {
     const item = await files.get(id);
-    if (!item) throw new Error('File not found.');
+    if (!item) throw new Error(i18n.t('errors.fileNotFound'));
     return item;
   }
 }
@@ -1021,7 +1046,7 @@ class MockDocumentsRepository implements DocumentsRepository {
 
   private async require(id: string): Promise<AppDocument> {
     const doc = await documents.get(id);
-    if (!doc) throw new Error('Document not found.');
+    if (!doc) throw new Error(i18n.t('errors.documentNotFound'));
     return doc;
   }
 }
@@ -1089,7 +1114,7 @@ class MockIntegrationRepository implements IntegrationRepository {
 
   private async require(id: string): Promise<Integration> {
     const item = await integrations.get(id);
-    if (!item) throw new Error('Integration not found.');
+    if (!item) throw new Error(i18n.t('errors.integrationNotFound'));
     return item;
   }
 }
@@ -1159,7 +1184,7 @@ class MockKnowledgeRepository implements KnowledgeRepository {
     return simulate(`knowledge.sync.${sourceId}`, async () => {
       const collection = await this.require(collectionId);
       const source = collection.sources.find((s) => s.id === sourceId);
-      if (!source) throw new Error('Source not found.');
+      if (!source) throw new Error(i18n.t('errors.sourceNotFound'));
       const updated: KnowledgeSource = {
         ...source,
         status: 'indexed',
@@ -1189,7 +1214,7 @@ class MockKnowledgeRepository implements KnowledgeRepository {
 
   private async require(id: string): Promise<KnowledgeCollection> {
     const collection = await knowledge.get(id);
-    if (!collection) throw new Error('Collection not found.');
+    if (!collection) throw new Error(i18n.t('errors.collectionNotFound'));
     return collection;
   }
 }

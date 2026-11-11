@@ -1,0 +1,15 @@
+{
+  "title": "पुन्हा स्वागत आहे",
+  "subtitle": "JT-Code वर सुरू ठेवण्यासाठी साइन इन करा",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "कनेक्ट होत आहे…",
+  "emailLabel": "ईमेल पत्ता",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "पासवर्ड",
+  "passwordPlaceholder": "तुमचा पासवर्ड टाका",
+  "forgotPassword": "पासवर्ड विसरलात?",
+  "submit": "साइन इन",
+  "noAccount": "खाते नाही का?",
+  "createAccount": "खाते तयार करा"
+}

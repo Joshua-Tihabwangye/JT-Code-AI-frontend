@@ -1,0 +1,9 @@
+{
+  "placeholder": "Tafuta mazungumzo, picha, faili, nyaraka…",
+  "noResults": "Hakuna matokeo yaliyopatikana.",
+  "conversation": "Mazungumzo",
+  "generatedImage": "Picha iliyotengenezwa",
+  "imageType": "Picha · {{style}}",
+  "file": "Faili",
+  "document": "Nyaraka"
+}

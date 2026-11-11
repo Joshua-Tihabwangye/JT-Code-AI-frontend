@@ -1,0 +1,14 @@
+{
+  "primary": "メイン",
+  "workspace": "ワークスペース",
+  "connections": "接続",
+  "account": "アカウント",
+  "chat": "チャット",
+  "images": "画像",
+  "history": "履歴",
+  "billing": "請求",
+  "settings": "設定",
+  "integrations": "連携",
+  "analytics": "データ分析",
+  "visualize": "データ可視化"
+}

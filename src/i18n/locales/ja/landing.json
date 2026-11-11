@@ -1,0 +1,17 @@
+{
+  "openApp": "JT-Code を開く",
+  "signIn": "サインイン",
+  "createAccount": "アカウント作成",
+  "eyebrow": "ウェブ + モバイル AI アシスタント",
+  "headline": "質問、ファイル、リサーチ、制作のための、ひとつの明快なワークスペース。",
+  "copy": "このプラットフォーム全体で使用されるアシスタント名は JT-Code のみです。Web クライアントは React と TypeScript、認証は Supabase Auth が担当し、ビジネスの状態はすべて Django API に保存されます。",
+  "continueToWorkspace": "ワークスペースへ進む",
+  "startWith": "JT-Code を始める",
+  "foundationsLabel": "プラットフォームの基盤",
+  "feature1Title": "安全な認証",
+  "feature1Desc": "保護された操作を実行する前に、Django が Supabase Auth のセッションを再度検証します。",
+  "feature2Title": "堅牢なデータ",
+  "feature2Desc": "Supabase でホストされた PostgreSQL が、トランザクションの信頼できる情報源であり続けます。",
+  "feature3Title": "マネージドアセット",
+  "feature3Desc": "署名付きの Cloudinary アップロードにより、シークレットはブラウザの外に保たれます。"
+}

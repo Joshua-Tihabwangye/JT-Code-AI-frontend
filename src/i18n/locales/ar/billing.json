@@ -1,0 +1,116 @@
+{
+  "eyebrow": "الفوترة",
+  "title": "الفوترة والأرصدة",
+  "subtitle": "أدر خطتك وأرصدتك وبيانات الدفع. أضف أرصدة في أي وقت لمواصلة البناء دون حدود.",
+  "addCredits": "إضافة رصيد",
+  "summary": {
+    "currentPlan": "الخطة الحالية",
+    "availableCredits": "الأرصدة المتاحة",
+    "renewsOn": "يتجدد في",
+    "renewsHelper": "في نهاية فترة الفوترة الخاصة بك",
+    "managePlan": "إدارة الخطة →",
+    "addCreditsAction": "إضافة رصيد →"
+  },
+  "usage": {
+    "title": "استخدام الرصيد",
+    "usedOf": "تم استخدام {{used}} من أصل {{limit}} هذا الشهر",
+    "left": "بقي {{amount}}"
+  },
+  "plans": {
+    "title": "اختر الخطة المناسبة لك",
+    "allInclude": "جميع الخطط تشمل: فوترة آمنة، وإلغاء في أي وقت، ووقت تشغيل بنسبة 99.9%",
+    "ribbonCurrent": "الخطة الحالية",
+    "ribbonSelected": "محددة",
+    "currentCta": "الخطة الحالية",
+    "chooseCta": "اختر {{name}}",
+    "perMonth": "/شهريًا",
+    "customPrice": "مخصص",
+    "fallbackDescription": "للمستخدمين في مرحلة النمو",
+    "fallbackFeature1": "{{credits}} رصيد / شهريًا",
+    "fallbackFeature2": "دعم قياسي",
+    "descriptions": {
+      "free": "للأفراد في بداية الطريق",
+      "pro": "للمحترفين والمستخدمين المتقدمين",
+      "team": "للفرق والمؤسسات",
+      "business": "للفرق المتوسعة"
+    },
+    "features": {
+      "free": [
+        "1,000 رصيد / شهريًا",
+        "وصول إلى GPT-4o mini",
+        "أدوات ذكاء اصطناعي أساسية",
+        "دعم من المجتمع"
+      ],
+      "pro": [
+        "2,000 رصيد / شهريًا",
+        "وصول إلى GPT-4o",
+        "أدوات ذكاء اصطناعي متقدمة",
+        "دعم ذو أولوية",
+        "وصول مبكر إلى الميزات الجديدة"
+      ],
+      "team": [
+        "5,000 رصيد / مستخدم / شهريًا",
+        "وصول إلى GPT-4o",
+        "مساحة عمل للفريق",
+        "ضوابط إدارية متقدمة",
+        "دعم ذو أولوية واتفاقية SLA"
+      ],
+      "business": [
+        "أرصدة مخصصة",
+        "دعم مخصص",
+        "SSO وسجلات تدقيق",
+        "نماذج ذكاء اصطناعي مخصصة",
+        "ضمان SLA"
+      ]
+    }
+  },
+  "payment": {
+    "title": "طريقة الدفع",
+    "billingCountry": "دولة الفوترة",
+    "ugandaHint": "أوغندا: ادفع بالبطاقة أو عبر Mobile Money (MTN / Airtel).",
+    "otherHint": "ادفع بالبطاقة أو عبر PayPal.",
+    "addMethod": "إضافة طريقة دفع",
+    "makeDefault": "تعيين كافتراضية",
+    "methods": {
+      "card": "بطاقة",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "بطاقة",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "رقم الهاتف",
+    "cardNumberLabel": "رقم البطاقة",
+    "expiryLabel": "تاريخ الانتهاء",
+    "cvcLabel": "CVC",
+    "savedToast": "تم حفظ طريقة الدفع"
+  },
+  "invoices": {
+    "title": "الفواتير الأخيرة",
+    "viewAll": "عرض جميع الفواتير",
+    "allTitle": "جميع الفواتير",
+    "allSubtitle": "JT-Code — سجل الفوترة",
+    "date": "التاريخ",
+    "description": "الوصف",
+    "amount": "المبلغ",
+    "status": "الحالة"
+  },
+  "topup": {
+    "title": "إضافة رصيد",
+    "description": "شراء رصيد إضافي لحسابك",
+    "amountLabel": "المبلغ (USD)",
+    "estimatedCredits": "الرصيد التقديري",
+    "confirm": "إضافة رصيد بقيمة ${{amount}}",
+    "success": "تمت إضافة الرصيد بنجاح",
+    "invalidAmount": "أدخل مبلغًا صالحًا"
+  },
+  "checkout": {
+    "title": "أكمل عملية الشراء",
+    "planSuffix": "خطة {{name}}",
+    "customPricing": "تسعير مخصص",
+    "billedMonthly": "تُفوتر شهريًا",
+    "pay": "ادفع {{amount}}",
+    "enterPhone": "أدخل رقم الهاتف الخاص بـ Mobile Money.",
+    "activated": "تم تنشيط خطة {{name}} — تمت عملية الدفع بنجاح"
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowDown, ArrowUp, BookmarkPlus, Play, RefreshCw, Trash2 } from 'lucide-react';
 import type { DashboardBookmark, DashboardBookmarkState, DashboardSpec } from '@/lib/data';
 import { newId } from './catalog';
@@ -17,6 +18,7 @@ export function ViewsPane({
   onApply: (bookmark: DashboardBookmark) => void;
   onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void;
 }) {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const bookmarks = spec.bookmarks ?? [];
   const save = (next: DashboardBookmark[]) => onSpec((current) => ({ ...current, bookmarks: next }));
@@ -29,7 +31,7 @@ export function ViewsPane({
   return (
     <div className="space-y-2" data-testid="views-pane">
       <p className="text-[11px] text-muted-foreground">
-        A view remembers this page with its slicers, filters, drill level, parameters and which visuals are hidden (Selection tab). Viewers pick views from “Views ▾”; buttons and navigators can open them.
+        {t('visualize.panes.views.intro')}
       </p>
       <form
         className="flex gap-1"
@@ -40,9 +42,9 @@ export function ViewsPane({
           setName('');
         }}
       >
-        <input className="viz-field h-7 flex-1 text-xs" value={name} maxLength={60} placeholder="Name, e.g. Online only" onChange={(event) => setName(event.target.value)} data-testid="author-view-name" />
+        <input className="viz-field h-7 flex-1 text-xs" value={name} maxLength={60} placeholder={t('visualize.panes.views.namePlaceholder')} onChange={(event) => setName(event.target.value)} data-testid="author-view-name" />
         <button type="submit" className="viz-chip" disabled={!name.trim()} data-testid="add-author-view">
-          <BookmarkPlus size={12} /> Add view
+          <BookmarkPlus size={12} /> {t('visualize.panes.views.add')}
         </button>
       </form>
       <ul className="space-y-1">
@@ -53,22 +55,22 @@ export function ViewsPane({
               value={bookmark.name}
               maxLength={60}
               onChange={(event) => save(bookmarks.map((item) => (item.id === bookmark.id ? { ...item, name: event.target.value } : item)))}
-              aria-label="View name"
+              aria-label={t('visualize.panes.views.nameAria')}
             />
             <span className="text-[10px] text-muted-foreground">{spec.pages.find((page) => page.id === bookmark.pageId)?.name}</span>
-            <button type="button" title="Show this view" onClick={() => onApply(bookmark)}>
+            <button type="button" title={t('visualize.panes.views.show')} onClick={() => onApply(bookmark)}>
               <Play size={12} />
             </button>
-            <button type="button" title="Update with what is shown now" onClick={() => save(bookmarks.map((item) => (item.id === bookmark.id ? { ...item, pageId, state: capture() } : item)))}>
+            <button type="button" title={t('visualize.panes.views.update')} onClick={() => save(bookmarks.map((item) => (item.id === bookmark.id ? { ...item, pageId, state: capture() } : item)))}>
               <RefreshCw size={12} />
             </button>
-            <button type="button" title="Move up" disabled={index === 0} onClick={() => move(index, -1)}>
+            <button type="button" title={t('visualize.panes.moveUp')} disabled={index === 0} onClick={() => move(index, -1)}>
               <ArrowUp size={12} />
             </button>
-            <button type="button" title="Move down" disabled={index === bookmarks.length - 1} onClick={() => move(index, 1)}>
+            <button type="button" title={t('visualize.panes.moveDown')} disabled={index === bookmarks.length - 1} onClick={() => move(index, 1)}>
               <ArrowDown size={12} />
             </button>
-            <button type="button" title="Delete" onClick={() => save(bookmarks.filter((item) => item.id !== bookmark.id))}>
+            <button type="button" title={t('visualize.panes.views.delete')} onClick={() => save(bookmarks.filter((item) => item.id !== bookmark.id))}>
               <Trash2 size={12} />
             </button>
           </li>

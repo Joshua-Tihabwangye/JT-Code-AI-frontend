@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "الاسم الأول مطلوب.",
+  "firstNameTooLong": "الاسم الأول طويل جدًا.",
+  "lastNameRequired": "اسم العائلة مطلوب.",
+  "lastNameTooLong": "اسم العائلة طويل جدًا.",
+  "invalidEmail": "أدخل بريدًا إلكترونيًا صالحًا.",
+  "passwordMinLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.",
+  "passwordLetter": "يجب أن تحتوي كلمة المرور على حرف واحد على الأقل.",
+  "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير.",
+  "passwordLowercase": "يجب أن تحتوي كلمة المرور على حرف صغير.",
+  "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم.",
+  "selectCountry": "اختر دولتك.",
+  "selectDialCode": "اختر رمز اتصال.",
+  "phoneRequired": "أدخل رقم هاتفك.",
+  "invalidPhone": "أدخل رقم هاتف صالحًا للدولة المحددة.",
+  "selectTimezone": "اختر منطقتك الزمنية.",
+  "acceptTerms": "يجب قبول الشروط وسياسة الخصوصية.",
+  "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين.",
+  "passwordRequired": "أدخل كلمة المرور.",
+  "authenticationFailed": "فشلت المصادقة.",
+  "finishingSignIn": "جارٍ إكمال تسجيل الدخول…",
+  "redirecting": "جارٍ إعادة التوجيه…"
+}

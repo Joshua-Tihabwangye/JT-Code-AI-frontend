@@ -1,0 +1,18 @@
+{
+  "saveChanges": "बदलाव सहेजें",
+  "cancel": "रद्द करें",
+  "search": "खोजें",
+  "signOut": "साइन आउट",
+  "loading": "लोड हो रहा है…",
+  "close": "बंद करें",
+  "back": "वापस",
+  "or": "या",
+  "pleaseWait": "कृपया प्रतीक्षा करें…",
+  "error": "त्रुटि",
+  "show": "दिखाएँ",
+  "hide": "छिपाएँ",
+  "default": "डिफ़ॉल्ट",
+  "creditsUnit": "क्रेडिट",
+  "messagesCount_one": "{{count}} संदेश",
+  "messagesCount_other": "{{count}} संदेश"
+}

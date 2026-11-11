@@ -1,0 +1,18 @@
+{
+  "saveChanges": "மாற்றங்களைச் சேமி",
+  "cancel": "ரத்து செய்",
+  "search": "தேடு",
+  "signOut": "வெளியேறு",
+  "loading": "ஏற்றுகிறது…",
+  "close": "மூடு",
+  "back": "பின்",
+  "or": "அல்லது",
+  "pleaseWait": "தயவுசெய்து காத்திருங்கள்…",
+  "error": "பிழை",
+  "show": "காட்டு",
+  "hide": "மறை",
+  "default": "இயல்புநிலை",
+  "creditsUnit": "கிரெடிட்கள்",
+  "messagesCount_one": "{{count}} செய்தி",
+  "messagesCount_other": "{{count}} செய்திகள்"
+}

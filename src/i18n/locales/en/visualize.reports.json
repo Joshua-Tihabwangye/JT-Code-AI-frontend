@@ -1,0 +1,41 @@
+{
+  "title": "Reports",
+  "subtitle": "Export a dashboard, or reuse the visuals you saved.",
+  "export": "Export a dashboard",
+  "noCharts": "Save visuals from Explore or Predict to reuse them in dashboards.",
+  "library": {
+    "title": "My visuals"
+  },
+  "dashboardToExport": "Dashboard to export",
+  "noDashboards": "No dashboards yet",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "One page per dashboard page, exactly as on screen"
+    },
+    "png": {
+      "label": "PNG images",
+      "hint": "One image per page"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Every visual’s data with native charts, plus the raw data"
+    },
+    "html": {
+      "label": "Interactive HTML",
+      "hint": "A single file that works offline"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "The dashboard definition"
+    }
+  },
+  "preparing": "Preparing…",
+  "explore": "Explore",
+  "prediction": "Prediction",
+  "visualOf": "{{type}} visual",
+  "deletedDataset": "deleted dataset",
+  "unshare": "Unshare",
+  "share": "Share",
+  "deleteNamed": "Delete {{name}}"
+}

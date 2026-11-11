@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Dashboards",
+    "data": "Data",
+    "gallery": "Gallery",
+    "predict": "Predict",
+    "reports": "Reports",
+    "explore": "Explore"
+  },
+  "askAi": "Ask AI",
+  "hero": {
+    "title": "Data Visualization Studio"
+  },
+  "assistant": {
+    "title": "JT-Code AI",
+    "cost": "Uses credits only when you send a prompt. Charts, insights and suggestions are free.",
+    "about": "Ask about",
+    "intro": "Describe what you want to see. I pick the chart, fill in the columns and you review it before anything runs.",
+    "thinking": "Thinking…",
+    "builtIn": "Built-in",
+    "credits": "{{credits}} credits",
+    "free": "no credits used",
+    "openExplore": "Open in Explore",
+    "setUp": "Set up prediction",
+    "placeholder": "e.g. Show monthly revenue by region",
+    "prompt": "Prompt",
+    "send": "Send",
+    "close": "Close"
+  },
+  "dataset": "Dataset",
+  "noDataset": "No dataset yet",
+  "sections": "Data visualization sections",
+  "controls": {
+    "noColumns": {
+      "numeric": "No numeric columns",
+      "datetime": "No datetime columns",
+      "categorical": "No categorical columns",
+      "dimension": "No dimension columns",
+      "any": "No any columns"
+    },
+    "chooseColumn": "Choose a column…",
+    "none": "None",
+    "automatic": "Automatic"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "excellent",
+      "good": "good",
+      "fair": "fair",
+      "weak": "weak",
+      "unknown": "unknown"
+    },
+    "dataset": "Dataset",
+    "noDatasets": "No datasets yet",
+    "rows_one": "{{rows}} row",
+    "rows_other": "{{rows}} rows",
+    "less": "Less",
+    "howToRead": "How to read it",
+    "dataOf": "{{title}} data",
+    "tableSize": "{{rows}} rows × {{columns}} columns — the data this chart shows",
+    "tableSizeFirst": "{{rows}} rows × {{columns}} columns (first rows) — the data this chart shows",
+    "close": "Close",
+    "expandRibbon": "Expand ribbon",
+    "collapseRibbon": "Collapse ribbon"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "openApp": "Fungua JT-Code",
+  "signIn": "Ingia",
+  "createAccount": "Fungua akaunti",
+  "eyebrow": "MSAIDIZI WA AI WA TOVUTI + SIMU",
+  "headline": "Eneo moja wazi la kazi kwa maswali, faili, utafiti na uumbaji.",
+  "copy": "JT-Code ndilo jina pekee la msaidizi linalotumika katika jukwaa hili mzima. Klien ya wavuti imejengwa kwa React na TypeScript; uthibitishaji unasimamiwa na Supabase Auth na hali yote ya biashara huishi kwenye Django API.",
+  "continueToWorkspace": "Endelea kwenda eneo la kazi",
+  "startWith": "Anza na JT-Code",
+  "foundationsLabel": "Misingi ya jukwaa",
+  "feature1Title": "Utambulisho salama",
+  "feature1Desc": "Vipindi vya Supabase Auth vinathibitishwa tena na Django kabla ya kila hatua iliyolindwa.",
+  "feature2Title": "Data endelevu",
+  "feature2Desc": "PostgreSQL inayopangishwa na Supabase unabaki kuwa chanzo cha ukweli cha miamala.",
+  "feature3Title": "Mali zinazodhibitiwa",
+  "feature3Desc": "Upakiaji wenye saini wa Cloudinary unaweka siri nje ya kivinjari."
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Karibu tena",
+  "subtitle": "Ingia ili kuendelea na JT-Code",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Inaunganisha…",
+  "emailLabel": "Barua pepe",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Nenosiri",
+  "passwordPlaceholder": "Weka nenosiri lako",
+  "forgotPassword": "Ulisahau nenosiri?",
+  "submit": "Ingia",
+  "noAccount": "Hauna akaunti?",
+  "createAccount": "Fungua akaunti"
+}

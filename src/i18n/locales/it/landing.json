@@ -1,0 +1,17 @@
+{
+  "openApp": "Apri JT-Code",
+  "signIn": "Accedi",
+  "createAccount": "Crea account",
+  "eyebrow": "ASSISTENTE AI WEB + MOBILE",
+  "headline": "Un unico spazio di lavoro chiaro per domande, file, ricerche e creazione.",
+  "copy": "JT-Code è l'unico nome di assistente usato su tutta la piattaforma. Il client web è React e TypeScript; l'autenticazione è gestita da Supabase Auth e tutto lo stato di business vive nella Django API.",
+  "continueToWorkspace": "Vai all'area di lavoro",
+  "startWith": "Inizia con JT-Code",
+  "foundationsLabel": "Fondamenta della piattaforma",
+  "feature1Title": "Identità sicura",
+  "feature1Desc": "Le sessioni Supabase Auth vengono verificate nuovamente da Django prima di ogni azione protetta.",
+  "feature2Title": "Dati durevoli",
+  "feature2Desc": "PostgreSQL ospitato su Supabase resta la fonte transazionale di verità.",
+  "feature3Title": "Asset gestiti",
+  "feature3Desc": "Gli upload firmati su Cloudinary tengono i segreti fuori dal browser."
+}

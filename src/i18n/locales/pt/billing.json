@@ -1,0 +1,116 @@
+{
+  "eyebrow": "Faturamento",
+  "title": "Faturamento e Créditos",
+  "subtitle": "Gerencie seu plano, créditos e dados de pagamento. Adicione créditos quando quiser para continuar construindo sem limites.",
+  "addCredits": "Adicionar créditos",
+  "summary": {
+    "currentPlan": "Plano atual",
+    "availableCredits": "Créditos disponíveis",
+    "renewsOn": "Renova em",
+    "renewsHelper": "No final do seu período de faturamento",
+    "managePlan": "Gerenciar plano →",
+    "addCreditsAction": "Adicionar créditos →"
+  },
+  "usage": {
+    "title": "Uso de créditos",
+    "usedOf": "{{used}} usados de {{limit}} neste mês",
+    "left": "{{amount}} restantes"
+  },
+  "plans": {
+    "title": "Escolha o plano ideal para você",
+    "allInclude": "Todos os planos incluem: Faturamento seguro, cancele quando quiser, 99,9% de uptime",
+    "ribbonCurrent": "Plano atual",
+    "ribbonSelected": "Selecionado",
+    "currentCta": "Plano atual",
+    "chooseCta": "Escolher {{name}}",
+    "perMonth": "/mês",
+    "customPrice": "Personalizado",
+    "fallbackDescription": "Para usuários em crescimento",
+    "fallbackFeature1": "{{credits}} créditos / mês",
+    "fallbackFeature2": "Suporte padrão",
+    "descriptions": {
+      "free": "Para quem está começando",
+      "pro": "Para profissionais e usuários avançados",
+      "team": "Para equipes e organizações",
+      "business": "Para equipes em escala"
+    },
+    "features": {
+      "free": [
+        "1.000 créditos / mês",
+        "Acesso ao GPT-4o mini",
+        "Ferramentas básicas de IA",
+        "Suporte da comunidade"
+      ],
+      "pro": [
+        "2.000 créditos / mês",
+        "Acesso ao GPT-4o",
+        "Ferramentas avançadas de IA",
+        "Suporte prioritário",
+        "Acesso antecipado a novos recursos"
+      ],
+      "team": [
+        "5.000 créditos / usuário / mês",
+        "Acesso ao GPT-4o",
+        "Workspace de equipe",
+        "Controles administrativos avançados",
+        "Suporte prioritário e SLA"
+      ],
+      "business": [
+        "Créditos personalizados",
+        "Suporte dedicado",
+        "SSO e logs de auditoria",
+        "Modelos de IA personalizados",
+        "Garantia de SLA"
+      ]
+    }
+  },
+  "payment": {
+    "title": "Forma de pagamento",
+    "billingCountry": "País de faturamento",
+    "ugandaHint": "Uganda: pague com Cartão ou Mobile Money (MTN / Airtel).",
+    "otherHint": "Pague com Cartão ou PayPal.",
+    "addMethod": "Adicionar forma de pagamento",
+    "makeDefault": "Definir como padrão",
+    "methods": {
+      "card": "Cartão",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Cartão",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Número de telefone",
+    "cardNumberLabel": "Número do cartão",
+    "expiryLabel": "Validade",
+    "cvcLabel": "CVC",
+    "savedToast": "Forma de pagamento salva"
+  },
+  "invoices": {
+    "title": "Faturas recentes",
+    "viewAll": "Ver todas as faturas",
+    "allTitle": "Todas as Faturas",
+    "allSubtitle": "JT-Code — histórico de faturamento",
+    "date": "Data",
+    "description": "Descrição",
+    "amount": "Valor",
+    "status": "Status"
+  },
+  "topup": {
+    "title": "Adicionar Créditos",
+    "description": "Compre créditos adicionais para sua conta",
+    "amountLabel": "Valor (USD)",
+    "estimatedCredits": "Créditos Estimados",
+    "confirm": "Adicionar ${{amount}} em créditos",
+    "success": "Créditos adicionados com sucesso",
+    "invalidAmount": "Informe um valor válido"
+  },
+  "checkout": {
+    "title": "Conclua sua compra",
+    "planSuffix": "Plano {{name}}",
+    "customPricing": "Preço personalizado",
+    "billedMonthly": "Cobrança mensal",
+    "pay": "Pagar {{amount}}",
+    "enterPhone": "Digite o número de telefone para o Mobile Money.",
+    "activated": "Plano {{name}} ativado — pagamento bem-sucedido"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "openNavigation": "Fungua urambazaji",
+  "closeNavigation": "Funga uongozi",
+  "toggleTheme": "Badilisha mandhari",
+  "theme": "Mandhari",
+  "expandSidebar": "Panua upau wa pembeni",
+  "collapseSidebar": "Fupisha upau wa pembeni",
+  "collapse": "Fupisha",
+  "offlineMessage": "Uko nje ya mtandao. Mabadiliko huhifadhiwa kwenye kifaa chako na yatasawazishwa ukirudi mtandaoni.",
+  "fatalTitle": "Kuna kitu hakikuenda sawa",
+  "unexpectedError": "Hitilafu isiyotarajiwa imetokea.",
+  "reloadApp": "Pakia upya programu"
+}

@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Historia",
+  "title": "Historia",
+  "subtitle": "Mazungumzo na vipindi vyako vya karibuni.",
+  "clearHistory": "Futa historia",
+  "clearConfirm": "Ufute historia yote ya mazungumzo?",
+  "emptyTitle": "Hakuna historia bado",
+  "emptyDesc": "Anzisha mazungumzo na mazungumzo yako yataonekana hapa.",
+  "startChatting": "Anza mazungumzo",
+  "deleteItemAria": "Futa {{title}}"
+}

@@ -1,0 +1,18 @@
+{
+  "saveChanges": "保存更改",
+  "cancel": "取消",
+  "search": "搜索",
+  "signOut": "退出登录",
+  "loading": "加载中…",
+  "close": "关闭",
+  "back": "返回",
+  "or": "或",
+  "pleaseWait": "请稍候…",
+  "error": "错误",
+  "show": "显示",
+  "hide": "隐藏",
+  "default": "默认",
+  "creditsUnit": "积分",
+  "messagesCount_one": "{{count}} 条消息",
+  "messagesCount_other": "{{count}} 条消息"
+}

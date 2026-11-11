@@ -1,0 +1,116 @@
+{
+  "eyebrow": "請求",
+  "title": "請求とクレジット",
+  "subtitle": "プラン、クレジット、お支払い情報を管理します。いつでもクレジットを追加して、制限なく構築を続けられます。",
+  "addCredits": "クレジットを追加",
+  "summary": {
+    "currentPlan": "現在のプラン",
+    "availableCredits": "利用可能なクレジット",
+    "renewsOn": "更新日",
+    "renewsHelper": "請求期間の終了時",
+    "managePlan": "プランを管理 →",
+    "addCreditsAction": "クレジットを追加 →"
+  },
+  "usage": {
+    "title": "クレジット使用状況",
+    "usedOf": "今月は {{limit}} のうち {{used}} を使用",
+    "left": "残り {{amount}}"
+  },
+  "plans": {
+    "title": "あなたに合ったプランを選びましょう",
+    "allInclude": "全プラン共通: 安全な請求、いつでもキャンセル可能、99.9% の稼働率",
+    "ribbonCurrent": "現在のプラン",
+    "ribbonSelected": "選択中",
+    "currentCta": "現在のプラン",
+    "chooseCta": "{{name}} を選択",
+    "perMonth": "/月",
+    "customPrice": "カスタム",
+    "fallbackDescription": "成長中のユーザー向け",
+    "fallbackFeature1": "月 {{credits}} クレジット",
+    "fallbackFeature2": "通常サポート",
+    "descriptions": {
+      "free": "はじめたばかりの個人向け",
+      "pro": "プロフェッショナルやパワーユーザー向け",
+      "team": "チームや組織向け",
+      "business": "拡大するチーム向け"
+    },
+    "features": {
+      "free": [
+        "月 1,000 クレジット",
+        "GPT-4o mini を利用可能",
+        "基本的な AI ツール",
+        "コミュニティサポート"
+      ],
+      "pro": [
+        "月 2,000 クレジット",
+        "GPT-4o を利用可能",
+        "高度な AI ツール",
+        "優先サポート",
+        "新機能への早期アクセス"
+      ],
+      "team": [
+        "ユーザーあたり月 5,000 クレジット",
+        "GPT-4o を利用可能",
+        "チームワークスペース",
+        "高度な管理者コントロール",
+        "優先サポート & SLA"
+      ],
+      "business": [
+        "カスタムクレジット",
+        "専任サポート",
+        "SSO と監査ログ",
+        "カスタム AI モデル",
+        "SLA 保証"
+      ]
+    }
+  },
+  "payment": {
+    "title": "お支払い方法",
+    "billingCountry": "請求先の国",
+    "ugandaHint": "ウガンダ: カードまたはモバイルマネー（MTN / Airtel）でお支払い。",
+    "otherHint": "カードまたは PayPal でお支払い。",
+    "addMethod": "お支払い方法を追加",
+    "makeDefault": "デフォルトにする",
+    "methods": {
+      "card": "カード",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "カード",
+    "pickerMobileMoney": "モバイルマネー",
+    "phoneLabel": "電話番号",
+    "cardNumberLabel": "カード番号",
+    "expiryLabel": "有効期限",
+    "cvcLabel": "CVC",
+    "savedToast": "お支払い方法を保存しました"
+  },
+  "invoices": {
+    "title": "最近の請求書",
+    "viewAll": "すべての請求書を表示",
+    "allTitle": "すべての請求書",
+    "allSubtitle": "JT-Code — 請求履歴",
+    "date": "日付",
+    "description": "説明",
+    "amount": "金額",
+    "status": "ステータス"
+  },
+  "topup": {
+    "title": "クレジットを追加",
+    "description": "アカウントに追加のクレジットを購入します",
+    "amountLabel": "金額（USD）",
+    "estimatedCredits": "概算クレジット",
+    "confirm": "${{amount}} 分のクレジットを追加",
+    "success": "クレジットを追加しました",
+    "invalidAmount": "有効な金額を入力してください"
+  },
+  "checkout": {
+    "title": "ご購入を完了してください",
+    "planSuffix": "{{name}} プラン",
+    "customPricing": "カスタム料金",
+    "billedMonthly": "月額課金",
+    "pay": "{{amount}} を支払う",
+    "enterPhone": "モバイルマネーの電話番号を入力してください。",
+    "activated": "{{name}} プランが有効になりました — お支払いが完了しました"
+  }
+}

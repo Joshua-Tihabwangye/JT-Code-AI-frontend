@@ -1,4 +1,5 @@
 import { useMemo, type CSSProperties } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { CellStyle, DashboardFilter, DashboardTheme, DashboardVisual, KpiData, VisualOutput, VisualTable } from '@/lib/data';
 import { EChart, type EChartClick } from '../EChart';
 import { LOCAL_TYPES } from './customize';
@@ -30,6 +31,7 @@ function Sparkline({ values, inverted }: { values: number[]; inverted: boolean }
 }
 
 export function KpiCard({ kpi, theme, index }: { kpi: KpiData; theme: DashboardTheme | undefined; index: number }) {
+  const { t } = useTranslation();
   const { style, inverted } = kpiTileStyle(theme, index);
   const delta = kpi.delta;
   return (
@@ -47,10 +49,10 @@ export function KpiCard({ kpi, theme, index }: { kpi: KpiData; theme: DashboardT
           </span>
         )}
         {delta && <span className="dash-kpi-compare">{delta.label}</span>}
-        {kpi.target && !delta && <span className="dash-kpi-compare">Target {kpi.target.display}</span>}
+        {kpi.target && !delta && <span className="dash-kpi-compare">{t('visualize.dashboards.visual.target', { value: kpi.target.display })}</span>}
       </div>
       {kpi.target && (
-        <div className="dash-progress" title={`${kpi.target.progressDisplay} of ${kpi.target.display}`}>
+        <div className="dash-progress" title={t('visualize.dashboards.visual.progress', { value: kpi.target.progressDisplay, target: kpi.target.display })}>
           <span style={{ width: `${Math.min(kpi.target.progress, 1) * 100}%` }} />
         </div>
       )}
@@ -87,6 +89,7 @@ function formatCell(value: unknown, percent?: boolean): string {
 type RowHandler = (index: number, event: React.MouseEvent, kind?: 'menu') => void;
 
 function TableVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler }) {
+  const { t } = useTranslation();
   const columns = table.columns.filter((c): c is Exclude<VisualTable['columns'][number], string> => typeof c !== 'string');
   return (
     <div className="dash-table-wrap">
@@ -133,7 +136,7 @@ function TableVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler }
             <tr>
               {columns.map((column, index) => (
                 <td key={column.key} className={column.align === 'right' ? 'num' : ''}>
-                  {index === 0 ? 'Total' : table.totals?.[column.key] != null ? formatCell(table.totals[column.key], column.percent) : ''}
+                  {index === 0 ? t('visualize.dashboards.visual.total') : table.totals?.[column.key] != null ? formatCell(table.totals[column.key], column.percent) : ''}
                 </td>
               ))}
             </tr>
@@ -145,6 +148,7 @@ function TableVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler }
 }
 
 function MatrixVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler }) {
+  const { t } = useTranslation();
   const accent = table.accent ?? 'var(--dash-accent)';
   return (
     <div className="dash-table-wrap">
@@ -157,7 +161,7 @@ function MatrixVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler 
                 {column}
               </th>
             ))}
-            <th className="num">Total</th>
+            <th className="num">{t('visualize.dashboards.visual.total')}</th>
           </tr>
         </thead>
         <tbody>
@@ -187,7 +191,7 @@ function MatrixVisual({ table, onRow }: { table: VisualTable; onRow: RowHandler 
         </tbody>
         <tfoot>
           <tr>
-            <td>Total</td>
+            <td>{t('visualize.dashboards.visual.total')}</td>
             {table.columnTotals?.map((total, index) => (
               <td key={index} className="num">
                 {total}
@@ -240,17 +244,18 @@ export function VisualRenderer({
   /** Parameter controls, buttons and navigators. */
   local?: LocalContext;
 }) {
+  const { t } = useTranslation();
   const option = useMemo(() => output?.option, [output]);
   if (visual.type === 'text') return <p className="dash-text">{visual.text}</p>;
   if (LOCAL_TYPES.has(visual.type)) return <LocalVisual visual={visual} context={local} />;
   if (!output) return <div className="dash-skeleton" aria-busy="true" />;
-  if (output.status === 'error') return <p className="dash-message error">{output.message ?? 'This visual could not be drawn.'}</p>;
+  if (output.status === 'error') return <p className="dash-message error">{output.message ?? t('visualize.dashboards.visual.failed')}</p>;
   if (output.status === 'empty') {
     return (
       <div className="dash-message">
-        <span>{output.message ?? 'No data for the current filters'}</span>
+        <span>{output.message ?? t('visualize.dashboards.visual.empty')}</span>
         <button type="button" onClick={() => onSelect(null)}>
-          Clear selection
+          {t('visualize.dashboards.visual.clearSelection')}
         </button>
       </div>
     );
@@ -293,7 +298,7 @@ export function VisualRenderer({
       />
     );
   }
-  return <p className="dash-message">Nothing to show.</p>;
+  return <p className="dash-message">{t('visualize.dashboards.visual.nothing')}</p>;
 }
 
 /** “Show as table” and the accessible fallback: the visual's numbers, exactly as Python organised them. */

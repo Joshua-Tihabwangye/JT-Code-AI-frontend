@@ -133,6 +133,30 @@ export function findOrCreateOAuthUser(provider: string): StoredUser {
   return user;
 }
 
+/** Frontend-only mode: signing in with an email that has no account yet creates one, so a
+ *  designer can sign in with any address without signing up first. */
+export function findOrCreatePasswordUser(email: string, password: string): StoredUser {
+  const existing = findUserByEmail(email);
+  if (existing) return existing;
+  const local = email.trim().split('@')[0] || 'user';
+  const [first = 'User', ...rest] = local.split(/[._-]+/).filter(Boolean);
+  const title = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
+  return createUser({
+    email,
+    password,
+    firstName: title(first),
+    lastName: rest.map(title).join(' '),
+    contact: '',
+    countryCode: 'UG',
+    countryName: 'Uganda',
+    dialCode: '+256',
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
+  });
+}
+
+export const DEMO_EMAIL = 'demo@jt-code.local';
+export const DEMO_PASSWORD = 'demo-password';
+
 export function verifyCredentials(email: string, password: string): StoredUser | null {
   const user = findUserByEmail(email);
   if (!user) return null;

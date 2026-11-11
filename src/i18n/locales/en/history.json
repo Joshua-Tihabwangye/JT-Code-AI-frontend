@@ -1,0 +1,21 @@
+{
+  "eyebrow": "History",
+  "title": "History",
+  "subtitle": "Your recent chats and sessions.",
+  "clearHistory": "Clear history",
+  "clearConfirm": "Clear all chat history?",
+  "emptyTitle": "No history yet",
+  "emptyDesc": "Start a chat and your conversations will appear here.",
+  "startChatting": "Start chatting",
+  "deleteItemAria": "Delete {{title}}",
+  "searchPlaceholder": "Search conversations",
+  "archived": "Archived",
+  "openAria": "Open {{title}}",
+  "pinned": "Pinned",
+  "untitled": "Untitled conversation",
+  "pin": "Pin",
+  "unpin": "Unpin",
+  "archive": "Archive",
+  "unarchive": "Restore from archive",
+  "export": "Export as Markdown"
+}

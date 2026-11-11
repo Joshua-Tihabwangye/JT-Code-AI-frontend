@@ -1,0 +1,9 @@
+{
+  "attach": "Attach",
+  "attachDocument": "Attach a document",
+  "attachImage": "Attach an image",
+  "currentPlan": "Current plan",
+  "voiceInput": "Voice input",
+  "sendMessage": "Send message",
+  "defaultPlaceholder": "Ask JT-Code anything…"
+}

@@ -1,0 +1,15 @@
+{
+  "title": "다시 오신 것을 환영합니다",
+  "subtitle": "JT-Code를 계속 사용하려면 로그인하세요",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "연결 중…",
+  "emailLabel": "이메일 주소",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "비밀번호",
+  "passwordPlaceholder": "비밀번호 입력",
+  "forgotPassword": "비밀번호를 잊으셨나요?",
+  "submit": "로그인",
+  "noAccount": "계정이 없으신가요?",
+  "createAccount": "계정 만들기"
+}

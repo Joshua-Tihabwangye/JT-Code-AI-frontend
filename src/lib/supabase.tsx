@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react';
 import { createClient, type Session, type SupabaseClient, type User as SupabaseUser } from '@supabase/supabase-js';
 import { config } from '@/lib/config';
-import { getCurrentUser, getSession, subscribeAuth } from '@/lib/localAuth';
+import i18n from '@/i18n/config';
+import { DEMO_EMAIL, DEMO_PASSWORD, getCurrentUser, getSession, subscribeAuth } from '@/lib/localAuth';
 import { localSupabase, localSupabaseClient, toSession, toSupabaseUser } from '@/lib/localSupabase';
 
 export type { User as SupabaseUser } from '@supabase/supabase-js';
@@ -10,6 +11,22 @@ export type { User as SupabaseUser } from '@supabase/supabase-js';
 // development, the hosted project in production). Mock mode keeps the
 // localStorage stand-in so the UI can be demoed without any backend.
 const realAuth = config.dataMode === 'api';
+
+/** True while the app runs without the backend: sign-in is local to this browser. */
+export const frontendOnlyAuth = !realAuth;
+
+/** Supabase errors as the user should read them: a network failure ("Failed to fetch") becomes a
+ *  translated "cannot reach the sign-in service"; other messages pass through. */
+export function authErrorMessage(error: { message: string; name?: string; status?: number }): string {
+  const network = error.name === 'AuthRetryableFetchError' || /failed to fetch|networkerror|load failed/i.test(error.message);
+  return network ? i18n.t('authErrors.serviceUnreachable') : error.message;
+}
+
+/** Frontend-only mode: one click into a demo account (created on first use). */
+export function signInAsDemo(): { error?: string } {
+  const { error } = localSupabase.auth.signInWithPassword({ email: DEMO_EMAIL, password: DEMO_PASSWORD });
+  return error ? { error: error.message } : {};
+}
 
 export const supabase: SupabaseClient = realAuth
   ? createClient(config.supabaseUrl, config.supabaseAnonKey, {
@@ -39,16 +56,16 @@ export async function signInWithProvider(provider: OAuthProvider): Promise<{ err
     const response = await fetch(`${config.supabaseUrl}/auth/v1/settings`, { headers: { apikey: config.supabaseAnonKey } });
     const settings = (await response.json()) as { external?: Record<string, boolean> };
     if (!settings.external?.[provider]) {
-      return { error: `Sign-in with ${provider === 'google' ? 'Google' : 'Apple'} is not enabled. Use your email and password.` };
+      return { error: i18n.t('authErrors.providerDisabled', { provider: provider === 'google' ? 'Google' : 'Apple' }) };
     }
   } catch {
-    return { error: 'Cannot reach the sign-in service. Check your connection and try again.' };
+    return { error: i18n.t('authErrors.serviceUnreachable') };
   }
   const { error } = await supabase.auth.signInWithOAuth({
     provider,
     options: { redirectTo: `${window.location.origin}/sso-callback` },
   });
-  return error ? { error: error.message } : { redirected: true };
+  return error ? { error: authErrorMessage(error) } : { redirected: true };
 }
 
 /** Step 1 of password recovery: Supabase emails a one-time recovery code. */
@@ -61,19 +78,19 @@ export async function requestPasswordReset(email: string): Promise<{ error?: str
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${window.location.origin}/forgot-password`,
   });
-  return error ? { error: error.message } : {};
+  return error ? { error: authErrorMessage(error) } : {};
 }
 
 /** Step 2: verify the emailed code (which signs the user in) and set the new password. */
 export async function resetPasswordWithCode(email: string, code: string, newPassword: string): Promise<{ error?: string }> {
   if (!realAuth) {
     const result = localSupabase.auth.resetPassword({ email, code, newPassword });
-    return result.error ? { error: result.error.message } : {};
+    return result.error ? { error: authErrorMessage(result.error) } : {};
   }
   const verified = await supabase.auth.verifyOtp({ email, token: code, type: 'recovery' });
-  if (verified.error) return { error: verified.error.message };
+  if (verified.error) return { error: authErrorMessage(verified.error) };
   const updated = await supabase.auth.updateUser({ password: newPassword });
-  return updated.error ? { error: updated.error.message } : {};
+  return updated.error ? { error: authErrorMessage(updated.error) } : {};
 }
 
 export type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';

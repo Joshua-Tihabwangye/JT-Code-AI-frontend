@@ -1,0 +1,17 @@
+{
+  "openApp": "JT-Code öffnen",
+  "signIn": "Anmelden",
+  "createAccount": "Konto erstellen",
+  "eyebrow": "WEB + MOBILE KI-ASSISTENT",
+  "headline": "Ein klarer Arbeitsbereich für Fragen, Dateien, Recherche und Kreation.",
+  "copy": "JT-Code ist der einzige Assistentenname, der auf dieser gesamten Plattform verwendet wird. Der Webclient basiert auf React und TypeScript; die Authentifizierung übernimmt Supabase Auth und der gesamte Geschäftsstatus liegt in der Django API.",
+  "continueToWorkspace": "Weiter zum Arbeitsbereich",
+  "startWith": "Mit JT-Code starten",
+  "foundationsLabel": "Plattform-Grundlagen",
+  "feature1Title": "Sichere Identität",
+  "feature1Desc": "Supabase-Auth-Sitzungen werden von Django vor jeder geschützten Aktion erneut verifiziert.",
+  "feature2Title": "Dauerhafte Daten",
+  "feature2Desc": "Das von Supabase gehostete PostgreSQL bleibt die transaktionale zentrale Datenquelle.",
+  "feature3Title": "Verwaltete Assets",
+  "feature3Desc": "Signierte Cloudinary-Uploads halten Geheimnisse außerhalb des Browsers."
+}

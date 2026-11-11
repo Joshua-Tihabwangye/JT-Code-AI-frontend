@@ -1,0 +1,14 @@
+{
+  "primary": "প্রাইমারি",
+  "workspace": "ওয়ার্কস্পেস",
+  "connections": "সংযোগ",
+  "account": "অ্যাকাউন্ট",
+  "chat": "চ্যাট",
+  "images": "ইমেজ",
+  "history": "হিস্টোরি",
+  "billing": "বিলিং",
+  "settings": "সেটিংস",
+  "integrations": "ইন্টিগ্রেশন",
+  "analytics": "ডেটা বিশ্লেষণ",
+  "visualize": "ডেটা ভিজ্যুয়ালাইজেশন"
+}

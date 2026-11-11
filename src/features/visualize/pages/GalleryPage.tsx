@@ -92,9 +92,9 @@ export function GalleryPage() {
   return (
     <div className="space-y-5" data-testid="visualize-gallery">
       <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h1 className="text-xl font-bold">{t('visualize.gallery.title', 'Chart gallery')}</h1>
+        <h1 className="text-xl font-bold">{t('visualize.gallery.title')}</h1>
         <p className="text-sm text-muted-foreground">
-          {t('visualize.gallery.subtitle', '{{count}} chart types — open one in Explore and it fills in your columns.', {
+          {t('visualize.gallery.subtitle', {
             count: catalog.charts.length,
           })}
         </p>
@@ -104,19 +104,19 @@ export function GalleryPage() {
           <Search size={15} aria-hidden />
           <input
             className="viz-field"
-            placeholder={t('visualize.gallery.search', 'Search charts, e.g. “forecast”, “share”')}
+            placeholder={t('visualize.gallery.search')}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            aria-label={t('visualize.gallery.searchLabel', 'Search charts')}
+            aria-label={t('visualize.gallery.searchLabel')}
             data-testid="gallery-search"
           />
         </label>
-        <div className="viz-segment" role="radiogroup" aria-label={t('visualize.gallery.level', 'Level')} data-testid="gallery-level">
+        <div className="viz-segment" role="radiogroup" aria-label={t('visualize.gallery.level')} data-testid="gallery-level">
           {(
             [
-              ['all', t('visualize.gallery.allLevels', 'All levels')],
-              ['essential', t('visualize.gallery.essentialShort', 'Essential')],
-              ['advanced', t('visualize.gallery.advancedShort', 'Advanced')],
+              ['all', t('visualize.gallery.allLevels')],
+              ['essential', t('visualize.gallery.essentialShort')],
+              ['advanced', t('visualize.gallery.advancedShort')],
             ] as const
           ).map(([value, label]) => (
             <button key={value} type="button" role="radio" aria-checked={level === value} aria-pressed={level === value} onClick={() => setLevel(value)}>
@@ -126,7 +126,7 @@ export function GalleryPage() {
         </div>
         <div className="viz-toolbar-scroll" data-testid="gallery-categories">
           <button type="button" className="viz-chip" aria-pressed={category === 'all'} onClick={() => setParams({})}>
-            {t('visualize.gallery.all', 'All')} · {catalog.charts.length}
+            {t('visualize.gallery.all')} · {catalog.charts.length}
           </button>
           {catalog.categories.map((entry) => {
             const Icon = categoryIcon(entry);
@@ -154,8 +154,8 @@ export function GalleryPage() {
               <Sparkles size={16} aria-hidden />
             </span>
             <div>
-              <h2 className="font-semibold">{t('visualize.gallery.recommended', 'Recommended for {{name}}', { name: dataset?.name ?? 'this dataset' })}</h2>
-              <p className="text-xs text-muted-foreground">{t('visualize.gallery.recommendedHint', 'Picked from your columns — open one to see it with your data.')}</p>
+              <h2 className="font-semibold">{t('visualize.gallery.recommended', { name: dataset?.name ?? 'this dataset' })}</h2>
+              <p className="text-xs text-muted-foreground">{t('visualize.gallery.recommendedHint')}</p>
             </div>
           </div>
           <div className="viz-gallery-grid">
@@ -176,7 +176,7 @@ export function GalleryPage() {
           </div>
         </section>
       )}
-      {!byCategory.length && <p className="text-sm text-muted-foreground">{t('visualize.gallery.empty', 'No chart matches that search.')}</p>}
+      {!byCategory.length && <p className="text-sm text-muted-foreground">{t('visualize.gallery.empty')}</p>}
       {byCategory.map(({ category: entry, charts: group }) => {
         const Icon = categoryIcon(entry);
         return (

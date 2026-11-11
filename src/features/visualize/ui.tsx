@@ -20,8 +20,11 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { formatNumber } from '@/i18n/format';
 import { apiErrorMessage } from '@/lib/api/http';
 import type { ChartExplanation, ChartTable, Dataset, VizCategory, VizPalette, VizQuality, VizStat } from '@/lib/data';
+import { useCatalogText } from './catalogText';
 import { useVisualize } from './context';
 
 const ICONS: Record<string, LucideIcon> = {
@@ -46,11 +49,12 @@ export function colorVar(color: string | undefined): CSSProperties {
 }
 
 export function CategoryBadge({ category }: { category: VizCategory | undefined }) {
+  const text = useCatalogText();
   if (!category) return null;
   const Icon = categoryIcon(category);
   return (
     <span className="viz-badge" style={colorVar(category.color)}>
-      <Icon size={12} aria-hidden /> {category.name}
+      <Icon size={12} aria-hidden /> {text.categoryName(category)}
     </span>
   );
 }
@@ -59,10 +63,12 @@ const KIND_ICONS: Record<string, LucideIcon> = { numeric: Hash, datetime: Calend
 const KIND_COLORS: Record<string, string> = { numeric: '#6366f1', datetime: '#0ea5e9', boolean: '#f59e0b', categorical: '#ec4899', text: '#64748b' };
 
 export function KindBadge({ kind }: { kind: string }) {
+  const { t } = useTranslation();
   const Icon = KIND_ICONS[kind] ?? Type;
+  const name = kind in KIND_ICONS ? t(`visualize.data.kinds.${kind}`) : kind;
   return (
-    <span className="viz-badge" style={colorVar(KIND_COLORS[kind])} title={kind}>
-      <Icon size={11} aria-hidden /> {kind}
+    <span className="viz-badge" style={colorVar(KIND_COLORS[kind])} title={name}>
+      <Icon size={11} aria-hidden /> {name}
     </span>
   );
 }
@@ -86,10 +92,11 @@ const QUALITY_COLORS: Record<VizQuality, string> = {
 };
 
 export function QualityBadge({ quality }: { quality?: VizQuality }) {
+  const { t } = useTranslation();
   if (!quality) return null;
   return (
     <span className="viz-badge" style={colorVar(QUALITY_COLORS[quality])}>
-      {quality}
+      {t(`visualize.ui.quality.${quality}`)}
     </span>
   );
 }
@@ -112,11 +119,11 @@ export function formatValue(value: unknown, format?: string): string {
   if (value === null || value === undefined || value === '') return '—';
   if (typeof value === 'string' || typeof value === 'boolean') return String(value);
   if (typeof value !== 'number') return JSON.stringify(value) ?? '';
-  if (format === 'percent') return `${(value * 100).toFixed(1)}%`;
-  if (format === 'percent_value') return `${value.toFixed(1)}%`;
-  if (format === 'integer') return Math.round(value).toLocaleString();
-  if (Math.abs(value) >= 1000) return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
-  return Number.isInteger(value) ? String(value) : value.toLocaleString(undefined, { maximumFractionDigits: 4 });
+  if (format === 'percent') return formatNumber(value, { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (format === 'percent_value') return formatNumber(value / 100, { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (format === 'integer') return formatNumber(Math.round(value));
+  if (Math.abs(value) >= 1000) return formatNumber(value, { maximumFractionDigits: 1 });
+  return Number.isInteger(value) ? String(value) : formatNumber(value, { maximumFractionDigits: 4 });
 }
 
 export function StatChips({ stats }: { stats: VizStat[] }) {
@@ -133,7 +140,9 @@ export function StatChips({ stats }: { stats: VizStat[] }) {
   );
 }
 
-export function DatasetPicker({ label = 'Dataset', compact = false }: { label?: string; compact?: boolean }) {
+export function DatasetPicker({ label: labelProp, compact = false }: { label?: string; compact?: boolean }) {
+  const { t } = useTranslation();
+  const label = labelProp ?? t('visualize.ui.dataset');
   const { datasets, datasetId, setDatasetId } = useVisualize();
   return (
     <label className={compact ? 'block min-w-[220px]' : 'block'}>
@@ -145,10 +154,10 @@ export function DatasetPicker({ label = 'Dataset', compact = false }: { label?: 
         aria-label={label}
         data-testid="dataset-picker"
       >
-        {!datasets.length && <option value="">No datasets yet</option>}
+        {!datasets.length && <option value="">{t('visualize.ui.noDatasets')}</option>}
         {datasets.map((dataset: Dataset) => (
           <option key={dataset.id} value={dataset.id}>
-            {dataset.name} {dataset.rowCount ? `· ${dataset.rowCount.toLocaleString()} rows` : ''}
+            {dataset.name} {dataset.rowCount ? `· ${t('visualize.ui.rows', { count: dataset.rowCount, rows: formatNumber(dataset.rowCount) })}` : ''}
           </option>
         ))}
       </select>
@@ -183,6 +192,7 @@ export function SkeletonBlock({ height = 240 }: { height?: number }) {
 
 /** A compact explanation: what the chart is about and its key takeaway; “How to read” expands on demand. */
 export function Explanation({ explanation, compact: _compact = false }: { explanation?: Partial<ChartExplanation>; compact?: boolean }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   if (!explanation || (!explanation.about && !explanation.insight)) return null;
   return (
@@ -198,7 +208,7 @@ export function Explanation({ explanation, compact: _compact = false }: { explan
         )}
         {explanation.howToRead && (
           <button type="button" className="ml-1.5 font-semibold text-indigo-600 hover:underline dark:text-indigo-400" onClick={(event) => { event.stopPropagation(); setOpen(!open); }} aria-expanded={open}>
-            {open ? 'Less' : 'How to read it'}
+            {open ? t('visualize.ui.less') : t('visualize.ui.howToRead')}
           </button>
         )}
       </p>
@@ -217,14 +227,15 @@ function toCsv(table: ChartTable): string {
 
 /** The organized data behind a chart, in a readable table with a CSV download. */
 export function DataTableModal({ title, table, onClose }: { title: string; table: ChartTable; onClose: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="viz-modal-backdrop" role="presentation" onClick={onClose}>
-      <div className="viz-modal" role="dialog" aria-modal="true" aria-label={`${title} data`} onClick={(event) => event.stopPropagation()} data-testid="chart-data-modal">
+      <div className="viz-modal" role="dialog" aria-modal="true" aria-label={t('visualize.ui.dataOf', { title })} onClick={(event) => event.stopPropagation()} data-testid="chart-data-modal">
         <header className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">
           <div>
             <h2 className="font-semibold">{title}</h2>
             <p className="text-xs text-muted-foreground">
-              {table.rows.length.toLocaleString()} rows × {table.columns.length} columns{table.truncated ? ' (first rows)' : ''} — the data this chart shows
+              {t(table.truncated ? 'visualize.ui.tableSizeFirst' : 'visualize.ui.tableSize', { rows: formatNumber(table.rows.length), columns: formatNumber(table.columns.length) })}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -243,7 +254,7 @@ export function DataTableModal({ title, table, onClose }: { title: string; table
             >
               <Download size={13} aria-hidden /> CSV
             </button>
-            <button type="button" onClick={onClose} className="rounded-md p-1 hover:bg-accent" aria-label="Close">
+            <button type="button" onClick={onClose} className="rounded-md p-1 hover:bg-accent" aria-label={t('visualize.ui.close')}>
               <X size={18} />
             </button>
           </div>

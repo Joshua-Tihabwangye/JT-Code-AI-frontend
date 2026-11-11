@@ -1,0 +1,27 @@
+{
+  "resetTitle": "Redefina sua senha",
+  "emailLabel": "Endereço de email",
+  "sendCode": "Enviar código de redefinição",
+  "sending": "Enviando…",
+  "backToSignIn": "Voltar ao login",
+  "checkTitle": "Verifique seu email",
+  "useCodeNow": "Use este código agora",
+  "haveCode": "Já tenho um código de redefinição",
+  "newPasswordTitle": "Crie uma nova senha",
+  "newPasswordDesc": "Digite o código de redefinição e escolha uma nova senha para {{email}}.",
+  "codeLabel": "Código de redefinição",
+  "newPasswordLabel": "Nova senha",
+  "confirmPasswordLabel": "Confirmar senha",
+  "updating": "Atualizando…",
+  "resetButton": "Redefinir senha",
+  "backToCode": "Voltar à etapa do código",
+  "updatedTitle": "Senha atualizada",
+  "updatedMessage": "Sua senha foi atualizada. Você pode entrar com a nova senha.",
+  "returnToSignIn": "Voltar ao login",
+  "errors": {
+    "sendFailed": "Não foi possível enviar o link de redefinição de senha.",
+    "resetFailed": "Não foi possível redefinir sua senha.",
+    "mismatch": "As senhas não coincidem.",
+    "unexpected": "Ocorreu um erro inesperado."
+  }
+}

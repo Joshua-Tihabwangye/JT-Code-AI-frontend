@@ -1,0 +1,9 @@
+{
+  "placeholder": "চ্যাট, ইমেজ, ফাইল, ডকুমেন্ট খুঁজুন…",
+  "noResults": "কোনো ফলাফল পাওয়া যায়নি।",
+  "conversation": "কথোপকথন",
+  "generatedImage": "জেনারেট করা ইমেজ",
+  "imageType": "ইমেজ · {{style}}",
+  "file": "ফাইল",
+  "document": "ডকুমেন্ট"
+}

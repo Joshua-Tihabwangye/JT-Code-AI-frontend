@@ -1,0 +1,52 @@
+{
+  "title": "Hesabınızı oluşturun",
+  "subtitle": "Yolculuğunuza JT-Code ile başlayın",
+  "firstNameLabel": "Ad",
+  "lastNameLabel": "Soyad",
+  "emailLabel": "E-posta adresi",
+  "passwordLabel": "Şifre",
+  "passwordPlaceholder": "Bir şifre oluşturun",
+  "confirmPasswordLabel": "Şifreyi onayla",
+  "confirmPasswordPlaceholder": "Şifrenizi onaylayın",
+  "requirements": {
+    "title": "Şifre gereksinimleri",
+    "minLength": "En az 8 karakter",
+    "uppercase": "Bir büyük harf",
+    "lowercase": "Bir küçük harf",
+    "number": "Bir rakam",
+    "singleRule": "Şifre en az 8 karakter uzunluğunda olmalı ve en az bir harf ve bir rakam içermelidir."
+  },
+  "matchOk": "Şifreler eşleşiyor.",
+  "matchError": "Şifreler henüz eşleşmiyor.",
+  "matchHint": "Onaylamak için şifrenizi yeniden girin.",
+  "country": {
+    "label": "Ülke",
+    "searchPlaceholder": "Ülke arayın",
+    "selectedAria": "Seçilen ülke {{name}}",
+    "noMatch": "“{{query}}” ile eşleşen ülke yok.",
+    "help": "Seçilen ülke; arama kodunuzu, telefon doğrulamanızı ve saat dilimi önerilerinizi günceller."
+  },
+  "dialCode": {
+    "label": "Arama kodu",
+    "help": "Farklı bir arama bölgesi için kaydoluyorsanız varsayılan kodu değiştirebilirsiniz."
+  },
+  "phone": {
+    "label": "İletişim / telefon numarası",
+    "defaultPlaceholder": "Telefon numarası girin",
+    "help": "{{country}} için yaygın olarak kullanılan telefon numarası biçimini kullanın.",
+    "yourCountry": "ülkeniz"
+  },
+  "timezone": {
+    "label": "Saat dilimi",
+    "empty": "Kullanılabilir saat dilimi yok",
+    "help": "Önerilen saat dilimleri seçilen ülkeye göre filtrelenir, ancak bunları değiştirebilirsiniz."
+  },
+  "note": "Seçilen ülke, telefon doğrulamasını ve saat dilimi önerilerini otomatik olarak günceller.",
+  "termsPrefix": "Kabul ediyorum: ",
+  "termsLink": "Şartlar",
+  "termsMiddle": " ve ",
+  "privacyLink": "Gizlilik Politikası",
+  "termsHelp": "Kaydı tamamlamadan önce bu yasal sayfaları inceleyebilirsiniz.",
+  "submit": "Hesap oluştur",
+  "haveAccountQuestion": "Zaten hesabınız var mı?"
+}

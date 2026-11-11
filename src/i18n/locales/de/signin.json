@@ -1,0 +1,15 @@
+{
+  "title": "Willkommen zurück",
+  "subtitle": "Melde dich an, um mit JT-Code fortzufahren",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Verbindung wird hergestellt…",
+  "emailLabel": "E-Mail-Adresse",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Passwort",
+  "passwordPlaceholder": "Gib dein Passwort ein",
+  "forgotPassword": "Passwort vergessen?",
+  "submit": "Anmelden",
+  "noAccount": "Noch kein Konto?",
+  "createAccount": "Konto erstellen"
+}

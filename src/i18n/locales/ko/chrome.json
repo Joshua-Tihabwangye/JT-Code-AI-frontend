@@ -1,0 +1,13 @@
+{
+  "openNavigation": "탐색 열기",
+  "closeNavigation": "탐색 닫기",
+  "toggleTheme": "테마 전환",
+  "theme": "테마",
+  "expandSidebar": "사이드바 펼치기",
+  "collapseSidebar": "사이드바 접기",
+  "collapse": "접기",
+  "offlineMessage": "오프라인 상태입니다. 변경 사항은 로컬에 저장되며 다시 연결되면 동기화됩니다.",
+  "fatalTitle": "문제가 발생했습니다",
+  "unexpectedError": "예기치 않은 오류가 발생했습니다.",
+  "reloadApp": "앱 새로고침"
+}

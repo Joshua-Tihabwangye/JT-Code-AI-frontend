@@ -1,0 +1,17 @@
+{
+  "headline": "आज हम क्या बनाएँ?",
+  "welcome": "नमस्ते! मैं JT-Code हूँ। आज हम क्या बना रहे हैं?",
+  "composerPlaceholder": "JT-Code को संदेश भेजें…",
+  "composerPlaceholderBusy": "प्रोसेस हो रहा है...",
+  "conversation": "बातचीत",
+  "newChat": "नई चैट",
+  "startNewChatTitle": "नई चैट शुरू करें?",
+  "startNewChatDesc": "आपकी वर्तमान बातचीत सहेज ली जाएगी। आप उसे बाद में इतिहास से जारी रख सकते हैं।",
+  "you": "आप",
+  "streaming": "स्ट्रीम हो रहा है...",
+  "errorBadge": "त्रुटि",
+  "requestFailed": "अनुरोध विफल रहा।",
+  "statusRunning": "स्थिति: {{status}}…",
+  "defaultPlan": "फ़्री",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

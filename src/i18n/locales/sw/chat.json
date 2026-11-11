@@ -1,0 +1,17 @@
+{
+  "headline": "Tujenge nini leo?",
+  "welcome": "Habari! Mimi ni JT-Code. Tunajenga nini leo?",
+  "composerPlaceholder": "Tuma ujumbe kwa JT-Code…",
+  "composerPlaceholderBusy": "Inachakata...",
+  "conversation": "Mazungumzo",
+  "newChat": "Mazungumzo Mapya",
+  "startNewChatTitle": "Uanze mazungumzo mapya?",
+  "startNewChatDesc": "Mazungumzo yako ya sasa yatahifadhiwa. Unaweza kuyaendelea baadaye kutoka historia.",
+  "you": "Wewe",
+  "streaming": "Inatiririsha...",
+  "errorBadge": "Hitilafu",
+  "requestFailed": "Ombi limeshindikana.",
+  "statusRunning": "Hali: {{status}}…",
+  "defaultPlan": "Bure",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

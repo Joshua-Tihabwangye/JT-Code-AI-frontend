@@ -1,0 +1,52 @@
+{
+  "title": "アカウントを作成",
+  "subtitle": "JT-Code での旅を始めましょう",
+  "firstNameLabel": "名",
+  "lastNameLabel": "姓",
+  "emailLabel": "メールアドレス",
+  "passwordLabel": "パスワード",
+  "passwordPlaceholder": "パスワードを作成",
+  "confirmPasswordLabel": "パスワード（確認）",
+  "confirmPasswordPlaceholder": "パスワードを確認",
+  "requirements": {
+    "title": "パスワードの要件",
+    "minLength": "8 文字以上",
+    "uppercase": "大文字を 1 文字",
+    "lowercase": "小文字を 1 文字",
+    "number": "数字を 1 つ",
+    "singleRule": "パスワードは8文字以上で、少なくとも1つの文字と1つの数字を含む必要があります。"
+  },
+  "matchOk": "パスワードが一致しています。",
+  "matchError": "パスワードがまだ一致していません。",
+  "matchHint": "確認のためパスワードを再入力してください。",
+  "country": {
+    "label": "国",
+    "searchPlaceholder": "国を検索",
+    "selectedAria": "選択した国: {{name}}",
+    "noMatch": "「{{query}}」に一致する国はありません。",
+    "help": "選択した国に応じて、国番号・電話番号の検証・タイムゾーンの候補が更新されます。"
+  },
+  "dialCode": {
+    "label": "国番号",
+    "help": "別の発信地域で登録する場合は、デフォルトのコードを上書きできます。"
+  },
+  "phone": {
+    "label": "連絡先 / 電話番号",
+    "defaultPlaceholder": "電話番号を入力",
+    "help": "{{country}} で一般的な電話番号の形式を使用してください。",
+    "yourCountry": "お住まいの国"
+  },
+  "timezone": {
+    "label": "タイムゾーン",
+    "empty": "利用可能なタイムゾーンがありません",
+    "help": "タイムゾーンの候補は選択した国で絞り込まれますが、上書きすることもできます。"
+  },
+  "note": "選択した国に基づいて、電話番号の検証とタイムゾーンの候補が自動的に更新されます。",
+  "termsPrefix": "以下に同意します：",
+  "termsLink": "利用規約",
+  "termsMiddle": " および ",
+  "privacyLink": "プライバシーポリシー",
+  "termsHelp": "サインアップを完了する前に、これらの法務ページをご確認いただけます。",
+  "submit": "アカウント作成",
+  "haveAccountQuestion": "既にアカウントをお持ちですか？"
+}

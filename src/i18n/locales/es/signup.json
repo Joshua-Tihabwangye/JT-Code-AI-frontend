@@ -1,0 +1,52 @@
+{
+  "title": "Crea tu cuenta",
+  "subtitle": "Comienza tu camino con JT-Code",
+  "firstNameLabel": "Nombre",
+  "lastNameLabel": "Apellido",
+  "emailLabel": "Correo electrónico",
+  "passwordLabel": "Contraseña",
+  "passwordPlaceholder": "Crea una contraseña",
+  "confirmPasswordLabel": "Confirmar contraseña",
+  "confirmPasswordPlaceholder": "Confirma tu contraseña",
+  "requirements": {
+    "title": "Requisitos de la contraseña",
+    "minLength": "Al menos 8 caracteres",
+    "uppercase": "Una letra mayúscula",
+    "lowercase": "Una letra minúscula",
+    "number": "Un número",
+    "singleRule": "La contraseña debe tener al menos 8 caracteres e incluir al menos una letra y un número."
+  },
+  "matchOk": "Las contraseñas coinciden.",
+  "matchError": "Las contraseñas aún no coinciden.",
+  "matchHint": "Vuelve a escribir tu contraseña para confirmarla.",
+  "country": {
+    "label": "País",
+    "searchPlaceholder": "Busca un país",
+    "selectedAria": "País seleccionado {{name}}",
+    "noMatch": "Ningún país coincide con “{{query}}”.",
+    "help": "El país seleccionado actualiza tu prefijo telefónico, la validación del teléfono y las sugerencias de zona horaria."
+  },
+  "dialCode": {
+    "label": "Prefijo telefónico",
+    "help": "Puedes cambiar el código predeterminado si te registras desde otra región de llamada."
+  },
+  "phone": {
+    "label": "Contacto / número de teléfono",
+    "defaultPlaceholder": "Introduce el número de teléfono",
+    "help": "Usa el formato de número de teléfono habitual en {{country}}.",
+    "yourCountry": "tu país"
+  },
+  "timezone": {
+    "label": "Zona horaria",
+    "empty": "No hay zona horaria disponible",
+    "help": "Las zonas horarias sugeridas se filtran según el país seleccionado, pero puedes cambiarlas."
+  },
+  "note": "El país seleccionado actualiza automáticamente la validación del teléfono y las sugerencias de zona horaria.",
+  "termsPrefix": "Acepto los ",
+  "termsLink": "Términos",
+  "termsMiddle": " y la ",
+  "privacyLink": "Política de Privacidad",
+  "termsHelp": "Puedes revisar estas páginas legales antes de terminar el registro.",
+  "submit": "Crear cuenta",
+  "haveAccountQuestion": "¿Ya tienes una cuenta?"
+}

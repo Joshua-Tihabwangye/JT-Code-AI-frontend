@@ -1,0 +1,37 @@
+{
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "views": {
+    "intro": "A view remembers this page with its slicers, filters, drill level, parameters and which visuals are hidden (Selection tab). Viewers pick views from “Views ▾”; buttons and navigators can open them.",
+    "namePlaceholder": "Name, e.g. Online only",
+    "add": "Add view",
+    "nameAria": "View name",
+    "show": "Show this view",
+    "update": "Update with what is shown now",
+    "delete": "Delete"
+  },
+  "mobile": {
+    "phone": "Phone layout",
+    "empty": "Phones show every visual in reading order until you lay this page out.",
+    "auto": "Start from the desktop layout",
+    "shorter": "Shorter",
+    "taller": "Taller",
+    "remove": "Remove from phone layout",
+    "notOnPhones": "Not on phones",
+    "allPlaced": "Every visual is in the phone layout.",
+    "clear": "Clear phone layout"
+  },
+  "selection": {
+    "group": "Group",
+    "ungroup": "Ungroup",
+    "inGroup": "In a group",
+    "layerName": "Layer name",
+    "show": "Show",
+    "hide": "Hide",
+    "lock": "Lock",
+    "unlock": "Unlock",
+    "forward": "Bring forward",
+    "backward": "Send backward",
+    "empty": "No visuals yet — use Insert."
+  }
+}

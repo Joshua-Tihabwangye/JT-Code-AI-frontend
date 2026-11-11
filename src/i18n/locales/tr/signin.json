@@ -1,0 +1,15 @@
+{
+  "title": "Tekrar hoş geldiniz",
+  "subtitle": "JT-Code ile devam etmek için oturum açın",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "Bağlanıyor…",
+  "emailLabel": "E-posta adresi",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Şifre",
+  "passwordPlaceholder": "Şifrenizi girin",
+  "forgotPassword": "Şifrenizi mi unuttunuz?",
+  "submit": "Oturum aç",
+  "noAccount": "Hesabınız yok mu?",
+  "createAccount": "Hesap oluştur"
+}

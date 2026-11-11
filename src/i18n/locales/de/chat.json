@@ -1,0 +1,17 @@
+{
+  "headline": "Was bauen wir heute?",
+  "welcome": "Hallo! Ich bin JT-Code. Was bauen wir heute?",
+  "composerPlaceholder": "Nachricht an JT-Code…",
+  "composerPlaceholderBusy": "Wird verarbeitet...",
+  "conversation": "Unterhaltung",
+  "newChat": "Neuer Chat",
+  "startNewChatTitle": "Neuen Chat starten?",
+  "startNewChatDesc": "Deine aktuelle Unterhaltung wird gespeichert. Du kannst sie später aus dem Verlauf fortsetzen.",
+  "you": "Du",
+  "streaming": "Streaming...",
+  "errorBadge": "Fehler",
+  "requestFailed": "Die Anfrage ist fehlgeschlagen.",
+  "statusRunning": "Status: {{status}}…",
+  "defaultPlan": "Free",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

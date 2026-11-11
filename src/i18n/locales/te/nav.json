@@ -1,0 +1,14 @@
+{
+  "primary": "ప్రాథమిక",
+  "workspace": "వర్క్‌స్పేస్",
+  "connections": "కనెక్షన్లు",
+  "account": "ఖాతా",
+  "chat": "చాట్",
+  "images": "చిత్రాలు",
+  "history": "చరిత్ర",
+  "billing": "బిల్లింగ్",
+  "settings": "సెట్టింగ్‌లు",
+  "integrations": "ఇంటిగ్రేషన్లు",
+  "analytics": "డేటా విశ్లేషణ",
+  "visualize": "డేటా విజువలైజేషన్"
+}

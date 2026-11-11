@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "Nama depan wajib diisi.",
+  "firstNameTooLong": "Nama depan terlalu panjang.",
+  "lastNameRequired": "Nama belakang wajib diisi.",
+  "lastNameTooLong": "Nama belakang terlalu panjang.",
+  "invalidEmail": "Masukkan alamat email yang valid.",
+  "passwordMinLength": "Kata sandi harus memuat minimal 8 karakter.",
+  "passwordLetter": "Kata sandi harus menyertakan setidaknya satu huruf.",
+  "passwordUppercase": "Kata sandi harus memuat huruf besar.",
+  "passwordLowercase": "Kata sandi harus memuat huruf kecil.",
+  "passwordNumber": "Kata sandi harus memuat angka.",
+  "selectCountry": "Pilih negara Anda.",
+  "selectDialCode": "Pilih kode telepon.",
+  "phoneRequired": "Masukkan nomor telepon Anda.",
+  "invalidPhone": "Masukkan nomor telepon yang valid untuk negara yang dipilih.",
+  "selectTimezone": "Pilih zona waktu Anda.",
+  "acceptTerms": "Anda harus menyetujui Syarat dan Kebijakan Privasi.",
+  "passwordsDoNotMatch": "Kata sandi tidak cocok.",
+  "passwordRequired": "Masukkan kata sandi Anda.",
+  "authenticationFailed": "Autentikasi gagal.",
+  "finishingSignIn": "Menyelesaikan proses masuk…",
+  "redirecting": "Mengalihkan…"
+}

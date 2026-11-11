@@ -1,0 +1,14 @@
+{
+  "primary": "Главная",
+  "workspace": "Рабочее пространство",
+  "connections": "Подключения",
+  "account": "Аккаунт",
+  "chat": "Чат",
+  "images": "Изображения",
+  "history": "История",
+  "billing": "Оплата",
+  "settings": "Настройки",
+  "integrations": "Интеграции",
+  "analytics": "Анализ данных",
+  "visualize": "Визуализация данных"
+}

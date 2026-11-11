@@ -1,0 +1,17 @@
+{
+  "headline": "আজ আমরা কী তৈরি করব?",
+  "welcome": "হ্যালো! আমি JT-Code। আজ আমরা কী তৈরি করছি?",
+  "composerPlaceholder": "JT-Code-কে মেসেজ করুন…",
+  "composerPlaceholderBusy": "প্রসেস হচ্ছে...",
+  "conversation": "কথোপকথন",
+  "newChat": "নতুন চ্যাট",
+  "startNewChatTitle": "নতুন চ্যাট শুরু করবেন?",
+  "startNewChatDesc": "আপনার বর্তমান কথোপকথন সংরক্ষিত হবে। পরে হিস্টোরি থেকে এটি চালিয়ে যেতে পারবেন।",
+  "you": "আপনি",
+  "streaming": "স্ট্রিমিং...",
+  "errorBadge": "ত্রুটি",
+  "requestFailed": "অনুরোধটি ব্যর্থ হয়েছে।",
+  "statusRunning": "স্ট্যাটাস: {{status}}…",
+  "defaultPlan": "ফ্রি",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

@@ -1,0 +1,9 @@
+{
+  "placeholder": "ابحث في المحادثات والصور والملفات والمستندات…",
+  "noResults": "لا توجد نتائج.",
+  "conversation": "محادثة",
+  "generatedImage": "صورة مُنشأة",
+  "imageType": "صورة · {{style}}",
+  "file": "ملف",
+  "document": "مستند"
+}

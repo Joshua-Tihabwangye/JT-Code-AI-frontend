@@ -1,0 +1,11 @@
+{
+  "eyebrow": "इतिहास",
+  "title": "इतिहास",
+  "subtitle": "आपकी हाल की चैट और सेशन।",
+  "clearHistory": "इतिहास साफ़ करें",
+  "clearConfirm": "पूरा चैट इतिहास साफ़ करें?",
+  "emptyTitle": "अभी कोई इतिहास नहीं",
+  "emptyDesc": "चैट शुरू करें और आपकी बातचीत यहाँ दिखेगी।",
+  "startChatting": "चैट शुरू करें",
+  "deleteItemAria": "{{title}} हटाएँ"
+}

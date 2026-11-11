@@ -2,10 +2,12 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Activity, AlertTriangle, BrainCircuit, Check, Database, Download, FileSpreadsheet, Layers, LineChart, Pin, Play, RefreshCw, Save, Shapes, Table2, Target, TrendingUp } from 'lucide-react';
+import { formatNumber } from '@/i18n/format';
 import { useRepository, type VizFields, type VizOptions, type VizPrediction } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
 import { Button } from '@/shared/components';
 import { missingSlots, OptionControl, SlotControl } from '../controls';
+import { useCatalogText } from '../catalogText';
 import { useVisualize } from '../context';
 import { EChart } from '../EChart';
 import { saveBlob, safeName } from '../echarts';
@@ -38,13 +40,13 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
     onSuccess: async (dataset) => {
       await refreshDatasets();
       setDatasetId(dataset.id);
-      setNotice(t('visualize.predict.savedDataset', 'Saved as “{{name}}”.', { name: dataset.name }));
+      setNotice(t('visualize.predict.savedDataset', { name: dataset.name }));
     },
   });
   const saveChart = useMutation({
     mutationFn: (index: number) => visualize.saveChart({ resultId: result.resultId, chartIndex: index }),
     onSuccess: (chart) => {
-      setNotice(t('visualize.predict.savedChart', 'Saved chart “{{title}}”. Add it to a report from Reports.', { title: chart.title }));
+      setNotice(t('visualize.predict.savedChart', { title: chart.title }));
       void queryClient.invalidateQueries({ queryKey: ['visualize', 'charts'] });
     },
   });
@@ -57,7 +59,7 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
       <div className="viz-card viz-card-pad space-y-2" style={{ borderLeft: '4px solid #8b5cf6' }}>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="font-semibold">
-            {result.modelName} <span className="text-sm font-normal text-muted-foreground">· {result.resultRows.toLocaleString()} rows scored</span>
+            {result.modelName} <span className="text-sm font-normal text-muted-foreground">· {t('visualize.predict.rowsScored', { count: result.resultRows, rows: formatNumber(result.resultRows) })}</span>
           </h2>
           <div className="flex flex-wrap gap-2">
             <Button size="sm" variant="outline" className="gap-1.5" onClick={() => download.mutate({ type: 'csv' })} isLoading={download.isPending && download.variables?.type === 'csv'}>
@@ -69,10 +71,10 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
               className="gap-1.5 border-emerald-500/60 text-emerald-700 dark:text-emerald-300"
               onClick={() => download.mutate({ type: 'xlsx', graphs: true })}
               isLoading={download.isPending && download.variables?.type === 'xlsx' && download.variables.graphs}
-              title="Predictions, findings and every chart drawn as an editable Excel chart beside its values"
+              title={t('visualize.predict.excelChartsTitle')}
               data-testid="prediction-excel"
             >
-              <FileSpreadsheet size={14} aria-hidden /> Excel + charts
+              <FileSpreadsheet size={14} aria-hidden /> {t('visualize.predict.excelCharts')}
             </Button>
             <Button
               size="sm"
@@ -80,12 +82,12 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
               className="gap-1.5"
               onClick={() => download.mutate({ type: 'xlsx', graphs: false })}
               isLoading={download.isPending && download.variables?.type === 'xlsx' && !download.variables.graphs}
-              title="The same workbook with values only"
+              title={t('visualize.predict.excelValuesTitle')}
             >
-              <FileSpreadsheet size={14} aria-hidden /> Excel values
+              <FileSpreadsheet size={14} aria-hidden /> {t('visualize.predict.excelValues')}
             </Button>
             <Button size="sm" className="viz-primary gap-1.5" onClick={() => saveDataset.mutate()} isLoading={saveDataset.isPending}>
-              <Database size={14} aria-hidden /> {t('visualize.predict.saveDataset', 'Save as dataset')}
+              <Database size={14} aria-hidden /> {t('visualize.predict.saveDataset')}
             </Button>
           </div>
         </div>
@@ -114,13 +116,13 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
               <h3 className="font-semibold">{chart.title}</h3>
               <div className="flex flex-wrap gap-1 whitespace-nowrap">
                 <button type="button" className="viz-chip" onClick={() => setTableIndex(index)} data-testid={`prediction-data-${chart.id}`}>
-                  <Table2 size={12} aria-hidden /> View data
+                  <Table2 size={12} aria-hidden /> {t('visualize.predict.viewData')}
                 </button>
                 <Button size="sm" variant="ghost" className="gap-1.5" onClick={() => saveChart.mutate(index)} isLoading={saveChart.isPending && saveChart.variables === index}>
-                  <Save size={14} aria-hidden /> {t('visualize.predict.saveChart', 'Save')}
+                  <Save size={14} aria-hidden /> {t('visualize.predict.saveChart')}
                 </Button>
                 <button type="button" className="viz-chip primary" onClick={() => setPinning(index)} data-testid={`prediction-pin-${chart.id}`}>
-                  <Pin size={12} aria-hidden /> {t('visualize.predict.pin', 'Pin to dashboard')}
+                  <Pin size={12} aria-hidden /> {t('visualize.predict.pin')}
                 </button>
               </div>
             </div>
@@ -130,7 +132,7 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
       </div>
 
       <details className="viz-card viz-card-pad viz-how" data-testid="prediction-how">
-        <summary className="cursor-pointer text-sm font-semibold">{t('visualize.predict.how', 'How this was calculated')}</summary>
+        <summary className="cursor-pointer text-sm font-semibold">{t('visualize.predict.how')}</summary>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
           {result.summary.map((line) => (
             <li key={line}>{line}</li>
@@ -149,14 +151,14 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
         ))}
         {result.comparison.length > 1 && (
           <div className="mt-3">
-            <SectionTitle title={t('visualize.predict.comparison', 'Models compared')} subtitle={t('visualize.predict.comparisonHint', 'Cross-validated score; higher is better.')} />
+            <SectionTitle title={t('visualize.predict.comparison')} subtitle={t('visualize.predict.comparisonHint')} />
             <ul className="space-y-1.5">
               {[...result.comparison]
                 .sort((a, b) => b.score - a.score)
                 .map((item) => (
                   <li key={item.model} className="flex items-center justify-between rounded-lg border border-border px-3 py-1.5 text-sm">
                     <span className={item.model === result.model ? 'font-semibold' : ''}>{item.name}</span>
-                    <span className="font-mono text-xs">{item.score.toFixed(4)}</span>
+                    <span className="font-mono text-xs">{formatNumber(item.score, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
                   </li>
                 ))}
             </ul>
@@ -183,6 +185,8 @@ export function PredictPage() {
   const [palette, setPalette] = useState('vivid');
   const profiles = useMemo(() => dataset?.profile.columnProfiles ?? [], [dataset]);
   const task = catalog?.predictionTasks.find((entry) => entry.id === taskId);
+  const text = useCatalogText();
+  const taskName = task ? text.taskName(task) : undefined;
 
   useEffect(() => {
     if (!predictDraft) return;
@@ -194,8 +198,8 @@ export function PredictPage() {
     setOptions(predictDraft.options ?? {});
   }, [predictDraft, clearPredictDraft]);
   useEffect(() => {
-    setAssistantContext({ page: 'predict', fields, options, title: task?.name });
-  }, [fields, options, task?.name, setAssistantContext]);
+    setAssistantContext({ page: 'predict', fields, options, title: taskName });
+  }, [fields, options, taskName, setAssistantContext]);
 
   const run = useMutation({
     mutationFn: () =>
@@ -225,7 +229,7 @@ export function PredictPage() {
         layout: { w: 12, h: 10 },
       };
     }
-    return { type: 'snapshot', data: { datasetId, wells: {} }, format: { snapshot: { option: chart.option, takenAt: new Date().toISOString(), source: `${task?.name ?? 'Prediction'} · ${dataset?.name ?? ''}` } }, layout: { w: 12, h: 10 } };
+    return { type: 'snapshot', data: { datasetId, wells: {} }, format: { snapshot: { option: chart.option, takenAt: new Date().toISOString(), source: `${taskName ?? t('visualize.predict.prediction')} · ${dataset?.name ?? ''}` } }, layout: { w: 12, h: 10 } };
   };
   const positiveChoices = profiles.find((entry) => entry.name === fields.target)?.topValues?.map((value) => value.value) ?? [];
 
@@ -241,9 +245,9 @@ export function PredictPage() {
   return (
     <div className="space-y-4" data-testid="visualize-predict">
       <div className="predict-layout">
-        <aside className="predict-wizard" aria-label="Prediction steps" data-testid="predict-ribbon">
-          <WizardStep number={1} title={t('visualize.predict.taskTab', 'Prediction type')} summary={task?.name} open={tab === 'task'} done={!!task} onOpen={() => setTab('task')} testId="step-task">
-            <div className="grid grid-cols-2 gap-1.5" role="radiogroup" aria-label={t('visualize.predict.task', 'Prediction type')}>
+        <aside className="predict-wizard" aria-label={t('visualize.predict.steps')} data-testid="predict-ribbon">
+          <WizardStep number={1} title={t('visualize.predict.taskTab')} summary={taskName} open={tab === 'task'} done={!!task} onOpen={() => setTab('task')} testId="step-task">
+            <div className="grid grid-cols-2 gap-1.5" role="radiogroup" aria-label={t('visualize.predict.task')}>
               {catalog.predictionTasks.map((entry) => {
                 const style = TASK_STYLE[entry.id] ?? { icon: BrainCircuit, color: '#6366f1' };
                 return (
@@ -255,23 +259,23 @@ export function PredictPage() {
                     aria-pressed={entry.id === taskId}
                     className="predict-task"
                     style={colorVar(style.color)}
-                    title={entry.description}
+                    title={text.taskDescription(entry)}
                     onClick={() => chooseTask(entry.id)}
                     data-testid={`task-${entry.id}`}
                   >
                     <style.icon size={18} aria-hidden />
-                    <span>{entry.name}</span>
+                    <span>{text.taskName(entry)}</span>
                   </button>
                 );
               })}
             </div>
           </WizardStep>
-          <WizardStep number={2} title={t('visualize.predict.dataTab', 'Data and target')} summary={missing.length ? `${missing.length} to choose` : dataset?.name} open={tab === 'data'} done={!missing.length} onOpen={() => setTab('data')} testId="step-data">
+          <WizardStep number={2} title={t('visualize.predict.dataTab')} summary={missing.length ? t('visualize.predict.toChoose', { count: missing.length }) : dataset?.name} open={tab === 'data'} done={!missing.length} onOpen={() => setTab('data')} testId="step-data">
             {task && (
               <div className="space-y-2">
                 <label className="block text-xs">
-                  <span className="viz-label">Dataset</span>
-                  <select className="viz-field" value={datasetId} onChange={(event) => setDatasetId(event.target.value)} aria-label="Dataset" data-testid="dataset-picker">
+                  <span className="viz-label">{t('visualize.predict.dataset')}</span>
+                  <select className="viz-field" value={datasetId} onChange={(event) => setDatasetId(event.target.value)} aria-label={t('visualize.predict.dataset')} data-testid="dataset-picker">
                     {datasets.map((item) => (
                       <option key={item.id} value={item.id}>
                         {item.name}
@@ -283,6 +287,7 @@ export function PredictPage() {
                   <SlotControl
                     key={`${task.id}-${slot.key}`}
                     slot={slot}
+                    owner={{ kind: 'task', id: task.id }}
                     profiles={profiles}
                     value={fields[slot.key]}
                     onChange={(value) =>
@@ -298,28 +303,31 @@ export function PredictPage() {
               </div>
             )}
           </WizardStep>
-          <WizardStep number={3} title={t('visualize.predict.settingsTab', 'Settings')} summary={task?.models.find(([id]) => id === (model || task.models[0]?.[0]))?.[1]} open={tab === 'settings'} done={!missing.length} onOpen={() => setTab('settings')} testId="step-settings">
+          <WizardStep number={3} title={t('visualize.predict.settingsTab')} summary={(() => {
+              const chosen = task?.models.find(([id]) => id === (model || task.models[0]?.[0]));
+              return task && chosen ? text.modelName(task.id, chosen) : undefined;
+            })()} open={tab === 'settings'} done={!missing.length} onOpen={() => setTab('settings')} testId="step-settings">
             {task && (
               <div className="space-y-2">
                 <label className="block text-xs">
-                  <span className="viz-label">{t('visualize.predict.model', 'Model')}</span>
-                  <select className="viz-field" value={model || task.models[0]?.[0]} onChange={(event) => setModel(event.target.value)} aria-label={t('visualize.predict.model', 'Model')} data-testid="predict-model">
+                  <span className="viz-label">{t('visualize.predict.model')}</span>
+                  <select className="viz-field" value={model || task.models[0]?.[0]} onChange={(event) => setModel(event.target.value)} aria-label={t('visualize.predict.model')} data-testid="predict-model">
                     {task.models.map(([id, name]) => (
                       <option key={id} value={id}>
-                        {name}
+                        {text.modelName(task.id, [id, name])}
                       </option>
                     ))}
                   </select>
                 </label>
                 {task.options.map((option) => (
-                  <OptionControl key={`${task.id}-${option.key}`} option={option} value={options[option.key]} positiveClasses={positiveChoices} onChange={(value) => setOptions((current) => ({ ...current, [option.key]: value }))} />
+                  <OptionControl key={`${task.id}-${option.key}`} option={option} owner={{ kind: 'task', id: task.id }} value={options[option.key]} positiveClasses={positiveChoices} onChange={(value) => setOptions((current) => ({ ...current, [option.key]: value }))} />
                 ))}
                 <label className="block text-xs">
-                  <span className="viz-label">Chart colours</span>
-                  <select className="viz-field" value={palette} onChange={(event) => setPalette(event.target.value)} aria-label="Palette">
+                  <span className="viz-label">{t('visualize.predict.chartColours')}</span>
+                  <select className="viz-field" value={palette} onChange={(event) => setPalette(event.target.value)} aria-label={t('visualize.predict.palette')}>
                     {catalog.palettes.map((entry) => (
                       <option key={entry.id} value={entry.id}>
-                        {entry.name}
+                        {text.paletteName(entry)}
                       </option>
                     ))}
                   </select>
@@ -327,21 +335,21 @@ export function PredictPage() {
               </div>
             )}
           </WizardStep>
-          <WizardStep number={4} title={t('visualize.predict.runTab', 'Run')} open={tab === 'run' || (!missing.length && tab !== 'task' && tab !== 'data' && tab !== 'settings')} done={!!run.data} onOpen={() => setTab('run')} testId="step-run">
+          <WizardStep number={4} title={t('visualize.predict.runTab')} open={tab === 'run' || (!missing.length && tab !== 'task' && tab !== 'data' && tab !== 'settings')} done={!!run.data} onOpen={() => setTab('run')} testId="step-run">
             {task && (
               <div className="space-y-2">
                 <ul className="flex flex-wrap gap-1 text-xs">
-                  {task.outputs.map((output) => (
+                  {task.outputs.map((output, index) => (
                     <li key={output} className="viz-badge" style={colorVar(TASK_STYLE[task.id]?.color)}>
-                      {output}
+                      {text.taskOutput(task.id, index, output)}
                     </li>
                   ))}
                 </ul>
-                {missing.length > 0 && <p className="text-xs text-amber-600">Choose {missing.map((slot) => slot.label).join(', ')} in step 2.</p>}
+                {missing.length > 0 && <p className="text-xs text-amber-600">{t('visualize.predict.chooseInStep2', { fields: missing.map((slot) => text.slotLabel(slot, { kind: 'task', id: task.id })).join(', ') })}</p>}
                 <Button className="viz-primary w-full gap-1.5" disabled={!datasetId || missing.length > 0 || run.isPending} onClick={() => run.mutate()} data-testid="run-prediction">
-                  {run.isPending ? <RefreshCw size={14} className="animate-spin" aria-hidden /> : <Play size={14} aria-hidden />} {t('visualize.predict.run', 'Run')}
+                  {run.isPending ? <RefreshCw size={14} className="animate-spin" aria-hidden /> : <Play size={14} aria-hidden />} {t('visualize.predict.run')}
                 </Button>
-                <p className="text-[11px] text-muted-foreground">Uses analysis credits; failed runs are free.</p>
+                <p className="text-[11px] text-muted-foreground">{t('visualize.predict.creditsNote')}</p>
               </div>
             )}
           </WizardStep>
@@ -351,11 +359,11 @@ export function PredictPage() {
             <div className="viz-card viz-card-pad flex flex-col items-center gap-2 py-12 text-center text-sm text-muted-foreground" data-testid="predict-empty">
               <BrainCircuit size={26} aria-hidden />
               {missing.length
-                ? t('visualize.predict.empty', 'Choose what to predict and the columns on the left; results appear here.')
-                : t('visualize.predict.ready', 'Ready: {{task}} on {{name}}. Press Run.', { task: task?.name ?? '', name: dataset?.name ?? '' })}
+                ? t('visualize.predict.empty')
+                : t('visualize.predict.ready', { task: taskName ?? '', name: dataset?.name ?? '' })}
               {!missing.length && (
                 <Button size="sm" className="viz-primary gap-1.5" onClick={() => run.mutate()} disabled={!datasetId} data-testid="run-prediction-inline">
-                  <Play size={14} aria-hidden /> Run now
+                  <Play size={14} aria-hidden /> {t('visualize.predict.runNow')}
                 </Button>
               )}
             </div>
@@ -364,10 +372,10 @@ export function PredictPage() {
       {run.isPending && (
         <div className="viz-card viz-card-pad flex items-center gap-3 text-sm text-muted-foreground">
           <BrainCircuit className="animate-pulse text-violet-500" aria-hidden />
-          {t('visualize.predict.training', 'Training and validating models… this can take up to a minute for large data.')}
+          {t('visualize.predict.training')}
         </div>
       )}
-          {run.data && <Results result={run.data} datasetName={dataset?.name ?? 'dataset'} pinFor={pinFor} />}
+          {run.data && <Results result={run.data} datasetName={dataset?.name ?? t('visualize.predict.datasetWord')} pinFor={pinFor} />}
         </section>
       </div>
     </div>

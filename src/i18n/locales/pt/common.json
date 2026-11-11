@@ -1,0 +1,18 @@
+{
+  "saveChanges": "Salvar alterações",
+  "cancel": "Cancelar",
+  "search": "Buscar",
+  "signOut": "Sair",
+  "loading": "Carregando…",
+  "close": "Fechar",
+  "back": "Voltar",
+  "or": "ou",
+  "pleaseWait": "Aguarde…",
+  "error": "Erro",
+  "show": "Mostrar",
+  "hide": "Ocultar",
+  "default": "Padrão",
+  "creditsUnit": "créditos",
+  "messagesCount_one": "{{count}} mensagem",
+  "messagesCount_other": "{{count}} mensagens"
+}

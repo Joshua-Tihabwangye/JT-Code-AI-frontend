@@ -1,0 +1,15 @@
+{
+  "title": "خوش آمدید",
+  "subtitle": "JT-Code تک جاری رکھنے کے لیے سائن اِن کریں",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "جوڑا جا رہا ہے…",
+  "emailLabel": "ای میل ایڈریس",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "پاس ورڈ",
+  "passwordPlaceholder": "اپنا پاس ورڈ درج کریں",
+  "forgotPassword": "پاس ورڈ بھول گئے؟",
+  "submit": "سائن اِن",
+  "noAccount": "اکاؤنٹ نہیں ہے؟",
+  "createAccount": "اکاؤنٹ بنائیں"
+}

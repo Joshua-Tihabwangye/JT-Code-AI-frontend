@@ -1,0 +1,13 @@
+{
+  "openNavigation": "ナビゲーションを開く",
+  "closeNavigation": "ナビゲーションを閉じる",
+  "toggleTheme": "テーマを切り替え",
+  "theme": "テーマ",
+  "expandSidebar": "サイドバーを展開",
+  "collapseSidebar": "サイドバーを折りたたむ",
+  "collapse": "折りたたむ",
+  "offlineMessage": "オフラインです。変更はローカルに保存され、再接続時に同期されます。",
+  "fatalTitle": "問題が発生しました",
+  "unexpectedError": "予期しないエラーが発生しました。",
+  "reloadApp": "アプリを再読み込み"
+}

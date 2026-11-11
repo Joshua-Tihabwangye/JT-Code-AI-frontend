@@ -1,0 +1,9 @@
+{
+  "placeholder": "채팅, 이미지, 파일, 문서 검색…",
+  "noResults": "결과가 없습니다.",
+  "conversation": "대화",
+  "generatedImage": "생성된 이미지",
+  "imageType": "이미지 · {{style}}",
+  "file": "파일",
+  "document": "문서"
+}

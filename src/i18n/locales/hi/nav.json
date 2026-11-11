@@ -1,0 +1,14 @@
+{
+  "primary": "प्राथमिक",
+  "workspace": "वर्कस्पेस",
+  "connections": "कनेक्शन",
+  "account": "खाता",
+  "chat": "चैट",
+  "images": "इमेज",
+  "history": "इतिहास",
+  "billing": "बिलिंग",
+  "settings": "सेटिंग्स",
+  "integrations": "इंटीग्रेशन",
+  "analytics": "डेटा विश्लेषण",
+  "visualize": "डेटा विज़ुअलाइज़ेशन"
+}

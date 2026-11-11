@@ -1,0 +1,52 @@
+{
+  "title": "계정 만들기",
+  "subtitle": "JT-Code와 함께 여정을 시작하세요",
+  "firstNameLabel": "이름",
+  "lastNameLabel": "성",
+  "emailLabel": "이메일 주소",
+  "passwordLabel": "비밀번호",
+  "passwordPlaceholder": "비밀번호 만들기",
+  "confirmPasswordLabel": "비밀번호 확인",
+  "confirmPasswordPlaceholder": "비밀번호 확인",
+  "requirements": {
+    "title": "비밀번호 요건",
+    "minLength": "8자 이상",
+    "uppercase": "대문자 1개 포함",
+    "lowercase": "소문자 1개 포함",
+    "number": "숫자 1개 포함",
+    "singleRule": "비밀번호는 8자 이상이어야 하며, 최소 하나의 문자와 하나의 숫자를 포함해야 합니다."
+  },
+  "matchOk": "비밀번호가 일치합니다.",
+  "matchError": "비밀번호가 아직 일치하지 않습니다.",
+  "matchHint": "확인을 위해 비밀번호를 다시 입력하세요.",
+  "country": {
+    "label": "국가",
+    "searchPlaceholder": "국가 검색",
+    "selectedAria": "선택한 국가: {{name}}",
+    "noMatch": "\"{{query}}\"에 해당하는 국가가 없습니다.",
+    "help": "선택한 국가에 따라 국가 코드, 전화번호 검증, 시간대 추천이 업데이트됩니다."
+  },
+  "dialCode": {
+    "label": "국가 코드",
+    "help": "다른 통화 지역으로 가입하는 경우 기본 코드를 직접 변경할 수 있습니다."
+  },
+  "phone": {
+    "label": "연락처 / 전화번호",
+    "defaultPlaceholder": "전화번호 입력",
+    "help": "{{country}}에서 일반적으로 사용하는 전화번호 형식을 사용하세요.",
+    "yourCountry": "귀하의 국가"
+  },
+  "timezone": {
+    "label": "시간대",
+    "empty": "사용 가능한 시간대 없음",
+    "help": "시간대 추천은 선택한 국가를 기준으로 필터링되지만 직접 변경할 수도 있습니다."
+  },
+  "note": "선택한 국가에 따라 전화번호 검증과 시간대 추천이 자동으로 업데이트됩니다.",
+  "termsPrefix": "다음 약관에 동의합니다: ",
+  "termsLink": "이용약관",
+  "termsMiddle": " 및 ",
+  "privacyLink": "개인정보 처리방침",
+  "termsHelp": "가입을 완료하기 전에 법적 페이지를 검토할 수 있습니다.",
+  "submit": "계정 만들기",
+  "haveAccountQuestion": "이미 계정이 있으신가요?"
+}

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Settings, LogOut, Keyboard, User as UserIcon, LogIn, type LucideIcon } from 'lucide-react';
 import { Avatar, Badge } from '@/shared/components';
+import { FloatingPanel } from '@/shared/components/FloatingPanel';
 import { supabase, useAuth, useUser } from '@/lib/supabase';
 import { useAccount } from '@/lib/data/useAccount';
 
@@ -114,8 +115,10 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
         </button>
 
         {open && (
-          <div
-            ref={menuRef}
+          <FloatingPanel
+            anchorRef={buttonRef}
+            placement={collapsed ? 'side-up' : 'above'}
+            panelRef={menuRef}
             id={menuId}
             role="menu"
             aria-label={t('menu.account')}
@@ -134,7 +137,7 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
                 <span>{item.label}</span>
               </button>
             ))}
-          </div>
+          </FloatingPanel>
         )}
       </div>
     );
@@ -166,8 +169,10 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
       </button>
 
       {open && (
-        <div
-          ref={menuRef}
+        <FloatingPanel
+          anchorRef={buttonRef}
+          placement={collapsed ? 'side-up' : 'above'}
+          panelRef={menuRef}
           id={menuId}
           role="menu"
           aria-label={t('menu.account')}
@@ -201,7 +206,7 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
             <LogOut size={16} aria-hidden />
             <span>{t('menu.signOut')}</span>
           </button>
-        </div>
+        </FloatingPanel>
       )}
     </div>
   );

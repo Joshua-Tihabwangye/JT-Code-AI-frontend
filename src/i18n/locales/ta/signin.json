@@ -1,0 +1,15 @@
+{
+  "title": "மீண்டும் வருக!",
+  "subtitle": "JT-Code-ஐத் தொடர உள்நுழையுங்கள்",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "இணைக்கிறது…",
+  "emailLabel": "மின்னஞ்சல் முகவரி",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "கடவுச்சொல்",
+  "passwordPlaceholder": "உங்கள் கடவுச்சொல்லை உள்ளிடுங்கள்",
+  "forgotPassword": "கடவுச்சொல்லை மறந்தீர்களா?",
+  "submit": "உள்நுழை",
+  "noAccount": "உங்களிடம் கணக்கு இல்லையா?",
+  "createAccount": "கணக்கை உருவாக்கு"
+}

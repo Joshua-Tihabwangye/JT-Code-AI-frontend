@@ -1,0 +1,59 @@
+{
+  "title": "Create your account",
+  "subtitle": "Start your journey with JT-Code",
+  "helpText": "",
+  "section": {
+    "account": "Account",
+    "profile": "Profile",
+    "region": "Region"
+  },
+  "firstNameLabel": "First name",
+  "lastNameLabel": "Last name",
+  "emailLabel": "Email address",
+  "passwordLabel": "Password",
+  "passwordPlaceholder": "Create a password",
+  "confirmPasswordLabel": "Confirm password",
+  "confirmPasswordPlaceholder": "Confirm your password",
+  "requirements": {
+    "title": "Password requirements",
+    "minLength": "At least 8 characters",
+    "uppercase": "One uppercase letter",
+    "lowercase": "One lowercase letter",
+    "number": "One number",
+    "singleRule": "Password must be at least 8 characters and include at least one letter and one number."
+  },
+  "matchOk": "Passwords match.",
+  "matchError": "Passwords do not match yet.",
+  "matchHint": "Re-enter your password to confirm it.",
+  "country": {
+    "label": "Country",
+    "searchPlaceholder": "Search a country",
+    "selectedAria": "Selected country {{name}}",
+    "noMatch": "No countries match “{{query}}”.",
+    "help": "The selected country updates your dial code, phone validation and timezone suggestions."
+  },
+  "dialCode": {
+    "label": "Dial code",
+    "help": "You can override the default code if you're signing up for a different calling region."
+  },
+  "phone": {
+    "label": "Phone contact",
+    "defaultPlaceholder": "Enter phone number",
+    "help": "Use the phone number format commonly used in {{country}}.",
+    "yourCountry": "your country"
+  },
+  "timezone": {
+    "label": "Timezone",
+    "empty": "No timezone available",
+    "help": "Suggested timezones are filtered by the selected country, but you can override them."
+  },
+  "note": "",
+  "termsPrefix": "I agree to the ",
+  "termsLink": "Terms",
+  "termsMiddle": " and ",
+  "privacyLink": "Privacy Policy",
+  "termsHelp": "You can review these legal pages before you finish signing up.",
+  "submit": "Create account",
+  "haveAccountQuestion": "Already have an account?",
+  "confirmEmail": "Almost there! We sent a confirmation link to {{email}}. Open it, then sign in."
+}

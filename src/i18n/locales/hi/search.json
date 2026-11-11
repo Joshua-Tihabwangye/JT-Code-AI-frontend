@@ -1,0 +1,9 @@
+{
+  "placeholder": "चैट, इमेज, फ़ाइलें, दस्तावेज़ खोजें…",
+  "noResults": "कोई परिणाम नहीं मिला।",
+  "conversation": "बातचीत",
+  "generatedImage": "जेनरेट की गई इमेज",
+  "imageType": "इमेज · {{style}}",
+  "file": "फ़ाइल",
+  "document": "दस्तावेज़"
+}

@@ -26,3 +26,5 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 export { Switch } from './Switch';
 export { ToastProvider, useToast } from './Toast';
 export type { ToastOptions, ToastVariant } from './Toast';
+export { FloatingPanel } from './FloatingPanel';
+export type { FloatingPlacement } from './FloatingPanel';

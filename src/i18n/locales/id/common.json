@@ -1,0 +1,18 @@
+{
+  "saveChanges": "Simpan perubahan",
+  "cancel": "Batal",
+  "search": "Cari",
+  "signOut": "Keluar",
+  "loading": "Memuat…",
+  "close": "Tutup",
+  "back": "Kembali",
+  "or": "atau",
+  "pleaseWait": "Mohon tunggu…",
+  "error": "Kesalahan",
+  "show": "Tampilkan",
+  "hide": "Sembunyikan",
+  "default": "Bawaan",
+  "creditsUnit": "kredit",
+  "messagesCount_one": "{{count}} pesan",
+  "messagesCount_other": "{{count}} pesan"
+}

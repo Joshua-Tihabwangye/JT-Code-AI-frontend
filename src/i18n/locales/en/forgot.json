@@ -1,0 +1,32 @@
+{
+  "resetTitle": "Reset your password",
+  "resetDesc": "Enter your email address and we’ll send a reset link you can complete right here.",
+  "emailLabel": "Email address",
+  "sendCode": "Send reset code",
+  "sending": "Sending…",
+  "backToSignIn": "Back to sign in",
+  "checkTitle": "Check your email",
+  "checkDesc": "We sent a reset message to <0>{{email}}</0>. The code below will unlock the next step.",
+  "checkDescPlain": "We sent a reset code to {{email}}. Enter it on the next step to choose a new password.",
+  "mockResetCode": "Reset code",
+  "useCodeNow": "Use this code now",
+  "haveCode": "I already have a reset code",
+  "newPasswordTitle": "Create a new password",
+  "newPasswordDesc": "Enter the reset code and choose a new password for {{email}}.",
+  "codeLabel": "Reset code",
+  "newPasswordLabel": "New password",
+  "confirmPasswordLabel": "Confirm password",
+  "updating": "Updating…",
+  "resetButton": "Reset password",
+  "backToCode": "Back to code step",
+  "updatedTitle": "Password updated",
+  "updatedMessage": "Your password has been updated. You can sign in with the new password.",
+  "returnToSignIn": "Return to sign in",
+  "errors": {
+    "sendFailed": "Could not send the password reset link.",
+    "resetFailed": "Could not reset your password.",
+    "mismatch": "Passwords do not match.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "enterEmailedCode": "Enter the code from the email"
+}

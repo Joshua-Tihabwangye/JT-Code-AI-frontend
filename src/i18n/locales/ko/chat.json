@@ -1,0 +1,17 @@
+{
+  "headline": "오늘은 무엇을 만들어 볼까요?",
+  "welcome": "안녕하세요! 저는 JT-Code입니다. 오늘은 무엇을 만들어 볼까요?",
+  "composerPlaceholder": "JT-Code에게 메시지 보내기…",
+  "composerPlaceholderBusy": "처리 중...",
+  "conversation": "대화",
+  "newChat": "새 채팅",
+  "startNewChatTitle": "새 채팅을 시작할까요?",
+  "startNewChatDesc": "현재 대화는 저장됩니다. 나중에 기록에서 이어서 계속할 수 있습니다.",
+  "you": "나",
+  "streaming": "스트리밍 중...",
+  "errorBadge": "오류",
+  "requestFailed": "요청이 실패했습니다.",
+  "statusRunning": "상태: {{status}}…",
+  "defaultPlan": "무료",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

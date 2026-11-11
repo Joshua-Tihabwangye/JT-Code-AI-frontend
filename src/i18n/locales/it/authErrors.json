@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "Il nome è obbligatorio.",
+  "firstNameTooLong": "Il nome è troppo lungo.",
+  "lastNameRequired": "Il cognome è obbligatorio.",
+  "lastNameTooLong": "Il cognome è troppo lungo.",
+  "invalidEmail": "Inserisci un indirizzo email valido.",
+  "passwordMinLength": "La password deve contenere almeno 8 caratteri.",
+  "passwordLetter": "La password deve contenere almeno una lettera.",
+  "passwordUppercase": "La password deve contenere una lettera maiuscola.",
+  "passwordLowercase": "La password deve contenere una lettera minuscola.",
+  "passwordNumber": "La password deve contenere un numero.",
+  "selectCountry": "Seleziona il tuo paese.",
+  "selectDialCode": "Seleziona un prefisso telefonico.",
+  "phoneRequired": "Inserisci il tuo numero di telefono.",
+  "invalidPhone": "Inserisci un numero di telefono valido per il paese selezionato.",
+  "selectTimezone": "Seleziona il tuo fuso orario.",
+  "acceptTerms": "Devi accettare i Termini e l'Informativa sulla privacy.",
+  "passwordsDoNotMatch": "Le password non coincidono.",
+  "passwordRequired": "Inserisci la password.",
+  "authenticationFailed": "Autenticazione non riuscita.",
+  "finishingSignIn": "Completamento dell'accesso…",
+  "redirecting": "Reindirizzamento…"
+}

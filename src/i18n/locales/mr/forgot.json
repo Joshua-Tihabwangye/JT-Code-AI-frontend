@@ -1,0 +1,27 @@
+{
+  "resetTitle": "तुमचा पासवर्ड रीसेट करा",
+  "emailLabel": "ईमेल पत्ता",
+  "sendCode": "रीसेट कोड पाठवा",
+  "sending": "पाठवत आहे…",
+  "backToSignIn": "साइन इनवर परत जा",
+  "checkTitle": "तुमचा ईमेल तपासा",
+  "useCodeNow": "हा कोड आता वापरा",
+  "haveCode": "माझ्याकडे आधीच रीसेट कोड आहे",
+  "newPasswordTitle": "नवीन पासवर्ड तयार करा",
+  "newPasswordDesc": "रीसेट कोड टाका आणि {{email}} साठी नवीन पासवर्ड निवडा.",
+  "codeLabel": "रीसेट कोड",
+  "newPasswordLabel": "नवीन पासवर्ड",
+  "confirmPasswordLabel": "पासवर्डची पुष्टी करा",
+  "updating": "अपडेट करत आहे…",
+  "resetButton": "पासवर्ड रीसेट करा",
+  "backToCode": "कोड टप्प्यावर परत जा",
+  "updatedTitle": "पासवर्ड अपडेट झाला",
+  "updatedMessage": "तुमचा पासवर्ड अपडेट झाला आहे. तुम्ही नवीन पासवर्डने साइन इन करू शकता.",
+  "returnToSignIn": "साइन इनवर परत जा",
+  "errors": {
+    "sendFailed": "पासवर्ड रीसेट लिंक पाठवता आली नाही.",
+    "resetFailed": "तुमचा पासवर्ड रीसेट करता आला नाही.",
+    "mismatch": "पासवर्ड जुळत नाहीत.",
+    "unexpected": "अनपेक्षित त्रुटी आली."
+  }
+}

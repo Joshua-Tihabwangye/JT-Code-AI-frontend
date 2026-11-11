@@ -1,0 +1,11 @@
+{
+  "eyebrow": "历史记录",
+  "title": "历史记录",
+  "subtitle": "您最近的聊天与会话。",
+  "clearHistory": "清空历史记录",
+  "clearConfirm": "确定清空所有聊天记录吗？",
+  "emptyTitle": "还没有历史记录",
+  "emptyDesc": "开始聊天后，您的对话将显示在这里。",
+  "startChatting": "开始聊天",
+  "deleteItemAria": "删除 {{title}}"
+}

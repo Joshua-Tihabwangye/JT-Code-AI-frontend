@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { isRtl, LANGUAGES } from './languages';
+import { LANGUAGES } from './languages';
 
 export function useLanguage() {
   const { i18n } = useTranslation();
@@ -8,10 +8,9 @@ export function useLanguage() {
 
   const setLanguage = useCallback(
     (code: string) => {
-      // i18next's language detector persists the choice (localStorage "jt-code-lang");
-      // chat requests send the browser locale to the API with each message.
+      // i18next's language detector persists the choice (localStorage "jt-code-lang"); the
+      // config's languageChanged handler updates the page's dir and lang.
       void i18n.changeLanguage(code);
-      document.documentElement.dir = isRtl(code) ? 'rtl' : 'ltr';
     },
     [i18n],
   );

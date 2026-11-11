@@ -1,0 +1,17 @@
+{
+  "headline": "ఈరోజు మనం ఏమి నిర్మిద్దాం?",
+  "welcome": "నమస్కారం! నేను JT-Code. ఈరోజు మనం ఏమి నిర్మిస్తున్నాము?",
+  "composerPlaceholder": "JT-Code‌కు సందేశం…",
+  "composerPlaceholderBusy": "ప్రాసెస్ అవుతోంది...",
+  "conversation": "సంభాషణ",
+  "newChat": "కొత్త చాట్",
+  "startNewChatTitle": "కొత్త చాట్ ప్రారంభించాలా?",
+  "startNewChatDesc": "మీ ప్రస్తుత సంభాషణ సేవ్ చేయబడుతుంది. మీరు తర్వాత చరిత్ర నుండి దానిని కొనసాగించవచ్చు.",
+  "you": "మీరు",
+  "streaming": "స్ట్రీమింగ్...",
+  "errorBadge": "లోపం",
+  "requestFailed": "అభ్యర్థన విఫలమైంది.",
+  "statusRunning": "స్థితి: {{status}}…",
+  "defaultPlan": "Free",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

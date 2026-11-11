@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { BookmarkPlus, FunctionSquare, Library, Pencil, Plus, SlidersVertical, Sparkles, Trash2, X } from 'lucide-react';
 import { useRepository, type ColumnProfile, type DashboardCalculation, type DashboardFieldRef, type DashboardParameter, type DashboardSpec } from '@/lib/data';
@@ -23,6 +24,7 @@ export function CalculationsSection({
   /** Put a calculation into the selected visual's values. */
   onUse?: (calc: DashboardCalculation) => void;
 }) {
+  const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState<DashboardCalculation | null>(null);
@@ -46,16 +48,16 @@ export function CalculationsSection({
   return (
     <div className="space-y-1" data-testid="calculations">
       <div className="flex items-center justify-between">
-        <span className="viz-label m-0">Calculations</span>
+        <span className="viz-label m-0">{t('visualize.editor.calc.calculations')}</span>
         <span className="flex gap-1">
-          <button type="button" className="viz-chip" aria-pressed={library} onClick={() => setLibrary(!library)} data-testid="measures-library" title="Measures saved for the whole organization">
-            <Library size={12} aria-hidden /> Library
+          <button type="button" className="viz-chip" aria-pressed={library} onClick={() => setLibrary(!library)} data-testid="measures-library" title={t('visualize.editor.calc.libraryHint')}>
+            <Library size={12} aria-hidden /> {t('visualize.editor.calc.library')}
           </button>
           <button type="button" className="viz-chip" onClick={() => (setQuick(true), setEditing(null))} data-testid="quick-measure">
-            <Sparkles size={12} aria-hidden /> Quick measure
+            <Sparkles size={12} aria-hidden /> {t('visualize.editor.calc.quickMeasure')}
           </button>
           <button type="button" className="viz-chip" onClick={() => (setEditing({ id: newId('calc'), name: '', expression: '', format: 'number', datasetId }), setQuick(false))} data-testid="new-calculation">
-            <Plus size={12} aria-hidden /> New
+            <Plus size={12} aria-hidden /> {t('visualize.editor.calc.new')}
           </button>
         </span>
       </div>
@@ -71,8 +73,8 @@ export function CalculationsSection({
       )}
       {library && (
         <div className="dash-calc-editor" data-testid="library-panel">
-          {measures.isLoading && <p className="text-[11px] text-muted-foreground">Loading…</p>}
-          {measures.data?.length === 0 && <p className="text-[11px] text-muted-foreground">No saved measures yet: save one with the bookmark icon next to a calculation.</p>}
+          {measures.isLoading && <p className="text-[11px] text-muted-foreground">{t('visualize.editor.calc.loading')}</p>}
+          {measures.data?.length === 0 && <p className="text-[11px] text-muted-foreground">{t('visualize.editor.calc.noMeasures')}</p>}
           {measures.data?.map((measure) => (
             <div key={measure.id} className="flex items-center gap-1 text-xs">
               <FunctionSquare size={12} aria-hidden className="dash-kind calc" />
@@ -86,7 +88,7 @@ export function CalculationsSection({
                 onClick={() => onSpec((current) => ({ ...current, calculations: [...(current.calculations ?? []), { id: newId('calc'), name: measure.name, expression: measure.expression, format: measure.format, datasetId }] }))}
                 data-testid={`library-add-${measure.name}`}
               >
-                {taken(measure.name) ? 'Added' : 'Add'}
+                {taken(measure.name) ? t('visualize.editor.calc.added') : t('visualize.editor.calc.add')}
               </button>
             </div>
           ))}
@@ -96,17 +98,17 @@ export function CalculationsSection({
       <ul className="dash-fields">
         {calcs.map((calc) => (
           <li key={calc.id} className="dash-calc-item">
-            <button type="button" disabled={!onUse} onClick={() => onUse?.(calc)} title={onUse ? `${calc.expression} — click to add` : calc.expression} data-testid={`calc-${calc.name}`}>
+            <button type="button" disabled={!onUse} onClick={() => onUse?.(calc)} title={onUse ? t('visualize.editor.calc.clickToAdd', { expression: calc.expression }) : calc.expression} data-testid={`calc-${calc.name}`}>
               <FunctionSquare size={12} aria-hidden className="dash-kind calc" />
               <span className="truncate">{calc.name}</span>
             </button>
-            <button type="button" className="viz-icon-button" disabled={toLibrary.isPending} onClick={() => toLibrary.mutate(calc)} aria-label={`Save ${calc.name} to the measures library`} title="Save to the measures library" data-testid={`library-save-${calc.name}`}>
+            <button type="button" className="viz-icon-button" disabled={toLibrary.isPending} onClick={() => toLibrary.mutate(calc)} aria-label={t('visualize.editor.calc.saveToLibraryNamed', { name: calc.name })} title={t('visualize.editor.calc.saveToLibrary')} data-testid={`library-save-${calc.name}`}>
               <BookmarkPlus size={11} />
             </button>
-            <button type="button" className="viz-icon-button" onClick={() => setEditing(calc)} aria-label={`Edit ${calc.name}`}>
+            <button type="button" className="viz-icon-button" onClick={() => setEditing(calc)} aria-label={t('visualize.editor.calc.editNamed', { name: calc.name })}>
               <Pencil size={11} />
             </button>
-            <button type="button" className="viz-icon-button" onClick={() => onSpec((current) => ({ ...current, calculations: (current.calculations ?? []).filter((item) => item.id !== calc.id) }))} aria-label={`Delete ${calc.name}`}>
+            <button type="button" className="viz-icon-button" onClick={() => onSpec((current) => ({ ...current, calculations: (current.calculations ?? []).filter((item) => item.id !== calc.id) }))} aria-label={t('visualize.editor.calc.deleteNamed', { name: calc.name })}>
               <Trash2 size={11} />
             </button>
           </li>
@@ -131,6 +133,7 @@ function CalcEditor({
   onCancel: () => void;
   onSave: (calc: DashboardCalculation) => void;
 }) {
+  const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const [draft, setDraft] = useState(calc);
   const [preview, setPreview] = useState<{ ok: boolean; text: string } | null>(null);
@@ -142,19 +145,19 @@ function CalcEditor({
     const context = renderContext({ ...spec, calculations: [...others, draft] }, {});
     try {
       const result = await visualize.renderVisuals({
-        visuals: [{ id: 'preview', type: 'card', layout: { x: 0, y: 0, w: 4, h: 4 }, data: { datasetId, wells: { values: [{ field: draft.name || 'Preview', expr: draft.expression, format: draft.format }] } } }],
+        visuals: [{ id: 'preview', type: 'card', layout: { x: 0, y: 0, w: 4, h: 4 }, data: { datasetId, wells: { values: [{ field: draft.name || t('visualize.editor.calc.preview'), expr: draft.expression, format: draft.format }] } } }],
         mode: 'light',
         ...context,
       });
       const output = result.visuals[0];
-      setPreview(output?.status === 'ok' ? { ok: true, text: `= ${output.kpi?.display ?? output.cards?.[0]?.display ?? '—'} over all rows` } : { ok: false, text: output?.message ?? 'Not valid.' });
+      setPreview(output?.status === 'ok' ? { ok: true, text: t('visualize.editor.calc.overAllRows', { value: output.kpi?.display ?? output.cards?.[0]?.display ?? '—' }) } : { ok: false, text: output?.message ?? t('visualize.editor.calc.notValid') });
     } catch (error) {
-      setPreview({ ok: false, text: error instanceof Error ? error.message : 'Not valid.' });
+      setPreview({ ok: false, text: error instanceof Error ? error.message : t('visualize.editor.calc.notValid') });
     }
   };
   return (
     <div className="dash-calc-editor" data-testid="calc-editor">
-      <input className="viz-field" value={draft.name} maxLength={60} placeholder="Name, e.g. Profit margin" onChange={(event) => setDraft({ ...draft, name: event.target.value })} data-testid="calc-name" />
+      <input className="viz-field" value={draft.name} maxLength={60} placeholder={t('visualize.editor.calc.namePlaceholder')} onChange={(event) => setDraft({ ...draft, name: event.target.value })} data-testid="calc-name" />
       <textarea
         className="viz-field font-mono text-xs"
         rows={3}
@@ -177,7 +180,7 @@ function CalcEditor({
       </div>
       <div className="flex max-h-24 flex-wrap gap-1 overflow-auto">
         {profiles.map((profile) => (
-          <button key={profile.name} type="button" className="dash-token field" onClick={() => insert(profile.kind === 'numeric' ? `SUM([${profile.name}])` : `[${profile.name}]`)} title={profile.kind === 'numeric' ? `Inserts SUM([${profile.name}])` : profile.name}>
+          <button key={profile.name} type="button" className="dash-token field" onClick={() => insert(profile.kind === 'numeric' ? `SUM([${profile.name}])` : `[${profile.name}]`)} title={profile.kind === 'numeric' ? t('visualize.editor.calc.inserts', { code: `SUM([${profile.name}])` }) : profile.name}>
             {humanize(profile.name)}
           </button>
         ))}
@@ -190,23 +193,23 @@ function CalcEditor({
           ))}
       </div>
       <div className="flex items-center gap-1">
-        <select className="viz-field h-7 w-28 text-xs" value={draft.format ?? 'number'} onChange={(event) => setDraft({ ...draft, format: event.target.value as DashboardCalculation['format'] })} aria-label="Format">
-          <option value="number">Number</option>
-          <option value="percent">Percent</option>
-          <option value="currency">Currency</option>
+        <select className="viz-field h-7 w-28 text-xs" value={draft.format ?? 'number'} onChange={(event) => setDraft({ ...draft, format: event.target.value as DashboardCalculation['format'] })} aria-label={t('visualize.editor.calc.format')}>
+          <option value="number">{t('visualize.editor.calc.formats.number')}</option>
+          <option value="percent">{t('visualize.editor.calc.formats.percent')}</option>
+          <option value="currency">{t('visualize.editor.calc.formats.currency')}</option>
         </select>
         <button type="button" className="viz-chip" disabled={!draft.expression.trim()} onClick={() => void check()} data-testid="calc-check">
-          Check
+          {t('visualize.editor.calc.check')}
         </button>
         <span className="flex-1" />
         <button type="button" className="viz-chip" onClick={onCancel}>
-          Cancel
+          {t('visualize.editor.calc.cancel')}
         </button>
         <button type="button" className="viz-chip primary" disabled={!draft.name.trim() || !draft.expression.trim() || nameTaken} onClick={() => onSave({ ...draft, name: draft.name.trim() })} data-testid="calc-save">
-          Save
+          {t('visualize.editor.calc.save')}
         </button>
       </div>
-      {nameTaken && <p className="text-[11px] text-destructive">Another calculation has this name.</p>}
+      {nameTaken && <p className="text-[11px] text-destructive">{t('visualize.editor.calc.nameTaken')}</p>}
       {preview && (
         <p className={`text-[11px] ${preview.ok ? 'text-muted-foreground' : 'text-destructive'}`} data-testid="calc-preview">
           {preview.text}
@@ -217,6 +220,7 @@ function CalcEditor({
 }
 
 function QuickMeasure({ profiles, onPick, onCancel }: { profiles: ColumnProfile[]; onPick: (draft: Omit<DashboardCalculation, 'id' | 'datasetId'>) => void; onCancel: () => void }) {
+  const { t } = useTranslation();
   const [template, setTemplate] = useState(QUICK_MEASURES[0]!);
   const [fields, setFields] = useState<Record<string, string>>({});
   const numeric = profiles.filter((profile) => profile.kind === 'numeric');
@@ -234,7 +238,7 @@ function QuickMeasure({ profiles, onPick, onCancel }: { profiles: ColumnProfile[
         <label key={slot.key} className="dash-format-row">
           <span>{slot.label}</span>
           <select className="viz-field" value={fields[slot.key] ?? ''} onChange={(event) => setFields({ ...fields, [slot.key]: event.target.value })} data-testid={`quick-field-${slot.key}`}>
-            <option value="">Choose…</option>
+            <option value="">{t('visualize.editor.calc.choose')}</option>
             {(template.id === 'per-distinct' && slot.key === 'b' ? profiles : numeric).map((profile) => (
               <option key={profile.name} value={profile.name}>
                 {humanize(profile.name)}
@@ -245,10 +249,10 @@ function QuickMeasure({ profiles, onPick, onCancel }: { profiles: ColumnProfile[
       ))}
       <div className="flex justify-end gap-1">
         <button type="button" className="viz-chip" onClick={onCancel}>
-          Cancel
+          {t('visualize.editor.calc.cancel')}
         </button>
         <button type="button" className="viz-chip primary" disabled={!ready} onClick={() => onPick({ ...template.build(fields), format: template.format })} data-testid="quick-create">
-          Next
+          {t('visualize.editor.calc.next')}
         </button>
       </div>
     </div>
@@ -267,6 +271,7 @@ export function ParameterEditor({
   onSave: (parameter: DashboardParameter) => void;
   onCancel?: () => void;
 }) {
+  const { t } = useTranslation();
   const [draft, setDraft] = useState<DashboardParameter>(parameter);
   const setKind = (kind: DashboardParameter['kind']) =>
     setDraft(kind === 'whatif' ? { id: draft.id, name: draft.name, kind, min: -0.5, max: 0.5, step: 0.05, default: 0, format: 'percent' } : { id: draft.id, name: draft.name, kind, role: 'measure', options: [], default: 0 });
@@ -283,38 +288,38 @@ export function ParameterEditor({
     <div className="dash-calc-editor" data-testid="parameter-editor">
       <div className="viz-segment">
         <button type="button" aria-pressed={draft.kind === 'whatif'} onClick={() => setKind('whatif')} data-testid="parameter-kind-whatif">
-          What-if number
+          {t('visualize.editor.parameter.whatIf')}
         </button>
         <button type="button" aria-pressed={draft.kind === 'fields'} onClick={() => setKind('fields')} data-testid="parameter-kind-fields">
-          Field switcher
+          {t('visualize.editor.parameter.fieldSwitcher')}
         </button>
       </div>
-      <input className="viz-field" value={draft.name} maxLength={60} placeholder={draft.kind === 'whatif' ? 'e.g. Price change' : 'e.g. Metric'} onChange={(event) => setDraft({ ...draft, name: event.target.value })} data-testid="parameter-name" />
+      <input className="viz-field" value={draft.name} maxLength={60} placeholder={draft.kind === 'whatif' ? t('visualize.editor.parameter.whatIfPlaceholder') : t('visualize.editor.parameter.fieldsPlaceholder')} onChange={(event) => setDraft({ ...draft, name: event.target.value })} data-testid="parameter-name" />
       {draft.kind === 'whatif' ? (
         <div className="grid grid-cols-2 gap-1">
           {(['min', 'max', 'step', 'default'] as const).map((key) => (
             <label key={key} className="text-[10px] uppercase text-muted-foreground">
-              {key}
+              {t(`visualize.editor.parameter.${key}`)}
               <input type="number" className="viz-field" value={draft[key]} step="any" onChange={(event) => setDraft({ ...draft, [key]: Number(event.target.value) })} data-testid={`parameter-${key}`} />
             </label>
           ))}
-          <select className="viz-field col-span-2 h-7 text-xs" value={draft.format ?? 'number'} onChange={(event) => setDraft({ ...draft, format: event.target.value as 'number' })} aria-label="Format">
-            <option value="number">Number</option>
-            <option value="percent">Percent (0.1 = 10%)</option>
-            <option value="currency">Currency</option>
+          <select className="viz-field col-span-2 h-7 text-xs" value={draft.format ?? 'number'} onChange={(event) => setDraft({ ...draft, format: event.target.value as 'number' })} aria-label={t('visualize.editor.calc.format')}>
+            <option value="number">{t('visualize.editor.calc.formats.number')}</option>
+            <option value="percent">{t('visualize.editor.parameter.percent')}</option>
+            <option value="currency">{t('visualize.editor.calc.formats.currency')}</option>
           </select>
           <p className="col-span-2 text-[11px] text-muted-foreground">
-            Use it in a calculation as <code>[{draft.name || 'Name'}]</code>, e.g. <code>SUM([revenue]) * (1 + [{draft.name || 'Name'}])</code>.
+            <Trans i18nKey="visualize.editor.parameter.useInCalc" values={{ name: draft.name || t('visualize.editor.parameter.name') }} components={{ code: <code /> }} />
           </p>
         </div>
       ) : (
         <>
           <div className="viz-segment">
             <button type="button" aria-pressed={draft.role === 'measure'} onClick={() => setDraft({ ...draft, role: 'measure', options: [] })}>
-              Switch the measure
+              {t('visualize.editor.parameter.switchMeasure')}
             </button>
             <button type="button" aria-pressed={draft.role === 'dimension'} onClick={() => setDraft({ ...draft, role: 'dimension', options: [] })}>
-              Switch the dimension
+              {t('visualize.editor.parameter.switchDimension')}
             </button>
           </div>
           <div className="flex max-h-32 flex-wrap gap-1 overflow-auto">
@@ -331,11 +336,11 @@ export function ParameterEditor({
       <div className="flex justify-end gap-1">
         {onCancel && (
           <button type="button" className="viz-chip" onClick={onCancel}>
-            <X size={12} /> Cancel
+            <X size={12} /> {t('visualize.editor.calc.cancel')}
           </button>
         )}
         <button type="button" className="viz-chip primary" disabled={!valid} onClick={() => onSave({ ...draft, name: draft.name.trim() })} data-testid="parameter-save">
-          <SlidersVertical size={12} /> Save parameter
+          <SlidersVertical size={12} /> {t('visualize.editor.parameter.save')}
         </button>
       </div>
     </div>

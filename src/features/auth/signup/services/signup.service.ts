@@ -1,5 +1,5 @@
 import type { SignupPayload } from '../types';
-import { supabase } from '@/lib/supabase';
+import { authErrorMessage, supabase } from '@/lib/supabase';
 
 export interface SignupResult {
   error?: string;
@@ -24,6 +24,6 @@ export async function signup(payload: SignupPayload): Promise<SignupResult> {
     },
   });
 
-  if (error) return { error: error.message };
+  if (error) return { error: authErrorMessage(error) };
   return data.session ? {} : { needsConfirmation: true };
 }

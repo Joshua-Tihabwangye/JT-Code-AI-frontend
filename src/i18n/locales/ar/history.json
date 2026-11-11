@@ -1,0 +1,11 @@
+{
+  "eyebrow": "السجل",
+  "title": "السجل",
+  "subtitle": "محادثاتك وجلساتك الأخيرة.",
+  "clearHistory": "مسح السجل",
+  "clearConfirm": "هل تريد مسح كل سجل المحادثات؟",
+  "emptyTitle": "لا يوجد سجل بعد",
+  "emptyDesc": "ابدأ محادثة وستظهر محادثاتك هنا.",
+  "startChatting": "ابدأ المحادثة",
+  "deleteItemAria": "حذف {{title}}"
+}

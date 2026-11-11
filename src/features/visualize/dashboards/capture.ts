@@ -1,3 +1,5 @@
+import i18n from '@/i18n/config';
+
 /** A faithful PNG of a dashboard page for PDF and PNG exports, painted in the browser: the page is
  *  cloned with its computed styles inlined, every chart canvas replaced by its image, and the
  *  result drawn through an SVG ``foreignObject``. No library, nothing leaves the page. */
@@ -16,7 +18,7 @@ export async function capturePage(element: HTMLElement, scale = 2): Promise<stri
   canvas.width = width * scale;
   canvas.height = height * scale;
   const context = canvas.getContext('2d');
-  if (!context) throw new Error('This browser cannot paint the page.');
+  if (!context) throw new Error(i18n.t('visualize.dashboards.capture.unsupported'));
   context.scale(scale, scale);
   context.fillStyle = getComputedStyle(element).backgroundColor || '#ffffff';
   context.fillRect(0, 0, width, height);
@@ -68,7 +70,7 @@ function loadImage(source: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const image = new Image();
     image.onload = () => resolve(image);
-    image.onerror = () => reject(new Error('The page could not be painted.'));
+    image.onerror = () => reject(new Error(i18n.t('visualize.dashboards.capture.failed')));
     image.src = source;
   });
 }
@@ -86,7 +88,7 @@ export function whenDrawn(root: ParentNode, pageId: string, timeout = 60_000): P
         setTimeout(resolve, 700);
         return;
       }
-      if (Date.now() - started > timeout) reject(new Error('The page took too long to draw.'));
+      if (Date.now() - started > timeout) reject(new Error(i18n.t('visualize.dashboards.capture.timeout')));
       else setTimeout(check, 200);
     };
     check();

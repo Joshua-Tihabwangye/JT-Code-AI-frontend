@@ -1,0 +1,27 @@
+{
+  "resetTitle": "Şifrenizi sıfırlayın",
+  "emailLabel": "E-posta adresi",
+  "sendCode": "Sıfırlama kodu gönder",
+  "sending": "Gönderiliyor…",
+  "backToSignIn": "Oturum açmaya dön",
+  "checkTitle": "E-postanızı kontrol edin",
+  "useCodeNow": "Bu kodu hemen kullan",
+  "haveCode": "Zaten bir sıfırlama kodum var",
+  "newPasswordTitle": "Yeni bir şifre oluşturun",
+  "newPasswordDesc": "Sıfırlama kodunu girin ve {{email}} için yeni bir şifre seçin.",
+  "codeLabel": "Sıfırlama kodu",
+  "newPasswordLabel": "Yeni şifre",
+  "confirmPasswordLabel": "Şifreyi onayla",
+  "updating": "Güncelleniyor…",
+  "resetButton": "Şifreyi sıfırla",
+  "backToCode": "Kod adımına dön",
+  "updatedTitle": "Şifre güncellendi",
+  "updatedMessage": "Şifreniz güncellendi. Yeni şifrenizle oturum açabilirsiniz.",
+  "returnToSignIn": "Oturum açmaya dön",
+  "errors": {
+    "sendFailed": "Şifre sıfırlama bağlantısı gönderilemedi.",
+    "resetFailed": "Şifreniz sıfırlanamadı.",
+    "mismatch": "Şifreler eşleşmiyor.",
+    "unexpected": "Beklenmeyen bir hata oluştu."
+  }
+}

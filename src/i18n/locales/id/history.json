@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Riwayat",
+  "title": "Riwayat",
+  "subtitle": "Obrolan dan sesi terbaru Anda.",
+  "clearHistory": "Hapus riwayat",
+  "clearConfirm": "Hapus semua riwayat obrolan?",
+  "emptyTitle": "Belum ada riwayat",
+  "emptyDesc": "Mulai sebuah obrolan dan percakapan Anda akan muncul di sini.",
+  "startChatting": "Mulai mengobrol",
+  "deleteItemAria": "Hapus {{title}}"
+}

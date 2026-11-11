@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "eyebrow": "رابطہ",
+    "title": "JT-Code سے مدد حاصل کریں",
+    "backToSignIn": "سائن اِن پر واپس جائیں",
+    "createAccount": "اکاؤنٹ بنائیں"
+  },
+  "privacy": {
+    "eyebrow": "رازداری کی پالیسی",
+    "title": "JT-Code رازداری",
+    "signIn": "سائن اِن",
+    "readTerms": "شرائط پڑھیں"
+  },
+  "terms": {
+    "eyebrow": "خدمت کی شرائط",
+    "title": "JT-Code شرائط",
+    "createAccount": "اکاؤنٹ بنائیں",
+    "contactSupport": "سپورٹ سے رابطہ کریں"
+  },
+  "notFound": {
+    "title": "صفحہ نہیں ملا",
+    "returnHome": "JT-Code پر واپس جائیں"
+  }
+}

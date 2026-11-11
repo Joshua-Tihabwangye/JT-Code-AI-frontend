@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Eraser, FilterX, Lock } from 'lucide-react';
 import { useRepository, type DashboardPage, type DashboardSpec, type RenderVisualsInput, type SharedVisualRequest } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
@@ -32,6 +33,7 @@ export function sharedRequest(input: RenderVisualsInput, spec: DashboardSpec, pa
 /** A dashboard opened from a public link (``/share/…``) or embedded in another site
  *  (``/embed/…``): read-only, no sign-in; slicers, clicks and drilling still work. */
 export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
+  const { t } = useTranslation();
   const { token = '' } = useParams();
   const visualize = useRepository('visualize');
   const { resolvedTheme } = useTheme();
@@ -50,14 +52,14 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
   const runtime = useDashboardRuntime({ spec, page, mode, render });
   const [canvas, width] = useWidth<HTMLDivElement>();
 
-  if (shared.isLoading) return <div className="dash-shared grid place-items-center text-sm text-muted-foreground">Loading dashboard…</div>;
+  if (shared.isLoading) return <div className="dash-shared grid place-items-center text-sm text-muted-foreground">{t('visualize.dashboards.shared.loading')}</div>;
   if (shared.error || !spec || !page) {
     return (
       <div className="dash-shared grid place-items-center" data-testid="shared-missing">
         <div className="max-w-sm text-center">
           <Lock className="mx-auto mb-2 text-muted-foreground" aria-hidden />
-          <h1 className="text-base font-semibold">This link is not available</h1>
-          <p className="text-sm text-muted-foreground">It may have been revoked or have expired. Ask the person who shared it for a new link.</p>
+          <h1 className="text-base font-semibold">{t('visualize.dashboards.shared.missingTitle')}</h1>
+          <p className="text-sm text-muted-foreground">{t('visualize.dashboards.shared.missingText')}</p>
         </div>
       </div>
     );
@@ -79,7 +81,7 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
             </h1>
           )}
           {viewable.length > 1 && (
-            <nav className="viz-segment" aria-label="Pages">
+            <nav className="viz-segment" aria-label={t('visualize.dashboards.shared.pages')}>
               {viewable.map((item) => (
                 <button key={item.id} type="button" aria-pressed={item.id === page.id} onClick={() => setPageId(item.id)}>
                   {item.name}
@@ -90,15 +92,15 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
           <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
             {selection && (
               <button type="button" className="viz-chip" onClick={() => setSelection(null)}>
-                <Eraser size={12} aria-hidden /> Clear selection
+                <Eraser size={12} aria-hidden /> {t('visualize.dashboards.shared.clearSelection')}
               </button>
             )}
             {Object.values(runtime.slicers).some(Boolean) && (
               <button type="button" className="viz-chip" onClick={runtime.clearSlicers}>
-                <FilterX size={12} aria-hidden /> Clear slicers
+                <FilterX size={12} aria-hidden /> {t('visualize.dashboards.shared.clearSlicers')}
               </button>
             )}
-            {!embed && <span>Read-only shared view</span>}
+            {!embed && <span>{t('visualize.dashboards.shared.readOnly')}</span>}
           </div>
         </header>
       )}

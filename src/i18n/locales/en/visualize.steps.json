@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Clean",
+    "rows": "Rows",
+    "columns": "Columns",
+    "text": "Text",
+    "numbers": "Numbers and dates",
+    "shape": "Shape",
+    "combine": "Combine"
+  },
+  "kinds": {
+    "removeDuplicates": "Remove duplicate rows",
+    "trim": "Trim extra spaces",
+    "removeBlankRows": "Remove blank rows",
+    "fillBlanks": "Fill blanks",
+    "replaceValues": "Replace values",
+    "changeType": "Change type",
+    "outliers": "Handle outliers",
+    "filterRows": "Filter rows",
+    "sort": "Sort rows",
+    "keepRows": "Keep top or bottom rows",
+    "removeColumns": "Remove columns",
+    "keepColumns": "Keep only these columns",
+    "rename": "Rename a column",
+    "calculatedColumn": "Calculated column",
+    "conditionalColumn": "Conditional column",
+    "splitColumn": "Split a column",
+    "mergeColumns": "Merge columns",
+    "textCase": "Change text case",
+    "bins": "Group numbers into bins",
+    "dateParts": "Extract date parts",
+    "dateTable": "Make a date table (calendar)",
+    "groupBy": "Group by",
+    "pivot": "Pivot (rows → columns)",
+    "unpivot": "Unpivot (columns → rows)",
+    "merge": "Merge with another dataset",
+    "append": "Append another dataset"
+  },
+  "fields": {
+    "compareColumns": "Compare only these columns",
+    "trimColumns": "Columns (all text when empty)",
+    "blankIn": "Blank in",
+    "removeWhen": "Remove when",
+    "column": "Column",
+    "columns": "Columns",
+    "with": "With",
+    "value": "Value",
+    "find": "Find",
+    "replaceWith": "Replace with",
+    "match": "Match",
+    "to": "To",
+    "action": "Action",
+    "rowsThatMatch": "Rows that match",
+    "conditions": "Conditions",
+    "sortBy": "Sort by",
+    "keep": "Keep",
+    "howMany": "How many",
+    "newName": "New name",
+    "newColumn": "New column",
+    "formula": "Formula",
+    "ifThen": "If … then",
+    "otherwise": "Otherwise",
+    "at": "At",
+    "intoParts": "Into (parts)",
+    "newNames": "New names (optional)",
+    "separator": "Separator",
+    "case": "Case",
+    "bins": "Bins",
+    "howManyBins": "How many bins",
+    "edges": "Edges",
+    "dateColumn": "Date column",
+    "parts": "Parts",
+    "fromDatesIn": "From the dates in",
+    "fiscalStart": "Fiscal year starts in month",
+    "groupBy": "Group by",
+    "calculate": "Calculate",
+    "keepAsRows": "Keep as rows",
+    "valuesBecomeColumns": "Values become columns",
+    "fillWith": "Fill with",
+    "aggregation": "Aggregation",
+    "keepTheseColumns": "Keep these columns",
+    "nameColumn": "Name column",
+    "valueColumn": "Value column",
+    "dataset": "Dataset",
+    "keyHere": "Key in this data",
+    "keyOther": "Key in the other"
+  },
+  "options": {
+    "blankHow": {
+      "any": "any of them is blank",
+      "all": "all of them are blank"
+    },
+    "fill": {
+      "mean": "Average",
+      "median": "Median",
+      "mode": "Most common value",
+      "zero": "Zero",
+      "down": "Value above (fill down)",
+      "up": "Value below (fill up)",
+      "value": "My own value"
+    },
+    "replaceMatch": {
+      "exact": "Whole value",
+      "contains": "Part of the text"
+    },
+    "types": {
+      "number": "Number",
+      "date": "Date",
+      "text": "Text"
+    },
+    "outliers": {
+      "cap": "Cap at the limits",
+      "remove": "Remove those rows",
+      "flag": "Flag in a new column"
+    },
+    "filterMode": {
+      "keep": "Keep",
+      "remove": "Remove"
+    },
+    "combine": {
+      "and": "all conditions",
+      "or": "any condition"
+    },
+    "keepRows": {
+      "top": "First rows",
+      "bottom": "Last rows"
+    },
+    "textCase": {
+      "title": "Title Case",
+      "upper": "UPPER",
+      "lower": "lower"
+    },
+    "bins": {
+      "equal": "Equal width",
+      "edges": "My own edges"
+    },
+    "mergeHow": {
+      "left": "All rows of this data",
+      "inner": "Only matching rows",
+      "outer": "All rows of both"
+    },
+    "aggs": {
+      "sum": "Sum",
+      "avg": "Average",
+      "count": "Count",
+      "distinct": "Distinct count",
+      "min": "Min",
+      "max": "Max",
+      "median": "Median"
+    }
+  },
+  "parts": {
+    "year": "Year",
+    "quarter": "Quarter",
+    "month": "Month",
+    "monthName": "Month name",
+    "week": "Week",
+    "weekday": "Weekday",
+    "weekdayName": "Weekday name",
+    "day": "Day",
+    "hour": "Hour"
+  },
+  "conditionOps": {
+    "eq": "equals",
+    "ne": "does not equal",
+    "in": "is one of",
+    "notIn": "is not one of",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "between",
+    "contains": "contains",
+    "startsWith": "starts with",
+    "endsWith": "ends with",
+    "blank": "is blank",
+    "notBlank": "is not blank"
+  },
+  "summary": {
+    "keepConditions": "keep {{count}} condition(s)",
+    "removeConditions": "remove {{count}} condition(s)",
+    "by": "by {{columns}}",
+    "anotherDataset": "another dataset",
+    "types": {
+      "number": "number",
+      "date": "date",
+      "text": "text"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Remove duplicates",
+    "keepOnePerId": "Keep one row per ID",
+    "removeMissingId": "Remove rows without ID",
+    "fillBlanks": "Fill blanks",
+    "blankOut": "Blank out “{{value}}”",
+    "trimSpaces": "Trim spaces",
+    "toNumber": "Convert to number",
+    "toDate": "Convert to date",
+    "consistentSpelling": "Make spelling consistent",
+    "capOutliers": "Cap outliers",
+    "removeColumn": "Remove column"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "headline": "آج کیا بنائیں؟",
+  "welcome": "سلام! میں JT-Code ہوں۔ آج کیا بنا رہے ہیں؟",
+  "composerPlaceholder": "JT-Code کو پیغام لکھیں…",
+  "composerPlaceholderBusy": "کارروائی جاری ہے...",
+  "conversation": "گفتگو",
+  "newChat": "نئی چیٹ",
+  "startNewChatTitle": "نئی چیٹ شروع کریں؟",
+  "startNewChatDesc": "آپ کی موجودہ گفتگو محفوظ ہو جائے گی۔ آپ بعد میں تاریخچے سے اسے جاری رکھ سکتے ہیں۔",
+  "you": "آپ",
+  "streaming": "اسٹریم ہو رہا ہے...",
+  "errorBadge": "خرابی",
+  "requestFailed": "درخواست ناکام ہو گئی۔",
+  "statusRunning": "حالت: {{status}}…",
+  "defaultPlan": "مفت",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}

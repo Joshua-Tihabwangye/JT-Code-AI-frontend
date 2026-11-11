@@ -1,0 +1,52 @@
+{
+  "title": "Fungua akaunti yako",
+  "subtitle": "Anza safari yako na JT-Code",
+  "firstNameLabel": "Jina la kwanza",
+  "lastNameLabel": "Jina la ukoo",
+  "emailLabel": "Barua pepe",
+  "passwordLabel": "Nenosiri",
+  "passwordPlaceholder": "Unda nenosiri",
+  "confirmPasswordLabel": "Thibitisha nenosiri",
+  "confirmPasswordPlaceholder": "Thibitisha nenosiri lako",
+  "requirements": {
+    "title": "Mahitaji ya nenosiri",
+    "minLength": "Angalau herufi 8",
+    "uppercase": "Herufi kubwa moja",
+    "lowercase": "Herufi ndogo moja",
+    "number": "Nambari moja",
+    "singleRule": "Nenosiri lazima liwe na herufi angalau 8 na liwe na angalau herufi moja na nambari moja."
+  },
+  "matchOk": "Manenosiri yanalingana.",
+  "matchError": "Manenosiri bado hayalingani.",
+  "matchHint": "Weka tena nenosiri lako kulithibitisha.",
+  "country": {
+    "label": "Nchi",
+    "searchPlaceholder": "Tafuta nchi",
+    "selectedAria": "Nchi iliyochaguliwa {{name}}",
+    "noMatch": "Hakuna nchi inayolingana na “{{query}}”.",
+    "help": "Nchi uliyochagua hubadilisha msimbo wa kupiga, uhakiki wa simu na mapendekezo ya saa za eneo."
+  },
+  "dialCode": {
+    "label": "Msimbo wa kupiga",
+    "help": "Unaweza kubadilisha msimbo chaguomsingi ukiwa unajisajili kwa eneo tofauti la kupiga simu."
+  },
+  "phone": {
+    "label": "Mawasiliano / nambari ya simu",
+    "defaultPlaceholder": "Weka nambari ya simu",
+    "help": "Tumia muundo wa nambari ya simu unaotumika sana katika {{country}}.",
+    "yourCountry": "nchi yako"
+  },
+  "timezone": {
+    "label": "Saa za eneo",
+    "empty": "Hakuna saa za eneo zilizopo",
+    "help": "Saa za eneo zinazopendekezwa huchujwa kulingana na nchi iliyochaguliwa, lakini unaweza kuzibadilisha."
+  },
+  "note": "Nchi uliyochagua hubadilisha uhakiki wa simu na mapendekezo ya saa za eneo kiotomatiki.",
+  "termsPrefix": "Nakubali ",
+  "termsLink": "Masharti",
+  "termsMiddle": " na ",
+  "privacyLink": "Sera ya Faragha",
+  "termsHelp": "Unaweza kupitia kurasa hizi za kisheria kabla ya kukamilisha usajili.",
+  "submit": "Fungua akaunti",
+  "haveAccountQuestion": "Una akaunti tayari?"
+}

@@ -1,0 +1,116 @@
+{
+  "eyebrow": "বিলিং",
+  "title": "বিলিং ও ক্রেডিট",
+  "subtitle": "আপনার প্ল্যান, ক্রেডিট ও পেমেন্ট ডিটেইলস পরিচালনা করুন। সীমাহীন কাজ চালিয়ে যেতে যেকোনো সময় ক্রেডিট যোগ করুন।",
+  "addCredits": "ক্রেডিট যোগ করুন",
+  "summary": {
+    "currentPlan": "বর্তমান প্ল্যান",
+    "availableCredits": "উপলব্ধ ক্রেডিট",
+    "renewsOn": "নবায়ন হবে",
+    "renewsHelper": "আপনার বিলিং পিরিয়ডের শেষে",
+    "managePlan": "প্ল্যান পরিচালনা করুন →",
+    "addCreditsAction": "ক্রেডিট যোগ করুন →"
+  },
+  "usage": {
+    "title": "ক্রেডিট ব্যবহার",
+    "usedOf": "এই মাসে {{limit}}-এর মধ্যে {{used}} ব্যবহৃত",
+    "left": "{{amount}} বাকি"
+  },
+  "plans": {
+    "title": "আপনার জন্য উপযুক্ত প্ল্যান বেছে নিন",
+    "allInclude": "সব প্ল্যানে রয়েছে: সুরক্ষিত বিলিং, যেকোনো সময় বাতিল, 99.9% আপটাইম",
+    "ribbonCurrent": "বর্তমান প্ল্যান",
+    "ribbonSelected": "নির্বাচিত",
+    "currentCta": "বর্তমান প্ল্যান",
+    "chooseCta": "{{name}} বেছে নিন",
+    "perMonth": "/মাস",
+    "customPrice": "কাস্টম",
+    "fallbackDescription": "বর্ধনশীল ব্যবহারকারীদের জন্য",
+    "fallbackFeature1": "{{credits}} ক্রেডিট / মাস",
+    "fallbackFeature2": "স্ট্যান্ডার্ড সাপোর্ট",
+    "descriptions": {
+      "free": "শুরু করছেন এমন ব্যক্তিদের জন্য",
+      "pro": "পেশাদার ও পাওয়ার ইউজারদের জন্য",
+      "team": "টিম ও প্রতিষ্ঠানের জন্য",
+      "business": "বর্ধনশীল টিমের জন্য"
+    },
+    "features": {
+      "free": [
+        "১,০০০ ক্রেডিট / মাস",
+        "GPT-4o mini অ্যাক্সেস",
+        "বেসিক AI টুল",
+        "কমিউনিটি সাপোর্ট"
+      ],
+      "pro": [
+        "২,০০০ ক্রেডিট / মাস",
+        "GPT-4o অ্যাক্সেস",
+        "অ্যাডভান্সড AI টুল",
+        "প্রায়োরিটি সাপোর্ট",
+        "নতুন ফিচারে আগে অ্যাক্সেস"
+      ],
+      "team": [
+        "৫,০০০ ক্রেডিট / ইউজার / মাস",
+        "GPT-4o অ্যাক্সেস",
+        "টিম ওয়ার্কস্পেস",
+        "অ্যাডভান্সড অ্যাডমিন কন্ট্রোল",
+        "প্রায়োরিটি সাপোর্ট ও SLA"
+      ],
+      "business": [
+        "কাস্টম ক্রেডিট",
+        "ডেডিকেটেড সাপোর্ট",
+        "SSO ও অডিট লগ",
+        "কাস্টম AI মডেল",
+        "SLA গ্যারান্টি"
+      ]
+    }
+  },
+  "payment": {
+    "title": "পেমেন্ট মেথড",
+    "billingCountry": "বিলিং দেশ",
+    "ugandaHint": "উগান্ডা: Card অথবা Mobile Money (MTN / Airtel) দিয়ে পেমেন্ট করুন।",
+    "otherHint": "Card অথবা PayPal দিয়ে পেমেন্ট করুন।",
+    "addMethod": "পেমেন্ট মেথড যোগ করুন",
+    "makeDefault": "ডিফল্ট করুন",
+    "methods": {
+      "card": "Card",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Card",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "ফোন নম্বর",
+    "cardNumberLabel": "কার্ড নম্বর",
+    "expiryLabel": "মেয়াদ",
+    "cvcLabel": "CVC",
+    "savedToast": "পেমেন্ট মেথড সংরক্ষিত হয়েছে"
+  },
+  "invoices": {
+    "title": "সাম্প্রতিক ইনভয়েস",
+    "viewAll": "সব ইনভয়েস দেখুন",
+    "allTitle": "সব ইনভয়েস",
+    "allSubtitle": "JT-Code — বিলিং হিস্টোরি",
+    "date": "তারিখ",
+    "description": "বিবরণ",
+    "amount": "পরিমাণ",
+    "status": "স্ট্যাটাস"
+  },
+  "topup": {
+    "title": "ক্রেডিট যোগ করুন",
+    "description": "আপনার অ্যাকাউন্টে অতিরিক্ত ক্রেডিট কিনুন",
+    "amountLabel": "পরিমাণ (USD)",
+    "estimatedCredits": "আনুমানিক ক্রেডিট",
+    "confirm": "${{amount}} ক্রেডিট যোগ করুন",
+    "success": "ক্রেডিট সফলভাবে যোগ হয়েছে",
+    "invalidAmount": "একটি বৈধ পরিমাণ লিখুন"
+  },
+  "checkout": {
+    "title": "আপনার কেনাকাটা সম্পন্ন করুন",
+    "planSuffix": "{{name}} প্ল্যান",
+    "customPricing": "কাস্টম প্রাইসিং",
+    "billedMonthly": "মাসিক বিলিং",
+    "pay": "{{amount}} পরিশোধ করুন",
+    "enterPhone": "Mobile Money-এর জন্য ফোন নম্বর লিখুন।",
+    "activated": "{{name}} প্ল্যান সক্রিয় হয়েছে — পেমেন্ট সফল হয়েছে"
+  }
+}

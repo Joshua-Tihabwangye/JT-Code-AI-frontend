@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "eyebrow": "Mawasiliano",
+    "title": "Pata msaada wa JT-Code",
+    "backToSignIn": "Rudi kuingia",
+    "createAccount": "Fungua akaunti"
+  },
+  "privacy": {
+    "eyebrow": "Sera ya Faragha",
+    "title": "Faragha ya JT-Code",
+    "signIn": "Ingia",
+    "readTerms": "Soma masharti"
+  },
+  "terms": {
+    "eyebrow": "Masharti ya Huduma",
+    "title": "Masharti ya JT-Code",
+    "createAccount": "Fungua akaunti",
+    "contactSupport": "Wasiliana na usaidizi"
+  },
+  "notFound": {
+    "title": "Ukurasa haupatikani",
+    "returnHome": "Rudi JT-Code"
+  }
+}

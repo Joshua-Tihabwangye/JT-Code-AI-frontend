@@ -1,0 +1,15 @@
+{
+  "title": "वापसी पर स्वागत है",
+  "subtitle": "JT-Code पर जारी रखने के लिए साइन इन करें",
+  "google": "Google",
+  "apple": "Apple",
+  "connecting": "कनेक्ट हो रहा है…",
+  "emailLabel": "ईमेल पता",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "पासवर्ड",
+  "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+  "forgotPassword": "पासवर्ड भूल गए?",
+  "submit": "साइन इन",
+  "noAccount": "खाता नहीं है?",
+  "createAccount": "खाता बनाएँ"
+}

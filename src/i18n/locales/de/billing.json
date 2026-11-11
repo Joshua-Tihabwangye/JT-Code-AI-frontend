@@ -1,0 +1,116 @@
+{
+  "eyebrow": "Abrechnung",
+  "title": "Abrechnung & Credits",
+  "subtitle": "Verwalte deinen Plan, deine Credits und Zahlungsdetails. Füge jederzeit Credits hinzu, um ohne Grenzen weiterzubauen.",
+  "addCredits": "Credits hinzufügen",
+  "summary": {
+    "currentPlan": "Aktueller Plan",
+    "availableCredits": "Verfügbare Credits",
+    "renewsOn": "Erneuert am",
+    "renewsHelper": "Am Ende deines Abrechnungszeitraums",
+    "managePlan": "Plan verwalten →",
+    "addCreditsAction": "Credits hinzufügen →"
+  },
+  "usage": {
+    "title": "Credit-Verbrauch",
+    "usedOf": "{{used}} von {{limit}} in diesem Monat verbraucht",
+    "left": "{{amount}} übrig"
+  },
+  "plans": {
+    "title": "Wähle den Plan, der zu dir passt",
+    "allInclude": "Alle Pläne enthalten: Sichere Abrechnung, jederzeit kündbar, 99,9 % Verfügbarkeit",
+    "ribbonCurrent": "Aktueller Plan",
+    "ribbonSelected": "Ausgewählt",
+    "currentCta": "Aktueller Plan",
+    "chooseCta": "{{name}} wählen",
+    "perMonth": "/Monat",
+    "customPrice": "Individuell",
+    "fallbackDescription": "Für wachsende Nutzer",
+    "fallbackFeature1": "{{credits}} Credits / Monat",
+    "fallbackFeature2": "Standard-Support",
+    "descriptions": {
+      "free": "Für Einsteiger",
+      "pro": "Für Profis und Power-User",
+      "team": "Für Teams und Organisationen",
+      "business": "Für wachsende Teams"
+    },
+    "features": {
+      "free": [
+        "1.000 Credits / Monat",
+        "Zugang zu GPT-4o mini",
+        "Grundlegende KI-Tools",
+        "Community-Support"
+      ],
+      "pro": [
+        "2.000 Credits / Monat",
+        "Zugang zu GPT-4o",
+        "Fortgeschrittene KI-Tools",
+        "Prioritäts-Support",
+        "Früher Zugang zu neuen Funktionen"
+      ],
+      "team": [
+        "5.000 Credits / Nutzer / Monat",
+        "Zugang zu GPT-4o",
+        "Team-Arbeitsbereich",
+        "Erweiterte Administrationskontrollen",
+        "Prioritäts-Support & SLA"
+      ],
+      "business": [
+        "Individuelle Credits",
+        "Dedizierter Support",
+        "SSO & Audit-Logs",
+        "Individuelle KI-Modelle",
+        "SLA-Garantie"
+      ]
+    }
+  },
+  "payment": {
+    "title": "Zahlungsmethode",
+    "billingCountry": "Rechnungsland",
+    "ugandaHint": "Uganda: Zahle mit Karte oder Mobile Money (MTN / Airtel).",
+    "otherHint": "Zahle mit Karte oder PayPal.",
+    "addMethod": "Zahlungsmethode hinzufügen",
+    "makeDefault": "Als Standard festlegen",
+    "methods": {
+      "card": "Karte",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Karte",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Telefonnummer",
+    "cardNumberLabel": "Kartennummer",
+    "expiryLabel": "Gültig bis",
+    "cvcLabel": "CVC",
+    "savedToast": "Zahlungsmethode gespeichert"
+  },
+  "invoices": {
+    "title": "Aktuelle Rechnungen",
+    "viewAll": "Alle Rechnungen anzeigen",
+    "allTitle": "Alle Rechnungen",
+    "allSubtitle": "JT-Code — Abrechnungsverlauf",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "amount": "Betrag",
+    "status": "Status"
+  },
+  "topup": {
+    "title": "Credits hinzufügen",
+    "description": "Erwerbe zusätzliche Credits für dein Konto",
+    "amountLabel": "Betrag (USD)",
+    "estimatedCredits": "Geschätzte Credits",
+    "confirm": "${{amount}} Credits hinzufügen",
+    "success": "Credits erfolgreich hinzugefügt",
+    "invalidAmount": "Gib einen gültigen Betrag ein"
+  },
+  "checkout": {
+    "title": "Schließe deinen Kauf ab",
+    "planSuffix": "{{name}}-Plan",
+    "customPricing": "Individuelle Preise",
+    "billedMonthly": "Monatliche Abrechnung",
+    "pay": "{{amount}} zahlen",
+    "enterPhone": "Gib die Telefonnummer für Mobile Money ein.",
+    "activated": "{{name}}-Plan aktiviert — Zahlung erfolgreich"
+  }
+}

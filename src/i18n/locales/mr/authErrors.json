@@ -1,0 +1,23 @@
+{
+  "firstNameRequired": "पहिले नाव आवश्यक आहे.",
+  "firstNameTooLong": "पहिले नाव खूप लांब आहे.",
+  "lastNameRequired": "आडनाव आवश्यक आहे.",
+  "lastNameTooLong": "आडनाव खूप लांब आहे.",
+  "invalidEmail": "वैध ईमेल पत्ता टाका.",
+  "passwordMinLength": "पासवर्डमध्ये किमान 8 अक्षरे असणे आवश्यक आहे.",
+  "passwordLetter": "पासवर्डमध्ये किमान एक अक्षर असणे आवश्यक आहे.",
+  "passwordUppercase": "पासवर्डमध्ये एक मोठे अक्षर असणे आवश्यक आहे.",
+  "passwordLowercase": "पासवर्डमध्ये एक छोटे अक्षर असणे आवश्यक आहे.",
+  "passwordNumber": "पासवर्डमध्ये एक अंक असणे आवश्यक आहे.",
+  "selectCountry": "तुमचा देश निवडा.",
+  "selectDialCode": "डायल कोड निवडा.",
+  "phoneRequired": "तुमचा फोन नंबर टाका.",
+  "invalidPhone": "निवडलेल्या देशासाठी वैध फोन नंबर टाका.",
+  "selectTimezone": "तुमचे वेळक्षेत्र निवडा.",
+  "acceptTerms": "तुम्ही अटी आणि गोपनीयता धोरण मान्य केले पाहिजे.",
+  "passwordsDoNotMatch": "पासवर्ड जुळत नाहीत.",
+  "passwordRequired": "तुमचा पासवर्ड टाका.",
+  "authenticationFailed": "प्रमाणीकरण अयशस्वी झाले.",
+  "finishingSignIn": "साइन इन पूर्ण होत आहे…",
+  "redirecting": "पुनर्निर्देशित करत आहे…"
+}

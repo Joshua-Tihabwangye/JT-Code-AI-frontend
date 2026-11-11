@@ -1,0 +1,13 @@
+{
+  "openNavigation": "Apri la navigazione",
+  "closeNavigation": "Chiudi navigazione",
+  "toggleTheme": "Cambia tema",
+  "theme": "Tema",
+  "expandSidebar": "Espandi la barra laterale",
+  "collapseSidebar": "Comprimi la barra laterale",
+  "collapse": "Comprimi",
+  "offlineMessage": "Sei offline. Le modifiche vengono salvate localmente e sincronizzate alla riconnessione.",
+  "fatalTitle": "Qualcosa è andato storto",
+  "unexpectedError": "Si è verificato un errore imprevisto.",
+  "reloadApp": "Ricarica l'applicazione"
+}

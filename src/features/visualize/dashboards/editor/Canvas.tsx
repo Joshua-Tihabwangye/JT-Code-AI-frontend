@@ -1,4 +1,5 @@
 import { useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowDownWideNarrow, Ban, Copy, Filter, Highlighter, List, Paintbrush, Tag, Trash2 } from 'lucide-react';
 import type { DashboardTheme, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
 import { interaction, kpiIndexes, PAGE_WIDTH, ROW_PX, Tile } from '../runtime';
@@ -77,6 +78,7 @@ export function EditorCanvas({
   /** Format painter armed: the next visual clicked takes the copied formatting. */
   painting?: boolean;
 }) {
+  const { t } = useTranslation();
   const state = useEditor();
   const { selected, select, change, checkpoint, snap, gridlines } = state;
   const page = currentPage(state);
@@ -282,7 +284,7 @@ export function EditorCanvas({
                     autoFocus
                     className="dash-title-input"
                     defaultValue={titleText}
-                    aria-label="Visual title"
+                    aria-label={t('visualize.editor.canvas.visualTitle')}
                     onBlur={(event) => {
                       const text = event.target.value.trim();
                       update(visual.id, (v) => setFormat(v, 'title', 'text', text || undefined));
@@ -300,8 +302,8 @@ export function EditorCanvas({
               <textarea
                 className="dash-text-editor"
                 defaultValue={visual.text ?? ''}
-                placeholder="Type text…"
-                aria-label="Text"
+                placeholder={t('visualize.editor.canvas.typeText')}
+                aria-label={t('visualize.editor.canvas.text')}
                 onBlur={(event) => update(visual.id, (v) => ({ ...v, text: event.target.value }))}
               />
             )}
@@ -312,7 +314,7 @@ export function EditorCanvas({
                     key={how}
                     type="button"
                     aria-pressed={interaction(interactionSource, visual) === how}
-                    title={how === 'filter' ? 'Filter: show only the clicked data' : how === 'highlight' ? 'Highlight: fade the rest' : 'None: not affected'}
+                    title={t(`visualize.editor.canvas.interaction.${how}`)}
                     onClick={() =>
                       update(interactionSource.id, (source) => ({ ...source, interactions: { ...(source.interactions ?? {}), [visual.id]: how } }))
                     }
@@ -347,6 +349,7 @@ export function EditorCanvas({
 
 /** The floating toolbar over the selected visual: type, labels, legend, sort, duplicate, delete. */
 function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; onFormat: () => void; update: (mutate: (visual: DashboardVisual) => DashboardVisual, merge?: string) => void }) {
+  const { t } = useTranslation();
   const { change, select, pageId } = useEditor();
   const options = COMPATIBLE[visual.type] ?? [];
   const labels = (visual.format?.labels as { show?: boolean } | undefined)?.show;
@@ -359,7 +362,7 @@ function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; on
         <select
           value={visual.type}
           onChange={(event) => update((v) => retype(v, event.target.value as DashboardVisualType))}
-          aria-label="Visual type"
+          aria-label={t('visualize.editor.canvas.visualType')}
           data-testid="minibar-type"
         >
           <option value={visual.type}>{VISUAL_BY_TYPE[visual.type]?.label ?? visual.type}</option>
@@ -372,15 +375,15 @@ function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; on
       )}
       {charts && (
         <>
-          <button type="button" aria-pressed={labels === true} title="Data labels" onClick={() => update((v) => setFormat(v, 'labels', 'show', labels === true ? false : true))}>
+          <button type="button" aria-pressed={labels === true} title={t('visualize.editor.canvas.dataLabels')} onClick={() => update((v) => setFormat(v, 'labels', 'show', labels === true ? false : true))}>
             <Tag size={13} />
           </button>
-          <button type="button" aria-pressed={legend !== false} title="Legend" onClick={() => update((v) => setFormat(v, 'legend', 'show', legend === false ? undefined : false))}>
+          <button type="button" aria-pressed={legend !== false} title={t('visualize.editor.canvas.legend')} onClick={() => update((v) => setFormat(v, 'legend', 'show', legend === false ? undefined : false))}>
             <List size={13} />
           </button>
           <button
             type="button"
-            title={sort.by === 'category' ? 'Sorted by name' : sort.dir === 'asc' ? 'Sorted ascending' : 'Sorted descending'}
+            title={sort.by === 'category' ? t('visualize.editor.canvas.sortedByName') : sort.dir === 'asc' ? t('visualize.editor.canvas.sortedAscending') : t('visualize.editor.canvas.sortedDescending')}
             onClick={() =>
               update((v) => {
                 const next = !sort.by && sort.dir !== 'asc' ? { dir: 'asc' } : !sort.by ? { by: 'category', dir: 'asc' } : {};
@@ -392,12 +395,12 @@ function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; on
           </button>
         </>
       )}
-      <button type="button" title="Format" onClick={onFormat}>
+      <button type="button" title={t('visualize.editor.canvas.format')} onClick={onFormat}>
         <Paintbrush size={13} />
       </button>
       <button
         type="button"
-        title="Duplicate (Ctrl+D)"
+        title={t('visualize.editor.canvas.duplicate')}
         onClick={() =>
           change((spec) => {
             const result = pasteVisuals(spec, pageId, [visual]);
@@ -408,7 +411,7 @@ function MiniToolbar({ visual, onFormat, update }: { visual: DashboardVisual; on
       >
         <Copy size={13} />
       </button>
-      <button type="button" title="Delete" onClick={() => change((spec) => removeVisuals(spec, pageId, [visual.id]))} data-testid="minibar-delete">
+      <button type="button" title={t('visualize.editor.canvas.delete')} onClick={() => change((spec) => removeVisuals(spec, pageId, [visual.id]))} data-testid="minibar-delete">
         <Trash2 size={13} />
       </button>
     </div>

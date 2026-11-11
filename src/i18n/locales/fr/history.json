@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Historique",
+  "title": "Historique",
+  "subtitle": "Vos chats et sessions récents.",
+  "clearHistory": "Effacer l'historique",
+  "clearConfirm": "Effacer tout l'historique des chats ?",
+  "emptyTitle": "Pas encore d'historique",
+  "emptyDesc": "Démarrez un chat et vos conversations apparaîtront ici.",
+  "startChatting": "Commencer à discuter",
+  "deleteItemAria": "Supprimer {{title}}"
+}

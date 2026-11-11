@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Verlauf",
+  "title": "Verlauf",
+  "subtitle": "Deine letzten Chats und Sitzungen.",
+  "clearHistory": "Verlauf löschen",
+  "clearConfirm": "Gesamten Chatverlauf löschen?",
+  "emptyTitle": "Noch kein Verlauf",
+  "emptyDesc": "Starte einen Chat und deine Unterhaltungen erscheinen hier.",
+  "startChatting": "Chat starten",
+  "deleteItemAria": "{{title}} löschen"
+}

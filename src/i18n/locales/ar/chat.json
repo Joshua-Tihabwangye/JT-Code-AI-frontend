@@ -1,0 +1,17 @@
+{
+  "headline": "ماذا نبني اليوم؟",
+  "welcome": "مرحبًا! أنا JT-Code. ماذا نبني اليوم؟",
+  "composerPlaceholder": "راسِل JT-Code…",
+  "composerPlaceholderBusy": "جارٍ المعالجة...",
+  "conversation": "المحادثة",
+  "newChat": "محادثة جديدة",
+  "startNewChatTitle": "بدء محادثة جديدة؟",
+  "startNewChatDesc": "سيتم حفظ محادثتك الحالية، ويمكنك متابعتها لاحقًا من السجل.",
+  "you": "أنت",
+  "streaming": "جارٍ البث...",
+  "errorBadge": "خطأ",
+  "requestFailed": "فشل الطلب.",
+  "statusRunning": "الحالة: {{status}}…",
+  "defaultPlan": "مجاني",
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+}
