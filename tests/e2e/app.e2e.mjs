@@ -20,16 +20,23 @@ const run = Date.now().toString(36);
 const email = `e2e-${run}@jt-code.local`;
 const password = `E2e-${run}-Passw0rd!`;
 const results = [];
+const MAILPIT = process.env.MAILPIT_URL ?? 'http://127.0.0.1:8025';
+// E2E_ONLY=<regex>: run only the matching steps (one phase); the account steps always run.
+const ONLY = process.env.E2E_ONLY ? new RegExp(process.env.E2E_ONLY, 'i') : null;
+const ALWAYS = new Set(['sign up']);
 
 mkdirSync(SHOTS, { recursive: true });
 
 async function grantCredits(address, credits = 5000) {
-  await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), ['manage.py', 'grant_local_credits', address, '--credits', String(credits)], {
+  // The Docker stack's database is not the host's native one (JT_CODE_STACK=native for the native stack).
+  const manage = process.env.JT_CODE_STACK === 'native' ? ['manage.py'] : ['scripts/local_manage.py', 'docker'];
+  await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), [...manage, 'grant_local_credits', address, '--credits', String(credits)], {
     cwd: BACKEND_DIR,
   });
 }
 
 async function step(page, name, fn) {
+  if (ONLY && !ONLY.test(name) && !ALWAYS.has(name)) return;
   const started = Date.now();
   try {
     await fn();
@@ -42,6 +49,22 @@ async function step(page, name, fn) {
     console.log(`  ✗ ${name}\n      ${String(error?.message ?? error).split('\n')[0]}`);
     throw error;
   }
+}
+
+/** The sign-up confirmation link GoTrue mailed to the address (the Docker stack does not auto-confirm). */
+async function confirmationLink(address) {
+  const deadline = Date.now() + 30_000;
+  while (Date.now() < deadline) {
+    const { messages } = await (await fetch(`${MAILPIT}/api/v1/messages`)).json();
+    const message = messages.find((m) => /confirm/i.test(m.Subject) && m.To.some((to) => to.Address === address));
+    if (message) {
+      const { HTML } = await (await fetch(`${MAILPIT}/api/v1/message/${message.ID}`)).json();
+      const link = /href="([^"]*\/verify[^"]*)"/.exec(HTML)?.[1];
+      if (link) return link.replace(/&amp;/g, '&');
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+  throw new Error(`No confirmation mail for ${address} in Mailpit`);
 }
 
 const textOf = (page, selector) => page.$eval(selector, (el) => el.textContent ?? '');
@@ -172,7 +195,13 @@ async function main() {
       await page.type('#confirmPassword', password);
       await page.click('#acceptedTerms');
       await page.click('button[type="submit"]');
-      await page.waitForFunction(() => location.pathname === '/app/chat', { timeout: 30_000 });
+      // Either signed in at once (auto-confirm) or told to confirm the address first.
+      await page.waitForFunction(() => location.pathname === '/app/chat' || /confirmation link/i.test(document.body.innerText), { timeout: 30_000 });
+      if (!(await page.evaluate(() => location.pathname === '/app/chat'))) {
+        // The emailed link verifies the address with GoTrue and returns to the app signed in.
+        await page.goto(await confirmationLink(email), { waitUntil: 'networkidle0' });
+        await page.waitForFunction(() => location.pathname.startsWith('/app/'), { timeout: 30_000 });
+      }
       await grantCredits(email);
     });
 

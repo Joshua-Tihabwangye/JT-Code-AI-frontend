@@ -26,6 +26,7 @@ void i18n
 /** The page follows the chosen language: text direction, and `lang` for screen readers,
  *  fonts and hyphenation. */
 function applyDirection(lng: string) {
+  if (typeof document === 'undefined') return; // Node (integration tests, tooling)
   document.documentElement.dir = isRtl(lng) ? 'rtl' : 'ltr';
   document.documentElement.lang = lng;
 }
