@@ -1,0 +1,18 @@
+{
+  "title": "Galería de gráficos",
+  "subtitle": "{{count}} tipos de gráfico: abre uno en Explorar y se rellenará con tus columnas.",
+  "search": "Buscar gráficos, p. ej., “previsión”, “proporción”",
+  "searchLabel": "Buscar gráficos",
+  "level": "Nivel",
+  "allLevels": "Todos los niveles",
+  "essentialShort": "Básico",
+  "advancedShort": "Avanzado",
+  "all": "Todos",
+  "recommended": "Recomendados para {{name}}",
+  "recommendedHint": "Elegidos a partir de tus columnas: abre uno para verlo con tus datos.",
+  "empty": "Ningún gráfico coincide con esa búsqueda.",
+  "advancedBadge": "Avanzado",
+  "useInExplore": "Usar en Explorar",
+  "addToDashboard": "Agregar al panel",
+  "thisDataset": "este conjunto de datos"
+}

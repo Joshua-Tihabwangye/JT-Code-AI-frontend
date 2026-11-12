@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Uchanganuzi wa Data",
+  "title": "Uchanganuzi wa Data",
+  "subtitle": "Pakia CSV, chunguza safu wima zake, endesha uchanganuzi na ubadilishe matokeo kuwa chati.",
+  "upload": {
+    "title": "Ongeza mkusanyiko wa data",
+    "name": "Jina",
+    "namePlaceholder": "k.m. mauzo ya Q3",
+    "file": "Faili ya CSV (hadi MB 25)",
+    "or": "- au bandika CSV -",
+    "paste": "Maandishi ya CSV",
+    "pastePlaceholder": "mkoa, mapato\nMashariki,120\nMagharibi,80",
+    "submit": "Ongeza mkusanyiko wa data",
+    "limits": "UTF-8 CSV yenye safu ya kichwa; hadi safu mlalo 100,000 na safu wima 200.",
+    "needData": "Chagua faili ya CSV au ubandike maandishi ya CSV."
+  },
+  "datasets": "Seti za data",
+  "noDatasets": "Bado hakuna seti za data.",
+  "datasetMeta": "{{rows}} safu · {{columns}} safu wima",
+  "emptyTitle": "Hakuna mkusanyiko wa data uliochaguliwa",
+  "emptyDesc": "Ongeza CSV upande wa kushoto ili kuanza kuchanganua.",
+  "deleteDataset": "Futa",
+  "deleteConfirm": "Je, ungependa kufuta mkusanyiko huu wa data pamoja na uchanganuzi na chati zake?",
+  "profilePending": "Takwimu za safu wima huonekana baada ya uchanganuzi wa kwanza wa faili iliyopakiwa.",
+  "profile": {
+    "column": "Safu",
+    "kind": "Aina",
+    "missing": "Haipo",
+    "distinct": "Tofauti",
+    "summary": "Muhtasari"
+  },
+  "builder": {
+    "title": "Chambua",
+    "filters": "Vichujio",
+    "addFilter": "Ongeza kichujio",
+    "noFilters": "Hakuna vichujio: kila safu imejumuishwa.",
+    "removeFilter": "Ondoa kichujio",
+    "column": "Safu",
+    "operator": "Opereta",
+    "value": "Thamani",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Kundi kwa",
+    "aggregate": "Jumla",
+    "ofColumn": "Ya safu",
+    "allNumeric": "Safu wima zote za nambari",
+    "sortBy": "Panga kwa",
+    "direction": "Mwelekeo",
+    "asc": "Kupanda",
+    "desc": "Kushuka",
+    "limit": "Kikomo cha safu",
+    "none": "Hakuna",
+    "run": "Endesha uchambuzi",
+    "cost": "Kila uchanganuzi hutumia mikopo 10; chati ni bure."
+  },
+  "operators": {
+    "eq": "sawa",
+    "ne": "si sawa",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "ina",
+    "in": "ni mmoja wa"
+  },
+  "aggregates": {
+    "count": "Hesabu safu",
+    "sum": "Jumla",
+    "mean": "Wastani",
+    "min": "Kiwango cha chini",
+    "max": "Upeo wa juu"
+  },
+  "status": {
+    "queued": "Imewekwa kwenye foleni",
+    "running": "Kukimbia",
+    "completed": "Imekamilika",
+    "failed": "Imeshindwa",
+    "ready": "Tayari"
+  },
+  "results": {
+    "title": "Matokeo",
+    "rows": "{{count}} safu mlalo (inaonyesha {{shown}})",
+    "download": "Pakua CSV",
+    "retry": "Jaribu tena",
+    "pickRun": "Uchambuzi kukimbia"
+  },
+  "charts": {
+    "title": "Chati",
+    "kind": "Chati",
+    "x": "Mhimili wa X",
+    "y": "Mhimili wa Y (nambari)",
+    "chartTitle": "Kichwa",
+    "create": "Unda chati",
+    "delete": "Futa chati",
+    "noImage": "Chati hutoa kwenye seva katika hali ya API."
+  },
+  "chartKinds": {
+    "bar": "Baa",
+    "line": "Mstari",
+    "scatter": "Tawanya",
+    "area": "Eneo",
+    "histogram": "Histogram",
+    "box": "Sanduku",
+    "pie": "Pai"
+  }
+}

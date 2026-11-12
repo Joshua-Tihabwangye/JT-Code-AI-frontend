@@ -1,0 +1,16 @@
+{
+  "openNavigation": "Abrir navegación",
+  "closeNavigation": "Cerrar navegación",
+  "toggleTheme": "Cambiar tema",
+  "theme": "Tema",
+  "expandSidebar": "Expandir barra lateral",
+  "collapseSidebar": "Contraer barra lateral",
+  "collapse": "Contraer",
+  "offlineMessage": "Estás sin conexión. Los cambios se guardan localmente y se sincronizarán al reconectarte.",
+  "fatalTitle": "Algo salió mal",
+  "unexpectedError": "Se produjo un error inesperado.",
+  "reloadApp": "Recargar aplicación",
+  "home": "Inicio de JT-Code",
+  "primaryNavigation": "Navegación principal",
+  "fatalError": "JT-Code ha encontrado un error."
+}

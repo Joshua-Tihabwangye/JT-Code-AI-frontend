@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Kulinganisha",
+      "description": "Linganisha thamani katika kategoria zote na uzipange."
+    },
+    "trend": {
+      "name": "Mitindo na wakati",
+      "description": "Onyesha jinsi maadili yanavyobadilika kwa wakati."
+    },
+    "composition": {
+      "name": "Muundo",
+      "description": "Vunja jumla katika sehemu zake."
+    },
+    "distribution": {
+      "name": "Usambazaji",
+      "description": "Kuelewa kuenea, sura na nje."
+    },
+    "statistical": {
+      "name": "Takwimu",
+      "description": "Vipindi vya kujiamini, mipaka ya udhibiti na uchunguzi."
+    },
+    "relationship": {
+      "name": "Uhusiano na uwiano",
+      "description": "Tafuta jinsi vigeu vinavyosonga pamoja."
+    },
+    "flow": {
+      "name": "Mtiririko na uongozi",
+      "description": "Fuata idadi kati ya hatua na viwango."
+    },
+    "geo": {
+      "name": "Ramani",
+      "description": "Thamani za njama kulingana na nchi au viwianishi."
+    },
+    "dimensional": {
+      "name": "Dimensional",
+      "description": "Punguza na uchunguze anuwai nyingi kwa wakati mmoja."
+    },
+    "ml": {
+      "name": "Tathmini ya mfano",
+      "description": "Jaji waainishaji, warejeshi na nguzo."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Chati ya bar",
+      "description": "Linganisha thamani katika kategoria.",
+      "howToRead": "Urefu wa kila sehemu ni thamani ya kitengo hicho; kulinganisha urefu ili kuziweka.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Upau wa makundi",
+      "description": "Pau za kando kwa kila kikundi.",
+      "howToRead": "Baa hukaa bega kwa bega ndani ya kila kategoria ili uweze kulinganisha vikundi vidogo moja kwa moja.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        },
+        "color": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Upau uliopangwa",
+      "description": "Jumla na mchango wa kila kikundi kidogo.",
+      "howToRead": "Kila bar ni jumla; sehemu za rangi zinaonyesha ni kiasi gani kila kikundi kinachangia.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        },
+        "color": {
+          "label": "Stack by"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "Upau uliopangwa kwa 100%",
+      "description": "Shiriki ya kila kikundi kidogo ndani ya kila aina.",
+      "howToRead": "Kila upau huongeza hadi 100%, kwa hivyo urefu wa sehemu huonyesha mchanganyiko ndani ya kila aina.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        },
+        "color": {
+          "label": "Stack by"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Chati ya Lollipop",
+      "description": "Chati nyepesi ya upau kwa thamani zilizoorodheshwa.",
+      "howToRead": "Nukta huashiria thamani ya kila aina; kadiri fimbo inavyokuwa ndefu, ndivyo thamani inavyokuwa kubwa.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Njama ya nukta",
+      "description": "Linganisha hatua kadhaa kwa kila kategoria kama nukta.",
+      "howToRead": "Kila nukta ni kipimo kimoja kwa kategoria; dots zaidi kulia ni kubwa.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        },
+        "y": {
+          "label": "Maadili"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Chati ya dumbbell",
+      "description": "Onyesha pengo kati ya vipimo viwili kwa kila kategoria.",
+      "howToRead": "Dots mbili ni maadili ya mwanzo na mwisho; bar ya kijani ina maana rose, nyekundu kwamba ilianguka.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        }
+      }
+    },
+    "radar": {
+      "name": "Chati ya rada",
+      "description": "Wasifu hatua kadhaa za vipengee vichache.",
+      "howToRead": "Kila aliyenena ni kipimo; umbo kubwa humaanisha maadili ya juu katika vipimo.",
+      "slots": {
+        "x": {
+          "label": "Kipengee"
+        },
+        "features": {
+          "label": "Vipimo"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Risasi / chati inayolengwa",
+      "description": "Halisi dhidi ya lengo kwa kila aina.",
+      "howToRead": "Upau wa giza ndio thamani halisi, upau wa mwanga na tiki ndio unaolengwa; kijani inamaanisha lengo lilifikiwa.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        },
+        "y": {
+          "label": "Halisi"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Chati ya Pareto",
+      "description": "Pau zilizopangwa kwa mstari wa jumla wa kushiriki (80/20).",
+      "howToRead": "Baa hupangwa kwa ukubwa kwanza; mstari unaonyesha sehemu inayoendesha, ili uweze kuona ni vitu vichache vinavyofanya 80%.",
+      "slots": {
+        "x": {
+          "label": "Kategoria"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Jedwali la ramani ya joto",
+      "description": "Rangi thamani katika kategoria mbili.",
+      "howToRead": "Seli nyeusi hushikilia thamani za juu zaidi kwa mseto huo wa safu mlalo na safu wima.",
+      "slots": {
+        "x": {
+          "label": "Safu"
+        },
+        "y": {
+          "label": "Safu"
+        }
+      },
+      "options": {
+        "show_values": "Onyesha maadili"
+      }
+    },
+    "line": {
+      "name": "Chati ya mstari",
+      "description": "Mtazamo wa kawaida wa mabadiliko kwa wakati.",
+      "howToRead": "Mstari hufuata thamani baada ya muda; miteremko inaonyesha ukuaji au kupungua.",
+      "slots": {
+        "y": {
+          "label": "Maadili"
+        }
+      }
+    },
+    "area": {
+      "name": "Chati ya eneo",
+      "description": "Sisitiza kiasi cha mwenendo.",
+      "howToRead": "Eneo lililojaa linaonyesha thamani kwa muda; urefu wake ni kiasi katika kila tarehe."
+    },
+    "stacked_area": {
+      "name": "Eneo lililopangwa",
+      "description": "Jinsi sehemu za jumla hubadilika kwa wakati.",
+      "howToRead": "Tabaka zinarundikana juu ya nyingine, kwa hivyo makali ya juu ni jumla na kila bendi ni kundi moja.",
+      "slots": {
+        "color": {
+          "label": "Stack by"
+        }
+      },
+      "options": {
+        "normalize": "Onyesha kama 100%"
+      }
+    },
+    "step_line": {
+      "name": "Mstari wa hatua",
+      "description": "Thamani zinazobadilika kwa nyakati tofauti (bei, viwango vya hisa).",
+      "howToRead": "Thamani hubakia sawa hadi itakapobadilika, ambayo inalingana na bei, viwango vya hisa na masasisho mengine tofauti."
+    },
+    "rolling_average": {
+      "name": "Kusonga wastani",
+      "description": "Mfululizo laini wa kelele na wastani unaozunguka.",
+      "howToRead": "Mstari hafifu ni safu mbichi; mstari mzito huwa wastani wa pointi za hivi majuzi ili kufichua mwenendo."
+    },
+    "cumulative": {
+      "name": "Jumla ya jumla",
+      "description": "Jumla ya kukimbia kwa muda.",
+      "howToRead": "Mstari huongeza kila kipindi kwa jumla ya awali, hivyo mteremko wake unaonyesha jinsi jumla inakua haraka."
+    },
+    "period_change": {
+      "name": "Mabadiliko ya muda baada ya muda",
+      "description": "Asilimia ya mabadiliko kutoka kipindi cha awali.",
+      "howToRead": "Baa zinaonyesha mabadiliko ya asilimia kutoka kwa kipindi cha awali: kijani ni ukuaji, nyekundu ni kupungua."
+    },
+    "candlestick": {
+      "name": "Kinara",
+      "description": "Fungua/juu/chini/funga harakati (fedha).",
+      "howToRead": "Kila mshumaa huzunguka safu ya chini-juu; mwili huendesha kutoka wazi hadi kufungwa (kijani juu, nyekundu chini)."
+    },
+    "range_band": {
+      "name": "Bendi ya safu",
+      "description": "Mstari wenye mkanda wa kiwango cha juu zaidi au usio na uhakika.",
+      "howToRead": "Mstari ni thamani; bendi ya kivuli inaonyesha mipaka yake ya chini na ya juu."
+    },
+    "calendar_heatmap": {
+      "name": "Ramani ya joto ya kalenda",
+      "description": "Muundo wa siku ya wiki × wiki wa kipimo cha kila siku.",
+      "howToRead": "Kila mraba ni siku; miraba meusi zaidi ina thamani ya juu, inayoonyesha muundo wa siku za wiki na msimu."
+    },
+    "seasonal_decompose": {
+      "name": "Mtengano wa msimu",
+      "description": "Gawanya mfululizo katika mtindo, msimu na mabaki.",
+      "howToRead": "Mfululizo umegawanywa katika mwenendo (mwelekeo), msimu (muundo unaorudiwa) na mabaki (kelele)."
+    },
+    "autocorrelation": {
+      "name": "Usanifu otomatiki (ACF / PACF)",
+      "description": "Jinsi mfululizo unavyohusiana na maadili yake ya zamani.",
+      "howToRead": "Baa zilizo nje ya bendi nyekundu huonyesha kuchelewa ambapo mfululizo hujirudia."
+    },
+    "pie": {
+      "name": "Chati ya pai",
+      "description": "Sehemu za nzima (bora na vipande vichache).",
+      "howToRead": "Kila kipande ni sehemu ya nzima; vipande vikubwa ni hisa kubwa.",
+      "slots": {
+        "x": {
+          "label": "Vipande"
+        }
+      }
+    },
+    "donut": {
+      "name": "Chati ya donut",
+      "description": "Pai yenye nafasi ya jumla katikati.",
+      "howToRead": "Kila sehemu ni sehemu ya jumla iliyoonyeshwa katikati.",
+      "slots": {
+        "x": {
+          "label": "Vipande"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Ramani ya miti",
+      "description": "Mistatili iliyowekwa kwenye ukubwa kulingana na thamani.",
+      "howToRead": "Eneo la mstatili ni sawia na thamani; rectangles nested kuvunja kundi katika sehemu zake."
+    },
+    "sunburst": {
+      "name": "Kupasuka kwa jua",
+      "description": "Hierarkia kama pete makini.",
+      "howToRead": "Pete za ndani ni vikundi vya ngazi ya juu, pete za nje ni vikundi vyao vidogo; urefu wa arc ndio thamani.",
+      "slots": {
+        "path": {
+          "label": "Viwango (ndani hadi nje)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Chati ya barafu",
+      "description": "Daraja kama mistatili iliyopangwa.",
+      "howToRead": "Kila safu ni kiwango cha uongozi; upana wa block ni sehemu yake ya jumla.",
+      "slots": {
+        "path": {
+          "label": "Viwango (juu hadi chini)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Maporomoko ya maji",
+      "description": "Jinsi hatua chanya na hasi hujenga jumla.",
+      "howToRead": "Hatua za kijani ongeza, hatua nyekundu ondoa, na upau wa mwisho ni jumla inayotokana.",
+      "slots": {
+        "x": {
+          "label": "Hatua"
+        },
+        "y": {
+          "help": "Acha hesabu kwa kuchagua Hesabu kama mkusanyiko."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Funeli",
+      "description": "Uongofu kupitia hatua zilizopangwa.",
+      "howToRead": "Kila hatua ni nyembamba kuliko ya mwisho; kushuka kati ya hatua ni pale ambapo watu wamepotea.",
+      "slots": {
+        "x": {
+          "label": "Jukwaa"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (mosaic)",
+      "description": "Utungaji wa njia mbili na upana tofauti.",
+      "howToRead": "Upana wa safuwima ni sehemu ya kila safu ya jumla; urefu wa sehemu ni mchanganyiko ndani yake.",
+      "slots": {
+        "x": {
+          "label": "Safu"
+        },
+        "color": {
+          "label": "Sehemu"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Histogram",
+      "description": "Ni mara ngapi thamani huanguka katika kila safu.",
+      "howToRead": "Baa huhesabu ni thamani ngapi zinazoanguka katika kila safu; baa ndefu zaidi ni maadili ya kawaida.",
+      "slots": {
+        "x": {
+          "label": "Thamani"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Mkondo msongamano (KDE)",
+      "description": "Kadirio laini la usambazaji.",
+      "howToRead": "Curve laini inakadiria jinsi maadili yanavyosambazwa; vilele ni maadili ya kawaida.",
+      "slots": {
+        "x": {
+          "label": "Thamani"
+        }
+      }
+    },
+    "box": {
+      "name": "Mchoro wa sanduku",
+      "description": "Wastani, quartiles na nje kwa kila kikundi.",
+      "howToRead": "Sanduku linashikilia katikati ya 50% ya maadili, mstari ni wastani, whiskers zinaonyesha aina ya kawaida na dots ni za nje.",
+      "slots": {
+        "x": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "violin": {
+      "name": "Njama ya violin",
+      "description": "Sanduku la mpangilio pamoja na umbo kamili wa usambazaji.",
+      "howToRead": "Upana katika kila ngazi unaonyesha ni thamani ngapi zimekaa hapo; bar giza ni katikati 50%.",
+      "slots": {
+        "x": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "strip": {
+      "name": "Strip / jitter plot",
+      "description": "Kila uchunguzi kama nukta kwa kila kikundi.",
+      "howToRead": "Kila nukta ni safu mlalo moja, tandaza kando ili thamani zinazopishana ziendelee kuonekana.",
+      "slots": {
+        "x": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Usambazaji jumla (ECDF)",
+      "description": "Mgao wa thamani chini ya kila ngazi.",
+      "howToRead": "Kwa thamani yoyote kwenye mhimili wa x, curve inaonyesha sehemu ya thamani iliyo chini yake au chini yake.",
+      "slots": {
+        "x": {
+          "label": "Thamani"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Ridgeline",
+      "description": "Usambazaji uliopangwa kwa vikundi vingi.",
+      "howToRead": "Kila tuta ni mgawanyo wa kundi moja; linganisha mahali peaks kukaa na jinsi upana wao.",
+      "slots": {
+        "x": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Mpango wa mvua",
+      "description": "Nusu ya violin, sanduku na pointi mbichi pamoja.",
+      "howToRead": "Kila kikundi kinaonyesha usambazaji wake (wingu), katikati yake 50% (bar) na kila thamani (mvua).",
+      "slots": {
+        "x": {
+          "label": "Kundi kwa"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Maana kwa muda wa kujiamini",
+      "description": "Kikundi kinamaanisha na vipindi vya kujiamini kwa 95%.",
+      "howToRead": "Baa ni wastani wa kikundi na whiskers muda wa kujiamini; masharubu yanayopishana inamaanisha kuwa tofauti inaweza kuwa bahati.",
+      "slots": {
+        "x": {
+          "label": "Kikundi"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Mpango wa Q-Q",
+      "description": "Angalia ikiwa maadili yanafuata usambazaji wa kinadharia.",
+      "howToRead": "Ikiwa pointi zitafuata mstari mwekundu, data inalingana na usambazaji uliochaguliwa.",
+      "slots": {
+        "x": {
+          "label": "Thamani"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Kufaa kwa usambazaji",
+      "description": "Histogram iliyo na usambazaji uliowekwa na wema wa kufaa.",
+      "howToRead": "Baa ni usambazaji unaozingatiwa; curve ndio usambazaji wa kinadharia unaofaa zaidi.",
+      "slots": {
+        "x": {
+          "label": "Thamani"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Chati ya udhibiti (SPC)",
+      "description": "Mchakato wa maadili kwa wastani na ±3σ vikomo vya udhibiti.",
+      "howToRead": "Pointi kati ya mipaka iliyopigwa ni tofauti ya kawaida; pointi nyekundu nje yao zinahitaji tahadhari.",
+      "slots": {
+        "x": {
+          "label": "Agizo / wakati"
+        },
+        "y": {
+          "label": "Kipimo"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Bland-Altman",
+      "description": "Makubaliano kati ya njia mbili za kipimo.",
+      "howToRead": "Kila nukta inalinganisha vipimo viwili vya kitu kimoja; mistari inaonyesha upendeleo wa wastani na mipaka ya makubaliano.",
+      "slots": {
+        "x": {
+          "label": "Mbinu A"
+        },
+        "y": {
+          "label": "Mbinu B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Ramani ya maadili haipo",
+      "description": "Ambapo data haipo kwenye safu wima.",
+      "howToRead": "Baa zinaonyesha sehemu ya nafasi zilizo wazi kwa kila safu; alama nyekundu katika muundo huonyesha mahali zinapotokea."
+    },
+    "scatter": {
+      "name": "Njama ya kutawanya",
+      "description": "Uhusiano kati ya hatua mbili.",
+      "howToRead": "Kila nukta ni safu mlalo moja; wingu linaloinuka inamaanisha kuwa hatua mbili huongezeka kwa pamoja.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      },
+      "options": {
+        "marginal": "Viwanja vya pembezoni"
+      }
+    },
+    "bubble": {
+      "name": "Chati ya Bubble",
+      "description": "Kiwanja cha kutawanya chenye kipimo cha tatu kama saizi.",
+      "howToRead": "Kama njama ya kutawanya, lakini saizi ya Bubble inaonyesha kipimo cha tatu.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Regression inafaa",
+      "description": "Tawanya kwa mstari uliowekwa, R² na mlingano.",
+      "howToRead": "Mviringo ni kielelezo kilichowekwa na bendi ina muda wake wa 95% wa kujiamini; R² ni sehemu ya tofauti iliyoelezwa.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Matrix ya uwiano",
+      "description": "Uwiano kati ya kila jozi ya hatua.",
+      "howToRead": "Kila seli ni uwiano kati ya vipimo viwili, kutoka -1 (bluu) hadi +1 (nyekundu).",
+      "options": {
+        "show_values": "Onyesha mgawo"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Matrix ya kutawanya (njama ya jozi)",
+      "description": "Kila jozi ya hatua katika mtazamo.",
+      "howToRead": "Kila jozi ya hatua hupata mtawanyiko wake; diagonal inaonyesha usambazaji wa kila kipimo.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (lebo)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "Ramani ya joto ya msongamano wa 2D",
+      "description": "Ambapo pointi huzingatia (kwa safu nyingi).",
+      "howToRead": "Seli nyeusi huwa na safu mlalo zaidi, ambayo inaonyesha mahali ambapo pointi hujilimbikizia.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Contour ya wiani",
+      "description": "Mtaro wa wiani wa uhakika.",
+      "howToRead": "Pete hufunga maeneo ya wiani wa pointi sawa; pete za ndani hushikilia safu nyingi zaidi.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Mpango wa pamoja",
+      "description": "Tawanya kwa usambazaji wa kila mhimili.",
+      "howToRead": "Kutawanya kunaonyesha uhusiano; histograms za upande zinaonyesha usambazaji wa kila kipimo.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Kuratibu sambamba",
+      "description": "Linganisha vipimo vingi kwenye safu mlalo.",
+      "howToRead": "Kila mstari ni safu inayovuka kila mhimili wa kipimo; bahasha za mistari zinaonyesha wasifu wa kawaida.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (nambari)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Kategoria zinazolingana",
+      "description": "Inapita kati ya safu wima za kitengo.",
+      "howToRead": "Bendi hutiririka kati ya safu wima za kategoria; unene wao ni idadi ya safu.",
+      "slots": {
+        "path": {
+          "label": "Safu wima za kitengo"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Jedwali la dharura",
+      "description": "Huhesabu katika kategoria mbili kwa jaribio la chi-mraba.",
+      "howToRead": "Safu za kuhesabu seli kwa kila jozi ya kategoria; jaribio la chi-mraba linasema ikiwa zinahusiana.",
+      "slots": {
+        "x": {
+          "label": "Safu"
+        },
+        "y": {
+          "label": "Safu"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Mchoro wa Sankey",
+      "description": "Kiasi kinachotiririka kati ya hatua.",
+      "howToRead": "Bendi hutoka hatua moja hadi nyingine; upana wao ni wingi wa kusonga kati yao.",
+      "slots": {
+        "path": {
+          "label": "Hatua (kwa mpangilio)"
+        }
+      }
+    },
+    "network": {
+      "name": "Grafu ya mtandao",
+      "description": "Miunganisho kati ya vyombo.",
+      "howToRead": "Nodi ni vyombo na mistari ni viunganisho; kubwa, nodi nyeusi zina viungo zaidi.",
+      "slots": {
+        "target": {
+          "label": "Kwa"
+        },
+        "y": {
+          "label": "Uzito"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Ramani ya Choropleth",
+      "description": "Rangi nchi kwa thamani.",
+      "howToRead": "Nchi zimefunikwa na thamani; nyeusi inamaanisha juu zaidi."
+    },
+    "scatter_geo": {
+      "name": "Pointi kwenye ramani",
+      "description": "Viwanja vya latitudo/longitudo.",
+      "howToRead": "Kila nukta ni eneo lililopangwa kwa latitudo na longitudo."
+    },
+    "scatter_3d": {
+      "name": "Mtawanyiko wa 3D",
+      "description": "Chunguza hatua tatu katika kuzungusha 3D.",
+      "howToRead": "Buruta ili kuzungusha; kila nukta ni safu iliyowekwa kwa vipimo vitatu.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        },
+        "z": {
+          "label": "Mhimili wa Z"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "Uso wa 3D",
+      "description": "Uso juu ya vipimo viwili.",
+      "howToRead": "Urefu wa uso na rangi huonyesha kipimo cha tatu katika mbili za kwanza; buruta ili kuzungusha.",
+      "slots": {
+        "x": {
+          "label": "Mhimili wa X"
+        },
+        "y": {
+          "label": "Mhimili wa Y"
+        },
+        "z": {
+          "label": "Urefu"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "Ramani ya PCA (2D)",
+      "description": "Onyesha hatua nyingi kwenye sehemu kuu mbili.",
+      "howToRead": "Hatua nyingi zimebanwa katika vipengele viwili; pointi karibu pamoja ni safu sawa.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (lebo)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "Ramani ya PCA (3D)",
+      "description": "Vipengele vitatu kuu katika 3D.",
+      "howToRead": "Vipengele vitatu kuu katika 3D; buruta ili kuzungusha na kutafuta makundi.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (lebo)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "Biplot ya PCA",
+      "description": "Safu na vipimo vinavyoendesha kila sehemu.",
+      "howToRead": "Pointi ni safu na mishale ni vipimo; mishale inayoelekeza kwa njia sawa imeunganishwa.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (lebo)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Scree njama",
+      "description": "Tofauti iliyoelezewa na kila sehemu.",
+      "howToRead": "Baa zinaonyesha ni taarifa ngapi kila sehemu inashikilia; mstari unaonyesha jumla ya kukimbia."
+    },
+    "tsne_2d": {
+      "name": "ramani ya t-SNE",
+      "description": "Ramani isiyo ya mstari ya 2D ambayo huwaweka majirani karibu.",
+      "howToRead": "Ramani isiyo ya mstari ambayo huweka safu mlalo sawa pamoja; tafuta makundi yaliyotengwa.",
+      "slots": {
+        "color": {
+          "label": "Rangi kwa (lebo)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "Makadirio ya LDA",
+      "description": "Makadirio ambayo hutenganisha vyema vikundi vilivyo na lebo.",
+      "howToRead": "Makadirio yaliyochaguliwa kutenganisha vikundi vilivyo na lebo iwezekanavyo.",
+      "slots": {
+        "color": {
+          "label": "Lebo"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Ramani ya nguzo (k-njia)",
+      "description": "Panga safu mlalo zinazofanana na uzionyeshe kwenye ramani ya PCA.",
+      "howToRead": "Rangi zinaonyesha nguzo zinazopatikana kwa njia za k; almasi alama katikati ya kila nguzo."
+    },
+    "confusion_matrix": {
+      "name": "Matrix ya kuchanganyikiwa",
+      "description": "Ambapo kiainishaji ni sawa na si sahihi.",
+      "howToRead": "Ulalo hushikilia utabiri sahihi; seli zingine zinaonyesha ni madarasa gani huchanganyikiwa."
+    },
+    "roc_curve": {
+      "name": "Mzunguko wa ROC",
+      "description": "Kiwango cha chanya cha Kweli dhidi ya uwongo katika kila kikomo, kwa kutumia AUC.",
+      "howToRead": "Kadiri curve inavyokaa juu ya mlalo, ndivyo mtindo unavyoweka vyema vyema; AUC inatoa muhtasari wake."
+    },
+    "pr_curve": {
+      "name": "Usahihi - kumbuka curve",
+      "description": "Usahihi na kukumbuka ubadilishanaji, kwa usahihi wa wastani.",
+      "howToRead": "Inaonyesha usahihi unaoweka kumbukumbu inapoongezeka; juu na kulia zaidi ni bora zaidi."
+    },
+    "calibration_curve": {
+      "name": "Curve ya urekebishaji",
+      "description": "Je, uwezekano uliotabiriwa unalingana na viwango vinavyozingatiwa?",
+      "howToRead": "Alama kwenye mstari wa mstari humaanisha uwezekano uliotabiriwa unalingana na viwango vinavyozingatiwa.",
+      "options": {
+        "bins": "Mapipa"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Faida na kuinua kwa wingi",
+      "description": "Ni bora zaidi kuliko kulenga bila mpangilio mfano ni.",
+      "howToRead": "Inaonyesha ni ngapi chanya unazokamata kwa kulenga sehemu yenye alama za juu za safu mlalo, na kuinua bila mpangilio."
+    },
+    "threshold_metrics": {
+      "name": "Mchunguzi wa kizingiti",
+      "description": "Usahihi, kukumbuka na F1 katika kila kizingiti.",
+      "howToRead": "Usahihi, kukumbuka na F1 katika kila kata-off; mstari wa nukta alama ya usawa bora."
+    },
+    "predicted_vs_actual": {
+      "name": "Iliyotabiriwa dhidi ya halisi",
+      "description": "Usahihi wa urejeshaji dhidi ya mstari kamili.",
+      "howToRead": "Pointi kwenye diagonal iliyopigwa ni utabiri kamili; kuenea kunaonyesha kosa."
+    },
+    "residual_plot": {
+      "name": "Kiwanja cha mabaki",
+      "description": "Makosa dhidi ya utabiri ili kuona upendeleo.",
+      "howToRead": "Makosa yaliyopangwa dhidi ya utabiri; wingu nasibu karibu sifuri inamaanisha hakuna upendeleo wa kimfumo."
+    },
+    "error_distribution": {
+      "name": "Usambazaji wa hitilafu",
+      "description": "Histogram ya makosa ya utabiri.",
+      "howToRead": "Jinsi makosa ya utabiri ni makubwa; kilele nyembamba karibu na sifuri ni bora."
+    },
+    "feature_importance": {
+      "name": "Umuhimu wa kipengele",
+      "description": "Ambayo pembejeo huendesha lengo (msitu wa nasibu + ruhusa).",
+      "howToRead": "Baa ndefu ni pembejeo ambazo mtindo hutegemea zaidi; whiskers kuonyesha kutokuwa na uhakika.",
+      "slots": {
+        "target": {
+          "label": "Lengo la kueleza"
+        }
+      },
+      "options": {
+        "top_n": "Onyesha juu"
+      }
+    },
+    "learning_curve": {
+      "name": "Curve ya kujifunza",
+      "description": "Je, data zaidi inaweza kusaidia modeli?",
+      "howToRead": "Alama za mafunzo na uthibitishaji kadri data inavyokua; pengo kubwa maana yake ni kupita kiasi.",
+      "options": {
+        "model": "Mfano"
+      }
+    },
+    "elbow": {
+      "name": "Chati ya kiwiko",
+      "description": "Chagua idadi ya makundi kwa hali.",
+      "howToRead": "Inertia hupungua kama nguzo zinaongezwa; kiwiko ni mahali ambapo nguzo za ziada huacha kusaidia."
+    },
+    "silhouette": {
+      "name": "Uchambuzi wa silhouette",
+      "description": "Ubora wa nguzo kwa kila k.",
+      "howToRead": "Baa za juu humaanisha nguzo zilizotenganishwa vyema; bar ya kijani ni idadi bora ya makundi."
+    },
+    "kpi_card": {
+      "name": "Kadi ya KPI",
+      "description": "Nambari moja ya kichwa na mabadiliko yake na mstari wa cheche.",
+      "howToRead": "Idadi kubwa ni kipindi cha hivi karibuni; mshale unaonyesha mabadiliko kutoka kipindi cha awali, na cheche mwenendo wa hivi karibuni.",
+      "slots": {
+        "y": {
+          "label": "Pima"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Kipimo (maendeleo kwa lengo)",
+      "description": "Kipimo kiko umbali gani kuelekea lengo.",
+      "howToRead": "Sindano inaonyesha kipimo dhidi ya lengo lake; kijani ina maana juu ya kufuatilia, amber karibu, nyekundu nyuma.",
+      "slots": {
+        "y": {
+          "label": "Pima"
+        },
+        "target": {
+          "label": "Lengo (si lazima)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Mti wa kuoza",
+      "description": "Vunja jumla ya kiwango kwa kiwango ili kuona inatoka wapi.",
+      "howToRead": "Anza kutoka kwa jumla upande wa kushoto na ufuate matawi ili kuona ni sehemu gani zinazounda; nodi kubwa huchangia zaidi.",
+      "slots": {
+        "path": {
+          "label": "Vunja kwa (kwa mpangilio)"
+        }
+      },
+      "options": {
+        "top_n": "Matawi kwa ngazi"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Utabiri wa mfululizo wa saa",
+      "description": "Tengeneza kipimo cha mbele (mauzo, mahitaji, mapato) na bendi za kutokuwa na uhakika.",
+      "models": {
+        "auto": "Bora zaidi (iliyochaguliwa na backtest)",
+        "holt_winters": "Urekebishaji wa kielelezo wa Holt-Winters",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "Mwelekeo wa mstari + msimu"
+      },
+      "outputs": [
+        "Chati ya utabiri yenye bendi 80%/95%",
+        "Kesi bora na mbaya zaidi",
+        "Usahihi wa Backtest (MAE, MAPE)",
+        "Jedwali la maadili ya siku zijazo"
+      ],
+      "slots": {
+        "target": {
+          "label": "Pima utabiri"
+        }
+      }
+    },
+    "trend": {
+      "name": "Uchambuzi wa mwenendo na msimu",
+      "description": "Viwango vya ukuaji, wastani wa kusonga, mifumo ya msimu, pointi za mabadiliko na vipindi visivyo vya kawaida.",
+      "models": {
+        "robust": "Otomatiki (mwelekeo thabiti + ugunduzi usio wa kawaida)"
+      },
+      "outputs": [
+        "Ukuaji: jumla, wastani, karibuni na mwaka baada ya mwaka",
+        "Wasifu wa msimu",
+        "Badilisha pointi na hitilafu"
+      ],
+      "slots": {
+        "target": {
+          "label": "Pima"
+        }
+      },
+      "options": {
+        "window": "Wastani wa kusonga (vipindi)"
+      }
+    },
+    "drivers": {
+      "name": "Viendeshaji muhimu (nini huathiri matokeo)",
+      "description": "Tafuta ni vipengele na sehemu zipi zinazosukuma matokeo juu au chini - churn, mauzo, kuridhika.",
+      "models": {
+        "segments": "Ulinganisho wa sehemu + umuhimu wa msitu bila mpangilio"
+      },
+      "outputs": [
+        "Vishawishi vya juu na lifti",
+        "Umuhimu wa kipengele",
+        "Sehemu bora na mbaya zaidi"
+      ],
+      "slots": {
+        "target": {
+          "label": "Matokeo ya kuelezea"
+        },
+        "features": {
+          "label": "Safu wima za ingizo",
+          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+        }
+      }
+    },
+    "regression": {
+      "name": "Bashiri nambari",
+      "description": "Kadiria matokeo ya nambari (bei, mahitaji, alama) kutoka safu wima zingine.",
+      "models": {
+        "auto": "Bora zaidi (imethibitishwa)",
+        "linear": "Urejeshaji wa mstari",
+        "ridge": "Urejeshaji wa matuta",
+        "random_forest": "Msitu wa nasibu",
+        "gradient_boosting": "Kuongeza gradient"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Iliyotabiriwa dhidi ya halisi, mabaki",
+        "Umuhimu wa kipengele"
+      ],
+      "slots": {
+        "target": {
+          "label": "Nambari ya kutabiri"
+        },
+        "features": {
+          "label": "Safu wima za ingizo",
+          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+        }
+      }
+    },
+    "classification": {
+      "name": "Bashiri kategoria",
+      "description": "Ainisha safu mlalo (churn, idhini, sehemu) na uhukumu kiainishi.",
+      "models": {
+        "auto": "Bora zaidi (imethibitishwa)",
+        "logistic": "Urejeshaji wa vifaa",
+        "random_forest": "Msitu wa nasibu",
+        "gradient_boosting": "Kuongeza gradient"
+      },
+      "outputs": [
+        "Usahihi, F1, ROC AUC",
+        "Matrix ya mkanganyiko, ROC na mikondo ya PR",
+        "Umuhimu wa kipengele"
+      ],
+      "slots": {
+        "target": {
+          "label": "Kategoria ya kutabiri"
+        },
+        "features": {
+          "label": "Safu wima za ingizo",
+          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Tafuta sehemu",
+      "description": "Weka safu mlalo sawa (wateja, bidhaa) bila lebo.",
+      "models": {
+        "kmeans": "k-njia",
+        "gaussian_mixture": "Mchanganyiko wa Gaussian",
+        "agglomerative": "Hierarkia (Kata)"
+      },
+      "outputs": [
+        "Alama ya silhouette",
+        "Ramani ya nguzo na wasifu",
+        "Sehemu kwa kila safu"
+      ],
+      "slots": {
+        "features": {
+          "label": "Safu wima za ingizo",
+          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Tambua hitilafu",
+      "description": "Alamisha safu mlalo zisizo za kawaida (udanganyifu, makosa, makosa ya data).",
+      "models": {
+        "isolation_forest": "Msitu wa kutengwa",
+        "zscore": "Alama z imara",
+        "lof": "Kipengele cha nje cha ndani"
+      },
+      "outputs": [
+        "Hesabu isiyo ya kawaida na ushiriki",
+        "Hitilafu zilizoangaziwa kwenye ramani",
+        "Alama kwa kila safu"
+      ],
+      "slots": {
+        "features": {
+          "label": "Safu wima za ingizo",
+          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Tarehe / wakati"
+    },
+    "y": {
+      "label": "Thamani",
+      "help": "Hiari: safu mlalo huhesabiwa zikiwa tupu."
+    },
+    "color": {
+      "label": "Rangi kwa"
+    },
+    "facet": {
+      "label": "Gawanya kwenye paneli kwa"
+    },
+    "start": {
+      "label": "Thamani ya kuanza"
+    },
+    "end": {
+      "label": "Thamani ya mwisho"
+    },
+    "features": {
+      "label": "Safu wima za nambari",
+      "help": "Empty hutumia safu wima zote za nambari."
+    },
+    "target": {
+      "label": "Lengo"
+    },
+    "z": {
+      "label": "Thamani"
+    },
+    "open": {
+      "label": "Fungua"
+    },
+    "high": {
+      "label": "Juu"
+    },
+    "low": {
+      "label": "Chini"
+    },
+    "close": {
+      "label": "Funga"
+    },
+    "lower": {
+      "label": "Imefungwa chini"
+    },
+    "upper": {
+      "label": "Upande wa juu"
+    },
+    "path": {
+      "label": "Viwango (nje hadi ndani)"
+    },
+    "size": {
+      "label": "Ukubwa wa Bubble"
+    },
+    "source": {
+      "label": "Kutoka"
+    },
+    "location": {
+      "label": "Nchi"
+    },
+    "lat": {
+      "label": "Latitudo"
+    },
+    "lon": {
+      "label": "Longitude"
+    },
+    "actual": {
+      "label": "Thamani halisi / lebo ya kweli"
+    },
+    "predicted": {
+      "label": "Thamani / lebo iliyotabiriwa"
+    },
+    "score": {
+      "label": "Uwezekano uliotabiriwa / alama"
+    },
+    "date": {
+      "label": "Tarehe / wakati"
+    },
+    "split_by": {
+      "label": "Utabiri wa kila (si lazima)",
+      "help": "k.m. utabiri mmoja kwa kila mkoa"
+    }
+  },
+  "options": {
+    "aggregation": "Changanya maadili na",
+    "sort": "Agizo",
+    "top_n": "Onyesha juu tu",
+    "orientation": "Mwelekeo",
+    "show_values": "Onyesha thamani kwenye chati",
+    "log_y": "Mhimili wa thamani ya logarithmic",
+    "time_grain": "Tarehe za kikundi kwa",
+    "markers": "Onyesha alama",
+    "normalize": "Onyesha kama",
+    "window": "Dirisha linalozunguka (pointi)",
+    "model": "Msimu",
+    "lags": "Lags",
+    "hole": "Shimo la katikati",
+    "total": "Onyesha upau jumla",
+    "bins": "Idadi ya mapipa",
+    "histnorm": "Onyesha kama",
+    "marginal": "Ongeza mpangilio wa ukingo",
+    "bandwidth": "Kulainisha",
+    "points": "Onyesha pointi",
+    "box": "Onyesha kisanduku ndani",
+    "confidence": "Kujiamini",
+    "distribution": "Usambazaji",
+    "sigma": "Vikomo (σ)",
+    "trendline": "Mstari wa mwenendo",
+    "opacity": "Uwazi wa uhakika",
+    "degree": "Digrii ya polynomial",
+    "band": "Onyesha bendi ya 95%",
+    "method": "Uwiano",
+    "triangle": "Pembetatu ya chini pekee",
+    "nbins": "Mapipa",
+    "location_mode": "Maeneo ni",
+    "scope": "Eneo la ramani",
+    "contours": "Mtaro wa mradi",
+    "standardize": "Sawazisha vipengele",
+    "perplexity": "Kuchanganyikiwa",
+    "clusters": "Makundi (0 = chagua kiotomatiki)",
+    "positive_class": "Darasa chanya (tupu = otomatiki)",
+    "max_k": "Jaribu hadi k",
+    "goal": "Thamani inayolengwa (0 = tumia safu wima lengwa)",
+    "horizon": "Vipindi mbele",
+    "positive": "Thamani ya matokeo ya kuelezea (tupu = otomatiki)",
+    "test_size": "Shiriki ya kushikilia",
+    "contamination": "Sehemu inayotarajiwa ya hitilafu"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Jumla",
+      "mean": "Wastani",
+      "median": "Wastani",
+      "count": "Hesabu",
+      "min": "Kiwango cha chini",
+      "max": "Upeo wa juu"
+    },
+    "sort": {
+      "none": "Kama katika data",
+      "desc": "Kubwa kwanza",
+      "asc": "Ndogo kwanza",
+      "label": "Kialfabeti"
+    },
+    "orientation": {
+      "v": "Wima",
+      "h": "Mlalo"
+    },
+    "time_grain": {
+      "auto": "Otomatiki",
+      "none": "Hakuna kupanga kikundi",
+      "D": "Siku",
+      "W": "Wiki",
+      "M": "Mwezi",
+      "Q": "Robo",
+      "Y": "Mwaka"
+    },
+    "model": {
+      "additive": "Nyongeza",
+      "multiplicative": "Kuzidisha",
+      "random_forest": "Msitu wa nasibu",
+      "gradient_boosting": "Kuongeza gradient",
+      "linear": "Linear / vifaa"
+    },
+    "histnorm": {
+      "_none": "Hesabu",
+      "percent": "Asilimia",
+      "probability_density": "Msongamano"
+    },
+    "marginal": {
+      "_none": "Hakuna",
+      "box": "Sanduku",
+      "histogram": "Histogram"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Silverman"
+    },
+    "points": {
+      "outliers": "Nje",
+      "all": "Wote",
+      "none": "Hakuna"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "Kawaida",
+      "lognorm": "Ingia-kawaida",
+      "expon": "Kielelezo",
+      "gamma": "Gamma",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "Hakuna",
+      "ols": "Linear (OLS)",
+      "lowess": "Laini (LOWESS)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Spearman",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "Hesabu",
+      "index": "% ya safu",
+      "columns": "% ya safu wima",
+      "all": "% ya jumla",
+      "true": "% ya halisi",
+      "pred": "% ya iliyotabiriwa"
+    },
+    "location_mode": {
+      "country_names": "Majina ya nchi",
+      "ISO-3": "Nambari za ISO-3"
+    },
+    "scope": {
+      "world": "Ulimwengu",
+      "africa": "Afrika",
+      "europe": "Ulaya",
+      "asia": "Asia",
+      "north_america": "Amerika ya Kaskazini",
+      "south_america": "Amerika ya Kusini"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Vivid",
+    "colorblind": "Salama isiyoona rangi (Okabe–Ito)",
+    "tableau": "Jedwali 10",
+    "ocean": "Bahari",
+    "sunset": "machweo",
+    "corporate": "Kampuni",
+    "pastel": "Pastel",
+    "earth": "Dunia"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Uuzaji wa rejareja",
+      "description": "Miaka miwili ya maagizo kwa kanda, bidhaa na chaneli.",
+      "audience": "Biashara ndogo"
+    },
+    "customer_churn": {
+      "name": "Mvutano wa wateja",
+      "description": "Wasajili, kandarasi na alama za mtindo wa churn.",
+      "audience": "Biashara"
+    },
+    "website_traffic": {
+      "name": "Trafiki ya tovuti",
+      "description": "Vipindi vya kila siku na ubadilishaji kulingana na chanzo cha trafiki.",
+      "audience": "Masoko"
+    },
+    "house_prices": {
+      "name": "Bei za nyumba",
+      "description": "Nyumba zilizo na ukubwa, eneo na utabiri wa mtindo wa bei.",
+      "audience": "Wachambuzi"
+    },
+    "stock_prices": {
+      "name": "Bei za hisa",
+      "description": "Kila siku fungua / juu / chini / funga kwa ticker tatu.",
+      "audience": "Fedha"
+    },
+    "world_indicators": {
+      "name": "Viashiria vya ulimwengu",
+      "description": "Pato la Taifa, umri wa kuishi na uzalishaji wa hewa chafu kulingana na nchi.",
+      "audience": "Kila mtu"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (koma imetenganishwa)",
+    "tsv": "TSV (kichupo kimetenganishwa)",
+    "txt": "Maandishi yenye mipaka (gundua kiotomatiki ; | ,)",
+    "json": "JSON (safu za rekodi)",
+    "jsonl": "Mistari ya JSON",
+    "xlsx": "Kitabu cha kazi cha Excel (karatasi ya kwanza)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (data, wasifu na karatasi za muhtasari)",
+    "json": "Rekodi za JSON"
+  }
+}

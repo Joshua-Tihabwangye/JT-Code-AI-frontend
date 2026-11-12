@@ -1,0 +1,17 @@
+{
+  "openApp": "فتح JT-Code",
+  "signIn": "تسجيل الدخول",
+  "createAccount": "إنشاء حساب",
+  "eyebrow": "مساعد ذكاء اصطناعي للويب + الجوال",
+  "headline": "مساحة عمل واحدة واضحة للأسئلة والملفات والبحث والإبداع.",
+  "copy": "JT-Code هو اسم المساعد الوحيد المستخدم في هذه المنصة بأكملها. عميل الويب مبني بـ React وTypeScript؛ وتتم إدارة المصادقة عبر Supabase Auth، بينما تُخزَّن جميع حالة الأعمال في Django API.",
+  "continueToWorkspace": "المتابعة إلى مساحة العمل",
+  "startWith": "ابدأ مع JT-Code",
+  "foundationsLabel": "أساسيات المنصة",
+  "feature1Title": "هوية آمنة",
+  "feature1Desc": "يُعاد التحقق من جلسات Supabase Auth بواسطة Django قبل كل إجراء محمي.",
+  "feature2Title": "بيانات متينة",
+  "feature2Desc": "يبقى PostgreSQL المستضاف عبر Supabase المصدر الموثوق للمعاملات.",
+  "feature3Title": "أصول مُدارة",
+  "feature3Desc": "عمليات الرفع الموقعة عبر Cloudinary تُبقي الأسرار خارج المتصفح."
+}

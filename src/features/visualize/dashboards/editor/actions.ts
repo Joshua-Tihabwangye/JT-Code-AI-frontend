@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config';
 import type { DashboardPage, DashboardSpec, DashboardVisual } from '@/lib/data';
 import { pageRows } from '../runtime';
 import { newId } from './catalog';
@@ -173,14 +174,14 @@ export function moveBy(spec: DashboardSpec, pageId: string, ids: string[], dx: n
 
 export function addPage(spec: DashboardSpec, name?: string): { spec: DashboardSpec; id: string } {
   const id = newId('page');
-  const page: DashboardPage = { id, name: name ?? `Page ${spec.pages.length + 1}`, visuals: [], canvas: { preset: '16:9', width: 1280, height: 720 } };
+  const page: DashboardPage = { id, name: name ?? i18n.t('visualize.editor.pages.defaultName', { number: spec.pages.length + 1 }), visuals: [], canvas: { preset: '16:9', width: 1280, height: 720 } };
   return { spec: { ...spec, pages: [...spec.pages, page] }, id };
 }
 
 export function duplicatePage(spec: DashboardSpec, pageId: string): { spec: DashboardSpec; id: string } {
   const source = spec.pages.find((page) => page.id === pageId)!;
   const id = newId('page');
-  const copy: DashboardPage = { ...structuredClone(source), id, name: `${source.name} (copy)`.slice(0, 60), visuals: cloneVisuals(source.visuals, 0) };
+  const copy: DashboardPage = { ...structuredClone(source), id, name: i18n.t('visualize.editor.pages.copyName', { name: source.name }).slice(0, 60), visuals: cloneVisuals(source.visuals, 0) };
   const index = spec.pages.indexOf(source);
   return { spec: { ...spec, pages: [...spec.pages.slice(0, index + 1), copy, ...spec.pages.slice(index + 1)] }, id };
 }
@@ -198,12 +199,20 @@ export function movePage(spec: DashboardSpec, pageId: string, delta: number): Da
   return { ...spec, pages };
 }
 
-export const CANVAS_PRESETS: Record<string, { width: number; height: number; label: string }> = {
-  '16:9': { width: 1280, height: 720, label: '16:9 (1280 × 720)' },
-  '4:3': { width: 1280, height: 960, label: '4:3 (1280 × 960)' },
-  letter: { width: 1280, height: 1656, label: 'Letter (portrait)' },
-  'fit-width': { width: 1280, height: 720, label: 'Fit to width (grows)' },
-};
+/** Page sizes; `label` is translated when read (`labelKey` is its i18n key). */
+export const CANVAS_PRESETS: Record<string, { width: number; height: number; labelKey: string; readonly label: string }> = Object.fromEntries(
+  (
+    [
+      ['16:9', 1280, 720, 'wide'],
+      ['4:3', 1280, 960, 'standard'],
+      ['letter', 1280, 1656, 'letter'],
+      ['fit-width', 1280, 720, 'fitWidth'],
+    ] as const
+  ).map(([id, width, height, key]) => {
+    const labelKey = `visualize.editor.canvasPresets.${key}`;
+    return [id, { width, height, labelKey, get label() { return i18n.t(labelKey); } }];
+  }),
+);
 
 export function pageHeightRows(page: DashboardPage): number {
   const content = Math.max(0, ...page.visuals.map((visual) => visual.layout.y + visual.layout.h));

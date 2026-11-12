@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Trans, useTranslation } from 'react-i18next';
 import { Check, Pin, X } from 'lucide-react';
 import { apiErrorMessage } from '@/lib/api/http';
 import { useRepository, type DashboardVisual } from '@/lib/data';
@@ -11,13 +12,14 @@ export type PinnableVisual = Omit<DashboardVisual, 'id' | 'layout'> & { layout?:
 
 /** “Pin to dashboard”: add a visual to a page of an existing dashboard, or start a new one. */
 export function PinDialog({ visual, title, onClose }: { visual: PinnableVisual; title?: string; onClose: () => void }) {
+  const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
   const dashboards = useQuery({ queryKey: ['visualize', 'dashboards'], queryFn: () => visualize.listDashboards() });
   const editable = (dashboards.data ?? []).filter((item) => item.role !== 'viewer');
   const [target, setTarget] = useState('');
   const [pageId, setPageId] = useState('');
-  const [name, setName] = useState(title ? `${title} dashboard` : 'New dashboard');
+  const [name, setName] = useState(title ? t('visualize.dashboards.pin.namedDashboard', { title }) : t('visualize.dashboards.pin.newDashboard'));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [done, setDone] = useState<{ id: string; name: string } | null>(null);
@@ -33,8 +35,8 @@ export function PinDialog({ visual, title, onClose }: { visual: PinnableVisual; 
     try {
       if (chosen === 'new') {
         const fresh = await visualize.createDashboard({
-          name: name.trim() || 'New dashboard',
-          spec: { theme: 'executive', mode: 'system', pages: [{ id: 'page-1', name: 'Overview', visuals: [{ ...created, layout: { x: 0, y: 0, w: size.w, h: size.h } }] }] },
+          name: name.trim() || t('visualize.dashboards.pin.newDashboard'),
+          spec: { theme: 'executive', mode: 'system', pages: [{ id: 'page-1', name: t('visualize.dashboards.pin.overview'), visuals: [{ ...created, layout: { x: 0, y: 0, w: size.w, h: size.h } }] }] },
         });
         setDone({ id: fresh.id, name: fresh.name });
       } else {
@@ -57,49 +59,49 @@ export function PinDialog({ visual, title, onClose }: { visual: PinnableVisual; 
 
   return (
     <div className="dash-dialog-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && onClose()}>
-      <div className="dash-dialog narrow" role="dialog" aria-label="Pin to dashboard" data-testid="pin-dialog">
+      <div className="dash-dialog narrow" role="dialog" aria-label={t('visualize.dashboards.pin.title')} data-testid="pin-dialog">
         <header className="flex items-center gap-2">
           <Pin size={16} aria-hidden />
-          <h2 className="flex-1 text-sm font-semibold">Pin to dashboard</h2>
-          <button type="button" className="viz-icon-button" onClick={onClose} aria-label="Close">
+          <h2 className="flex-1 text-sm font-semibold">{t('visualize.dashboards.pin.title')}</h2>
+          <button type="button" className="viz-icon-button" onClick={onClose} aria-label={t('visualize.dashboards.pin.close')}>
             <X size={14} />
           </button>
         </header>
         {done ? (
           <div className="space-y-3 text-sm" data-testid="pin-done">
             <p className="flex items-center gap-2">
-              <Check size={16} className="text-emerald-500" aria-hidden /> Pinned to <b>{done.name}</b>.
+              <Check size={16} className="text-emerald-500" aria-hidden /> <Trans i18nKey='visualize.dashboards.pin.pinnedTo' values={{ name: done.name }} components={{ b: <b /> }} />
             </p>
             <div className="flex justify-end gap-2">
               <button type="button" className="viz-chip" onClick={onClose}>
-                Stay here
+                {t('visualize.dashboards.pin.stay')}
               </button>
               <Link to={`/app/visualize/dashboards/${done.id}`} className="viz-chip primary" data-testid="pin-open">
-                Open dashboard
+                {t('visualize.dashboards.pin.open')}
               </Link>
             </div>
           </div>
         ) : (
           <div className="space-y-2">
             <label className="dash-format-row">
-              <span>Dashboard</span>
+              <span>{t('visualize.dashboards.pin.dashboard')}</span>
               <select className="viz-field" value={chosen} onChange={(event) => (setTarget(event.target.value), setPageId(''))} data-testid="pin-dashboard">
                 {editable.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.name}
                   </option>
                 ))}
-                <option value="new">+ New dashboard…</option>
+                <option value="new">{t('visualize.dashboards.pin.newOption')}</option>
               </select>
             </label>
             {chosen === 'new' ? (
               <label className="dash-format-row">
-                <span>Name</span>
+                <span>{t('visualize.dashboards.pin.name')}</span>
                 <input className="viz-field" value={name} maxLength={200} onChange={(event) => setName(event.target.value)} data-testid="pin-new-name" />
               </label>
             ) : (
               <label className="dash-format-row">
-                <span>Page</span>
+                <span>{t('visualize.dashboards.pin.page')}</span>
                 <select className="viz-field" value={pageId || pages[0]?.id || ''} onChange={(event) => setPageId(event.target.value)} data-testid="pin-page">
                   {pages.map((page) => (
                     <option key={page.id} value={page.id}>
@@ -112,10 +114,10 @@ export function PinDialog({ visual, title, onClose }: { visual: PinnableVisual; 
             {error && <p className="text-xs text-destructive">{error}</p>}
             <div className="flex justify-end gap-2 pt-1">
               <button type="button" className="viz-chip" onClick={onClose}>
-                Cancel
+                {t('visualize.dashboards.pin.cancel')}
               </button>
               <button type="button" className="viz-chip primary" disabled={busy || (chosen !== 'new' && !record.data)} onClick={() => void pin()} data-testid="pin-confirm">
-                <Pin size={12} aria-hidden /> {busy ? 'Pinning…' : 'Pin'}
+                <Pin size={12} aria-hidden /> {busy ? t('visualize.dashboards.pin.pinning') : t('visualize.dashboards.pin.pin')}
               </button>
             </div>
           </div>

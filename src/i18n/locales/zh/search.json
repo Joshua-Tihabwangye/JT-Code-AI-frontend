@@ -1,0 +1,9 @@
+{
+  "placeholder": "搜索聊天、图片、文件、文档…",
+  "noResults": "未找到结果。",
+  "conversation": "对话",
+  "generatedImage": "生成的图像",
+  "imageType": "图像 · {{style}}",
+  "file": "文件",
+  "document": "文档"
+}

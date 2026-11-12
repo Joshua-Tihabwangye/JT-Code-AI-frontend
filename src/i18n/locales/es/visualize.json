@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Paneles",
+    "data": "Datos",
+    "gallery": "Galería",
+    "predict": "Predecir",
+    "reports": "Informes",
+    "explore": "Explorar"
+  },
+  "askAi": "Preguntar a la IA",
+  "hero": {
+    "title": "Estudio de visualización de datos"
+  },
+  "assistant": {
+    "title": "JT-Code AI",
+    "cost": "Solo usa créditos cuando envías un prompt. Los gráficos, las conclusiones y las sugerencias son gratuitos.",
+    "about": "Preguntar sobre",
+    "intro": "Describe lo que quieres ver. Elijo el gráfico, relleno las columnas y tú lo revisas antes de que se ejecute nada.",
+    "thinking": "Pensando…",
+    "builtIn": "Integrado",
+    "credits": "{{credits}} créditos",
+    "free": "sin uso de créditos",
+    "openExplore": "Abrir en Explorar",
+    "setUp": "Configurar predicción",
+    "placeholder": "p. ej., Muestra los ingresos mensuales por región",
+    "prompt": "Prompt",
+    "send": "Enviar",
+    "close": "Cerrar"
+  },
+  "dataset": "Conjunto de datos",
+  "noDataset": "Aún no hay ningún conjunto de datos",
+  "sections": "Secciones de visualización de datos",
+  "controls": {
+    "noColumns": {
+      "numeric": "No hay columnas numéricas",
+      "datetime": "No hay columnas de fecha y hora",
+      "categorical": "No hay columnas categóricas",
+      "dimension": "No hay columnas de dimensión",
+      "any": "No hay columnas"
+    },
+    "chooseColumn": "Elige una columna…",
+    "none": "Ninguna",
+    "automatic": "Automático"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "excelente",
+      "good": "buena",
+      "fair": "aceptable",
+      "weak": "débil",
+      "unknown": "desconocida"
+    },
+    "dataset": "Conjunto de datos",
+    "noDatasets": "Aún no hay conjuntos de datos",
+    "rows_one": "{{rows}} fila",
+    "rows_other": "{{rows}} filas",
+    "less": "Menos",
+    "howToRead": "Cómo interpretarlo",
+    "dataOf": "Datos de {{title}}",
+    "tableSize": "{{rows}} filas × {{columns}} columnas: los datos que muestra este gráfico",
+    "tableSizeFirst": "{{rows}} filas × {{columns}} columnas (primeras filas): los datos que muestra este gráfico",
+    "close": "Cerrar",
+    "expandRibbon": "Expandir la cinta de opciones",
+    "collapseRibbon": "Contraer la cinta de opciones"
+  }
+}

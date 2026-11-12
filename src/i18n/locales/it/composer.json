@@ -1,0 +1,10 @@
+{
+  "attach": "Allega",
+  "attachDocument": "Allega un documento",
+  "attachImage": "Allega un'immagine",
+  "currentPlan": "Piano attuale",
+  "voiceInput": "Input vocale",
+  "sendMessage": "Invia messaggio",
+  "defaultPlaceholder": "Chiedi qualsiasi cosa a JT-Code…",
+  "removeAttachment": "Rimuovi {{name}}"
+}

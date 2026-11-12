@@ -1,0 +1,165 @@
+{
+  "eyebrow": "账单",
+  "title": "账单与积分",
+  "subtitle": "管理您的方案、积分和支付信息。随时充值积分，持续创作不受限。",
+  "addCredits": "充值积分",
+  "summary": {
+    "currentPlan": "当前方案",
+    "availableCredits": "可用积分",
+    "renewsOn": "续费日期",
+    "renewsHelper": "在您的账单周期结束时",
+    "managePlan": "管理方案 →",
+    "addCreditsAction": "充值积分 →"
+  },
+  "usage": {
+    "title": "积分用量",
+    "usedOf": "本月已使用 {{used}}，共 {{limit}}",
+    "left": "剩余 {{amount}}",
+    "thisMonth": "本月已使用 {{amount}} 积分",
+    "types": {
+      "chat": "聊天",
+      "images": "图片",
+      "documents": "文档",
+      "agent": "智能体"
+    }
+  },
+  "plans": {
+    "title": "选择适合您的方案",
+    "allInclude": "所有方案均包含：安全支付、随时取消、99.9% 正常运行时间",
+    "ribbonCurrent": "当前方案",
+    "ribbonSelected": "已选择",
+    "currentCta": "当前方案",
+    "chooseCta": "选择 {{name}}",
+    "perMonth": "/月",
+    "customPrice": "定制",
+    "fallbackDescription": "面向快速成长的用户",
+    "fallbackFeature1": "每月 {{credits}} 积分",
+    "fallbackFeature2": "标准支持",
+    "descriptions": {
+      "free": "面向刚刚起步的个人用户",
+      "pro": "面向专业人士和高级用户",
+      "team": "面向团队和组织",
+      "business": "面向不断扩张的团队"
+    },
+    "features": {
+      "free": [
+        "每月 1,000 积分",
+        "可使用 GPT-4o mini",
+        "基础 AI 工具",
+        "社区支持"
+      ],
+      "pro": [
+        "每月 2,000 积分",
+        "可使用 GPT-4o",
+        "高级 AI 工具",
+        "优先支持",
+        "抢先体验新功能"
+      ],
+      "team": [
+        "每用户每月 5,000 积分",
+        "可使用 GPT-4o",
+        "团队工作区",
+        "高级管理控制",
+        "优先支持与 SLA"
+      ],
+      "business": [
+        "定制积分",
+        "专属支持",
+        "SSO 与审计日志",
+        "自定义 AI 模型",
+        "SLA 保障"
+      ]
+    },
+    "names": {
+      "free": "免费版",
+      "pro": "专业版",
+      "team": "团队版",
+      "business": "企业版"
+    }
+  },
+  "payment": {
+    "title": "支付方式",
+    "billingCountry": "账单国家/地区",
+    "ugandaHint": "乌干达：可使用银行卡或 Mobile Money（MTN / Airtel）支付。",
+    "otherHint": "可使用银行卡或 PayPal 支付。",
+    "addMethod": "添加支付方式",
+    "makeDefault": "设为默认",
+    "methods": {
+      "card": "银行卡",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "银行卡",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "电话号码",
+    "cardNumberLabel": "卡号",
+    "expiryLabel": "有效期",
+    "cvcLabel": "CVC",
+    "savedToast": "支付方式已保存",
+    "none": "未保存付款方式",
+    "manage": "管理付款方式"
+  },
+  "invoices": {
+    "title": "近期发票",
+    "viewAll": "查看全部发票",
+    "allTitle": "全部发票",
+    "allSubtitle": "JT-Code — 账单历史",
+    "date": "日期",
+    "description": "描述",
+    "amount": "金额",
+    "status": "状态",
+    "empty": "暂无发票。",
+    "download": "下载发票",
+    "statuses": {
+      "paid": "已付款",
+      "open": "待付款",
+      "draft": "草稿",
+      "void": "已作废",
+      "uncollectible": "无法收款"
+    }
+  },
+  "topup": {
+    "title": "充值积分",
+    "description": "为您的账户购买更多积分",
+    "amountLabel": "金额（USD）",
+    "estimatedCredits": "预估积分",
+    "confirm": "充值 ${{amount}} 积分",
+    "success": "积分充值成功",
+    "invalidAmount": "请输入有效金额",
+    "processing": "已收到付款。Stripe 确认后积分将立即到账。",
+    "failed": "付款未能完成。",
+    "payNow": "立即付款"
+  },
+  "checkout": {
+    "title": "完成购买",
+    "planSuffix": "{{name}} 方案",
+    "customPricing": "定制价格",
+    "billedMonthly": "按月计费",
+    "pay": "支付 {{amount}}",
+    "enterPhone": "请输入 Mobile Money 的电话号码。",
+    "activated": "{{name}} 方案已激活 — 支付成功",
+    "returned": "谢谢！Stripe 确认付款后，你的订阅将立即更新。",
+    "cancelled": "结账已取消，未产生任何费用。"
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "将于本计费周期结束时终止",
+    "freeMonthly": "免费积分每月更新",
+    "reactivate": "恢复订阅",
+    "cancel": "取消订阅",
+    "cancelConfirm": "在当前周期结束时取消订阅？"
+  },
+  "wallet": {
+    "saved": "计费设置已保存。",
+    "reserved": "已为运行中的任务预留 {{amount}}",
+    "autoRecharge": "自动充值",
+    "autoRechargeDesc": "积分低于阈值时自动充值。",
+    "threshold": "阈值（积分）",
+    "spendingLimit": "每月限额（积分）",
+    "noLimit": "无限额"
+  },
+  "stripe": {
+    "loadFailed": "无法加载 Stripe 付款表单。请检查网络连接。",
+    "unavailable": "Stripe 不可用。"
+  }
+}

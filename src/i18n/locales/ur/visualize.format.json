@@ -1,0 +1,326 @@
+{
+  "search": "فارمیٹ کے اختیارات تلاش کریں۔",
+  "resetSection": "تھیم ڈیفالٹ پر ری سیٹ کریں۔",
+  "automatic": "خودکار",
+  "on": "پر",
+  "off": "آف",
+  "sections": {
+    "python": "ازگر اسکرپٹ",
+    "parameter": "پیرامیٹر",
+    "button": "بٹن",
+    "navigator": "نیویگیٹر",
+    "general": "عنوان اور مقام",
+    "tile": "ٹائل",
+    "colors": "رنگ",
+    "labels": "ڈیٹا لیبلز",
+    "legend": "لیجنڈ",
+    "sort": "ترتیب دیں اور ٹاپ N",
+    "bars": "بار اور لائنیں",
+    "donut": "سلائسس",
+    "kpi": "کے پی آئی",
+    "gauge": "گیج رینج",
+    "table": "میز",
+    "slicer": "سلائسر",
+    "tooltip": "ٹول ٹِپ",
+    "conditional": "مشروط فارمیٹنگ",
+    "analytics": "تجزیات (حوالہ جات، رجحان، پیشن گوئی)",
+    "map": "نقشہ"
+  },
+  "general": {
+    "title": "عنوان",
+    "showTitle": "عنوان دکھائیں۔",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "w",
+      "h": "h"
+    },
+    "layoutAria": "لے آؤٹ {{axis}}",
+    "altText": "Alt متن",
+    "altPlaceholder": "اسکرین ریڈرز کے لیے"
+  },
+  "tile": {
+    "background": "پس منظر",
+    "border": "بارڈر",
+    "radius": "کونے کا رداس",
+    "shadow": "سایہ"
+  },
+  "colors": {
+    "seriesAria": "سیریز کا رنگ {{index}}",
+    "custom": "حسب ضرورت",
+    "fromTheme": "تھیم سے"
+  },
+  "labels": {
+    "showValues": "اقدار دکھائیں۔"
+  },
+  "legend": {
+    "show": "لیجنڈ دکھائیں۔",
+    "position": "پوزیشن",
+    "positions": {
+      "top": "اوپر",
+      "bottom": "نیچے",
+      "left": "بائیں",
+      "right": "ٹھیک ہے۔"
+    }
+  },
+  "sort": {
+    "by": "ترتیب دیں",
+    "value": "قدر",
+    "name": "نام",
+    "direction": "سمت",
+    "desc": "نزول",
+    "asc": "صعودی",
+    "topN": "ٹاپ این",
+    "showTop": "اوپر دکھائیں۔",
+    "others": "باقی کو \"دوسرے\" کے طور پر گروپ کریں"
+  },
+  "bars": {
+    "stacking": "اسٹیکنگ",
+    "none": "پہلو بہ پہلو",
+    "stacked": "ڈھیر لگا ہوا",
+    "percent": "100% اسٹیک شدہ",
+    "smooth": "ہموار لکیریں۔"
+  },
+  "donut": {
+    "maxSlices": "زیادہ سے زیادہ سلائسیں (باقی → دیگر)"
+  },
+  "kpi": {
+    "compareBy": "سے موازنہ کریں۔",
+    "grains": {
+      "day": "دن",
+      "week": "ہفتہ",
+      "month": "مہینہ",
+      "quarter": "کوارٹر",
+      "year": "سال"
+    },
+    "upIsGood": "اوپر اچھا ہے۔"
+  },
+  "gauge": {
+    "min": "کم از کم",
+    "max": "زیادہ سے زیادہ",
+    "auto": "آٹو"
+  },
+  "table": {
+    "dataBars": "ڈیٹا بارز"
+  },
+  "slicer": {
+    "style": "انداز",
+    "styles": {
+      "dropdown": "ڈراپ ڈاؤن",
+      "list": "فہرست",
+      "tiles": "بٹن",
+      "between": "نمبر کی حد",
+      "dateRange": "تاریخ کی حد",
+      "relative": "رشتہ دار تاریخ",
+      "input": "ایک قدر ٹائپ کریں۔",
+      "hierarchy": "درجہ بندی (مزید فیلڈز شامل کریں)"
+    },
+    "single": "واحد انتخاب",
+    "sync": "تمام صفحات پر مطابقت پذیری کریں۔",
+    "page": "صفحہ",
+    "syncColumn": "مطابقت پذیری",
+    "visible": "نظر آنے والا",
+    "syncTo": "{{page}} سے مطابقت پذیری",
+    "visibleOn": "{{page}} پر مرئی"
+  },
+  "tooltip": {
+    "page": "ٹول ٹپ صفحہ",
+    "default": "ڈیفالٹ ٹول ٹِپ",
+    "noPages": "پہلے کسی صفحے کو ٹول ٹپ صفحہ بنائیں"
+  },
+  "map": {
+    "zoomTo": "کو زوم کریں۔",
+    "scopes": {
+      "world": "دنیا",
+      "africa": "افریقہ",
+      "europe": "یورپ",
+      "asia": "ایشیا",
+      "northAmerica": "شمالی امریکہ",
+      "southAmerica": "جنوبی امریکہ"
+    }
+  },
+  "page": {
+    "label": "صفحہ",
+    "name": "نام",
+    "canvasSize": "کینوس کا سائز",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "خط (پورٹریٹ)",
+      "fitWidth": "چوڑائی میں فٹ (بڑھتا ہے)"
+    },
+    "background": "پس منظر",
+    "themeBackground": "تھیم کا پس منظر",
+    "type": "صفحہ کی قسم",
+    "types": {
+      "page": "صفحہ",
+      "drillthrough": "ڈرل تھرو (تفصیل)",
+      "tooltip": "ٹول ٹِپ"
+    },
+    "tooltipHint": "بصری پوائنٹس کے منڈلاتے وقت چھوٹے دکھائے جاتے ہیں جو اسے فارمیٹ → ٹول ٹپ کے تحت چنتے ہیں۔",
+    "drillthroughHint": "دوسرے صفحہ → \"ڈرل تھرو\" پر ان میں سے کسی ایک فیلڈ کے ممبر پر دائیں کلک کریں۔"
+  },
+  "dashboard": {
+    "label": "ڈیش بورڈ",
+    "slicersApply": "سلائسرز لاگو ہوتے ہیں۔",
+    "instant": "فوراً",
+    "button": "اپلائی بٹن کے ساتھ",
+    "filtersPane": "ناظرین کے لیے فلٹر پین",
+    "personalize": "ناظرین ذاتی نوعیت کا بنا سکتے ہیں۔"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "رنگ کا پیمانہ",
+      "rules": "قواعد",
+      "bars": "ڈیٹا بارز",
+      "icons": "شبیہیں ▲●▼"
+    },
+    "ruleType": "اصول کی قسم",
+    "value": "قدر",
+    "colour": "رنگ",
+    "background": "پس منظر",
+    "text": "متن",
+    "removeRule": "قاعدہ کو ہٹا دیں۔",
+    "lowest": "سب سے کم",
+    "middle": "درمیانی",
+    "highest": "سب سے زیادہ",
+    "lowestColour": "سب سے کم رنگ",
+    "middleColour": "درمیانی رنگ",
+    "highestColour": "سب سے زیادہ رنگ",
+    "ifValueIs": "اگر قدر ہے۔",
+    "between": "کے درمیان",
+    "and": "اور",
+    "removeCondition": "شرط ہٹا دیں۔",
+    "addCondition": "حالت (پہلے میچ میں جیت)",
+    "barColour": "بار رنگ",
+    "iconsHint": "▲ اوپر تیسرا، ● درمیانی، ▼ اقدار کا نیچے کا تہائی۔",
+    "addRule": "ایک اصول شامل کریں۔"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "مستقل (ہدف)",
+      "average": "اوسط",
+      "median": "میڈین",
+      "min": "کم از کم",
+      "max": "زیادہ سے زیادہ",
+      "percentile": "پرسنٹائل",
+      "trend": "ٹرینڈ لائن",
+      "forecast": "پیشن گوئی"
+    },
+    "line": "لائن",
+    "value": "قدر",
+    "percentile": "پرسنٹائل",
+    "periods": "ادوار",
+    "colour": "رنگ",
+    "removeLine": "لائن کو ہٹا دیں۔",
+    "labelPlaceholder": "لیبل (اختیاری)",
+    "addLine": "ایک لائن شامل کریں۔",
+    "forecastHint": "پیشین گوئیوں کے لیے تاریخ کے محور کی ضرورت ہوتی ہے (مثلاً تاریخ بہ مہینہ)۔"
+  },
+  "python": {
+    "starter": "ایک مثال سے شروع کریں۔",
+    "sandbox": "ایک بند شدہ Python سینڈ باکس میں چلتا ہے: پانڈا، numpy، scipy، statsmodels اور scikit-learn؛ کوئی فائل، نیٹ ورک یا سسٹم تک رسائی نہیں ہے۔"
+  },
+  "button": {
+    "text": "متن",
+    "action": "ایکشن",
+    "actions": {
+      "page": "صفحہ پر جائیں۔",
+      "bookmark": "ایک منظر کا اطلاق کریں (بک مارک)",
+      "back": "پیچھے",
+      "clearSlicers": "تمام سلائسرز کو صاف کریں۔",
+      "applySlicers": "سلائسرز لگائیں۔",
+      "toggle": "بصری دکھائیں / چھپائیں۔",
+      "url": "ایک ویب لنک کھولیں۔",
+      "askAi": "AI سے پوچھیں۔",
+      "reset": "ڈیفالٹ پر ری سیٹ کریں۔"
+    },
+    "page": "صفحہ",
+    "choose": "منتخب کریں…",
+    "view": "دیکھیں",
+    "addViewsFirst": "پہلے ملاحظات شامل کریں (ملاحظات کا ٹیب)",
+    "visual": "بصری",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "لنک",
+    "style": "انداز",
+    "fills": {
+      "primary": "بھرا ہوا",
+      "outline": "خاکہ",
+      "ghost": "سادہ"
+    }
+  },
+  "navigator": {
+    "shows": "دکھاتا ہے۔",
+    "pages": "صفحات",
+    "bookmarks": "ملاحظات (بک مارکس)"
+  },
+  "parameter": {
+    "parameter": "پیرامیٹر",
+    "new": "نیا پیرامیٹر…",
+    "showAs": "بطور دکھائیں۔",
+    "tiles": "بٹن",
+    "dropdown": "ڈراپ ڈاؤن",
+    "delete": "اس پیرامیٹر کو حذف کریں۔"
+  },
+  "theme": {
+    "title": "تھیم کو حسب ضرورت بنائیں",
+    "name": "تھیم کا نام",
+    "close": "بند",
+    "dataColours": "ڈیٹا کے رنگ",
+    "colour": "رنگ {{index}}",
+    "removeColour": "رنگ کو ہٹا دیں {{index}}",
+    "addColour": "ایک رنگ شامل کریں۔",
+    "brandColour": "برانڈ کا رنگ",
+    "generate": "میرے برانڈ کے رنگ سے پیلیٹ",
+    "sentiment": {
+      "good": "اچھا",
+      "neutral": "غیر جانبدار",
+      "bad": "برا"
+    },
+    "pageAndTiles": "صفحہ اور ٹائلیں۔",
+    "light": "روشنی",
+    "dark": "اندھیرا",
+    "roles": {
+      "canvas": "کینوس",
+      "tile": "ٹائلیں",
+      "border": "سرحدیں",
+      "gridline": "گرڈ لائنز",
+      "text": "متن",
+      "mutedText": "خاموش متن",
+      "accent": "لہجہ"
+    },
+    "contrast": "ٹائلوں پر متن پڑھنا مشکل ہے ({{ratio}}:1 — مقصد 4.5:1 یا اس سے زیادہ)۔",
+    "font": "فونٹ",
+    "systemFont": "سسٹم",
+    "corners": "کونے",
+    "shadow": "سایہ",
+    "shadows": {
+      "none": "کوئی نہیں۔",
+      "soft": "نرم",
+      "medium": "درمیانہ"
+    },
+    "kpiTiles": "KPI ٹائلیں۔",
+    "kpiStyles": {
+      "plain": "سادہ",
+      "solid": "ٹھوس رنگ",
+      "gradient": "میلان",
+      "outlined": "خاکہ",
+      "icon": "ایکسنٹ بار"
+    },
+    "orgThemes": "میری تنظیم کے موضوعات",
+    "deleteTheme": "حذف کریں {{name}}",
+    "importJson": "JSON درآمد کریں۔",
+    "exportJson": "JSON برآمد کریں۔",
+    "saveAs": "میرے تھیم کے طور پر محفوظ کریں۔",
+    "defaultName": "میرا تھیم",
+    "importedName": "امپورٹڈ تھیم",
+    "imported": "درآمد شدہ۔",
+    "saved": "آپ کی تنظیم کے لیے \"{{name}}\" کو محفوظ کیا گیا۔",
+    "cancel": "منسوخ کریں۔",
+    "done": "ہو گیا",
+    "errors": {
+      "notTheme": "فائل ایک تھیم نہیں ہے۔",
+      "needColours": "ایک تھیم کو کم از کم 3 ڈیٹا کلرز (ڈیٹا کلرز) کی ضرورت ہوتی ہے۔"
+    }
+  }
+}

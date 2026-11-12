@@ -1,0 +1,18 @@
+{
+  "title": "Galeri bagan",
+  "subtitle": "Jenis bagan {{count}} — buka di Jelajahi dan mengisi kolom Anda.",
+  "search": "Cari grafik, mis. “ramalan”, “berbagi”",
+  "searchLabel": "Cari grafik",
+  "level": "Tingkat",
+  "allLevels": "Semua tingkatan",
+  "essentialShort": "Penting",
+  "advancedShort": "Canggih",
+  "all": "Semua",
+  "recommended": "Direkomendasikan untuk {{name}}",
+  "recommendedHint": "Dipilih dari kolom Anda — buka kolom untuk melihatnya dengan data Anda.",
+  "empty": "Tidak ada diagram yang cocok dengan penelusuran tersebut.",
+  "advancedBadge": "Canggih",
+  "useInExplore": "Gunakan di Jelajahi",
+  "addToDashboard": "Tambahkan ke dasbor",
+  "thisDataset": "kumpulan data ini"
+}

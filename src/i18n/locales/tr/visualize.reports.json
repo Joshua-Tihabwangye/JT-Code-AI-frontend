@@ -1,0 +1,41 @@
+{
+  "title": "Raporlar",
+  "subtitle": "Bir kontrol panelini dışa aktarın veya kaydettiğiniz görselleri yeniden kullanın.",
+  "export": "Kontrol panelini dışa aktarma",
+  "noCharts": "Kontrol panellerinde yeniden kullanmak için Keşfet veya Tahmin'deki görselleri kaydedin.",
+  "library": {
+    "title": "Görsellerim"
+  },
+  "dashboardToExport": "Dışa aktarılacak kontrol paneli",
+  "noDashboards": "Henüz kontrol paneli yok",
+  "formats": {
+    "pdf": {
+      "label": "PDF'ler",
+      "hint": "Tam olarak ekrandaki gibi kontrol paneli sayfası başına bir sayfa"
+    },
+    "png": {
+      "label": "PNG resimleri",
+      "hint": "Sayfa başına bir resim"
+    },
+    "xlsx": {
+      "label": "excel",
+      "hint": "Yerel grafiklerle her görselin verileri ve ham veriler"
+    },
+    "html": {
+      "label": "Etkileşimli HTML",
+      "hint": "Çevrimdışı çalışan tek bir dosya"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "Kontrol paneli tanımı"
+    }
+  },
+  "preparing": "Hazırlanıyor…",
+  "explore": "Keşfetmek",
+  "prediction": "Tahmin",
+  "visualOf": "{{type}} görsel",
+  "deletedDataset": "silinmiş veri kümesi",
+  "unshare": "Paylaşımı iptal et",
+  "share": "Paylaşmak",
+  "deleteNamed": "{{name}}'yi sil"
+}

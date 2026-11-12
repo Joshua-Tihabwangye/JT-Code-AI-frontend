@@ -1,0 +1,10 @@
+{
+  "attach": "Ekle",
+  "attachDocument": "Belge ekle",
+  "attachImage": "Görsel ekle",
+  "currentPlan": "Mevcut plan",
+  "voiceInput": "Sesli giriş",
+  "sendMessage": "Mesaj gönder",
+  "defaultPlaceholder": "JT-Code'a her şeyi sor…",
+  "removeAttachment": "{{name}} öğesini kaldır"
+}

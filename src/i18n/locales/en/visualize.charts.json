@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Comparison",
+      "description": "Compare values across categories and rank them."
+    },
+    "trend": {
+      "name": "Trends & time",
+      "description": "Show how values change over time."
+    },
+    "composition": {
+      "name": "Composition",
+      "description": "Break a total into its parts."
+    },
+    "distribution": {
+      "name": "Distribution",
+      "description": "Understand spread, shape and outliers."
+    },
+    "statistical": {
+      "name": "Statistical",
+      "description": "Confidence intervals, control limits and diagnostics."
+    },
+    "relationship": {
+      "name": "Relationship & correlation",
+      "description": "Find how variables move together."
+    },
+    "flow": {
+      "name": "Flow & hierarchy",
+      "description": "Follow quantities between stages and levels."
+    },
+    "geo": {
+      "name": "Maps",
+      "description": "Plot values by country or coordinates."
+    },
+    "dimensional": {
+      "name": "Dimensional",
+      "description": "Reduce and explore many variables at once."
+    },
+    "ml": {
+      "name": "Model evaluation",
+      "description": "Judge classifiers, regressors and clusters."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Bar chart",
+      "description": "Compare a value across categories.",
+      "howToRead": "Each bar's length is the value for that category; compare heights to rank them.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Grouped bar",
+      "description": "Side-by-side bars for each sub-group.",
+      "howToRead": "Bars sit side by side within each category so you can compare sub-groups directly.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        },
+        "color": {
+          "label": "Group by"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Stacked bar",
+      "description": "Totals with the contribution of each sub-group.",
+      "howToRead": "Each bar is a total; the coloured segments show how much each sub-group contributes.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        },
+        "color": {
+          "label": "Stack by"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "100% stacked bar",
+      "description": "Share of each sub-group within every category.",
+      "howToRead": "Every bar adds up to 100%, so segment heights show the mix within each category.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        },
+        "color": {
+          "label": "Stack by"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Lollipop chart",
+      "description": "A lighter bar chart for ranked values.",
+      "howToRead": "The dot marks each category's value; the longer the stick, the larger the value.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Dot plot",
+      "description": "Compare several measures per category as dots.",
+      "howToRead": "Each dot is one measure for a category; dots further right are larger.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        },
+        "y": {
+          "label": "Values"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Dumbbell chart",
+      "description": "Show the gap between two measures per category.",
+      "howToRead": "The two dots are the start and end values; a green bar means it rose, red that it fell.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        }
+      }
+    },
+    "radar": {
+      "name": "Radar chart",
+      "description": "Profile several measures for a few items.",
+      "howToRead": "Each spoke is a measure; a larger shape means higher values across the measures.",
+      "slots": {
+        "x": {
+          "label": "Item"
+        },
+        "features": {
+          "label": "Measures"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Bullet / target chart",
+      "description": "Actual against target for each category.",
+      "howToRead": "The dark bar is the actual value, the light bar and tick are the target; green means the target was met.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        },
+        "y": {
+          "label": "Actual"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Pareto chart",
+      "description": "Sorted bars with the cumulative share line (80/20).",
+      "howToRead": "Bars are sorted largest first; the line shows the running share, so you can see which few items make up 80%.",
+      "slots": {
+        "x": {
+          "label": "Category"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Heatmap table",
+      "description": "Colour a value across two categories.",
+      "howToRead": "Darker cells hold higher values for that row and column combination.",
+      "slots": {
+        "x": {
+          "label": "Columns"
+        },
+        "y": {
+          "label": "Rows"
+        }
+      },
+      "options": {
+        "show_values": "Show values"
+      }
+    },
+    "line": {
+      "name": "Line chart",
+      "description": "The classic view of change over time.",
+      "howToRead": "The line follows the value over time; slopes show growth or decline.",
+      "slots": {
+        "y": {
+          "label": "Values"
+        }
+      }
+    },
+    "area": {
+      "name": "Area chart",
+      "description": "Emphasise the volume of a trend.",
+      "howToRead": "The filled area shows the value over time; its height is the amount at each date."
+    },
+    "stacked_area": {
+      "name": "Stacked area",
+      "description": "How parts of a total change over time.",
+      "howToRead": "Layers stack on top of each other, so the top edge is the total and each band is one group.",
+      "slots": {
+        "color": {
+          "label": "Stack by"
+        }
+      },
+      "options": {
+        "normalize": "Show as 100%"
+      }
+    },
+    "step_line": {
+      "name": "Step line",
+      "description": "Values that change at discrete moments (prices, stock levels).",
+      "howToRead": "The value stays flat until it changes, which suits prices, stock levels and other discrete updates."
+    },
+    "rolling_average": {
+      "name": "Moving average",
+      "description": "Smooth noisy series with a rolling mean.",
+      "howToRead": "The faint line is the raw series; the bold line averages recent points to reveal the trend."
+    },
+    "cumulative": {
+      "name": "Cumulative total",
+      "description": "Running total over time.",
+      "howToRead": "The line adds every period to the previous total, so its slope shows how fast the total grows."
+    },
+    "period_change": {
+      "name": "Period-over-period change",
+      "description": "Percentage change from the previous period.",
+      "howToRead": "Bars show the percentage change from the previous period: green is growth, red is decline."
+    },
+    "candlestick": {
+      "name": "Candlestick",
+      "description": "Open/high/low/close movement (finance).",
+      "howToRead": "Each candle spans the low–high range; the body runs from open to close (green up, red down)."
+    },
+    "range_band": {
+      "name": "Range band",
+      "description": "A line with its min–max or uncertainty band.",
+      "howToRead": "The line is the value; the shaded band shows its lower and upper bounds."
+    },
+    "calendar_heatmap": {
+      "name": "Calendar heatmap",
+      "description": "Weekday × week pattern of a daily measure.",
+      "howToRead": "Each square is a day; darker squares have higher values, revealing weekday and seasonal patterns."
+    },
+    "seasonal_decompose": {
+      "name": "Seasonal decomposition",
+      "description": "Split a series into trend, seasonality and residual.",
+      "howToRead": "The series is split into trend (direction), seasonal (repeating pattern) and residual (noise)."
+    },
+    "autocorrelation": {
+      "name": "Autocorrelation (ACF / PACF)",
+      "description": "How a series relates to its own past values.",
+      "howToRead": "Bars outside the red band show lags where the series repeats itself."
+    },
+    "pie": {
+      "name": "Pie chart",
+      "description": "Parts of a whole (best with few slices).",
+      "howToRead": "Each slice is a share of the whole; bigger slices are bigger shares.",
+      "slots": {
+        "x": {
+          "label": "Slices"
+        }
+      }
+    },
+    "donut": {
+      "name": "Donut chart",
+      "description": "A pie with room for a total in the centre.",
+      "howToRead": "Each segment is a share of the total shown in the centre.",
+      "slots": {
+        "x": {
+          "label": "Slices"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Treemap",
+      "description": "Nested rectangles sized by value.",
+      "howToRead": "Rectangle area is proportional to value; nested rectangles break a group into its parts."
+    },
+    "sunburst": {
+      "name": "Sunburst",
+      "description": "Hierarchy as concentric rings.",
+      "howToRead": "Inner rings are top-level groups, outer rings their sub-groups; arc length is the value.",
+      "slots": {
+        "path": {
+          "label": "Levels (inner to outer)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Icicle chart",
+      "description": "Hierarchy as stacked rectangles.",
+      "howToRead": "Each row is a level of the hierarchy; a block's width is its share of the total.",
+      "slots": {
+        "path": {
+          "label": "Levels (top to bottom)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Waterfall",
+      "description": "How positive and negative steps build a total.",
+      "howToRead": "Green steps add, red steps subtract, and the last bar is the resulting total.",
+      "slots": {
+        "x": {
+          "label": "Step"
+        },
+        "y": {
+          "help": "Leave a count by choosing Count as the aggregation."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Funnel",
+      "description": "Conversion through ordered stages.",
+      "howToRead": "Each stage is narrower than the last; the drop between stages is where people are lost.",
+      "slots": {
+        "x": {
+          "label": "Stage"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (mosaic)",
+      "description": "Two-way composition with variable widths.",
+      "howToRead": "Column width is each column's share of the total; segment height is the mix within it.",
+      "slots": {
+        "x": {
+          "label": "Columns"
+        },
+        "color": {
+          "label": "Segments"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Histogram",
+      "description": "How often values fall in each range.",
+      "howToRead": "Bars count how many values fall in each range; the tallest bars are the most common values.",
+      "slots": {
+        "x": {
+          "label": "Value"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Density curve (KDE)",
+      "description": "A smooth estimate of the distribution.",
+      "howToRead": "The smooth curve estimates how values are distributed; peaks are the most common values.",
+      "slots": {
+        "x": {
+          "label": "Value"
+        }
+      }
+    },
+    "box": {
+      "name": "Box plot",
+      "description": "Median, quartiles and outliers per group.",
+      "howToRead": "The box holds the middle 50% of values, the line is the median, whiskers show the typical range and dots are outliers.",
+      "slots": {
+        "x": {
+          "label": "Group by"
+        }
+      }
+    },
+    "violin": {
+      "name": "Violin plot",
+      "description": "Box plot plus the full distribution shape.",
+      "howToRead": "The width at each level shows how many values sit there; the dark bar is the middle 50%.",
+      "slots": {
+        "x": {
+          "label": "Group by"
+        }
+      }
+    },
+    "strip": {
+      "name": "Strip / jitter plot",
+      "description": "Every observation as a dot per group.",
+      "howToRead": "Every dot is one row, spread sideways so overlapping values stay visible.",
+      "slots": {
+        "x": {
+          "label": "Group by"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Cumulative distribution (ECDF)",
+      "description": "Share of values below each level.",
+      "howToRead": "For any value on the x axis, the curve shows the share of values at or below it.",
+      "slots": {
+        "x": {
+          "label": "Value"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Ridgeline",
+      "description": "Stacked distributions for many groups.",
+      "howToRead": "Each ridge is the distribution of one group; compare where peaks sit and how wide they are.",
+      "slots": {
+        "x": {
+          "label": "Group by"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Raincloud plot",
+      "description": "Half violin, box and raw points together.",
+      "howToRead": "Each group shows its distribution (cloud), its middle 50% (bar) and every value (rain).",
+      "slots": {
+        "x": {
+          "label": "Group by"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Mean with confidence interval",
+      "description": "Group means with 95% confidence intervals.",
+      "howToRead": "Bars are group averages and whiskers the confidence interval; overlapping whiskers mean the difference may be chance.",
+      "slots": {
+        "x": {
+          "label": "Group"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Q–Q plot",
+      "description": "Check whether values follow a theoretical distribution.",
+      "howToRead": "If points follow the red line, the data matches the chosen distribution.",
+      "slots": {
+        "x": {
+          "label": "Value"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Distribution fit",
+      "description": "Histogram with a fitted distribution and goodness of fit.",
+      "howToRead": "Bars are the observed distribution; the curve is the best-fitting theoretical distribution.",
+      "slots": {
+        "x": {
+          "label": "Value"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Control chart (SPC)",
+      "description": "Process values with mean and ±3σ control limits.",
+      "howToRead": "Points between the dashed limits are normal variation; red points outside them need attention.",
+      "slots": {
+        "x": {
+          "label": "Order / time"
+        },
+        "y": {
+          "label": "Measurement"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Bland–Altman",
+      "description": "Agreement between two measurement methods.",
+      "howToRead": "Each dot compares two measurements of the same thing; the lines show the average bias and limits of agreement.",
+      "slots": {
+        "x": {
+          "label": "Method A"
+        },
+        "y": {
+          "label": "Method B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Missing values map",
+      "description": "Where data is missing across columns.",
+      "howToRead": "Bars show the share of blanks per column; red marks in the pattern show where they occur."
+    },
+    "scatter": {
+      "name": "Scatter plot",
+      "description": "The relationship between two measures.",
+      "howToRead": "Each dot is one row; a rising cloud means the two measures increase together.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      },
+      "options": {
+        "marginal": "Margin plots"
+      }
+    },
+    "bubble": {
+      "name": "Bubble chart",
+      "description": "A scatter plot with a third measure as size.",
+      "howToRead": "Like a scatter plot, but bubble size shows a third measure.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Regression fit",
+      "description": "Scatter with a fitted line, R² and equation.",
+      "howToRead": "The curve is the fitted model and the band its 95% confidence interval; R² is the share of variation explained.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Correlation matrix",
+      "description": "Correlation between every pair of measures.",
+      "howToRead": "Each cell is the correlation between two measures, from −1 (blue) to +1 (red).",
+      "options": {
+        "show_values": "Show coefficients"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Scatter matrix (pair plot)",
+      "description": "Every pair of measures at a glance.",
+      "howToRead": "Every pair of measures gets its own scatter; the diagonal shows each measure's distribution.",
+      "slots": {
+        "color": {
+          "label": "Colour by (label)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "2D density heatmap",
+      "description": "Where points concentrate (for many rows).",
+      "howToRead": "Darker cells contain more rows, which shows where points concentrate.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Density contour",
+      "description": "Contours of point density.",
+      "howToRead": "Rings enclose areas of equal point density; inner rings hold the most rows.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Joint plot",
+      "description": "Scatter with the distribution of each axis.",
+      "howToRead": "The scatter shows the relationship; the side histograms show each measure's distribution.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Parallel coordinates",
+      "description": "Compare many measures across rows.",
+      "howToRead": "Each line is a row crossing every measure's axis; bundles of lines reveal common profiles.",
+      "slots": {
+        "color": {
+          "label": "Colour by (numeric)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Parallel categories",
+      "description": "Flows between categorical columns.",
+      "howToRead": "Bands flow between category columns; their thickness is the number of rows.",
+      "slots": {
+        "path": {
+          "label": "Categorical columns"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Contingency table",
+      "description": "Counts across two categories with a chi-square test.",
+      "howToRead": "Cells count rows for each pair of categories; the chi-square test says whether they are related.",
+      "slots": {
+        "x": {
+          "label": "Columns"
+        },
+        "y": {
+          "label": "Rows"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Sankey diagram",
+      "description": "Quantities flowing between stages.",
+      "howToRead": "Bands flow from one stage to the next; their width is the quantity moving between them.",
+      "slots": {
+        "path": {
+          "label": "Stages (in order)"
+        }
+      }
+    },
+    "network": {
+      "name": "Network graph",
+      "description": "Connections between entities.",
+      "howToRead": "Nodes are entities and lines are connections; bigger, darker nodes have more links.",
+      "slots": {
+        "target": {
+          "label": "To"
+        },
+        "y": {
+          "label": "Weight"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Choropleth map",
+      "description": "Colour countries by a value.",
+      "howToRead": "Countries are shaded by value; darker means higher."
+    },
+    "scatter_geo": {
+      "name": "Points on a map",
+      "description": "Plot latitude/longitude points.",
+      "howToRead": "Each point is a location plotted by latitude and longitude."
+    },
+    "scatter_3d": {
+      "name": "3D scatter",
+      "description": "Explore three measures in rotating 3D.",
+      "howToRead": "Drag to rotate; each point is a row positioned by three measures.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        },
+        "z": {
+          "label": "Z axis"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "3D surface",
+      "description": "A surface over two measures.",
+      "howToRead": "The surface height and colour show the third measure across the first two; drag to rotate.",
+      "slots": {
+        "x": {
+          "label": "X axis"
+        },
+        "y": {
+          "label": "Y axis"
+        },
+        "z": {
+          "label": "Height"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "PCA map (2D)",
+      "description": "Project many measures onto two principal components.",
+      "howToRead": "Many measures are compressed into two components; points close together are similar rows.",
+      "slots": {
+        "color": {
+          "label": "Colour by (label)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "PCA map (3D)",
+      "description": "Three principal components in 3D.",
+      "howToRead": "Three principal components in 3D; drag to rotate and look for clusters.",
+      "slots": {
+        "color": {
+          "label": "Colour by (label)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "PCA biplot",
+      "description": "Rows and the measures that drive each component.",
+      "howToRead": "Points are rows and arrows are measures; arrows pointing the same way are correlated.",
+      "slots": {
+        "color": {
+          "label": "Colour by (label)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Scree plot",
+      "description": "Variance explained by each component.",
+      "howToRead": "Bars show how much information each component holds; the line shows the running total."
+    },
+    "tsne_2d": {
+      "name": "t-SNE map",
+      "description": "Non-linear 2D map that keeps neighbours close.",
+      "howToRead": "A non-linear map that keeps similar rows together; look for separated clusters.",
+      "slots": {
+        "color": {
+          "label": "Colour by (label)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "LDA projection",
+      "description": "Projection that best separates labelled groups.",
+      "howToRead": "A projection chosen to separate the labelled groups as much as possible.",
+      "slots": {
+        "color": {
+          "label": "Label"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Cluster map (k-means)",
+      "description": "Group similar rows and show them on a PCA map.",
+      "howToRead": "Colours show the clusters found by k-means; diamonds mark each cluster's centre."
+    },
+    "confusion_matrix": {
+      "name": "Confusion matrix",
+      "description": "Where a classifier is right and wrong.",
+      "howToRead": "The diagonal holds correct predictions; other cells show which classes get confused."
+    },
+    "roc_curve": {
+      "name": "ROC curve",
+      "description": "True vs false positive rate at every threshold, with AUC.",
+      "howToRead": "The higher the curve sits above the diagonal, the better the model ranks positives; AUC summarises it."
+    },
+    "pr_curve": {
+      "name": "Precision–recall curve",
+      "description": "Precision and recall trade-off, with average precision.",
+      "howToRead": "Shows the precision you keep as recall rises; higher and further right is better."
+    },
+    "calibration_curve": {
+      "name": "Calibration curve",
+      "description": "Do predicted probabilities match observed rates?",
+      "howToRead": "Points on the dashed line mean predicted probabilities match observed rates.",
+      "options": {
+        "bins": "Bins"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Cumulative gain & lift",
+      "description": "How much better than random targeting the model is.",
+      "howToRead": "Shows how many positives you capture by targeting the top-scored share of rows, and the lift over random."
+    },
+    "threshold_metrics": {
+      "name": "Threshold explorer",
+      "description": "Precision, recall and F1 at every threshold.",
+      "howToRead": "Precision, recall and F1 at every cut-off; the dotted line marks the best balance."
+    },
+    "predicted_vs_actual": {
+      "name": "Predicted vs actual",
+      "description": "Regression accuracy against the perfect line.",
+      "howToRead": "Points on the dashed diagonal are perfect predictions; spread shows the error."
+    },
+    "residual_plot": {
+      "name": "Residual plot",
+      "description": "Errors against predictions to spot bias.",
+      "howToRead": "Errors plotted against predictions; a random cloud around zero means no systematic bias."
+    },
+    "error_distribution": {
+      "name": "Error distribution",
+      "description": "Histogram of prediction errors.",
+      "howToRead": "How large the prediction errors are; a narrow peak around zero is best."
+    },
+    "feature_importance": {
+      "name": "Feature importance",
+      "description": "Which inputs drive a target (random forest + permutation).",
+      "howToRead": "Longer bars are inputs the model relies on most; whiskers show uncertainty.",
+      "slots": {
+        "target": {
+          "label": "Target to explain"
+        }
+      },
+      "options": {
+        "top_n": "Show top"
+      }
+    },
+    "learning_curve": {
+      "name": "Learning curve",
+      "description": "Would more data help the model?",
+      "howToRead": "Training and validation scores as data grows; a large gap means over-fitting.",
+      "options": {
+        "model": "Model"
+      }
+    },
+    "elbow": {
+      "name": "Elbow chart",
+      "description": "Choose the number of clusters by inertia.",
+      "howToRead": "Inertia drops as clusters are added; the elbow is where extra clusters stop helping."
+    },
+    "silhouette": {
+      "name": "Silhouette analysis",
+      "description": "Cluster quality for every k.",
+      "howToRead": "Higher bars mean better-separated clusters; the green bar is the best number of clusters."
+    },
+    "kpi_card": {
+      "name": "KPI card",
+      "description": "One headline number with its change and a sparkline.",
+      "howToRead": "The big number is the latest period; the arrow shows the change from the period before, and the sparkline the recent trend.",
+      "slots": {
+        "y": {
+          "label": "Measure"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Gauge (progress to target)",
+      "description": "How far a measure is towards a target.",
+      "howToRead": "The needle shows the measure against its target; green means on track, amber close, red behind.",
+      "slots": {
+        "y": {
+          "label": "Measure"
+        },
+        "target": {
+          "label": "Target (optional)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Decomposition tree",
+      "description": "Break a total down level by level to see where it comes from.",
+      "howToRead": "Start from the total on the left and follow the branches to see which parts make it up; bigger nodes contribute more.",
+      "slots": {
+        "path": {
+          "label": "Break down by (in order)"
+        }
+      },
+      "options": {
+        "top_n": "Branches per level"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Forecast a time series",
+      "description": "Project a measure forward (sales, demand, revenue) with uncertainty bands.",
+      "models": {
+        "auto": "Best of all (chosen by backtest)",
+        "holt_winters": "Holt–Winters exponential smoothing",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "Linear trend + seasonality"
+      },
+      "outputs": [
+        "Forecast chart with 80%/95% bands",
+        "Best and worst case",
+        "Backtest accuracy (MAE, MAPE)",
+        "Future values table"
+      ],
+      "slots": {
+        "target": {
+          "label": "Measure to forecast"
+        }
+      }
+    },
+    "trend": {
+      "name": "Trend & seasonality analysis",
+      "description": "Growth rates, moving averages, seasonal patterns, change points and unusual periods.",
+      "models": {
+        "robust": "Automatic (robust trend + anomaly detection)"
+      },
+      "outputs": [
+        "Growth: total, average, latest and year-on-year",
+        "Seasonal profile",
+        "Change points and anomalies"
+      ],
+      "slots": {
+        "target": {
+          "label": "Measure"
+        }
+      },
+      "options": {
+        "window": "Moving average (periods)"
+      }
+    },
+    "drivers": {
+      "name": "Key drivers (what influences an outcome)",
+      "description": "Find which factors and segments push an outcome up or down — churn, sales, satisfaction.",
+      "models": {
+        "segments": "Segment comparison + random forest importance"
+      },
+      "outputs": [
+        "Top influencers with lift",
+        "Feature importance",
+        "Best and worst segments"
+      ],
+      "slots": {
+        "target": {
+          "label": "Outcome to explain"
+        },
+        "features": {
+          "label": "Input columns",
+          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+        }
+      }
+    },
+    "regression": {
+      "name": "Predict a number",
+      "description": "Estimate a numeric outcome (price, demand, score) from other columns.",
+      "models": {
+        "auto": "Best of all (cross-validated)",
+        "linear": "Linear regression",
+        "ridge": "Ridge regression",
+        "random_forest": "Random forest",
+        "gradient_boosting": "Gradient boosting"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Predicted vs actual, residuals",
+        "Feature importance"
+      ],
+      "slots": {
+        "target": {
+          "label": "Number to predict"
+        },
+        "features": {
+          "label": "Input columns",
+          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+        }
+      }
+    },
+    "classification": {
+      "name": "Predict a category",
+      "description": "Classify rows (churn, approval, segment) and judge the classifier.",
+      "models": {
+        "auto": "Best of all (cross-validated)",
+        "logistic": "Logistic regression",
+        "random_forest": "Random forest",
+        "gradient_boosting": "Gradient boosting"
+      },
+      "outputs": [
+        "Accuracy, F1, ROC AUC",
+        "Confusion matrix, ROC and PR curves",
+        "Feature importance"
+      ],
+      "slots": {
+        "target": {
+          "label": "Category to predict"
+        },
+        "features": {
+          "label": "Input columns",
+          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Find segments",
+      "description": "Group similar rows (customers, products) without labels.",
+      "models": {
+        "kmeans": "k-means",
+        "gaussian_mixture": "Gaussian mixture",
+        "agglomerative": "Hierarchical (Ward)"
+      },
+      "outputs": [
+        "Silhouette score",
+        "Cluster map and profiles",
+        "Segment for every row"
+      ],
+      "slots": {
+        "features": {
+          "label": "Input columns",
+          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Detect anomalies",
+      "description": "Flag unusual rows (fraud, faults, data errors).",
+      "models": {
+        "isolation_forest": "Isolation forest",
+        "zscore": "Robust z-score",
+        "lof": "Local outlier factor"
+      },
+      "outputs": [
+        "Anomaly count and share",
+        "Anomalies highlighted on a map",
+        "Score for every row"
+      ],
+      "slots": {
+        "features": {
+          "label": "Input columns",
+          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Date / time"
+    },
+    "y": {
+      "label": "Value",
+      "help": "Optional: rows are counted when empty."
+    },
+    "color": {
+      "label": "Colour by"
+    },
+    "facet": {
+      "label": "Split into panels by"
+    },
+    "start": {
+      "label": "Start value"
+    },
+    "end": {
+      "label": "End value"
+    },
+    "features": {
+      "label": "Numeric columns",
+      "help": "Empty uses all numeric columns."
+    },
+    "target": {
+      "label": "Target"
+    },
+    "z": {
+      "label": "Value"
+    },
+    "open": {
+      "label": "Open"
+    },
+    "high": {
+      "label": "High"
+    },
+    "low": {
+      "label": "Low"
+    },
+    "close": {
+      "label": "Close"
+    },
+    "lower": {
+      "label": "Lower bound"
+    },
+    "upper": {
+      "label": "Upper bound"
+    },
+    "path": {
+      "label": "Levels (outer to inner)"
+    },
+    "size": {
+      "label": "Bubble size"
+    },
+    "source": {
+      "label": "From"
+    },
+    "location": {
+      "label": "Country"
+    },
+    "lat": {
+      "label": "Latitude"
+    },
+    "lon": {
+      "label": "Longitude"
+    },
+    "actual": {
+      "label": "Actual value / true label"
+    },
+    "predicted": {
+      "label": "Predicted value / label"
+    },
+    "score": {
+      "label": "Predicted probability / score"
+    },
+    "date": {
+      "label": "Date / time"
+    },
+    "split_by": {
+      "label": "Forecast each (optional)",
+      "help": "e.g. one forecast per region"
+    }
+  },
+  "options": {
+    "aggregation": "Combine values with",
+    "sort": "Order",
+    "top_n": "Show only the top",
+    "orientation": "Direction",
+    "show_values": "Show values on the chart",
+    "log_y": "Logarithmic value axis",
+    "time_grain": "Group dates by",
+    "markers": "Show markers",
+    "normalize": "Show as",
+    "window": "Rolling window (points)",
+    "model": "Seasonality",
+    "lags": "Lags",
+    "hole": "Centre hole",
+    "total": "Show the total bar",
+    "bins": "Number of bins",
+    "histnorm": "Show as",
+    "marginal": "Add a margin plot",
+    "bandwidth": "Smoothing",
+    "points": "Show points",
+    "box": "Show box inside",
+    "confidence": "Confidence",
+    "distribution": "Distribution",
+    "sigma": "Limits (σ)",
+    "trendline": "Trend line",
+    "opacity": "Point opacity",
+    "degree": "Polynomial degree",
+    "band": "Show 95% band",
+    "method": "Correlation",
+    "triangle": "Lower triangle only",
+    "nbins": "Bins",
+    "location_mode": "Locations are",
+    "scope": "Map area",
+    "contours": "Project contours",
+    "standardize": "Standardize features",
+    "perplexity": "Perplexity",
+    "clusters": "Clusters (0 = choose automatically)",
+    "positive_class": "Positive class (blank = automatic)",
+    "max_k": "Try up to k",
+    "goal": "Target value (0 = use the target column)",
+    "horizon": "Periods ahead",
+    "positive": "Outcome value to explain (blank = automatic)",
+    "test_size": "Hold-out share",
+    "contamination": "Expected share of anomalies"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Sum",
+      "mean": "Average",
+      "median": "Median",
+      "count": "Count",
+      "min": "Minimum",
+      "max": "Maximum"
+    },
+    "sort": {
+      "none": "As in the data",
+      "desc": "Largest first",
+      "asc": "Smallest first",
+      "label": "Alphabetical"
+    },
+    "orientation": {
+      "v": "Vertical",
+      "h": "Horizontal"
+    },
+    "time_grain": {
+      "auto": "Automatic",
+      "none": "No grouping",
+      "D": "Day",
+      "W": "Week",
+      "M": "Month",
+      "Q": "Quarter",
+      "Y": "Year"
+    },
+    "model": {
+      "additive": "Additive",
+      "multiplicative": "Multiplicative",
+      "random_forest": "Random forest",
+      "gradient_boosting": "Gradient boosting",
+      "linear": "Linear / logistic"
+    },
+    "histnorm": {
+      "_none": "Counts",
+      "percent": "Percent",
+      "probability_density": "Density"
+    },
+    "marginal": {
+      "_none": "None",
+      "box": "Box",
+      "histogram": "Histogram"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Silverman"
+    },
+    "points": {
+      "outliers": "Outliers",
+      "all": "All",
+      "none": "None"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "Normal",
+      "lognorm": "Log-normal",
+      "expon": "Exponential",
+      "gamma": "Gamma",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "None",
+      "ols": "Linear (OLS)",
+      "lowess": "Smoothed (LOWESS)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Spearman",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "Counts",
+      "index": "% of row",
+      "columns": "% of column",
+      "all": "% of total",
+      "true": "% of actual",
+      "pred": "% of predicted"
+    },
+    "location_mode": {
+      "country_names": "Country names",
+      "ISO-3": "ISO-3 codes"
+    },
+    "scope": {
+      "world": "World",
+      "africa": "Africa",
+      "europe": "Europe",
+      "asia": "Asia",
+      "north_america": "North America",
+      "south_america": "South America"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Vivid",
+    "colorblind": "Colour-blind safe (Okabe–Ito)",
+    "tableau": "Tableau 10",
+    "ocean": "Ocean",
+    "sunset": "Sunset",
+    "corporate": "Corporate",
+    "pastel": "Pastel",
+    "earth": "Earth"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Retail sales",
+      "description": "Two years of orders by region, product and channel.",
+      "audience": "Small business"
+    },
+    "customer_churn": {
+      "name": "Customer churn",
+      "description": "Subscribers, contracts and a churn model's scores.",
+      "audience": "Enterprise"
+    },
+    "website_traffic": {
+      "name": "Website traffic",
+      "description": "Daily sessions and conversions by traffic source.",
+      "audience": "Marketing"
+    },
+    "house_prices": {
+      "name": "House prices",
+      "description": "Homes with size, location and a price model's predictions.",
+      "audience": "Analysts"
+    },
+    "stock_prices": {
+      "name": "Stock prices",
+      "description": "Daily open/high/low/close for three tickers.",
+      "audience": "Finance"
+    },
+    "world_indicators": {
+      "name": "World indicators",
+      "description": "GDP, life expectancy and emissions by country.",
+      "audience": "Everyone"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (comma separated)",
+    "tsv": "TSV (tab separated)",
+    "txt": "Delimited text (auto-detect ; | ,)",
+    "json": "JSON (array of records)",
+    "jsonl": "JSON Lines",
+    "xlsx": "Excel workbook (first sheet)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (data, profile and summary sheets)",
+    "json": "JSON records"
+  }
+}

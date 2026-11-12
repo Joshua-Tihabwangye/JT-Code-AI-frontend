@@ -1,0 +1,41 @@
+{
+  "title": "Relatórios",
+  "subtitle": "Exporte um painel ou reutilize os recursos visuais que você salvou.",
+  "export": "Exportar um painel",
+  "noCharts": "Salve recursos visuais do Explore ou do Predict para reutilizá-los em painéis.",
+  "library": {
+    "title": "Meus recursos visuais"
+  },
+  "dashboardToExport": "Painel para exportar",
+  "noDashboards": "Ainda não há painéis",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Uma página por página do painel, exatamente como na tela"
+    },
+    "png": {
+      "label": "Imagens PNG",
+      "hint": "Uma imagem por página"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Dados de cada visual com gráficos nativos, além dos dados brutos"
+    },
+    "html": {
+      "label": "HTML interativo",
+      "hint": "Um único arquivo que funciona offline"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "A definição do painel"
+    }
+  },
+  "preparing": "Preparando…",
+  "explore": "Explorar",
+  "prediction": "Previsão",
+  "visualOf": "{{type}} visuais",
+  "deletedDataset": "conjunto de dados excluído",
+  "unshare": "Cancelar compartilhamento",
+  "share": "Compartilhar",
+  "deleteNamed": "Excluir {{name}}"
+}

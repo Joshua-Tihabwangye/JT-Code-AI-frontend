@@ -1,0 +1,16 @@
+{
+  "openNavigation": "فتح التنقل",
+  "closeNavigation": "إغلاق التنقل",
+  "toggleTheme": "تبديل المظهر",
+  "theme": "المظهر",
+  "expandSidebar": "توسيع الشريط الجانبي",
+  "collapseSidebar": "تصغير الشريط الجانبي",
+  "collapse": "تصغير",
+  "offlineMessage": "أنت غير متصل. يتم حفظ التغييرات محليًا وستتم مزامنتها عند عودة الاتصال.",
+  "fatalTitle": "حدث خطأ ما",
+  "unexpectedError": "حدث خطأ غير متوقع.",
+  "reloadApp": "إعادة تحميل التطبيق",
+  "home": "الصفحة الرئيسية لـ JT-Code",
+  "primaryNavigation": "التنقل الرئيسي",
+  "fatalError": "واجه JT-Code خطأً."
+}

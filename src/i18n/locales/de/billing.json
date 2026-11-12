@@ -1,0 +1,165 @@
+{
+  "eyebrow": "Abrechnung",
+  "title": "Abrechnung & Credits",
+  "subtitle": "Verwalte deinen Plan, deine Credits und Zahlungsdetails. Füge jederzeit Credits hinzu, um ohne Grenzen weiterzubauen.",
+  "addCredits": "Credits hinzufügen",
+  "summary": {
+    "currentPlan": "Aktueller Plan",
+    "availableCredits": "Verfügbare Credits",
+    "renewsOn": "Erneuert am",
+    "renewsHelper": "Am Ende deines Abrechnungszeitraums",
+    "managePlan": "Plan verwalten →",
+    "addCreditsAction": "Credits hinzufügen →"
+  },
+  "usage": {
+    "title": "Credit-Verbrauch",
+    "usedOf": "{{used}} von {{limit}} in diesem Monat verbraucht",
+    "left": "{{amount}} übrig",
+    "thisMonth": "{{amount}} Credits in diesem Monat verbraucht",
+    "types": {
+      "chat": "Chat",
+      "images": "Bilder",
+      "documents": "Dokumente",
+      "agent": "Agenten"
+    }
+  },
+  "plans": {
+    "title": "Wähle den Plan, der zu dir passt",
+    "allInclude": "Alle Pläne enthalten: Sichere Abrechnung, jederzeit kündbar, 99,9 % Verfügbarkeit",
+    "ribbonCurrent": "Aktueller Plan",
+    "ribbonSelected": "Ausgewählt",
+    "currentCta": "Aktueller Plan",
+    "chooseCta": "{{name}} wählen",
+    "perMonth": "/Monat",
+    "customPrice": "Individuell",
+    "fallbackDescription": "Für wachsende Nutzer",
+    "fallbackFeature1": "{{credits}} Credits / Monat",
+    "fallbackFeature2": "Standard-Support",
+    "descriptions": {
+      "free": "Für Einsteiger",
+      "pro": "Für Profis und Power-User",
+      "team": "Für Teams und Organisationen",
+      "business": "Für wachsende Teams"
+    },
+    "features": {
+      "free": [
+        "1.000 Credits / Monat",
+        "Zugang zu GPT-4o mini",
+        "Grundlegende KI-Tools",
+        "Community-Support"
+      ],
+      "pro": [
+        "2.000 Credits / Monat",
+        "Zugang zu GPT-4o",
+        "Fortgeschrittene KI-Tools",
+        "Prioritäts-Support",
+        "Früher Zugang zu neuen Funktionen"
+      ],
+      "team": [
+        "5.000 Credits / Nutzer / Monat",
+        "Zugang zu GPT-4o",
+        "Team-Arbeitsbereich",
+        "Erweiterte Administrationskontrollen",
+        "Prioritäts-Support & SLA"
+      ],
+      "business": [
+        "Individuelle Credits",
+        "Dedizierter Support",
+        "SSO & Audit-Logs",
+        "Individuelle KI-Modelle",
+        "SLA-Garantie"
+      ]
+    },
+    "names": {
+      "free": "Free",
+      "pro": "Pro",
+      "team": "Team",
+      "business": "Business"
+    }
+  },
+  "payment": {
+    "title": "Zahlungsmethode",
+    "billingCountry": "Rechnungsland",
+    "ugandaHint": "Uganda: Zahle mit Karte oder Mobile Money (MTN / Airtel).",
+    "otherHint": "Zahle mit Karte oder PayPal.",
+    "addMethod": "Zahlungsmethode hinzufügen",
+    "makeDefault": "Als Standard festlegen",
+    "methods": {
+      "card": "Karte",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Karte",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Telefonnummer",
+    "cardNumberLabel": "Kartennummer",
+    "expiryLabel": "Gültig bis",
+    "cvcLabel": "CVC",
+    "savedToast": "Zahlungsmethode gespeichert",
+    "none": "Keine Zahlungsmethode hinterlegt",
+    "manage": "Zahlungsmethoden verwalten"
+  },
+  "invoices": {
+    "title": "Aktuelle Rechnungen",
+    "viewAll": "Alle Rechnungen anzeigen",
+    "allTitle": "Alle Rechnungen",
+    "allSubtitle": "JT-Code — Abrechnungsverlauf",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "amount": "Betrag",
+    "status": "Status",
+    "empty": "Noch keine Rechnungen.",
+    "download": "Rechnung herunterladen",
+    "statuses": {
+      "paid": "bezahlt",
+      "open": "offen",
+      "draft": "Entwurf",
+      "void": "storniert",
+      "uncollectible": "uneinbringlich"
+    }
+  },
+  "topup": {
+    "title": "Credits hinzufügen",
+    "description": "Erwerbe zusätzliche Credits für dein Konto",
+    "amountLabel": "Betrag (USD)",
+    "estimatedCredits": "Geschätzte Credits",
+    "confirm": "${{amount}} Credits hinzufügen",
+    "success": "Credits erfolgreich hinzugefügt",
+    "invalidAmount": "Gib einen gültigen Betrag ein",
+    "processing": "Zahlung erhalten. Die Credits erscheinen, sobald Stripe sie bestätigt.",
+    "failed": "Die Zahlung konnte nicht abgeschlossen werden.",
+    "payNow": "Jetzt bezahlen"
+  },
+  "checkout": {
+    "title": "Schließe deinen Kauf ab",
+    "planSuffix": "{{name}}-Plan",
+    "customPricing": "Individuelle Preise",
+    "billedMonthly": "Monatliche Abrechnung",
+    "pay": "{{amount}} zahlen",
+    "enterPhone": "Gib die Telefonnummer für Mobile Money ein.",
+    "activated": "{{name}}-Plan aktiviert — Zahlung erfolgreich",
+    "returned": "Danke! Dein Abonnement wird aktualisiert, sobald Stripe die Zahlung bestätigt.",
+    "cancelled": "Der Bezahlvorgang wurde abgebrochen; es wurde nichts berechnet."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Endet am Ende dieses Abrechnungszeitraums",
+    "freeMonthly": "Kostenlose Credits werden monatlich erneuert",
+    "reactivate": "Abonnement fortsetzen",
+    "cancel": "Abonnement kündigen",
+    "cancelConfirm": "Dein Abonnement zum Ende des aktuellen Zeitraums kündigen?"
+  },
+  "wallet": {
+    "saved": "Abrechnungseinstellungen gespeichert.",
+    "reserved": "{{amount}} für laufende Jobs reserviert",
+    "autoRecharge": "Automatisches Aufladen",
+    "autoRechargeDesc": "Automatisch aufladen, wenn die Credits unter den Schwellenwert fallen.",
+    "threshold": "Schwellenwert (Credits)",
+    "spendingLimit": "Monatliches Limit (Credits)",
+    "noLimit": "Kein Limit"
+  },
+  "stripe": {
+    "loadFailed": "Das Stripe-Zahlungsformular konnte nicht geladen werden. Prüfe deine Verbindung.",
+    "unavailable": "Stripe ist nicht verfügbar."
+  }
+}

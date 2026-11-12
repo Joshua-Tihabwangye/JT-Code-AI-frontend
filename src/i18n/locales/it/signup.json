@@ -1,0 +1,60 @@
+{
+  "title": "Crea il tuo account",
+  "subtitle": "Inizia il tuo percorso con JT-Code",
+  "firstNameLabel": "Nome",
+  "lastNameLabel": "Cognome",
+  "emailLabel": "Indirizzo email",
+  "passwordLabel": "Password",
+  "passwordPlaceholder": "Crea una password",
+  "confirmPasswordLabel": "Conferma password",
+  "confirmPasswordPlaceholder": "Conferma la tua password",
+  "requirements": {
+    "title": "Requisiti della password",
+    "minLength": "Almeno 8 caratteri",
+    "uppercase": "Una lettera maiuscola",
+    "lowercase": "Una lettera minuscola",
+    "number": "Un numero",
+    "singleRule": "La password deve contenere almeno 8 caratteri e includere almeno una lettera e un numero.",
+    "special": "Un personaggio speciale"
+  },
+  "matchOk": "Le password coincidono.",
+  "matchError": "Le password non coincidono ancora.",
+  "matchHint": "Reinserisci la password per confermarla.",
+  "country": {
+    "label": "Paese",
+    "searchPlaceholder": "Cerca un paese",
+    "selectedAria": "Paese selezionato {{name}}",
+    "noMatch": "Nessun paese corrisponde a “{{query}}”.",
+    "help": "Il paese selezionato aggiorna il prefisso telefonico, la convalida del numero e i fusi orari suggeriti."
+  },
+  "dialCode": {
+    "label": "Prefisso telefonico",
+    "help": "Puoi ignorare il codice predefinito se ti registri per un'area di chiamata diversa."
+  },
+  "phone": {
+    "label": "Contatto / numero di telefono",
+    "defaultPlaceholder": "Inserisci il numero di telefono",
+    "help": "Usa il formato di numero di telefono comunemente usato in {{country}}.",
+    "yourCountry": "il tuo paese"
+  },
+  "timezone": {
+    "label": "Fuso orario",
+    "empty": "Nessun fuso orario disponibile",
+    "help": "I fusi orari suggeriti sono filtrati in base al paese selezionato, ma puoi ignorarli."
+  },
+  "note": "Il paese selezionato aggiorna automaticamente la convalida del numero e i fusi orari suggeriti.",
+  "termsPrefix": "Accetto i ",
+  "termsLink": "Termini",
+  "termsMiddle": " e ",
+  "privacyLink": "l'Informativa sulla privacy",
+  "termsHelp": "Puoi consultare queste pagine legali prima di completare la registrazione.",
+  "submit": "Crea account",
+  "haveAccountQuestion": "Hai già un account?",
+  "helpText": "",
+  "section": {
+    "account": "Account",
+    "profile": "Profilo",
+    "region": "Regione"
+  },
+  "confirmEmail": "Ci siamo quasi! Abbiamo inviato un link di conferma a {{email}}. Aprilo, quindi accedi."
+}

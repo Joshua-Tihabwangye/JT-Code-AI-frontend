@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config';
 import type { DashboardBookmark, DashboardCalculation, DashboardFieldRef, DashboardPage, DashboardParameter, DashboardSpec, DashboardVisual, DashboardWell } from '@/lib/data';
 
 /** Visuals the browser draws itself (no query): text, parameter controls, buttons, navigators. */
@@ -120,54 +121,44 @@ export interface QuickMeasure {
 
 const nice = (field: string) => field.replace(/[_-]+/g, ' ').replace(/\b\w/g, (ch) => ch.toUpperCase());
 
+/** `label` reads its i18n key each time, so menus follow the chosen language. */
+function translated<T extends object>(item: T, key: string): T & { readonly label: string } {
+  return Object.defineProperty(item, 'label', { get: () => i18n.t(key), enumerable: true }) as T & { readonly label: string };
+}
+const slot = (key: string, label: string) => translated({ key }, `visualize.dashboards.quick.fields.${label}`) as { key: string; label: string };
+const measure = (item: Omit<QuickMeasure, 'label'>) => translated(item, `visualize.dashboards.quick.${item.id}.label`) as QuickMeasure;
+
 export const QUICK_MEASURES: QuickMeasure[] = [
-  {
+  measure({
     id: 'ratio',
-    label: 'Ratio (A ÷ B), e.g. profit margin',
-    fields: [
-      { key: 'a', label: 'Numerator' },
-      { key: 'b', label: 'Denominator' },
-    ],
+    fields: [slot('a', 'numerator'), slot('b', 'denominator')],
     format: 'percent',
     build: ({ a, b }) => ({ name: `${nice(a!)} / ${nice(b!)}`, expression: `DIVIDE(SUM([${a}]), SUM([${b}]))` }),
-  },
-  {
+  }),
+  measure({
     id: 'average-per-row',
-    label: 'Average per row (e.g. average order value)',
-    fields: [{ key: 'a', label: 'Value' }],
+    fields: [slot('a', 'value')],
     format: 'number',
-    build: ({ a }) => ({ name: `${nice(a!)} per row`, expression: `DIVIDE(SUM([${a}]), COUNTROWS())` }),
-  },
-  {
+    build: ({ a }) => ({ name: i18n.t('visualize.dashboards.quick.names.perRow', { a: nice(a!) }), expression: `DIVIDE(SUM([${a}]), COUNTROWS())` }),
+  }),
+  measure({
     id: 'vs-target',
-    label: 'Versus target (%)',
-    fields: [
-      { key: 'a', label: 'Actual' },
-      { key: 'b', label: 'Target' },
-    ],
+    fields: [slot('a', 'actual'), slot('b', 'target')],
     format: 'percent',
-    build: ({ a, b }) => ({ name: `${nice(a!)} vs target`, expression: `DIVIDE(SUM([${a}]), SUM([${b}])) - 1` }),
-  },
-  {
+    build: ({ a, b }) => ({ name: i18n.t('visualize.dashboards.quick.names.vsTarget', { a: nice(a!) }), expression: `DIVIDE(SUM([${a}]), SUM([${b}])) - 1` }),
+  }),
+  measure({
     id: 'difference',
-    label: 'Difference (A − B)',
-    fields: [
-      { key: 'a', label: 'Value' },
-      { key: 'b', label: 'Minus' },
-    ],
+    fields: [slot('a', 'value'), slot('b', 'minus')],
     format: 'number',
     build: ({ a, b }) => ({ name: `${nice(a!)} − ${nice(b!)}`, expression: `SUM([${a}]) - SUM([${b}])` }),
-  },
-  {
+  }),
+  measure({
     id: 'per-distinct',
-    label: 'Value per distinct item (e.g. revenue per customer)',
-    fields: [
-      { key: 'a', label: 'Value' },
-      { key: 'b', label: 'Distinct item' },
-    ],
+    fields: [slot('a', 'value'), slot('b', 'distinctItem')],
     format: 'number',
-    build: ({ a, b }) => ({ name: `${nice(a!)} per ${nice(b!).toLowerCase()}`, expression: `DIVIDE(SUM([${a}]), DISTINCTCOUNT([${b}]))` }),
-  },
+    build: ({ a, b }) => ({ name: i18n.t('visualize.dashboards.quick.names.perDistinct', { a: nice(a!), b: nice(b!).toLowerCase() }), expression: `DIVIDE(SUM([${a}]), DISTINCTCOUNT([${b}]))` }),
+  }),
 ];
 
 /** A bookmark's page state, applied over the author's defaults. */

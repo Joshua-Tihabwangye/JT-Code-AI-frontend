@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "যোগাযোগ",
+    "title": "JT-Code নিয়ে সাহায্য নিন",
+    "backToSignIn": "সাইন ইনে ফিরে যান",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "p1": "",
+    "p2": ""
+  },
+  "privacy": {
+    "eyebrow": "গোপনীয়তা নীতি",
+    "title": "JT-Code গোপনীয়তা",
+    "signIn": "সাইন ইন",
+    "readTerms": "শর্তাবলি পড়ুন",
+    "p1": "",
+    "p2": ""
+  },
+  "terms": {
+    "eyebrow": "পরিষেবার শর্তাবলি",
+    "title": "JT-Code শর্তাবলি",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "contactSupport": "সাপোর্টে যোগাযোগ করুন",
+    "p1": "",
+    "p2": ""
+  },
+  "notFound": {
+    "title": "পেজ পাওয়া যায়নি",
+    "returnHome": "JT-Code-এ ফিরে যান"
+  }
+}

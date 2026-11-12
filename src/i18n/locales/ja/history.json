@@ -1,0 +1,21 @@
+{
+  "eyebrow": "履歴",
+  "title": "履歴",
+  "subtitle": "最近のチャットとセッション。",
+  "clearHistory": "履歴を消去",
+  "clearConfirm": "すべてのチャット履歴を消去しますか？",
+  "emptyTitle": "履歴はまだありません",
+  "emptyDesc": "チャットを始めると、会話がここに表示されます。",
+  "startChatting": "チャットを始める",
+  "deleteItemAria": "{{title}} を削除",
+  "searchPlaceholder": "会話を検索する",
+  "archived": "アーカイブ済み",
+  "openAria": "{{title}} を開く",
+  "pinned": "固定された",
+  "untitled": "無題の会話",
+  "pin": "ピン",
+  "unpin": "固定を解除する",
+  "archive": "アーカイブ",
+  "unarchive": "アーカイブから復元する",
+  "export": "マークダウンとしてエクスポート"
+}

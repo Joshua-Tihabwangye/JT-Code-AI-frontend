@@ -1,0 +1,16 @@
+{
+  "openNavigation": "नेविगेशन खोलें",
+  "closeNavigation": "नेविगेशन बंद करें",
+  "toggleTheme": "थीम बदलें",
+  "theme": "थीम",
+  "expandSidebar": "साइडबार बड़ा करें",
+  "collapseSidebar": "साइडबार छोटा करें",
+  "collapse": "छोटा करें",
+  "offlineMessage": "आप ऑफ़लाइन हैं। बदलाव स्थानीय रूप से सहेजे गए हैं और दोबारा कनेक्ट होने पर सिंक हो जाएँगे।",
+  "fatalTitle": "कुछ ग़लत हो गया",
+  "unexpectedError": "एक अप्रत्याशित त्रुटि हुई।",
+  "reloadApp": "ऐप पुनः लोड करें",
+  "home": "जेटी-कोड होम",
+  "primaryNavigation": "प्राथमिक नेविगेशन",
+  "fatalError": "जेटी-कोड में एक त्रुटि आई।"
+}

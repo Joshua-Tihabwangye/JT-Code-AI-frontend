@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link2, Plus, Trash2 } from 'lucide-react';
 import type { DashboardRelationship, DashboardSpec } from '@/lib/data';
 import { useVisualize } from '../../context';
 
 /** Links between datasets (key ↔ key), so a slicer on one dataset filters visuals of another. */
 export function RelationshipsSection({ spec, onSpec }: { spec: DashboardSpec; onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void }) {
+  const { t } = useTranslation();
   const { datasets } = useVisualize();
   const used = [...new Set(spec.pages.flatMap((page) => page.visuals.map((visual) => visual.data.datasetId)).filter(Boolean))];
   const relationships = spec.relationships ?? [];
   const [draft, setDraft] = useState<DashboardRelationship>({ from: { datasetId: used[0] ?? '', field: '' }, to: { datasetId: used[1] ?? datasets.find((d) => d.id !== used[0])?.id ?? '', field: '' } });
   const columns = (id: string) => datasets.find((item) => item.id === id)?.profile.columnProfiles?.map((profile) => profile.name) ?? [];
-  const name = (id: string) => datasets.find((item) => item.id === id)?.name ?? 'dataset';
+  const name = (id: string) => datasets.find((item) => item.id === id)?.name ?? t('visualize.editor.relationships.dataset');
   const save = (next: DashboardRelationship[]) => onSpec((current) => ({ ...current, relationships: next }));
   const exists = (link: DashboardRelationship) =>
     relationships.some(
@@ -27,15 +29,15 @@ export function RelationshipsSection({ spec, onSpec }: { spec: DashboardSpec; on
   );
   const side = (key: 'from' | 'to') => (
     <div className="flex gap-1">
-      <select className="viz-field h-7 text-xs" value={draft[key].datasetId} onChange={(event) => setDraft({ ...draft, [key]: { datasetId: event.target.value, field: '' } })} aria-label={`${key === 'from' ? 'First' : 'Second'} dataset`}>
+      <select className="viz-field h-7 text-xs" value={draft[key].datasetId} onChange={(event) => setDraft({ ...draft, [key]: { datasetId: event.target.value, field: '' } })} aria-label={key === 'from' ? t('visualize.editor.relationships.firstDataset') : t('visualize.editor.relationships.secondDataset')}>
         {datasets.map((item) => (
           <option key={item.id} value={item.id}>
             {item.name}
           </option>
         ))}
       </select>
-      <select className="viz-field h-7 text-xs" value={draft[key].field} onChange={(event) => setDraft({ ...draft, [key]: { ...draft[key], field: event.target.value } })} aria-label={`${key === 'from' ? 'First' : 'Second'} key column`} data-testid={`relationship-${key}-field`}>
-        <option value="">Key column…</option>
+      <select className="viz-field h-7 text-xs" value={draft[key].field} onChange={(event) => setDraft({ ...draft, [key]: { ...draft[key], field: event.target.value } })} aria-label={key === 'from' ? t('visualize.editor.relationships.firstKey') : t('visualize.editor.relationships.secondKey')} data-testid={`relationship-${key}-field`}>
+        <option value="">{t('visualize.editor.relationships.keyColumn')}</option>
         {columns(draft[key].datasetId).map((column) => (
           <option key={column} value={column}>
             {column}
@@ -46,15 +48,15 @@ export function RelationshipsSection({ spec, onSpec }: { spec: DashboardSpec; on
   );
   return (
     <div className="space-y-1.5" data-testid="relationships">
-      <p className="viz-label mt-3">Relationships</p>
-      <p className="text-[11px] text-muted-foreground">Link a key column in two datasets so slicers and clicks filter across them.</p>
+      <p className="viz-label mt-3">{t('visualize.editor.relationships.title')}</p>
+      <p className="text-[11px] text-muted-foreground">{t('visualize.editor.relationships.hint')}</p>
       {relationships.map((link, index) => (
         <div key={index} className="dash-view-row">
           <Link2 size={12} aria-hidden />
           <span className="flex-1 truncate text-xs">
             {name(link.from.datasetId)}.{link.from.field} ↔ {name(link.to.datasetId)}.{link.to.field}
           </span>
-          <button type="button" onClick={() => save(relationships.filter((_, i) => i !== index))} aria-label="Remove relationship">
+          <button type="button" onClick={() => save(relationships.filter((_, i) => i !== index))} aria-label={t('visualize.editor.relationships.remove')}>
             <Trash2 size={12} />
           </button>
         </div>
@@ -64,7 +66,7 @@ export function RelationshipsSection({ spec, onSpec }: { spec: DashboardSpec; on
         .slice(0, 4)
         .map((link) => (
           <button key={`${link.from.datasetId}-${link.to.datasetId}-${link.from.field}`} type="button" className="viz-chip" onClick={() => save([...relationships, link])} data-testid="relationship-suggestion">
-            <Plus size={12} aria-hidden /> Link {link.from.field} in {name(link.from.datasetId)} and {name(link.to.datasetId)}
+            <Plus size={12} aria-hidden /> {t('visualize.editor.relationships.suggestion', { field: link.from.field, from: name(link.from.datasetId), to: name(link.to.datasetId) })}
           </button>
         ))}
       {side('from')}
@@ -76,7 +78,7 @@ export function RelationshipsSection({ spec, onSpec }: { spec: DashboardSpec; on
         onClick={() => save([...relationships, draft])}
         data-testid="relationship-add"
       >
-        <Link2 size={12} aria-hidden /> Add relationship
+        <Link2 size={12} aria-hidden /> {t('visualize.editor.relationships.add')}
       </button>
     </div>
   );

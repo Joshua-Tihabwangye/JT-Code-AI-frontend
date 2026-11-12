@@ -1,0 +1,21 @@
+{
+  "eyebrow": "السجل",
+  "title": "السجل",
+  "subtitle": "محادثاتك وجلساتك الأخيرة.",
+  "clearHistory": "مسح السجل",
+  "clearConfirm": "هل تريد مسح كل سجل المحادثات؟",
+  "emptyTitle": "لا يوجد سجل بعد",
+  "emptyDesc": "ابدأ محادثة وستظهر محادثاتك هنا.",
+  "startChatting": "ابدأ المحادثة",
+  "deleteItemAria": "حذف {{title}}",
+  "searchPlaceholder": "البحث في المحادثات",
+  "archived": "المؤرشفة",
+  "openAria": "فتح {{title}}",
+  "pinned": "المثبّتة",
+  "untitled": "محادثة بلا عنوان",
+  "pin": "تثبيت",
+  "unpin": "إلغاء التثبيت",
+  "archive": "أرشفة",
+  "unarchive": "استعادة من الأرشيف",
+  "export": "تصدير بتنسيق Markdown"
+}

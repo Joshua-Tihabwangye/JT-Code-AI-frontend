@@ -1,0 +1,37 @@
+{
+  "moveUp": "Subir",
+  "moveDown": "Bajar",
+  "views": {
+    "intro": "Una vista recuerda esta página con sus segmentaciones, filtros, nivel de exploración, parámetros y qué objetos visuales están ocultos (pestaña Selección). Los lectores eligen vistas en “Vistas ▾”; los botones y los navegadores pueden abrirlas.",
+    "namePlaceholder": "Nombre, p. ej., Solo en línea",
+    "add": "Agregar vista",
+    "nameAria": "Nombre de la vista",
+    "show": "Mostrar esta vista",
+    "update": "Actualizar con lo que se muestra ahora",
+    "delete": "Eliminar"
+  },
+  "mobile": {
+    "phone": "Diseño para teléfono",
+    "empty": "Los teléfonos muestran todos los objetos visuales en orden de lectura hasta que diseñes esta página.",
+    "auto": "Empezar desde el diseño de escritorio",
+    "shorter": "Más bajo",
+    "taller": "Más alto",
+    "remove": "Quitar del diseño para teléfono",
+    "notOnPhones": "No está en teléfonos",
+    "allPlaced": "Todos los objetos visuales están en el diseño para teléfono.",
+    "clear": "Borrar diseño para teléfono"
+  },
+  "selection": {
+    "group": "Agrupar",
+    "ungroup": "Desagrupar",
+    "inGroup": "En un grupo",
+    "layerName": "Nombre de la capa",
+    "show": "Mostrar",
+    "hide": "Ocultar",
+    "lock": "Bloquear",
+    "unlock": "Desbloquear",
+    "forward": "Traer adelante",
+    "backward": "Enviar atrás",
+    "empty": "Aún no hay objetos visuales: usa Insertar."
+  }
+}

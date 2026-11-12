@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Data Analytics",
+  "title": "Data Analytics",
+  "subtitle": "Upload a CSV, explore its columns, run analyses and turn the results into charts.",
+  "upload": {
+    "title": "Add a dataset",
+    "name": "Name",
+    "namePlaceholder": "e.g. Q3 sales",
+    "file": "CSV file (up to 25 MB)",
+    "or": "— or paste CSV —",
+    "paste": "CSV text",
+    "pastePlaceholder": "region,revenue\nEast,120\nWest,80",
+    "submit": "Add dataset",
+    "limits": "UTF-8 CSV with a header row; up to 100,000 rows and 200 columns.",
+    "needData": "Choose a CSV file or paste CSV text."
+  },
+  "datasets": "Datasets",
+  "noDatasets": "No datasets yet.",
+  "datasetMeta": "{{rows}} rows · {{columns}} columns",
+  "emptyTitle": "No dataset selected",
+  "emptyDesc": "Add a CSV on the left to start analysing.",
+  "deleteDataset": "Delete",
+  "deleteConfirm": "Delete this dataset with its analyses and charts?",
+  "profilePending": "Column statistics appear after the first analysis of an uploaded file.",
+  "profile": {
+    "column": "Column",
+    "kind": "Type",
+    "missing": "Missing",
+    "distinct": "Distinct",
+    "summary": "Summary"
+  },
+  "builder": {
+    "title": "Analyse",
+    "filters": "Filters",
+    "addFilter": "Add filter",
+    "noFilters": "No filters: every row is included.",
+    "removeFilter": "Remove filter",
+    "column": "Column",
+    "operator": "Operator",
+    "value": "Value",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Group by",
+    "aggregate": "Aggregate",
+    "ofColumn": "Of column",
+    "allNumeric": "All numeric columns",
+    "sortBy": "Sort by",
+    "direction": "Direction",
+    "asc": "Ascending",
+    "desc": "Descending",
+    "limit": "Row limit",
+    "none": "None",
+    "run": "Run analysis",
+    "cost": "Each analysis uses 10 credits; charts are free."
+  },
+  "operators": {
+    "eq": "equals",
+    "ne": "not equal",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "contains",
+    "in": "is one of"
+  },
+  "aggregates": {
+    "count": "Count rows",
+    "sum": "Sum",
+    "mean": "Average",
+    "min": "Minimum",
+    "max": "Maximum"
+  },
+  "status": {
+    "queued": "Queued",
+    "running": "Running",
+    "completed": "Completed",
+    "failed": "Failed",
+    "ready": "Ready"
+  },
+  "results": {
+    "title": "Results",
+    "rows": "{{count}} rows (showing {{shown}})",
+    "download": "Download CSV",
+    "retry": "Retry",
+    "pickRun": "Analysis run"
+  },
+  "charts": {
+    "title": "Charts",
+    "kind": "Chart",
+    "x": "X axis",
+    "y": "Y axis (numeric)",
+    "chartTitle": "Title",
+    "create": "Create chart",
+    "delete": "Delete chart",
+    "noImage": "Charts render on the server in API mode."
+  },
+  "chartKinds": {
+    "bar": "Bar",
+    "line": "Line",
+    "scatter": "Scatter",
+    "area": "Area",
+    "histogram": "Histogram",
+    "box": "Box",
+    "pie": "Pie"
+  }
+}

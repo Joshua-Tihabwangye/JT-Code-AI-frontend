@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "İletişim",
+    "title": "JT-Code ile ilgili yardım alın",
+    "backToSignIn": "Oturum açmaya dön",
+    "createAccount": "Hesap oluştur",
+    "p1": "",
+    "p2": ""
+  },
+  "privacy": {
+    "eyebrow": "Gizlilik Politikası",
+    "title": "JT-Code Gizlilik",
+    "signIn": "Oturum aç",
+    "readTerms": "Şartları okuyun",
+    "p1": "",
+    "p2": ""
+  },
+  "terms": {
+    "eyebrow": "Hizmet Şartları",
+    "title": "JT-Code Şartları",
+    "createAccount": "Hesap oluştur",
+    "contactSupport": "Destek ekibiyle iletişime geçin",
+    "p1": "",
+    "p2": ""
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "returnHome": "JT-Code'a dön"
+  }
+}

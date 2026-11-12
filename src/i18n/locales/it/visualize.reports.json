@@ -1,0 +1,41 @@
+{
+  "title": "Rapporti",
+  "subtitle": "Esporta una dashboard o riutilizza gli elementi visivi salvati.",
+  "export": "Esporta una dashboard",
+  "noCharts": "Salva elementi visivi da Esplora o Prevedi per riutilizzarli nelle dashboard.",
+  "library": {
+    "title": "Le mie immagini"
+  },
+  "dashboardToExport": "Dashboard da esportare",
+  "noDashboards": "Ancora nessuna dashboard",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Una pagina per pagina del dashboard, esattamente come sullo schermo"
+    },
+    "png": {
+      "label": "Immagini PNG",
+      "hint": "Un'immagine per pagina"
+    },
+    "xlsx": {
+      "label": "Eccellere",
+      "hint": "I dati di ogni oggetto visivo con grafici nativi, oltre ai dati grezzi"
+    },
+    "html": {
+      "label": "HTML interattivo",
+      "hint": "Un unico file che funziona offline"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "La definizione del dashboard"
+    }
+  },
+  "preparing": "Preparazione…",
+  "explore": "Esplorare",
+  "prediction": "Previsione",
+  "visualOf": "{{type}} visivo",
+  "deletedDataset": "set di dati cancellato",
+  "unshare": "Annulla condivisione",
+  "share": "Condividere",
+  "deleteNamed": "Elimina {{name}}"
+}

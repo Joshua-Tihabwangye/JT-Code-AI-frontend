@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "öyle",
+      "ne": "değil",
+      "contains": "içerir",
+      "starts_with": "ile başlar",
+      "gt": "şundan daha büyük:",
+      "gte": "en azından",
+      "lt": "daha az",
+      "lte": "en fazla",
+      "blank": "boş",
+      "not_blank": "boş değil"
+    },
+    "units": {
+      "day_one": "gün",
+      "day_other": "günler",
+      "week_one": "hafta",
+      "week_other": "haftalar",
+      "month_one": "ay",
+      "month_other": "aylar",
+      "quarter_one": "çeyrek",
+      "quarter_other": "çeyrekler",
+      "year_one": "yıl",
+      "year_other": "yıllar"
+    },
+    "describe": {
+      "all": "{{name}}: hepsi",
+      "in": "{{name}} {{values}}'dir",
+      "inMore": "{{name}} {{values}} +{{more}}'dir",
+      "notIn": "{{name}} {{values}} değil",
+      "between": "{{name}} {{range}}",
+      "byCount": "saymak",
+      "top": "En iyi {{n}} {{name}} - {{by}}",
+      "bottom": "Alt {{n}} {{name}} - {{by}}",
+      "relative": {
+        "last": "{{name}}: son {{count}} {{unit}}",
+        "next": "{{name}}: sonraki {{count}} {{unit}}",
+        "this": "{{name}}: bu {{unit}}"
+      },
+      "orJoin": "veya",
+      "andJoin": "Ve",
+      "blank": "{{name}} boş",
+      "notBlank": "{{name}} boş değil",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Filtre türü",
+    "types": {
+      "basic": "Temel",
+      "advanced": "Gelişmiş",
+      "top": "En İyi N",
+      "relative": "Göreceli tarih"
+    },
+    "search": "Aramak",
+    "searchValues": "Değerleri ara",
+    "loadingValues": "Değerler yükleniyor…",
+    "condition": "Durum",
+    "value": "Değer",
+    "addAnd": "+ Ve",
+    "addOr": "+ Veya",
+    "combineWith": "Şununla birleştir:",
+    "and": "Ve",
+    "or": "Veya",
+    "removeSecond": "İkinciyi kaldır",
+    "topOrBottom": "Üst veya alt",
+    "topWord": "Tepe",
+    "bottomWord": "Alt",
+    "howMany": "Kaç tane",
+    "byValue": "Değere göre",
+    "byRows": "satır sayısına göre",
+    "byTotal": "toplam olarak {{field}}",
+    "period": "Dönem",
+    "modes": {
+      "last": "Son",
+      "this": "Bu",
+      "next": "Sonraki"
+    },
+    "unit": "Birim",
+    "onVisual": "Bu görseldeki filtreler",
+    "onPage": "Bu sayfadaki filtreler",
+    "onAllPages": "Tüm sayfalardaki filtreler",
+    "active_one": "{{count}} filtre etkin",
+    "active_other": "{{count}} filtreler etkin",
+    "resetToAuthor": "Yazara sıfırla",
+    "lockedByAuthor": "Yazar tarafından kilitlendi",
+    "unlock": "İzleyiciler için kilidi açın",
+    "lock": "İzleyiciler için kilitle",
+    "showToViewers": "İzleyicilere göster",
+    "hideFromViewers": "İzleyicilerden gizle",
+    "remove": "Filtreyi kaldır",
+    "backToAuthor": "Yazarın filtresine geri dön",
+    "cardName": "Kart adı (isteğe bağlı)",
+    "cardNameLabel": "Filtre kartı adı",
+    "none": "Hiçbiri.",
+    "fieldToFilter": "Filtrelenecek alan",
+    "chooseField": "Bir alan seçin…",
+    "add": "Filtre ekle"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Yapay zeka modeliyle yapılmıştır · {{credits}} kredi",
+    "sourceAiCredits_other": "Yapay zeka modeliyle yapılmıştır · {{credits}} kredi",
+    "sourceAiFree": "Yapay zeka modeliyle yapılmıştır · kredisiz",
+    "sourceRules": "Yerleşik kurallara göre yapılmıştır (AI modeli kullanılmamıştır, kredi yoktur)",
+    "rowsWord": "satırlar",
+    "previewLabel_one": "{{name}} önizlemesi: {{count}} görseli",
+    "previewLabel_other": "{{name}}: {{count}} görsellerinin önizlemesi",
+    "describe": "Sayfayı açıklayın",
+    "describePlaceholder": "örneğin Aylık trend ve ilk 10 müşteriyle bölgeye ve ürüne göre satış performansı",
+    "designing": "Tasarlanıyor…",
+    "tryAgain": "Tekrar deneyin",
+    "previewPage": "Önizleme sayfası",
+    "costNote": "Bir AI mesajı (kredi) kullanır. Siz uygulayana kadar hiçbir şey değişmez.",
+    "proposal_one": "<b>{{name}} </b> — {{count}} görseline sahip bir sayfa ekler.",
+    "proposal_other": "<b>{{name}} </b> — {{count}} görsellerine sahip bir sayfa ekler.",
+    "proposalWithCalcs_one": "<b>{{name}} </b> — {{count}} görseli ve {{calcs}} hesaplamalarını içeren bir sayfa ekler.",
+    "proposalWithCalcs_other": "<b>{{name}} </b> — {{count}} görselleri ve {{calcs}} hesaplamalarını içeren bir sayfa ekler.",
+    "discard": "At",
+    "applying": "Başvuruluyor…",
+    "apply": "Uygula",
+    "close": "Kapalı",
+    "suggestNote": "Bu veri kümesine uygun görseller (ücretsiz; AI kredisi yok).",
+    "looking": "Verilere bakıyoruz…",
+    "working": "Çalışma…",
+    "preview": "Önizleme",
+    "format": {
+      "title": "Otomatik biçimlendirme",
+      "question": "Nasıl görünmeli?",
+      "other": "Başka bir şey",
+      "otherPlaceholder": "Başka bir şey? (AI modelini sorar)",
+      "note": "Vurgulanan kelimeler ücretsizdir; kutuya yazılan her şey AI modelini sorar.",
+      "nothing": "Bu istek için değişen bir şey yok.",
+      "theme": "Tema",
+      "mode": "Mod",
+      "density": "Yoğunluk",
+      "layout": "Düzen",
+      "asIs": "olduğu gibi",
+      "tidied": "tabloya yapıştırıldı, kısa başlıklar",
+      "modes": {
+        "light": "Işık",
+        "dark": "Karanlık",
+        "system": "Uygulamayı takip et"
+      },
+      "densities": {
+        "compact": "Kompakt",
+        "comfortable": "Rahat"
+      },
+      "keywords": {
+        "executive": "Yönetici",
+        "midnight": "Gece yarısı",
+        "dark": "Karanlık",
+        "light": "Işık",
+        "compact": "Kompakt",
+        "comfortable": "Rahat",
+        "aligned": "Hizalanmış"
+      }
+    },
+    "askTitle": "Bir soru sor",
+    "askPlaceholder": "Bu verileri sorun, ör. Batı'da gelire göre en iyi ürünler",
+    "question": "Soru",
+    "thinking": "Düşünüyorum…",
+    "ask": "Sormak",
+    "pin": "Kontrol paneline sabitle",
+    "explain": {
+      "title": "Bu değişikliği açıklayın",
+      "loading": "Önceki dönemle karşılaştırıldığında…",
+      "none": "Tek bir üye öne çıkmıyor.",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · verilerden hesaplanır, AI yok"
+    }
+  },
+  "views": {
+    "yourDefault": "Varsayılan görünümünüz",
+    "openWith": "Bu görünümle aç",
+    "delete": "Bu görünümü sil",
+    "title": "Görünümler",
+    "mine": "Görüşlerim",
+    "mineEmpty": "Gördüğünüzü kaydedin; filtreler, dilimleyiciler, detaylandırmalar ve değişiklikleriniz.",
+    "namePlaceholder": "Bu görünüme ad verin",
+    "save": "Kaydetmek",
+    "forMe": "Benim için",
+    "modes": {
+      "system": "Sistem",
+      "light": "Işık",
+      "dark": "Karanlık"
+    },
+    "densities": {
+      "comfortable": "Rahat",
+      "compact": "Kompakt"
+    },
+    "reset": "Varsayılana sıfırla"
+  },
+  "personalize": {
+    "title": "Bu görseli kişiselleştirin",
+    "close": "Kapalı",
+    "onlyYou": "Bu değişiklikleri yalnızca siz görürsünüz.",
+    "type": "Görsel tip",
+    "aggregation": "Toplama",
+    "remove": "{{field}} öğesini kaldır",
+    "add": "Eklemek",
+    "legend": "Efsane",
+    "dataLabels": "Veri etiketleri",
+    "sort": "Düzenlemek",
+    "sorts": {
+      "largest": "Önce en büyüğü",
+      "smallest": "Önce en küçük",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "Geri al",
+    "reset": "Bu görseli sıfırla"
+  },
+  "share": {
+    "embedTitle": "Kontrol Paneli",
+    "copied": "Kopyalandı",
+    "title": "Kontrol panelini paylaş",
+    "heading": "“{{name}}” paylaş",
+    "close": "Kapalı",
+    "workspace": "Çalışma alanımdaki herkes",
+    "workspaceNote": "İş arkadaşları bunu izleyici olarak oturum açarak açarlar: görselleri kişiselleştirebilir ve kendi görünümlerini kaydedebilirler.",
+    "publicNote": "Herkese açık bağlantılar: Bağlantıya sahip olan herkes bu kontrol panelini görüntüleyebilir ve oturum açmadan salt okunur olarak dilimleyicilerini kullanabilir.",
+    "kind": "Tür",
+    "link": "Bağlantı",
+    "embed": "Göm",
+    "labelPlaceholder": "Etiket (örn. Pano paketi)",
+    "label": "Etiket",
+    "expires": "Süresi doluyor",
+    "expiryDate": "Son kullanma tarihi",
+    "creating": "Oluşturuluyor…",
+    "createEmbed": "Ekleme kodu oluştur",
+    "createLink": "Bağlantı oluştur",
+    "copyNow": "Şimdi kopyalayın; güvenlik nedeniyle tam adres bir daha gösterilmeyecektir.",
+    "address": "Adresi paylaş",
+    "embedCode": "Gömme kodu",
+    "copyLink": "Bağlantıyı kopyala",
+    "copyEmbed": "Ekleme kodunu kopyala",
+    "links_one": "Bağlantılar ({{count}} aktif)",
+    "links_other": "Bağlantılar ({{count}} aktif)",
+    "loading": "Yükleniyor…",
+    "none": "Henüz bağlantı yok.",
+    "by": "yazan {{name}}",
+    "unknown": "bilinmiyor",
+    "revokedOn": "İptal edildi {{date}}",
+    "expiresOn": "Süresi {{date}} tarihinde doluyor",
+    "noExpiry": "Son kullanma tarihi yok",
+    "lastOpened": "son açılış {{date}}",
+    "notOpened": "henüz açılmadı",
+    "revoke": "Geri çekmek"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} filtresi uygulanır",
+    "filtersApply_other": "{{count}} filtreleri uygulanır",
+    "drillUp": "Detaya gitme",
+    "drillModeOn": "Detaylandırma modu açık: detayına gitmek için bir noktayı tıklayın",
+    "drillMode": "Detaylandırma modu: Detayına gitmek için bir noktayı tıklayın",
+    "nextLevel": "Bir sonraki seviyeye geçin",
+    "personalized": "Sizin için kişiselleştirilmiş — değiştirin veya sıfırlayın",
+    "personalize": "Bu görseli kişiselleştirin",
+    "focus": "Odaklanma modu",
+    "more": "Daha fazla seçenek",
+    "filtersOnVisual": "Bu görseldeki filtreler",
+    "showAsVisual": "Görsel olarak göster",
+    "showAsTable": "Tablo olarak göster",
+    "exportCsv": "Verileri dışa aktar (CSV)",
+    "copyImage": "Resim olarak kopyala",
+    "leaveSpotlight": "Gündemi bırak",
+    "spotlight": "Gündem",
+    "closeFocus": "Odak modunu kapat"
+  },
+  "pointMenu": {
+    "drillThrough": "Detaya geçiş ▸ {{page}}",
+    "explain": "Bu değişikliği açıklayın",
+    "keepOnly": "Yalnızca sakla",
+    "exclude": "Hariç tutmak"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Boşluk",
+        "hint": "Üzerine inşa edilecek boş bir sayfa."
+      },
+      "auto": {
+        "label": "Otomatik",
+        "hint": "Verilerinizden seçilen KPI'lar, trend, döküm, harita ve dilimleyiciler."
+      },
+      "template": {
+        "label": "Şablon",
+        "hint": "Hazır bir düzen: Sütunlarınızı buna eşleyin."
+      },
+      "ai": {
+        "label": "Yapay zekaya sor",
+        "hint": "Sayfayı tanımlayın; oluşturulmadan önce önizleyin."
+      }
+    },
+    "kinds": {
+      "number": "bir sayı",
+      "date": "bir tarih",
+      "category": "bir kategori"
+    },
+    "chooseColumn": "Bir sütun seçin…",
+    "skip": "(atlamak)",
+    "untitled": "Başlıksız kontrol paneli",
+    "chooseTemplate": "Bir şablon seçin.",
+    "title": "Yeni kontrol paneli",
+    "close": "Kapalı",
+    "howToStart": "Nasıl başlanır",
+    "dataset": "Veri kümesi",
+    "addDatasetFirst": "Önce bir veri kümesi ekleyin",
+    "name": "İsim",
+    "data": "Veri",
+    "overviewName": "{{name}} genel bakış",
+    "loadingTemplates": "Şablonlar yükleniyor…",
+    "allTemplates": "Tüm şablonlar",
+    "matchColumns": "Sütunlarınızı eşleştirin",
+    "stillNeeded": "Hala gerekli: {{roles}}.",
+    "createDashboard": "Kontrol paneli oluştur",
+    "cancel": "İptal etmek",
+    "creating": "Oluşturuluyor…",
+    "createFromTemplate": "Şablondan oluştur",
+    "build": "Kontrol paneli oluştur",
+    "create": "Yaratmak",
+    "templateLayout": "{{name}} düzeni"
+  },
+  "templates": {
+    "sales": {
+      "name": "Satışlara genel bakış",
+      "description": "Ürüne ve bölgeye göre gelir, kâr ve trendler.",
+      "roles": {
+        "date": "Tarih",
+        "amount": "Hasılat",
+        "profit": "Kâr",
+        "quantity": "Birimler",
+        "target": "Hedef",
+        "product": "Ürün",
+        "region": "Bölge",
+        "channel": "Kanal"
+      }
+    },
+    "crm": {
+      "name": "CRM hattı",
+      "description": "Aşamaya ve sahibine göre anlaşmalar, kazanılan değer ve dönüşüm.",
+      "roles": {
+        "date": "Tarih",
+        "amount": "Anlaşma değeri",
+        "stage": "Sahne",
+        "owner": "Mal sahibi",
+        "source": "Potansiyel müşteri kaynağı"
+      }
+    },
+    "finance": {
+      "name": "Finans Kâr ve Zararı",
+      "description": "Zamana ve hesaba göre gelir, maliyetler ve marj.",
+      "roles": {
+        "date": "Tarih",
+        "amount": "Hasılat",
+        "cost": "Maliyetler",
+        "account": "Hesap / kategori",
+        "budget": "Bütçe"
+      }
+    },
+    "hr": {
+      "name": "İK analitiği",
+      "description": "Bölüme göre personel sayısı, maaş ve memnuniyet.",
+      "roles": {
+        "date": "Tarih",
+        "employee": "Çalışan Kimliği",
+        "department": "Departman",
+        "salary": "Maaş",
+        "rating": "Memnuniyet / derecelendirme",
+        "status": "Durum",
+        "gender": "Cinsiyet"
+      }
+    },
+    "web": {
+      "name": "Web analitiği",
+      "description": "Kaynağa ve sayfaya göre oturumlar, kullanıcılar ve dönüşümler.",
+      "roles": {
+        "date": "Tarih",
+        "sessions": "Oturumlar / ziyaretler",
+        "users": "Kullanıcılar",
+        "conversions": "Dönüşümler",
+        "source": "Trafik kaynağı",
+        "page": "Sayfa"
+      }
+    },
+    "mobile": {
+      "name": "Mobil uygulama analitiği",
+      "description": "Platforma ve sürüme göre aktif kullanıcılar, yüklemeler ve çökmeler.",
+      "roles": {
+        "date": "Tarih",
+        "active": "Aktif kullanıcılar",
+        "installs": "Yüklemeler",
+        "crashes": "Çökmeler",
+        "platform": "platformu",
+        "version": "Uygulama sürümü"
+      }
+    },
+    "marketing": {
+      "name": "Pazarlama kampanyaları",
+      "description": "Kampanyaya göre harcama, tıklamalar, dönüşümler ve dönüşüm başına maliyet.",
+      "roles": {
+        "date": "Tarih",
+        "spend": "Harcamak",
+        "clicks": "Tıklamalar",
+        "conversions": "Dönüşümler",
+        "campaign": "Kampanya",
+        "channel": "Kanal"
+      }
+    },
+    "inventory": {
+      "name": "Envanter ve operasyonlar",
+      "description": "Eldeki stok, ürüne ve tesise göre hareket ve yeniden sipariş verme riski.",
+      "roles": {
+        "date": "Tarih",
+        "stock": "Stok / miktar",
+        "item": "Öğe",
+        "site": "Depo / saha",
+        "value": "Stok değeri",
+        "reorder": "Seviyeyi yeniden sırala"
+      }
+    },
+    "retail": {
+      "name": "Perakende",
+      "description": "Mağaza satışları, sepet büyüklüğü ve en çok satanlar.",
+      "roles": {
+        "date": "Tarih",
+        "amount": "Hasılat",
+        "quantity": "Birimler",
+        "store": "Mağaza / bölge",
+        "product": "Ürün",
+        "rating": "Memnuniyet"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} itibaren",
+    "to": "{{field}} -",
+    "clear": "Temizlemek",
+    "minimum": "{{field}} minimum",
+    "maximum": "{{field}} maksimum",
+    "period": "Dönem",
+    "allTime": "Tüm zamanlar",
+    "howMany": "Kaç tane",
+    "unit": "Birim",
+    "operator": "Operatör",
+    "typeValue": "{{field}} yazın",
+    "value": "{{field}} değeri",
+    "collapse": "Yıkılmak",
+    "expand": "Genişletmek",
+    "all": "Tüm",
+    "selected_one": "{{count}} seçildi",
+    "selected_other": "{{count}} seçildi",
+    "searchPlaceholder": "Liste arayın veya yapıştırın",
+    "search": "{{field}} ara",
+    "selectAll": "Tümünü seç"
+  },
+  "local": {
+    "snapshotEmpty": "Bu anlık görüntünün grafiği yok.",
+    "snapshot": "Anlık Görüntü",
+    "snapshotOn": "Anlık görüntü · {{date}}",
+    "chooseParameter": "Format → Parametre bölümünden bir parametre seçin.",
+    "button": "Düğme",
+    "noViews": "Burada listelemek için görünümler (yer imleri) ekleyin.",
+    "views": "Görünümler",
+    "pages": "Sayfalar"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} kontrol paneli",
+    "newDashboard": "Yeni kontrol paneli",
+    "overview": "Genel Bakış",
+    "title": "Kontrol paneline sabitle",
+    "close": "Kapalı",
+    "pinnedTo": "<b>{{name}} </b>'ye sabitlendi.",
+    "stay": "Burada kal",
+    "open": "Kontrol panelini aç",
+    "dashboard": "Kontrol Paneli",
+    "newOption": "+ Yeni kontrol paneli…",
+    "name": "İsim",
+    "page": "Sayfa",
+    "cancel": "İptal etmek",
+    "pinning": "Sabitleniyor…",
+    "pin": "Sabitle"
+  },
+  "page": {
+    "backFromDetail": "Geri",
+    "back": "Tüm kontrol panelleri",
+    "pages": "Sayfalar",
+    "clear": "Temizlemek",
+    "clearSelection": "Seçimi temizle",
+    "apply": "Uygula",
+    "clearSlicers": "Tüm dilimleyicileri temizle",
+    "updating": "Güncelleniyor…",
+    "filters": "Filtreler",
+    "qa": "Soru-Cevap",
+    "present": "Sunmak",
+    "share": "Paylaşmak",
+    "edit": "Düzenlemek",
+    "painting": "{{total}} sayfasının {{page}} boyama sayfası…",
+    "buildingPdf": "PDF oluşturuluyor…",
+    "exported_one": "{{count}} sayfası dışa aktarıldı.",
+    "exported_other": "{{count}} sayfaları dışa aktarıldı.",
+    "exportFailed": "Dışa aktarma başarısız oldu.",
+    "notFound": "Kontrol paneli bulunamadı.",
+    "filtersActive_one": "{{count}} filtre etkin",
+    "filtersActive_other": "{{count}} filtreler etkin",
+    "presentation": "Sunum",
+    "previousPage": "Önceki sayfa",
+    "nextPage": "Sonraki sayfa",
+    "pause": "Duraklat",
+    "autoPlay": "Otomatik oynatma",
+    "leavePresentation": "Sunudan ayrıl",
+    "keepExclude": "Saklama/hariç tutma filtreleriniz",
+    "excluding": "{{values}} hariç",
+    "only": "Yalnızca {{values}}",
+    "dashboard": "Kontrol Paneli",
+    "seconds": "{{value}} s"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Oran (A ÷ B), ör. kar marjı"
+    },
+    "average-per-row": {
+      "label": "Satır başına ortalama (ör. ortalama sipariş değeri)"
+    },
+    "vs-target": {
+      "label": "Hedefe karşı (%)"
+    },
+    "difference": {
+      "label": "Fark (A – B)"
+    },
+    "per-distinct": {
+      "label": "Farklı öğe başına değer (ör. müşteri başına gelir)"
+    },
+    "fields": {
+      "numerator": "Pay",
+      "denominator": "Payda",
+      "value": "Değer",
+      "actual": "Gerçek",
+      "target": "Hedef",
+      "minus": "Eksi",
+      "distinctItem": "Farklı öğe"
+    },
+    "names": {
+      "perRow": "{{a}} satır başına",
+      "vsTarget": "{{a}} vs hedef",
+      "perDistinct": "{{a}} başına {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Başlıksız kontrol paneli",
+    "title": "Gösterge tabloları",
+    "subtitle": "KPI'lar, grafikler ve dilimleyiciler tek ekranda birbirine bağlı.",
+    "noData": "Önce bir veri kümesi ekleyin",
+    "blank": "Boşluk",
+    "template": "Şablon",
+    "building": "Bina…",
+    "auto": "Kontrol paneli oluştur",
+    "empty": "Henüz kontrol paneli yok. Bir veri kümesi seçin ve tek tıklamayla bir tane oluşturun.",
+    "duplicate": "Kopyalamak",
+    "deleteTitle": "Kontrol paneli silinsin mi?",
+    "deleteText": "{{name}} ve kayıtlı sürümleri kaldırılacak. Veri kümeleri etkilenmez.",
+    "more": "Daha fazla veri",
+    "start": "Buradan başlayın",
+    "import": "Verileri yükleyin veya yapıştırın",
+    "loading": "Yükleniyor…",
+    "library": "Görsellerim",
+    "allVisuals": "Kaydedilen tüm görseller",
+    "libraryHint": "Bunlardan herhangi birini editörün Ekle menüsünden kontrol paneline ekleyin.",
+    "delete": "Silmek",
+    "datasetLabel": "Yeni bir kontrol paneli için veri kümesi",
+    "show": "Göstermek",
+    "filter": {
+      "all": "Tüm",
+      "mine": "Bana ait",
+      "shared": "Benimle paylaştı"
+    },
+    "pages_one": "{{count}} sayfası",
+    "pages_other": "{{count}} sayfalar",
+    "roles": {
+      "owner": "mal sahibi",
+      "editor": "editör",
+      "viewer": "izleyici"
+    },
+    "sharedFlag": "Paylaşıldı",
+    "deleteNamed": "{{name}}'yi sil"
+  },
+  "visual": {
+    "target": "Hedef {{value}}",
+    "progress": "{{value}} / {{target}}",
+    "total": "Toplam",
+    "failed": "Bu görsel çizilemedi.",
+    "empty": "Mevcut filtreler için veri yok",
+    "clearSelection": "Seçimi temizle",
+    "nothing": "Gösterilecek bir şey yok."
+  },
+  "shared": {
+    "loading": "Kontrol paneli yükleniyor…",
+    "missingTitle": "Bu bağlantı mevcut değil",
+    "missingText": "İptal edilmiş veya süresi dolmuş olabilir. Paylaşan kişiden yeni bir bağlantı isteyin.",
+    "pages": "Sayfalar",
+    "clearSelection": "Seçimi temizle",
+    "clearSlicers": "Dilimleyicileri temizle",
+    "readOnly": "Salt okunur paylaşılan görünüm"
+  },
+  "capture": {
+    "unsupported": "Bu tarayıcı sayfayı boyayamıyor.",
+    "failed": "Sayfa boyanamadı.",
+    "timeout": "Sayfanın çizilmesi çok uzun sürdü."
+  }
+}

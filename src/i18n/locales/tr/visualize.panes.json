@@ -1,0 +1,37 @@
+{
+  "moveUp": "Yukarı taşı",
+  "moveDown": "Aşağı taşı",
+  "views": {
+    "intro": "Bir görünüm bu sayfayı dilimleyicileri, filtreleri, detay düzeyi, parametreleri ve hangi görsellerin gizlendiği (Seçim sekmesi) ile hatırlar. İzleyiciler görüntülemeleri \"Görüntülemeler ▾\"den seçer; düğmeler ve gezginler bunları açabilir.",
+    "namePlaceholder": "Ad, ör. Yalnızca çevrimiçi",
+    "add": "Görünüm ekle",
+    "nameAria": "Adı görüntüle",
+    "show": "Bu görünümü göster",
+    "update": "Şimdi gösterilenlerle güncelleyin",
+    "delete": "Silmek"
+  },
+  "mobile": {
+    "phone": "Telefon düzeni",
+    "empty": "Siz bu sayfayı hazırlayana kadar telefonlar her görseli okuma sırasına göre gösterir.",
+    "auto": "Masaüstü düzeninden başlayın",
+    "shorter": "Daha kısa",
+    "taller": "Daha uzun",
+    "remove": "Telefon düzeninden kaldır",
+    "notOnPhones": "Telefonlarda değil",
+    "allPlaced": "Her görsel telefon düzeninde yer almaktadır.",
+    "clear": "Telefon düzenini temizle"
+  },
+  "selection": {
+    "group": "Grup",
+    "ungroup": "Grubu çöz",
+    "inGroup": "Bir grupta",
+    "layerName": "Katman adı",
+    "show": "Göstermek",
+    "hide": "Saklamak",
+    "lock": "Kilit",
+    "unlock": "Kilidi aç",
+    "forward": "Öne çıkarmak",
+    "backward": "Geri gönder",
+    "empty": "Henüz görsel yok — Ekle'yi kullanın."
+  }
+}

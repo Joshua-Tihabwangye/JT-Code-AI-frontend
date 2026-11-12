@@ -1,0 +1,60 @@
+{
+  "title": "Crie sua conta",
+  "subtitle": "Comece sua jornada com o JT-Code",
+  "firstNameLabel": "Nome",
+  "lastNameLabel": "Sobrenome",
+  "emailLabel": "Endereço de email",
+  "passwordLabel": "Senha",
+  "passwordPlaceholder": "Crie uma senha",
+  "confirmPasswordLabel": "Confirmar senha",
+  "confirmPasswordPlaceholder": "Confirme sua senha",
+  "requirements": {
+    "title": "Requisitos de senha",
+    "minLength": "Pelo menos 8 caracteres",
+    "uppercase": "Uma letra maiúscula",
+    "lowercase": "Uma letra minúscula",
+    "number": "Um número",
+    "singleRule": "A senha deve ter pelo menos 8 caracteres e incluir pelo menos uma letra e um número.",
+    "special": "Um personagem especial"
+  },
+  "matchOk": "As senhas coincidem.",
+  "matchError": "As senhas ainda não coincidem.",
+  "matchHint": "Digite novamente sua senha para confirmá-la.",
+  "country": {
+    "label": "País",
+    "searchPlaceholder": "Buscar um país",
+    "selectedAria": "País selecionado {{name}}",
+    "noMatch": "Nenhum país corresponde a “{{query}}”.",
+    "help": "O país selecionado atualiza seu código de discagem, validação de telefone e sugestões de fuso horário."
+  },
+  "dialCode": {
+    "label": "Código de discagem",
+    "help": "Você pode substituir o código padrão se estiver se cadastrando para uma região de chamadas diferente."
+  },
+  "phone": {
+    "label": "Contato / número de telefone",
+    "defaultPlaceholder": "Digite o número de telefone",
+    "help": "Use o formato de número de telefone comumente usado em {{country}}.",
+    "yourCountry": "seu país"
+  },
+  "timezone": {
+    "label": "Fuso horário",
+    "empty": "Nenhum fuso horário disponível",
+    "help": "Os fusos horários sugeridos são filtrados pelo país selecionado, mas você pode substituí-los."
+  },
+  "note": "O país selecionado atualiza automaticamente a validação de telefone e as sugestões de fuso horário.",
+  "termsPrefix": "Eu concordo com os ",
+  "termsLink": "Termos",
+  "termsMiddle": " e a ",
+  "privacyLink": "Política de Privacidade",
+  "termsHelp": "Você pode revisar estas páginas legais antes de concluir o cadastro.",
+  "submit": "Criar conta",
+  "haveAccountQuestion": "Já tem uma conta?",
+  "helpText": "",
+  "section": {
+    "account": "Conta",
+    "profile": "Perfil",
+    "region": "Região"
+  },
+  "confirmEmail": "Quase lá! Enviamos um link de confirmação para {{email}}. Abra-o e faça login."
+}

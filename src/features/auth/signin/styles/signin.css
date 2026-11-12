@@ -35,3 +35,29 @@
   max-width: 400px;
   margin-inline: auto;
 }
+
+/* Frontend-only (offline) mode: a hint and a one-click demo account. */
+.signin-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.signin-demo__button {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.signin-demo__button:hover:not(:disabled) {
+  border-color: var(--primary);
+}

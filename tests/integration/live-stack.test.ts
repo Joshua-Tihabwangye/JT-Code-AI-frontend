@@ -3,7 +3,7 @@
  *
  * Runs the app's own repository layer (src/lib/data/api) and auth helpers
  * against a live stack: Supabase Auth (GoTrue) + Django API + Celery worker +
- * Supabase Storage + Mailpit. Start it with `make native-up` in jt-code-backend,
+ * Supabase Storage + Mailpit. Start it with `make docker-up` in jt-code-backend (or `make native-up` with JT_CODE_STACK=native),
  * then: `npm run test:integration`.
  */
 import { execFile } from 'node:child_process';
@@ -12,6 +12,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createApiRepositories } from '@/lib/data/api/repositories';
+import { renderContext, resolveVisual } from '@/features/visualize/dashboards/customize';
 import { apiErrorMessage, http } from '@/lib/api/http';
 import { resetPasswordWithCode, supabase } from '@/lib/supabase';
 import type { Repositories, VizFields } from '@/lib/data';
@@ -28,12 +29,18 @@ const BACKEND_DIR = resolve(process.env.JT_CODE_BACKEND_DIR ?? '../jt-code-backe
 // returns Buffers. Use fetch here too so the repositories behave as in the app.
 http.defaults.adapter = 'fetch';
 
+/** `manage.py` of the stack under test: the Docker stack by default (its database is not the host's
+ *  native one), or the native stack with JT_CODE_STACK=native. */
+function manageCommand(): string[] {
+  return process.env.JT_CODE_STACK === 'native' ? ['manage.py'] : ['scripts/local_manage.py', 'docker'];
+}
+
 /** Funds the test workspace: the free plan's 100 monthly credits are less than one image. */
 async function grantCredits(email: string, credits = 5000) {
   const python = resolve(BACKEND_DIR, '.venv/bin/python');
   if (!existsSync(python)) throw new Error(`Backend checkout not found at ${BACKEND_DIR} (set JT_CODE_BACKEND_DIR).`);
   // Async on purpose: blocking the event loop lets pooled keep-alive sockets go stale.
-  await promisify(execFile)(python, ['manage.py', 'grant_local_credits', email, '--credits', String(credits)], { cwd: BACKEND_DIR });
+  await promisify(execFile)(python, [...manageCommand(), 'grant_local_credits', email, '--credits', String(credits)], { cwd: BACKEND_DIR });
 }
 
 const PNG_1PX = Uint8Array.from(
@@ -62,13 +69,43 @@ async function expectApiError(promise: Promise<unknown>, pattern: RegExp) {
   expect(apiErrorMessage(caught)).toMatch(pattern);
 }
 
+/** Opens the sign-up confirmation link GoTrue mailed (the Docker stack does not auto-confirm), as a user would. */
+async function confirmEmail(email: string): Promise<void> {
+  const link = await waitFor(
+    async () => {
+      const { messages } = (await (await fetch(`${MAILPIT}/api/v1/messages`)).json()) as {
+        messages: { ID: string; Subject: string; To: { Address: string }[] }[];
+      };
+      const message = messages.find((m) => /confirm/i.test(m.Subject) && m.To.some((to) => to.Address === email));
+      if (!message) return '';
+      const body = (await (await fetch(`${MAILPIT}/api/v1/message/${message.ID}`)).json()) as { HTML: string };
+      return (/href="([^"]*\/verify[^"]*)"/.exec(body.HTML)?.[1] ?? '').replace(/&amp;/g, '&');
+    },
+    (url) => url.length > 0,
+    30_000,
+  );
+  const response = await fetch(link, { redirect: 'manual' });
+  if (response.status >= 400) throw new Error(`Confirmation link failed with ${response.status}`);
+}
+
+/** Signs up, confirming the address first when the stack requires it, and returns the signed-in session. */
+async function signUpConfirmed(input: Parameters<Repositories['auth']['signUp']>[0]) {
+  try {
+    return await repos.auth.signUp(input);
+  } catch (error) {
+    if (!/confirm/i.test(String(error))) throw error;
+    await confirmEmail(input.email);
+    return repos.auth.signInWithPassword(input.email, input.password);
+  }
+}
+
 async function latestRecoveryCode(email: string): Promise<string> {
   return waitFor(
     async () => {
       const { messages } = (await (await fetch(`${MAILPIT}/api/v1/messages`)).json()) as {
-        messages: { ID: string; To: { Address: string }[] }[];
+        messages: { ID: string; Subject: string; To: { Address: string }[] }[];
       };
-      const message = messages.find((m) => m.To.some((to) => to.Address === email));
+      const message = messages.find((m) => !/confirm/i.test(m.Subject) && m.To.some((to) => to.Address === email));
       if (!message) return '';
       const body = (await (await fetch(`${MAILPIT}/api/v1/message/${message.ID}`)).json()) as { HTML: string };
       return /(\d{6})/.exec(body.HTML)?.[1] ?? '';
@@ -80,7 +117,7 @@ async function latestRecoveryCode(email: string): Promise<string> {
 
 beforeAll(async () => {
   const health = await fetch(`${process.env.VITE_API_BASE_URL}/health/ready/`).catch(() => null);
-  if (!health?.ok) throw new Error('The backend is not running: start it with `make native-up` in jt-code-backend.');
+  if (!health?.ok) throw new Error('The backend is not running: start it with `make docker-up` in jt-code-backend.');
   if (!process.env.VITE_SUPABASE_ANON_KEY) throw new Error('VITE_SUPABASE_ANON_KEY is not set.');
 });
 
@@ -90,7 +127,7 @@ afterAll(async () => {
 
 describe('authentication (Supabase Auth + Django)', () => {
   it('signs up, provisions a workspace with free credits and returns the profile', async () => {
-    const { user, session } = await repos.auth.signUp({
+    const { user, session } = await signUpConfirmed({
       email: userA,
       password,
       firstName: 'Ada',
@@ -153,11 +190,16 @@ describe('account settings', () => {
 
   it('resets a forgotten password with the emailed code', async () => {
     await repos.auth.signOut();
-    const { error } = await supabase.auth.resetPasswordForEmail(userA);
-    expect(error).toBeNull();
-    const code = await latestRecoveryCode(userA);
-    expect(await resetPasswordWithCode(userA, code, password)).toEqual({});
-    await repos.auth.signInWithPassword(userA, password);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(userA);
+      expect(error).toBeNull();
+      const code = await latestRecoveryCode(userA);
+      expect(await resetPasswordWithCode(userA, code, password)).toEqual({});
+    } finally {
+      // Signed in again either way, so a reset failure does not cascade into the later cases.
+      // (With the new password when the reset worked, else the one the previous case set.)
+      await repos.auth.signInWithPassword(userA, password).catch(() => repos.auth.signInWithPassword(userA, `${password}2`));
+    }
   });
 });
 
@@ -409,11 +451,32 @@ describe('data visualization', () => {
     expect(dashboard.role).toBe('owner');
     const page = dashboard.spec!.pages[0]!;
     expect(page.visuals.filter((v) => v.type === 'kpi').length).toBeGreaterThanOrEqual(6);
-    const drawn = await repos.visualize.renderVisuals({ visuals: page.visuals, mode: 'dark', theme: 'midnight', dashboardId: dashboard.id });
-    expect(drawn.visuals.every((v) => v.status === 'ok')).toBe(true);
-    const east = await repos.visualize.renderVisuals({ visuals: page.visuals, mode: 'dark', theme: 'midnight', filters: [{ field: 'region', op: 'in', value: ['East'] }] });
+    // As the app does: field parameters and calculations resolved, their context sent along.
+    const visuals = page.visuals.map((visual) => resolveVisual(visual, dashboard.spec, {}));
+    const context = renderContext(dashboard.spec, {});
+    const drawn = await repos.visualize.renderVisuals({ visuals, ...context, mode: 'dark', theme: 'midnight', dashboardId: dashboard.id });
+    expect(drawn.visuals.filter((v) => v.status !== 'ok')).toEqual([]);
+    const east = await repos.visualize.renderVisuals({ visuals, ...context, mode: 'dark', theme: 'midnight', filters: [{ field: 'region', op: 'in', value: ['East'] }] });
     const kpi = (visuals: typeof drawn.visuals) => visuals.find((v) => v.id === 'kpi-0')!.kpi!.value!;
     expect(kpi(east.visuals)).toBeLessThan(kpi(drawn.visuals));
+    // Templates, the AI page (free rules when no model answers), explain a change, a public link.
+    const templates = await repos.visualize.dashboardTemplates(sample.id);
+    expect(templates).toHaveLength(9);
+    const sales = templates.find((item) => item.id === 'sales')!;
+    const fromTemplate = await repos.visualize.dashboardFromTemplate({ templateId: 'sales', datasetId: sample.id, mapping: sales.guess ?? {} });
+    expect(fromTemplate.spec!.pages[0]!.visuals.length).toBeGreaterThanOrEqual(12);
+    const proposal = await repos.visualize.aiPage({ datasetId: sample.id, prompt: 'Profit by product and channel with the monthly trend' });
+    expect(proposal.page.visuals.length).toBeGreaterThan(2);
+    const explained = await repos.visualize.explainChange({ datasetId: sample.id, measure: { field: 'revenue', agg: 'sum' }, dateField: 'date', period: ['2025-11-01T00:00:00', '2025-11-30T23:59:59'], grain: 'month' });
+    expect(explained.headline).toMatch(/^Revenue is (up|down|unchanged)/);
+    const link = await repos.visualize.createShareLink(fromTemplate.id, { kind: 'link', name: 'Integration' });
+    const shared = await repos.visualize.sharedDashboard(link.token!);
+    expect(shared.spec.settings?.allowPersonalize).toBe(false);
+    const sharedDrawn = await repos.visualize.sharedVisuals(link.token!, { visuals: [{ id: 'kpi-0' }, { id: 'main', level: 0 }], mode: 'light' });
+    expect(sharedDrawn.visuals.map((v) => v.status)).toEqual(['ok', 'ok']);
+    await repos.visualize.revokeShareLink(fromTemplate.id, link.id);
+    await expectApiError(repos.visualize.sharedDashboard(link.token!), /not valid/i);
+    await repos.visualize.deleteDashboard(fromTemplate.id);
     const gallery = await repos.visualize.renderVisuals({
       visuals: [{ id: 'violin', type: 'chart', layout: { x: 0.25, y: 0, w: 8, h: 8 }, data: { datasetId: sample.id, wells: {} }, format: { chart: { chartType: 'violin', fields: { y: 'revenue', x: 'channel' } } } }],
       mode: 'light',
@@ -454,11 +517,34 @@ describe('billing', () => {
   });
 });
 
+describe('integrations', () => {
+  it('lists, connects, tests and disconnects an integration (no provider keys locally)', async () => {
+    const before = await repos.integrations.list();
+    expect(Array.isArray(before)).toBe(true);
+    let connected: Awaited<ReturnType<Repositories['integrations']['connect']>> | undefined;
+    try {
+      connected = await repos.integrations.connect({ key: 'github', displayName: `GitHub ${runId}` });
+    } catch (error) {
+      // Without a GitHub App configured the API may refuse, but with a clear client error, never a 5xx.
+      const status = (error as { response?: { status?: number } }).response?.status ?? 0;
+      expect(status, apiErrorMessage(error)).toBeGreaterThanOrEqual(400);
+      expect(status, apiErrorMessage(error)).toBeLessThan(500);
+      return;
+    }
+    expect(connected.id).toBeTruthy();
+    expect((await repos.integrations.list()).map((item) => item.id)).toContain(connected.id);
+    const result = await repos.integrations.test(connected.id);
+    expect(typeof result.message).toBe('string');
+    await repos.integrations.disconnect(connected.id);
+    expect((await repos.integrations.list()).map((item) => item.id)).not.toContain(connected.id);
+  });
+});
+
 describe('tenant isolation', () => {
   it('keeps one user’s data invisible to another', async () => {
     const mine = await repos.chat.createConversation('Private to A');
     await repos.auth.signOut();
-    await repos.auth.signUp({
+    await signUpConfirmed({
       email: userB,
       password,
       firstName: 'Bob',

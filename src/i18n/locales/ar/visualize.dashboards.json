@@ -1,0 +1,672 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "هو",
+      "ne": "ليس",
+      "contains": "يحتوي على",
+      "starts_with": "يبدأ بـ",
+      "gt": "أكبر من",
+      "gte": "على الأقل",
+      "lt": "أقل من",
+      "lte": "على الأكثر",
+      "blank": "فارغ",
+      "not_blank": "غير فارغ"
+    },
+    "units": {
+      "day_zero": "يوم",
+      "day_one": "يوم",
+      "day_two": "يوم",
+      "day_few": "أيام",
+      "day_many": "يومًا",
+      "day_other": "يوم",
+      "week_zero": "أسبوع",
+      "week_one": "أسبوع",
+      "week_two": "أسبوع",
+      "week_few": "أسابيع",
+      "week_many": "أسبوعًا",
+      "week_other": "أسبوع",
+      "month_zero": "شهر",
+      "month_one": "شهر",
+      "month_two": "شهر",
+      "month_few": "أشهر",
+      "month_many": "شهرًا",
+      "month_other": "شهر",
+      "quarter_zero": "ربع سنة",
+      "quarter_one": "ربع سنة",
+      "quarter_two": "ربع سنة",
+      "quarter_few": "أرباع سنة",
+      "quarter_many": "ربع سنة",
+      "quarter_other": "ربع سنة",
+      "year_zero": "سنة",
+      "year_one": "سنة",
+      "year_two": "سنة",
+      "year_few": "سنوات",
+      "year_many": "سنةً",
+      "year_other": "سنة"
+    },
+    "describe": {
+      "all": "{{name}}: الكل",
+      "in": "{{name}} هو {{values}}",
+      "inMore": "{{name}} هو {{values}} +{{more}}",
+      "notIn": "{{name}} ليس {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "العدد",
+      "top": "أعلى {{n}} من {{name}} حسب {{by}}",
+      "bottom": "أدنى {{n}} من {{name}} حسب {{by}}",
+      "relative": {
+        "last": "{{name}}: آخر {{count}} {{unit}}",
+        "next": "{{name}}: الفترة القادمة ({{count}} {{unit}})",
+        "this": "{{name}}: الفترة الحالية ({{unit}})"
+      },
+      "orJoin": " أو ",
+      "andJoin": " و ",
+      "blank": "{{name}} فارغ",
+      "notBlank": "{{name}} غير فارغ",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "نوع عامل التصفية",
+    "types": {
+      "basic": "أساسي",
+      "advanced": "متقدم",
+      "top": "أعلى N",
+      "relative": "تاريخ نسبي"
+    },
+    "search": "بحث",
+    "searchValues": "البحث في القيم",
+    "loadingValues": "جارٍ تحميل القيم…",
+    "condition": "الشرط",
+    "value": "القيمة",
+    "addAnd": "+ و",
+    "addOr": "+ أو",
+    "combineWith": "الدمج مع",
+    "and": "و",
+    "or": "أو",
+    "removeSecond": "إزالة الشرط الثاني",
+    "topOrBottom": "الأعلى أو الأدنى",
+    "topWord": "الأعلى",
+    "bottomWord": "الأدنى",
+    "howMany": "العدد",
+    "byValue": "حسب القيمة",
+    "byRows": "حسب عدد الصفوف",
+    "byTotal": "حسب إجمالي {{field}}",
+    "period": "الفترة",
+    "modes": {
+      "last": "آخر",
+      "this": "الحالي",
+      "next": "القادم"
+    },
+    "unit": "الوحدة",
+    "onVisual": "عوامل التصفية على هذا المرئي",
+    "onPage": "عوامل التصفية على هذه الصفحة",
+    "onAllPages": "عوامل التصفية على كل الصفحات",
+    "active_zero": "لا توجد عوامل تصفية نشطة",
+    "active_one": "عامل تصفية واحد نشط",
+    "active_two": "عاملا تصفية نشطان",
+    "active_few": "{{count}} عوامل تصفية نشطة",
+    "active_many": "{{count}} عامل تصفية نشطًا",
+    "active_other": "{{count}} عامل تصفية نشط",
+    "resetToAuthor": "إعادة التعيين إلى إعداد المؤلف",
+    "lockedByAuthor": "مقفل من قِبل المؤلف",
+    "unlock": "إلغاء القفل للمشاهدين",
+    "lock": "قفل للمشاهدين",
+    "showToViewers": "إظهار للمشاهدين",
+    "hideFromViewers": "إخفاء عن المشاهدين",
+    "remove": "إزالة عامل التصفية",
+    "backToAuthor": "العودة إلى عامل تصفية المؤلف",
+    "cardName": "اسم البطاقة (اختياري)",
+    "cardNameLabel": "اسم بطاقة عامل التصفية",
+    "none": "لا شيء.",
+    "fieldToFilter": "الحقل المراد تصفيته",
+    "chooseField": "اختر حقلًا…",
+    "add": "إضافة عامل تصفية"
+  },
+  "ai": {
+    "sourceAiCredits_zero": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} رصيد",
+    "sourceAiCredits_one": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} رصيد",
+    "sourceAiCredits_two": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} رصيد",
+    "sourceAiCredits_few": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} أرصدة",
+    "sourceAiCredits_many": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} رصيدًا",
+    "sourceAiCredits_other": "أنشأه نموذج الذكاء الاصطناعي · {{credits}} رصيد",
+    "sourceAiFree": "أنشأه نموذج الذكاء الاصطناعي · دون أرصدة",
+    "sourceRules": "أنشأته القواعد المضمّنة (لم يُستخدم نموذج الذكاء الاصطناعي · دون أرصدة)",
+    "rowsWord": "صفوف",
+    "previewLabel_zero": "معاينة {{name}}: لا توجد مرئيات",
+    "previewLabel_one": "معاينة {{name}}: مرئي واحد",
+    "previewLabel_two": "معاينة {{name}}: مرئيان",
+    "previewLabel_few": "معاينة {{name}}: {{count}} مرئيات",
+    "previewLabel_many": "معاينة {{name}}: {{count}} مرئيًا",
+    "previewLabel_other": "معاينة {{name}}: {{count}} مرئي",
+    "describe": "صِف الصفحة",
+    "describePlaceholder": "مثال: أداء المبيعات حسب المنطقة والمنتج، مع الاتجاه الشهري وأفضل 10 عملاء",
+    "designing": "جارٍ التصميم…",
+    "tryAgain": "إعادة المحاولة",
+    "previewPage": "معاينة الصفحة",
+    "costNote": "يستهلك رسالة ذكاء اصطناعي واحدة (أرصدة). لا يتغير شيء حتى تطبّقه.",
+    "proposal_zero": "<b>{{name}}</b> — يضيف صفحة بلا مرئيات.",
+    "proposal_one": "<b>{{name}}</b> — يضيف صفحة تحتوي على مرئي واحد.",
+    "proposal_two": "<b>{{name}}</b> — يضيف صفحة تحتوي على مرئيين.",
+    "proposal_few": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئيات.",
+    "proposal_many": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئيًا.",
+    "proposal_other": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئي.",
+    "proposalWithCalcs_zero": "<b>{{name}}</b> — يضيف صفحة بلا مرئيات، والعمليات الحسابية: {{calcs}}.",
+    "proposalWithCalcs_one": "<b>{{name}}</b> — يضيف صفحة تحتوي على مرئي واحد، والعمليات الحسابية: {{calcs}}.",
+    "proposalWithCalcs_two": "<b>{{name}}</b> — يضيف صفحة تحتوي على مرئيين، والعمليات الحسابية: {{calcs}}.",
+    "proposalWithCalcs_few": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئيات، والعمليات الحسابية: {{calcs}}.",
+    "proposalWithCalcs_many": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئيًا، والعمليات الحسابية: {{calcs}}.",
+    "proposalWithCalcs_other": "<b>{{name}}</b> — يضيف صفحة تحتوي على {{count}} مرئي، والعمليات الحسابية: {{calcs}}.",
+    "discard": "تجاهل",
+    "applying": "جارٍ التطبيق…",
+    "apply": "تطبيق",
+    "close": "إغلاق",
+    "suggestNote": "مرئيات تناسب مجموعة البيانات هذه (مجانًا — دون أرصدة ذكاء اصطناعي).",
+    "looking": "جارٍ فحص البيانات…",
+    "working": "جارٍ العمل…",
+    "preview": "معاينة",
+    "format": {
+      "title": "تنسيق تلقائي",
+      "question": "كيف تريد أن تبدو؟",
+      "other": "أي شيء آخر",
+      "otherPlaceholder": "أي شيء آخر؟ (يسأل نموذج الذكاء الاصطناعي)",
+      "note": "الكلمات المميزة مجانية؛ وأي شيء تكتبه في المربع يُرسل إلى نموذج الذكاء الاصطناعي.",
+      "nothing": "لا يوجد ما يتغير لهذا الطلب.",
+      "theme": "النسق",
+      "mode": "الوضع",
+      "density": "الكثافة",
+      "layout": "التخطيط",
+      "asIs": "كما هو",
+      "tidied": "محاذى إلى الشبكة، عناوين قصيرة",
+      "modes": {
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "مطابقة التطبيق"
+      },
+      "densities": {
+        "compact": "مضغوط",
+        "comfortable": "مريح"
+      },
+      "keywords": {
+        "executive": "تنفيذي",
+        "midnight": "منتصف الليل",
+        "dark": "داكن",
+        "light": "فاتح",
+        "compact": "مضغوط",
+        "comfortable": "مريح",
+        "aligned": "محاذى"
+      }
+    },
+    "askTitle": "اطرح سؤالًا",
+    "askPlaceholder": "اسأل عن هذه البيانات، مثل: أفضل المنتجات حسب الإيرادات في الغرب",
+    "question": "السؤال",
+    "thinking": "جارٍ التفكير…",
+    "ask": "اسأل",
+    "pin": "تثبيت في لوحة المعلومات",
+    "explain": {
+      "title": "شرح هذا التغيّر",
+      "loading": "جارٍ المقارنة مع الفترة السابقة…",
+      "none": "لا يبرز أي عنصر بمفرده.",
+      "periods": "{{from}} – {{to}} مقابل {{previousFrom}} – {{previousTo}} · محسوب من البيانات، دون ذكاء اصطناعي"
+    }
+  },
+  "views": {
+    "yourDefault": "طريقة العرض الافتراضية لديك",
+    "openWith": "الفتح بطريقة العرض هذه",
+    "delete": "حذف طريقة العرض هذه",
+    "title": "طرق العرض",
+    "mine": "طرق العرض الخاصة بي",
+    "mineEmpty": "احفظ ما تراه — عوامل التصفية والمقسّمات والتعمق وتغييراتك.",
+    "namePlaceholder": "سمِّ طريقة العرض هذه",
+    "save": "حفظ",
+    "forMe": "لي",
+    "modes": {
+      "system": "النظام",
+      "light": "فاتح",
+      "dark": "داكن"
+    },
+    "densities": {
+      "comfortable": "مريح",
+      "compact": "مضغوط"
+    },
+    "reset": "إعادة التعيين إلى الافتراضي"
+  },
+  "personalize": {
+    "title": "تخصيص هذا المرئي",
+    "close": "إغلاق",
+    "onlyYou": "أنت وحدك ترى هذه التغييرات.",
+    "type": "نوع المرئي",
+    "aggregation": "التجميع",
+    "remove": "إزالة {{field}}",
+    "add": "إضافة",
+    "legend": "وسيلة الإيضاح",
+    "dataLabels": "تسميات البيانات",
+    "sort": "الفرز",
+    "sorts": {
+      "largest": "الأكبر أولًا",
+      "smallest": "الأصغر أولًا",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "تراجع",
+    "reset": "إعادة تعيين هذا المرئي"
+  },
+  "share": {
+    "embedTitle": "لوحة المعلومات",
+    "copied": "تم النسخ",
+    "title": "مشاركة لوحة المعلومات",
+    "heading": "مشاركة «{{name}}»",
+    "close": "إغلاق",
+    "workspace": "كل من في مساحة العمل",
+    "workspaceNote": "يفتحها الزملاء بعد تسجيل الدخول كمشاهدين: يمكنهم تخصيص المرئيات وحفظ طرق العرض الخاصة بهم.",
+    "publicNote": "الروابط العامة: يمكن لأي شخص لديه الرابط عرض لوحة المعلومات هذه واستخدام مقسّماتها — للقراءة فقط، دون تسجيل الدخول.",
+    "kind": "النوع",
+    "link": "رابط",
+    "embed": "تضمين",
+    "labelPlaceholder": "التسمية (مثل: ملف مجلس الإدارة)",
+    "label": "التسمية",
+    "expires": "ينتهي",
+    "expiryDate": "تاريخ الانتهاء",
+    "creating": "جارٍ الإنشاء…",
+    "createEmbed": "إنشاء رمز التضمين",
+    "createLink": "إنشاء رابط",
+    "copyNow": "انسخه الآن — لدواعٍ أمنية لن يُعرض العنوان الكامل مرة أخرى.",
+    "address": "عنوان المشاركة",
+    "embedCode": "رمز التضمين",
+    "copyLink": "نسخ الرابط",
+    "copyEmbed": "نسخ رمز التضمين",
+    "links_zero": "الروابط (لا يوجد رابط نشط)",
+    "links_one": "الروابط (رابط واحد نشط)",
+    "links_two": "الروابط (رابطان نشطان)",
+    "links_few": "الروابط ({{count}} روابط نشطة)",
+    "links_many": "الروابط ({{count}} رابطًا نشطًا)",
+    "links_other": "الروابط ({{count}} رابط نشط)",
+    "loading": "جارٍ التحميل…",
+    "none": "لا توجد روابط بعد.",
+    "by": "بواسطة {{name}}",
+    "unknown": "غير معروف",
+    "revokedOn": "أُلغي في {{date}}",
+    "expiresOn": "ينتهي في {{date}}",
+    "noExpiry": "بلا انتهاء",
+    "lastOpened": "آخر فتح في {{date}}",
+    "notOpened": "لم يُفتح بعد",
+    "revoke": "إلغاء"
+  },
+  "header": {
+    "filtersApply_zero": "لا تُطبَّق أي عوامل تصفية",
+    "filtersApply_one": "يُطبَّق عامل تصفية واحد",
+    "filtersApply_two": "يُطبَّق عاملا تصفية",
+    "filtersApply_few": "تُطبَّق {{count}} عوامل تصفية",
+    "filtersApply_many": "يُطبَّق {{count}} عامل تصفية",
+    "filtersApply_other": "يُطبَّق {{count}} عامل تصفية",
+    "drillUp": "التنقل لأعلى",
+    "drillModeOn": "وضع التعمق مفعّل: انقر على نقطة للتعمق فيها",
+    "drillMode": "وضع التعمق: انقر على نقطة للتعمق فيها",
+    "nextLevel": "الانتقال إلى المستوى التالي",
+    "personalized": "مخصص لك — غيّره أو أعد تعيينه",
+    "personalize": "تخصيص هذا المرئي",
+    "focus": "وضع التركيز",
+    "more": "مزيد من الخيارات",
+    "filtersOnVisual": "عوامل التصفية على هذا المرئي",
+    "showAsVisual": "إظهار كمرئي",
+    "showAsTable": "إظهار كجدول",
+    "exportCsv": "تصدير البيانات (CSV)",
+    "copyImage": "نسخ كصورة",
+    "leaveSpotlight": "إنهاء التسليط",
+    "spotlight": "تسليط الضوء",
+    "closeFocus": "إغلاق وضع التركيز"
+  },
+  "pointMenu": {
+    "drillThrough": "الانتقال إلى التفاصيل ▸ {{page}}",
+    "explain": "شرح هذا التغيّر",
+    "keepOnly": "الإبقاء فقط",
+    "exclude": "استبعاد"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "فارغة",
+        "hint": "صفحة فارغة للبناء عليها."
+      },
+      "auto": {
+        "label": "تلقائي",
+        "hint": "مؤشرات KPI واتجاه وتفصيل وخريطة ومقسّمات، مختارة من بياناتك."
+      },
+      "template": {
+        "label": "قالب",
+        "hint": "تخطيط جاهز: اربط أعمدتك به."
+      },
+      "ai": {
+        "label": "اسأل الذكاء الاصطناعي",
+        "hint": "صِف الصفحة؛ وعاينها قبل إنشائها."
+      }
+    },
+    "kinds": {
+      "number": "رقم",
+      "date": "تاريخ",
+      "category": "فئة"
+    },
+    "chooseColumn": "اختر عمودًا…",
+    "skip": "(تخطٍّ)",
+    "untitled": "لوحة معلومات بلا عنوان",
+    "chooseTemplate": "اختر قالبًا.",
+    "title": "لوحة معلومات جديدة",
+    "close": "إغلاق",
+    "howToStart": "طريقة البدء",
+    "dataset": "مجموعة البيانات",
+    "addDatasetFirst": "أضف مجموعة بيانات أولًا",
+    "name": "الاسم",
+    "data": "البيانات",
+    "overviewName": "نظرة عامة على {{name}}",
+    "loadingTemplates": "جارٍ تحميل القوالب…",
+    "allTemplates": "كل القوالب",
+    "matchColumns": "طابِق أعمدتك",
+    "stillNeeded": "لا يزال مطلوبًا: {{roles}}.",
+    "createDashboard": "إنشاء لوحة معلومات",
+    "cancel": "إلغاء",
+    "creating": "جارٍ الإنشاء…",
+    "createFromTemplate": "إنشاء من قالب",
+    "build": "إنشاء لوحة المعلومات",
+    "create": "إنشاء",
+    "templateLayout": "تخطيط {{name}}"
+  },
+  "templates": {
+    "sales": {
+      "name": "نظرة عامة على المبيعات",
+      "description": "الإيرادات والأرباح والاتجاهات حسب المنتج والمنطقة.",
+      "roles": {
+        "date": "التاريخ",
+        "amount": "الإيرادات",
+        "profit": "الربح",
+        "quantity": "الوحدات",
+        "target": "الهدف",
+        "product": "المنتج",
+        "region": "المنطقة",
+        "channel": "القناة"
+      }
+    },
+    "crm": {
+      "name": "مسار مبيعات CRM",
+      "description": "الصفقات حسب المرحلة والمسؤول، وقيمة الصفقات الرابحة ومعدل التحويل.",
+      "roles": {
+        "date": "التاريخ",
+        "amount": "قيمة الصفقة",
+        "stage": "المرحلة",
+        "owner": "المسؤول",
+        "source": "مصدر العميل المحتمل"
+      }
+    },
+    "finance": {
+      "name": "المالية: الأرباح والخسائر",
+      "description": "الإيرادات والتكاليف والهامش عبر الزمن وحسب الحساب.",
+      "roles": {
+        "date": "التاريخ",
+        "amount": "الإيرادات",
+        "cost": "التكاليف",
+        "account": "الحساب / الفئة",
+        "budget": "الميزانية"
+      }
+    },
+    "hr": {
+      "name": "تحليلات الموارد البشرية",
+      "description": "عدد الموظفين والرواتب والرضا حسب القسم.",
+      "roles": {
+        "date": "التاريخ",
+        "employee": "معرّف الموظف",
+        "department": "القسم",
+        "salary": "الراتب",
+        "rating": "الرضا / التقييم",
+        "status": "الحالة",
+        "gender": "الجنس"
+      }
+    },
+    "web": {
+      "name": "تحليلات الويب",
+      "description": "الجلسات والمستخدمون والتحويلات حسب المصدر والصفحة.",
+      "roles": {
+        "date": "التاريخ",
+        "sessions": "الجلسات / الزيارات",
+        "users": "المستخدمون",
+        "conversions": "التحويلات",
+        "source": "مصدر الزيارات",
+        "page": "الصفحة"
+      }
+    },
+    "mobile": {
+      "name": "تحليلات تطبيقات الجوال",
+      "description": "المستخدمون النشطون وعمليات التثبيت والأعطال حسب النظام الأساسي والإصدار.",
+      "roles": {
+        "date": "التاريخ",
+        "active": "المستخدمون النشطون",
+        "installs": "عمليات التثبيت",
+        "crashes": "الأعطال",
+        "platform": "النظام الأساسي",
+        "version": "إصدار التطبيق"
+      }
+    },
+    "marketing": {
+      "name": "الحملات التسويقية",
+      "description": "الإنفاق والنقرات والتحويلات وتكلفة التحويل حسب الحملة.",
+      "roles": {
+        "date": "التاريخ",
+        "spend": "الإنفاق",
+        "clicks": "النقرات",
+        "conversions": "التحويلات",
+        "campaign": "الحملة",
+        "channel": "القناة"
+      }
+    },
+    "inventory": {
+      "name": "المخزون والعمليات",
+      "description": "المخزون المتاح والحركة وخطر إعادة الطلب حسب الصنف والموقع.",
+      "roles": {
+        "date": "التاريخ",
+        "stock": "المخزون / الكمية",
+        "item": "الصنف",
+        "site": "المستودع / الموقع",
+        "value": "قيمة المخزون",
+        "reorder": "حد إعادة الطلب"
+      }
+    },
+    "retail": {
+      "name": "البيع بالتجزئة",
+      "description": "مبيعات المتاجر وحجم السلة والأكثر مبيعًا.",
+      "roles": {
+        "date": "التاريخ",
+        "amount": "الإيرادات",
+        "quantity": "الوحدات",
+        "store": "المتجر / المنطقة",
+        "product": "المنتج",
+        "rating": "الرضا"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} من",
+    "to": "{{field}} إلى",
+    "clear": "مسح",
+    "minimum": "الحد الأدنى لـ {{field}}",
+    "maximum": "الحد الأقصى لـ {{field}}",
+    "period": "الفترة",
+    "allTime": "كل الأوقات",
+    "howMany": "العدد",
+    "unit": "الوحدة",
+    "operator": "عامل المقارنة",
+    "typeValue": "اكتب {{field}}",
+    "value": "قيمة {{field}}",
+    "collapse": "طي",
+    "expand": "توسيع",
+    "all": "الكل",
+    "selected_zero": "لم يُحدَّد شيء",
+    "selected_one": "تم تحديد {{count}}",
+    "selected_two": "تم تحديد {{count}}",
+    "selected_few": "تم تحديد {{count}}",
+    "selected_many": "تم تحديد {{count}}",
+    "selected_other": "تم تحديد {{count}}",
+    "searchPlaceholder": "ابحث، أو الصق قائمة",
+    "search": "البحث في {{field}}",
+    "selectAll": "تحديد الكل"
+  },
+  "local": {
+    "snapshotEmpty": "لا تحتوي هذه اللقطة على مخطط.",
+    "snapshot": "لقطة",
+    "snapshotOn": "لقطة · {{date}}",
+    "chooseParameter": "اختر معلمة من «تنسيق → المعلمة».",
+    "button": "زر",
+    "noViews": "أضف طرق عرض (إشارات مرجعية) لإدراجها هنا.",
+    "views": "طرق العرض",
+    "pages": "الصفحات"
+  },
+  "pin": {
+    "namedDashboard": "لوحة معلومات {{title}}",
+    "newDashboard": "لوحة معلومات جديدة",
+    "overview": "نظرة عامة",
+    "title": "تثبيت في لوحة المعلومات",
+    "close": "إغلاق",
+    "pinnedTo": "تم التثبيت في <b>{{name}}</b>.",
+    "stay": "البقاء هنا",
+    "open": "فتح لوحة المعلومات",
+    "dashboard": "لوحة المعلومات",
+    "newOption": "+ لوحة معلومات جديدة…",
+    "name": "الاسم",
+    "page": "الصفحة",
+    "cancel": "إلغاء",
+    "pinning": "جارٍ التثبيت…",
+    "pin": "تثبيت"
+  },
+  "page": {
+    "backFromDetail": "رجوع",
+    "back": "كل لوحات المعلومات",
+    "pages": "الصفحات",
+    "clear": "مسح",
+    "clearSelection": "مسح التحديد",
+    "apply": "تطبيق",
+    "clearSlicers": "مسح كل المقسّمات",
+    "updating": "جارٍ التحديث…",
+    "filters": "عوامل التصفية",
+    "qa": "سؤال وجواب",
+    "present": "عرض تقديمي",
+    "share": "مشاركة",
+    "edit": "تحرير",
+    "painting": "جارٍ رسم الصفحة {{page}} من {{total}}…",
+    "buildingPdf": "جارٍ إنشاء ملف PDF…",
+    "exported_zero": "لم يتم تصدير أي صفحة.",
+    "exported_one": "تم تصدير صفحة واحدة.",
+    "exported_two": "تم تصدير صفحتين.",
+    "exported_few": "تم تصدير {{count}} صفحات.",
+    "exported_many": "تم تصدير {{count}} صفحة.",
+    "exported_other": "تم تصدير {{count}} صفحة.",
+    "exportFailed": "فشل التصدير.",
+    "notFound": "لوحة المعلومات غير موجودة.",
+    "filtersActive_zero": "لا توجد عوامل تصفية نشطة",
+    "filtersActive_one": "عامل تصفية واحد نشط",
+    "filtersActive_two": "عاملا تصفية نشطان",
+    "filtersActive_few": "{{count}} عوامل تصفية نشطة",
+    "filtersActive_many": "{{count}} عامل تصفية نشطًا",
+    "filtersActive_other": "{{count}} عامل تصفية نشط",
+    "presentation": "العرض التقديمي",
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية",
+    "pause": "إيقاف مؤقت",
+    "autoPlay": "تشغيل تلقائي",
+    "leavePresentation": "إنهاء العرض التقديمي",
+    "keepExclude": "عوامل تصفية الإبقاء/الاستبعاد الخاصة بك",
+    "excluding": "باستثناء {{values}}",
+    "only": "{{values}} فقط",
+    "dashboard": "لوحة المعلومات",
+    "seconds": "{{value}} ث"
+  },
+  "quick": {
+    "ratio": {
+      "label": "النسبة (A ÷ B)، مثل هامش الربح"
+    },
+    "average-per-row": {
+      "label": "المتوسط لكل صف (مثل متوسط قيمة الطلب)"
+    },
+    "vs-target": {
+      "label": "مقارنة بالهدف (%)"
+    },
+    "difference": {
+      "label": "الفرق (A − B)"
+    },
+    "per-distinct": {
+      "label": "القيمة لكل عنصر مميز (مثل الإيرادات لكل عميل)"
+    },
+    "fields": {
+      "numerator": "البسط",
+      "denominator": "المقام",
+      "value": "القيمة",
+      "actual": "الفعلي",
+      "target": "الهدف",
+      "minus": "مطروحًا منه",
+      "distinctItem": "العنصر المميز"
+    },
+    "names": {
+      "perRow": "{{a}} لكل صف",
+      "vsTarget": "{{a}} مقارنة بالهدف",
+      "perDistinct": "{{a}} لكل {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "لوحة معلومات بلا عنوان",
+    "title": "لوحات المعلومات",
+    "subtitle": "مؤشرات KPI ومخططات ومقسّمات في شاشة واحدة، وكلها مترابطة.",
+    "noData": "أضف مجموعة بيانات أولًا",
+    "blank": "فارغة",
+    "template": "قالب",
+    "building": "جارٍ الإنشاء…",
+    "auto": "إنشاء لوحة معلومات",
+    "empty": "لا توجد لوحات معلومات بعد. اختر مجموعة بيانات وأنشئ واحدة بنقرة.",
+    "duplicate": "تكرار",
+    "deleteTitle": "حذف لوحة المعلومات؟",
+    "deleteText": "ستُزال {{name}} وإصداراتها المحفوظة. لن تتأثر مجموعات البيانات.",
+    "more": "مزيد من البيانات",
+    "start": "ابدأ من هنا",
+    "import": "رفع البيانات أو لصقها",
+    "loading": "جارٍ التحميل…",
+    "library": "مرئياتي",
+    "allVisuals": "كل المرئيات المحفوظة",
+    "libraryHint": "أدرج أيًّا منها في لوحة معلومات من قائمة «إدراج» في المحرر.",
+    "delete": "حذف",
+    "datasetLabel": "مجموعة البيانات للوحة معلومات جديدة",
+    "show": "إظهار",
+    "filter": {
+      "all": "الكل",
+      "mine": "الخاصة بي",
+      "shared": "مشتركة معي"
+    },
+    "pages_zero": "لا توجد صفحات",
+    "pages_one": "صفحة واحدة",
+    "pages_two": "صفحتان",
+    "pages_few": "{{count}} صفحات",
+    "pages_many": "{{count}} صفحة",
+    "pages_other": "{{count}} صفحة",
+    "roles": {
+      "owner": "المالك",
+      "editor": "محرر",
+      "viewer": "مشاهد"
+    },
+    "sharedFlag": "مشتركة",
+    "deleteNamed": "حذف {{name}}"
+  },
+  "visual": {
+    "target": "الهدف {{value}}",
+    "progress": "{{value}} من {{target}}",
+    "total": "الإجمالي",
+    "failed": "تعذر رسم هذا المرئي.",
+    "empty": "لا توجد بيانات لعوامل التصفية الحالية",
+    "clearSelection": "مسح التحديد",
+    "nothing": "لا يوجد شيء لعرضه."
+  },
+  "shared": {
+    "loading": "جارٍ تحميل لوحة المعلومات…",
+    "missingTitle": "هذا الرابط غير متاح",
+    "missingText": "ربما أُلغي أو انتهت صلاحيته. اطلب رابطًا جديدًا من الشخص الذي شاركه.",
+    "pages": "الصفحات",
+    "clearSelection": "مسح التحديد",
+    "clearSlicers": "مسح المقسّمات",
+    "readOnly": "طريقة عرض مشتركة للقراءة فقط"
+  },
+  "capture": {
+    "unsupported": "لا يستطيع هذا المتصفح رسم الصفحة.",
+    "failed": "تعذر رسم الصفحة.",
+    "timeout": "استغرق رسم الصفحة وقتًا طويلًا."
+  }
+}

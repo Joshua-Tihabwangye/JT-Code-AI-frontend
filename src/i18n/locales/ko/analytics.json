@@ -1,0 +1,105 @@
+{
+  "eyebrow": "데이터 분석",
+  "title": "데이터 분석",
+  "subtitle": "CSV를 업로드하고, 해당 열을 탐색하고, 분석을 실행하고, 결과를 차트로 변환하세요.",
+  "upload": {
+    "title": "데이터 세트 추가",
+    "name": "이름",
+    "namePlaceholder": "예를 들어 3분기 매출",
+    "file": "CSV 파일(최대 25MB)",
+    "or": "— 또는 CSV 붙여넣기 —",
+    "paste": "CSV 텍스트",
+    "pastePlaceholder": "지역, 수익\n동쪽,120\n서쪽,80",
+    "submit": "데이터 세트 추가",
+    "limits": "헤더 행이 있는 UTF-8 CSV. 최대 100,000개의 행과 200개의 열.",
+    "needData": "CSV 파일을 선택하거나 CSV 텍스트를 붙여넣으세요."
+  },
+  "datasets": "데이터세트",
+  "noDatasets": "아직 데이터세트가 없습니다.",
+  "datasetMeta": "{{rows}} 행 · {{columns}} 열",
+  "emptyTitle": "선택한 데이터세트가 없습니다",
+  "emptyDesc": "분석을 시작하려면 왼쪽에 CSV를 추가하세요.",
+  "deleteDataset": "삭제",
+  "deleteConfirm": "분석 및 차트가 포함된 이 데이터세트를 삭제하시겠습니까?",
+  "profilePending": "열 통계는 업로드된 파일을 처음 분석한 후에 나타납니다.",
+  "profile": {
+    "column": "열",
+    "kind": "유형",
+    "missing": "없어진",
+    "distinct": "별개의",
+    "summary": "요약"
+  },
+  "builder": {
+    "title": "분석하다",
+    "filters": "필터",
+    "addFilter": "필터 추가",
+    "noFilters": "필터 없음: 모든 행이 포함됩니다.",
+    "removeFilter": "필터 제거",
+    "column": "열",
+    "operator": "연산자",
+    "value": "값",
+    "inPlaceholder": "에이, 비, 씨",
+    "groupBy": "그룹화 기준",
+    "aggregate": "골재",
+    "ofColumn": "기둥의",
+    "allNumeric": "모든 숫자 열",
+    "sortBy": "정렬 기준",
+    "direction": "방향",
+    "asc": "오름차순",
+    "desc": "내림차순",
+    "limit": "행 한도",
+    "none": "없음",
+    "run": "분석 실행",
+    "cost": "각 분석에는 10크레딧이 사용됩니다. 차트는 무료입니다."
+  },
+  "operators": {
+    "eq": "같음",
+    "ne": "같지 않다",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "포함",
+    "in": "중 하나입니다"
+  },
+  "aggregates": {
+    "count": "행 개수 계산",
+    "sum": "합집합",
+    "mean": "평균",
+    "min": "최저한의",
+    "max": "최고"
+  },
+  "status": {
+    "queued": "대기 중",
+    "running": "달리기",
+    "completed": "완전한",
+    "failed": "실패한",
+    "ready": "준비가 된"
+  },
+  "results": {
+    "title": "결과",
+    "rows": "{{count}} 행({{shown}} 표시)",
+    "download": "CSV 다운로드",
+    "retry": "다시 해 보다",
+    "pickRun": "분석 실행"
+  },
+  "charts": {
+    "title": "차트",
+    "kind": "차트",
+    "x": "X축",
+    "y": "Y축(숫자)",
+    "chartTitle": "제목",
+    "create": "차트 만들기",
+    "delete": "차트 삭제",
+    "noImage": "차트는 API 모드로 서버에서 렌더링됩니다."
+  },
+  "chartKinds": {
+    "bar": "술집",
+    "line": "선",
+    "scatter": "소수",
+    "area": "영역",
+    "histogram": "히스토그램",
+    "box": "상자",
+    "pie": "파이"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "attach": "இணை",
+  "attachDocument": "ஆவணத்தை இணை",
+  "attachImage": "படத்தை இணை",
+  "currentPlan": "தற்போதைய திட்டம்",
+  "voiceInput": "குரல் உள்ளீடு",
+  "sendMessage": "செய்தியை அனுப்பு",
+  "defaultPlaceholder": "JT-Code-இடம் எதையும் கேளுங்கள்…",
+  "removeAttachment": "{{name}} அகற்று"
+}

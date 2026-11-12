@@ -1,0 +1,326 @@
+{
+  "search": "검색 형식 옵션",
+  "resetSection": "테마 기본값으로 재설정",
+  "automatic": "오토매틱",
+  "on": "~에",
+  "off": "끄다",
+  "sections": {
+    "python": "파이썬 스크립트",
+    "parameter": "매개변수",
+    "button": "단추",
+    "navigator": "항해자",
+    "general": "직함과 직위",
+    "tile": "타일",
+    "colors": "그림 물감",
+    "labels": "데이터 라벨",
+    "legend": "전설",
+    "sort": "정렬 및 상위 N",
+    "bars": "막대와 선",
+    "donut": "조각",
+    "kpi": "KPI",
+    "gauge": "게이지 범위",
+    "table": "테이블",
+    "slicer": "얇게 써는 기계",
+    "tooltip": "툴팁",
+    "conditional": "조건부 서식",
+    "analytics": "분석(참조선, 추세, 예측)",
+    "map": "지도"
+  },
+  "general": {
+    "title": "제목",
+    "showTitle": "제목 표시",
+    "axes": {
+      "x": "엑스",
+      "y": "와이",
+      "w": "승",
+      "h": "시간"
+    },
+    "layoutAria": "레이아웃 {{axis}}",
+    "altText": "대체 텍스트",
+    "altPlaceholder": "스크린 리더의 경우"
+  },
+  "tile": {
+    "background": "배경",
+    "border": "국경",
+    "radius": "코너 반경",
+    "shadow": "그림자"
+  },
+  "colors": {
+    "seriesAria": "시리즈 색상 {{index}}",
+    "custom": "관습",
+    "fromTheme": "테마에서"
+  },
+  "labels": {
+    "showValues": "값 표시"
+  },
+  "legend": {
+    "show": "범례 표시",
+    "position": "위치",
+    "positions": {
+      "top": "맨 위",
+      "bottom": "맨 아래",
+      "left": "왼쪽",
+      "right": "오른쪽"
+    }
+  },
+  "sort": {
+    "by": "정렬 기준",
+    "value": "값",
+    "name": "이름",
+    "direction": "방향",
+    "desc": "내림차순",
+    "asc": "오름차순",
+    "topN": "상위 N",
+    "showTop": "상단 표시",
+    "others": "나머지는 \"기타\"로 그룹화"
+  },
+  "bars": {
+    "stacking": "스태킹",
+    "none": "나란히",
+    "stacked": "쌓인",
+    "percent": "100% 스택",
+    "smooth": "부드러운 선"
+  },
+  "donut": {
+    "maxSlices": "최대 슬라이스(나머지 → 기타)"
+  },
+  "kpi": {
+    "compareBy": "비교 기준",
+    "grains": {
+      "day": "낮",
+      "week": "주",
+      "month": "월",
+      "quarter": "4분의 1",
+      "year": "년도"
+    },
+    "upIsGood": "업이 좋다"
+  },
+  "gauge": {
+    "min": "최소",
+    "max": "맥스",
+    "auto": "자동"
+  },
+  "table": {
+    "dataBars": "데이터 막대"
+  },
+  "slicer": {
+    "style": "스타일",
+    "styles": {
+      "dropdown": "드롭다운",
+      "list": "목록",
+      "tiles": "버튼",
+      "between": "번호 범위",
+      "dateRange": "기간",
+      "relative": "상대 날짜",
+      "input": "값을 입력하세요",
+      "hierarchy": "계층 구조(더 많은 필드 추가)"
+    },
+    "single": "단일 선택",
+    "sync": "페이지 간 동기화",
+    "page": "페이지",
+    "syncColumn": "동조",
+    "visible": "보이는",
+    "syncTo": "{{page}}에 동기화",
+    "visibleOn": "{{page}}에 표시됨"
+  },
+  "tooltip": {
+    "page": "툴팁 페이지",
+    "default": "기본 툴팁",
+    "noPages": "먼저 페이지를 도구 설명 페이지로 만듭니다"
+  },
+  "map": {
+    "zoomTo": "확대/축소",
+    "scopes": {
+      "world": "세계",
+      "africa": "아프리카",
+      "europe": "유럽",
+      "asia": "아시아",
+      "northAmerica": "북아메리카",
+      "southAmerica": "남아메리카"
+    }
+  },
+  "page": {
+    "label": "페이지",
+    "name": "이름",
+    "canvasSize": "캔버스 크기",
+    "canvasPresets": {
+      "wide": "16:9(1280×720)",
+      "standard": "4:3(1280×960)",
+      "letter": "편지(세로)",
+      "fitWidth": "너비에 맞춤(늘어남)"
+    },
+    "background": "배경",
+    "themeBackground": "테마 배경",
+    "type": "페이지 유형",
+    "types": {
+      "page": "페이지",
+      "drillthrough": "드릴스루(세부 사항)",
+      "tooltip": "툴팁"
+    },
+    "tooltipHint": "서식 → 도구 설명에서 시각적 개체를 선택하는 지점을 마우스로 가리키면 작게 표시됩니다.",
+    "drillthroughHint": "다른 페이지에서 이러한 필드 중 하나의 구성원을 마우스 오른쪽 버튼으로 클릭하고 → \"드릴스루\"를 클릭합니다."
+  },
+  "dashboard": {
+    "label": "계기반",
+    "slicersApply": "슬라이서 적용",
+    "instant": "즉시",
+    "button": "적용 버튼이 있는 경우",
+    "filtersPane": "시청자를 위한 필터 창",
+    "personalize": "시청자가 개인화할 수 있음"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "컬러 스케일",
+      "rules": "규칙",
+      "bars": "데이터 막대",
+      "icons": "아이콘 ▲●▼"
+    },
+    "ruleType": "규칙 유형",
+    "value": "값",
+    "colour": "색상",
+    "background": "배경",
+    "text": "텍스트",
+    "removeRule": "규칙 삭제",
+    "lowest": "최저",
+    "middle": "가운데",
+    "highest": "제일 높은",
+    "lowestColour": "가장 낮은 색상",
+    "middleColour": "중간색",
+    "highestColour": "가장 높은 색상",
+    "ifValueIs": "값이 다음과 같은 경우",
+    "between": "~ 사이",
+    "and": "그리고",
+    "removeCondition": "조건 제거",
+    "addCondition": "조건(첫 번째 경기 승리)",
+    "barColour": "바 색상",
+    "iconsHint": "▲ 상위 3분의 1, ● 중간, ▼ 하위 1/3 값입니다.",
+    "addRule": "규칙 추가"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "상수(목표)",
+      "average": "평균",
+      "median": "중앙값",
+      "min": "최저한의",
+      "max": "최고",
+      "percentile": "백분위수",
+      "trend": "추세선",
+      "forecast": "예측"
+    },
+    "line": "선",
+    "value": "값",
+    "percentile": "백분위수",
+    "periods": "미문",
+    "colour": "색상",
+    "removeLine": "줄 삭제",
+    "labelPlaceholder": "라벨(선택사항)",
+    "addLine": "줄 추가",
+    "forecastHint": "예측에는 날짜 축(예: 월별 날짜)이 필요합니다."
+  },
+  "python": {
+    "starter": "예제에서 시작하기",
+    "sandbox": "잠긴 Python 샌드박스(pandas, numpy, scipy, statsmodels 및 scikit-learn)에서 실행됩니다. 파일, 네트워크 또는 시스템 액세스가 없습니다."
+  },
+  "button": {
+    "text": "텍스트",
+    "action": "행동",
+    "actions": {
+      "page": "페이지로 이동",
+      "bookmark": "뷰 적용(북마크)",
+      "back": "뒤쪽에",
+      "clearSlicers": "모든 슬라이서 지우기",
+      "applySlicers": "슬라이서 적용",
+      "toggle": "시각적 개체 표시/숨기기",
+      "url": "웹 링크 열기",
+      "askAi": "AI에게 물어보세요",
+      "reset": "기본값으로 재설정"
+    },
+    "page": "페이지",
+    "choose": "선택하다…",
+    "view": "보다",
+    "addViewsFirst": "먼저 보기 추가(보기 탭)",
+    "visual": "시각적",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "링크",
+    "style": "스타일",
+    "fills": {
+      "primary": "채우는",
+      "outline": "개요",
+      "ghost": "솔직한"
+    }
+  },
+  "navigator": {
+    "shows": "쇼",
+    "pages": "페이지",
+    "bookmarks": "보기(북마크)"
+  },
+  "parameter": {
+    "parameter": "매개변수",
+    "new": "새 매개변수…",
+    "showAs": "다음으로 표시",
+    "tiles": "버튼",
+    "dropdown": "드롭다운",
+    "delete": "이 매개변수 삭제"
+  },
+  "theme": {
+    "title": "테마 맞춤설정",
+    "name": "테마 이름",
+    "close": "닫다",
+    "dataColours": "데이터 색상",
+    "colour": "색상 {{index}}",
+    "removeColour": "색상 제거 {{index}}",
+    "addColour": "색상 추가",
+    "brandColour": "브랜드 색상",
+    "generate": "내 브랜드 컬러의 팔레트",
+    "sentiment": {
+      "good": "좋은",
+      "neutral": "중립적",
+      "bad": "나쁜"
+    },
+    "pageAndTiles": "페이지 및 타일",
+    "light": "빛",
+    "dark": "어두운",
+    "roles": {
+      "canvas": "캔버스",
+      "tile": "타일",
+      "border": "테두리",
+      "gridline": "격자선",
+      "text": "텍스트",
+      "mutedText": "음소거된 텍스트",
+      "accent": "악센트"
+    },
+    "contrast": "타일에서는 텍스트를 읽기 어렵습니다({{ratio}}:1 - 4.5:1 이상 목표).",
+    "font": "세례반",
+    "systemFont": "체계",
+    "corners": "코너",
+    "shadow": "그림자",
+    "shadows": {
+      "none": "없음",
+      "soft": "부드러운",
+      "medium": "중간"
+    },
+    "kpiTiles": "KPI 타일",
+    "kpiStyles": {
+      "plain": "솔직한",
+      "solid": "단색",
+      "gradient": "구배",
+      "outlined": "개요",
+      "icon": "악센트 바"
+    },
+    "orgThemes": "내 조직의 테마",
+    "deleteTheme": "{{name}} 삭제",
+    "importJson": "JSON 가져오기",
+    "exportJson": "JSON 내보내기",
+    "saveAs": "내 테마로 저장",
+    "defaultName": "내 테마",
+    "importedName": "가져온 테마",
+    "imported": "수입.",
+    "saved": "조직에 '{{name}}'을(를) 저장했습니다.",
+    "cancel": "취소",
+    "done": "완료",
+    "errors": {
+      "notTheme": "파일이 테마가 아닙니다.",
+      "needColours": "테마에는 최소한 3가지 데이터 색상(dataColors)이 필요합니다."
+    }
+  }
+}

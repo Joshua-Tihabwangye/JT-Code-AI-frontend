@@ -1,0 +1,41 @@
+{
+  "title": "レポート",
+  "subtitle": "ダッシュボードをエクスポートするか、保存したビジュアルを再利用します。",
+  "export": "ダッシュボードをエクスポートする",
+  "noCharts": "Explore または Predict からビジュアルを保存して、ダッシュボードで再利用します。",
+  "library": {
+    "title": "私のビジュアル"
+  },
+  "dashboardToExport": "エクスポートするダッシュボード",
+  "noDashboards": "ダッシュボードはまだありません",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "画面上とまったく同じように、ダッシュボード ページごとに 1 ページ"
+    },
+    "png": {
+      "label": "PNG画像",
+      "hint": "1 ページに 1 つの画像"
+    },
+    "xlsx": {
+      "label": "エクセル",
+      "hint": "ネイティブ チャートを含むすべてのビジュアルのデータと生データ"
+    },
+    "html": {
+      "label": "インタラクティブなHTML",
+      "hint": "オフラインで動作する単一のファイル"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "ダッシュボードの定義"
+    }
+  },
+  "preparing": "準備中…",
+  "explore": "探検する",
+  "prediction": "予測",
+  "visualOf": "{{type}} ビジュアル",
+  "deletedDataset": "削除されたデータセット",
+  "unshare": "共有を解除する",
+  "share": "共有",
+  "deleteNamed": "{{name}} を削除"
+}

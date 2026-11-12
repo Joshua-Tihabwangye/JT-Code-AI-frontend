@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Temiz",
+    "rows": "Satırlar",
+    "columns": "Sütunlar",
+    "text": "Metin",
+    "numbers": "Sayılar ve tarihler",
+    "shape": "Şekil",
+    "combine": "Birleştir"
+  },
+  "kinds": {
+    "removeDuplicates": "Yinelenen satırları kaldır",
+    "trim": "Fazladan boşlukları kırpın",
+    "removeBlankRows": "Boş satırları kaldır",
+    "fillBlanks": "Boşlukları doldurun",
+    "replaceValues": "Değerleri değiştir",
+    "changeType": "Türü değiştir",
+    "outliers": "Aykırı değerleri işleme",
+    "filterRows": "Satırları filtrele",
+    "sort": "Satırları sırala",
+    "keepRows": "Üst veya alt satırları koru",
+    "removeColumns": "Sütunları kaldır",
+    "keepColumns": "Yalnızca bu sütunları tut",
+    "rename": "Bir sütunu yeniden adlandırın",
+    "calculatedColumn": "Hesaplanan sütun",
+    "conditionalColumn": "Koşullu sütun",
+    "splitColumn": "Bir sütunu bölme",
+    "mergeColumns": "Sütunları birleştir",
+    "textCase": "Metin durumunu değiştir",
+    "bins": "Sayıları bölmeler halinde gruplayın",
+    "dateParts": "Tarih parçalarını çıkar",
+    "dateTable": "Tarih tablosu yapın (takvim)",
+    "groupBy": "Gruplandırma ölçütü",
+    "pivot": "Pivot (satırlar → sütunlar)",
+    "unpivot": "Özeti aç (sütunlar → satırlar)",
+    "merge": "Başka bir veri kümesiyle birleştirme",
+    "append": "Başka bir veri kümesi ekle"
+  },
+  "fields": {
+    "compareColumns": "Yalnızca bu sütunları karşılaştır",
+    "trimColumns": "Sütunlar (boş olduğunda tüm metinler)",
+    "blankIn": "Boş giriş",
+    "removeWhen": "Ne zaman kaldır",
+    "column": "Kolon",
+    "columns": "Sütunlar",
+    "with": "İle",
+    "value": "Değer",
+    "find": "Bulmak",
+    "replaceWith": "Şununla değiştir:",
+    "match": "Kibrit",
+    "to": "İle",
+    "action": "Aksiyon",
+    "rowsThatMatch": "Eşleşen satırlar",
+    "conditions": "Koşullar",
+    "sortBy": "Göre sırala",
+    "keep": "Kale",
+    "howMany": "Kaç tane",
+    "newName": "Yeni isim",
+    "newColumn": "Yeni sütun",
+    "formula": "Formül",
+    "ifThen": "Eğer… o zaman",
+    "otherwise": "Aksi takdirde",
+    "at": "Şu tarihte:",
+    "intoParts": "(parçalara)",
+    "newNames": "Yeni adlar (isteğe bağlı)",
+    "separator": "Ayırıcı",
+    "case": "Dava",
+    "bins": "Kutular",
+    "howManyBins": "Kaç tane kutu",
+    "edges": "Kenarlar",
+    "dateColumn": "Tarih sütunu",
+    "parts": "Parçalar",
+    "fromDatesIn": "Tarihlerden itibaren",
+    "fiscalStart": "Mali yıl ayda başlar",
+    "groupBy": "Gruplandırma ölçütü",
+    "calculate": "Hesaplamak",
+    "keepAsRows": "Satır olarak tut",
+    "valuesBecomeColumns": "Değerler sütunlara dönüşür",
+    "fillWith": "Şununla doldurun:",
+    "aggregation": "Toplama",
+    "keepTheseColumns": "Bu sütunları sakla",
+    "nameColumn": "Ad sütunu",
+    "valueColumn": "Değer sütunu",
+    "dataset": "Veri kümesi",
+    "keyHere": "Bu verileri girin",
+    "keyOther": "Diğerini girin"
+  },
+  "options": {
+    "blankHow": {
+      "any": "herhangi biri boş",
+      "all": "hepsi boş"
+    },
+    "fill": {
+      "mean": "Ortalama",
+      "median": "Medyan",
+      "mode": "En yaygın değer",
+      "zero": "Sıfır",
+      "down": "Yukarıdaki değer (doldurun)",
+      "up": "Aşağıdaki değer (doldurun)",
+      "value": "Kendi değerim"
+    },
+    "replaceMatch": {
+      "exact": "Tam değer",
+      "contains": "Metnin bir kısmı"
+    },
+    "types": {
+      "number": "Sayı",
+      "date": "Tarih",
+      "text": "Metin"
+    },
+    "outliers": {
+      "cap": "Sınırlarda sınır",
+      "remove": "Bu satırları kaldır",
+      "flag": "Yeni bir sütunda işaretle"
+    },
+    "filterMode": {
+      "keep": "Kale",
+      "remove": "Kaldırmak"
+    },
+    "combine": {
+      "and": "tüm koşullar",
+      "or": "herhangi bir koşul"
+    },
+    "keepRows": {
+      "top": "İlk satırlar",
+      "bottom": "Son satırlar"
+    },
+    "textCase": {
+      "title": "Başlık Durumu",
+      "upper": "ÜST",
+      "lower": "daha düşük"
+    },
+    "bins": {
+      "equal": "Eşit genişlik",
+      "edges": "Kendi kenarlarım"
+    },
+    "mergeHow": {
+      "left": "Bu verinin tüm satırları",
+      "inner": "Yalnızca eşleşen satırlar",
+      "outer": "Her ikisinin de tüm satırları"
+    },
+    "aggs": {
+      "sum": "Toplam",
+      "avg": "Ortalama",
+      "count": "Saymak",
+      "distinct": "Farklı sayım",
+      "min": "Min",
+      "max": "Maksimum",
+      "median": "Medyan"
+    }
+  },
+  "parts": {
+    "year": "Yıl",
+    "quarter": "Çeyrek",
+    "month": "Ay",
+    "monthName": "Ay adı",
+    "week": "Hafta",
+    "weekday": "Hafta içi",
+    "weekdayName": "Hafta içi adı",
+    "day": "Gün",
+    "hour": "Saat"
+  },
+  "conditionOps": {
+    "eq": "eşittir",
+    "ne": "eşit değil",
+    "in": "biridir",
+    "notIn": "bunlardan biri değil",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "arasında",
+    "contains": "içerir",
+    "startsWith": "ile başlar",
+    "endsWith": "ile biter",
+    "blank": "boş",
+    "notBlank": "boş değil"
+  },
+  "summary": {
+    "keepConditions": "{{count}} koşul(lar)ını koru",
+    "removeConditions": "{{count}} koşul(lar)ını kaldır",
+    "by": "yazan {{columns}}",
+    "anotherDataset": "başka bir veri kümesi",
+    "types": {
+      "number": "sayı",
+      "date": "tarih",
+      "text": "metin"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Yinelenenleri kaldır",
+    "keepOnePerId": "Kimlik başına bir satır tutun",
+    "removeMissingId": "Kimliği olmayan satırları kaldır",
+    "fillBlanks": "Boşlukları doldurun",
+    "blankOut": "“{{value}}” alanını boşaltın",
+    "trimSpaces": "Alanları kırpın",
+    "toNumber": "Numaraya dönüştür",
+    "toDate": "Tarihe dönüştür",
+    "consistentSpelling": "Yazımı tutarlı hale getirin",
+    "capOutliers": "Sınır dışı değerler",
+    "removeColumn": "Sütunu kaldır"
+  }
+}

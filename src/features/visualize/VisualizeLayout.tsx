@@ -7,12 +7,12 @@ import { VisualizeProvider, useVisualize } from './context';
 import './visualize.css';
 
 const TABS = [
-  { to: '/app/visualize', match: /^\/app\/visualize(\/dashboards)?$/, key: 'dashboards', label: 'Dashboards', icon: LayoutGrid },
-  { to: '/app/visualize/data', key: 'data', label: 'Data', icon: Database },
-  { to: '/app/visualize/explore', key: 'explore', label: 'Explore', icon: Compass },
-  { to: '/app/visualize/predict', key: 'predict', label: 'Predict', icon: BrainCircuit },
-  { to: '/app/visualize/gallery', key: 'gallery', label: 'Gallery', icon: Shapes },
-  { to: '/app/visualize/reports', key: 'reports', label: 'Reports', icon: FileText },
+  { to: '/app/visualize', match: /^\/app\/visualize(\/dashboards)?$/, key: 'dashboards', icon: LayoutGrid },
+  { to: '/app/visualize/data', key: 'data', icon: Database },
+  { to: '/app/visualize/explore', key: 'explore', icon: Compass },
+  { to: '/app/visualize/predict', key: 'predict', icon: BrainCircuit },
+  { to: '/app/visualize/gallery', key: 'gallery', icon: Shapes },
+  { to: '/app/visualize/reports', key: 'reports', icon: FileText },
 ];
 
 /** One module bar: the active dataset, the sections, and Ask AI (hidden inside a dashboard). */
@@ -27,10 +27,10 @@ function Shell() {
     <div className="viz" data-testid="visualize-tool">
       {!inDashboard && (
         <header className="viz-header" data-testid="viz-header">
-          <label className="viz-dataset-pick" title={t('visualize.dataset', 'Dataset')}>
+          <label className="viz-dataset-pick" title={t('visualize.dataset')}>
             <Database size={14} aria-hidden />
-            <select value={datasetId} onChange={(event) => setDatasetId(event.target.value)} aria-label={t('visualize.dataset', 'Dataset')} data-testid="module-dataset">
-              {!datasets.length && <option value="">{t('visualize.noDataset', 'No dataset yet')}</option>}
+            <select value={datasetId} onChange={(event) => setDatasetId(event.target.value)} aria-label={t('visualize.dataset')} data-testid="module-dataset">
+              {!datasets.length && <option value="">{t('visualize.noDataset')}</option>}
               {datasets.map((item) => (
                 <option key={item.id} value={item.id}>
                   {item.name}
@@ -38,15 +38,15 @@ function Shell() {
               ))}
             </select>
           </label>
-          <nav className="viz-nav" aria-label={t('visualize.sections', 'Data visualization sections')}>
+          <nav className="viz-nav" aria-label={t('visualize.sections')}>
             {TABS.map((tab) => (
               <NavLink key={tab.key} to={tab.to} end={!tab.match} className={({ isActive }) => ((tab.match ? tab.match.test(path) : isActive) ? 'active' : '')} data-testid={`tab-${tab.key}`}>
-                <tab.icon size={15} aria-hidden /> {t(`visualize.tabs.${tab.key}`, tab.label)}
+                <tab.icon size={15} aria-hidden /> {t(`visualize.tabs.${tab.key}`)}
               </NavLink>
             ))}
           </nav>
           <button type="button" className="viz-fab ml-auto" style={{ position: 'static' }} onClick={() => setAssistantOpen(true)} aria-expanded={assistantOpen} data-testid="open-assistant">
-            <Sparkles size={16} aria-hidden /> {t('visualize.askAi', 'Ask AI')}
+            <Sparkles size={16} aria-hidden /> {t('visualize.askAi')}
           </button>
         </header>
       )}

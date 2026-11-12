@@ -1,6 +1,9 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { inlineLabel } from '@/i18n/format';
 import { ArrowLeftRight, Calendar, FunctionSquare, Hash, Search, Sparkles, Type, X } from 'lucide-react';
 import type { ColumnProfile, DashboardCalculation, DashboardFieldRef, DashboardSpec, DashboardVisual, DashboardWell } from '@/lib/data';
+import { useCatalogText } from '../../catalogText';
 import { OptionControl, SlotControl } from '../../controls';
 import { useVisualize } from '../../context';
 import { humanize } from '../../ui';
@@ -23,6 +26,7 @@ export function BuildPane({
   spec: DashboardSpec;
   onSpec: (mutate: (spec: DashboardSpec) => DashboardSpec) => void;
 }) {
+  const { t } = useTranslation();
   const { datasets, datasetId: pageDataset, catalog } = useVisualize();
   const [search, setSearch] = useState('');
   const datasetId = visual?.data.datasetId || pageDataset;
@@ -70,12 +74,12 @@ export function BuildPane({
     <div className="space-y-3" data-testid="build-pane">
       {visual && (
         <label className="block text-xs">
-          <span className="viz-label">Dataset</span>
+          <span className="viz-label">{t('visualize.editor.build.dataset')}</span>
           <select
             className="viz-field"
             value={datasetId}
             onChange={(event) => update((v) => ({ ...v, data: { ...v.data, datasetId: event.target.value, wells: {} } }))}
-            aria-label="Dataset for this visual"
+            aria-label={t('visualize.editor.build.datasetForVisual')}
           >
             {datasets.map((item) => (
               <option key={item.id} value={item.id}>
@@ -90,7 +94,7 @@ export function BuildPane({
         <div className="space-y-2">
           {suggestion && suggestion !== visual.type && (
             <button type="button" className="viz-chip w-full justify-center" onClick={() => update((v) => ({ ...v, type: suggestion }))} data-testid="suggested-type">
-              <Sparkles size={12} aria-hidden /> Better as {VISUAL_BY_TYPE[suggestion]?.label.toLowerCase()}
+              <Sparkles size={12} aria-hidden /> {t('visualize.editor.build.betterAs', { type: inlineLabel(VISUAL_BY_TYPE[suggestion]?.label ?? suggestion) })}
             </button>
           )}
           {spec.wells.map((well) => (
@@ -107,7 +111,7 @@ export function BuildPane({
       )}
       {visual && spec && spec.wells.length > 0 && fieldParameters.length > 0 && (
         <div className="space-y-1">
-          <span className="viz-label m-0">Field parameters — bind a well to a switcher</span>
+          <span className="viz-label m-0">{t('visualize.editor.build.fieldParameters')}</span>
           <div className="flex flex-wrap gap-1">
             {fieldParameters.map((parameter) =>
               parameter.kind === 'fields' && parameter.options[0] ? (
@@ -122,11 +126,11 @@ export function BuildPane({
       {datasetId && <CalculationsSection spec={dashboard} datasetId={datasetId} profiles={profiles} onSpec={onSpec} onUse={visual && measureWell ? useCalc : undefined} />}
       <div>
         <div className="mb-1 flex items-center justify-between">
-          <span className="viz-label m-0">{visual ? 'Fields — click or drag into a well' : 'Fields — click one to start a visual'}</span>
+          <span className="viz-label m-0">{visual ? t('visualize.editor.build.fieldsIntoWell') : t('visualize.editor.build.fieldsStart')}</span>
         </div>
         <label className="dash-pane-search">
           <Search size={12} aria-hidden />
-          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search fields" aria-label="Search fields" />
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t('visualize.editor.build.searchFields')} aria-label={t('visualize.editor.build.searchFields')} />
         </label>
         <ul className="dash-fields" data-testid="field-list">
           {shown.map((profile) => {
@@ -148,7 +152,7 @@ export function BuildPane({
               </li>
             );
           })}
-          {!profiles.length && <li className="text-xs text-muted-foreground">This dataset has no profile yet.</li>}
+          {!profiles.length && <li className="text-xs text-muted-foreground">{t('visualize.editor.build.noProfile')}</li>}
         </ul>
       </div>
     </div>
@@ -168,6 +172,7 @@ function Well({
   onChange: (items: DashboardFieldRef[]) => void;
   onDropField: (field: string) => void;
 }) {
+  const { t } = useTranslation();
   const [over, setOver] = useState(false);
   const patch = (index: number, change: Partial<DashboardFieldRef>) => onChange(items.map((item, i) => (i === index ? { ...item, ...change } : item)));
   return (
@@ -189,19 +194,19 @@ function Well({
     >
       <div className="dash-well-label">
         {well.label}
-        {well.max > 1 && <span className="opacity-60"> · up to {well.max}</span>}
+        {well.max > 1 && <span className="opacity-60"> · {t('visualize.editor.build.upTo', { max: well.max })}</span>}
       </div>
       {items.map((item, index) => {
         const kind = fieldKind(profiles.find((p) => p.name === item.field));
         return (
           <div key={`${item.field}-${index}`} className="dash-well-item">
-            <span className="truncate font-medium" title={item.calc ? 'Calculation' : item.field}>
+            <span className="truncate font-medium" title={item.calc ? t('visualize.editor.build.calculation') : item.field}>
               {item.calc && <FunctionSquare size={11} aria-hidden className="mr-1 inline" />}
-              {item.param && <ArrowLeftRight size={11} aria-label="Bound to a field parameter" className="mr-1 inline" />}
-              {item.field === '*' ? 'Rows' : item.calc ? item.field : humanize(item.field)}
+              {item.param && <ArrowLeftRight size={11} aria-label={t('visualize.editor.build.boundToParameter')} className="mr-1 inline" />}
+              {item.field === '*' ? t('visualize.editor.build.rows') : item.calc ? item.field : humanize(item.field)}
             </span>
             {well.measure && !item.calc && !item.param && (
-              <select value={item.agg ?? 'sum'} onChange={(event) => patch(index, { agg: event.target.value })} aria-label={`Aggregation for ${item.field}`}>
+              <select value={item.agg ?? 'sum'} onChange={(event) => patch(index, { agg: event.target.value })} aria-label={t('visualize.editor.build.aggregationFor', { field: item.field })}>
                 {AGGREGATIONS.filter(([value]) => kind === 'numeric' || ['count', 'distinct', 'min', 'max', 'first', 'last'].includes(value)).map(([value, label]) => (
                   <option key={value} value={value}>
                     {label}
@@ -210,8 +215,8 @@ function Well({
               </select>
             )}
             {!well.measure && kind === 'datetime' && (
-              <select value={item.grain ?? ''} onChange={(event) => patch(index, { grain: (event.target.value || undefined) as DashboardFieldRef['grain'] })} aria-label={`Date level for ${item.field}`}>
-                <option value="">Exact date</option>
+              <select value={item.grain ?? ''} onChange={(event) => patch(index, { grain: (event.target.value || undefined) as DashboardFieldRef['grain'] })} aria-label={t('visualize.editor.build.dateLevelFor', { field: item.field })}>
+                <option value="">{t('visualize.editor.build.exactDate')}</option>
                 {GRAINS.map(([value, label]) => (
                   <option key={value} value={value}>
                     {label}
@@ -220,10 +225,10 @@ function Well({
               </select>
             )}
             {well.measure && item.showValueAs === 'moving_avg' && (
-              <input type="number" min={2} max={60} value={item.window ?? 3} onChange={(event) => patch(index, { window: Number(event.target.value) })} aria-label="Moving average window" className="w-12" title="Periods" />
+              <input type="number" min={2} max={60} value={item.window ?? 3} onChange={(event) => patch(index, { window: Number(event.target.value) })} aria-label={t('visualize.editor.build.movingAverageWindow')} className="w-12" title={t('visualize.editor.build.periods')} />
             )}
             {well.measure && (
-              <select value={item.showValueAs ?? 'none'} onChange={(event) => patch(index, { showValueAs: event.target.value === 'none' ? undefined : event.target.value })} aria-label={`Show ${item.field} as`} title="Show value as">
+              <select value={item.showValueAs ?? 'none'} onChange={(event) => patch(index, { showValueAs: event.target.value === 'none' ? undefined : event.target.value })} aria-label={t('visualize.editor.build.showFieldAs', { field: item.field })} title={t('visualize.editor.build.showValueAs')}>
                 {SHOW_VALUE_AS.map(([value, label]) => (
                   <option key={value} value={value}>
                     {label}
@@ -231,16 +236,16 @@ function Well({
                 ))}
               </select>
             )}
-            <button type="button" onClick={() => onChange(items.filter((_, i) => i !== index))} aria-label={`Remove ${item.field}`}>
+            <button type="button" onClick={() => onChange(items.filter((_, i) => i !== index))} aria-label={t('visualize.editor.build.removeField', { field: item.field })}>
               <X size={12} />
             </button>
           </div>
         );
       })}
       {items.length < well.max && (
-        <select className="dash-well-add" value="" onChange={(event) => event.target.value && onDropField(event.target.value)} aria-label={`Add a field to ${well.label}`}>
-          <option value="">+ Add field</option>
-          {well.measure && <option value="*">Count of rows</option>}
+        <select className="dash-well-add" value="" onChange={(event) => event.target.value && onDropField(event.target.value)} aria-label={t('visualize.editor.build.addFieldTo', { well: well.label })}>
+          <option value="">{t('visualize.editor.build.addField')}</option>
+          {well.measure && <option value="*">{t('visualize.editor.build.countOfRows')}</option>}
           {profiles.map((p) => (
             <option key={p.name} value={p.name}>
               {humanize(p.name)}
@@ -263,18 +268,20 @@ function GalleryChartFields({
   update: (mutate: (visual: DashboardVisual) => DashboardVisual) => void;
   catalogCharts: NonNullable<ReturnType<typeof useVisualize>['catalog']>['charts'];
 }) {
+  const { t } = useTranslation();
+  const text = useCatalogText();
   const chartFormat = (visual.format?.chart ?? {}) as { chartType?: string; fields?: Record<string, string | string[]>; options?: Record<string, unknown> };
   const chart = catalogCharts.find((entry) => entry.id === chartFormat.chartType);
   const setChart = (patch: Partial<typeof chartFormat>) => update((v) => ({ ...v, format: { ...(v.format ?? {}), chart: { ...chartFormat, ...patch } } }));
   return (
     <div className="space-y-2" data-testid="gallery-chart-fields">
       <label className="block text-xs">
-        <span className="viz-label">Gallery chart</span>
-        <select className="viz-field" value={chartFormat.chartType ?? ''} onChange={(event) => setChart({ chartType: event.target.value, fields: {}, options: {} })} aria-label="Gallery chart" data-testid="gallery-chart-type">
-          <option value="">Choose a chart…</option>
+        <span className="viz-label">{t('visualize.editor.build.galleryChart')}</span>
+        <select className="viz-field" value={chartFormat.chartType ?? ''} onChange={(event) => setChart({ chartType: event.target.value, fields: {}, options: {} })} aria-label={t('visualize.editor.build.galleryChart')} data-testid="gallery-chart-type">
+          <option value="">{t('visualize.editor.build.chooseChart')}</option>
           {catalogCharts.map((entry) => (
             <option key={entry.id} value={entry.id}>
-              {entry.name}
+              {text.chartName(entry)}
             </option>
           ))}
         </select>
@@ -283,6 +290,7 @@ function GalleryChartFields({
         <SlotControl
           key={slot.key}
           slot={slot}
+          owner={{ kind: 'chart', id: chart.id }}
           profiles={profiles}
           value={chartFormat.fields?.[slot.key]}
           idPrefix={`build-${visual.id}-`}
@@ -298,6 +306,7 @@ function GalleryChartFields({
         <OptionControl
           key={option.key}
           option={option}
+          owner={{ kind: 'chart', id: chart.id }}
           value={chartFormat.options?.[option.key]}
           positiveClasses={[]}
           onChange={(value) => setChart({ options: { ...(chartFormat.options ?? {}), [option.key]: value } })}

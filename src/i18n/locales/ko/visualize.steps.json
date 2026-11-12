@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "깨끗한",
+    "rows": "행",
+    "columns": "열",
+    "text": "텍스트",
+    "numbers": "숫자와 날짜",
+    "shape": "모양",
+    "combine": "결합하다"
+  },
+  "kinds": {
+    "removeDuplicates": "중복 행 제거",
+    "trim": "여분의 공백 자르기",
+    "removeBlankRows": "빈 행 제거",
+    "fillBlanks": "공백 채우기",
+    "replaceValues": "값 바꾸기",
+    "changeType": "유형 변경",
+    "outliers": "이상값 처리",
+    "filterRows": "행 필터링",
+    "sort": "행 정렬",
+    "keepRows": "위쪽 또는 아래쪽 행 유지",
+    "removeColumns": "열 제거",
+    "keepColumns": "이 열만 유지",
+    "rename": "열 이름 바꾸기",
+    "calculatedColumn": "계산된 열",
+    "conditionalColumn": "조건부 열",
+    "splitColumn": "열 분할",
+    "mergeColumns": "열 병합",
+    "textCase": "텍스트 대소문자 변경",
+    "bins": "숫자를 Bin으로 그룹화",
+    "dateParts": "날짜 부분 추출",
+    "dateTable": "날짜표(달력) 만들기",
+    "groupBy": "그룹화 기준",
+    "pivot": "피벗(행 → 열)",
+    "unpivot": "피벗 해제(열 → 행)",
+    "merge": "다른 데이터세트와 병합",
+    "append": "다른 데이터세트 추가"
+  },
+  "fields": {
+    "compareColumns": "이 열만 비교",
+    "trimColumns": "열(비어 있는 경우 모든 텍스트)",
+    "blankIn": "공백으로",
+    "removeWhen": "다음 경우에 제거",
+    "column": "열",
+    "columns": "열",
+    "with": "와 함께",
+    "value": "값",
+    "find": "찾다",
+    "replaceWith": "다음으로 교체",
+    "match": "성냥",
+    "to": "에게",
+    "action": "행동",
+    "rowsThatMatch": "일치하는 행",
+    "conditions": "정황",
+    "sortBy": "정렬 기준",
+    "keep": "유지하다",
+    "howMany": "얼마나",
+    "newName": "새 이름",
+    "newColumn": "새 열",
+    "formula": "공식",
+    "ifThen": "만약…그렇다면",
+    "otherwise": "그렇지 않으면",
+    "at": "~에",
+    "intoParts": "(부분)으로",
+    "newNames": "새 이름(선택사항)",
+    "separator": "분리 기호",
+    "case": "사례",
+    "bins": "쓰레기통",
+    "howManyBins": "얼마나 많은 쓰레기통이 있습니까?",
+    "edges": "가장자리",
+    "dateColumn": "날짜 열",
+    "parts": "부분품",
+    "fromDatesIn": "날짜부터",
+    "fiscalStart": "회계 연도는 월에 시작됩니다",
+    "groupBy": "그룹화 기준",
+    "calculate": "믿다",
+    "keepAsRows": "행으로 유지",
+    "valuesBecomeColumns": "값이 열이 됨",
+    "fillWith": "다음으로 채우기",
+    "aggregation": "집합",
+    "keepTheseColumns": "이 열을 유지하세요",
+    "nameColumn": "이름 열",
+    "valueColumn": "값 열",
+    "dataset": "데이터세트",
+    "keyHere": "이 데이터를 입력하세요",
+    "keyOther": "다른 키를 입력하세요"
+  },
+  "options": {
+    "blankHow": {
+      "any": "그 중 하나는 비어 있습니다",
+      "all": "모두 비어있습니다"
+    },
+    "fill": {
+      "mean": "평균",
+      "median": "중앙값",
+      "mode": "가장 일반적인 값",
+      "zero": "영",
+      "down": "위의 값(작성)",
+      "up": "아래 값(채우기)",
+      "value": "나만의 가치"
+    },
+    "replaceMatch": {
+      "exact": "전체 가치",
+      "contains": "텍스트의 일부"
+    },
+    "types": {
+      "number": "숫자",
+      "date": "날짜",
+      "text": "텍스트"
+    },
+    "outliers": {
+      "cap": "한계에 도달하다",
+      "remove": "해당 행을 제거하세요",
+      "flag": "새 열에 플래그 지정"
+    },
+    "filterMode": {
+      "keep": "유지하다",
+      "remove": "제거하다"
+    },
+    "combine": {
+      "and": "모든 조건",
+      "or": "모든 조건"
+    },
+    "keepRows": {
+      "top": "첫 번째 행",
+      "bottom": "마지막 행"
+    },
+    "textCase": {
+      "title": "제목 케이스",
+      "upper": "높은",
+      "lower": "낮추다"
+    },
+    "bins": {
+      "equal": "동일한 너비",
+      "edges": "나만의 엣지"
+    },
+    "mergeHow": {
+      "left": "이 데이터의 모든 행",
+      "inner": "일치하는 행만",
+      "outer": "두 행의 모든 ​​행"
+    },
+    "aggs": {
+      "sum": "합집합",
+      "avg": "평균",
+      "count": "세다",
+      "distinct": "고유 개수",
+      "min": "최소",
+      "max": "맥스",
+      "median": "중앙값"
+    }
+  },
+  "parts": {
+    "year": "년도",
+    "quarter": "4분의 1",
+    "month": "월",
+    "monthName": "월 이름",
+    "week": "주",
+    "weekday": "주일",
+    "weekdayName": "요일 이름",
+    "day": "낮",
+    "hour": "시간"
+  },
+  "conditionOps": {
+    "eq": "같음",
+    "ne": "같지 않다",
+    "in": "중 하나입니다",
+    "notIn": "다음 중 하나가 아닙니다",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "~ 사이",
+    "contains": "포함",
+    "startsWith": "다음으로 시작",
+    "endsWith": "다음으로 끝남",
+    "blank": "비어있습니다",
+    "notBlank": "비어 있지 않습니다"
+  },
+  "summary": {
+    "keepConditions": "{{count}} 조건 유지",
+    "removeConditions": "{{count}} 조건 제거",
+    "by": "작성자: {{columns}}",
+    "anotherDataset": "다른 데이터세트",
+    "types": {
+      "number": "숫자",
+      "date": "날짜",
+      "text": "텍스트"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "중복 제거",
+    "keepOnePerId": "ID당 하나의 행 유지",
+    "removeMissingId": "ID가 없는 행 제거",
+    "fillBlanks": "공백 채우기",
+    "blankOut": "“{{value}}” 비워두기",
+    "trimSpaces": "공백 자르기",
+    "toNumber": "숫자로 변환",
+    "toDate": "날짜로 변환",
+    "consistentSpelling": "철자를 일관되게 유지하세요",
+    "capOutliers": "상한 이상치",
+    "removeColumn": "열 제거"
+  }
+}

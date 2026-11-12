@@ -1,6 +1,7 @@
 // Mock-mode ("VITE_DATA_MODE=mock") stand-in for Supabase Auth, backed by
 // localStorage (src/lib/localAuth.ts). API mode uses the real Supabase client.
 import type { SupabaseClient, Session, User as SupabaseUser } from '@supabase/supabase-js';
+import i18n from '@/i18n/config';
 import {
   createSession,
   createUser,
@@ -15,6 +16,7 @@ import {
   subscribeAuth,
   updateUserPassword,
   verifyCredentials,
+  findOrCreatePasswordUser,
   type LocalSession,
   type StoredUser,
 } from '@/lib/localAuth';
@@ -71,7 +73,7 @@ export const localSupabase = {
   auth: {
     signUp({ email, password, options }: { email: string; password: string; options?: { data?: Record<string, unknown> } }) {
       if (findUserByEmail(email)) {
-        return { data: { user: null, session: null }, error: { message: 'An account with this email already exists.' } };
+        return { data: { user: null, session: null }, error: { message: i18n.t('authErrors.accountExists') } };
       }
       const meta = options?.data ?? {};
       const user = createUser({
@@ -90,9 +92,11 @@ export const localSupabase = {
       return { data: { user: toSupabaseUser(user), session: toSession(session, user) }, error: null };
     },
     signInWithPassword({ email, password }: { email: string; password: string }) {
-      const user = verifyCredentials(email, password);
+      // A new email signs straight in (the account is created); a known one needs its password.
+      const known = findUserByEmail(email);
+      const user = known ? verifyCredentials(email, password) : findOrCreatePasswordUser(email, password);
       if (!user) {
-        return { data: { user: null, session: null }, error: { message: 'Invalid email or password.' } };
+        return { data: { user: null, session: null }, error: { message: i18n.t('authErrors.invalidCredentials') } };
       }
       const session = createSession(user.id);
       setSession(session);
@@ -128,7 +132,7 @@ export const localSupabase = {
     },
     resetPasswordForEmail(email: string) {
       if (!findUserByEmail(email)) {
-        return { data: {}, error: { message: 'No account exists for that email address.' } };
+        return { data: {}, error: { message: i18n.t('authErrors.noAccount') } };
       }
       const record = issueResetCode(email);
       return { data: { email: record.email, resetCode: record.code }, error: null };
@@ -144,11 +148,11 @@ export const localSupabase = {
     }) {
       const record = getResetCodeRecord(email);
       if (!record || record.code !== code) {
-        return { data: {}, error: { message: 'Invalid or expired reset code.' } };
+        return { data: {}, error: { message: i18n.t('authErrors.invalidResetCode') } };
       }
       const ok = updateUserPassword(record.email, newPassword);
       if (!ok) {
-        return { data: {}, error: { message: 'Sign in to reset your password.' } };
+        return { data: {}, error: { message: i18n.t('authErrors.signInToReset') } };
       }
       consumeResetCode(record.email, code);
       return { data: {}, error: null };

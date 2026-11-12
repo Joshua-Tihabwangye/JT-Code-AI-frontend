@@ -1,0 +1,32 @@
+{
+  "resetTitle": "Passwort zurücksetzen",
+  "emailLabel": "E-Mail-Adresse",
+  "sendCode": "Reset-Code senden",
+  "sending": "Wird gesendet…",
+  "backToSignIn": "Zurück zur Anmeldung",
+  "checkTitle": "Überprüfe deine E-Mails",
+  "useCodeNow": "Diesen Code jetzt verwenden",
+  "haveCode": "Ich habe bereits einen Reset-Code",
+  "newPasswordTitle": "Neues Passwort erstellen",
+  "newPasswordDesc": "Gib den Reset-Code ein und wähle ein neues Passwort für {{email}}.",
+  "codeLabel": "Reset-Code",
+  "newPasswordLabel": "Neues Passwort",
+  "confirmPasswordLabel": "Passwort bestätigen",
+  "updating": "Wird aktualisiert…",
+  "resetButton": "Passwort zurücksetzen",
+  "backToCode": "Zurück zum Code-Schritt",
+  "updatedTitle": "Passwort aktualisiert",
+  "updatedMessage": "Dein Passwort wurde aktualisiert. Du kannst dich jetzt mit dem neuen Passwort anmelden.",
+  "returnToSignIn": "Zurück zur Anmeldung",
+  "errors": {
+    "sendFailed": "Der Link zum Zurücksetzen des Passworts konnte nicht gesendet werden.",
+    "resetFailed": "Dein Passwort konnte nicht zurückgesetzt werden.",
+    "mismatch": "Die Passwörter stimmen nicht überein.",
+    "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+  },
+  "resetDesc": "Gib deine E-Mail-Adresse ein. Wir senden dir einen Link zum Zurücksetzen, den du direkt hier abschließen kannst.",
+  "checkDesc": "Wir haben eine Nachricht zum Zurücksetzen an <0>{{email}}</0> gesendet. Mit dem Code unten geht es zum nächsten Schritt.",
+  "checkDescPlain": "Wir haben einen Code zum Zurücksetzen an {{email}} gesendet. Gib ihn im nächsten Schritt ein, um ein neues Passwort festzulegen.",
+  "mockResetCode": "Code zum Zurücksetzen",
+  "enterEmailedCode": "Gib den Code aus der E-Mail ein"
+}

@@ -1,0 +1,165 @@
+{
+  "eyebrow": "Fatturazione",
+  "title": "Fatturazione e crediti",
+  "subtitle": "Gestisci piano, crediti e dati di pagamento. Aggiungi crediti quando vuoi per continuare a creare senza limiti.",
+  "addCredits": "Aggiungi crediti",
+  "summary": {
+    "currentPlan": "Piano attuale",
+    "availableCredits": "Crediti disponibili",
+    "renewsOn": "Rinnovo il",
+    "renewsHelper": "Alla fine del periodo di fatturazione",
+    "managePlan": "Gestisci piano →",
+    "addCreditsAction": "Aggiungi crediti →"
+  },
+  "usage": {
+    "title": "Utilizzo dei crediti",
+    "usedOf": "{{used}} utilizzati su {{limit}} questo mese",
+    "left": "{{amount}} rimanenti",
+    "thisMonth": "{{amount}} crediti utilizzati questo mese",
+    "types": {
+      "chat": "Chiacchierata",
+      "images": "Immagini",
+      "documents": "Documenti",
+      "agent": "Agenti"
+    }
+  },
+  "plans": {
+    "title": "Scegli il piano adatto a te",
+    "allInclude": "Tutti i piani includono: fatturazione sicura, disdetta in qualsiasi momento, uptime 99,9%",
+    "ribbonCurrent": "Piano attuale",
+    "ribbonSelected": "Selezionato",
+    "currentCta": "Piano attuale",
+    "chooseCta": "Scegli {{name}}",
+    "perMonth": "/mese",
+    "customPrice": "Personalizzato",
+    "fallbackDescription": "Per utenti in crescita",
+    "fallbackFeature1": "{{credits}} crediti / mese",
+    "fallbackFeature2": "Supporto standard",
+    "descriptions": {
+      "free": "Per chi inizia",
+      "pro": "Per professionisti e utenti avanzati",
+      "team": "Per team e organizzazioni",
+      "business": "Per team in espansione"
+    },
+    "features": {
+      "free": [
+        "1.000 crediti / mese",
+        "Accesso a GPT-4o mini",
+        "Strumenti AI di base",
+        "Supporto della community"
+      ],
+      "pro": [
+        "2.000 crediti / mese",
+        "Accesso a GPT-4o",
+        "Strumenti AI avanzati",
+        "Supporto prioritario",
+        "Accesso anticipato alle nuove funzionalità"
+      ],
+      "team": [
+        "5.000 crediti / utente / mese",
+        "Accesso a GPT-4o",
+        "Area di lavoro per team",
+        "Controlli di amministrazione avanzati",
+        "Supporto prioritario e SLA"
+      ],
+      "business": [
+        "Crediti personalizzati",
+        "Supporto dedicato",
+        "SSO e log di audit",
+        "Modelli AI personalizzati",
+        "Garanzia SLA"
+      ]
+    },
+    "names": {
+      "free": "Gratuito",
+      "pro": "Pro",
+      "team": "Squadra",
+      "business": "Attività commerciale"
+    }
+  },
+  "payment": {
+    "title": "Metodo di pagamento",
+    "billingCountry": "Paese di fatturazione",
+    "ugandaHint": "Uganda: paga con carta o Mobile Money (MTN / Airtel).",
+    "otherHint": "Paga con carta o PayPal.",
+    "addMethod": "Aggiungi metodo di pagamento",
+    "makeDefault": "Imposta come predefinito",
+    "methods": {
+      "card": "Carta",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Carta",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Numero di telefono",
+    "cardNumberLabel": "Numero carta",
+    "expiryLabel": "Scadenza",
+    "cvcLabel": "CVC",
+    "savedToast": "Metodo di pagamento salvato",
+    "none": "Nessun metodo di pagamento registrato",
+    "manage": "Gestire i metodi di pagamento"
+  },
+  "invoices": {
+    "title": "Fatture recenti",
+    "viewAll": "Vedi tutte le fatture",
+    "allTitle": "Tutte le fatture",
+    "allSubtitle": "JT-Code — cronologia di fatturazione",
+    "date": "Data",
+    "description": "Descrizione",
+    "amount": "Importo",
+    "status": "Stato",
+    "empty": "Ancora nessuna fattura.",
+    "download": "Scarica fattura",
+    "statuses": {
+      "paid": "pagato",
+      "open": "aprire",
+      "draft": "bozza",
+      "void": "vuoto",
+      "uncollectible": "incollezionabile"
+    }
+  },
+  "topup": {
+    "title": "Aggiungi crediti",
+    "description": "Acquista crediti aggiuntivi per il tuo account",
+    "amountLabel": "Importo (USD)",
+    "estimatedCredits": "Crediti stimati",
+    "confirm": "Aggiungi crediti per ${{amount}}",
+    "success": "Crediti aggiunti con successo",
+    "invalidAmount": "Inserisci un importo valido",
+    "processing": "Pagamento ricevuto. I crediti vengono visualizzati non appena Stripe lo conferma.",
+    "failed": "Impossibile completare il pagamento.",
+    "payNow": "Paga adesso"
+  },
+  "checkout": {
+    "title": "Completa l'acquisto",
+    "planSuffix": "Piano {{name}}",
+    "customPricing": "Prezzi personalizzati",
+    "billedMonthly": "Fatturato mensilmente",
+    "pay": "Paga {{amount}}",
+    "enterPhone": "Inserisci il numero di telefono per Mobile Money.",
+    "activated": "Piano {{name}} attivato — pagamento riuscito",
+    "returned": "Grazie! Il tuo abbonamento verrà aggiornato non appena Stripe confermerà il pagamento.",
+    "cancelled": "Il pagamento è stato annullato; non è stato addebitato nulla."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Termina alla fine di questo periodo di fatturazione",
+    "freeMonthly": "I crediti gratuiti si rinnovano mensilmente",
+    "reactivate": "Riprendere l'abbonamento",
+    "cancel": "Annulla l'abbonamento",
+    "cancelConfirm": "Annullare l'abbonamento alla fine del periodo corrente?"
+  },
+  "wallet": {
+    "saved": "Impostazioni di fatturazione salvate.",
+    "reserved": "{{amount}} riservato per l'esecuzione dei lavori",
+    "autoRecharge": "Ricarica automatica",
+    "autoRechargeDesc": "Ricarica automaticamente quando i crediti scendono sotto la soglia.",
+    "threshold": "Soglia (crediti)",
+    "spendingLimit": "Limite mensile (crediti)",
+    "noLimit": "Nessun limite"
+  },
+  "stripe": {
+    "loadFailed": "Impossibile caricare il modulo di pagamento Stripe. Controlla la tua connessione.",
+    "unavailable": "La striscia non è disponibile."
+  }
+}

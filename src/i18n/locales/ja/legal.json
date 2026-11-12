@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "お問い合わせ",
+    "title": "JT-Code のヘルプ",
+    "backToSignIn": "サインインに戻る",
+    "createAccount": "アカウント作成",
+    "p1": "",
+    "p2": ""
+  },
+  "privacy": {
+    "eyebrow": "プライバシーポリシー",
+    "title": "JT-Code のプライバシー",
+    "signIn": "サインイン",
+    "readTerms": "利用規約を読む",
+    "p1": "",
+    "p2": ""
+  },
+  "terms": {
+    "eyebrow": "利用規約",
+    "title": "JT-Code 利用規約",
+    "createAccount": "アカウント作成",
+    "contactSupport": "サポートに問い合わせ",
+    "p1": "",
+    "p2": ""
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "returnHome": "JT-Code に戻る"
+  }
+}

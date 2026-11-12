@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Bookmark, BookmarkPlus, Check, ChevronDown, Moon, Plus, RotateCcw, Star, Sun, Trash2, Undo2, X } from 'lucide-react';
 import type { ColumnProfile, DashboardBookmark, DashboardFieldRef, DashboardVisual, DashboardVisualType } from '@/lib/data';
 import { humanize } from '../ui';
@@ -37,6 +38,7 @@ export function ViewsMenu({
   onDisplay: (display: PersonalDisplay) => void;
   onReset: () => void;
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const box = useRef<HTMLDivElement>(null);
@@ -53,12 +55,12 @@ export function ViewsMenu({
         {bookmark.name}
       </button>
       {canSave && (
-        <button type="button" title={defaultView === bookmark.id ? 'Your default view' : 'Open with this view'} aria-pressed={defaultView === bookmark.id} onClick={() => onDefault(defaultView === bookmark.id ? undefined : bookmark.id)} data-testid={`default-view-${bookmark.id}`}>
+        <button type="button" title={defaultView === bookmark.id ? t('visualize.dashboards.views.yourDefault') : t('visualize.dashboards.views.openWith')} aria-pressed={defaultView === bookmark.id} onClick={() => onDefault(defaultView === bookmark.id ? undefined : bookmark.id)} data-testid={`default-view-${bookmark.id}`}>
           <Star size={12} fill={defaultView === bookmark.id ? 'currentColor' : 'none'} />
         </button>
       )}
       {mine && (
-        <button type="button" title="Delete this view" onClick={() => onDelete(bookmark.id)} data-testid={`delete-view-${bookmark.id}`}>
+        <button type="button" title={t('visualize.dashboards.views.delete')} onClick={() => onDelete(bookmark.id)} data-testid={`delete-view-${bookmark.id}`}>
           <Trash2 size={12} />
         </button>
       )}
@@ -67,16 +69,16 @@ export function ViewsMenu({
   return (
     <div ref={box} className="relative">
       <button type="button" className="viz-chip" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="views-menu">
-        <Bookmark size={12} aria-hidden /> {current ? current.name : 'Views'} <ChevronDown size={12} aria-hidden />
+        <Bookmark size={12} aria-hidden /> {current ? current.name : t('visualize.dashboards.views.title')} <ChevronDown size={12} aria-hidden />
       </button>
       {open && (
-        <div className="dash-popover menu dash-views" role="dialog" aria-label="Views">
-          {author.length > 0 && <p className="dash-menu-title">Views</p>}
+        <div className="dash-popover menu dash-views" role="dialog" aria-label={t('visualize.dashboards.views.title')}>
+          {author.length > 0 && <p className="dash-menu-title">{t('visualize.dashboards.views.title')}</p>}
           {author.map((bookmark) => row(bookmark, false))}
           {canSave && (
             <>
-              <p className="dash-menu-title">My views</p>
-              {personal.length === 0 && <p className="px-2 text-[11px] text-muted-foreground">Save what you see — filters, slicers, drill, your changes.</p>}
+              <p className="dash-menu-title">{t('visualize.dashboards.views.mine')}</p>
+              {personal.length === 0 && <p className="px-2 text-[11px] text-muted-foreground">{t('visualize.dashboards.views.mineEmpty')}</p>}
               {personal.map((bookmark) => row(bookmark, true))}
               <form
                 className="flex gap-1 px-1 pt-1"
@@ -87,28 +89,28 @@ export function ViewsMenu({
                   setName('');
                 }}
               >
-                <input className="viz-field h-7 flex-1 text-xs" value={name} maxLength={60} placeholder="Name this view" onChange={(event) => setName(event.target.value)} data-testid="view-name" />
+                <input className="viz-field h-7 flex-1 text-xs" value={name} maxLength={60} placeholder={t('visualize.dashboards.views.namePlaceholder')} onChange={(event) => setName(event.target.value)} data-testid="view-name" />
                 <button type="submit" className="viz-chip" disabled={!name.trim()} data-testid="save-view">
-                  <BookmarkPlus size={12} aria-hidden /> Save
+                  <BookmarkPlus size={12} aria-hidden /> {t('visualize.dashboards.views.save')}
                 </button>
               </form>
             </>
           )}
-          <p className="dash-menu-title">For me</p>
+          <p className="dash-menu-title">{t('visualize.dashboards.views.forMe')}</p>
           <div className="flex flex-wrap gap-1 px-1">
             {(['system', 'light', 'dark'] as const).map((mode) => (
               <button key={mode} type="button" className="viz-chip" aria-pressed={(display.mode ?? 'system') === mode} onClick={() => onDisplay({ ...display, mode })} data-testid={`personal-mode-${mode}`}>
-                {mode === 'light' ? <Sun size={12} /> : mode === 'dark' ? <Moon size={12} /> : null} {humanize(mode)}
+                {mode === 'light' ? <Sun size={12} /> : mode === 'dark' ? <Moon size={12} /> : null} {t(`visualize.dashboards.views.modes.${mode}`)}
               </button>
             ))}
             {(['comfortable', 'compact'] as const).map((density) => (
               <button key={density} type="button" className="viz-chip" aria-pressed={display.density === density} onClick={() => onDisplay({ ...display, density })} data-testid={`personal-density-${density}`}>
-                {humanize(density)}
+                {t(`visualize.dashboards.views.densities.${density}`)}
               </button>
             ))}
           </div>
           <button type="button" role="menuitem" className="mt-1" onClick={() => (onReset(), setOpen(false))} data-testid="reset-personal">
-            <RotateCcw size={13} /> Reset to default
+            <RotateCcw size={13} /> {t('visualize.dashboards.views.reset')}
           </button>
         </div>
       )}
@@ -138,6 +140,7 @@ export function PersonalizePane({
   onUndo: () => void;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const spec = VISUAL_BY_TYPE[visual.type];
   const types = [base.type, ...(COMPATIBLE[base.type] ?? [])].filter((type, index, all) => all.indexOf(type) === index && VISUAL_BY_TYPE[type]);
   const wells = visual.data.wells;
@@ -148,15 +151,15 @@ export function PersonalizePane({
   const setWells = (next: DashboardVisual['data']['wells']) => onChange({ data: { ...visual.data, wells: next } });
   const setFormat = (section: string, value: Record<string, unknown>) => onChange({ format: { [section]: { ...(visual.format?.[section] ?? {}), ...value } } });
   return (
-    <div className="dash-personalize" role="dialog" aria-label="Personalize this visual" data-testid="personalize-pane">
+    <div className="dash-personalize" role="dialog" aria-label={t('visualize.dashboards.personalize.title')} data-testid="personalize-pane">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-sm font-semibold">Personalize this visual</p>
-        <button type="button" className="viz-icon-button" onClick={onClose} aria-label="Close">
+        <p className="text-sm font-semibold">{t('visualize.dashboards.personalize.title')}</p>
+        <button type="button" className="viz-icon-button" onClick={onClose} aria-label={t('visualize.dashboards.personalize.close')}>
           <X size={14} />
         </button>
       </div>
-      <p className="text-[11px] text-muted-foreground">Only you see these changes.</p>
-      <label className="viz-label mt-2 block">Visual type</label>
+      <p className="text-[11px] text-muted-foreground">{t('visualize.dashboards.personalize.onlyYou')}</p>
+      <label className="viz-label mt-2 block">{t('visualize.dashboards.personalize.type')}</label>
       <select className="viz-field" value={visual.type} onChange={(event) => {
           const next = retype(visual, event.target.value as DashboardVisualType);
           onChange({ type: next.type, data: next.data });
@@ -191,7 +194,7 @@ export function PersonalizePane({
                   ))}
                 </select>
                 {well.measure && !ref.expr && !ref.calc && (
-                  <select className="viz-field h-7 text-xs" style={{ width: 96, flex: 'none' }} value={ref.agg ?? 'sum'} onChange={(event) => update(index, { ...ref, agg: event.target.value })} aria-label="Aggregation">
+                  <select className="viz-field h-7 text-xs" style={{ width: 96, flex: 'none' }} value={ref.agg ?? 'sum'} onChange={(event) => update(index, { ...ref, agg: event.target.value })} aria-label={t('visualize.dashboards.personalize.aggregation')}>
                     {AGGREGATIONS.map(([value, label]) => (
                       <option key={value} value={value}>
                         {label}
@@ -199,7 +202,7 @@ export function PersonalizePane({
                     ))}
                   </select>
                 )}
-                <button type="button" className="viz-icon-button" onClick={() => update(index, null)} aria-label={`Remove ${ref.field}`}>
+                <button type="button" className="viz-icon-button" onClick={() => update(index, null)} aria-label={t('visualize.dashboards.personalize.remove', { field: ref.field })}>
                   <X size={12} />
                 </button>
               </div>
@@ -214,7 +217,7 @@ export function PersonalizePane({
                 }}
                 data-testid={`personalize-add-${well.key}`}
               >
-                <Plus size={12} /> Add
+                <Plus size={12} /> {t('visualize.dashboards.personalize.add')}
               </button>
             )}
           </div>
@@ -222,24 +225,24 @@ export function PersonalizePane({
       })}
       <div className="mt-3 flex flex-wrap gap-1">
         <button type="button" className="viz-chip" aria-pressed={legend} onClick={() => setFormat('legend', { show: !legend })}>
-          {legend && <Check size={12} />} Legend
+          {legend && <Check size={12} />} {t('visualize.dashboards.personalize.legend')}
         </button>
         <button type="button" className="viz-chip" aria-pressed={!!labels} onClick={() => setFormat('labels', { show: !labels })}>
-          {labels && <Check size={12} />} Data labels
+          {labels && <Check size={12} />} {t('visualize.dashboards.personalize.dataLabels')}
         </button>
-        <select className="viz-field h-7 text-xs" value={`${sort.by ?? 'value'}:${sort.dir ?? 'desc'}`} onChange={(event) => setFormat('sort', { by: event.target.value.split(':')[0], dir: event.target.value.split(':')[1] })} aria-label="Sort">
-          <option value="value:desc">Largest first</option>
-          <option value="value:asc">Smallest first</option>
-          <option value="category:asc">A → Z</option>
-          <option value="category:desc">Z → A</option>
+        <select className="viz-field h-7 text-xs" value={`${sort.by ?? 'value'}:${sort.dir ?? 'desc'}`} onChange={(event) => setFormat('sort', { by: event.target.value.split(':')[0], dir: event.target.value.split(':')[1] })} aria-label={t('visualize.dashboards.personalize.sort')}>
+          <option value="value:desc">{t('visualize.dashboards.personalize.sorts.largest')}</option>
+          <option value="value:asc">{t('visualize.dashboards.personalize.sorts.smallest')}</option>
+          <option value="category:asc">{t('visualize.dashboards.personalize.sorts.az')}</option>
+          <option value="category:desc">{t('visualize.dashboards.personalize.sorts.za')}</option>
         </select>
       </div>
       <div className="mt-3 flex gap-1">
         <button type="button" className="viz-chip" disabled={!canUndo} onClick={onUndo} data-testid="personalize-undo">
-          <Undo2 size={12} /> Undo
+          <Undo2 size={12} /> {t('visualize.dashboards.personalize.undo')}
         </button>
         <button type="button" className="viz-chip" onClick={onReset} data-testid="personalize-reset">
-          <RotateCcw size={12} /> Reset this visual
+          <RotateCcw size={12} /> {t('visualize.dashboards.personalize.reset')}
         </button>
       </div>
     </div>

@@ -1,0 +1,41 @@
+{
+  "title": "보고서",
+  "subtitle": "대시보드를 내보내거나 저장한 시각적 개체를 재사용하세요.",
+  "export": "대시보드 내보내기",
+  "noCharts": "탐색 또는 예측의 시각적 개체를 저장하여 대시보드에서 재사용하세요.",
+  "library": {
+    "title": "내 영상"
+  },
+  "dashboardToExport": "내보낼 대시보드",
+  "noDashboards": "아직 대시보드가 ​​없습니다",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "대시보드 페이지당 한 페이지(화면과 동일)"
+    },
+    "png": {
+      "label": "PNG 이미지",
+      "hint": "페이지당 이미지 1개"
+    },
+    "xlsx": {
+      "label": "뛰어나다",
+      "hint": "기본 차트와 원시 데이터가 포함된 모든 시각적 개체의 데이터"
+    },
+    "html": {
+      "label": "대화형 HTML",
+      "hint": "오프라인으로 작동하는 단일 파일"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "대시보드 정의"
+    }
+  },
+  "preparing": "준비 중…",
+  "explore": "탐구하다",
+  "prediction": "예측",
+  "visualOf": "{{type}} 시각적",
+  "deletedDataset": "삭제된 데이터세트",
+  "unshare": "공유 취소",
+  "share": "공유하다",
+  "deleteNamed": "{{name}} 삭제"
+}

@@ -1,0 +1,38 @@
+{
+  "pick": "上のバーでデータセットを選択するか、[データ] ページでデータセットを追加します。",
+  "add": "新しいチャート",
+  "pin": "ダッシュボードにピン留めする",
+  "saved": "マイビジュアルに保存されました",
+  "save": "マイビジュアルに保存",
+  "viewData": "データを見る",
+  "pageName": "探検する",
+  "chartType": "グラフの種類",
+  "suggestions": "提案",
+  "charts": "チャート",
+  "buildAndFormat": "ビルドとフォーマット",
+  "build": "建てる",
+  "format": "形式",
+  "remove": "このグラフを削除します",
+  "drawer": {
+    "data": "チャートの背後にあるデータ",
+    "rows": "生の行",
+    "query": "クエリ"
+  },
+  "noData": "まだデータがありません。",
+  "query": {
+    "chart": "{{chart}}/{{fields}} (各行、大きい場合は 10,000 までサンプリング)。",
+    "noFields": "まだフィールドがありません",
+    "countRows": "行数",
+    "measure": "{{agg}}/{{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "年",
+      "quarter": "四半期",
+      "month": "月",
+      "week": "週",
+      "day": "日"
+    },
+    "grouped": "{{what}} by {{groups}} — データベースで計算され、Python で描画されます。",
+    "total": "{{what}} — データベースで計算され、Python で描画されます。"
+  }
+}

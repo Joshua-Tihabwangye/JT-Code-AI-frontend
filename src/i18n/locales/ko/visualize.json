@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "대시보드",
+    "data": "데이터",
+    "gallery": "갱도",
+    "predict": "예측하다",
+    "reports": "보고서",
+    "explore": "탐구하다"
+  },
+  "askAi": "AI에게 물어보세요",
+  "hero": {
+    "title": "데이터 시각화 스튜디오"
+  },
+  "assistant": {
+    "title": "JT-코드 AI",
+    "cost": "메시지를 보낼 때만 크레딧을 사용합니다. 차트, 통찰력, 제안은 무료입니다.",
+    "about": "대해 물어보세요",
+    "intro": "보고 싶은 것을 설명하세요. 차트를 선택하고 열을 채우면 실행되기 전에 검토합니다.",
+    "thinking": "생각…",
+    "builtIn": "내장",
+    "credits": "{{credits}} 크레딧",
+    "free": "사용된 크레딧 없음",
+    "openExplore": "탐색에서 열기",
+    "setUp": "예측 설정",
+    "placeholder": "예를 들어 지역별 월별 수익 표시",
+    "prompt": "즉각적인",
+    "send": "보내다",
+    "close": "닫다"
+  },
+  "dataset": "데이터세트",
+  "noDataset": "아직 데이터 세트가 없습니다",
+  "sections": "데이터 시각화 섹션",
+  "controls": {
+    "noColumns": {
+      "numeric": "숫자 열 없음",
+      "datetime": "날짜/시간 열 없음",
+      "categorical": "범주형 열 없음",
+      "dimension": "측정기준 열 없음",
+      "any": "열 없음"
+    },
+    "chooseColumn": "열을 선택하세요…",
+    "none": "없음",
+    "automatic": "오토매틱"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "훌륭한",
+      "good": "좋은",
+      "fair": "공정한",
+      "weak": "약한",
+      "unknown": "알려지지 않은"
+    },
+    "dataset": "데이터세트",
+    "noDatasets": "아직 데이터세트가 없습니다",
+    "rows_one": "{{rows}} 행",
+    "rows_other": "{{rows}} 행",
+    "less": "더 적은",
+    "howToRead": "읽는 방법",
+    "dataOf": "{{title}} 데이터",
+    "tableSize": "{{rows}} 행 × {{columns}} 열 — 이 차트에 표시되는 데이터",
+    "tableSizeFirst": "{{rows}} 행 × {{columns}} 열(첫 번째 행) — 이 차트에 표시되는 데이터",
+    "close": "닫다",
+    "expandRibbon": "리본 확장",
+    "collapseRibbon": "리본 접기"
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Globe, Check, ChevronDown } from 'lucide-react';
+import { FloatingPanel } from '@/shared/components/FloatingPanel';
 import { useLanguage } from './useLanguage';
 import { getLanguage } from './languages';
 
@@ -11,12 +12,15 @@ export function LanguageMenu({ collapsed = false }: LanguageMenuProps) {
   const { currentLanguage, setLanguage, languages } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
   const current = getLanguage(currentLanguage);
 
   useEffect(() => {
     if (!open) return;
     const onPointerDown = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (ref.current && !ref.current.contains(target) && !popoverRef.current?.contains(target)) {
         setOpen(false);
       }
     };
@@ -39,6 +43,7 @@ export function LanguageMenu({ collapsed = false }: LanguageMenuProps) {
   return (
     <div className={`language-menu${collapsed ? ' language-menu--collapsed' : ''}`} ref={ref}>
       <button
+        ref={triggerRef}
         type="button"
         className="language-menu__trigger"
         aria-haspopup="listbox"
@@ -52,7 +57,15 @@ export function LanguageMenu({ collapsed = false }: LanguageMenuProps) {
       </button>
 
       {open && (
-        <div className={`language-menu__popover${collapsed ? ' language-menu__popover--collapsed' : ''}`} role="listbox">
+        <FloatingPanel
+          anchorRef={triggerRef}
+          placement={collapsed ? 'side-down' : 'below'}
+          edgeSelector=".sidebar"
+          width={collapsed ? 230 : 0}
+          panelRef={popoverRef}
+          className={`language-menu__popover${collapsed ? ' language-menu__popover--collapsed' : ''}`}
+          role="listbox"
+        >
           {languages.map((language) => {
             const active = language.code === currentLanguage;
             return (
@@ -70,7 +83,7 @@ export function LanguageMenu({ collapsed = false }: LanguageMenuProps) {
               </button>
             );
           })}
-        </div>
+        </FloatingPanel>
       )}
     </div>
   );

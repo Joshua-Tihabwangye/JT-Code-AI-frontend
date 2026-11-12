@@ -1,0 +1,10 @@
+{
+  "attach": "সংযুক্ত করুন",
+  "attachDocument": "একটি ডকুমেন্ট সংযুক্ত করুন",
+  "attachImage": "একটি ইমেজ সংযুক্ত করুন",
+  "currentPlan": "বর্তমান প্ল্যান",
+  "voiceInput": "ভয়েস ইনপুট",
+  "sendMessage": "মেসেজ পাঠান",
+  "defaultPlaceholder": "JT-Code-কে যেকোনো কিছু জিজ্ঞাসা করুন…",
+  "removeAttachment": "সরান {{name}}"
+}

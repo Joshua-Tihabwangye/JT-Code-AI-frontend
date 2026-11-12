@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "ni",
+      "ne": "sio",
+      "contains": "ina",
+      "starts_with": "huanza na",
+      "gt": "ni kubwa kuliko",
+      "gte": "ni angalau",
+      "lt": "ni chini ya",
+      "lte": "ni zaidi",
+      "blank": "ni tupu",
+      "not_blank": "sio tupu"
+    },
+    "units": {
+      "day_one": "siku",
+      "day_other": "siku",
+      "week_one": "wiki",
+      "week_other": "wiki",
+      "month_one": "mwezi",
+      "month_other": "miezi",
+      "quarter_one": "robo",
+      "quarter_other": "robo",
+      "year_one": "mwaka",
+      "year_other": "miaka"
+    },
+    "describe": {
+      "all": "{{name}}: zote",
+      "in": "{{name}} ni {{values}}",
+      "inMore": "{{name}} ni {{values}} +{{more}}",
+      "notIn": "{{name}} sio {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "hesabu",
+      "top": "Juu {{n}} {{name}} na {{by}}",
+      "bottom": "Chini {{n}} {{name}} na {{by}}",
+      "relative": {
+        "last": "{{name}}: mwisho {{count}} {{unit}}",
+        "next": "{{name}}: inayofuata {{count}} {{unit}}",
+        "this": "{{name}}: hii {{unit}}"
+      },
+      "orJoin": "au",
+      "andJoin": "na",
+      "blank": "{{name}} ni tupu",
+      "notBlank": "{{name}} haijajazwa",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Aina ya kichujio",
+    "types": {
+      "basic": "Msingi",
+      "advanced": "Advanced",
+      "top": "Juu N",
+      "relative": "Tarehe ya jamaa"
+    },
+    "search": "Tafuta",
+    "searchValues": "Tafuta maadili",
+    "loadingValues": "Inapakia thamani..",
+    "condition": "Hali",
+    "value": "Thamani",
+    "addAnd": "+ Na",
+    "addOr": "+ Au",
+    "combineWith": "Kuchanganya na",
+    "and": "Na",
+    "or": "Au",
+    "removeSecond": "Ondoa pili",
+    "topOrBottom": "Juu au chini",
+    "topWord": "Juu",
+    "bottomWord": "Chini",
+    "howMany": "Ngapi",
+    "byValue": "Kwa thamani",
+    "byRows": "kwa idadi ya safu",
+    "byTotal": "kwa jumla {{field}}",
+    "period": "Kipindi",
+    "modes": {
+      "last": "Mwisho",
+      "this": "Hii",
+      "next": "Inayofuata"
+    },
+    "unit": "Kitengo",
+    "onVisual": "Vichujio kwenye taswira hii",
+    "onPage": "Vichujio kwenye ukurasa huu",
+    "onAllPages": "Vichujio kwenye kurasa zote",
+    "active_one": "{{count}} filter active",
+    "active_other": "{{count}} vichujio vinatumika",
+    "resetToAuthor": "Weka upya kwa mwandishi",
+    "lockedByAuthor": "Imefungwa na mwandishi",
+    "unlock": "Fungua kwa watazamaji",
+    "lock": "Funga kwa watazamaji",
+    "showToViewers": "Onyesha kwa watazamaji",
+    "hideFromViewers": "Ficha kutoka kwa watazamaji",
+    "remove": "Ondoa kichujio",
+    "backToAuthor": "Rudi kwenye kichujio cha mwandishi",
+    "cardName": "Jina la kadi (si lazima)",
+    "cardNameLabel": "Chuja jina la kadi",
+    "none": "Hakuna.",
+    "fieldToFilter": "Sehemu ya kuchuja",
+    "chooseField": "Chagua sehemu..",
+    "add": "Ongeza kichujio"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Imetengenezwa na muundo wa AI · {{credits}} mkopo",
+    "sourceAiCredits_other": "Imetengenezwa na muundo wa AI · {{credits}} mikopo",
+    "sourceAiFree": "Imetengenezwa na muundo wa AI · hakuna mikopo",
+    "sourceRules": "Imetengenezwa na sheria zilizojengewa ndani (mfano wa AI haukutumika · hakuna mikopo)",
+    "rowsWord": "safu",
+    "previewLabel_one": "Hakiki ya {{name}}: {{count}} inayoonekana",
+    "previewLabel_other": "Onyesho la kukagua {{name}}: {{count}} taswira",
+    "describe": "Eleza ukurasa",
+    "describePlaceholder": "k.m. Utendaji wa mauzo kulingana na eneo na bidhaa, na mtindo wa kila mwezi na wateja 10 bora",
+    "designing": "Inasanifu..",
+    "tryAgain": "Jaribu tena",
+    "previewPage": "Hakiki ukurasa",
+    "costNote": "Inatumia ujumbe mmoja wa AI (mikopo). Hakuna kinachobadilika hadi uitumie.",
+    "proposal_one": "<b>{{name}} </b> - huongeza ukurasa wenye {{count}} picha.",
+    "proposal_other": "<b>{{name}} </b> - huongeza ukurasa wenye {{count}} taswira.",
+    "proposalWithCalcs_one": "<b>{{name}} </b> - huongeza ukurasa wenye {{count}} hesabu za kuona na {{calcs}}.",
+    "proposalWithCalcs_other": "<b>{{name}} </b> - huongeza ukurasa wenye {{count}} vielelezo na {{calcs}} hesabu.",
+    "discard": "Tupa",
+    "applying": "Inatuma..",
+    "apply": "Omba",
+    "close": "Funga",
+    "suggestNote": "Mwonekano unaolingana na mkusanyiko huu wa data (bila malipo - hakuna salio la AI).",
+    "looking": "Ukiangalia data..",
+    "working": "Inafanya kazi..",
+    "preview": "Hakiki",
+    "format": {
+      "title": "Umbizo la kiotomatiki",
+      "question": "Inapaswa kuonekanaje?",
+      "other": "Kitu kingine chochote",
+      "otherPlaceholder": "Kitu kingine chochote? (anauliza mfano wa AI)",
+      "note": "Maneno yaliyoangaziwa ni bure; chochote kilichoandikwa kwenye kisanduku kinauliza mfano wa AI.",
+      "nothing": "Hakuna cha kubadilisha kwa ombi hilo.",
+      "theme": "Mandhari",
+      "mode": "Hali",
+      "density": "Msongamano",
+      "layout": "Mpangilio",
+      "asIs": "kama ilivyo",
+      "tidied": "imeingizwa kwenye gridi ya taifa, vichwa vifupi",
+      "modes": {
+        "light": "Mwanga",
+        "dark": "Giza",
+        "system": "Fuata programu"
+      },
+      "densities": {
+        "compact": "Compact",
+        "comfortable": "Starehe"
+      },
+      "keywords": {
+        "executive": "Mtendaji",
+        "midnight": "Usiku wa manane",
+        "dark": "Giza",
+        "light": "Mwanga",
+        "compact": "Compact",
+        "comfortable": "Starehe",
+        "aligned": "Imepangiliwa"
+      }
+    },
+    "askTitle": "Uliza swali",
+    "askPlaceholder": "Uliza kuhusu data hii, k.m. bidhaa bora kwa mapato katika nchi za Magharibi",
+    "question": "Swali",
+    "thinking": "Kufikiri..",
+    "ask": "Uliza",
+    "pin": "Bandika kwenye dashibodi",
+    "explain": {
+      "title": "Eleza mabadiliko haya",
+      "loading": "Ukilinganisha na kipindi cha kabla…",
+      "none": "Hakuna mwanachama hata mmoja anayejitokeza.",
+      "periods": "{{from}} - {{to}} dhidi ya {{previousFrom}} - {{previousTo}} · kukokotwa kutoka kwa data, hakuna AI"
+    }
+  },
+  "views": {
+    "yourDefault": "Mwonekano wako chaguomsingi",
+    "openWith": "Fungua kwa mtazamo huu",
+    "delete": "Futa mwonekano huu",
+    "title": "Maoni",
+    "mine": "Maoni yangu",
+    "mineEmpty": "Hifadhi unachokiona - vichujio, vikataji, kuchimba visima, mabadiliko yako.",
+    "namePlaceholder": "Taja mtazamo huu",
+    "save": "Hifadhi",
+    "forMe": "Kwa ajili yangu",
+    "modes": {
+      "system": "Mfumo",
+      "light": "Mwanga",
+      "dark": "Giza"
+    },
+    "densities": {
+      "comfortable": "Starehe",
+      "compact": "Compact"
+    },
+    "reset": "Weka upya kwa chaguomsingi"
+  },
+  "personalize": {
+    "title": "Binafsisha taswira hii",
+    "close": "Funga",
+    "onlyYou": "Ni wewe pekee unayeona mabadiliko haya.",
+    "type": "Aina ya kuona",
+    "aggregation": "Kujumlisha",
+    "remove": "Ondoa {{field}}",
+    "add": "Ongeza",
+    "legend": "Hadithi",
+    "dataLabels": "Lebo za data",
+    "sort": "Panga",
+    "sorts": {
+      "largest": "Kubwa kwanza",
+      "smallest": "Ndogo kwanza",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "Tendua",
+    "reset": "Weka upya taswira hii"
+  },
+  "share": {
+    "embedTitle": "Dashibodi",
+    "copied": "Imenakiliwa",
+    "title": "Shiriki dashibodi",
+    "heading": "Shiriki \"{{name}}\"",
+    "close": "Funga",
+    "workspace": "Kila mtu katika nafasi yangu ya kazi",
+    "workspaceNote": "Wenzake waliifungua wakiwa wameingia, kama watazamaji: wanaweza kubinafsisha taswira na kuhifadhi maoni yao wenyewe.",
+    "publicNote": "Viungo vya umma: mtu yeyote aliye na kiungo anaweza kutazama dashibodi hii na kutumia vikataji vyake - kusoma tu, bila kuingia.",
+    "kind": "Aina",
+    "link": "Kiungo",
+    "embed": "Pachika",
+    "labelPlaceholder": "Lebo (k.m. Pakiti ya bodi)",
+    "label": "Lebo",
+    "expires": "Muda wake unaisha",
+    "expiryDate": "Tarehe ya kumalizika muda wake",
+    "creating": "Inaunda..",
+    "createEmbed": "Unda msimbo wa kupachika",
+    "createLink": "Unda kiungo",
+    "copyNow": "Nakili sasa - kwa usalama anwani kamili haijaonyeshwa tena.",
+    "address": "Shiriki anwani",
+    "embedCode": "Pachika msimbo",
+    "copyLink": "Nakili kiungo",
+    "copyEmbed": "Nakili msimbo wa kupachika",
+    "links_one": "Viungo ({{count}} vinatumika)",
+    "links_other": "Viungo ({{count}} vinatumika)",
+    "loading": "Inapakia..",
+    "none": "Bado hakuna viungo.",
+    "by": "na {{name}}",
+    "unknown": "haijulikani",
+    "revokedOn": "Imebatilishwa {{date}}",
+    "expiresOn": "Inaisha {{date}}",
+    "noExpiry": "Hakuna muda wa matumizi",
+    "lastOpened": "ilifunguliwa mwisho {{date}}",
+    "notOpened": "haijafunguliwa bado",
+    "revoke": "Batilisha"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} kichujio kinatumika",
+    "filtersApply_other": "{{count}} vichujio vinatumika",
+    "drillUp": "Chimba juu",
+    "drillModeOn": "Hali ya kuchimba visima imewashwa: bofya sehemu ili kuchimba ndani yake",
+    "drillMode": "Hali ya kuchimba: bofya sehemu ili kuchimba ndani yake",
+    "nextLevel": "Nenda kwenye ngazi inayofuata",
+    "personalized": "Imebinafsishwa kwako - badilisha au weka upya",
+    "personalize": "Binafsisha taswira hii",
+    "focus": "Hali ya kuzingatia",
+    "more": "Chaguo zaidi",
+    "filtersOnVisual": "Vichujio kwenye taswira hii",
+    "showAsVisual": "Onyesha kama inavyoonekana",
+    "showAsTable": "Onyesha kama meza",
+    "exportCsv": "Hamisha data (CSV)",
+    "copyImage": "Nakili kama picha",
+    "leaveSpotlight": "Acha kuangaziwa",
+    "spotlight": "Mwangaza",
+    "closeFocus": "Funga hali ya umakini"
+  },
+  "pointMenu": {
+    "drillThrough": "Pitia ▸ {{page}}",
+    "explain": "Eleza mabadiliko haya",
+    "keepOnly": "Weka pekee",
+    "exclude": "Ondoa"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Tupu",
+        "hint": "Ukurasa tupu wa kuunda."
+      },
+      "auto": {
+        "label": "Otomatiki",
+        "hint": "KPIs, mtindo, uchanganuzi, ramani na vikataji, vilivyochaguliwa kutoka kwa data yako."
+      },
+      "template": {
+        "label": "Kiolezo",
+        "hint": "Mpangilio uliotengenezwa tayari: panga safu wima zako kwake."
+      },
+      "ai": {
+        "label": "Uliza AI",
+        "hint": "Eleza ukurasa; ihakiki kabla haijaundwa."
+      }
+    },
+    "kinds": {
+      "number": "nambari",
+      "date": "tarehe",
+      "category": "kategoria"
+    },
+    "chooseColumn": "Chagua safu..",
+    "skip": "(ruka)",
+    "untitled": "Dashibodi isiyo na jina",
+    "chooseTemplate": "Chagua kiolezo.",
+    "title": "Dashibodi mpya",
+    "close": "Funga",
+    "howToStart": "Jinsi ya kuanza",
+    "dataset": "Seti ya data",
+    "addDatasetFirst": "Ongeza mkusanyiko wa data kwanza",
+    "name": "Jina",
+    "data": "Data",
+    "overviewName": "{{name}} muhtasari",
+    "loadingTemplates": "Inapakia violezo..",
+    "allTemplates": "Violezo vyote",
+    "matchColumns": "Linganisha safu wima zako",
+    "stillNeeded": "Bado inahitajika: {{roles}}.",
+    "createDashboard": "Unda dashibodi",
+    "cancel": "Ghairi",
+    "creating": "Inaunda..",
+    "createFromTemplate": "Unda kutoka kwa kiolezo",
+    "build": "Jenga dashibodi",
+    "create": "Unda",
+    "templateLayout": "{{name}} mpangilio"
+  },
+  "templates": {
+    "sales": {
+      "name": "Muhtasari wa mauzo",
+      "description": "Mapato, faida na mwenendo wa bidhaa na eneo.",
+      "roles": {
+        "date": "Tarehe",
+        "amount": "Mapato",
+        "profit": "Faida",
+        "quantity": "Vitengo",
+        "target": "Lengo",
+        "product": "Bidhaa",
+        "region": "Mkoa",
+        "channel": "Kituo"
+      }
+    },
+    "crm": {
+      "name": "Bomba la CRM",
+      "description": "Ofa kwa hatua na mmiliki, alishinda thamani na ubadilishaji.",
+      "roles": {
+        "date": "Tarehe",
+        "amount": "Thamani ya biashara",
+        "stage": "Jukwaa",
+        "owner": "Mmiliki",
+        "source": "Chanzo cha kuongoza"
+      }
+    },
+    "finance": {
+      "name": "Fedha P&L",
+      "description": "Mapato, gharama na kiasi kwa muda na kwa akaunti.",
+      "roles": {
+        "date": "Tarehe",
+        "amount": "Mapato",
+        "cost": "Gharama",
+        "account": "Akaunti / kategoria",
+        "budget": "Bajeti"
+      }
+    },
+    "hr": {
+      "name": "Uchambuzi wa HR",
+      "description": "Hesabu, mshahara na kuridhika na idara.",
+      "roles": {
+        "date": "Tarehe",
+        "employee": "Kitambulisho cha Mfanyakazi",
+        "department": "Idara",
+        "salary": "Mshahara",
+        "rating": "Kuridhika / kukadiria",
+        "status": "Hali",
+        "gender": "Jinsia"
+      }
+    },
+    "web": {
+      "name": "Uchambuzi wa wavuti",
+      "description": "Vipindi, watumiaji na ubadilishaji kulingana na chanzo na ukurasa.",
+      "roles": {
+        "date": "Tarehe",
+        "sessions": "Vipindi / ziara",
+        "users": "Watumiaji",
+        "conversions": "Waongofu",
+        "source": "Chanzo cha trafiki",
+        "page": "Ukurasa"
+      }
+    },
+    "mobile": {
+      "name": "Uchambuzi wa programu ya rununu",
+      "description": "Watumiaji wanaoendelea, usakinishaji na kuacha kufanya kazi kulingana na mfumo na toleo.",
+      "roles": {
+        "date": "Tarehe",
+        "active": "Watumiaji wanaofanya kazi",
+        "installs": "Sakinisho",
+        "crashes": "Mivurugiko",
+        "platform": "Jukwaa",
+        "version": "Toleo la programu"
+      }
+    },
+    "marketing": {
+      "name": "Kampeni za masoko",
+      "description": "Tumia, mibofyo, ubadilishaji na gharama kwa kila ubadilishaji kulingana na kampeni.",
+      "roles": {
+        "date": "Tarehe",
+        "spend": "Tumia",
+        "clicks": "Mibofyo",
+        "conversions": "Waongofu",
+        "campaign": "Kampeni",
+        "channel": "Kituo"
+      }
+    },
+    "inventory": {
+      "name": "Hesabu na shughuli",
+      "description": "Hifadhi kwa mkono, harakati na kupanga upya hatari kwa bidhaa na tovuti.",
+      "roles": {
+        "date": "Tarehe",
+        "stock": "Hisa / wingi",
+        "item": "Kipengee",
+        "site": "Ghala / tovuti",
+        "value": "Thamani ya hisa",
+        "reorder": "Panga upya kiwango"
+      }
+    },
+    "retail": {
+      "name": "Rejareja",
+      "description": "Uuzaji wa duka, saizi ya kikapu na wauzaji bora.",
+      "roles": {
+        "date": "Tarehe",
+        "amount": "Mapato",
+        "quantity": "Vitengo",
+        "store": "Hifadhi / eneo",
+        "product": "Bidhaa",
+        "rating": "Kuridhika"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} kutoka",
+    "to": "{{field}} kwa",
+    "clear": "Wazi",
+    "minimum": "{{field}} kiwango cha chini",
+    "maximum": "{{field}} upeo",
+    "period": "Kipindi",
+    "allTime": "Wakati wote",
+    "howMany": "Ngapi",
+    "unit": "Kitengo",
+    "operator": "Opereta",
+    "typeValue": "Andika {{field}}",
+    "value": "{{field}} thamani",
+    "collapse": "Kunja",
+    "expand": "Panua",
+    "all": "Wote",
+    "selected_one": "{{count}} imechaguliwa",
+    "selected_other": "{{count}} imechaguliwa",
+    "searchPlaceholder": "Tafuta, au ubandike orodha",
+    "search": "Tafuta {{field}}",
+    "selectAll": "Chagua zote"
+  },
+  "local": {
+    "snapshotEmpty": "Picha hii ndogo haina chati.",
+    "snapshot": "Picha",
+    "snapshotOn": "Picha ndogo · {{date}}",
+    "chooseParameter": "Chagua kigezo katika Umbizo → Kigezo.",
+    "button": "Kitufe",
+    "noViews": "Ongeza maoni (alamisho) ili kuorodhesha hapa.",
+    "views": "Maoni",
+    "pages": "Kurasa"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} dashibodi",
+    "newDashboard": "Dashibodi mpya",
+    "overview": "Muhtasari",
+    "title": "Bandika kwenye dashibodi",
+    "close": "Funga",
+    "pinnedTo": "Imebandikwa kwa <b>{{name}} </b>.",
+    "stay": "Kaa hapa",
+    "open": "Fungua dashibodi",
+    "dashboard": "Dashibodi",
+    "newOption": "+ Dashibodi mpya..",
+    "name": "Jina",
+    "page": "Ukurasa",
+    "cancel": "Ghairi",
+    "pinning": "Inabandika..",
+    "pin": "Bandika"
+  },
+  "page": {
+    "backFromDetail": "Nyuma",
+    "back": "Dashibodi zote",
+    "pages": "Kurasa",
+    "clear": "Wazi",
+    "clearSelection": "Futa uteuzi",
+    "apply": "Omba",
+    "clearSlicers": "Futa vipande vyote",
+    "updating": "Inasasisha..",
+    "filters": "Vichujio",
+    "qa": "Maswali na Majibu",
+    "present": "Wasilisha",
+    "share": "Shiriki",
+    "edit": "Hariri",
+    "painting": "Inachora ukurasa {{page}} kati ya {{total}}…",
+    "buildingPdf": "Inatengeneza PDF..",
+    "exported_one": "Imehamisha {{count}} ukurasa.",
+    "exported_other": "Kurasa {{count}} zimehamishwa.",
+    "exportFailed": "Uhamishaji haukufaulu.",
+    "notFound": "Dashibodi haijapatikana.",
+    "filtersActive_one": "{{count}} filter active",
+    "filtersActive_other": "{{count}} vichujio vinatumika",
+    "presentation": "Wasilisho",
+    "previousPage": "Ukurasa uliotangulia",
+    "nextPage": "Ukurasa unaofuata",
+    "pause": "Sitisha",
+    "autoPlay": "Cheza kiotomatiki",
+    "leavePresentation": "Acha wasilisho",
+    "keepExclude": "Hifadhi yako/tenga vichungi",
+    "excluding": "Ukiondoa {{values}}",
+    "only": "{{values}} pekee",
+    "dashboard": "Dashibodi",
+    "seconds": "{{value}} s"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Uwiano (A ÷ B), k.m. kiasi cha faida"
+    },
+    "average-per-row": {
+      "label": "Wastani kwa kila safu mlalo (k.m. thamani ya wastani ya agizo)"
+    },
+    "vs-target": {
+      "label": "dhidi ya lengo (%)"
+    },
+    "difference": {
+      "label": "Tofauti (A − B)"
+    },
+    "per-distinct": {
+      "label": "Thamani kwa kila bidhaa mahususi (k.m. mapato kwa kila mteja)"
+    },
+    "fields": {
+      "numerator": "Nambari",
+      "denominator": "Denominator",
+      "value": "Thamani",
+      "actual": "Halisi",
+      "target": "Lengo",
+      "minus": "Ondoa",
+      "distinctItem": "Kipengee tofauti"
+    },
+    "names": {
+      "perRow": "{{a}} kwa kila safu",
+      "vsTarget": "{{a}} dhidi ya lengo",
+      "perDistinct": "{{a}} kwa {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Dashibodi isiyo na jina",
+    "title": "Dashibodi",
+    "subtitle": "KPI, chati na vikata vipande kwenye skrini moja, vyote vimeunganishwa.",
+    "noData": "Ongeza mkusanyiko wa data kwanza",
+    "blank": "Tupu",
+    "template": "Kiolezo",
+    "building": "Ujenzi..",
+    "auto": "Jenga dashibodi",
+    "empty": "Bado hakuna dashibodi. Chagua mkusanyiko wa data na uunde moja kwa kubofya.",
+    "duplicate": "Nakala",
+    "deleteTitle": "Ungependa kufuta dashibodi?",
+    "deleteText": "{{name}} na matoleo yake yaliyohifadhiwa yataondolewa. Seti za data haziathiriwi.",
+    "more": "Data zaidi",
+    "start": "Anzia hapa",
+    "import": "Pakia au ubandike data",
+    "loading": "Inapakia..",
+    "library": "Vielelezo vyangu",
+    "allVisuals": "Vielelezo vyote vilivyohifadhiwa",
+    "libraryHint": "Ingiza yoyote kati ya hizo kwenye dashibodi kutoka kwa menyu ya Ingiza ya kihariri.",
+    "delete": "Futa",
+    "datasetLabel": "Seti ya data ya dashibodi mpya",
+    "show": "Onyesha",
+    "filter": {
+      "all": "Wote",
+      "mine": "Yangu",
+      "shared": "Imeshirikiwa nami"
+    },
+    "pages_one": "{{count}} ukurasa",
+    "pages_other": "{{count}} kurasa",
+    "roles": {
+      "owner": "mmiliki",
+      "editor": "mhariri",
+      "viewer": "mtazamaji"
+    },
+    "sharedFlag": "pamoja",
+    "deleteNamed": "Futa {{name}}"
+  },
+  "visual": {
+    "target": "Lengo {{value}}",
+    "progress": "{{value}} ya {{target}}",
+    "total": "Jumla",
+    "failed": "Taswira hii haikuweza kuchorwa.",
+    "empty": "Hakuna data ya vichujio vya sasa",
+    "clearSelection": "Futa uteuzi",
+    "nothing": "Hakuna cha kuonyesha."
+  },
+  "shared": {
+    "loading": "Inapakia dashibodi..",
+    "missingTitle": "Kiungo hiki hakipatikani",
+    "missingText": "Huenda imebatilishwa au imeisha muda wake. Uliza mtu aliyeishiriki kwa kiungo kipya.",
+    "pages": "Kurasa",
+    "clearSelection": "Futa uteuzi",
+    "clearSlicers": "Wazi wa kukata vipande",
+    "readOnly": "Mwonekano wa pamoja wa kusoma pekee"
+  },
+  "capture": {
+    "unsupported": "Kivinjari hiki hakiwezi kuchora ukurasa.",
+    "failed": "Ukurasa haukuweza kupakwa rangi.",
+    "timeout": "Ukurasa ulichukua muda mrefu sana kuchora."
+  }
+}

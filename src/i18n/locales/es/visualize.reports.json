@@ -1,0 +1,41 @@
+{
+  "title": "Informes",
+  "subtitle": "Exporta un panel o reutiliza los objetos visuales que guardaste.",
+  "export": "Exportar un panel",
+  "noCharts": "Guarda objetos visuales desde Explorar o Predecir para reutilizarlos en paneles.",
+  "library": {
+    "title": "Mis objetos visuales"
+  },
+  "dashboardToExport": "Panel para exportar",
+  "noDashboards": "Aún no hay paneles",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Una página por cada página del panel, exactamente como en pantalla"
+    },
+    "png": {
+      "label": "Imágenes PNG",
+      "hint": "Una imagen por página"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Los datos de cada objeto visual con gráficos nativos, además de los datos sin procesar"
+    },
+    "html": {
+      "label": "HTML interactivo",
+      "hint": "Un único archivo que funciona sin conexión"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "La definición del panel"
+    }
+  },
+  "preparing": "Preparando…",
+  "explore": "Explorar",
+  "prediction": "Predicción",
+  "visualOf": "Objeto visual de {{type}}",
+  "deletedDataset": "conjunto de datos eliminado",
+  "unshare": "Dejar de compartir",
+  "share": "Compartir",
+  "deleteNamed": "Eliminar {{name}}"
+}

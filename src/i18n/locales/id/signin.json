@@ -1,0 +1,19 @@
+{
+  "title": "Selamat datang kembali",
+  "subtitle": "Masuk untuk melanjutkan ke JT-Code",
+  "connecting": "Menyambungkan…",
+  "emailLabel": "Alamat email",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Kata sandi",
+  "passwordPlaceholder": "Masukkan kata sandi Anda",
+  "forgotPassword": "Lupa kata sandi?",
+  "submit": "Masuk",
+  "noAccount": "Belum punya akun?",
+  "createAccount": "Buat akun",
+  "helpText": "",
+  "signInWithGoogle": "Masuk dengan Google",
+  "signInWithApple": "Masuk dengan Apple",
+  "offlineHint": "Mode desain offline: backend tidak digunakan. Masuk dengan email dan kata sandi apa pun (akun lokal dibuat), atau lanjutkan dengan akun demo.",
+  "demoAccount": "Lanjutkan dengan akun demo",
+  "continueWith": "Lanjutkan dengan {{provider}}"
+}

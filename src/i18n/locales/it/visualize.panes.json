@@ -1,0 +1,37 @@
+{
+  "moveUp": "Vai su",
+  "moveDown": "Spostati giù",
+  "views": {
+    "intro": "Una vista ricorda questa pagina con i suoi filtri dei dati, i filtri, il livello di drill, i parametri e quali elementi visivi sono nascosti (scheda Selezione). Gli spettatori scelgono le visualizzazioni da \"Visualizzazioni ▾\"; pulsanti e navigatori possono aprirli.",
+    "namePlaceholder": "Nome, ad es. Solo on-line",
+    "add": "Aggiungi vista",
+    "nameAria": "Visualizza nome",
+    "show": "Mostra questa vista",
+    "update": "Aggiorna con ciò che viene mostrato ora",
+    "delete": "Eliminare"
+  },
+  "mobile": {
+    "phone": "Disposizione del telefono",
+    "empty": "I telefoni mostrano tutte le immagini in ordine di lettura finché non disponi questa pagina.",
+    "auto": "Inizia dal layout del desktop",
+    "shorter": "Più corto",
+    "taller": "Più alto",
+    "remove": "Rimuovi dal layout del telefono",
+    "notOnPhones": "Non sui telefoni",
+    "allPlaced": "Ogni elemento visivo è nel layout del telefono.",
+    "clear": "Layout del telefono chiaro"
+  },
+  "selection": {
+    "group": "Gruppo",
+    "ungroup": "Separa",
+    "inGroup": "In un gruppo",
+    "layerName": "Nome del livello",
+    "show": "Spettacolo",
+    "hide": "Nascondere",
+    "lock": "Serratura",
+    "unlock": "Sbloccare",
+    "forward": "Porta avanti",
+    "backward": "Invia indietro",
+    "empty": "Ancora nessuna immagine: usa Inserisci."
+  }
+}

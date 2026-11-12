@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ColumnProfile, VizChartType, VizFields, VizOption, VizSlot } from '@/lib/data';
 import { Switch } from '@/shared/components';
+import { useCatalogText, type CatalogOwner } from './catalogText';
 import { humanize } from './ui';
 
 /** Columns that fit a slot (numbers are also accepted as labels, e.g. years or ratings). */
@@ -63,13 +65,20 @@ export function SlotControl({
   value,
   onChange,
   idPrefix = '',
+  owner,
 }: {
   slot: VizSlot;
   profiles: ColumnProfile[];
   value: string | string[] | undefined;
   onChange: (value: string | string[] | undefined) => void;
   idPrefix?: string;
+  /** The chart or prediction task the slot belongs to (for its own wording). */
+  owner?: CatalogOwner;
 }) {
+  const { t } = useTranslation();
+  const text = useCatalogText();
+  const label = text.slotLabel(slot, owner);
+  const help = text.slotHelp(slot, owner);
   const columns = eligibleColumns(slot, profiles);
   const id = `${idPrefix}slot-${slot.key}`;
   if (slot.multiple) {
@@ -77,9 +86,9 @@ export function SlotControl({
     return (
       <div>
         <span className="viz-label">
-          {slot.label} {slot.required && <span className="text-pink-500">*</span>}
+          {label} {slot.required && <span className="text-pink-500">*</span>}
         </span>
-        <div className="flex max-h-32 flex-wrap gap-1.5 overflow-y-auto" role="group" aria-label={slot.label}>
+        <div className="flex max-h-32 flex-wrap gap-1.5 overflow-y-auto" role="group" aria-label={label}>
           {columns.map((column) => (
             <button
               key={column}
@@ -92,19 +101,19 @@ export function SlotControl({
               {humanize(column)}
             </button>
           ))}
-          {!columns.length && <span className="text-xs text-muted-foreground">No {slot.kind} columns</span>}
+          {!columns.length && <span className="text-xs text-muted-foreground">{t(`visualize.controls.noColumns.${slot.kind}`)}</span>}
         </div>
-        {slot.help && <p className="mt-1 text-[11px] text-muted-foreground">{slot.help}</p>}
+        {help && <p className="mt-1 text-[11px] text-muted-foreground">{help}</p>}
       </div>
     );
   }
   return (
     <label className="block" htmlFor={id}>
       <span className="viz-label">
-        {slot.label} {slot.required && <span className="text-pink-500">*</span>}
+        {label} {slot.required && <span className="text-pink-500">*</span>}
       </span>
-      <select id={id} className="viz-field" value={typeof value === 'string' ? value : ''} onChange={(event) => onChange(event.target.value || undefined)} aria-label={slot.label} data-testid={id}>
-        <option value="">{slot.required ? 'Choose a column…' : 'None'}</option>
+      <select id={id} className="viz-field" value={typeof value === 'string' ? value : ''} onChange={(event) => onChange(event.target.value || undefined)} aria-label={label} data-testid={id}>
+        <option value="">{slot.required ? t('visualize.controls.chooseColumn') : t('visualize.controls.none')}</option>
         {columns.map((column) => (
           <option key={column} value={column}>
             {humanize(column)}
@@ -115,20 +124,23 @@ export function SlotControl({
   );
 }
 
-export function OptionControl({ option, value, onChange, positiveClasses }: { option: VizOption; value: unknown; onChange: (value: string | number | boolean) => void; positiveClasses: string[] }) {
+export function OptionControl({ option, value, onChange, positiveClasses, owner }: { option: VizOption; value: unknown; onChange: (value: string | number | boolean) => void; positiveClasses: string[]; owner?: CatalogOwner }) {
+  const { t } = useTranslation();
+  const text = useCatalogText();
+  const label = text.optionLabel(option, owner);
   const current = (value ?? option.default) as string | number | boolean;
   if (option.type === 'boolean') {
     return (
       <div className="flex items-center justify-between gap-3">
-        <span className="text-sm">{option.label}</span>
-        <Switch checked={Boolean(current)} onCheckedChange={onChange} aria-label={option.label} />
+        <span className="text-sm">{label}</span>
+        <Switch checked={Boolean(current)} onCheckedChange={onChange} aria-label={label} />
       </div>
     );
   }
   if (option.type === 'number') {
     return (
       <label className="block">
-        <span className="viz-label">{option.label}</span>
+        <span className="viz-label">{label}</span>
         <input
           type="number"
           className="viz-field"
@@ -136,21 +148,21 @@ export function OptionControl({ option, value, onChange, positiveClasses }: { op
           min={option.minimum ?? undefined}
           max={option.maximum ?? undefined}
           onChange={(event) => onChange(event.target.value === '' ? option.default : Number(event.target.value))}
-          aria-label={option.label}
+          aria-label={label}
         />
       </label>
     );
   }
   const choices = option.choices.length
-    ? option.choices.map(([key, label]) => [key, label === key && /[_A-Z]/.test(key) ? humanize(key) : label] as [string, string])
-    : [['', 'Automatic'] as [string, string], ...positiveClasses.map((c) => [c, c] as [string, string])];
+    ? option.choices.map(([key, choice]) => [key, choice === key && /[_A-Z]/.test(key) ? humanize(key) : text.choiceLabel(option.key, [key, choice])] as [string, string])
+    : [['', t('visualize.controls.automatic')] as [string, string], ...positiveClasses.map((c) => [c, c] as [string, string])];
   return (
     <label className="block">
-      <span className="viz-label">{option.label}</span>
-      <select className="viz-field" value={String(current)} onChange={(event) => onChange(event.target.value)} aria-label={option.label}>
-        {choices.map(([key, label]) => (
+      <span className="viz-label">{label}</span>
+      <select className="viz-field" value={String(current)} onChange={(event) => onChange(event.target.value)} aria-label={label}>
+        {choices.map(([key, choice]) => (
           <option key={key} value={key}>
-            {label}
+            {choice}
           </option>
         ))}
       </select>

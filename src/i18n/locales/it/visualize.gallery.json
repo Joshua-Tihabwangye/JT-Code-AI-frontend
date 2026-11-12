@@ -1,0 +1,18 @@
+{
+  "title": "Galleria dei grafici",
+  "subtitle": "Tipi di grafici {{count}}: aprine uno in Esplora e riempirà le tue colonne.",
+  "search": "Cerca grafici, ad es. “previsione”, “condividi”",
+  "searchLabel": "Cerca grafici",
+  "level": "Livello",
+  "allLevels": "Tutti i livelli",
+  "essentialShort": "Essenziale",
+  "advancedShort": "Avanzato",
+  "all": "Tutto",
+  "recommended": "Consigliato per {{name}}",
+  "recommendedHint": "Scelto dalle tue colonne: aprine uno per vederlo con i tuoi dati.",
+  "empty": "Nessun grafico corrisponde a quella ricerca.",
+  "advancedBadge": "Avanzato",
+  "useInExplore": "Utilizzare in Esplora",
+  "addToDashboard": "Aggiungi alla dashboard",
+  "thisDataset": "questo set di dati"
+}

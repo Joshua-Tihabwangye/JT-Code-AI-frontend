@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Dasbor",
+    "data": "Data",
+    "gallery": "Galeri",
+    "predict": "Meramalkan",
+    "reports": "Laporan",
+    "explore": "Mengeksplorasi"
+  },
+  "askAi": "Tanya AI",
+  "hero": {
+    "title": "Studio Visualisasi Data"
+  },
+  "assistant": {
+    "title": "JT-Kode AI",
+    "cost": "Menggunakan kredit hanya ketika Anda mengirim perintah. Bagan, wawasan, dan saran gratis.",
+    "about": "Tanyakan tentang",
+    "intro": "Jelaskan apa yang ingin Anda lihat. Saya memilih bagan, mengisi kolom dan Anda meninjaunya sebelum semuanya berjalan.",
+    "thinking": "Pemikiran…",
+    "builtIn": "Bawaan",
+    "credits": "{{credits}} kredit",
+    "free": "tidak ada kredit yang digunakan",
+    "openExplore": "Buka di Jelajahi",
+    "setUp": "Siapkan prediksi",
+    "placeholder": "misalnya Tampilkan pendapatan bulanan berdasarkan wilayah",
+    "prompt": "Mengingatkan",
+    "send": "Mengirim",
+    "close": "Menutup"
+  },
+  "dataset": "Kumpulan data",
+  "noDataset": "Belum ada kumpulan data",
+  "sections": "Bagian visualisasi data",
+  "controls": {
+    "noColumns": {
+      "numeric": "Tidak ada kolom numerik",
+      "datetime": "Tidak ada kolom tanggal dan waktu",
+      "categorical": "Tidak ada kolom kategoris",
+      "dimension": "Tidak ada kolom dimensi",
+      "any": "Tidak ada kolom"
+    },
+    "chooseColumn": "Pilih kolom…",
+    "none": "Tidak ada",
+    "automatic": "Otomatis"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "bagus sekali",
+      "good": "Bagus",
+      "fair": "adil",
+      "weak": "lemah",
+      "unknown": "tidak dikenal"
+    },
+    "dataset": "Kumpulan data",
+    "noDatasets": "Belum ada kumpulan data",
+    "rows_one": "{{rows}} baris",
+    "rows_other": "{{rows}} baris",
+    "less": "Lebih sedikit",
+    "howToRead": "Bagaimana cara membacanya",
+    "dataOf": "{{title}}data",
+    "tableSize": "{{rows}} baris × {{columns}} kolom — data yang ditampilkan bagan ini",
+    "tableSizeFirst": "{{rows}} baris × {{columns}} kolom (baris pertama) — data yang ditampilkan bagan ini",
+    "close": "Menutup",
+    "expandRibbon": "Perluas pita",
+    "collapseRibbon": "Ciutkan pita"
+  }
+}

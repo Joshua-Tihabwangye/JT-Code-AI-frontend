@@ -1,0 +1,10 @@
+{
+  "attach": "Anhängen",
+  "attachDocument": "Dokument anhängen",
+  "attachImage": "Bild anhängen",
+  "currentPlan": "Aktueller Plan",
+  "voiceInput": "Spracheingabe",
+  "sendMessage": "Nachricht senden",
+  "defaultPlaceholder": "Frag JT-Code alles…",
+  "removeAttachment": "{{name}} entfernen"
+}

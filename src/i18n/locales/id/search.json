@@ -1,0 +1,9 @@
+{
+  "placeholder": "Cari obrolan, gambar, file, dokumen…",
+  "noResults": "Tidak ada hasil.",
+  "conversation": "Percakapan",
+  "generatedImage": "Gambar yang dihasilkan",
+  "imageType": "Gambar · {{style}}",
+  "file": "File",
+  "document": "Dokumen"
+}

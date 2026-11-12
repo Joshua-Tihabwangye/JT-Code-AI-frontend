@@ -1,0 +1,17 @@
+{
+  "openApp": "Buka JT-Code",
+  "signIn": "Masuk",
+  "createAccount": "Buat akun",
+  "eyebrow": "ASISTEN AI WEB + SELULER",
+  "headline": "Satu ruang kerja yang jelas untuk pertanyaan, file, riset, dan kreasi.",
+  "copy": "JT-Code adalah satu-satunya nama asisten yang digunakan di seluruh platform ini. Klien web dibangun dengan React dan TypeScript; autentikasi ditangani oleh Supabase Auth dan semua status bisnis berada di Django API.",
+  "continueToWorkspace": "Lanjut ke ruang kerja",
+  "startWith": "Mulai dengan JT-Code",
+  "foundationsLabel": "Fondasi platform",
+  "feature1Title": "Identitas yang aman",
+  "feature1Desc": "Sesi Supabase Auth diverifikasi ulang oleh Django sebelum setiap tindakan yang dilindungi.",
+  "feature2Title": "Data yang tahan lama",
+  "feature2Desc": "PostgreSQL yang dihosting Supabase tetap menjadi sumber kebenaran transaksional.",
+  "feature3Title": "Aset terkelola",
+  "feature3Desc": "Unggahan bertanda tangan Cloudinary menjaga rahasia tetap di luar peramban."
+}

@@ -1,0 +1,32 @@
+{
+  "resetTitle": "Atur ulang kata sandi Anda",
+  "emailLabel": "Alamat email",
+  "sendCode": "Kirim kode atur ulang",
+  "sending": "Mengirim…",
+  "backToSignIn": "Kembali ke halaman masuk",
+  "checkTitle": "Periksa email Anda",
+  "useCodeNow": "Gunakan kode ini sekarang",
+  "haveCode": "Saya sudah punya kode atur ulang",
+  "newPasswordTitle": "Buat kata sandi baru",
+  "newPasswordDesc": "Masukkan kode atur ulang dan pilih kata sandi baru untuk {{email}}.",
+  "codeLabel": "Kode atur ulang",
+  "newPasswordLabel": "Kata sandi baru",
+  "confirmPasswordLabel": "Konfirmasi kata sandi",
+  "updating": "Memperbarui…",
+  "resetButton": "Atur ulang kata sandi",
+  "backToCode": "Kembali ke langkah kode",
+  "updatedTitle": "Kata sandi diperbarui",
+  "updatedMessage": "Kata sandi Anda telah diperbarui. Anda dapat masuk dengan kata sandi yang baru.",
+  "returnToSignIn": "Kembali ke halaman masuk",
+  "errors": {
+    "sendFailed": "Tidak dapat mengirim tautan pengaturan ulang kata sandi.",
+    "resetFailed": "Tidak dapat mengatur ulang kata sandi Anda.",
+    "mismatch": "Kata sandi tidak cocok.",
+    "unexpected": "Terjadi kesalahan yang tidak terduga."
+  },
+  "resetDesc": "Masukkan alamat email Anda dan kami akan mengirimkan tautan penyetelan ulang yang dapat Anda selesaikan di sini.",
+  "checkDesc": "Kami mengirim pesan reset ke <0>{{email}} </0>. Kode di bawah ini akan membuka kunci langkah selanjutnya.",
+  "checkDescPlain": "Kami mengirimkan kode reset ke {{email}}. Masukkan pada langkah berikutnya untuk memilih kata sandi baru.",
+  "mockResetCode": "Setel ulang kode",
+  "enterEmailedCode": "Masukkan kode dari email"
+}

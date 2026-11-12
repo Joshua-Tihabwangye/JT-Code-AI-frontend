@@ -1,0 +1,19 @@
+{
+  "title": "Bienvenido de nuevo",
+  "subtitle": "Inicia sesión para continuar en JT-Code",
+  "connecting": "Conectando…",
+  "emailLabel": "Correo electrónico",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Contraseña",
+  "passwordPlaceholder": "Introduce tu contraseña",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "submit": "Iniciar sesión",
+  "noAccount": "¿No tienes una cuenta?",
+  "createAccount": "Crear cuenta",
+  "helpText": "",
+  "signInWithGoogle": "Iniciar sesión con Google",
+  "signInWithApple": "Iniciar sesión con Apple",
+  "offlineHint": "Modo de diseño sin conexión: no se usa el backend. Inicia sesión con cualquier correo electrónico y contraseña (se crea una cuenta local) o continúa con la cuenta de demostración.",
+  "demoAccount": "Continuar con la cuenta de demostración",
+  "continueWith": "Continuar con {{provider}}"
+}

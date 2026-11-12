@@ -1,0 +1,165 @@
+{
+  "eyebrow": "Penagihan",
+  "title": "Penagihan & Kredit",
+  "subtitle": "Kelola paket, kredit, dan detail pembayaran Anda. Tambahkan kredit kapan saja untuk terus berkarya tanpa batas.",
+  "addCredits": "Tambah kredit",
+  "summary": {
+    "currentPlan": "Paket saat ini",
+    "availableCredits": "Kredit tersedia",
+    "renewsOn": "Diperpanjang pada",
+    "renewsHelper": "Di akhir periode penagihan Anda",
+    "managePlan": "Kelola paket →",
+    "addCreditsAction": "Tambah kredit →"
+  },
+  "usage": {
+    "title": "Penggunaan kredit",
+    "usedOf": "{{used}} telah digunakan dari {{limit}} bulan ini",
+    "left": "{{amount}} tersisa",
+    "thisMonth": "{{amount}} kredit digunakan bulan ini",
+    "types": {
+      "chat": "Mengobrol",
+      "images": "Gambar",
+      "documents": "Dokumen",
+      "agent": "Agen"
+    }
+  },
+  "plans": {
+    "title": "Pilih paket yang tepat untuk Anda",
+    "allInclude": "Semua paket mencakup: Penagihan aman, batalkan kapan saja, waktu operasional 99.9%",
+    "ribbonCurrent": "Paket saat ini",
+    "ribbonSelected": "Dipilih",
+    "currentCta": "Paket saat ini",
+    "chooseCta": "Pilih {{name}}",
+    "perMonth": "/bulan",
+    "customPrice": "Kustom",
+    "fallbackDescription": "Untuk pengguna yang terus bertumbuh",
+    "fallbackFeature1": "{{credits}} kredit / bulan",
+    "fallbackFeature2": "Dukungan standar",
+    "descriptions": {
+      "free": "Untuk individu yang baru memulai",
+      "pro": "Untuk profesional dan pengguna ahli",
+      "team": "Untuk tim dan organisasi",
+      "business": "Untuk tim yang sedang berkembang"
+    },
+    "features": {
+      "free": [
+        "1.000 kredit / bulan",
+        "Akses ke GPT-4o mini",
+        "Alat AI dasar",
+        "Dukungan komunitas"
+      ],
+      "pro": [
+        "2.000 kredit / bulan",
+        "Akses ke GPT-4o",
+        "Alat AI lanjutan",
+        "Dukungan prioritas",
+        "Akses awal ke fitur baru"
+      ],
+      "team": [
+        "5.000 kredit / pengguna / bulan",
+        "Akses ke GPT-4o",
+        "Ruang kerja tim",
+        "Kontrol admin lanjutan",
+        "Dukungan prioritas & SLA"
+      ],
+      "business": [
+        "Kredit kustom",
+        "Dukungan khusus",
+        "SSO & log audit",
+        "Model AI kustom",
+        "Jaminan SLA"
+      ]
+    },
+    "names": {
+      "free": "Bebas",
+      "pro": "Pro",
+      "team": "Tim",
+      "business": "Bisnis"
+    }
+  },
+  "payment": {
+    "title": "Metode pembayaran",
+    "billingCountry": "Negara penagihan",
+    "ugandaHint": "Uganda: bayar dengan Kartu atau Mobile Money (MTN / Airtel).",
+    "otherHint": "Bayar dengan Kartu atau PayPal.",
+    "addMethod": "Tambah metode pembayaran",
+    "makeDefault": "Jadikan bawaan",
+    "methods": {
+      "card": "Kartu",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Kartu",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Nomor telepon",
+    "cardNumberLabel": "Nomor kartu",
+    "expiryLabel": "Kedaluwarsa",
+    "cvcLabel": "CVC",
+    "savedToast": "Metode pembayaran tersimpan",
+    "none": "Tidak ada metode pembayaran yang tercatat",
+    "manage": "Kelola metode pembayaran"
+  },
+  "invoices": {
+    "title": "Faktur terbaru",
+    "viewAll": "Lihat semua faktur",
+    "allTitle": "Semua Faktur",
+    "allSubtitle": "JT-Code — riwayat penagihan",
+    "date": "Tanggal",
+    "description": "Deskripsi",
+    "amount": "Jumlah",
+    "status": "Status",
+    "empty": "Belum ada faktur.",
+    "download": "Unduh faktur",
+    "statuses": {
+      "paid": "dibayar",
+      "open": "membuka",
+      "draft": "draf",
+      "void": "ruang kosong",
+      "uncollectible": "tidak tertagih"
+    }
+  },
+  "topup": {
+    "title": "Tambah Kredit",
+    "description": "Beli kredit tambahan untuk akun Anda",
+    "amountLabel": "Jumlah (USD)",
+    "estimatedCredits": "Estimasi Kredit",
+    "confirm": "Tambah kredit ${{amount}}",
+    "success": "Kredit berhasil ditambahkan",
+    "invalidAmount": "Masukkan jumlah yang valid",
+    "processing": "Pembayaran diterima. Kredit muncul segera setelah Stripe mengonfirmasinya.",
+    "failed": "Pembayaran tidak dapat diselesaikan.",
+    "payNow": "Bayar sekarang"
+  },
+  "checkout": {
+    "title": "Selesaikan pembelian Anda",
+    "planSuffix": "Paket {{name}}",
+    "customPricing": "Harga kustom",
+    "billedMonthly": "Ditagih bulanan",
+    "pay": "Bayar {{amount}}",
+    "enterPhone": "Masukkan nomor telepon untuk Mobile Money.",
+    "activated": "Paket {{name}} diaktifkan — pembayaran berhasil",
+    "returned": "Terima kasih! Langganan Anda akan diperbarui segera setelah Stripe mengonfirmasi pembayaran.",
+    "cancelled": "Pembayaran dibatalkan; tidak ada yang dikenakan biaya."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Berakhir pada akhir periode penagihan ini",
+    "freeMonthly": "Kredit gratis diperbarui setiap bulan",
+    "reactivate": "Lanjutkan berlangganan",
+    "cancel": "Batalkan langganan",
+    "cancelConfirm": "Batalkan langganan Anda di akhir periode berjalan?"
+  },
+  "wallet": {
+    "saved": "Setelan penagihan disimpan.",
+    "reserved": "{{amount}} dicadangkan untuk menjalankan pekerjaan",
+    "autoRecharge": "Isi ulang otomatis",
+    "autoRechargeDesc": "Isi ulang secara otomatis ketika kredit berada di bawah ambang batas.",
+    "threshold": "Ambang batas (kredit)",
+    "spendingLimit": "Batas bulanan (kredit)",
+    "noLimit": "Tidak ada batasan"
+  },
+  "stripe": {
+    "loadFailed": "Tidak dapat memuat formulir pembayaran Stripe. Periksa koneksi Anda.",
+    "unavailable": "Garis tidak tersedia."
+  }
+}

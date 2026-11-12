@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useId, useRef, type HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,6 +14,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ({ className, isOpen, onClose, title, description, size = 'md', hideCloseButton, children, ...props }, ref) => {
+    const { t } = useTranslation();
     const contentRef = useRef<HTMLDivElement>(null);
     const onCloseRef = useRef(onClose);
     const id = useId();
@@ -105,7 +107,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={t('common.close')}
                 className="absolute right-4 top-4 rounded-md p-1 text-muted-foreground opacity-70 transition-all hover:opacity-100 hover:bg-muted hover:scale-105 active:scale-95"
               >
                 <X size={18} />

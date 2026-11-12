@@ -1,0 +1,38 @@
+{
+  "pick": "Choisissez un jeu de données dans la barre ci-dessus, ou ajoutez-en un sur la page Données.",
+  "add": "Nouveau graphique",
+  "pin": "Épingler au tableau de bord",
+  "saved": "Enregistré dans Mes visuels",
+  "save": "Enregistrer dans Mes visuels",
+  "viewData": "Afficher les données",
+  "pageName": "Explorer",
+  "chartType": "Type de graphique",
+  "suggestions": "Suggestions",
+  "charts": "Graphiques",
+  "buildAndFormat": "Créer et mettre en forme",
+  "build": "Créer",
+  "format": "Format",
+  "remove": "Supprimer ce graphique",
+  "drawer": {
+    "data": "Données du graphique",
+    "rows": "Lignes brutes",
+    "query": "Requête"
+  },
+  "noData": "Aucune donnée pour le moment.",
+  "query": {
+    "chart": "{{chart}} de {{fields}} (toutes les lignes, échantillonnées à 10 000 au-delà).",
+    "noFields": "aucun champ pour le moment",
+    "countRows": "Nombre de lignes",
+    "measure": "{{agg}} de {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "année",
+      "quarter": "trimestre",
+      "month": "mois",
+      "week": "semaine",
+      "day": "jour"
+    },
+    "grouped": "{{what}} par {{groups}} — calculé dans la base de données, puis dessiné en Python.",
+    "total": "{{what}} — calculé dans la base de données, puis dessiné en Python."
+  }
+}

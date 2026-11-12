@@ -1,0 +1,67 @@
+{
+  "tabs": {
+    "dashboards": "Painéis",
+    "data": "Dados",
+    "gallery": "Galeria",
+    "predict": "Prever",
+    "reports": "Relatórios",
+    "explore": "Explorar"
+  },
+  "askAi": "Pergunte à IA",
+  "hero": {
+    "title": "Estúdio de visualização de dados"
+  },
+  "assistant": {
+    "title": "Código JT AI",
+    "cost": "Usa créditos apenas quando você envia um prompt. Gráficos, insights e sugestões são gratuitos.",
+    "about": "Pergunte sobre",
+    "intro": "Descreva o que você deseja ver. Eu escolho o gráfico, preencho as colunas e você revisa antes de executar qualquer coisa.",
+    "thinking": "Pensamento…",
+    "builtIn": "Integrado",
+    "credits": "{{credits}} créditos",
+    "free": "nenhum crédito usado",
+    "openExplore": "Abrir em Explorar",
+    "setUp": "Configurar previsão",
+    "placeholder": "por exemplo Mostrar receita mensal por região",
+    "prompt": "Incitar",
+    "send": "Enviar",
+    "close": "Fechar"
+  },
+  "dataset": "Conjunto de dados",
+  "noDataset": "Nenhum conjunto de dados ainda",
+  "sections": "Seções de visualização de dados",
+  "controls": {
+    "noColumns": {
+      "numeric": "Sem colunas numéricas",
+      "datetime": "Nenhuma coluna de data e hora",
+      "categorical": "Nenhuma coluna categórica",
+      "dimension": "Nenhuma coluna de dimensão",
+      "any": "Sem colunas"
+    },
+    "chooseColumn": "Escolha uma coluna…",
+    "none": "Nenhum",
+    "automatic": "Automático"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "excelente",
+      "good": "bom",
+      "fair": "justo",
+      "weak": "fraco",
+      "unknown": "desconhecido"
+    },
+    "dataset": "Conjunto de dados",
+    "noDatasets": "Ainda não há conjuntos de dados",
+    "rows_one": "{{rows}} linha",
+    "rows_other": "{{rows}} linhas",
+    "less": "Menos",
+    "howToRead": "Como ler",
+    "dataOf": "Dados {{title}}",
+    "tableSize": "{{rows}} linhas × {{columns}} colunas — os dados que este gráfico mostra",
+    "tableSizeFirst": "{{rows}} linhas × {{columns}} colunas (primeiras linhas) — os dados que este gráfico mostra",
+    "close": "Fechar",
+    "expandRibbon": "Expandir faixa de opções",
+    "collapseRibbon": "Recolher fita",
+    "rows_many": "{{rows}} linhas"
+  }
+}

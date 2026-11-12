@@ -1,0 +1,326 @@
+{
+  "search": "搜索格式选项",
+  "resetSection": "重置为主题默认值",
+  "automatic": "自动",
+  "on": "开",
+  "off": "关",
+  "sections": {
+    "python": "Python 脚本",
+    "parameter": "参数",
+    "button": "按钮",
+    "navigator": "导航器",
+    "general": "标题和位置",
+    "tile": "磁贴",
+    "colors": "颜色",
+    "labels": "数据标签",
+    "legend": "图例",
+    "sort": "排序和前 N 项",
+    "bars": "条形和折线",
+    "donut": "扇区",
+    "kpi": "KPI",
+    "gauge": "仪表范围",
+    "table": "表",
+    "slicer": "切片器",
+    "tooltip": "工具提示",
+    "conditional": "条件格式",
+    "analytics": "分析（参考线、趋势、预测）",
+    "map": "地图"
+  },
+  "general": {
+    "title": "标题",
+    "showTitle": "显示标题",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "宽",
+      "h": "高"
+    },
+    "layoutAria": "布局 {{axis}}",
+    "altText": "替代文本",
+    "altPlaceholder": "供屏幕阅读器使用"
+  },
+  "tile": {
+    "background": "背景",
+    "border": "边框",
+    "radius": "圆角半径",
+    "shadow": "阴影"
+  },
+  "colors": {
+    "seriesAria": "系列颜色 {{index}}",
+    "custom": "自定义",
+    "fromTheme": "来自主题"
+  },
+  "labels": {
+    "showValues": "显示值"
+  },
+  "legend": {
+    "show": "显示图例",
+    "position": "位置",
+    "positions": {
+      "top": "顶部",
+      "bottom": "底部",
+      "left": "左侧",
+      "right": "右侧"
+    }
+  },
+  "sort": {
+    "by": "排序依据",
+    "value": "值",
+    "name": "名称",
+    "direction": "方向",
+    "desc": "降序",
+    "asc": "升序",
+    "topN": "前 N 项",
+    "showTop": "显示前",
+    "others": "将其余项归为“其他”"
+  },
+  "bars": {
+    "stacking": "堆积",
+    "none": "并排",
+    "stacked": "堆积",
+    "percent": "百分比堆积",
+    "smooth": "平滑线"
+  },
+  "donut": {
+    "maxSlices": "最大扇区数（其余 → 其他）"
+  },
+  "kpi": {
+    "compareBy": "比较依据",
+    "grains": {
+      "day": "日",
+      "week": "周",
+      "month": "月",
+      "quarter": "季度",
+      "year": "年"
+    },
+    "upIsGood": "上升为好"
+  },
+  "gauge": {
+    "min": "最小值",
+    "max": "最大值",
+    "auto": "自动"
+  },
+  "table": {
+    "dataBars": "数据条"
+  },
+  "slicer": {
+    "style": "样式",
+    "styles": {
+      "dropdown": "下拉列表",
+      "list": "列表",
+      "tiles": "按钮",
+      "between": "数值范围",
+      "dateRange": "日期范围",
+      "relative": "相对日期",
+      "input": "输入值",
+      "hierarchy": "层次结构（添加更多字段）"
+    },
+    "single": "单选",
+    "sync": "跨页面同步",
+    "page": "页面",
+    "syncColumn": "同步",
+    "visible": "可见",
+    "syncTo": "同步到 {{page}}",
+    "visibleOn": "在 {{page}} 上可见"
+  },
+  "tooltip": {
+    "page": "工具提示页",
+    "default": "默认工具提示",
+    "noPages": "请先将某个页面设为工具提示页"
+  },
+  "map": {
+    "zoomTo": "缩放到",
+    "scopes": {
+      "world": "世界",
+      "africa": "非洲",
+      "europe": "欧洲",
+      "asia": "亚洲",
+      "northAmerica": "北美洲",
+      "southAmerica": "南美洲"
+    }
+  },
+  "page": {
+    "label": "页面",
+    "name": "名称",
+    "canvasSize": "画布大小",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Letter（纵向）",
+      "fitWidth": "适应宽度（自动增长）"
+    },
+    "background": "背景",
+    "themeBackground": "主题背景",
+    "type": "页面类型",
+    "types": {
+      "page": "页面",
+      "drillthrough": "钻取（详细信息）",
+      "tooltip": "工具提示"
+    },
+    "tooltipHint": "当鼠标悬停在已于“格式 → 工具提示”中选择此页的视觉对象的数据点上时，以小尺寸显示。",
+    "drillthroughHint": "在其他页面上右键单击这些字段之一的成员 → “钻取”。"
+  },
+  "dashboard": {
+    "label": "仪表板",
+    "slicersApply": "切片器应用方式",
+    "instant": "立即",
+    "button": "通过“应用”按钮",
+    "filtersPane": "面向查看者的筛选器窗格",
+    "personalize": "允许查看者个性化"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "色阶",
+      "rules": "规则",
+      "bars": "数据条",
+      "icons": "图标 ▲●▼"
+    },
+    "ruleType": "规则类型",
+    "value": "值",
+    "colour": "颜色",
+    "background": "背景",
+    "text": "文本",
+    "removeRule": "移除规则",
+    "lowest": "最低",
+    "middle": "中间",
+    "highest": "最高",
+    "lowestColour": "最低值颜色",
+    "middleColour": "中间值颜色",
+    "highestColour": "最高值颜色",
+    "ifValueIs": "如果值",
+    "between": "介于",
+    "and": "和",
+    "removeCondition": "移除条件",
+    "addCondition": "条件（首个匹配项生效）",
+    "barColour": "条形颜色",
+    "iconsHint": "▲ 值的前三分之一，● 中间，▼ 后三分之一。",
+    "addRule": "添加规则"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "恒定线（目标）",
+      "average": "平均值",
+      "median": "中值",
+      "min": "最小值",
+      "max": "最大值",
+      "percentile": "百分位数",
+      "trend": "趋势线",
+      "forecast": "预测"
+    },
+    "line": "线条",
+    "value": "值",
+    "percentile": "百分位数",
+    "periods": "期数",
+    "colour": "颜色",
+    "removeLine": "移除线条",
+    "labelPlaceholder": "标签（可选）",
+    "addLine": "添加线条",
+    "forecastHint": "预测需要日期轴（例如按月的日期）。"
+  },
+  "python": {
+    "starter": "从示例开始",
+    "sandbox": "在受限的 Python 沙盒中运行：支持 pandas、numpy、scipy、statsmodels 和 scikit-learn；无法访问文件、网络或系统。"
+  },
+  "button": {
+    "text": "文本",
+    "action": "操作",
+    "actions": {
+      "page": "转到页面",
+      "bookmark": "应用视图（书签）",
+      "back": "返回",
+      "clearSlicers": "清除所有切片器",
+      "applySlicers": "应用切片器",
+      "toggle": "显示 / 隐藏视觉对象",
+      "url": "打开网页链接",
+      "askAi": "询问 AI",
+      "reset": "重置为默认值"
+    },
+    "page": "页面",
+    "choose": "选择…",
+    "view": "视图",
+    "addViewsFirst": "请先添加视图（“视图”选项卡）",
+    "visual": "视觉对象",
+    "visualFallback": "{{type}}（{{id}}）",
+    "link": "链接",
+    "style": "样式",
+    "fills": {
+      "primary": "填充",
+      "outline": "轮廓",
+      "ghost": "无样式"
+    }
+  },
+  "navigator": {
+    "shows": "显示内容",
+    "pages": "页面",
+    "bookmarks": "视图（书签）"
+  },
+  "parameter": {
+    "parameter": "参数",
+    "new": "新建参数…",
+    "showAs": "显示为",
+    "tiles": "按钮",
+    "dropdown": "下拉列表",
+    "delete": "删除此参数"
+  },
+  "theme": {
+    "title": "自定义主题",
+    "name": "主题名称",
+    "close": "关闭",
+    "dataColours": "数据颜色",
+    "colour": "颜色 {{index}}",
+    "removeColour": "移除颜色 {{index}}",
+    "addColour": "添加颜色",
+    "brandColour": "品牌颜色",
+    "generate": "根据品牌颜色生成调色板",
+    "sentiment": {
+      "good": "好",
+      "neutral": "中性",
+      "bad": "差"
+    },
+    "pageAndTiles": "页面和磁贴",
+    "light": "浅色",
+    "dark": "深色",
+    "roles": {
+      "canvas": "画布",
+      "tile": "磁贴",
+      "border": "边框",
+      "gridline": "网格线",
+      "text": "文本",
+      "mutedText": "次要文本",
+      "accent": "强调色"
+    },
+    "contrast": "磁贴上的文本难以阅读（{{ratio}}:1 — 建议达到 4.5:1 或更高）。",
+    "font": "字体",
+    "systemFont": "系统",
+    "corners": "圆角",
+    "shadow": "阴影",
+    "shadows": {
+      "none": "无",
+      "soft": "柔和",
+      "medium": "中等"
+    },
+    "kpiTiles": "KPI 磁贴",
+    "kpiStyles": {
+      "plain": "简洁",
+      "solid": "纯色",
+      "gradient": "渐变",
+      "outlined": "描边",
+      "icon": "强调条"
+    },
+    "orgThemes": "我的组织的主题",
+    "deleteTheme": "删除 {{name}}",
+    "importJson": "导入 JSON",
+    "exportJson": "导出 JSON",
+    "saveAs": "另存为我的主题",
+    "defaultName": "我的主题",
+    "importedName": "导入的主题",
+    "imported": "已导入。",
+    "saved": "已为你的组织保存“{{name}}”。",
+    "cancel": "取消",
+    "done": "完成",
+    "errors": {
+      "notTheme": "该文件不是主题。",
+      "needColours": "主题至少需要 3 种数据颜色 (dataColors)。"
+    }
+  }
+}

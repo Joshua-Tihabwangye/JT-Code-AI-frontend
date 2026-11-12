@@ -2,6 +2,7 @@
 // (formatters, custom shapes) the server writes {"$fn": name, ...}; this replaces those
 // markers with a fixed set of functions, so an option can never carry code.
 // Mirrors jt-code-backend/apps/visualize/static/hydrate.js (used by exported reports).
+import { currentLocale } from '@/i18n/format';
 import type { ChartOption, ChartTable } from '@/lib/data';
 
 type Json = unknown;
@@ -21,7 +22,7 @@ function text(value: unknown): string {
 }
 
 export function formatNumber(value: unknown, digits = 4): string {
-  if (typeof value === 'number' && Number.isFinite(value)) return value.toLocaleString(undefined, { maximumFractionDigits: digits });
+  if (typeof value === 'number' && Number.isFinite(value)) return value.toLocaleString(currentLocale(), { maximumFractionDigits: digits });
   return text(value);
 }
 

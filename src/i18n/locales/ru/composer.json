@@ -1,0 +1,10 @@
+{
+  "attach": "Прикрепить",
+  "attachDocument": "Прикрепить документ",
+  "attachImage": "Прикрепить изображение",
+  "currentPlan": "Текущий план",
+  "voiceInput": "Голосовой ввод",
+  "sendMessage": "Отправить сообщение",
+  "defaultPlaceholder": "Спросите JT-Code о чём угодно…",
+  "removeAttachment": "Удалить {{name}}"
+}

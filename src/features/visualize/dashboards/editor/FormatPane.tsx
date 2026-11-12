@@ -1,4 +1,6 @@
 import { useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 import { RotateCcw, Search } from 'lucide-react';
 import type { ColumnProfile, DashboardPage, DashboardSpec, DashboardVisual, DashboardVisualType, VisualOutput } from '@/lib/data';
 import { humanize } from '../../ui';
@@ -13,11 +15,11 @@ const SERIES: DashboardVisualType[] = ['bar', 'column', 'line', 'area', 'combo',
 
 interface Section {
   key: string;
-  title: string;
+  titleKey: string;
   types: DashboardVisualType[] | 'all';
   /** The format sections this pane section edits (reset clears them). */
   formats: string[];
-  render: (visual: DashboardVisual, update: Update, context: Context) => ReactNode;
+  render: (visual: DashboardVisual, update: Update, context: Context, t: TFunction) => ReactNode;
 }
 
 /** The rest of the dashboard, for sections that reach beyond one visual (sync, tooltip pages). */
@@ -55,50 +57,65 @@ function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (val
 const set = (update: Update, section: string, key: string, merge = false) => (next: unknown) =>
   update((v) => setFormat(v, section, key, next), merge ? `${section}.${key}` : undefined);
 
+const F = 'visualize.format';
+
+const LEGEND_POSITIONS = ['top', 'bottom', 'left', 'right'] as const;
+const KPI_GRAINS = ['day', 'week', 'month', 'quarter', 'year'] as const;
+const MAP_SCOPES: [string, string][] = [
+  ['world', 'world'],
+  ['africa', 'africa'],
+  ['europe', 'europe'],
+  ['asia', 'asia'],
+  ['north america', 'northAmerica'],
+  ['south america', 'southAmerica'],
+];
+/** Canvas preset ids (actions.ts) to their label keys. */
+const CANVAS_PRESET_KEYS: Record<string, string> = { '16:9': 'wide', '4:3': 'standard', letter: 'letter', 'fit-width': 'fitWidth' };
+
 const SECTIONS: Section[] = [
   {
     key: 'python',
-    title: 'Python script',
+    titleKey: `${F}.sections.python`,
     types: ['python'],
     formats: ['python'],
     render: (visual, update, context) => <PythonSection visual={visual} update={update} output={context.output} />,
   },
   {
     key: 'parameter',
-    title: 'Parameter',
+    titleKey: `${F}.sections.parameter`,
     types: ['parameter'],
     formats: ['parameter'],
     render: (visual, update, context) => <ParameterSection visual={visual} update={update} context={context} />,
   },
   {
     key: 'button',
-    title: 'Button',
+    titleKey: `${F}.sections.button`,
     types: ['button'],
     formats: ['button'],
     render: (visual, update, context) => <ButtonSection visual={visual} update={update} context={context} />,
   },
   {
     key: 'navigator',
-    title: 'Navigator',
+    titleKey: `${F}.sections.navigator`,
     types: ['navigator'],
     formats: ['navigator'],
     render: (visual, update) => <NavigatorSection visual={visual} update={update} />,
   },
   {
     key: 'general',
-    title: 'Title and position',
+    titleKey: `${F}.sections.general`,
     types: 'all',
     formats: ['title'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Row label="Title">
-          <input className="viz-field" value={value(visual, 'title', 'text', '')} placeholder="Automatic" onChange={(event) => set(update, 'title', 'text', true)(event.target.value || undefined)} data-testid="format-title" />
+        <Row label={t(`${F}.general.title`)}>
+          <input className="viz-field" value={value(visual, 'title', 'text', '')} placeholder={t(`${F}.automatic`)} onChange={(event) => set(update, 'title', 'text', true)(event.target.value || undefined)} data-testid="format-title" />
         </Row>
-        <Toggle label="Show title" checked={value(visual, 'title', 'show', true)} onChange={(show) => set(update, 'title', 'show')(show ? undefined : false)} />
+        <Toggle label={t(`${F}.general.showTitle`)} checked={value(visual, 'title', 'show', true)} onChange={(show) => set(update, 'title', 'show')(show ? undefined : false)} />
         <div className="grid grid-cols-4 gap-1">
           {(['x', 'y', 'w', 'h'] as const).map((key) => (
             <label key={key} className="text-[10px] uppercase text-muted-foreground">
-              {key}
+              {t(`${F}.general.axes.${key}`)}
               <input
                 type="number"
                 step={0.25}
@@ -106,43 +123,43 @@ const SECTIONS: Section[] = [
                 className="viz-field"
                 value={visual.layout[key]}
                 onChange={(event) => update((v) => ({ ...v, layout: { ...v.layout, [key]: Number(event.target.value) } }), `layout.${key}`)}
-                aria-label={`Layout ${key}`}
+                aria-label={t(`${F}.general.layoutAria`, { axis: t(`${F}.general.axes.${key}`) })}
               />
             </label>
           ))}
         </div>
-        <Row label="Alt text">
-          <input className="viz-field" value={visual.altText ?? ''} onChange={(event) => update((v) => ({ ...v, altText: event.target.value }), 'alt')} placeholder="For screen readers" />
+        <Row label={t(`${F}.general.altText`)}>
+          <input className="viz-field" value={visual.altText ?? ''} onChange={(event) => update((v) => ({ ...v, altText: event.target.value }), 'alt')} placeholder={t(`${F}.general.altPlaceholder`)} />
         </Row>
       </>
     ),
   },
   {
     key: 'tile',
-    title: 'Tile',
+    titleKey: `${F}.sections.tile`,
     types: 'all',
     formats: ['tile'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Row label="Background">
+        <Row label={t(`${F}.tile.background`)}>
           <input type="color" className="viz-color-input" value={value(visual, 'tile', 'background', '#ffffff')} onChange={(event) => set(update, 'tile', 'background', true)(event.target.value)} />
         </Row>
-        <Row label="Border">
+        <Row label={t(`${F}.tile.border`)}>
           <input type="color" className="viz-color-input" value={value(visual, 'tile', 'border', '#e5e7eb')} onChange={(event) => set(update, 'tile', 'border', true)(event.target.value)} />
         </Row>
-        <Row label="Corner radius">
+        <Row label={t(`${F}.tile.radius`)}>
           <input type="range" min={0} max={24} value={value(visual, 'tile', 'radius', 12)} onChange={(event) => set(update, 'tile', 'radius', true)(Number(event.target.value))} />
         </Row>
-        <Toggle label="Shadow" checked={value(visual, 'tile', 'shadow', true)} onChange={(shadow) => set(update, 'tile', 'shadow')(shadow ? undefined : false)} />
+        <Toggle label={t(`${F}.tile.shadow`)} checked={value(visual, 'tile', 'shadow', true)} onChange={(shadow) => set(update, 'tile', 'shadow')(shadow ? undefined : false)} />
       </>
     ),
   },
   {
     key: 'colors',
-    title: 'Colours',
+    titleKey: `${F}.sections.colors`,
     types: SERIES,
     formats: ['colors'],
-    render: (visual, update) => {
+    render: (visual, update, _context, t) => {
       const colors = value<string[]>(visual, 'colors', 'series', []);
       return (
         <div className="flex flex-wrap items-center gap-1">
@@ -152,7 +169,7 @@ const SECTIONS: Section[] = [
               type="color"
               className="viz-color-input"
               value={colors[index] ?? '#94a3b8'}
-              aria-label={`Series colour ${index + 1}`}
+              aria-label={t(`${F}.colors.seriesAria`, { index: index + 1 })}
               onChange={(event) => {
                 const next = [...colors];
                 next[index] = event.target.value;
@@ -160,39 +177,39 @@ const SECTIONS: Section[] = [
               }}
             />
           ))}
-          <span className="text-[11px] text-muted-foreground">{colors.length ? 'Custom' : 'From the theme'}</span>
+          <span className="text-[11px] text-muted-foreground">{colors.length ? t(`${F}.colors.custom`) : t(`${F}.colors.fromTheme`)}</span>
         </div>
       );
     },
   },
   {
     key: 'labels',
-    title: 'Data labels',
+    titleKey: `${F}.sections.labels`,
     types: CHARTS,
     formats: ['labels'],
-    render: (visual, update) => (
-      <Row label="Show values">
+    render: (visual, update, _context, t) => (
+      <Row label={t(`${F}.labels.showValues`)}>
         <select className="viz-field" value={String(value(visual, 'labels', 'show', 'auto'))} onChange={(event) => set(update, 'labels', 'show')(event.target.value === 'auto' ? undefined : event.target.value === 'true')}>
-          <option value="auto">Automatic</option>
-          <option value="true">On</option>
-          <option value="false">Off</option>
+          <option value="auto">{t(`${F}.automatic`)}</option>
+          <option value="true">{t(`${F}.on`)}</option>
+          <option value="false">{t(`${F}.off`)}</option>
         </select>
       </Row>
     ),
   },
   {
     key: 'legend',
-    title: 'Legend',
+    titleKey: `${F}.sections.legend`,
     types: CHARTS,
     formats: ['legend'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Toggle label="Show legend" checked={value(visual, 'legend', 'show', true)} onChange={(show) => set(update, 'legend', 'show')(show ? undefined : false)} />
-        <Row label="Position">
+        <Toggle label={t(`${F}.legend.show`)} checked={value(visual, 'legend', 'show', true)} onChange={(show) => set(update, 'legend', 'show')(show ? undefined : false)} />
+        <Row label={t(`${F}.legend.position`)}>
           <select className="viz-field" value={value(visual, 'legend', 'position', 'top')} onChange={(event) => set(update, 'legend', 'position')(event.target.value === 'top' ? undefined : event.target.value)}>
-            {['top', 'bottom', 'left', 'right'].map((position) => (
+            {LEGEND_POSITIONS.map((position) => (
               <option key={position} value={position}>
-                {position[0]!.toUpperCase() + position.slice(1)}
+                {t(`${F}.legend.positions.${position}`)}
               </option>
             ))}
           </select>
@@ -202,134 +219,134 @@ const SECTIONS: Section[] = [
   },
   {
     key: 'sort',
-    title: 'Sort and Top N',
+    titleKey: `${F}.sections.sort`,
     types: ['bar', 'column', 'donut', 'pie', 'treemap', 'funnel', 'table', 'line', 'area', 'combo'],
     formats: ['sort', 'topN'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Row label="Sort by">
+        <Row label={t(`${F}.sort.by`)}>
           <select className="viz-field" value={value(visual, 'sort', 'by', 'value')} onChange={(event) => set(update, 'sort', 'by')(event.target.value === 'value' ? undefined : event.target.value)}>
-            <option value="value">Value</option>
-            <option value="category">Name</option>
+            <option value="value">{t(`${F}.sort.value`)}</option>
+            <option value="category">{t(`${F}.sort.name`)}</option>
           </select>
         </Row>
-        <Row label="Direction">
+        <Row label={t(`${F}.sort.direction`)}>
           <select className="viz-field" value={value(visual, 'sort', 'dir', 'desc')} onChange={(event) => set(update, 'sort', 'dir')(event.target.value)}>
-            <option value="desc">Descending</option>
-            <option value="asc">Ascending</option>
+            <option value="desc">{t(`${F}.sort.desc`)}</option>
+            <option value="asc">{t(`${F}.sort.asc`)}</option>
           </select>
         </Row>
-        <Toggle label="Top N" checked={value(visual, 'topN', 'enabled', true)} onChange={(enabled) => set(update, 'topN', 'enabled')(enabled ? undefined : false)} />
-        <Row label="Show top">
+        <Toggle label={t(`${F}.sort.topN`)} checked={value(visual, 'topN', 'enabled', true)} onChange={(enabled) => set(update, 'topN', 'enabled')(enabled ? undefined : false)} />
+        <Row label={t(`${F}.sort.showTop`)}>
           <input type="number" min={1} max={100} className="viz-field" value={value(visual, 'topN', 'n', 12)} onChange={(event) => set(update, 'topN', 'n', true)(Number(event.target.value))} />
         </Row>
-        <Toggle label="Group the rest as “Others”" checked={value(visual, 'topN', 'others', true)} onChange={(others) => set(update, 'topN', 'others')(others ? undefined : false)} />
+        <Toggle label={t(`${F}.sort.others`)} checked={value(visual, 'topN', 'others', true)} onChange={(others) => set(update, 'topN', 'others')(others ? undefined : false)} />
       </>
     ),
   },
   {
     key: 'bars',
-    title: 'Bars and lines',
+    titleKey: `${F}.sections.bars`,
     types: ['bar', 'column', 'line', 'area', 'combo'],
     formats: ['bar', 'line'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Row label="Stacking">
+        <Row label={t(`${F}.bars.stacking`)}>
           <select className="viz-field" value={value(visual, 'bar', 'stack', 'none')} onChange={(event) => set(update, 'bar', 'stack')(event.target.value === 'none' ? undefined : event.target.value)}>
-            <option value="none">Side by side</option>
-            <option value="stacked">Stacked</option>
-            <option value="percent">100% stacked</option>
+            <option value="none">{t(`${F}.bars.none`)}</option>
+            <option value="stacked">{t(`${F}.bars.stacked`)}</option>
+            <option value="percent">{t(`${F}.bars.percent`)}</option>
           </select>
         </Row>
-        <Toggle label="Smooth lines" checked={value(visual, 'line', 'smooth', false)} onChange={(smooth) => set(update, 'line', 'smooth')(smooth || undefined)} />
+        <Toggle label={t(`${F}.bars.smooth`)} checked={value(visual, 'line', 'smooth', false)} onChange={(smooth) => set(update, 'line', 'smooth')(smooth || undefined)} />
       </>
     ),
   },
   {
     key: 'donut',
-    title: 'Slices',
+    titleKey: `${F}.sections.donut`,
     types: ['donut', 'pie'],
     formats: ['donut'],
-    render: (visual, update) => (
-      <Row label="Max slices (rest → Others)">
+    render: (visual, update, _context, t) => (
+      <Row label={t(`${F}.donut.maxSlices`)}>
         <input type="number" min={2} max={12} className="viz-field" value={value(visual, 'donut', 'maxSlices', 6)} onChange={(event) => set(update, 'donut', 'maxSlices', true)(Number(event.target.value))} />
       </Row>
     ),
   },
   {
     key: 'kpi',
-    title: 'KPI',
+    titleKey: `${F}.sections.kpi`,
     types: ['kpi'],
     formats: ['kpi'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <>
-        <Row label="Compare by">
+        <Row label={t(`${F}.kpi.compareBy`)}>
           <select className="viz-field" value={value(visual, 'kpi', 'grain', 'month')} onChange={(event) => set(update, 'kpi', 'grain')(event.target.value)}>
-            {['day', 'week', 'month', 'quarter', 'year'].map((grain) => (
+            {KPI_GRAINS.map((grain) => (
               <option key={grain} value={grain}>
-                {grain[0]!.toUpperCase() + grain.slice(1)}
+                {t(`${F}.kpi.grains.${grain}`)}
               </option>
             ))}
           </select>
         </Row>
-        <Toggle label="Up is good" checked={value(visual, 'kpi', 'upIsGood', true)} onChange={(good) => set(update, 'kpi', 'upIsGood')(good ? undefined : false)} />
+        <Toggle label={t(`${F}.kpi.upIsGood`)} checked={value(visual, 'kpi', 'upIsGood', true)} onChange={(good) => set(update, 'kpi', 'upIsGood')(good ? undefined : false)} />
       </>
     ),
   },
   {
     key: 'gauge',
-    title: 'Gauge range',
+    titleKey: `${F}.sections.gauge`,
     types: ['gauge'],
     formats: ['gauge'],
-    render: (visual, update) => (
+    render: (visual, update, _context, t) => (
       <div className="grid grid-cols-2 gap-1">
-        <Row label="Min">
+        <Row label={t(`${F}.gauge.min`)}>
           <input type="number" className="viz-field" value={value(visual, 'gauge', 'min', 0)} onChange={(event) => set(update, 'gauge', 'min', true)(Number(event.target.value))} />
         </Row>
-        <Row label="Max">
-          <input type="number" className="viz-field" value={value<number | string>(visual, 'gauge', 'max', '')} placeholder="Auto" onChange={(event) => set(update, 'gauge', 'max', true)(event.target.value ? Number(event.target.value) : undefined)} />
+        <Row label={t(`${F}.gauge.max`)}>
+          <input type="number" className="viz-field" value={value<number | string>(visual, 'gauge', 'max', '')} placeholder={t(`${F}.gauge.auto`)} onChange={(event) => set(update, 'gauge', 'max', true)(event.target.value ? Number(event.target.value) : undefined)} />
         </Row>
       </div>
     ),
   },
   {
     key: 'table',
-    title: 'Table',
+    titleKey: `${F}.sections.table`,
     types: ['table'],
     formats: ['table'],
-    render: (visual, update) => <Toggle label="Data bars" checked={value(visual, 'table', 'dataBars', true)} onChange={(bars) => set(update, 'table', 'dataBars')(bars ? undefined : false)} />,
+    render: (visual, update, _context, t) => <Toggle label={t(`${F}.table.dataBars`)} checked={value(visual, 'table', 'dataBars', true)} onChange={(bars) => set(update, 'table', 'dataBars')(bars ? undefined : false)} />,
   },
   {
     key: 'slicer',
-    title: 'Slicer',
+    titleKey: `${F}.sections.slicer`,
     types: ['slicer'],
     formats: ['slicer'],
-    render: (visual, update, context) => {
+    render: (visual, update, context, t) => {
       const group = syncGroupOf(visual);
       const pages = context.spec.pages.filter((p) => (p.type ?? 'page') !== 'tooltip');
       return (
         <>
-          <Row label="Style">
+          <Row label={t(`${F}.slicer.style`)}>
             <select className="viz-field" value={value(visual, 'slicer', 'style', '')} onChange={(event) => set(update, 'slicer', 'style')(event.target.value || undefined)} data-testid="format-slicer-style">
-              <option value="">Automatic</option>
-              <option value="dropdown">Dropdown</option>
-              <option value="list">List</option>
-              <option value="tiles">Buttons</option>
-              <option value="between">Number range</option>
-              <option value="date_range">Date range</option>
-              <option value="relative">Relative date</option>
-              <option value="input">Type a value</option>
-              <option value="hierarchy">Hierarchy (add more fields)</option>
+              <option value="">{t(`${F}.automatic`)}</option>
+              <option value="dropdown">{t(`${F}.slicer.styles.dropdown`)}</option>
+              <option value="list">{t(`${F}.slicer.styles.list`)}</option>
+              <option value="tiles">{t(`${F}.slicer.styles.tiles`)}</option>
+              <option value="between">{t(`${F}.slicer.styles.between`)}</option>
+              <option value="date_range">{t(`${F}.slicer.styles.dateRange`)}</option>
+              <option value="relative">{t(`${F}.slicer.styles.relative`)}</option>
+              <option value="input">{t(`${F}.slicer.styles.input`)}</option>
+              <option value="hierarchy">{t(`${F}.slicer.styles.hierarchy`)}</option>
             </select>
           </Row>
-          <Toggle label="Single choice" checked={value(visual, 'slicer', 'single', false)} onChange={(single) => set(update, 'slicer', 'single')(single || undefined)} />
-          <p className="viz-label mt-2">Sync across pages</p>
+          <Toggle label={t(`${F}.slicer.single`)} checked={value(visual, 'slicer', 'single', false)} onChange={(single) => set(update, 'slicer', 'single')(single || undefined)} />
+          <p className="viz-label mt-2">{t(`${F}.slicer.sync`)}</p>
           <table className="dash-sync-table" data-testid="sync-slicers">
             <thead>
               <tr>
-                <th>Page</th>
-                <th>Sync</th>
-                <th>Visible</th>
+                <th>{t(`${F}.slicer.page`)}</th>
+                <th>{t(`${F}.slicer.syncColumn`)}</th>
+                <th>{t(`${F}.slicer.visible`)}</th>
               </tr>
             </thead>
             <tbody>
@@ -345,7 +362,7 @@ const SECTIONS: Section[] = [
                         checked={synced}
                         disabled={p.id === context.pageId}
                         onChange={(event) => context.onSpec((spec) => syncSlicer(spec, context.pageId, visual.id, p.id, event.target.checked, true))}
-                        aria-label={`Sync to ${p.name}`}
+                        aria-label={t(`${F}.slicer.syncTo`, { page: p.name })}
                         data-testid={`sync-${p.id}`}
                       />
                     </td>
@@ -355,7 +372,7 @@ const SECTIONS: Section[] = [
                         checked={synced && !copy.hidden}
                         disabled={!synced}
                         onChange={(event) => context.onSpec((spec) => syncSlicer(spec, context.pageId, visual.id, p.id, true, event.target.checked))}
-                        aria-label={`Visible on ${p.name}`}
+                        aria-label={t(`${F}.slicer.visibleOn`, { page: p.name })}
                       />
                     </td>
                   </tr>
@@ -369,15 +386,15 @@ const SECTIONS: Section[] = [
   },
   {
     key: 'tooltip',
-    title: 'Tooltip',
+    titleKey: `${F}.sections.tooltip`,
     types: ['bar', 'column', 'line', 'area', 'combo', 'donut', 'pie', 'treemap', 'funnel', 'waterfall', 'scatter', 'map', 'table', 'matrix'],
     formats: ['tooltip'],
-    render: (visual, update, context) => {
+    render: (visual, update, context, t) => {
       const pages = context.spec.pages.filter((p) => p.type === 'tooltip');
       return (
-        <Row label="Tooltip page">
+        <Row label={t(`${F}.tooltip.page`)}>
           <select className="viz-field" value={value(visual, 'tooltip', 'page', '')} onChange={(event) => set(update, 'tooltip', 'page')(event.target.value || undefined)} data-testid="format-tooltip-page">
-            <option value="">{pages.length ? 'Default tooltip' : 'Make a page a tooltip page first'}</option>
+            <option value="">{pages.length ? t(`${F}.tooltip.default`) : t(`${F}.tooltip.noPages`)}</option>
             {pages.map((p) => (
               <option key={p.id} value={p.id}>
                 {p.name}
@@ -390,30 +407,30 @@ const SECTIONS: Section[] = [
   },
   {
     key: 'conditional',
-    title: 'Conditional formatting',
+    titleKey: `${F}.sections.conditional`,
     types: ['table', 'matrix', 'bar', 'column', 'card', 'kpi', 'multi_card'],
     formats: ['conditional'],
     render: (visual, update) => <ConditionalSection visual={visual} update={update} />,
   },
   {
     key: 'analytics',
-    title: 'Analytics (reference lines, trend, forecast)',
+    titleKey: `${F}.sections.analytics`,
     types: ['bar', 'column', 'line', 'area', 'combo', 'scatter'],
     formats: ['analytics'],
     render: (visual, update) => <AnalyticsSection visual={visual} update={update} />,
   },
   {
     key: 'map',
-    title: 'Map',
+    titleKey: `${F}.sections.map`,
     types: ['map'],
     formats: ['map'],
-    render: (visual, update) => (
-      <Row label="Zoom to">
+    render: (visual, update, _context, t) => (
+      <Row label={t(`${F}.map.zoomTo`)}>
         <select className="viz-field" value={value(visual, 'map', 'scope', '')} onChange={(event) => set(update, 'map', 'scope')(event.target.value || undefined)}>
-          <option value="">Automatic</option>
-          {['world', 'africa', 'europe', 'asia', 'north america', 'south america'].map((scope) => (
+          <option value="">{t(`${F}.automatic`)}</option>
+          {MAP_SCOPES.map(([scope, key]) => (
             <option key={scope} value={scope}>
-              {scope[0]!.toUpperCase() + scope.slice(1)}
+              {t(`${F}.map.scopes.${key}`)}
             </option>
           ))}
         </select>
@@ -439,17 +456,18 @@ export function FormatPane({
   /** Fields of the page's datasets (drill-through fields). */
   fields: string[];
 }) {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   if (!visual) {
     if (!page) return null;
     const preset = page.canvas?.preset ?? '16:9';
     return (
       <div className="space-y-2" data-testid="format-page">
-        <p className="viz-label">Page</p>
-        <Row label="Name">
+        <p className="viz-label">{t(`${F}.page.label`)}</p>
+        <Row label={t(`${F}.page.name`)}>
           <input className="viz-field" value={page.name} onChange={(event) => updatePage({ name: event.target.value })} />
         </Row>
-        <Row label="Canvas size">
+        <Row label={t(`${F}.page.canvasSize`)}>
           <select
             className="viz-field"
             value={preset}
@@ -460,20 +478,20 @@ export function FormatPane({
           >
             {Object.entries(CANVAS_PRESETS).map(([key, size]) => (
               <option key={key} value={key}>
-                {size.label}
+                {CANVAS_PRESET_KEYS[key] ? t(`${F}.page.canvasPresets.${CANVAS_PRESET_KEYS[key]}`) : size.label}
               </option>
             ))}
           </select>
         </Row>
-        <Row label="Background">
+        <Row label={t(`${F}.page.background`)}>
           <input type="color" className="viz-color-input" value={page.canvas?.background || '#f4f6fa'} onChange={(event) => updatePage({ canvas: { ...page.canvas, background: event.target.value } })} />
         </Row>
         {page.canvas?.background && (
           <button type="button" className="viz-chip" onClick={() => updatePage({ canvas: { ...page.canvas, background: '' } })}>
-            <RotateCcw size={12} aria-hidden /> Theme background
+            <RotateCcw size={12} aria-hidden /> {t(`${F}.page.themeBackground`)}
           </button>
         )}
-        <Row label="Page type">
+        <Row label={t(`${F}.page.type`)}>
           <select
             className="viz-field"
             value={page.type ?? 'page'}
@@ -483,15 +501,15 @@ export function FormatPane({
             }}
             data-testid="format-page-type"
           >
-            <option value="page">Page</option>
-            <option value="drillthrough">Drill-through (detail)</option>
-            <option value="tooltip">Tooltip</option>
+            <option value="page">{t(`${F}.page.types.page`)}</option>
+            <option value="drillthrough">{t(`${F}.page.types.drillthrough`)}</option>
+            <option value="tooltip">{t(`${F}.page.types.tooltip`)}</option>
           </select>
         </Row>
-        {page.type === 'tooltip' && <p className="text-[11px] text-muted-foreground">Shown small when hovering points of visuals that pick it under Format → Tooltip.</p>}
+        {page.type === 'tooltip' && <p className="text-[11px] text-muted-foreground">{t(`${F}.page.tooltipHint`)}</p>}
         {page.type === 'drillthrough' && (
           <div className="space-y-1">
-            <p className="text-[11px] text-muted-foreground">Right-click a member of one of these fields on another page → “Drill through”.</p>
+            <p className="text-[11px] text-muted-foreground">{t(`${F}.page.drillthroughHint`)}</p>
             <div className="flex flex-wrap gap-1" data-testid="drillthrough-fields">
               {fields.map((field) => {
                 const on = (page.drillthroughFields ?? []).includes(field);
@@ -510,35 +528,35 @@ export function FormatPane({
             </div>
           </div>
         )}
-        <p className="viz-label mt-3">Dashboard</p>
-        <Row label="Slicers apply">
+        <p className="viz-label mt-3">{t(`${F}.dashboard.label`)}</p>
+        <Row label={t(`${F}.dashboard.slicersApply`)}>
           <select
             className="viz-field"
             value={context.spec.settings?.applyMode ?? 'instant'}
             onChange={(event) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, applyMode: event.target.value as 'instant' | 'button' } }))}
             data-testid="format-apply-mode"
           >
-            <option value="instant">Immediately</option>
-            <option value="button">With an Apply button</option>
+            <option value="instant">{t(`${F}.dashboard.instant`)}</option>
+            <option value="button">{t(`${F}.dashboard.button`)}</option>
           </select>
         </Row>
-        <Toggle label="Filters pane for viewers" checked={context.spec.settings?.showFiltersPane !== false} onChange={(show) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, showFiltersPane: show } }))} />
-        <Toggle label="Viewers may personalize" checked={context.spec.settings?.allowPersonalize !== false} onChange={(allow) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, allowPersonalize: allow } }))} />
+        <Toggle label={t(`${F}.dashboard.filtersPane`)} checked={context.spec.settings?.showFiltersPane !== false} onChange={(show) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, showFiltersPane: show } }))} />
+        <Toggle label={t(`${F}.dashboard.personalize`)} checked={context.spec.settings?.allowPersonalize !== false} onChange={(allow) => context.onSpec((spec) => ({ ...spec, settings: { ...spec.settings, allowPersonalize: allow } }))} />
         <RelationshipsSection spec={context.spec} onSpec={context.onSpec} />
       </div>
     );
   }
-  const sections = SECTIONS.filter((section) => (section.types === 'all' || section.types.includes(visual.type)) && (!search || section.title.toLowerCase().includes(search.toLowerCase())));
+  const sections = SECTIONS.filter((section) => (section.types === 'all' || section.types.includes(visual.type)) && (!search || t(section.titleKey).toLowerCase().includes(search.toLowerCase())));
   return (
     <div className="space-y-2" data-testid="format-pane">
       <label className="dash-pane-search">
         <Search size={12} aria-hidden />
-        <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search format options" aria-label="Search format options" />
+        <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t(`${F}.search`)} aria-label={t(`${F}.search`)} />
       </label>
       {sections.map((section) => (
         <details key={section.key} className="dash-format-section" open={['general', 'colors', 'labels', 'slicer', 'kpi', 'python', 'parameter', 'button', 'navigator'].includes(section.key) || !!search} data-testid={`section-${section.key}`}>
           <summary>
-            {section.title}
+            {t(section.titleKey)}
             {section.formats.some((key) => visual.format?.[key]) && (
               <button
                 type="button"
@@ -552,11 +570,11 @@ export function FormatPane({
                   });
                 }}
               >
-                Reset to theme default
+                {t(`${F}.resetSection`)}
               </button>
             )}
           </summary>
-          <div className="space-y-1.5 pt-1">{section.render(visual, update, context)}</div>
+          <div className="space-y-1.5 pt-1">{section.render(visual, update, context, t)}</div>
         </details>
       ))}
     </div>

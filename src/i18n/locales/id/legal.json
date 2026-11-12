@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "Kontak",
+    "title": "Dapatkan bantuan dengan JT-Code",
+    "backToSignIn": "Kembali ke halaman masuk",
+    "createAccount": "Buat akun",
+    "p1": "",
+    "p2": ""
+  },
+  "privacy": {
+    "eyebrow": "Kebijakan Privasi",
+    "title": "Privasi JT-Code",
+    "signIn": "Masuk",
+    "readTerms": "Baca syarat",
+    "p1": "",
+    "p2": ""
+  },
+  "terms": {
+    "eyebrow": "Ketentuan Layanan",
+    "title": "Ketentuan JT-Code",
+    "createAccount": "Buat akun",
+    "contactSupport": "Hubungi dukungan",
+    "p1": "",
+    "p2": ""
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "returnHome": "Kembali ke JT-Code"
+  }
+}

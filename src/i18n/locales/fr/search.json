@@ -1,0 +1,9 @@
+{
+  "placeholder": "Rechercher des chats, images, fichiers, documents…",
+  "noResults": "Aucun résultat trouvé.",
+  "conversation": "Conversation",
+  "generatedImage": "Image générée",
+  "imageType": "Image · {{style}}",
+  "file": "Fichier",
+  "document": "Document"
+}

@@ -1,0 +1,14 @@
+{
+  "primary": "Primary",
+  "workspace": "Workspace",
+  "connections": "Connections",
+  "account": "Account",
+  "chat": "Chat",
+  "images": "Images",
+  "history": "History",
+  "billing": "Billing",
+  "settings": "Settings",
+  "integrations": "Integrations",
+  "analytics": "Data Analytics",
+  "visualize": "Data Visualization"
+}

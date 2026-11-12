@@ -1,0 +1,41 @@
+{
+  "title": "报表",
+  "subtitle": "导出仪表板，或重复使用已保存的视觉对象。",
+  "export": "导出仪表板",
+  "noCharts": "从“探索”或“预测”中保存视觉对象，即可在仪表板中重复使用。",
+  "library": {
+    "title": "我的视觉对象"
+  },
+  "dashboardToExport": "要导出的仪表板",
+  "noDashboards": "暂无仪表板",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "每个仪表板页面一页，与屏幕显示完全一致"
+    },
+    "png": {
+      "label": "PNG 图片",
+      "hint": "每页一张图片"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "每个视觉对象的数据及原生图表，外加原始数据"
+    },
+    "html": {
+      "label": "交互式 HTML",
+      "hint": "可离线使用的单个文件"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "仪表板定义"
+    }
+  },
+  "preparing": "准备中…",
+  "explore": "探索",
+  "prediction": "预测",
+  "visualOf": "{{type}} 视觉对象",
+  "deletedDataset": "已删除的数据集",
+  "unshare": "取消共享",
+  "share": "共享",
+  "deleteNamed": "删除 {{name}}"
+}

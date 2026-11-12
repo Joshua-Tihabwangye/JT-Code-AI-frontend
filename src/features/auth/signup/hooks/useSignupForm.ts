@@ -61,7 +61,7 @@ export function useSignupForm(
   const submit: SubmitHandler<SignupSchema> = async (values) => {
     const country = getCountryMetadata(values.countryCode);
     if (!country) {
-      form.setError('countryCode', { message: 'Invalid country.' });
+      form.setError('countryCode', { message: 'authErrors.invalidCountry' });
       return;
     }
 

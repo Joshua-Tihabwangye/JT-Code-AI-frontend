@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import { ChevronDown, ChevronUp, Download, FileSpreadsheet, Info, Pin, Plus, Save, Trash2 } from 'lucide-react';
 import { useRepository, type ChartOption, type DashboardSpec, type DashboardVisual, type DashboardVisualType, type VisualOutput } from '@/lib/data';
+import i18n from '@/i18n/config';
 import { useTheme } from '@/lib/theme';
+import { useCatalogText } from '../catalogText';
 import { useDebounced } from '../controls';
 import { useVisualize } from '../context';
 import { renderContext, resolveVisual } from '../dashboards/customize';
 import { BuildPane } from '../dashboards/editor/BuildPane';
-import { newId, VISUAL_BY_TYPE } from '../dashboards/editor/catalog';
+import { AGGREGATIONS, newId, VISUAL_BY_TYPE } from '../dashboards/editor/catalog';
 import { FormatPane } from '../dashboards/editor/FormatPane';
 import { PinDialog } from '../dashboards/PinDialog';
 import { kpiIndexes, Tile } from '../dashboards/runtime';
@@ -130,7 +132,7 @@ export function ExplorePage() {
     });
   }, [params, datasetId, profiles.length, setParams, visualize]);
 
-  const spec: DashboardSpec = useMemo(() => ({ theme: theme?.id ?? 'executive', mode: 'system', calculations, pages: [{ id: 'explore', name: 'Explore', visuals }] }), [theme, calculations, visuals]);
+  const spec: DashboardSpec = useMemo(() => ({ theme: theme?.id ?? 'executive', mode: 'system', calculations, pages: [{ id: 'explore', name: t('visualize.explore.pageName'), visuals }] }), [theme, calculations, visuals, t]);
   const request = useDebounced(
     useMemo(() => (visuals.length ? { visuals: visuals.map((visual) => resolveVisual(visual, spec, {})), mode, theme: spec.theme, ...renderContext(spec, {}) } : null), [visuals, mode, spec]),
     150,
@@ -182,13 +184,14 @@ export function ExplorePage() {
   };
   const kpis = kpiIndexes(visuals);
   const querySummary = current ? describeQuery(current) : '';
+  const text = useCatalogText();
 
   if (!dataset) {
-    return <p className="viz-card viz-card-pad text-sm text-muted-foreground">{t('visualize.explore.pick', 'Choose a dataset in the bar above, or add one on the Data page.')}</p>;
+    return <p className="viz-card viz-card-pad text-sm text-muted-foreground">{t('visualize.explore.pick')}</p>;
   }
   return (
     <div className="explore" data-testid="explore">
-      <div className="explore-types" role="toolbar" aria-label="Chart type">
+      <div className="explore-types" role="toolbar" aria-label={t('visualize.explore.chartType')}>
         {TYPES.map((type) => (
           <button
             key={type}
@@ -204,12 +207,12 @@ export function ExplorePage() {
         ))}
         <span className="flex-1" />
         <button type="button" className="viz-chip" disabled={visuals.length >= MAX_CHARTS} onClick={() => add()} data-testid="explore-add">
-          <Plus size={13} aria-hidden /> {t('visualize.explore.add', 'New chart')}
+          <Plus size={13} aria-hidden /> {t('visualize.explore.add')}
         </button>
       </div>
 
       {suggestions.length > 0 && (
-        <div className="explore-suggestions" aria-label="Suggestions" data-testid="explore-suggestions">
+        <div className="explore-suggestions" aria-label={t('visualize.explore.suggestions')} data-testid="explore-suggestions">
           {suggestions.map((suggestion, index) => {
             const preview = previews.data?.visuals.find((item) => item.id === suggestion.id);
             return (
@@ -221,7 +224,10 @@ export function ExplorePage() {
                     <ChartThumb id={String((suggestion.format?.chart as { chartType?: string })?.chartType)} />
                   )}
                 </span>
-                <span className="truncate text-[11px]">{insights.data?.recommendations[index]?.name}</span>
+                <span className="truncate text-[11px]">{(() => {
+                  const recommendation = insights.data?.recommendations[index];
+                  return recommendation ? text.chartName({ id: recommendation.chartType, name: recommendation.name }) : '';
+                })()}</span>
               </button>
             );
           })}
@@ -229,7 +235,7 @@ export function ExplorePage() {
       )}
 
       <div className="explore-body">
-        <section className={`dash-canvas ${mode} explore-grid`} style={themeStyle(theme, mode, 'comfortable')} data-mode={mode} aria-label="Charts">
+        <section className={`dash-canvas ${mode} explore-grid`} style={themeStyle(theme, mode, 'comfortable')} data-mode={mode} aria-label={t('visualize.explore.charts')}>
           {visuals.map((visual, index) => (
             <div
               key={visual.id}
@@ -252,11 +258,11 @@ export function ExplorePage() {
           ))}
         </section>
 
-        <aside className="dash-pane explore-pane" aria-label="Build and format">
+        <aside className="dash-pane explore-pane" aria-label={t('visualize.explore.buildAndFormat')}>
           <div className="dash-pane-tabs" role="tablist">
             {(['build', 'format'] as const).map((tab) => (
               <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`explore-pane-${tab}`}>
-                {tab === 'build' ? 'Build' : 'Format'}
+                {tab === 'build' ? t('visualize.explore.build') : t('visualize.explore.format')}
               </button>
             ))}
           </div>
@@ -279,10 +285,10 @@ export function ExplorePage() {
 
       <div className="explore-actions">
         <button type="button" className="viz-chip primary" disabled={!current} onClick={() => current && setPinning(current)} data-testid="explore-pin">
-          <Pin size={13} aria-hidden /> {t('visualize.explore.pin', 'Pin to dashboard')}
+          <Pin size={13} aria-hidden /> {t('visualize.explore.pin')}
         </button>
         <button type="button" className="viz-chip" disabled={!current || save.isPending} onClick={() => current && save.mutate(current)} data-testid="explore-save">
-          <Save size={13} aria-hidden /> {save.isSuccess ? t('visualize.explore.saved', 'Saved to My visuals') : t('visualize.explore.save', 'Save to My visuals')}
+          <Save size={13} aria-hidden /> {save.isSuccess ? t('visualize.explore.saved') : t('visualize.explore.save')}
         </button>
         <button type="button" className="viz-chip" disabled={!output?.option} onClick={exportPng}>
           <Download size={13} aria-hidden /> PNG
@@ -290,12 +296,12 @@ export function ExplorePage() {
         <button type="button" className="viz-chip" disabled={!output?.data} onClick={() => output?.data && saveBlob(new Blob([dataCsv(output.data)], { type: 'text/csv' }), `${safeName(output.title ?? 'data')}.csv`)}>
           <FileSpreadsheet size={13} aria-hidden /> CSV
         </button>
-        <button type="button" className="viz-chip" disabled={!current || visuals.length < 2} onClick={() => (setVisuals((list) => list.filter((visual) => visual.id !== selected)), setSelected(visuals.find((visual) => visual.id !== selected)?.id ?? ''))} aria-label="Remove this chart">
+        <button type="button" className="viz-chip" disabled={!current || visuals.length < 2} onClick={() => (setVisuals((list) => list.filter((visual) => visual.id !== selected)), setSelected(visuals.find((visual) => visual.id !== selected)?.id ?? ''))} aria-label={t('visualize.explore.remove')}>
           <Trash2 size={13} aria-hidden />
         </button>
         <span className="flex-1" />
         <button type="button" className="viz-chip" aria-expanded={!!drawer} onClick={() => setDrawer(drawer ? '' : 'data')} data-testid="explore-view-data">
-          {drawer ? <ChevronDown size={13} aria-hidden /> : <ChevronUp size={13} aria-hidden />} {t('visualize.explore.viewData', 'View data')}
+          {drawer ? <ChevronDown size={13} aria-hidden /> : <ChevronUp size={13} aria-hidden />} {t('visualize.explore.viewData')}
         </button>
       </div>
       <ErrorNote error={rendered.error ?? save.error} />
@@ -305,17 +311,17 @@ export function ExplorePage() {
           <div className="viz-segment">
             {(
               [
-                ['data', 'Data behind the chart'],
-                ['rows', 'Raw rows'],
-                ['query', 'Query'],
+                ['data', 'drawer.data'],
+                ['rows', 'drawer.rows'],
+                ['query', 'drawer.query'],
               ] as const
             ).map(([key, label]) => (
               <button key={key} type="button" aria-pressed={drawer === key} onClick={() => setDrawer(key)} data-testid={`explore-drawer-${key}`}>
-                {label}
+                {t(`visualize.explore.${label}`)}
               </button>
             ))}
           </div>
-          {drawer === 'data' && (output?.data ? <DataTable data={output.data} /> : <p className="text-sm text-muted-foreground">No data yet.</p>)}
+          {drawer === 'data' && (output?.data ? <DataTable data={output.data} /> : <p className="text-sm text-muted-foreground">{t('visualize.explore.noData')}</p>)}
           {drawer === 'rows' && rows.data && <RawRows rows={rows.data.rows} />}
           {drawer === 'query' && <p className="text-sm" data-testid="explore-query">{querySummary}</p>}
         </section>
@@ -328,14 +334,22 @@ export function ExplorePage() {
 
 /** The chart's query in plain words, e.g. “Sum of revenue by region (month), top 12”. */
 function describeQuery(visual: DashboardVisual): string {
+  const t = i18n.t.bind(i18n);
   const wells = visual.data.wells;
   if (visual.type === 'chart') {
     const chart = (visual.format?.chart ?? {}) as { chartType?: string; fields?: Record<string, unknown> };
-    return `${humanize(chart.chartType ?? 'chart')} of ${Object.values(chart.fields ?? {}).flat().map(String).map(humanize).join(', ') || 'no fields yet'} (every row, sampled to 10,000 when larger).`;
+    const fields = Object.values(chart.fields ?? {}).flat().map(String).map(humanize).join(', ');
+    return t('visualize.explore.query.chart', { chart: humanize(chart.chartType ?? 'chart'), fields: fields || t('visualize.explore.query.noFields') });
   }
-  const measures = [...(wells.values ?? []), ...(wells.secondaryValues ?? [])].map((ref) => (ref.field === '*' ? 'Count of rows' : ref.calc ? ref.field : `${humanize(ref.agg ?? 'sum')} of ${humanize(ref.field)}`));
-  const groups = [...(wells.category ?? []), ...(wells.rows ?? []), ...(wells.legend ?? []), ...(wells.columns ?? [])].map((ref) => humanize(ref.field) + (ref.grain ? ` (${ref.grain})` : ''));
-  return `${measures.join(', ') || 'Count of rows'}${groups.length ? ` by ${groups.join(', ')}` : ''} — computed in the database, then drawn in Python.`;
+  const aggName = (agg: string) => AGGREGATIONS.find(([value]) => value === agg)?.[1] ?? humanize(agg);
+  const measures = [...(wells.values ?? []), ...(wells.secondaryValues ?? [])].map((ref) =>
+    ref.field === '*' ? t('visualize.explore.query.countRows') : ref.calc ? ref.field : t('visualize.explore.query.measure', { agg: aggName(ref.agg ?? 'sum'), field: humanize(ref.field) }),
+  );
+  const groups = [...(wells.category ?? []), ...(wells.rows ?? []), ...(wells.legend ?? []), ...(wells.columns ?? [])].map((ref) =>
+    ref.grain ? t('visualize.explore.query.grain', { field: humanize(ref.field), grain: t(`visualize.explore.query.grains.${ref.grain}`) }) : humanize(ref.field),
+  );
+  const what = measures.join(', ') || t('visualize.explore.query.countRows');
+  return groups.length ? t('visualize.explore.query.grouped', { what, groups: groups.join(', ') }) : t('visualize.explore.query.total', { what });
 }
 
 function RawRows({ rows }: { rows: Record<string, unknown>[] }) {

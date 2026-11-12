@@ -1,0 +1,19 @@
+{
+  "title": "欢迎回来",
+  "subtitle": "登录以继续使用 JT-Code",
+  "connecting": "连接中…",
+  "emailLabel": "电子邮箱地址",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "密码",
+  "passwordPlaceholder": "请输入密码",
+  "forgotPassword": "忘记密码？",
+  "submit": "登录",
+  "noAccount": "还没有账号？",
+  "createAccount": "创建账号",
+  "helpText": "",
+  "signInWithGoogle": "使用 Google 登录",
+  "signInWithApple": "使用 Apple 登录",
+  "offlineHint": "离线设计模式：不使用后端。可使用任意邮箱和密码登录（将创建本地账户），或继续使用演示账户。",
+  "demoAccount": "继续使用演示账户",
+  "continueWith": "通过 {{provider}} 继续"
+}

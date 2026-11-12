@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Analisi dei dati",
+  "title": "Analisi dei dati",
+  "subtitle": "Carica un CSV, esplora le sue colonne, esegui analisi e trasforma i risultati in grafici.",
+  "upload": {
+    "title": "Aggiungi un set di dati",
+    "name": "Nome",
+    "namePlaceholder": "per esempio. Vendite del terzo trimestre",
+    "file": "File CSV (fino a 25 MB)",
+    "or": "— o incolla CSV —",
+    "paste": "Testo CSV",
+    "pastePlaceholder": "regione, entrate\nEst,120\nOvest,80",
+    "submit": "Aggiungi set di dati",
+    "limits": "CSV UTF-8 con una riga di intestazione; fino a 100.000 righe e 200 colonne.",
+    "needData": "Scegli un file CSV o incolla il testo CSV."
+  },
+  "datasets": "Set di dati",
+  "noDatasets": "Nessun set di dati ancora.",
+  "datasetMeta": "{{rows}} righe · {{columns}} colonne",
+  "emptyTitle": "Nessun set di dati selezionato",
+  "emptyDesc": "Aggiungi un CSV a sinistra per iniziare l'analisi.",
+  "deleteDataset": "Eliminare",
+  "deleteConfirm": "Eliminare questo set di dati con le relative analisi e grafici?",
+  "profilePending": "Le statistiche delle colonne vengono visualizzate dopo la prima analisi di un file caricato.",
+  "profile": {
+    "column": "Colonna",
+    "kind": "Tipo",
+    "missing": "Mancante",
+    "distinct": "Distinto",
+    "summary": "Riepilogo"
+  },
+  "builder": {
+    "title": "Analizzare",
+    "filters": "Filtri",
+    "addFilter": "Aggiungi filtro",
+    "noFilters": "Nessun filtro: ogni riga è inclusa.",
+    "removeFilter": "Rimuovi il filtro",
+    "column": "Colonna",
+    "operator": "Operatore",
+    "value": "Valore",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Raggruppa per",
+    "aggregate": "Aggregato",
+    "ofColumn": "Di colonna",
+    "allNumeric": "Tutte le colonne numeriche",
+    "sortBy": "Ordina per",
+    "direction": "Direzione",
+    "asc": "Ascendente",
+    "desc": "Discendente",
+    "limit": "Limite di riga",
+    "none": "Nessuno",
+    "run": "Esegui l'analisi",
+    "cost": "Ogni analisi utilizza 10 crediti; i grafici sono gratuiti."
+  },
+  "operators": {
+    "eq": "è uguale",
+    "ne": "non uguale",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "contiene",
+    "in": "è uno di"
+  },
+  "aggregates": {
+    "count": "Contare le righe",
+    "sum": "Somma",
+    "mean": "Media",
+    "min": "Minimo",
+    "max": "Massimo"
+  },
+  "status": {
+    "queued": "In coda",
+    "running": "Corsa",
+    "completed": "Completato",
+    "failed": "Fallito",
+    "ready": "Pronto"
+  },
+  "results": {
+    "title": "Risultati",
+    "rows": "{{count}} righe (mostra {{shown}})",
+    "download": "Scarica CSV",
+    "retry": "Riprova",
+    "pickRun": "Corsa di analisi"
+  },
+  "charts": {
+    "title": "Grafici",
+    "kind": "Grafico",
+    "x": "Asse X",
+    "y": "Asse Y (numerico)",
+    "chartTitle": "Titolo",
+    "create": "Crea grafico",
+    "delete": "Elimina grafico",
+    "noImage": "I grafici vengono visualizzati sul server in modalità API."
+  },
+  "chartKinds": {
+    "bar": "Sbarra",
+    "line": "Linea",
+    "scatter": "Dispersione",
+    "area": "Zona",
+    "histogram": "Istogramma",
+    "box": "Scatola",
+    "pie": "Torta"
+  }
+}

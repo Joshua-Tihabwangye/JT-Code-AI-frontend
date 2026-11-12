@@ -1,0 +1,19 @@
+{
+  "title": "वापसी पर स्वागत है",
+  "subtitle": "JT-Code पर जारी रखने के लिए साइन इन करें",
+  "connecting": "कनेक्ट हो रहा है…",
+  "emailLabel": "ईमेल पता",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "पासवर्ड",
+  "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+  "forgotPassword": "पासवर्ड भूल गए?",
+  "submit": "साइन इन",
+  "noAccount": "खाता नहीं है?",
+  "createAccount": "खाता बनाएँ",
+  "helpText": "",
+  "signInWithGoogle": "Google से साइन इन करें",
+  "signInWithApple": "Apple के साथ साइन इन करें",
+  "offlineHint": "ऑफ़लाइन डिज़ाइन मोड: बैकएंड का उपयोग नहीं किया जाता है। किसी भी ईमेल और पासवर्ड से साइन इन करें (एक स्थानीय खाता बनाया जाता है), या डेमो खाते के साथ जारी रखें।",
+  "demoAccount": "डेमो अकाउंट जारी रखें",
+  "continueWith": "{{provider}} के साथ जारी रखें"
+}

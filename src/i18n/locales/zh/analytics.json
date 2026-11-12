@@ -1,0 +1,105 @@
+{
+  "eyebrow": "数据分析",
+  "title": "数据分析",
+  "subtitle": "上传 CSV，浏览各列，运行分析并将结果转换为图表。",
+  "upload": {
+    "title": "添加数据集",
+    "name": "名称",
+    "namePlaceholder": "例如：第三季度销售额",
+    "file": "CSV 文件（最大 25 MB）",
+    "or": "— 或粘贴 CSV —",
+    "paste": "CSV 文本",
+    "pastePlaceholder": "region,revenue\nEast,120\nWest,80",
+    "submit": "添加数据集",
+    "limits": "带标题行的 UTF-8 CSV；最多 100,000 行、200 列。",
+    "needData": "请选择 CSV 文件或粘贴 CSV 文本。"
+  },
+  "datasets": "数据集",
+  "noDatasets": "暂无数据集。",
+  "datasetMeta": "{{rows}} 行 · {{columns}} 列",
+  "emptyTitle": "未选择数据集",
+  "emptyDesc": "在左侧添加 CSV 以开始分析。",
+  "deleteDataset": "删除",
+  "deleteConfirm": "删除此数据集及其分析和图表？",
+  "profilePending": "上传文件完成首次分析后将显示列统计信息。",
+  "profile": {
+    "column": "列",
+    "kind": "类型",
+    "missing": "缺失",
+    "distinct": "非重复值",
+    "summary": "摘要"
+  },
+  "builder": {
+    "title": "分析",
+    "filters": "筛选器",
+    "addFilter": "添加筛选器",
+    "noFilters": "无筛选器：包含所有行。",
+    "removeFilter": "移除筛选器",
+    "column": "列",
+    "operator": "运算符",
+    "value": "值",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "分组依据",
+    "aggregate": "聚合",
+    "ofColumn": "列",
+    "allNumeric": "所有数值列",
+    "sortBy": "排序依据",
+    "direction": "方向",
+    "asc": "升序",
+    "desc": "降序",
+    "limit": "行数限制",
+    "none": "无",
+    "run": "运行分析",
+    "cost": "每次分析消耗 10 积分；图表免费。"
+  },
+  "operators": {
+    "eq": "等于",
+    "ne": "不等于",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "包含",
+    "in": "属于其中之一"
+  },
+  "aggregates": {
+    "count": "行计数",
+    "sum": "求和",
+    "mean": "平均值",
+    "min": "最小值",
+    "max": "最大值"
+  },
+  "status": {
+    "queued": "排队中",
+    "running": "运行中",
+    "completed": "已完成",
+    "failed": "失败",
+    "ready": "就绪"
+  },
+  "results": {
+    "title": "结果",
+    "rows": "{{count}} 行（显示 {{shown}} 行）",
+    "download": "下载 CSV",
+    "retry": "重试",
+    "pickRun": "分析运行"
+  },
+  "charts": {
+    "title": "图表",
+    "kind": "图表",
+    "x": "X 轴",
+    "y": "Y 轴（数值）",
+    "chartTitle": "标题",
+    "create": "创建图表",
+    "delete": "删除图表",
+    "noImage": "在 API 模式下，图表在服务器端渲染。"
+  },
+  "chartKinds": {
+    "bar": "条形图",
+    "line": "折线图",
+    "scatter": "散点图",
+    "area": "面积图",
+    "histogram": "直方图",
+    "box": "箱线图",
+    "pie": "饼图"
+  }
+}

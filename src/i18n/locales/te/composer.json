@@ -1,0 +1,10 @@
+{
+  "attach": "జోడించండి",
+  "attachDocument": "డాక్యుమెంట్ జోడించండి",
+  "attachImage": "చిత్రం జోడించండి",
+  "currentPlan": "ప్రస్తుత ప్లాన్",
+  "voiceInput": "వాయిస్ ఇన్‌పుట్",
+  "sendMessage": "సందేశం పంపండి",
+  "defaultPlaceholder": "JT-Code‌ని ఏదైనా అడగండి…",
+  "removeAttachment": "{{name}}ని తీసివేయి"
+}

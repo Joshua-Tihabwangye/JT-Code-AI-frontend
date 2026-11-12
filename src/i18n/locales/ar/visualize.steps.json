@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "التنظيف",
+    "rows": "الصفوف",
+    "columns": "الأعمدة",
+    "text": "النص",
+    "numbers": "الأرقام والتواريخ",
+    "shape": "الشكل",
+    "combine": "الدمج"
+  },
+  "kinds": {
+    "removeDuplicates": "إزالة الصفوف المكررة",
+    "trim": "اقتطاع المسافات الزائدة",
+    "removeBlankRows": "إزالة الصفوف الفارغة",
+    "fillBlanks": "ملء الفراغات",
+    "replaceValues": "استبدال القيم",
+    "changeType": "تغيير النوع",
+    "outliers": "معالجة القيم المتطرفة",
+    "filterRows": "تصفية الصفوف",
+    "sort": "فرز الصفوف",
+    "keepRows": "الإبقاء على الصفوف العليا أو السفلى",
+    "removeColumns": "إزالة الأعمدة",
+    "keepColumns": "الإبقاء على هذه الأعمدة فقط",
+    "rename": "إعادة تسمية عمود",
+    "calculatedColumn": "عمود محسوب",
+    "conditionalColumn": "عمود شرطي",
+    "splitColumn": "تقسيم عمود",
+    "mergeColumns": "دمج الأعمدة",
+    "textCase": "تغيير حالة الأحرف",
+    "bins": "تجميع الأرقام في فئات",
+    "dateParts": "استخراج أجزاء التاريخ",
+    "dateTable": "إنشاء جدول تواريخ (تقويم)",
+    "groupBy": "تجميع حسب",
+    "pivot": "تمحور (صفوف → أعمدة)",
+    "unpivot": "إلغاء التمحور (أعمدة → صفوف)",
+    "merge": "دمج مع مجموعة بيانات أخرى",
+    "append": "إلحاق مجموعة بيانات أخرى"
+  },
+  "fields": {
+    "compareColumns": "المقارنة في هذه الأعمدة فقط",
+    "trimColumns": "الأعمدة (كل الأعمدة النصية عند تركها فارغة)",
+    "blankIn": "فارغ في",
+    "removeWhen": "الإزالة عندما",
+    "column": "العمود",
+    "columns": "الأعمدة",
+    "with": "بـ",
+    "value": "القيمة",
+    "find": "البحث عن",
+    "replaceWith": "الاستبدال بـ",
+    "match": "المطابقة",
+    "to": "إلى",
+    "action": "الإجراء",
+    "rowsThatMatch": "الصفوف المطابقة لـ",
+    "conditions": "الشروط",
+    "sortBy": "فرز حسب",
+    "keep": "الإبقاء على",
+    "howMany": "العدد",
+    "newName": "الاسم الجديد",
+    "newColumn": "العمود الجديد",
+    "formula": "الصيغة",
+    "ifThen": "إذا … فإن",
+    "otherwise": "وإلا",
+    "at": "عند",
+    "intoParts": "إلى (أجزاء)",
+    "newNames": "الأسماء الجديدة (اختياري)",
+    "separator": "الفاصل",
+    "case": "حالة الأحرف",
+    "bins": "الفئات",
+    "howManyBins": "عدد الفئات",
+    "edges": "الحدود",
+    "dateColumn": "عمود التاريخ",
+    "parts": "الأجزاء",
+    "fromDatesIn": "من التواريخ في",
+    "fiscalStart": "تبدأ السنة المالية في الشهر",
+    "groupBy": "تجميع حسب",
+    "calculate": "الحساب",
+    "keepAsRows": "الإبقاء كصفوف",
+    "valuesBecomeColumns": "القيم تصبح أعمدة",
+    "fillWith": "الملء بـ",
+    "aggregation": "التجميع",
+    "keepTheseColumns": "الإبقاء على هذه الأعمدة",
+    "nameColumn": "عمود الاسم",
+    "valueColumn": "عمود القيمة",
+    "dataset": "مجموعة البيانات",
+    "keyHere": "المفتاح في هذه البيانات",
+    "keyOther": "المفتاح في الأخرى"
+  },
+  "options": {
+    "blankHow": {
+      "any": "أيٌّ منها فارغ",
+      "all": "جميعها فارغة"
+    },
+    "fill": {
+      "mean": "المتوسط",
+      "median": "الوسيط",
+      "mode": "القيمة الأكثر تكرارًا",
+      "zero": "صفر",
+      "down": "القيمة أعلاه (ملء لأسفل)",
+      "up": "القيمة أدناه (ملء لأعلى)",
+      "value": "قيمة من اختياري"
+    },
+    "replaceMatch": {
+      "exact": "القيمة كاملة",
+      "contains": "جزء من النص"
+    },
+    "types": {
+      "number": "رقم",
+      "date": "تاريخ",
+      "text": "نص"
+    },
+    "outliers": {
+      "cap": "التقييد عند الحدود",
+      "remove": "إزالة تلك الصفوف",
+      "flag": "التمييز في عمود جديد"
+    },
+    "filterMode": {
+      "keep": "إبقاء",
+      "remove": "إزالة"
+    },
+    "combine": {
+      "and": "كل الشروط",
+      "or": "أي شرط"
+    },
+    "keepRows": {
+      "top": "الصفوف الأولى",
+      "bottom": "الصفوف الأخيرة"
+    },
+    "textCase": {
+      "title": "أحرف استهلالية (Title Case)",
+      "upper": "أحرف كبيرة (UPPER)",
+      "lower": "أحرف صغيرة (lower)"
+    },
+    "bins": {
+      "equal": "عرض متساوٍ",
+      "edges": "حدود من اختياري"
+    },
+    "mergeHow": {
+      "left": "كل صفوف هذه البيانات",
+      "inner": "الصفوف المتطابقة فقط",
+      "outer": "كل صفوف كلتيهما"
+    },
+    "aggs": {
+      "sum": "المجموع",
+      "avg": "المتوسط",
+      "count": "العدد",
+      "distinct": "عدد القيم المميزة",
+      "min": "الأدنى",
+      "max": "الأقصى",
+      "median": "الوسيط"
+    }
+  },
+  "parts": {
+    "year": "السنة",
+    "quarter": "ربع السنة",
+    "month": "الشهر",
+    "monthName": "اسم الشهر",
+    "week": "الأسبوع",
+    "weekday": "يوم الأسبوع",
+    "weekdayName": "اسم يوم الأسبوع",
+    "day": "اليوم",
+    "hour": "الساعة"
+  },
+  "conditionOps": {
+    "eq": "يساوي",
+    "ne": "لا يساوي",
+    "in": "أحد القيم",
+    "notIn": "ليس من القيم",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "بين",
+    "contains": "يحتوي على",
+    "startsWith": "يبدأ بـ",
+    "endsWith": "ينتهي بـ",
+    "blank": "فارغ",
+    "notBlank": "غير فارغ"
+  },
+  "summary": {
+    "keepConditions": "إبقاء (الشروط: {{count}})",
+    "removeConditions": "إزالة (الشروط: {{count}})",
+    "by": "حسب {{columns}}",
+    "anotherDataset": "مجموعة بيانات أخرى",
+    "types": {
+      "number": "رقم",
+      "date": "تاريخ",
+      "text": "نص"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "إزالة التكرارات",
+    "keepOnePerId": "إبقاء صف واحد لكل معرّف",
+    "removeMissingId": "إزالة الصفوف بلا معرّف",
+    "fillBlanks": "ملء الفراغات",
+    "blankOut": "تفريغ «{{value}}»",
+    "trimSpaces": "اقتطاع المسافات",
+    "toNumber": "تحويل إلى رقم",
+    "toDate": "تحويل إلى تاريخ",
+    "consistentSpelling": "توحيد الكتابة",
+    "capOutliers": "تقييد القيم المتطرفة",
+    "removeColumn": "إزالة العمود"
+  }
+}

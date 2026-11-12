@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Dashibodi",
+    "data": "Data",
+    "gallery": "Matunzio",
+    "predict": "Bashiri",
+    "reports": "Ripoti",
+    "explore": "Chunguza"
+  },
+  "askAi": "Uliza AI",
+  "hero": {
+    "title": "Studio ya Kutazama Data"
+  },
+  "assistant": {
+    "title": "JT-Code AI",
+    "cost": "Hutumia mikopo tu unapotuma kidokezo. Chati, maarifa na mapendekezo ni bure.",
+    "about": "Uliza kuhusu",
+    "intro": "Eleza unachotaka kuona. Ninachagua chati, jaza safu wima na uikague kabla ya kitu chochote kuanza.",
+    "thinking": "Kufikiri..",
+    "builtIn": "Imejengwa ndani",
+    "credits": "{{credits}} mikopo",
+    "free": "hakuna mikopo iliyotumika",
+    "openExplore": "Fungua katika Gundua",
+    "setUp": "Weka utabiri",
+    "placeholder": "k.m. Onyesha mapato ya kila mwezi kwa eneo",
+    "prompt": "Haraka",
+    "send": "Tuma",
+    "close": "Funga"
+  },
+  "dataset": "Seti ya data",
+  "noDataset": "Bado hakuna mkusanyiko wa data",
+  "sections": "Sehemu za taswira ya data",
+  "controls": {
+    "noColumns": {
+      "numeric": "Hakuna safu wima za nambari",
+      "datetime": "Hakuna safu wima za tarehe",
+      "categorical": "Hakuna safu wima za kitengo",
+      "dimension": "Hakuna safu wima za vipimo",
+      "any": "Hakuna safu wima"
+    },
+    "chooseColumn": "Chagua safu..",
+    "none": "Hakuna",
+    "automatic": "Otomatiki"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "bora",
+      "good": "nzuri",
+      "fair": "haki",
+      "weak": "dhaifu",
+      "unknown": "haijulikani"
+    },
+    "dataset": "Seti ya data",
+    "noDatasets": "Bado hakuna seti za data",
+    "rows_one": "{{rows}} safu",
+    "rows_other": "{{rows}} safu",
+    "less": "Chini",
+    "howToRead": "Jinsi ya kuisoma",
+    "dataOf": "{{title}} data",
+    "tableSize": "{{rows}} safu × {{columns}} safu wima - data ambayo chati hii inaonyesha",
+    "tableSizeFirst": "{{rows}} safu × {{columns}} safu wima (safu mlalo za kwanza) - data ambayo chati hii inaonyesha",
+    "close": "Funga",
+    "expandRibbon": "Panua Ribbon",
+    "collapseRibbon": "Kunja utepe"
+  }
+}

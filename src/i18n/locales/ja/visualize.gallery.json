@@ -1,0 +1,18 @@
+{
+  "title": "チャートギャラリー",
+  "subtitle": "{{count}} グラフ タイプ — Explore でグラフ タイプを開くと、列が埋められます。",
+  "search": "チャートを検索します。 「予測」「共有」",
+  "searchLabel": "チャートの検索",
+  "level": "レベル",
+  "allLevels": "すべてのレベル",
+  "essentialShort": "不可欠",
+  "advancedShort": "高度な",
+  "all": "全て",
+  "recommended": "{{name}} に推奨",
+  "recommendedHint": "列から選択 — 列を開いてデータとともに確認します。",
+  "empty": "その検索に一致するチャートはありません。",
+  "advancedBadge": "高度な",
+  "useInExplore": "探索での使用",
+  "addToDashboard": "ダッシュボードに追加",
+  "thisDataset": "このデータセット"
+}

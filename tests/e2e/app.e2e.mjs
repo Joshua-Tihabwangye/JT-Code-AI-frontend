@@ -20,16 +20,23 @@ const run = Date.now().toString(36);
 const email = `e2e-${run}@jt-code.local`;
 const password = `E2e-${run}-Passw0rd!`;
 const results = [];
+const MAILPIT = process.env.MAILPIT_URL ?? 'http://127.0.0.1:8025';
+// E2E_ONLY=<regex>: run only the matching steps (one phase); the account steps always run.
+const ONLY = process.env.E2E_ONLY ? new RegExp(process.env.E2E_ONLY, 'i') : null;
+const ALWAYS = new Set(['sign up']);
 
 mkdirSync(SHOTS, { recursive: true });
 
 async function grantCredits(address, credits = 5000) {
-  await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), ['manage.py', 'grant_local_credits', address, '--credits', String(credits)], {
+  // The Docker stack's database is not the host's native one (JT_CODE_STACK=native for the native stack).
+  const manage = process.env.JT_CODE_STACK === 'native' ? ['manage.py'] : ['scripts/local_manage.py', 'docker'];
+  await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), [...manage, 'grant_local_credits', address, '--credits', String(credits)], {
     cwd: BACKEND_DIR,
   });
 }
 
 async function step(page, name, fn) {
+  if (ONLY && !ONLY.test(name) && !ALWAYS.has(name)) return;
   const started = Date.now();
   try {
     await fn();
@@ -42,6 +49,22 @@ async function step(page, name, fn) {
     console.log(`  ✗ ${name}\n      ${String(error?.message ?? error).split('\n')[0]}`);
     throw error;
   }
+}
+
+/** The sign-up confirmation link GoTrue mailed to the address (the Docker stack does not auto-confirm). */
+async function confirmationLink(address) {
+  const deadline = Date.now() + 30_000;
+  while (Date.now() < deadline) {
+    const { messages } = await (await fetch(`${MAILPIT}/api/v1/messages`)).json();
+    const message = messages.find((m) => /confirm/i.test(m.Subject) && m.To.some((to) => to.Address === address));
+    if (message) {
+      const { HTML } = await (await fetch(`${MAILPIT}/api/v1/message/${message.ID}`)).json();
+      const link = /href="([^"]*\/verify[^"]*)"/.exec(HTML)?.[1];
+      if (link) return link.replace(/&amp;/g, '&');
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+  throw new Error(`No confirmation mail for ${address} in Mailpit`);
 }
 
 const textOf = (page, selector) => page.$eval(selector, (el) => el.textContent ?? '');
@@ -108,6 +131,32 @@ async function fitsOnScreen(page, name) {
   if (process.env.E2E_SCREENSHOTS) await page.screenshot({ path: `${process.env.E2E_SCREENSHOTS}/${name}.png`, fullPage: false });
 }
 
+/** Waits until a dashboard page has at least ``min`` tiles and none is still loading; fails on any error tile. */
+async function allDrawn(page, min = 1, timeout = 120_000) {
+  await page.waitForFunction(
+    (count) => {
+      const tiles = [...document.querySelectorAll('[data-testid^="tile-"]')];
+      return tiles.length >= count && tiles.every((tile) => tile.getAttribute('data-status') !== 'loading') && !document.querySelector('[data-updating]');
+    },
+    { timeout },
+    min,
+  );
+  const failed = await page.$$eval('[data-testid^="tile-"]', (tiles) => tiles.filter((t) => t.getAttribute('data-status') === 'error').map((t) => `${t.getAttribute('data-testid')}:${t.textContent}`));
+  if (failed.length) throw new Error(`visuals not drawn: ${failed.join(' | ')}`);
+}
+
+/** Right-clicks along a chart's bars (from the right) until the point menu opens on a data point. */
+async function rightClickPoint(page, tileSelector) {
+  const box = await (await page.waitForSelector(`${tileSelector} canvas`)).boundingBox();
+  for (const fromBottom of [40, 60, 80]) {
+    for (let x = box.x + box.width - 24; x > box.x + 40; x -= 7) {
+      await page.mouse.click(x, box.y + box.height - fromBottom, { button: 'right' });
+      if (await page.waitForSelector('[data-testid="point-menu"]', { timeout: 250 }).catch(() => null)) return;
+    }
+  }
+  throw new Error('No data point found to right-click');
+}
+
 async function main() {
   if (!CHROME) throw new Error('Chrome not found; set CHROME_PATH.');
   const health = await fetch(`${BASE}/api/v1/health/ready/`).catch(() => null);
@@ -146,7 +195,13 @@ async function main() {
       await page.type('#confirmPassword', password);
       await page.click('#acceptedTerms');
       await page.click('button[type="submit"]');
-      await page.waitForFunction(() => location.pathname === '/app/chat', { timeout: 30_000 });
+      // Either signed in at once (auto-confirm) or told to confirm the address first.
+      await page.waitForFunction(() => location.pathname === '/app/chat' || /confirmation link/i.test(document.body.innerText), { timeout: 30_000 });
+      if (!(await page.evaluate(() => location.pathname === '/app/chat'))) {
+        // The emailed link verifies the address with GoTrue and returns to the app signed in.
+        await page.goto(await confirmationLink(email), { waitUntil: 'networkidle0' });
+        await page.waitForFunction(() => location.pathname.startsWith('/app/'), { timeout: 30_000 });
+      }
       await grantCredits(email);
     });
 
@@ -340,13 +395,19 @@ async function main() {
       await domClick(page, '[data-testid="tab-reports"]');
       await page.waitForSelector('[data-testid="saved-charts"] .viz-card', { timeout: 30_000 });
       await page.waitForSelector('[data-testid="report-export"] [data-testid="export-xlsx"]');
-      // The new module pages in dark mode.
+      // The new module pages in dark mode (the assistant drawer from the step before is closed first).
+      if (await page.$('[data-testid="assistant-panel"]')) await page.keyboard.press('Escape');
+      if (await page.$('[data-testid="assistant-panel"]')) await domClick(page, '.viz-drawer-backdrop');
+      await page.waitForFunction(() => !document.querySelector('[data-testid="assistant-panel"]'), { timeout: 10_000 });
       await domClick(page, '.sidebar-footer button');
       await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       await fitsOnScreen(page, 'reports-dark');
-      for (const tab of ['gallery', 'explore', 'data']) {
+      for (const [tab, root] of [['gallery', 'visualize-gallery'], ['explore', 'explore'], ['data', 'visualize-data']]) {
         await domClick(page, `[data-testid="tab-${tab}"]`);
-        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await page.waitForSelector(`[data-testid="${root}"]`);
+        await page.waitForFunction(() => document.querySelectorAll('.dash-tile').length === 0 || (!document.querySelector('.dash-tile[data-status="loading"]') && document.querySelector('.dash-tile canvas')), { timeout: 60_000 });
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         await fitsOnScreen(page, `${tab}-dark`);
       }
       await domClick(page, '.sidebar-footer button');
@@ -425,8 +486,9 @@ async function main() {
       if (!(leftAfter > leftBefore)) throw new Error(`drag did not move the visual (${leftBefore} → ${leftAfter})`);
       const leftover = await page.$$eval('.dash-guide', (els) => els.length);
       if (leftover) throw new Error(`${leftover} alignment guides stayed on screen after the drag`);
+      // The auto-dashboard already has a drill-through detail page; this adds a third page.
       await domClick(page, '[data-testid="add-page"]');
-      await page.waitForSelector('[data-testid="page-1"]');
+      await page.waitForSelector('[data-testid="page-2"]');
       await domClick(page, '[data-testid="page-0"]');
       await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
       await fitsOnScreen(page, 'editor');
@@ -495,7 +557,7 @@ async function main() {
       await page.waitForSelector('[data-testid="interact-kpi-0-none"][aria-pressed="true"]');
       await fitsOnScreen(page, 'editor-interactions');
       await domClick(page, '[data-testid="edit-interactions"]');
-      await domClick(page, '[data-testid="page-1"]');
+      await domClick(page, '[data-testid="page-2"]');
       await domClick(page, '[data-testid="insert-menu"]');
       await domClick(page, '[data-testid="insert-card"]');
       await domClick(page, '[data-testid="field-revenue"]');
@@ -525,7 +587,8 @@ async function main() {
         el.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: box.left + 20, clientY: box.top + 5 }));
       });
       await page.waitForSelector('[data-testid="point-menu"]');
-      await domClick(page, '[data-testid="point-menu"] [data-testid^="drillthrough-"]');
+      // The page made a drill-through above (the auto-dashboard's own Details page is listed first).
+      await page.$$eval('[data-testid="point-menu"] [data-testid^="drillthrough-"]', (buttons) => buttons[buttons.length - 1].click());
       await page.waitForSelector('[data-testid="drillthrough-back"]');
       await waitForText(page, '[data-testid="drillthrough-filters"]', / · \S/, 5_000);
       await page.waitForSelector('[data-testid^="tile-"][data-status="ok"] .dash-kpi-value', { timeout: 60_000 });
@@ -652,6 +715,186 @@ async function main() {
       await domClick(page, '[data-testid="reset-personal"]');
       await page.waitForSelector('[data-testid="dashboard-canvas"][data-mode="light"]');
       await page.waitForSelector('[data-testid="vheader-matrix"] [data-testid="vheader-personalize"][aria-pressed="false"]', { timeout: 30_000 });
+    });
+
+    await step(page, 'dashboards: a template with its column mapping, redrawn in under 2 s at 1366×768', async () => {
+      await page.setViewport({ width: 1366, height: 768 });
+      await page.goto(`${BASE}/app/visualize/dashboards`, { waitUntil: 'networkidle2' });
+      await domClick(page, '[data-testid="template-dashboard"]');
+      await page.waitForSelector('[data-testid="new-dashboard-dialog"]');
+      const retail = await page.$$eval('[data-testid="new-dataset"] option', (options) => options.find((o) => /Retail sales/.test(o.textContent ?? ''))?.value);
+      if (retail) await page.select('[data-testid="new-dataset"]', retail);
+      await page.waitForSelector('[data-testid="template-retail"]');
+      const cards = await page.$$eval('[data-testid^="template-"].dash-template-card', (items) => items.length);
+      if (cards !== 9) throw new Error(`expected 9 templates, saw ${cards}`);
+      await page.screenshot({ path: `${SHOTS}/templates-light.png` });
+      await domClick(page, '.sidebar-footer button');
+      await page.waitForFunction(() => document.documentElement.classList.contains('dark'), { timeout: 5_000 }).catch(() => undefined);
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      await page.screenshot({ path: `${SHOTS}/templates-dark.png` });
+      await domClick(page, '.sidebar-footer button');
+      await domClick(page, '[data-testid="template-sales"]');
+      await page.waitForSelector('[data-testid="template-mapping"]');
+      const amount = await page.$eval('[data-testid="map-amount"]', (el) => el.value);
+      if (amount !== 'revenue') throw new Error(`the mapping should suggest revenue, got ${amount}`);
+      await domClick(page, '[data-testid="new-create"]');
+      await page.waitForSelector('[data-testid="dashboard-canvas"]', { timeout: 60_000 });
+      await allDrawn(page, 14);
+      globalThis.templateDashboard = page.url();
+      await fitsOnScreen(page, 'template-dashboard');
+      // The page fits a 1366×768 screen without scrolling.
+      const bottom = await page.$eval('[data-testid="dashboard-canvas"]', (el) => el.getBoundingClientRect().bottom);
+      if (bottom > 768 + 2) throw new Error(`the page needs scrolling at 1366×768 (bottom at ${Math.round(bottom)} px)`);
+      // A slicer change redraws all 15 visuals (new queries, not the cache) in under 2 s.
+      const value = () => page.$eval('[data-testid="tile-kpi-0"] .dash-kpi-value', (el) => el.textContent);
+      const before = await value();
+      await domClick(page, '[data-testid^="tile-slicer-"] [data-testid="slicer-button"]');
+      const started = Date.now();
+      await domClick(page, '[role="option"]');
+      await page.waitForFunction((was) => document.querySelector('[data-testid="tile-kpi-0"] .dash-kpi-value')?.textContent !== was, { timeout: 30_000 }, before);
+      await allDrawn(page, 14);
+      const ms = Date.now() - started;
+      console.log(`      page redraw after a slicer change: ${ms} ms`);
+      if (ms > 2000) throw new Error(`the page took ${ms} ms to redraw (limit 2000)`);
+      // Keyboard: Tab reaches the tiles, arrows move between them, Enter opens focus mode.
+      await page.focus('[data-testid="tile-kpi-0"]');
+      await page.keyboard.press('ArrowRight');
+      const focused = await page.evaluate(() => document.activeElement?.getAttribute('data-testid'));
+      if (!focused?.startsWith('tile-') || focused === 'tile-kpi-0') throw new Error(`arrow keys did not move focus (${focused})`);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('[data-testid="focus-mode"]');
+      await page.keyboard.press('Escape');
+      await page.setViewport({ width: 1366, height: 900 });
+    });
+
+    await step(page, 'dashboards: Ask AI designs a page, previewed before it is created', async () => {
+      await page.goto(`${BASE}/app/visualize/dashboards`, { waitUntil: 'networkidle2' });
+      await domClick(page, '[data-testid="ai-dashboard"]');
+      await page.waitForSelector('[data-testid="ai-page"]');
+      const retail = await page.$$eval('[data-testid="new-dataset"] option', (options) => options.find((o) => /Retail sales/.test(o.textContent ?? ''))?.value);
+      if (retail) await page.select('[data-testid="new-dataset"]', retail);
+      await setInput(page, '[data-testid="ai-page-prompt"]', 'Profit by product and channel, with the monthly trend');
+      await domClick(page, '[data-testid="ai-page-preview"]');
+      await page.waitForSelector('[data-testid="ai-page-proposal"] [data-testid="page-preview"]', { timeout: 60_000 });
+      await waitForText(page, '[data-testid="ai-source"]', /AI model|built-in rules/);
+      await page.screenshot({ path: `${SHOTS}/ai-page-preview.png` });
+      await domClick(page, '[data-testid="ai-apply"]');
+      await page.waitForSelector('[data-testid="dashboard-canvas"]', { timeout: 60_000 });
+      await allDrawn(page, 4);
+    });
+
+    await step(page, 'dashboards: Q&A answers with a pinnable visual; explain a change; present mode', async () => {
+      await page.goto(globalThis.templateDashboard, { waitUntil: 'networkidle2' });
+      await allDrawn(page, 14);
+      await domClick(page, '[data-testid="open-qa"]');
+      await setInput(page, '[data-testid="ask-input"]', 'Which products bring the most revenue in West?');
+      await domClick(page, '[data-testid="ask-submit"]');
+      await page.waitForSelector('[data-testid="ask-answer"] [data-testid^="tile-"][data-status="ok"]', { timeout: 60_000 });
+      const answer = await textOf(page, '[data-testid="ask-answer-text"]');
+      if (!/West|Laptops|Phones|Tablets|Monitors|Accessories/.test(answer)) throw new Error(`unexpected answer: ${answer}`);
+      await page.screenshot({ path: `${SHOTS}/qa-answer.png` });
+      await domClick(page, '[data-testid="ask-pin"]');
+      await page.waitForSelector('[data-testid="pin-dialog"]');
+      const templateId = new URL(globalThis.templateDashboard).pathname.split('/').pop();
+      await page.waitForSelector(`[data-testid="pin-dashboard"] option[value="${templateId}"]`);
+      await page.select('[data-testid="pin-dashboard"]', templateId);
+      await page.waitForSelector('[data-testid="pin-confirm"]:not([disabled])', { timeout: 30_000 });
+      await domClick(page, '[data-testid="pin-confirm"]');
+      await page.waitForSelector('[data-testid="pin-done"]', { timeout: 30_000 });
+      await clickText(page, '[data-testid="pin-dialog"] button', /Stay here/);
+      await domClick(page, '[data-testid="ask-box"] button[aria-label="Close"]');
+      // Explain this change: right-click a month on the trend.
+      await page.reload({ waitUntil: 'networkidle2' });
+      await allDrawn(page, 15);
+      await rightClickPoint(page, '[data-testid="tile-main"]');
+      await domClick(page, '[data-testid="explain-change"]');
+      await waitForText(page, '[data-testid="explain-headline"]', /is (up|down|unchanged) by/, 60_000);
+      await page.screenshot({ path: `${SHOTS}/explain-change.png` });
+      await page.keyboard.press('Escape');
+      // Present mode: the page alone; Esc leaves.
+      await domClick(page, '[data-testid="present"]');
+      await page.waitForSelector('[data-testid="present-mode"]');
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      await page.screenshot({ path: `${SHOTS}/present-mode.png` });
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('[data-testid="present-mode"]'), { timeout: 10_000 });
+    });
+
+    await step(page, 'dashboards: a public link works signed out (light and dark), filters, and stops when revoked', async () => {
+      await domClick(page, '[data-testid="share-dashboard"]');
+      await page.waitForSelector('[data-testid="share-dialog"]');
+      await domClick(page, '[data-testid="share-workspace-toggle"]');
+      await page.waitForSelector('[data-testid="share-workspace-toggle"]:checked', { timeout: 10_000 });
+      await setInput(page, '[data-testid="share-label"]', 'Board pack');
+      await domClick(page, '[data-testid="share-create"]');
+      await page.waitForSelector('[data-testid="share-url"]', { timeout: 30_000 });
+      const link = await page.$eval('[data-testid="share-url"]', (el) => el.value);
+      await page.screenshot({ path: `${SHOTS}/share-dialog.png` });
+      const anonymous = await browser.createBrowserContext();
+      const guest = await anonymous.newPage();
+      await guest.setViewport({ width: 1366, height: 768 });
+      try {
+        for (const scheme of ['light', 'dark']) {
+          await guest.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
+          await guest.goto(link, { waitUntil: 'networkidle2' });
+          await guest.waitForSelector('[data-testid="shared-dashboard"] [data-testid="dashboard-canvas"]', { timeout: 60_000 });
+          await allDrawn(guest, 14);
+          await guest.screenshot({ path: `${SHOTS}/shared-${scheme}.png` });
+        }
+        const value = () => guest.$eval('[data-testid="tile-kpi-0"] .dash-kpi-value', (el) => el.textContent);
+        const total = await value();
+        await domClick(guest, '[data-testid^="tile-slicer-"] [data-testid="slicer-button"]');
+        await domClick(guest, '[role="option"]');
+        await guest.waitForFunction((was) => document.querySelector('[data-testid="tile-kpi-0"] .dash-kpi-value')?.textContent !== was, { timeout: 30_000 }, total);
+        await allDrawn(guest, 14);
+        // Revoked: the same address now says the link is not available.
+        await domClick(page, '[data-testid="share-revoke"]');
+        await page.waitForFunction(() => !document.querySelector('[data-testid="share-revoke"]'), { timeout: 10_000 });
+        await guest.goto(link, { waitUntil: 'networkidle2' });
+        await guest.waitForSelector('[data-testid="shared-missing"]', { timeout: 30_000 });
+      } finally {
+        await anonymous.close();
+      }
+      await page.keyboard.press('Escape');
+      await domClick(page, '[data-testid="share-dialog"] button[aria-label="Close"]');
+    });
+
+    await step(page, 'dashboards: a colleague (viewer) personalizes a visual, keeps it after a reload, then resets', async () => {
+      const viewerEmail = `e2e-viewer-${run}@jt-code.local`;
+      const viewerPassword = `${password}-v`;
+      await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), ['manage.py', 'join_local_organization', viewerEmail, '--owner', email, '--create'], {
+        cwd: BACKEND_DIR,
+        env: { ...process.env, JOIN_PASSWORD: viewerPassword },
+      });
+      const context = await browser.createBrowserContext();
+      const viewer = await context.newPage();
+      await viewer.setViewport({ width: 1366, height: 900 });
+      try {
+        await viewer.goto(`${BASE}/sign-in`, { waitUntil: 'networkidle0' });
+        await viewer.type('#email', viewerEmail);
+        await viewer.type('#password', viewerPassword);
+        await viewer.click('button[type="submit"]');
+        await viewer.waitForFunction(() => location.pathname.startsWith('/app/'), { timeout: 30_000 });
+        await viewer.goto(globalThis.templateDashboard, { waitUntil: 'networkidle2' });
+        await allDrawn(viewer, 14);
+        if (await viewer.$('[data-testid="edit-dashboard"]')) throw new Error('a viewer should not see Edit');
+        await domClick(viewer, '[data-testid="vheader-bottom-0"] [data-testid="vheader-personalize"]');
+        await viewer.waitForSelector('[data-testid="personalize-pane"]');
+        await viewer.select('[data-testid="personalize-type"]', 'column');
+        await viewer.waitForSelector('[data-testid="vheader-bottom-0"] [data-testid="vheader-personalize"][aria-pressed="true"]');
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        await viewer.reload({ waitUntil: 'networkidle2' });
+        await viewer.waitForSelector('[data-testid="vheader-bottom-0"] [data-testid="vheader-personalize"][aria-pressed="true"]', { timeout: 60_000 });
+        await viewer.screenshot({ path: `${SHOTS}/viewer-personalized.png` });
+        await domClick(viewer, '[data-testid="views-menu"]');
+        await domClick(viewer, '[data-testid="reset-personal"]');
+        await viewer.waitForSelector('[data-testid="vheader-bottom-0"] [data-testid="vheader-personalize"][aria-pressed="false"]', { timeout: 30_000 });
+      } finally {
+        await context.close();
+      }
+      // The author's dashboard did not change.
+      await page.goto(globalThis.templateDashboard, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="vheader-bottom-0"] [data-testid="vheader-personalize"][aria-pressed="false"]', { timeout: 60_000 });
     });
 
     await step(page, 'reports: export a dashboard as Excel, JSON and a PDF painted page by page', async () => {

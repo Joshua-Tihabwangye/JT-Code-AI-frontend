@@ -1,0 +1,18 @@
+{
+  "title": "Galeria de gráficos",
+  "subtitle": "Tipos de gráfico {{count}} — abra um no Explore e ele preencherá suas colunas.",
+  "search": "Gráficos de pesquisa, por ex. “previsão”, “compartilhar”",
+  "searchLabel": "Gráficos de pesquisa",
+  "level": "Nível",
+  "allLevels": "Todos os níveis",
+  "essentialShort": "Essencial",
+  "advancedShort": "Avançado",
+  "all": "Todos",
+  "recommended": "Recomendado para {{name}}",
+  "recommendedHint": "Escolhido em suas colunas – abra uma para vê-la com seus dados.",
+  "empty": "Nenhum gráfico corresponde a essa pesquisa.",
+  "advancedBadge": "Avançado",
+  "useInExplore": "Usar em Explorar",
+  "addToDashboard": "Adicionar ao painel",
+  "thisDataset": "este conjunto de dados"
+}

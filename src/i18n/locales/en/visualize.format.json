@@ -1,0 +1,302 @@
+{
+  "search": "Search format options",
+  "resetSection": "Reset to theme default",
+  "automatic": "Automatic",
+  "on": "On",
+  "off": "Off",
+  "sections": {
+    "python": "Python script",
+    "parameter": "Parameter",
+    "button": "Button",
+    "navigator": "Navigator",
+    "general": "Title and position",
+    "tile": "Tile",
+    "colors": "Colours",
+    "labels": "Data labels",
+    "legend": "Legend",
+    "sort": "Sort and Top N",
+    "bars": "Bars and lines",
+    "donut": "Slices",
+    "kpi": "KPI",
+    "gauge": "Gauge range",
+    "table": "Table",
+    "slicer": "Slicer",
+    "tooltip": "Tooltip",
+    "conditional": "Conditional formatting",
+    "analytics": "Analytics (reference lines, trend, forecast)",
+    "map": "Map"
+  },
+  "general": {
+    "title": "Title",
+    "showTitle": "Show title",
+    "axes": { "x": "x", "y": "y", "w": "w", "h": "h" },
+    "layoutAria": "Layout {{axis}}",
+    "altText": "Alt text",
+    "altPlaceholder": "For screen readers"
+  },
+  "tile": {
+    "background": "Background",
+    "border": "Border",
+    "radius": "Corner radius",
+    "shadow": "Shadow"
+  },
+  "colors": {
+    "seriesAria": "Series colour {{index}}",
+    "custom": "Custom",
+    "fromTheme": "From the theme"
+  },
+  "labels": {
+    "showValues": "Show values"
+  },
+  "legend": {
+    "show": "Show legend",
+    "position": "Position",
+    "positions": { "top": "Top", "bottom": "Bottom", "left": "Left", "right": "Right" }
+  },
+  "sort": {
+    "by": "Sort by",
+    "value": "Value",
+    "name": "Name",
+    "direction": "Direction",
+    "desc": "Descending",
+    "asc": "Ascending",
+    "topN": "Top N",
+    "showTop": "Show top",
+    "others": "Group the rest as “Others”"
+  },
+  "bars": {
+    "stacking": "Stacking",
+    "none": "Side by side",
+    "stacked": "Stacked",
+    "percent": "100% stacked",
+    "smooth": "Smooth lines"
+  },
+  "donut": {
+    "maxSlices": "Max slices (rest → Others)"
+  },
+  "kpi": {
+    "compareBy": "Compare by",
+    "grains": { "day": "Day", "week": "Week", "month": "Month", "quarter": "Quarter", "year": "Year" },
+    "upIsGood": "Up is good"
+  },
+  "gauge": {
+    "min": "Min",
+    "max": "Max",
+    "auto": "Auto"
+  },
+  "table": {
+    "dataBars": "Data bars"
+  },
+  "slicer": {
+    "style": "Style",
+    "styles": {
+      "dropdown": "Dropdown",
+      "list": "List",
+      "tiles": "Buttons",
+      "between": "Number range",
+      "dateRange": "Date range",
+      "relative": "Relative date",
+      "input": "Type a value",
+      "hierarchy": "Hierarchy (add more fields)"
+    },
+    "single": "Single choice",
+    "sync": "Sync across pages",
+    "page": "Page",
+    "syncColumn": "Sync",
+    "visible": "Visible",
+    "syncTo": "Sync to {{page}}",
+    "visibleOn": "Visible on {{page}}"
+  },
+  "tooltip": {
+    "page": "Tooltip page",
+    "default": "Default tooltip",
+    "noPages": "Make a page a tooltip page first"
+  },
+  "map": {
+    "zoomTo": "Zoom to",
+    "scopes": {
+      "world": "World",
+      "africa": "Africa",
+      "europe": "Europe",
+      "asia": "Asia",
+      "northAmerica": "North america",
+      "southAmerica": "South america"
+    }
+  },
+  "page": {
+    "label": "Page",
+    "name": "Name",
+    "canvasSize": "Canvas size",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Letter (portrait)",
+      "fitWidth": "Fit to width (grows)"
+    },
+    "background": "Background",
+    "themeBackground": "Theme background",
+    "type": "Page type",
+    "types": {
+      "page": "Page",
+      "drillthrough": "Drill-through (detail)",
+      "tooltip": "Tooltip"
+    },
+    "tooltipHint": "Shown small when hovering points of visuals that pick it under Format → Tooltip.",
+    "drillthroughHint": "Right-click a member of one of these fields on another page → “Drill through”."
+  },
+  "dashboard": {
+    "label": "Dashboard",
+    "slicersApply": "Slicers apply",
+    "instant": "Immediately",
+    "button": "With an Apply button",
+    "filtersPane": "Filters pane for viewers",
+    "personalize": "Viewers may personalize"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Colour scale",
+      "rules": "Rules",
+      "bars": "Data bars",
+      "icons": "Icons ▲●▼"
+    },
+    "ruleType": "Rule type",
+    "value": "Value",
+    "colour": "Colour",
+    "background": "Background",
+    "text": "Text",
+    "removeRule": "Remove rule",
+    "lowest": "Lowest",
+    "middle": "Middle",
+    "highest": "Highest",
+    "lowestColour": "Lowest colour",
+    "middleColour": "Middle colour",
+    "highestColour": "Highest colour",
+    "ifValueIs": "If value is",
+    "between": "between",
+    "and": "And",
+    "removeCondition": "Remove condition",
+    "addCondition": "Condition (first match wins)",
+    "barColour": "Bar colour",
+    "iconsHint": "▲ top third, ● middle, ▼ bottom third of the values.",
+    "addRule": "Add a rule"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Constant (target)",
+      "average": "Average",
+      "median": "Median",
+      "min": "Minimum",
+      "max": "Maximum",
+      "percentile": "Percentile",
+      "trend": "Trend line",
+      "forecast": "Forecast"
+    },
+    "line": "Line",
+    "value": "Value",
+    "percentile": "Percentile",
+    "periods": "Periods",
+    "colour": "Colour",
+    "removeLine": "Remove line",
+    "labelPlaceholder": "Label (optional)",
+    "addLine": "Add a line",
+    "forecastHint": "Forecasts need a date axis (e.g. date by month)."
+  },
+  "python": {
+    "starter": "Start from an example",
+    "sandbox": "Runs in a locked-down Python sandbox: pandas, numpy, scipy, statsmodels and scikit-learn; no files, network or system access."
+  },
+  "button": {
+    "text": "Text",
+    "action": "Action",
+    "actions": {
+      "page": "Go to page",
+      "bookmark": "Apply a view (bookmark)",
+      "back": "Back",
+      "clearSlicers": "Clear all slicers",
+      "applySlicers": "Apply slicers",
+      "toggle": "Show / hide a visual",
+      "url": "Open a web link",
+      "askAi": "Ask AI",
+      "reset": "Reset to default"
+    },
+    "page": "Page",
+    "choose": "Choose…",
+    "view": "View",
+    "addViewsFirst": "Add views first (Views tab)",
+    "visual": "Visual",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Link",
+    "style": "Style",
+    "fills": {
+      "primary": "Filled",
+      "outline": "Outline",
+      "ghost": "Plain"
+    }
+  },
+  "navigator": {
+    "shows": "Shows",
+    "pages": "Pages",
+    "bookmarks": "Views (bookmarks)"
+  },
+  "parameter": {
+    "parameter": "Parameter",
+    "new": "New parameter…",
+    "showAs": "Show as",
+    "tiles": "Buttons",
+    "dropdown": "Dropdown",
+    "delete": "Delete this parameter"
+  },
+  "theme": {
+    "title": "Customize theme",
+    "name": "Theme name",
+    "close": "Close",
+    "dataColours": "Data colours",
+    "colour": "Colour {{index}}",
+    "removeColour": "Remove colour {{index}}",
+    "addColour": "Add a colour",
+    "brandColour": "Brand colour",
+    "generate": "Palette from my brand colour",
+    "sentiment": { "good": "Good", "neutral": "Neutral", "bad": "Bad" },
+    "pageAndTiles": "Page and tiles",
+    "light": "Light",
+    "dark": "Dark",
+    "roles": {
+      "canvas": "Canvas",
+      "tile": "Tiles",
+      "border": "Borders",
+      "gridline": "Gridlines",
+      "text": "Text",
+      "mutedText": "Muted text",
+      "accent": "Accent"
+    },
+    "contrast": "Text is hard to read on tiles ({{ratio}}:1 — aim for 4.5:1 or more).",
+    "font": "Font",
+    "systemFont": "System",
+    "corners": "Corners",
+    "shadow": "Shadow",
+    "shadows": { "none": "None", "soft": "Soft", "medium": "Medium" },
+    "kpiTiles": "KPI tiles",
+    "kpiStyles": {
+      "plain": "Plain",
+      "solid": "Solid colour",
+      "gradient": "Gradient",
+      "outlined": "Outlined",
+      "icon": "Accent bar"
+    },
+    "orgThemes": "My organization's themes",
+    "deleteTheme": "Delete {{name}}",
+    "importJson": "Import JSON",
+    "exportJson": "Export JSON",
+    "saveAs": "Save as my theme",
+    "defaultName": "My theme",
+    "importedName": "Imported theme",
+    "imported": "Imported.",
+    "saved": "Saved “{{name}}” for your organization.",
+    "cancel": "Cancel",
+    "done": "Done",
+    "errors": {
+      "notTheme": "The file is not a theme.",
+      "needColours": "A theme needs at least 3 data colours (dataColors)."
+    }
+  }
+}

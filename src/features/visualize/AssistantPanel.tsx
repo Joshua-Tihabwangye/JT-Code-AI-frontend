@@ -77,33 +77,33 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
   const taskName = (id: string) => catalog?.predictionTasks.find((task) => task.id === id)?.name ?? id;
 
   return (
-    <aside className="viz-panel" aria-label={t('visualize.assistant.title', 'JT-Code AI')} data-testid="assistant-panel">
+    <aside className="viz-panel" aria-label={t('visualize.assistant.title')} data-testid="assistant-panel">
       <header className="flex items-start justify-between gap-3 border-b border-border p-4">
         <div className="flex items-center gap-3">
           <span className="viz-icon" style={{ background: 'linear-gradient(120deg,#6366f1,#db2777)', color: '#fff' }}>
             <Sparkles size={18} aria-hidden />
           </span>
           <div>
-            <h2 className="font-semibold">{t('visualize.assistant.title', 'JT-Code AI')}</h2>
+            <h2 className="font-semibold">{t('visualize.assistant.title')}</h2>
             <p className="text-xs text-muted-foreground">
-              {t('visualize.assistant.cost', 'Uses credits only when you send a prompt. Charts, insights and suggestions are free.')}
+              {t('visualize.assistant.cost')}
             </p>
           </div>
         </div>
-        <button type="button" onClick={onClose} aria-label={t('common.close', 'Close')} className="rounded-md p-1 hover:bg-accent">
+        <button type="button" onClick={onClose} aria-label={t('visualize.assistant.close')} className="rounded-md p-1 hover:bg-accent">
           <X size={18} />
         </button>
       </header>
 
       <div className="border-b border-border p-4">
-        <DatasetPicker label={t('visualize.assistant.about', 'Ask about')} />
+        <DatasetPicker label={t('visualize.assistant.about')} />
       </div>
 
       <div className="flex-1 space-y-4 overflow-y-auto p-4">
         {!turns.length && (
           <div className="space-y-3">
             <p className="text-sm text-muted-foreground">
-              {t('visualize.assistant.intro', 'Describe what you want to see. I pick the chart, fill in the columns and you review it before anything runs.')}
+              {t('visualize.assistant.intro')}
             </p>
             <div className="flex flex-wrap gap-2">
               {QUICK_PROMPTS.map((quick) => (
@@ -119,19 +119,19 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
             <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-3 py-2 text-sm text-primary-foreground">
               {turn.prompt}
             </p>
-            {!turn.answer && !turn.error && <p className="text-sm text-muted-foreground">{t('visualize.assistant.thinking', 'Thinking…')}</p>}
+            {!turn.answer && !turn.error && <p className="text-sm text-muted-foreground">{t('visualize.assistant.thinking')}</p>}
             <ErrorNote error={turn.error} />
             {turn.answer && (
               <div className="viz-card viz-card-pad space-y-3" data-testid="assistant-answer" style={{ boxShadow: 'none' }}>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Bot size={14} aria-hidden />
                   <span className="viz-badge" style={{ '--c': turn.answer.source === 'ai' ? '#8b5cf6' : '#0ea5e9' } as React.CSSProperties}>
-                    {turn.answer.source === 'ai' ? 'AI' : t('visualize.assistant.builtIn', 'Built-in')}
+                    {turn.answer.source === 'ai' ? 'AI' : t('visualize.assistant.builtIn')}
                   </span>
                   <span>
                     {Number(turn.answer.usage.credits) > 0
-                      ? t('visualize.assistant.credits', '{{credits}} credits', { credits: Number(turn.answer.usage.credits).toFixed(2) })
-                      : t('visualize.assistant.free', 'no credits used')}
+                      ? t('visualize.assistant.credits', { credits: Number(turn.answer.usage.credits).toFixed(2) })
+                      : t('visualize.assistant.free')}
                   </span>
                 </div>
                 <p className="whitespace-pre-wrap text-sm">{turn.answer.reply}</p>
@@ -152,7 +152,7 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
                         onClick={() => openStudio({ chartType: action.chartType, fields: action.fields, options: action.options, title: action.title })}
                         data-testid="assistant-open-studio"
                       >
-                        <Wand2 size={14} aria-hidden /> {t('visualize.assistant.openStudio', 'Open in Studio')}
+                        <Wand2 size={14} aria-hidden /> {t('visualize.assistant.openExplore')}
                       </Button>
                     </div>
                   );
@@ -168,7 +168,7 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
                         className="viz-primary gap-1.5"
                         onClick={() => openPredict({ task: action.task, fields: action.fields, model: action.model, options: action.options })}
                       >
-                        <BrainCircuit size={14} aria-hidden /> {t('visualize.assistant.setUp', 'Set up prediction')}
+                        <BrainCircuit size={14} aria-hidden /> {t('visualize.assistant.setUp')}
                       </Button>
                     </div>
                   );
@@ -193,8 +193,8 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
             rows={2}
             value={prompt}
             maxLength={2000}
-            placeholder={t('visualize.assistant.placeholder', 'e.g. Show monthly revenue by region')}
-            aria-label={t('visualize.assistant.prompt', 'Prompt')}
+            placeholder={t('visualize.assistant.placeholder')}
+            aria-label={t('visualize.assistant.prompt')}
             onChange={(event) => setPrompt(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' && !event.shiftKey) {
@@ -204,7 +204,7 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
             }}
             data-testid="assistant-prompt"
           />
-          <Button type="submit" className="viz-primary h-11 w-11 p-0" disabled={!prompt.trim() || ask.isPending} aria-label={t('visualize.assistant.send', 'Send')}>
+          <Button type="submit" className="viz-primary h-11 w-11 p-0" disabled={!prompt.trim() || ask.isPending} aria-label={t('visualize.assistant.send')}>
             <Send size={16} aria-hidden />
           </Button>
         </div>

@@ -1,0 +1,14 @@
+{
+  "primary": "主导航",
+  "workspace": "工作区",
+  "connections": "连接",
+  "account": "账户",
+  "chat": "聊天",
+  "images": "图像",
+  "history": "历史记录",
+  "billing": "账单",
+  "settings": "设置",
+  "integrations": "集成",
+  "analytics": "数据分析",
+  "visualize": "数据可视化"
+}

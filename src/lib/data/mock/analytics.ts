@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config';
 // In-memory analytics for mock mode. It mirrors the backend's declarative
 // transform language (filters -> group/aggregate -> select -> sort -> limit) so
 // the Data Analytics page behaves the same without a server.
@@ -44,9 +45,9 @@ export function parseCsv(text: string): { columns: string[]; rows: Row[] } {
   record.push(field);
   if (record.some((value) => value !== '')) records.push(record);
   const [header, ...body] = records;
-  if (!header?.length) throw new Error('The CSV needs a header row.');
+  if (!header?.length) throw new Error(i18n.t('errors.csvHeader'));
   const columns = header.map((name) => name.trim());
-  if (new Set(columns).size !== columns.length) throw new Error('Column names must be unique.');
+  if (new Set(columns).size !== columns.length) throw new Error(i18n.t('errors.uniqueColumns'));
   const rows = body.map((values) =>
     Object.fromEntries(
       columns.map((column, index) => {
@@ -196,11 +197,11 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
   }
   getRun(id: string): Promise<AnalysisRun> {
     const run = this.runs.get(id);
-    return run ? Promise.resolve(strip<AnalysisRun>(run)) : Promise.reject(new Error('Analysis run not found.'));
+    return run ? Promise.resolve(strip<AnalysisRun>(run)) : Promise.reject(new Error(i18n.t('errors.runNotFound')));
   }
   async createRun(datasetId: string, transform: AnalysisTransform) {
     const dataset = this.datasets.get(datasetId);
-    if (!dataset) throw new Error('Dataset not found.');
+    if (!dataset) throw new Error(i18n.t('errors.datasetNotFound'));
     const rows = applyTransform(dataset.rows, transform);
     const columns = Object.keys(rows[0] ?? {});
     const run = {
@@ -231,7 +232,7 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
   }
   downloadRun(id: string): Promise<Blob> {
     const run = this.runs.get(id);
-    if (!run) return Promise.reject(new Error('Analysis run not found.'));
+    if (!run) return Promise.reject(new Error(i18n.t('errors.runNotFound')));
     const escape = (value: string | number | null | undefined) => {
       const text = value === null || value === undefined ? '' : String(value);
       return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
@@ -244,7 +245,7 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
   }
   getVisualization(id: string): Promise<Visualization> {
     const chart = this.charts.get(id);
-    return chart ? Promise.resolve(chart) : Promise.reject(new Error('Chart not found.'));
+    return chart ? Promise.resolve(chart) : Promise.reject(new Error(i18n.t('errors.chartNotFound')));
   }
   createVisualization(input: CreateVisualizationInput): Promise<Visualization> {
     // Mock mode has no chart renderer: the chart is recorded but has no image.

@@ -1,0 +1,19 @@
+{
+  "title": "తిరిగి స్వాగతం",
+  "subtitle": "JT-Codeకు కొనసాగడానికి సైన్ ఇన్ చేయండి",
+  "connecting": "కనెక్ట్ అవుతోంది…",
+  "emailLabel": "ఇమెయిల్ చిరునామా",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "పాస్‌వర్డ్",
+  "passwordPlaceholder": "మీ పాస్‌వర్డ్‌ను నమోదు చేయండి",
+  "forgotPassword": "పాస్‌వర్డ్ మర్చిపోయిందా?",
+  "submit": "సైన్ ఇన్",
+  "noAccount": "ఖాతా లేదా?",
+  "createAccount": "ఖాతా సృష్టించండి",
+  "helpText": "",
+  "signInWithGoogle": "Googleతో సైన్ ఇన్ చేయండి",
+  "signInWithApple": "Appleతో సైన్ ఇన్ చేయండి",
+  "offlineHint": "ఆఫ్‌లైన్ డిజైన్ మోడ్: బ్యాకెండ్ ఉపయోగించబడదు. ఏదైనా ఇమెయిల్ మరియు పాస్‌వర్డ్‌తో సైన్ ఇన్ చేయండి (స్థానిక ఖాతా సృష్టించబడింది) లేదా డెమో ఖాతాతో కొనసాగండి.",
+  "demoAccount": "డెమో ఖాతాతో కొనసాగించండి",
+  "continueWith": "{{provider}}తో కొనసాగించండి"
+}

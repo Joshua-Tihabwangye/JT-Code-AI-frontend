@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Membersihkan",
+    "rows": "Baris",
+    "columns": "Kolom",
+    "text": "Teks",
+    "numbers": "Angka dan tanggal",
+    "shape": "Membentuk",
+    "combine": "Menggabungkan"
+  },
+  "kinds": {
+    "removeDuplicates": "Hapus baris duplikat",
+    "trim": "Pangkas ruang ekstra",
+    "removeBlankRows": "Hapus baris kosong",
+    "fillBlanks": "Isi bagian yang kosong",
+    "replaceValues": "Ganti nilai",
+    "changeType": "Ubah jenis",
+    "outliers": "Tangani outlier",
+    "filterRows": "Filter baris",
+    "sort": "Urutkan baris",
+    "keepRows": "Pertahankan baris atas atau bawah",
+    "removeColumns": "Hapus kolom",
+    "keepColumns": "Simpan hanya kolom ini",
+    "rename": "Ganti nama kolom",
+    "calculatedColumn": "Kolom terhitung",
+    "conditionalColumn": "Kolom bersyarat",
+    "splitColumn": "Pisahkan satu kolom",
+    "mergeColumns": "Gabungkan kolom",
+    "textCase": "Ubah huruf besar/kecil",
+    "bins": "Kelompokkan nomor ke dalam tempat sampah",
+    "dateParts": "Ekstrak bagian tanggal",
+    "dateTable": "Membuat tabel tanggal (kalender)",
+    "groupBy": "Kelompokkan berdasarkan",
+    "pivot": "Pivot (baris → kolom)",
+    "unpivot": "Batalkan pivot (kolom → baris)",
+    "merge": "Gabungkan dengan kumpulan data lain",
+    "append": "Tambahkan kumpulan data lain"
+  },
+  "fields": {
+    "compareColumns": "Bandingkan hanya kolom-kolom ini",
+    "trimColumns": "Kolom (semua teks bila kosong)",
+    "blankIn": "Kosongkan",
+    "removeWhen": "Hapus kapan",
+    "column": "Kolom",
+    "columns": "Kolom",
+    "with": "Dengan",
+    "value": "Nilai",
+    "find": "Menemukan",
+    "replaceWith": "Ganti dengan",
+    "match": "Cocok",
+    "to": "Ke",
+    "action": "Tindakan",
+    "rowsThatMatch": "Baris yang cocok",
+    "conditions": "Kondisi",
+    "sortBy": "Urutkan berdasarkan",
+    "keep": "Menyimpan",
+    "howMany": "Berapa banyak",
+    "newName": "Nama baru",
+    "newColumn": "Kolom baru",
+    "formula": "Rumus",
+    "ifThen": "Jika… maka",
+    "otherwise": "Jika tidak",
+    "at": "Pada",
+    "intoParts": "Ke dalam (bagian)",
+    "newNames": "Nama baru (opsional)",
+    "separator": "Pemisah",
+    "case": "Kasus",
+    "bins": "Tempat sampah",
+    "howManyBins": "Berapa banyak tempat sampah",
+    "edges": "Tepian",
+    "dateColumn": "Kolom tanggal",
+    "parts": "Bagian",
+    "fromDatesIn": "Dari tanggal masuk",
+    "fiscalStart": "Tahun fiskal dimulai pada bulan",
+    "groupBy": "Kelompokkan berdasarkan",
+    "calculate": "Menghitung",
+    "keepAsRows": "Simpan sebagai baris",
+    "valuesBecomeColumns": "Nilai menjadi kolom",
+    "fillWith": "Isi dengan",
+    "aggregation": "Pengumpulan",
+    "keepTheseColumns": "Pertahankan kolom ini",
+    "nameColumn": "Kolom nama",
+    "valueColumn": "Kolom nilai",
+    "dataset": "Kumpulan data",
+    "keyHere": "Masukkan data ini",
+    "keyOther": "Masukkan yang lain"
+  },
+  "options": {
+    "blankHow": {
+      "any": "salah satunya kosong",
+      "all": "semuanya kosong"
+    },
+    "fill": {
+      "mean": "Rata-rata",
+      "median": "median",
+      "mode": "Nilai paling umum",
+      "zero": "Nol",
+      "down": "Nilai di atas (isikan)",
+      "up": "Nilai di bawah (isi)",
+      "value": "Nilai saya sendiri"
+    },
+    "replaceMatch": {
+      "exact": "Nilai keseluruhan",
+      "contains": "Bagian dari teks"
+    },
+    "types": {
+      "number": "Nomor",
+      "date": "Tanggal",
+      "text": "Teks"
+    },
+    "outliers": {
+      "cap": "Batasi batasnya",
+      "remove": "Hapus baris-baris itu",
+      "flag": "Tandai di kolom baru"
+    },
+    "filterMode": {
+      "keep": "Menyimpan",
+      "remove": "Menghapus"
+    },
+    "combine": {
+      "and": "semua kondisi",
+      "or": "kondisi apapun"
+    },
+    "keepRows": {
+      "top": "Baris pertama",
+      "bottom": "Baris terakhir"
+    },
+    "textCase": {
+      "title": "Judul Kasus",
+      "upper": "ATAS",
+      "lower": "lebih rendah"
+    },
+    "bins": {
+      "equal": "Lebar yang sama",
+      "edges": "Tepianku sendiri"
+    },
+    "mergeHow": {
+      "left": "Semua baris data ini",
+      "inner": "Hanya baris yang cocok",
+      "outer": "Semua baris keduanya"
+    },
+    "aggs": {
+      "sum": "Jumlah",
+      "avg": "Rata-rata",
+      "count": "Menghitung",
+      "distinct": "Hitungan yang berbeda",
+      "min": "Minimal",
+      "max": "Maks",
+      "median": "median"
+    }
+  },
+  "parts": {
+    "year": "Tahun",
+    "quarter": "Seperempat",
+    "month": "Bulan",
+    "monthName": "Nama bulan",
+    "week": "Pekan",
+    "weekday": "Hari kerja",
+    "weekdayName": "Nama hari kerja",
+    "day": "Hari",
+    "hour": "Jam"
+  },
+  "conditionOps": {
+    "eq": "sama",
+    "ne": "tidak sama",
+    "in": "adalah salah satu dari",
+    "notIn": "bukan salah satu dari",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "di antara",
+    "contains": "berisi",
+    "startsWith": "dimulai dengan",
+    "endsWith": "berakhir dengan",
+    "blank": "kosong",
+    "notBlank": "tidak kosong"
+  },
+  "summary": {
+    "keepConditions": "pertahankan kondisi {{count}}",
+    "removeConditions": "hapus kondisi {{count}}",
+    "by": "oleh {{columns}}",
+    "anotherDataset": "kumpulan data lain",
+    "types": {
+      "number": "nomor",
+      "date": "tanggal",
+      "text": "teks"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Hapus duplikat",
+    "keepOnePerId": "Pertahankan satu baris per ID",
+    "removeMissingId": "Hapus baris tanpa ID",
+    "fillBlanks": "Isi bagian yang kosong",
+    "blankOut": "Kosongkan “{{value}}”",
+    "trimSpaces": "Pangkas spasi",
+    "toNumber": "Konversikan ke angka",
+    "toDate": "Konversikan ke tanggal",
+    "consistentSpelling": "Jadikan ejaan konsisten",
+    "capOutliers": "Batasi outlier",
+    "removeColumn": "Hapus kolom"
+  }
+}

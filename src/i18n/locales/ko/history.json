@@ -1,0 +1,21 @@
+{
+  "eyebrow": "기록",
+  "title": "기록",
+  "subtitle": "최근 채팅과 세션입니다.",
+  "clearHistory": "기록 지우기",
+  "clearConfirm": "모든 채팅 기록을 지울까요?",
+  "emptyTitle": "아직 기록이 없습니다",
+  "emptyDesc": "채팅을 시작하면 대화가 여기에 표시됩니다.",
+  "startChatting": "채팅 시작하기",
+  "deleteItemAria": "{{title}} 삭제",
+  "searchPlaceholder": "대화 검색",
+  "archived": "보관됨",
+  "openAria": "{{title}} 열기",
+  "pinned": "고정됨",
+  "untitled": "제목 없는 대화",
+  "pin": "핀",
+  "unpin": "고정 해제",
+  "archive": "보관소",
+  "unarchive": "아카이브에서 복원",
+  "export": "마크다운으로 내보내기"
+}

@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "ist",
+      "ne": "ist nicht",
+      "contains": "enthält",
+      "starts_with": "beginnt mit",
+      "gt": "ist größer als",
+      "gte": "ist mindestens",
+      "lt": "ist kleiner als",
+      "lte": "ist höchstens",
+      "blank": "ist leer",
+      "not_blank": "ist nicht leer"
+    },
+    "units": {
+      "day_one": "Tag",
+      "day_other": "Tage",
+      "week_one": "Woche",
+      "week_other": "Wochen",
+      "month_one": "Monat",
+      "month_other": "Monate",
+      "quarter_one": "Quartal",
+      "quarter_other": "Quartale",
+      "year_one": "Jahr",
+      "year_other": "Jahre"
+    },
+    "describe": {
+      "all": "{{name}}: alle",
+      "in": "{{name}} ist {{values}}",
+      "inMore": "{{name}} ist {{values}} +{{more}}",
+      "notIn": "{{name}} ist nicht {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "Anzahl",
+      "top": "Top {{n}} {{name}} nach {{by}}",
+      "bottom": "Letzte {{n}} {{name}} nach {{by}}",
+      "relative": {
+        "last": "{{name}}: letzte {{count}} {{unit}}",
+        "next": "{{name}}: nächste {{count}} {{unit}}",
+        "this": "{{name}}: aktuell ({{unit}})"
+      },
+      "orJoin": " oder ",
+      "andJoin": " und ",
+      "blank": "{{name}} ist leer",
+      "notBlank": "{{name}} ist nicht leer",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Filtertyp",
+    "types": {
+      "basic": "Einfach",
+      "advanced": "Erweitert",
+      "top": "Top N",
+      "relative": "Relatives Datum"
+    },
+    "search": "Suchen",
+    "searchValues": "Werte durchsuchen",
+    "loadingValues": "Werte werden geladen…",
+    "condition": "Bedingung",
+    "value": "Wert",
+    "addAnd": "+ Und",
+    "addOr": "+ Oder",
+    "combineWith": "Verknüpfen mit",
+    "and": "Und",
+    "or": "Oder",
+    "removeSecond": "Zweite entfernen",
+    "topOrBottom": "Oben oder unten",
+    "topWord": "Oben",
+    "bottomWord": "Unten",
+    "howMany": "Anzahl",
+    "byValue": "Nach Wert",
+    "byRows": "nach Anzahl der Zeilen",
+    "byTotal": "nach Summe von {{field}}",
+    "period": "Zeitraum",
+    "modes": {
+      "last": "Letzte",
+      "this": "Aktuelle",
+      "next": "Nächste"
+    },
+    "unit": "Einheit",
+    "onVisual": "Filter für dieses Visual",
+    "onPage": "Filter für diese Seite",
+    "onAllPages": "Filter für alle Seiten",
+    "active_one": "{{count}} Filter aktiv",
+    "active_other": "{{count}} Filter aktiv",
+    "resetToAuthor": "Auf Autorversion zurücksetzen",
+    "lockedByAuthor": "Vom Autor gesperrt",
+    "unlock": "Für Betrachter entsperren",
+    "lock": "Für Betrachter sperren",
+    "showToViewers": "Für Betrachter anzeigen",
+    "hideFromViewers": "Für Betrachter ausblenden",
+    "remove": "Filter entfernen",
+    "backToAuthor": "Zurück zum Filter des Autors",
+    "cardName": "Kartenname (optional)",
+    "cardNameLabel": "Name der Filterkarte",
+    "none": "Keine.",
+    "fieldToFilter": "Zu filterndes Feld",
+    "chooseField": "Feld auswählen…",
+    "add": "Filter hinzufügen"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Vom KI-Modell erstellt · {{credits}} Credit",
+    "sourceAiCredits_other": "Vom KI-Modell erstellt · {{credits}} Credits",
+    "sourceAiFree": "Vom KI-Modell erstellt · keine Credits",
+    "sourceRules": "Von den integrierten Regeln erstellt (KI-Modell nicht verwendet · keine Credits)",
+    "rowsWord": "Zeilen",
+    "previewLabel_one": "Vorschau von {{name}}: {{count}} Visual",
+    "previewLabel_other": "Vorschau von {{name}}: {{count}} Visuals",
+    "describe": "Beschreibe die Seite",
+    "describePlaceholder": "z. B. Vertriebsleistung nach Region und Produkt, mit dem monatlichen Trend und den Top 10 Kunden",
+    "designing": "Wird gestaltet…",
+    "tryAgain": "Erneut versuchen",
+    "previewPage": "Seitenvorschau",
+    "costNote": "Verbraucht eine KI-Nachricht (Credits). Nichts ändert sich, bis du sie anwendest.",
+    "proposal_one": "<b>{{name}}</b> – fügt eine Seite mit {{count}} Visual hinzu.",
+    "proposal_other": "<b>{{name}}</b> – fügt eine Seite mit {{count}} Visuals hinzu.",
+    "proposalWithCalcs_one": "<b>{{name}}</b> – fügt eine Seite mit {{count}} Visual und {{calcs}} Berechnung(en) hinzu.",
+    "proposalWithCalcs_other": "<b>{{name}}</b> – fügt eine Seite mit {{count}} Visuals und {{calcs}} Berechnung(en) hinzu.",
+    "discard": "Verwerfen",
+    "applying": "Wird angewendet…",
+    "apply": "Anwenden",
+    "close": "Schließen",
+    "suggestNote": "Visuals, die zu diesem Dataset passen (kostenlos – keine KI-Credits).",
+    "looking": "Daten werden analysiert…",
+    "working": "Wird bearbeitet…",
+    "preview": "Vorschau",
+    "format": {
+      "title": "Automatisch formatieren",
+      "question": "Wie soll es aussehen?",
+      "other": "Sonstiges",
+      "otherPlaceholder": "Sonst noch etwas? (fragt das KI-Modell)",
+      "note": "Die hervorgehobenen Wörter sind kostenlos; alles, was du in das Feld eingibst, fragt das KI-Modell.",
+      "nothing": "Für diese Anfrage gibt es nichts zu ändern.",
+      "theme": "Design",
+      "mode": "Modus",
+      "density": "Dichte",
+      "layout": "Layout",
+      "asIs": "unverändert",
+      "tidied": "am Raster ausgerichtet, kurze Titel",
+      "modes": {
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "Wie App"
+      },
+      "densities": {
+        "compact": "Kompakt",
+        "comfortable": "Großzügig"
+      },
+      "keywords": {
+        "executive": "Executive",
+        "midnight": "Mitternacht",
+        "dark": "Dunkel",
+        "light": "Hell",
+        "compact": "Kompakt",
+        "comfortable": "Großzügig",
+        "aligned": "Ausgerichtet"
+      }
+    },
+    "askTitle": "Frage stellen",
+    "askPlaceholder": "Frage zu diesen Daten, z. B. Top-Produkte nach Umsatz in West",
+    "question": "Frage",
+    "thinking": "Denkt nach…",
+    "ask": "Fragen",
+    "pin": "An Dashboard anheften",
+    "explain": {
+      "title": "Diese Änderung erklären",
+      "loading": "Vergleich mit dem vorherigen Zeitraum…",
+      "none": "Kein einzelnes Element sticht heraus.",
+      "periods": "{{from}} – {{to}} ggü. {{previousFrom}} – {{previousTo}} · aus den Daten berechnet, ohne KI"
+    }
+  },
+  "views": {
+    "yourDefault": "Deine Standardansicht",
+    "openWith": "Mit dieser Ansicht öffnen",
+    "delete": "Diese Ansicht löschen",
+    "title": "Ansichten",
+    "mine": "Meine Ansichten",
+    "mineEmpty": "Speichere, was du siehst – Filter, Datenschnitte, Drilldown, deine Änderungen.",
+    "namePlaceholder": "Ansicht benennen",
+    "save": "Speichern",
+    "forMe": "Für mich",
+    "modes": {
+      "system": "System",
+      "light": "Hell",
+      "dark": "Dunkel"
+    },
+    "densities": {
+      "comfortable": "Großzügig",
+      "compact": "Kompakt"
+    },
+    "reset": "Auf Standard zurücksetzen"
+  },
+  "personalize": {
+    "title": "Dieses Visual personalisieren",
+    "close": "Schließen",
+    "onlyYou": "Nur du siehst diese Änderungen.",
+    "type": "Visualtyp",
+    "aggregation": "Aggregation",
+    "remove": "{{field}} entfernen",
+    "add": "Hinzufügen",
+    "legend": "Legende",
+    "dataLabels": "Datenbeschriftungen",
+    "sort": "Sortieren",
+    "sorts": {
+      "largest": "Größte zuerst",
+      "smallest": "Kleinste zuerst",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "Rückgängig",
+    "reset": "Dieses Visual zurücksetzen"
+  },
+  "share": {
+    "embedTitle": "Dashboard",
+    "copied": "Kopiert",
+    "title": "Dashboard freigeben",
+    "heading": "„{{name}}“ freigeben",
+    "close": "Schließen",
+    "workspace": "Alle in meinem Arbeitsbereich",
+    "workspaceNote": "Kolleginnen und Kollegen öffnen es angemeldet als Betrachter: Sie können Visuals personalisieren und eigene Ansichten speichern.",
+    "publicNote": "Öffentliche Links: Jeder mit dem Link kann dieses Dashboard ansehen und seine Datenschnitte verwenden – schreibgeschützt, ohne Anmeldung.",
+    "kind": "Art",
+    "link": "Link",
+    "embed": "Einbetten",
+    "labelPlaceholder": "Bezeichnung (z. B. Vorstandsunterlagen)",
+    "label": "Bezeichnung",
+    "expires": "Läuft ab",
+    "expiryDate": "Ablaufdatum",
+    "creating": "Wird erstellt…",
+    "createEmbed": "Einbettungscode erstellen",
+    "createLink": "Link erstellen",
+    "copyNow": "Kopiere ihn jetzt – aus Sicherheitsgründen wird die vollständige Adresse nicht noch einmal angezeigt.",
+    "address": "Freigabeadresse",
+    "embedCode": "Einbettungscode",
+    "copyLink": "Link kopieren",
+    "copyEmbed": "Einbettungscode kopieren",
+    "links_one": "Links ({{count}} aktiv)",
+    "links_other": "Links ({{count}} aktiv)",
+    "loading": "Wird geladen…",
+    "none": "Noch keine Links.",
+    "by": "von {{name}}",
+    "unknown": "unbekannt",
+    "revokedOn": "Widerrufen am {{date}}",
+    "expiresOn": "Läuft am {{date}} ab",
+    "noExpiry": "Kein Ablaufdatum",
+    "lastOpened": "zuletzt geöffnet am {{date}}",
+    "notOpened": "noch nicht geöffnet",
+    "revoke": "Widerrufen"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} Filter wirkt",
+    "filtersApply_other": "{{count}} Filter wirken",
+    "drillUp": "Drillup",
+    "drillModeOn": "Drillmodus an: Klicke auf einen Punkt, um einen Drilldown auszuführen",
+    "drillMode": "Drillmodus: Klicke auf einen Punkt, um einen Drilldown auszuführen",
+    "nextLevel": "Zur nächsten Ebene wechseln",
+    "personalized": "Für dich personalisiert – ändern oder zurücksetzen",
+    "personalize": "Dieses Visual personalisieren",
+    "focus": "Fokusmodus",
+    "more": "Weitere Optionen",
+    "filtersOnVisual": "Filter für dieses Visual",
+    "showAsVisual": "Als Visual anzeigen",
+    "showAsTable": "Als Tabelle anzeigen",
+    "exportCsv": "Daten exportieren (CSV)",
+    "copyImage": "Als Bild kopieren",
+    "leaveSpotlight": "Spotlight beenden",
+    "spotlight": "Spotlight",
+    "closeFocus": "Fokusmodus schließen"
+  },
+  "pointMenu": {
+    "drillThrough": "Drillthrough ▸ {{page}}",
+    "explain": "Diese Änderung erklären",
+    "keepOnly": "Nur beibehalten",
+    "exclude": "Ausschließen"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Leer",
+        "hint": "Eine leere Seite als Ausgangspunkt."
+      },
+      "auto": {
+        "label": "Automatisch",
+        "hint": "KPIs, ein Trend, eine Aufschlüsselung, eine Karte und Datenschnitte – passend zu deinen Daten ausgewählt."
+      },
+      "template": {
+        "label": "Vorlage",
+        "hint": "Ein fertiges Layout: Ordne deine Spalten zu."
+      },
+      "ai": {
+        "label": "KI fragen",
+        "hint": "Beschreibe die Seite; sieh dir die Vorschau an, bevor sie erstellt wird."
+      }
+    },
+    "kinds": {
+      "number": "eine Zahl",
+      "date": "ein Datum",
+      "category": "eine Kategorie"
+    },
+    "chooseColumn": "Spalte auswählen…",
+    "skip": "(überspringen)",
+    "untitled": "Unbenanntes Dashboard",
+    "chooseTemplate": "Wähle eine Vorlage.",
+    "title": "Neues Dashboard",
+    "close": "Schließen",
+    "howToStart": "Wie möchtest du beginnen?",
+    "dataset": "Dataset",
+    "addDatasetFirst": "Füge zuerst ein Dataset hinzu",
+    "name": "Name",
+    "data": "Daten",
+    "overviewName": "Übersicht {{name}}",
+    "loadingTemplates": "Vorlagen werden geladen…",
+    "allTemplates": "Alle Vorlagen",
+    "matchColumns": "Spalten zuordnen",
+    "stillNeeded": "Noch benötigt: {{roles}}.",
+    "createDashboard": "Dashboard erstellen",
+    "cancel": "Abbrechen",
+    "creating": "Wird erstellt…",
+    "createFromTemplate": "Aus Vorlage erstellen",
+    "build": "Dashboard erstellen",
+    "create": "Erstellen",
+    "templateLayout": "Layout {{name}}"
+  },
+  "templates": {
+    "sales": {
+      "name": "Vertriebsübersicht",
+      "description": "Umsatz, Gewinn und Trends nach Produkt und Region.",
+      "roles": {
+        "date": "Datum",
+        "amount": "Umsatz",
+        "profit": "Gewinn",
+        "quantity": "Stückzahl",
+        "target": "Ziel",
+        "product": "Produkt",
+        "region": "Region",
+        "channel": "Kanal"
+      }
+    },
+    "crm": {
+      "name": "CRM-Pipeline",
+      "description": "Deals nach Phase und Verantwortlichem, gewonnener Wert und Konversion.",
+      "roles": {
+        "date": "Datum",
+        "amount": "Dealwert",
+        "stage": "Phase",
+        "owner": "Verantwortlich",
+        "source": "Lead-Quelle"
+      }
+    },
+    "finance": {
+      "name": "Finanzen GuV",
+      "description": "Umsatz, Kosten und Marge im Zeitverlauf und nach Konto.",
+      "roles": {
+        "date": "Datum",
+        "amount": "Umsatz",
+        "cost": "Kosten",
+        "account": "Konto / Kategorie",
+        "budget": "Budget"
+      }
+    },
+    "hr": {
+      "name": "HR-Analyse",
+      "description": "Mitarbeiterzahl, Gehalt und Zufriedenheit nach Abteilung.",
+      "roles": {
+        "date": "Datum",
+        "employee": "Personalnummer",
+        "department": "Abteilung",
+        "salary": "Gehalt",
+        "rating": "Zufriedenheit / Bewertung",
+        "status": "Status",
+        "gender": "Geschlecht"
+      }
+    },
+    "web": {
+      "name": "Webanalyse",
+      "description": "Sitzungen, Nutzer und Konversionen nach Quelle und Seite.",
+      "roles": {
+        "date": "Datum",
+        "sessions": "Sitzungen / Besuche",
+        "users": "Nutzer",
+        "conversions": "Konversionen",
+        "source": "Traffic-Quelle",
+        "page": "Seite"
+      }
+    },
+    "mobile": {
+      "name": "Mobile-App-Analyse",
+      "description": "Aktive Nutzer, Installationen und Abstürze nach Plattform und Version.",
+      "roles": {
+        "date": "Datum",
+        "active": "Aktive Nutzer",
+        "installs": "Installationen",
+        "crashes": "Abstürze",
+        "platform": "Plattform",
+        "version": "App-Version"
+      }
+    },
+    "marketing": {
+      "name": "Marketingkampagnen",
+      "description": "Ausgaben, Klicks, Konversionen und Kosten pro Konversion nach Kampagne.",
+      "roles": {
+        "date": "Datum",
+        "spend": "Ausgaben",
+        "clicks": "Klicks",
+        "conversions": "Konversionen",
+        "campaign": "Kampagne",
+        "channel": "Kanal"
+      }
+    },
+    "inventory": {
+      "name": "Bestand und Betrieb",
+      "description": "Lagerbestand, Bewegungen und Nachbestellrisiko nach Artikel und Standort.",
+      "roles": {
+        "date": "Datum",
+        "stock": "Bestand / Menge",
+        "item": "Artikel",
+        "site": "Lager / Standort",
+        "value": "Bestandswert",
+        "reorder": "Meldebestand"
+      }
+    },
+    "retail": {
+      "name": "Einzelhandel",
+      "description": "Filialumsatz, Warenkorbgröße und Bestseller.",
+      "roles": {
+        "date": "Datum",
+        "amount": "Umsatz",
+        "quantity": "Stückzahl",
+        "store": "Filiale / Region",
+        "product": "Produkt",
+        "rating": "Zufriedenheit"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} von",
+    "to": "{{field}} bis",
+    "clear": "Löschen",
+    "minimum": "{{field}} Minimum",
+    "maximum": "{{field}} Maximum",
+    "period": "Zeitraum",
+    "allTime": "Gesamter Zeitraum",
+    "howMany": "Anzahl",
+    "unit": "Einheit",
+    "operator": "Operator",
+    "typeValue": "{{field}} eingeben",
+    "value": "Wert für {{field}}",
+    "collapse": "Reduzieren",
+    "expand": "Erweitern",
+    "all": "Alle",
+    "selected_one": "{{count}} ausgewählt",
+    "selected_other": "{{count}} ausgewählt",
+    "searchPlaceholder": "Suchen oder Liste einfügen",
+    "search": "{{field}} durchsuchen",
+    "selectAll": "Alle auswählen"
+  },
+  "local": {
+    "snapshotEmpty": "Dieser Snapshot enthält kein Diagramm.",
+    "snapshot": "Snapshot",
+    "snapshotOn": "Snapshot · {{date}}",
+    "chooseParameter": "Wähle unter Format → Parameter einen Parameter aus.",
+    "button": "Schaltfläche",
+    "noViews": "Füge Ansichten (Lesezeichen) hinzu, um sie hier aufzulisten.",
+    "views": "Ansichten",
+    "pages": "Seiten"
+  },
+  "pin": {
+    "namedDashboard": "Dashboard {{title}}",
+    "newDashboard": "Neues Dashboard",
+    "overview": "Übersicht",
+    "title": "An Dashboard anheften",
+    "close": "Schließen",
+    "pinnedTo": "An <b>{{name}}</b> angeheftet.",
+    "stay": "Hier bleiben",
+    "open": "Dashboard öffnen",
+    "dashboard": "Dashboard",
+    "newOption": "+ Neues Dashboard…",
+    "name": "Name",
+    "page": "Seite",
+    "cancel": "Abbrechen",
+    "pinning": "Wird angeheftet…",
+    "pin": "Anheften"
+  },
+  "page": {
+    "backFromDetail": "Zurück",
+    "back": "Alle Dashboards",
+    "pages": "Seiten",
+    "clear": "Löschen",
+    "clearSelection": "Auswahl aufheben",
+    "apply": "Anwenden",
+    "clearSlicers": "Alle Datenschnitte löschen",
+    "updating": "Wird aktualisiert…",
+    "filters": "Filter",
+    "qa": "F&A",
+    "present": "Präsentieren",
+    "share": "Freigeben",
+    "edit": "Bearbeiten",
+    "painting": "Seite {{page}} von {{total}} wird gerendert…",
+    "buildingPdf": "PDF wird erstellt…",
+    "exported_one": "{{count}} Seite exportiert.",
+    "exported_other": "{{count}} Seiten exportiert.",
+    "exportFailed": "Der Export ist fehlgeschlagen.",
+    "notFound": "Dashboard nicht gefunden.",
+    "filtersActive_one": "{{count}} Filter aktiv",
+    "filtersActive_other": "{{count}} Filter aktiv",
+    "presentation": "Präsentation",
+    "previousPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite",
+    "pause": "Pause",
+    "autoPlay": "Automatisch abspielen",
+    "leavePresentation": "Präsentation beenden",
+    "keepExclude": "Deine Filter „Nur beibehalten“/„Ausschließen“",
+    "excluding": "Ohne {{values}}",
+    "only": "Nur {{values}}",
+    "dashboard": "Dashboard",
+    "seconds": "{{value}} s"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Verhältnis (A ÷ B), z. B. Gewinnmarge"
+    },
+    "average-per-row": {
+      "label": "Durchschnitt pro Zeile (z. B. durchschnittlicher Bestellwert)"
+    },
+    "vs-target": {
+      "label": "Im Vergleich zum Ziel (%)"
+    },
+    "difference": {
+      "label": "Differenz (A − B)"
+    },
+    "per-distinct": {
+      "label": "Wert pro eindeutigem Element (z. B. Umsatz pro Kunde)"
+    },
+    "fields": {
+      "numerator": "Zähler",
+      "denominator": "Nenner",
+      "value": "Wert",
+      "actual": "Ist",
+      "target": "Ziel",
+      "minus": "Minus",
+      "distinctItem": "Eindeutiges Element"
+    },
+    "names": {
+      "perRow": "{{a}} pro Zeile",
+      "vsTarget": "{{a}} ggü. Ziel",
+      "perDistinct": "{{a}} pro {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Unbenanntes Dashboard",
+    "title": "Dashboards",
+    "subtitle": "KPIs, Diagramme und Datenschnitte auf einem Bildschirm, alle miteinander verbunden.",
+    "noData": "Füge zuerst ein Dataset hinzu",
+    "blank": "Leer",
+    "template": "Vorlage",
+    "building": "Wird erstellt…",
+    "auto": "Dashboard erstellen",
+    "empty": "Noch keine Dashboards. Wähle ein Dataset und erstelle mit einem Klick eines.",
+    "duplicate": "Duplizieren",
+    "deleteTitle": "Dashboard löschen?",
+    "deleteText": "{{name}} und die gespeicherten Versionen werden entfernt. Datasets sind nicht betroffen.",
+    "more": "Weitere Daten",
+    "start": "Hier beginnen",
+    "import": "Daten hochladen oder einfügen",
+    "loading": "Wird geladen…",
+    "library": "Meine Visuals",
+    "allVisuals": "Alle gespeicherten Visuals",
+    "libraryHint": "Füge sie über das Menü „Einfügen“ im Editor in ein Dashboard ein.",
+    "delete": "Löschen",
+    "datasetLabel": "Dataset für ein neues Dashboard",
+    "show": "Anzeigen",
+    "filter": {
+      "all": "Alle",
+      "mine": "Meine",
+      "shared": "Für mich freigegeben"
+    },
+    "pages_one": "{{count}} Seite",
+    "pages_other": "{{count}} Seiten",
+    "roles": {
+      "owner": "Besitzer",
+      "editor": "Bearbeiter",
+      "viewer": "Betrachter"
+    },
+    "sharedFlag": "freigegeben",
+    "deleteNamed": "{{name}} löschen"
+  },
+  "visual": {
+    "target": "Ziel {{value}}",
+    "progress": "{{value}} von {{target}}",
+    "total": "Gesamt",
+    "failed": "Dieses Visual konnte nicht gezeichnet werden.",
+    "empty": "Keine Daten für die aktuellen Filter",
+    "clearSelection": "Auswahl aufheben",
+    "nothing": "Nichts anzuzeigen."
+  },
+  "shared": {
+    "loading": "Dashboard wird geladen…",
+    "missingTitle": "Dieser Link ist nicht verfügbar",
+    "missingText": "Er wurde möglicherweise widerrufen oder ist abgelaufen. Bitte die Person, die ihn freigegeben hat, um einen neuen Link.",
+    "pages": "Seiten",
+    "clearSelection": "Auswahl aufheben",
+    "clearSlicers": "Datenschnitte löschen",
+    "readOnly": "Schreibgeschützte freigegebene Ansicht"
+  },
+  "capture": {
+    "unsupported": "Dieser Browser kann die Seite nicht rendern.",
+    "failed": "Die Seite konnte nicht gerendert werden.",
+    "timeout": "Das Zeichnen der Seite hat zu lange gedauert."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "primary": "Utama",
+  "workspace": "Ruang Kerja",
+  "connections": "Koneksi",
+  "account": "Akun",
+  "chat": "Obrolan",
+  "images": "Gambar",
+  "history": "Riwayat",
+  "billing": "Penagihan",
+  "settings": "Pengaturan",
+  "integrations": "Integrasi",
+  "analytics": "Analitik Data",
+  "visualize": "Visualisasi Data"
+}

@@ -1,0 +1,326 @@
+{
+  "search": "البحث في خيارات التنسيق",
+  "resetSection": "إعادة التعيين إلى افتراضي النسق",
+  "automatic": "تلقائي",
+  "on": "تشغيل",
+  "off": "إيقاف",
+  "sections": {
+    "python": "برنامج Python النصي",
+    "parameter": "المعلمة",
+    "button": "الزر",
+    "navigator": "المتنقل",
+    "general": "العنوان والموضع",
+    "tile": "المربع",
+    "colors": "الألوان",
+    "labels": "تسميات البيانات",
+    "legend": "وسيلة الإيضاح",
+    "sort": "الفرز وأعلى N",
+    "bars": "الأشرطة والخطوط",
+    "donut": "الشرائح",
+    "kpi": "KPI",
+    "gauge": "نطاق المقياس",
+    "table": "الجدول",
+    "slicer": "المقسّم",
+    "tooltip": "تلميح الأداة",
+    "conditional": "التنسيق الشرطي",
+    "analytics": "التحليلات (خطوط مرجعية، اتجاه، تنبؤ)",
+    "map": "الخريطة"
+  },
+  "general": {
+    "title": "العنوان",
+    "showTitle": "إظهار العنوان",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "ع",
+      "h": "ط"
+    },
+    "layoutAria": "التخطيط {{axis}}",
+    "altText": "النص البديل",
+    "altPlaceholder": "لقارئات الشاشة"
+  },
+  "tile": {
+    "background": "الخلفية",
+    "border": "الحد",
+    "radius": "نصف قطر الزاوية",
+    "shadow": "الظل"
+  },
+  "colors": {
+    "seriesAria": "لون السلسلة {{index}}",
+    "custom": "مخصص",
+    "fromTheme": "من النسق"
+  },
+  "labels": {
+    "showValues": "إظهار القيم"
+  },
+  "legend": {
+    "show": "إظهار وسيلة الإيضاح",
+    "position": "الموضع",
+    "positions": {
+      "top": "أعلى",
+      "bottom": "أسفل",
+      "left": "يسار",
+      "right": "يمين"
+    }
+  },
+  "sort": {
+    "by": "فرز حسب",
+    "value": "القيمة",
+    "name": "الاسم",
+    "direction": "الاتجاه",
+    "desc": "تنازلي",
+    "asc": "تصاعدي",
+    "topN": "أعلى N",
+    "showTop": "إظهار الأعلى",
+    "others": "تجميع الباقي في «أخرى»"
+  },
+  "bars": {
+    "stacking": "التكديس",
+    "none": "جنبًا إلى جنب",
+    "stacked": "مكدّس",
+    "percent": "مكدّس 100%",
+    "smooth": "خطوط ناعمة"
+  },
+  "donut": {
+    "maxSlices": "الحد الأقصى للشرائح (الباقي → أخرى)"
+  },
+  "kpi": {
+    "compareBy": "المقارنة حسب",
+    "grains": {
+      "day": "اليوم",
+      "week": "الأسبوع",
+      "month": "الشهر",
+      "quarter": "ربع السنة",
+      "year": "السنة"
+    },
+    "upIsGood": "الارتفاع جيد"
+  },
+  "gauge": {
+    "min": "الأدنى",
+    "max": "الأقصى",
+    "auto": "تلقائي"
+  },
+  "table": {
+    "dataBars": "أشرطة البيانات"
+  },
+  "slicer": {
+    "style": "النمط",
+    "styles": {
+      "dropdown": "قائمة منسدلة",
+      "list": "قائمة",
+      "tiles": "أزرار",
+      "between": "نطاق أرقام",
+      "dateRange": "نطاق تواريخ",
+      "relative": "تاريخ نسبي",
+      "input": "كتابة قيمة",
+      "hierarchy": "تسلسل هرمي (أضف حقولًا أخرى)"
+    },
+    "single": "اختيار واحد",
+    "sync": "المزامنة عبر الصفحات",
+    "page": "الصفحة",
+    "syncColumn": "مزامنة",
+    "visible": "مرئي",
+    "syncTo": "مزامنة مع {{page}}",
+    "visibleOn": "مرئي في {{page}}"
+  },
+  "tooltip": {
+    "page": "صفحة تلميح الأداة",
+    "default": "تلميح الأداة الافتراضي",
+    "noPages": "اجعل صفحةً صفحةَ تلميح أداة أولًا"
+  },
+  "map": {
+    "zoomTo": "التكبير إلى",
+    "scopes": {
+      "world": "العالم",
+      "africa": "أفريقيا",
+      "europe": "أوروبا",
+      "asia": "آسيا",
+      "northAmerica": "أمريكا الشمالية",
+      "southAmerica": "أمريكا الجنوبية"
+    }
+  },
+  "page": {
+    "label": "الصفحة",
+    "name": "الاسم",
+    "canvasSize": "حجم لوحة الرسم",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Letter (عمودي)",
+      "fitWidth": "ملاءمة العرض (يتمدد)"
+    },
+    "background": "الخلفية",
+    "themeBackground": "خلفية النسق",
+    "type": "نوع الصفحة",
+    "types": {
+      "page": "صفحة",
+      "drillthrough": "الانتقال إلى التفاصيل (تفاصيل)",
+      "tooltip": "تلميح الأداة"
+    },
+    "tooltipHint": "تظهر مصغّرة عند التمرير فوق نقاط المرئيات التي تختارها ضمن «تنسيق → تلميح الأداة».",
+    "drillthroughHint": "انقر بزر الماوس الأيمن على عنصر من أحد هذه الحقول في صفحة أخرى → «الانتقال إلى التفاصيل»."
+  },
+  "dashboard": {
+    "label": "لوحة المعلومات",
+    "slicersApply": "تطبيق المقسّمات",
+    "instant": "فورًا",
+    "button": "بزر «تطبيق»",
+    "filtersPane": "جزء عوامل التصفية للمشاهدين",
+    "personalize": "يمكن للمشاهدين التخصيص"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "مقياس الألوان",
+      "rules": "القواعد",
+      "bars": "أشرطة البيانات",
+      "icons": "الأيقونات ▲●▼"
+    },
+    "ruleType": "نوع القاعدة",
+    "value": "القيمة",
+    "colour": "اللون",
+    "background": "الخلفية",
+    "text": "النص",
+    "removeRule": "إزالة القاعدة",
+    "lowest": "الأدنى",
+    "middle": "الأوسط",
+    "highest": "الأعلى",
+    "lowestColour": "لون الأدنى",
+    "middleColour": "لون الأوسط",
+    "highestColour": "لون الأعلى",
+    "ifValueIs": "إذا كانت القيمة",
+    "between": "بين",
+    "and": "و",
+    "removeCondition": "إزالة الشرط",
+    "addCondition": "شرط (أول تطابق هو المعتمد)",
+    "barColour": "لون الشريط",
+    "iconsHint": "▲ الثلث الأعلى، ● الأوسط، ▼ الثلث الأدنى من القيم.",
+    "addRule": "إضافة قاعدة"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "ثابت (هدف)",
+      "average": "المتوسط",
+      "median": "الوسيط",
+      "min": "الحد الأدنى",
+      "max": "الحد الأقصى",
+      "percentile": "المئين",
+      "trend": "خط الاتجاه",
+      "forecast": "التنبؤ"
+    },
+    "line": "الخط",
+    "value": "القيمة",
+    "percentile": "المئين",
+    "periods": "الفترات",
+    "colour": "اللون",
+    "removeLine": "إزالة الخط",
+    "labelPlaceholder": "التسمية (اختياري)",
+    "addLine": "إضافة خط",
+    "forecastHint": "يتطلب التنبؤ محور تاريخ (مثل التاريخ حسب الشهر)."
+  },
+  "python": {
+    "starter": "البدء من مثال",
+    "sandbox": "يعمل في بيئة Python معزولة ومقيّدة: pandas وnumpy وscipy وstatsmodels وscikit-learn؛ دون وصول إلى الملفات أو الشبكة أو النظام."
+  },
+  "button": {
+    "text": "النص",
+    "action": "الإجراء",
+    "actions": {
+      "page": "الانتقال إلى صفحة",
+      "bookmark": "تطبيق طريقة عرض (إشارة مرجعية)",
+      "back": "رجوع",
+      "clearSlicers": "مسح كل المقسّمات",
+      "applySlicers": "تطبيق المقسّمات",
+      "toggle": "إظهار / إخفاء مرئي",
+      "url": "فتح رابط ويب",
+      "askAi": "اسأل الذكاء الاصطناعي",
+      "reset": "إعادة التعيين إلى الافتراضي"
+    },
+    "page": "الصفحة",
+    "choose": "اختر…",
+    "view": "طريقة العرض",
+    "addViewsFirst": "أضف طرق عرض أولًا (علامة التبويب «طرق العرض»)",
+    "visual": "المرئي",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "الرابط",
+    "style": "النمط",
+    "fills": {
+      "primary": "معبّأ",
+      "outline": "محدّد",
+      "ghost": "عادي"
+    }
+  },
+  "navigator": {
+    "shows": "يعرض",
+    "pages": "الصفحات",
+    "bookmarks": "طرق العرض (الإشارات المرجعية)"
+  },
+  "parameter": {
+    "parameter": "المعلمة",
+    "new": "معلمة جديدة…",
+    "showAs": "الإظهار كـ",
+    "tiles": "أزرار",
+    "dropdown": "قائمة منسدلة",
+    "delete": "حذف هذه المعلمة"
+  },
+  "theme": {
+    "title": "تخصيص النسق",
+    "name": "اسم النسق",
+    "close": "إغلاق",
+    "dataColours": "ألوان البيانات",
+    "colour": "اللون {{index}}",
+    "removeColour": "إزالة اللون {{index}}",
+    "addColour": "إضافة لون",
+    "brandColour": "لون العلامة التجارية",
+    "generate": "لوحة ألوان من لون علامتي التجارية",
+    "sentiment": {
+      "good": "جيد",
+      "neutral": "محايد",
+      "bad": "سيئ"
+    },
+    "pageAndTiles": "الصفحة والمربعات",
+    "light": "فاتح",
+    "dark": "داكن",
+    "roles": {
+      "canvas": "لوحة الرسم",
+      "tile": "المربعات",
+      "border": "الحدود",
+      "gridline": "خطوط الشبكة",
+      "text": "النص",
+      "mutedText": "النص الخافت",
+      "accent": "لون التمييز"
+    },
+    "contrast": "يصعب قراءة النص على المربعات ({{ratio}}:1 — استهدف 4.5:1 أو أكثر).",
+    "font": "الخط",
+    "systemFont": "خط النظام",
+    "corners": "الزوايا",
+    "shadow": "الظل",
+    "shadows": {
+      "none": "بلا",
+      "soft": "ناعم",
+      "medium": "متوسط"
+    },
+    "kpiTiles": "مربعات KPI",
+    "kpiStyles": {
+      "plain": "عادي",
+      "solid": "لون خالص",
+      "gradient": "متدرّج",
+      "outlined": "محدّد",
+      "icon": "شريط التمييز"
+    },
+    "orgThemes": "أنساق مؤسستي",
+    "deleteTheme": "حذف {{name}}",
+    "importJson": "استيراد JSON",
+    "exportJson": "تصدير JSON",
+    "saveAs": "حفظ كنسق خاص بي",
+    "defaultName": "نسقي",
+    "importedName": "نسق مستورد",
+    "imported": "تم الاستيراد.",
+    "saved": "تم حفظ «{{name}}» لمؤسستك.",
+    "cancel": "إلغاء",
+    "done": "تم",
+    "errors": {
+      "notTheme": "الملف ليس نسقًا.",
+      "needColours": "يحتاج النسق إلى 3 ألوان بيانات على الأقل (dataColors)."
+    }
+  }
+}

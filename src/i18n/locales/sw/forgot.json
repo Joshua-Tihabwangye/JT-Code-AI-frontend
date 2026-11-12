@@ -1,0 +1,32 @@
+{
+  "resetTitle": "Weka upya nenosiri lako",
+  "emailLabel": "Barua pepe",
+  "sendCode": "Tuma msimbo wa kuweka upya",
+  "sending": "Inatuma…",
+  "backToSignIn": "Rudi kuingia",
+  "checkTitle": "Angalia barua pepe yako",
+  "useCodeNow": "Tumia msimbo huu sasa",
+  "haveCode": "Nina msimbo wa kuweka upya tayari",
+  "newPasswordTitle": "Unda nenosiri jipya",
+  "newPasswordDesc": "Weka msimbo wa kuweka upya na uchague nenosiri jipya kwa {{email}}.",
+  "codeLabel": "Msimbo wa kuweka upya",
+  "newPasswordLabel": "Nenosiri jipya",
+  "confirmPasswordLabel": "Thibitisha nenosiri",
+  "updating": "Inasasisha…",
+  "resetButton": "Weka upya nenosiri",
+  "backToCode": "Rudi kwenye hatua ya msimbo",
+  "updatedTitle": "Nenosiri limesasishwa",
+  "updatedMessage": "Nenosiri lako limesasishwa. Unaweza kuingia kwa nenosiri jipya.",
+  "returnToSignIn": "Rudi kuingia",
+  "errors": {
+    "sendFailed": "Imeshindikana kutuma kiungo cha kuweka upya nenosiri.",
+    "resetFailed": "Imeshindikana kuweka upya nenosiri lako.",
+    "mismatch": "Manenosiri hayalingani.",
+    "unexpected": "Hitilafu isiyotarajiwa imetokea."
+  },
+  "resetDesc": "Ingiza anwani yako ya barua pepe na tutakutumia kiungo cha kuweka upya unaweza kukamilisha papa hapa.",
+  "checkDesc": "Tulituma ujumbe wa kuweka upya kwa <0>{{email}} </0>. Nambari iliyo hapa chini itafungua hatua inayofuata.",
+  "checkDescPlain": "Tulituma msimbo wa kuweka upya kwa {{email}}. Ingiza kwenye hatua inayofuata ili kuchagua nenosiri jipya.",
+  "mockResetCode": "Weka upya msimbo",
+  "enterEmailedCode": "Ingiza msimbo kutoka kwa barua pepe"
+}

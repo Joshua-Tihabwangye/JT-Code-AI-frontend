@@ -1,0 +1,326 @@
+{
+  "search": "स्वरूप पर्याय शोधा",
+  "resetSection": "थीम डीफॉल्टवर रीसेट करा",
+  "automatic": "स्वयंचलित",
+  "on": "चालू",
+  "off": "बंद",
+  "sections": {
+    "python": "पायथन स्क्रिप्ट",
+    "parameter": "पॅरामीटर",
+    "button": "बटण",
+    "navigator": "नेव्हिगेटर",
+    "general": "शीर्षक आणि स्थान",
+    "tile": "टाइल",
+    "colors": "रंग",
+    "labels": "डेटा लेबल्स",
+    "legend": "दंतकथा",
+    "sort": "क्रमवारी लावा आणि शीर्ष एन",
+    "bars": "बार आणि ओळी",
+    "donut": "काप",
+    "kpi": "KPI",
+    "gauge": "गेज श्रेणी",
+    "table": "टेबल",
+    "slicer": "स्लायसर",
+    "tooltip": "टूलटिप",
+    "conditional": "सशर्त स्वरूपन",
+    "analytics": "विश्लेषण (संदर्भ ओळी, कल, अंदाज)",
+    "map": "नकाशा"
+  },
+  "general": {
+    "title": "शीर्षक",
+    "showTitle": "शीर्षक दाखवा",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "w",
+      "h": "h"
+    },
+    "layoutAria": "लेआउट {{axis}}",
+    "altText": "Alt मजकूर",
+    "altPlaceholder": "स्क्रीन वाचकांसाठी"
+  },
+  "tile": {
+    "background": "पार्श्वभूमी",
+    "border": "सीमा",
+    "radius": "कोपरा त्रिज्या",
+    "shadow": "सावली"
+  },
+  "colors": {
+    "seriesAria": "मालिका रंग {{index}}",
+    "custom": "सानुकूल",
+    "fromTheme": "थीम पासून"
+  },
+  "labels": {
+    "showValues": "मूल्ये दाखवा"
+  },
+  "legend": {
+    "show": "आख्यायिका दाखवा",
+    "position": "स्थिती",
+    "positions": {
+      "top": "शीर्षस्थानी",
+      "bottom": "तळ",
+      "left": "बाकी",
+      "right": "बरोबर"
+    }
+  },
+  "sort": {
+    "by": "यानुसार क्रमवारी लावा",
+    "value": "मूल्य",
+    "name": "नाव",
+    "direction": "दिशा",
+    "desc": "उतरत्या",
+    "asc": "चढत्या",
+    "topN": "शीर्ष एन",
+    "showTop": "शीर्ष दर्शवा",
+    "others": "बाकीचे \"इतर\" म्हणून गटबद्ध करा"
+  },
+  "bars": {
+    "stacking": "स्टॅकिंग",
+    "none": "शेजारी शेजारी",
+    "stacked": "स्टॅक केलेले",
+    "percent": "100% स्टॅक केलेले",
+    "smooth": "गुळगुळीत रेषा"
+  },
+  "donut": {
+    "maxSlices": "कमाल स्लाइस (बाकी → इतर)"
+  },
+  "kpi": {
+    "compareBy": "द्वारे तुलना करा",
+    "grains": {
+      "day": "दिवस",
+      "week": "आठवडा",
+      "month": "महिना",
+      "quarter": "क्वार्टर",
+      "year": "वर्ष"
+    },
+    "upIsGood": "वर चांगला आहे"
+  },
+  "gauge": {
+    "min": "मि",
+    "max": "कमाल",
+    "auto": "ऑटो"
+  },
+  "table": {
+    "dataBars": "डेटा बार"
+  },
+  "slicer": {
+    "style": "शैली",
+    "styles": {
+      "dropdown": "ड्रॉपडाउन",
+      "list": "यादी",
+      "tiles": "बटणे",
+      "between": "संख्या श्रेणी",
+      "dateRange": "तारीख श्रेणी",
+      "relative": "सापेक्ष तारीख",
+      "input": "एक मूल्य टाइप करा",
+      "hierarchy": "पदानुक्रम (अधिक फील्ड जोडा)"
+    },
+    "single": "एकच निवड",
+    "sync": "पृष्ठांवर समक्रमित करा",
+    "page": "पान",
+    "syncColumn": "सिंक",
+    "visible": "दृश्यमान",
+    "syncTo": "{{page}} वर समक्रमित करा",
+    "visibleOn": "{{page}} वर दृश्यमान"
+  },
+  "tooltip": {
+    "page": "टूलटिप पृष्ठ",
+    "default": "डीफॉल्ट टूलटिप",
+    "noPages": "प्रथम एका पृष्ठास टूलटिप पृष्ठ बनवा"
+  },
+  "map": {
+    "zoomTo": "वर झूम करा",
+    "scopes": {
+      "world": "जग",
+      "africa": "आफ्रिका",
+      "europe": "युरोप",
+      "asia": "आशिया",
+      "northAmerica": "उत्तर अमेरिका",
+      "southAmerica": "दक्षिण अमेरिका"
+    }
+  },
+  "page": {
+    "label": "पान",
+    "name": "नाव",
+    "canvasSize": "कॅनव्हास आकार",
+    "canvasPresets": {
+      "wide": "१६:९ (१२८० × ७२०)",
+      "standard": "४:३ (१२८० × ९६०)",
+      "letter": "पत्र (पोर्ट्रेट)",
+      "fitWidth": "रुंदीमध्ये फिट (वाढते)"
+    },
+    "background": "पार्श्वभूमी",
+    "themeBackground": "थीम पार्श्वभूमी",
+    "type": "पृष्ठ प्रकार",
+    "types": {
+      "page": "पान",
+      "drillthrough": "ड्रिल-थ्रू (तपशील)",
+      "tooltip": "टूलटिप"
+    },
+    "tooltipHint": "फॉरमॅट → टूलटिप अंतर्गत निवडलेल्या व्हिज्युअलचे पॉइंट फिरवताना लहान दाखवले जाते.",
+    "drillthroughHint": "दुसऱ्या पृष्ठावरील यापैकी एका फील्डच्या सदस्यावर उजवे-क्लिक करा → “ड्रिल थ्रू”."
+  },
+  "dashboard": {
+    "label": "डॅशबोर्ड",
+    "slicersApply": "स्लायसर लागू",
+    "instant": "लगेच",
+    "button": "लागू करा बटणासह",
+    "filtersPane": "दर्शकांसाठी फिल्टर उपखंड",
+    "personalize": "दर्शक वैयक्तिकृत करू शकतात"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "रंग स्केल",
+      "rules": "नियम",
+      "bars": "डेटा बार",
+      "icons": "चिन्ह ▲●▼"
+    },
+    "ruleType": "नियम प्रकार",
+    "value": "मूल्य",
+    "colour": "रंग",
+    "background": "पार्श्वभूमी",
+    "text": "मजकूर",
+    "removeRule": "नियम काढा",
+    "lowest": "सर्वात कमी",
+    "middle": "मधला",
+    "highest": "सर्वोच्च",
+    "lowestColour": "सर्वात कमी रंग",
+    "middleColour": "मधला रंग",
+    "highestColour": "सर्वोच्च रंग",
+    "ifValueIs": "मूल्य असल्यास",
+    "between": "दरम्यान",
+    "and": "आणि",
+    "removeCondition": "अट काढून टाका",
+    "addCondition": "अट (पहिला सामना जिंकला)",
+    "barColour": "बार रंग",
+    "iconsHint": "▲ वरचा तिसरा, ● मधला, ▼ मूल्यांचा तळाचा तिसरा.",
+    "addRule": "एक नियम जोडा"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "स्थिर (लक्ष्य)",
+      "average": "सरासरी",
+      "median": "मध्यक",
+      "min": "किमान",
+      "max": "कमाल",
+      "percentile": "टक्केवारी",
+      "trend": "ट्रेंड लाइन",
+      "forecast": "अंदाज"
+    },
+    "line": "ओळ",
+    "value": "मूल्य",
+    "percentile": "टक्केवारी",
+    "periods": "पूर्णविराम",
+    "colour": "रंग",
+    "removeLine": "ओळ काढा",
+    "labelPlaceholder": "लेबल (पर्यायी)",
+    "addLine": "एक ओळ जोडा",
+    "forecastHint": "अंदाजांना तारखेचा अक्ष आवश्यक आहे (उदा. महिन्यानुसार तारीख)."
+  },
+  "python": {
+    "starter": "एका उदाहरणापासून सुरुवात करा",
+    "sandbox": "लॉक-डाउन पायथन सँडबॉक्समध्ये चालते: पांडा, नम्पी, स्किपी, स्टॅट्समॉडेल्स आणि स्किट-लर्न; फाइल्स, नेटवर्क किंवा सिस्टम ऍक्सेस नाहीत."
+  },
+  "button": {
+    "text": "मजकूर",
+    "action": "कृती",
+    "actions": {
+      "page": "पृष्ठावर जा",
+      "bookmark": "दृश्य लागू करा (बुकमार्क)",
+      "back": "मागे",
+      "clearSlicers": "सर्व स्लाइसर्स साफ करा",
+      "applySlicers": "स्लाइसर्स लावा",
+      "toggle": "दृश्य दर्शवा / लपवा",
+      "url": "वेब लिंक उघडा",
+      "askAi": "AI ला विचारा",
+      "reset": "डीफॉल्टवर रीसेट करा"
+    },
+    "page": "पान",
+    "choose": "निवडा…",
+    "view": "पहा",
+    "addViewsFirst": "प्रथम दृश्ये जोडा (दृश्ये टॅब)",
+    "visual": "व्हिज्युअल",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "दुवा",
+    "style": "शैली",
+    "fills": {
+      "primary": "भरले",
+      "outline": "रुपरेषा",
+      "ghost": "साधा"
+    }
+  },
+  "navigator": {
+    "shows": "दाखवतो",
+    "pages": "पृष्ठे",
+    "bookmarks": "दृश्ये (बुकमार्क)"
+  },
+  "parameter": {
+    "parameter": "पॅरामीटर",
+    "new": "नवीन पॅरामीटर…",
+    "showAs": "म्हणून दाखवा",
+    "tiles": "बटणे",
+    "dropdown": "ड्रॉपडाउन",
+    "delete": "हे पॅरामीटर हटवा"
+  },
+  "theme": {
+    "title": "थीम सानुकूलित करा",
+    "name": "थीम नाव",
+    "close": "बंद करा",
+    "dataColours": "डेटा रंग",
+    "colour": "रंग {{index}}",
+    "removeColour": "रंग काढा {{index}}",
+    "addColour": "एक रंग जोडा",
+    "brandColour": "ब्रँड रंग",
+    "generate": "माझ्या ब्रँड रंगाचे पॅलेट",
+    "sentiment": {
+      "good": "चांगले",
+      "neutral": "तटस्थ",
+      "bad": "वाईट"
+    },
+    "pageAndTiles": "पृष्ठ आणि फरशा",
+    "light": "प्रकाश",
+    "dark": "गडद",
+    "roles": {
+      "canvas": "कॅनव्हास",
+      "tile": "फरशा",
+      "border": "सीमा",
+      "gridline": "ग्रिडलाइन",
+      "text": "मजकूर",
+      "mutedText": "निःशब्द केलेला मजकूर",
+      "accent": "उच्चारण"
+    },
+    "contrast": "टाइलवर मजकूर वाचणे कठीण आहे ({{ratio}}:1 — लक्ष्य 4.5:1 किंवा अधिक).",
+    "font": "फॉन्ट",
+    "systemFont": "प्रणाली",
+    "corners": "कोपरे",
+    "shadow": "सावली",
+    "shadows": {
+      "none": "काहीही नाही",
+      "soft": "मऊ",
+      "medium": "मध्यम"
+    },
+    "kpiTiles": "KPI फरशा",
+    "kpiStyles": {
+      "plain": "साधा",
+      "solid": "घन रंग",
+      "gradient": "ग्रेडियंट",
+      "outlined": "आराखडा",
+      "icon": "उच्चारण बार"
+    },
+    "orgThemes": "माझ्या संस्थेची थीम",
+    "deleteTheme": "{{name}} हटवा",
+    "importJson": "JSON आयात करा",
+    "exportJson": "JSON निर्यात करा",
+    "saveAs": "माझी थीम म्हणून जतन करा",
+    "defaultName": "माझी थीम",
+    "importedName": "आयात केलेली थीम",
+    "imported": "आयात केले.",
+    "saved": "तुमच्या संस्थेसाठी \"{{name}}\" जतन केले.",
+    "cancel": "रद्द करा",
+    "done": "झाले",
+    "errors": {
+      "notTheme": "फाइल ही थीम नाही.",
+      "needColours": "थीमला किमान 3 डेटा कलर्स (डेटा कलर्स) आवश्यक असतात."
+    }
+  }
+}

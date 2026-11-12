@@ -1,0 +1,38 @@
+{
+  "pick": "Scegli un set di dati nella barra in alto o aggiungine uno nella pagina Dati.",
+  "add": "Nuovo grafico",
+  "pin": "Aggiungi alla dashboard",
+  "saved": "Salvato in Le mie immagini",
+  "save": "Salva in Le mie immagini",
+  "viewData": "Visualizza i dati",
+  "pageName": "Esplorare",
+  "chartType": "Tipo di grafico",
+  "suggestions": "Suggerimenti",
+  "charts": "Grafici",
+  "buildAndFormat": "Costruisci e formatta",
+  "build": "Costruire",
+  "format": "Formato",
+  "remove": "Rimuovi questo grafico",
+  "drawer": {
+    "data": "Dati dietro il grafico",
+    "rows": "Righe grezze",
+    "query": "Domanda"
+  },
+  "noData": "Nessun dato ancora.",
+  "query": {
+    "chart": "{{chart}} di {{fields}} (ogni riga, campionata a 10.000 se maggiore).",
+    "noFields": "nessun campo ancora",
+    "countRows": "Conteggio delle righe",
+    "measure": "{{agg}} di {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "anno",
+      "quarter": "trimestre",
+      "month": "mese",
+      "week": "settimana",
+      "day": "giorno"
+    },
+    "grouped": "{{what}} di {{groups}} — calcolato nel database, quindi disegnato in Python.",
+    "total": "{{what}} — calcolato nel database, quindi disegnato in Python."
+  }
+}

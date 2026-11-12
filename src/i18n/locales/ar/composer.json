@@ -1,0 +1,10 @@
+{
+  "attach": "إرفاق",
+  "attachDocument": "إرفاق مستند",
+  "attachImage": "إرفاق صورة",
+  "currentPlan": "الخطة الحالية",
+  "voiceInput": "إدخال صوتي",
+  "sendMessage": "إرسال الرسالة",
+  "defaultPlaceholder": "اسأل JT-Code عن أي شيء…",
+  "removeAttachment": "إزالة {{name}}"
+}

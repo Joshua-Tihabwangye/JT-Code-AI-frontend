@@ -1,0 +1,18 @@
+{
+  "title": "차트 갤러리",
+  "subtitle": "{{count}} 차트 유형 — 탐색에서 하나를 열면 열이 채워집니다.",
+  "search": "검색 차트(예: '예측', '공유'",
+  "searchLabel": "차트 검색",
+  "level": "수준",
+  "allLevels": "모든 레벨",
+  "essentialShort": "필수적인",
+  "advancedShort": "고급의",
+  "all": "모두",
+  "recommended": "{{name}}에 권장됨",
+  "recommendedHint": "열에서 선택되었습니다. 하나를 열어 데이터와 함께 확인하세요.",
+  "empty": "해당 검색어와 일치하는 차트가 없습니다.",
+  "advancedBadge": "고급의",
+  "useInExplore": "탐색에 사용",
+  "addToDashboard": "대시보드에 추가",
+  "thisDataset": "이 데이터 세트"
+}

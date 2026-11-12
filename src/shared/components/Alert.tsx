@@ -1,5 +1,6 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'destructive' | 'success' | 'warning';
@@ -8,6 +9,7 @@ interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ className, variant = 'default', children, onClose, ...props }, ref) => {
+    const { t } = useTranslation();
     const variants = {
       default: 'border-border bg-background',
       destructive: 'border-destructive/50 bg-destructive/10 text-destructive',
@@ -58,7 +60,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             className="absolute right-2 top-2 rounded-md p-1 opacity-70 transition-all hover:opacity-100 hover:bg-background/60 hover:scale-105 active:scale-95"
             onClick={onClose}
-            aria-label="Dismiss"
+            aria-label={t('common.dismiss')}
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

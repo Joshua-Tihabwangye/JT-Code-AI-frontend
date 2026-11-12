@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "ダッシュボード",
+    "data": "データ",
+    "gallery": "ギャラリー",
+    "predict": "予測する",
+    "reports": "レポート",
+    "explore": "探検する"
+  },
+  "askAi": "AIに聞く",
+  "hero": {
+    "title": "データ視覚化スタジオ"
+  },
+  "assistant": {
+    "title": "JTコードAI",
+    "cost": "プロンプトを送信する場合にのみクレジットを使用します。チャート、洞察、提案は無料です。",
+    "about": "について尋ねる",
+    "intro": "見たいものを説明してください。私がグラフを選択し、列に記入すると、何かを実行する前にそれを確認します。",
+    "thinking": "考え…",
+    "builtIn": "内蔵",
+    "credits": "{{credits}} クレジット",
+    "free": "クレジットは使用されていません",
+    "openExplore": "エクスプローラーで開く",
+    "setUp": "予測を設定する",
+    "placeholder": "例えば地域ごとの月次収益を表示する",
+    "prompt": "プロンプト",
+    "send": "送信",
+    "close": "近い"
+  },
+  "dataset": "データセット",
+  "noDataset": "まだデータセットがありません",
+  "sections": "データ視覚化セクション",
+  "controls": {
+    "noColumns": {
+      "numeric": "数値列はありません",
+      "datetime": "日時列はありません",
+      "categorical": "カテゴリ列はありません",
+      "dimension": "ディメンション列がありません",
+      "any": "列なし"
+    },
+    "chooseColumn": "列を選択してください…",
+    "none": "なし",
+    "automatic": "自動"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "素晴らしい",
+      "good": "良い",
+      "fair": "公平",
+      "weak": "弱い",
+      "unknown": "未知"
+    },
+    "dataset": "データセット",
+    "noDatasets": "データセットはまだありません",
+    "rows_one": "{{rows}}行",
+    "rows_other": "{{rows}} 行",
+    "less": "少ない",
+    "howToRead": "読み方",
+    "dataOf": "{{title}} データ",
+    "tableSize": "{{rows}} 行 × {{columns}} 列 — このグラフが示すデータ",
+    "tableSizeFirst": "{{rows}} 行 × {{columns}} 列 (最初の行) — このグラフが示すデータ",
+    "close": "近い",
+    "expandRibbon": "リボンを展開する",
+    "collapseRibbon": "リボンを折りたたむ"
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "search": "Tafuta chaguzi za umbizo",
+  "resetSection": "Weka upya kwa chaguomsingi la mandhari",
+  "automatic": "Otomatiki",
+  "on": "Washa",
+  "off": "Imezimwa",
+  "sections": {
+    "python": "Hati ya Python",
+    "parameter": "Kigezo",
+    "button": "Kitufe",
+    "navigator": "Navigator",
+    "general": "Kichwa na nafasi",
+    "tile": "Kigae",
+    "colors": "Rangi",
+    "labels": "Lebo za data",
+    "legend": "Hadithi",
+    "sort": "Panga na Juu N",
+    "bars": "Baa na mistari",
+    "donut": "Vipande",
+    "kpi": "KPI",
+    "gauge": "Kiwango cha kupima",
+    "table": "Jedwali",
+    "slicer": "Kipande",
+    "tooltip": "Kidokezo cha zana",
+    "conditional": "Uumbizaji wa masharti",
+    "analytics": "Uchanganuzi (mistari ya marejeleo, mwelekeo, utabiri)",
+    "map": "Ramani"
+  },
+  "general": {
+    "title": "Kichwa",
+    "showTitle": "Onyesha kichwa",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "w",
+      "h": "h"
+    },
+    "layoutAria": "Muundo {{axis}}",
+    "altText": "Maandishi mbadala",
+    "altPlaceholder": "Kwa visoma skrini"
+  },
+  "tile": {
+    "background": "Usuli",
+    "border": "Mpaka",
+    "radius": "Radi ya kona",
+    "shadow": "Kivuli"
+  },
+  "colors": {
+    "seriesAria": "Rangi ya mfululizo {{index}}",
+    "custom": "Desturi",
+    "fromTheme": "Kutoka kwa mada"
+  },
+  "labels": {
+    "showValues": "Onyesha maadili"
+  },
+  "legend": {
+    "show": "Onyesha hadithi",
+    "position": "Nafasi",
+    "positions": {
+      "top": "Juu",
+      "bottom": "Chini",
+      "left": "Kushoto",
+      "right": "Sawa"
+    }
+  },
+  "sort": {
+    "by": "Panga kwa",
+    "value": "Thamani",
+    "name": "Jina",
+    "direction": "Mwelekeo",
+    "desc": "Kushuka",
+    "asc": "Kupanda",
+    "topN": "Juu N",
+    "showTop": "Onyesha juu",
+    "others": "Panga wengine kama \"Wengine\""
+  },
+  "bars": {
+    "stacking": "Kuweka mrundikano",
+    "none": "Upande kwa upande",
+    "stacked": "Imepangwa kwa rafu",
+    "percent": "100% zimepangwa",
+    "smooth": "Mistari laini"
+  },
+  "donut": {
+    "maxSlices": "Upeo wa vipande (pumzika → Nyingine)"
+  },
+  "kpi": {
+    "compareBy": "Linganisha na",
+    "grains": {
+      "day": "Siku",
+      "week": "Wiki",
+      "month": "Mwezi",
+      "quarter": "Robo",
+      "year": "Mwaka"
+    },
+    "upIsGood": "Juu ni nzuri"
+  },
+  "gauge": {
+    "min": "Dak",
+    "max": "Max",
+    "auto": "Otomatiki"
+  },
+  "table": {
+    "dataBars": "Mipau ya data"
+  },
+  "slicer": {
+    "style": "Mtindo",
+    "styles": {
+      "dropdown": "Kunjuzi",
+      "list": "Orodha",
+      "tiles": "Vifungo",
+      "between": "Masafa ya nambari",
+      "dateRange": "Muda wa tarehe",
+      "relative": "Tarehe ya jamaa",
+      "input": "Andika thamani",
+      "hierarchy": "Hierarkia (ongeza sehemu zaidi)"
+    },
+    "single": "Chaguo moja",
+    "sync": "Sawazisha kurasa zote",
+    "page": "Ukurasa",
+    "syncColumn": "Sawazisha",
+    "visible": "Inaonekana",
+    "syncTo": "Sawazisha kwa {{page}}",
+    "visibleOn": "Inaonekana kwenye {{page}}"
+  },
+  "tooltip": {
+    "page": "Ukurasa wa kidokezo",
+    "default": "Kidokezo chaguomsingi",
+    "noPages": "Fanya ukurasa kuwa ukurasa wa kidokezo kwanza"
+  },
+  "map": {
+    "zoomTo": "Kuza hadi",
+    "scopes": {
+      "world": "Ulimwengu",
+      "africa": "Afrika",
+      "europe": "Ulaya",
+      "asia": "Asia",
+      "northAmerica": "Amerika ya Kaskazini",
+      "southAmerica": "Amerika Kusini"
+    }
+  },
+  "page": {
+    "label": "Ukurasa",
+    "name": "Jina",
+    "canvasSize": "Ukubwa wa turubai",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Barua (picha)",
+      "fitWidth": "Inafaa kwa upana (inakua)"
+    },
+    "background": "Usuli",
+    "themeBackground": "Mandharinyuma",
+    "type": "Aina ya ukurasa",
+    "types": {
+      "page": "Ukurasa",
+      "drillthrough": "Kuchimba (maelezo)",
+      "tooltip": "Kidokezo cha zana"
+    },
+    "tooltipHint": "Inaonyeshwa ndogo wakati wa kuelea pointi za taswira ambazo huichagua chini ya Format → Tooltip.",
+    "drillthroughHint": "Bofya kulia mwanachama wa mojawapo ya sehemu hizi kwenye ukurasa mwingine → \"Piga kupitia\"."
+  },
+  "dashboard": {
+    "label": "Dashibodi",
+    "slicersApply": "Vipande vinatumika",
+    "instant": "Mara moja",
+    "button": "Na kitufe cha Tuma",
+    "filtersPane": "Kidirisha cha vichujio kwa watazamaji",
+    "personalize": "Watazamaji wanaweza kubinafsisha"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Kiwango cha rangi",
+      "rules": "Kanuni",
+      "bars": "Mipau ya data",
+      "icons": "Aikoni ▲●▼"
+    },
+    "ruleType": "Aina ya kanuni",
+    "value": "Thamani",
+    "colour": "Rangi",
+    "background": "Usuli",
+    "text": "Maandishi",
+    "removeRule": "Ondoa kanuni",
+    "lowest": "Chini kabisa",
+    "middle": "Kati",
+    "highest": "Juu zaidi",
+    "lowestColour": "Rangi ya chini kabisa",
+    "middleColour": "Rangi ya kati",
+    "highestColour": "Rangi ya juu zaidi",
+    "ifValueIs": "Ikiwa thamani ni",
+    "between": "kati",
+    "and": "Na",
+    "removeCondition": "Ondoa hali",
+    "addCondition": "Hali (mechi ya kwanza imeshinda)",
+    "barColour": "Rangi ya bar",
+    "iconsHint": "▲ juu ya tatu, ● katikati, ▼ chini ya tatu ya thamani.",
+    "addRule": "Ongeza kanuni"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Mara kwa mara (lengo)",
+      "average": "Wastani",
+      "median": "Wastani",
+      "min": "Kiwango cha chini",
+      "max": "Upeo wa juu",
+      "percentile": "Asilimia",
+      "trend": "Mstari wa mwenendo",
+      "forecast": "Utabiri"
+    },
+    "line": "Mstari",
+    "value": "Thamani",
+    "percentile": "Asilimia",
+    "periods": "Vipindi",
+    "colour": "Rangi",
+    "removeLine": "Ondoa mstari",
+    "labelPlaceholder": "Lebo (ya hiari)",
+    "addLine": "Ongeza mstari",
+    "forecastHint": "Utabiri unahitaji mhimili wa tarehe (k.m. tarehe baada ya mwezi)."
+  },
+  "python": {
+    "starter": "Anza kutoka kwa mfano",
+    "sandbox": "Huendesha katika kisanduku cha mchanga cha Python kilichofungwa: panda, numpy, scipy, statsmodels na scikit-learn; hakuna faili, mtandao au ufikiaji wa mfumo."
+  },
+  "button": {
+    "text": "Maandishi",
+    "action": "Kitendo",
+    "actions": {
+      "page": "Nenda kwenye ukurasa",
+      "bookmark": "Weka mwonekano (alamisho)",
+      "back": "Nyuma",
+      "clearSlicers": "Futa vipande vyote",
+      "applySlicers": "Weka vipande vya kukata",
+      "toggle": "Onyesha / ficha taswira",
+      "url": "Fungua kiungo cha wavuti",
+      "askAi": "Uliza AI",
+      "reset": "Weka upya kwa chaguomsingi"
+    },
+    "page": "Ukurasa",
+    "choose": "Chagua..",
+    "view": "Tazama",
+    "addViewsFirst": "Ongeza mionekano kwanza (Kichupo cha Mionekano)",
+    "visual": "Visual",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Kiungo",
+    "style": "Mtindo",
+    "fills": {
+      "primary": "Imejazwa",
+      "outline": "Muhtasari",
+      "ghost": "Wazi"
+    }
+  },
+  "navigator": {
+    "shows": "Maonyesho",
+    "pages": "Kurasa",
+    "bookmarks": "Mionekano (alamisho)"
+  },
+  "parameter": {
+    "parameter": "Kigezo",
+    "new": "Kigezo kipya..",
+    "showAs": "Onyesha kama",
+    "tiles": "Vifungo",
+    "dropdown": "Kunjuzi",
+    "delete": "Futa kigezo hiki"
+  },
+  "theme": {
+    "title": "Customize mandhari",
+    "name": "Jina la mandhari",
+    "close": "Funga",
+    "dataColours": "Rangi za data",
+    "colour": "Rangi {{index}}",
+    "removeColour": "Ondoa rangi {{index}}",
+    "addColour": "Ongeza rangi",
+    "brandColour": "Rangi ya chapa",
+    "generate": "Palette kutoka kwa rangi ya chapa yangu",
+    "sentiment": {
+      "good": "Nzuri",
+      "neutral": "Si upande wowote",
+      "bad": "Mbaya"
+    },
+    "pageAndTiles": "Ukurasa na tiles",
+    "light": "Mwanga",
+    "dark": "Giza",
+    "roles": {
+      "canvas": "Turubai",
+      "tile": "Vigae",
+      "border": "Mipaka",
+      "gridline": "Mistari ya gridi",
+      "text": "Maandishi",
+      "mutedText": "Maandishi yaliyonyamazishwa",
+      "accent": "Lafudhi"
+    },
+    "contrast": "Maandishi ni magumu kusoma kwenye vigae ({{ratio}}:1 — lenga 4.5:1 au zaidi).",
+    "font": "Fonti",
+    "systemFont": "Mfumo",
+    "corners": "Pembe",
+    "shadow": "Kivuli",
+    "shadows": {
+      "none": "Hakuna",
+      "soft": "Laini",
+      "medium": "Kati"
+    },
+    "kpiTiles": "Vigae vya KPI",
+    "kpiStyles": {
+      "plain": "Wazi",
+      "solid": "Rangi imara",
+      "gradient": "Gradient",
+      "outlined": "Imeainishwa",
+      "icon": "Upau wa lafudhi"
+    },
+    "orgThemes": "Mandhari ya shirika langu",
+    "deleteTheme": "Futa {{name}}",
+    "importJson": "Ingiza JSON",
+    "exportJson": "Hamisha JSON",
+    "saveAs": "Hifadhi kama mada yangu",
+    "defaultName": "Mandhari yangu",
+    "importedName": "Mandhari iliyoingizwa",
+    "imported": "Imeingizwa.",
+    "saved": "\"{{name}}\" imehifadhiwa kwa ajili ya shirika lako.",
+    "cancel": "Ghairi",
+    "done": "Imekamilika",
+    "errors": {
+      "notTheme": "Faili si mandhari.",
+      "needColours": "Mandhari yanahitaji angalau rangi 3 za data (dataColors)."
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "title": "Rapports",
+  "subtitle": "Exportez un tableau de bord ou réutilisez les visuels que vous avez enregistrés.",
+  "export": "Exporter un tableau de bord",
+  "noCharts": "Enregistrez des visuels depuis Explorer ou Prévoir pour les réutiliser dans des tableaux de bord.",
+  "library": {
+    "title": "Mes visuels"
+  },
+  "dashboardToExport": "Tableau de bord à exporter",
+  "noDashboards": "Aucun tableau de bord pour le moment",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Une page par page du tableau de bord, exactement comme à l'écran"
+    },
+    "png": {
+      "label": "Images PNG",
+      "hint": "Une image par page"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Les données de chaque visuel avec des graphiques natifs, plus les données brutes"
+    },
+    "html": {
+      "label": "HTML interactif",
+      "hint": "Un fichier unique qui fonctionne hors ligne"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "La définition du tableau de bord"
+    }
+  },
+  "preparing": "Préparation…",
+  "explore": "Explorer",
+  "prediction": "Prédiction",
+  "visualOf": "Visuel {{type}}",
+  "deletedDataset": "jeu de données supprimé",
+  "unshare": "Ne plus partager",
+  "share": "Partager",
+  "deleteNamed": "Supprimer {{name}}"
+}

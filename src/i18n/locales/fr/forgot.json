@@ -1,0 +1,32 @@
+{
+  "resetTitle": "Réinitialisez votre mot de passe",
+  "emailLabel": "Adresse e-mail",
+  "sendCode": "Envoyer le code de réinitialisation",
+  "sending": "Envoi…",
+  "backToSignIn": "Retour à la connexion",
+  "checkTitle": "Vérifiez votre e-mail",
+  "useCodeNow": "Utilisez ce code maintenant",
+  "haveCode": "J'ai déjà un code de réinitialisation",
+  "newPasswordTitle": "Créer un nouveau mot de passe",
+  "newPasswordDesc": "Saisissez le code de réinitialisation et choisissez un nouveau mot de passe pour {{email}}.",
+  "codeLabel": "Code de réinitialisation",
+  "newPasswordLabel": "Nouveau mot de passe",
+  "confirmPasswordLabel": "Confirmer le mot de passe",
+  "updating": "Mise à jour…",
+  "resetButton": "Réinitialiser le mot de passe",
+  "backToCode": "Retour à l'étape du code",
+  "updatedTitle": "Mot de passe mis à jour",
+  "updatedMessage": "Votre mot de passe a été mis à jour. Vous pouvez vous connecter avec le nouveau mot de passe.",
+  "returnToSignIn": "Revenir à la connexion",
+  "errors": {
+    "sendFailed": "Impossible d'envoyer le lien de réinitialisation du mot de passe.",
+    "resetFailed": "Impossible de réinitialiser votre mot de passe.",
+    "mismatch": "Les mots de passe ne correspondent pas.",
+    "unexpected": "Une erreur inattendue s'est produite."
+  },
+  "resetDesc": "Saisissez votre adresse e-mail et nous vous enverrons un lien de réinitialisation à compléter ici même.",
+  "checkDesc": "Nous avons envoyé un message de réinitialisation à <0>{{email}}</0>. Le code ci-dessous débloquera l'étape suivante.",
+  "checkDescPlain": "Nous avons envoyé un code de réinitialisation à {{email}}. Saisissez-le à l'étape suivante pour choisir un nouveau mot de passe.",
+  "mockResetCode": "Code de réinitialisation",
+  "enterEmailedCode": "Saisissez le code reçu par e-mail"
+}

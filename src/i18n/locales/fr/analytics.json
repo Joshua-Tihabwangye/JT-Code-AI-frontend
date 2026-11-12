@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Analyse de données",
+  "title": "Analyse de données",
+  "subtitle": "Importez un CSV, explorez ses colonnes, lancez des analyses et transformez les résultats en graphiques.",
+  "upload": {
+    "title": "Ajouter un jeu de données",
+    "name": "Nom",
+    "namePlaceholder": "ex. Ventes T3",
+    "file": "Fichier CSV (25 Mo max.)",
+    "or": "— ou collez un CSV —",
+    "paste": "Texte CSV",
+    "pastePlaceholder": "region,revenue\nEast,120\nWest,80",
+    "submit": "Ajouter le jeu de données",
+    "limits": "CSV UTF-8 avec ligne d'en-tête ; jusqu'à 100 000 lignes et 200 colonnes.",
+    "needData": "Choisissez un fichier CSV ou collez du texte CSV."
+  },
+  "datasets": "Jeux de données",
+  "noDatasets": "Aucun jeu de données pour le moment.",
+  "datasetMeta": "{{rows}} lignes · {{columns}} colonnes",
+  "emptyTitle": "Aucun jeu de données sélectionné",
+  "emptyDesc": "Ajoutez un CSV à gauche pour commencer l'analyse.",
+  "deleteDataset": "Supprimer",
+  "deleteConfirm": "Supprimer ce jeu de données ainsi que ses analyses et graphiques ?",
+  "profilePending": "Les statistiques des colonnes apparaissent après la première analyse d'un fichier importé.",
+  "profile": {
+    "column": "Colonne",
+    "kind": "Type",
+    "missing": "Manquantes",
+    "distinct": "Distinctes",
+    "summary": "Résumé"
+  },
+  "builder": {
+    "title": "Analyser",
+    "filters": "Filtres",
+    "addFilter": "Ajouter un filtre",
+    "noFilters": "Aucun filtre : toutes les lignes sont incluses.",
+    "removeFilter": "Retirer le filtre",
+    "column": "Colonne",
+    "operator": "Opérateur",
+    "value": "Valeur",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Regrouper par",
+    "aggregate": "Agréger",
+    "ofColumn": "De la colonne",
+    "allNumeric": "Toutes les colonnes numériques",
+    "sortBy": "Trier par",
+    "direction": "Ordre",
+    "asc": "Croissant",
+    "desc": "Décroissant",
+    "limit": "Limite de lignes",
+    "none": "Aucun",
+    "run": "Lancer l'analyse",
+    "cost": "Chaque analyse consomme 10 crédits ; les graphiques sont gratuits."
+  },
+  "operators": {
+    "eq": "égal à",
+    "ne": "différent de",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "contient",
+    "in": "fait partie de"
+  },
+  "aggregates": {
+    "count": "Nombre de lignes",
+    "sum": "Somme",
+    "mean": "Moyenne",
+    "min": "Minimum",
+    "max": "Maximum"
+  },
+  "status": {
+    "queued": "En file d'attente",
+    "running": "En cours",
+    "completed": "Terminée",
+    "failed": "Échec",
+    "ready": "Prêt"
+  },
+  "results": {
+    "title": "Résultats",
+    "rows": "{{count}} lignes ({{shown}} affichées)",
+    "download": "Télécharger le CSV",
+    "retry": "Réessayer",
+    "pickRun": "Exécution d'analyse"
+  },
+  "charts": {
+    "title": "Graphiques",
+    "kind": "Graphique",
+    "x": "Axe X",
+    "y": "Axe Y (numérique)",
+    "chartTitle": "Titre",
+    "create": "Créer le graphique",
+    "delete": "Supprimer le graphique",
+    "noImage": "Les graphiques sont rendus sur le serveur en mode API."
+  },
+  "chartKinds": {
+    "bar": "Barres",
+    "line": "Courbe",
+    "scatter": "Nuage de points",
+    "area": "Aires",
+    "histogram": "Histogramme",
+    "box": "Boîte à moustaches",
+    "pie": "Secteurs"
+  }
+}

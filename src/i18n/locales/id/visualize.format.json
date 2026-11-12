@@ -1,0 +1,326 @@
+{
+  "search": "Opsi format pencarian",
+  "resetSection": "Reset ke default tema",
+  "automatic": "Otomatis",
+  "on": "Pada",
+  "off": "Mati",
+  "sections": {
+    "python": "Skrip piton",
+    "parameter": "Parameter",
+    "button": "Tombol",
+    "navigator": "navigator",
+    "general": "Judul dan posisi",
+    "tile": "Ubin",
+    "colors": "Warna",
+    "labels": "Label data",
+    "legend": "Legenda",
+    "sort": "Sortir dan Atas N",
+    "bars": "Batang dan garis",
+    "donut": "Irisan",
+    "kpi": "KPI",
+    "gauge": "Rentang pengukur",
+    "table": "Meja",
+    "slicer": "Alat pengiris",
+    "tooltip": "Keterangan alat",
+    "conditional": "Pemformatan bersyarat",
+    "analytics": "Analisis (garis referensi, tren, perkiraan)",
+    "map": "Peta"
+  },
+  "general": {
+    "title": "Judul",
+    "showTitle": "Tampilkan judul",
+    "axes": {
+      "x": "X",
+      "y": "kamu",
+      "w": "w",
+      "h": "H"
+    },
+    "layoutAria": "Tata Letak {{axis}}",
+    "altText": "teks alternatif",
+    "altPlaceholder": "Untuk pembaca layar"
+  },
+  "tile": {
+    "background": "Latar belakang",
+    "border": "Berbatasan",
+    "radius": "Jari-jari sudut",
+    "shadow": "Bayangan"
+  },
+  "colors": {
+    "seriesAria": "Warna seri {{index}}",
+    "custom": "Kebiasaan",
+    "fromTheme": "Dari temanya"
+  },
+  "labels": {
+    "showValues": "Tunjukkan nilai"
+  },
+  "legend": {
+    "show": "Tampilkan legenda",
+    "position": "Posisi",
+    "positions": {
+      "top": "Atas",
+      "bottom": "Dasar",
+      "left": "Kiri",
+      "right": "Benar"
+    }
+  },
+  "sort": {
+    "by": "Urutkan berdasarkan",
+    "value": "Nilai",
+    "name": "Nama",
+    "direction": "Arah",
+    "desc": "Menurun",
+    "asc": "Naik",
+    "topN": "N atas",
+    "showTop": "Tampilkan atas",
+    "others": "Kelompokkan sisanya sebagai “Lainnya”"
+  },
+  "bars": {
+    "stacking": "Menumpuk",
+    "none": "Berdampingan",
+    "stacked": "Ditumpuk",
+    "percent": "100% ditumpuk",
+    "smooth": "Garis halus"
+  },
+  "donut": {
+    "maxSlices": "Irisan maksimal (istirahat → Lainnya)"
+  },
+  "kpi": {
+    "compareBy": "Bandingkan dengan",
+    "grains": {
+      "day": "Hari",
+      "week": "Pekan",
+      "month": "Bulan",
+      "quarter": "Seperempat",
+      "year": "Tahun"
+    },
+    "upIsGood": "Naik itu bagus"
+  },
+  "gauge": {
+    "min": "Minimal",
+    "max": "Maks",
+    "auto": "Mobil"
+  },
+  "table": {
+    "dataBars": "Bilah data"
+  },
+  "slicer": {
+    "style": "Gaya",
+    "styles": {
+      "dropdown": "tarik-turun",
+      "list": "Daftar",
+      "tiles": "Tombol",
+      "between": "Kisaran angka",
+      "dateRange": "Rentang tanggal",
+      "relative": "Tanggal relatif",
+      "input": "Ketikkan nilai",
+      "hierarchy": "Hirarki (tambahkan lebih banyak bidang)"
+    },
+    "single": "Pilihan tunggal",
+    "sync": "Sinkronisasi antar halaman",
+    "page": "Halaman",
+    "syncColumn": "Sinkronisasi",
+    "visible": "Bisa dilihat",
+    "syncTo": "Sinkronkan ke {{page}}",
+    "visibleOn": "Terlihat di {{page}}"
+  },
+  "tooltip": {
+    "page": "halaman keterangan alat",
+    "default": "Keterangan alat bawaan",
+    "noPages": "Jadikan halaman sebagai halaman tooltip terlebih dahulu"
+  },
+  "map": {
+    "zoomTo": "Perbesar ke",
+    "scopes": {
+      "world": "Dunia",
+      "africa": "Afrika",
+      "europe": "Eropa",
+      "asia": "Asia",
+      "northAmerica": "Amerika Utara",
+      "southAmerica": "Amerika Selatan"
+    }
+  },
+  "page": {
+    "label": "Halaman",
+    "name": "Nama",
+    "canvasSize": "Ukuran kanvas",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Surat (potret)",
+      "fitWidth": "Sesuai dengan lebarnya (tumbuh)"
+    },
+    "background": "Latar belakang",
+    "themeBackground": "Latar belakang tema",
+    "type": "Jenis halaman",
+    "types": {
+      "page": "Halaman",
+      "drillthrough": "Penelusuran (detail)",
+      "tooltip": "Keterangan alat"
+    },
+    "tooltipHint": "Ditampilkan kecil ketika mengarahkan titik visual yang mengambilnya di bawah Format → Tooltip.",
+    "drillthroughHint": "Klik kanan anggota salah satu bidang ini di halaman lain → “Telusuri”."
+  },
+  "dashboard": {
+    "label": "Dasbor",
+    "slicersApply": "Pemotong berlaku",
+    "instant": "Langsung",
+    "button": "Dengan tombol Terapkan",
+    "filtersPane": "Panel filter untuk pemirsa",
+    "personalize": "Pemirsa dapat melakukan personalisasi"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Skala warna",
+      "rules": "Aturan",
+      "bars": "Bilah data",
+      "icons": "Ikon ▲●▼"
+    },
+    "ruleType": "Jenis aturan",
+    "value": "Nilai",
+    "colour": "Warna",
+    "background": "Latar belakang",
+    "text": "Teks",
+    "removeRule": "Hapus aturan",
+    "lowest": "Terendah",
+    "middle": "Tengah",
+    "highest": "Paling tinggi",
+    "lowestColour": "Warna terendah",
+    "middleColour": "Warna tengah",
+    "highestColour": "Warna tertinggi",
+    "ifValueIs": "Jika nilainya",
+    "between": "di antara",
+    "and": "Dan",
+    "removeCondition": "Hapus kondisi",
+    "addCondition": "Kondisi (kemenangan pertandingan pertama)",
+    "barColour": "Warna batang",
+    "iconsHint": "▲ sepertiga teratas, ● tengah, ▼ sepertiga terbawah dari nilai.",
+    "addRule": "Tambahkan aturan"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Konstan (target)",
+      "average": "Rata-rata",
+      "median": "median",
+      "min": "Minimum",
+      "max": "Maksimum",
+      "percentile": "Persentil",
+      "trend": "Garis tren",
+      "forecast": "Ramalan"
+    },
+    "line": "Garis",
+    "value": "Nilai",
+    "percentile": "Persentil",
+    "periods": "Periode",
+    "colour": "Warna",
+    "removeLine": "Hapus garis",
+    "labelPlaceholder": "Label (opsional)",
+    "addLine": "Tambahkan garis",
+    "forecastHint": "Perkiraan memerlukan sumbu tanggal (misalnya tanggal per bulan)."
+  },
+  "python": {
+    "starter": "Mulailah dari sebuah contoh",
+    "sandbox": "Berjalan di kotak pasir Python yang terkunci: pandas, numpy, scipy, statsmodels, dan scikit-learn; tidak ada akses file, jaringan atau sistem."
+  },
+  "button": {
+    "text": "Teks",
+    "action": "Tindakan",
+    "actions": {
+      "page": "Buka halaman",
+      "bookmark": "Terapkan tampilan (bookmark)",
+      "back": "Kembali",
+      "clearSlicers": "Hapus semua pemotong",
+      "applySlicers": "Terapkan alat pengiris",
+      "toggle": "Menampilkan/menyembunyikan visual",
+      "url": "Buka tautan web",
+      "askAi": "Tanya AI",
+      "reset": "Atur ulang ke default"
+    },
+    "page": "Halaman",
+    "choose": "Memilih…",
+    "view": "Melihat",
+    "addViewsFirst": "Tambahkan tampilan terlebih dahulu (tab Tampilan)",
+    "visual": "Visual",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Link",
+    "style": "Gaya",
+    "fills": {
+      "primary": "Dipenuhi",
+      "outline": "Garis besar",
+      "ghost": "Polos"
+    }
+  },
+  "navigator": {
+    "shows": "Pertunjukan",
+    "pages": "Halaman",
+    "bookmarks": "Tampilan (bookmark)"
+  },
+  "parameter": {
+    "parameter": "Parameter",
+    "new": "Parameter baru…",
+    "showAs": "Tunjukkan sebagai",
+    "tiles": "Tombol",
+    "dropdown": "tarik-turun",
+    "delete": "Hapus parameter ini"
+  },
+  "theme": {
+    "title": "Sesuaikan tema",
+    "name": "Nama tema",
+    "close": "Menutup",
+    "dataColours": "Warna data",
+    "colour": "Warna {{index}}",
+    "removeColour": "Hapus warna {{index}}",
+    "addColour": "Tambahkan warna",
+    "brandColour": "Warna merek",
+    "generate": "Palet dari warna merek saya",
+    "sentiment": {
+      "good": "Bagus",
+      "neutral": "Netral",
+      "bad": "Buruk"
+    },
+    "pageAndTiles": "Halaman dan ubin",
+    "light": "Lampu",
+    "dark": "Gelap",
+    "roles": {
+      "canvas": "Kanvas",
+      "tile": "Ubin",
+      "border": "Perbatasan",
+      "gridline": "Garis kisi",
+      "text": "Teks",
+      "mutedText": "Teks dibungkam",
+      "accent": "Aksen"
+    },
+    "contrast": "Teks sulit dibaca di ubin ({{ratio}}:1 — targetkan 4,5:1 atau lebih).",
+    "font": "huruf",
+    "systemFont": "Sistem",
+    "corners": "Sudut",
+    "shadow": "Bayangan",
+    "shadows": {
+      "none": "Tidak ada",
+      "soft": "Lembut",
+      "medium": "Sedang"
+    },
+    "kpiTiles": "Ubin KPI",
+    "kpiStyles": {
+      "plain": "Polos",
+      "solid": "Warna solid",
+      "gradient": "Gradien",
+      "outlined": "Diuraikan",
+      "icon": "Bilah aksen"
+    },
+    "orgThemes": "Tema organisasi saya",
+    "deleteTheme": "Hapus {{name}}",
+    "importJson": "Impor JSON",
+    "exportJson": "Ekspor JSON",
+    "saveAs": "Simpan sebagai tema saya",
+    "defaultName": "Tema saya",
+    "importedName": "Tema yang diimpor",
+    "imported": "Impor.",
+    "saved": "Menyimpan “{{name}}” untuk organisasi Anda.",
+    "cancel": "Membatalkan",
+    "done": "Selesai",
+    "errors": {
+      "notTheme": "File tersebut bukan tema.",
+      "needColours": "Sebuah tema memerlukan setidaknya 3 warna data (dataColors)."
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "eyebrow": "Malipo",
+  "title": "Malipo na Mikopo",
+  "subtitle": "Simamia mpango wako, mikopo yako na maelezo ya malipo. Ongeza mikopo wakati wowote ili kuendelea kujenga bila mipaka.",
+  "addCredits": "Ongeza mikopo",
+  "summary": {
+    "currentPlan": "Mpango wa sasa",
+    "availableCredits": "Mikopo inayopatikana",
+    "renewsOn": "Inajipya tarehe",
+    "renewsHelper": "Mwishoni mwa kipindi chako cha malipo",
+    "managePlan": "Simamia mpango →",
+    "addCreditsAction": "Ongeza mikopo →"
+  },
+  "usage": {
+    "title": "Matumizi ya mikopo",
+    "usedOf": "{{used}} yametumika kati ya {{limit}} mwezi huu",
+    "left": "{{amount}} zimebaki",
+    "thisMonth": "{{amount}} mikopo iliyotumika mwezi huu",
+    "types": {
+      "chat": "Soga",
+      "images": "Picha",
+      "documents": "Nyaraka",
+      "agent": "Mawakala"
+    }
+  },
+  "plans": {
+    "title": "Chagua mpango unaokufaa",
+    "allInclude": "Mipango yote inajumuisha: Malipo salama, ghairi wakati wowote, upatikanaji wa 99.9%",
+    "ribbonCurrent": "Mpango wa sasa",
+    "ribbonSelected": "Umechaguliwa",
+    "currentCta": "Mpango wa sasa",
+    "chooseCta": "Chagua {{name}}",
+    "perMonth": "/mwezi",
+    "customPrice": "Maalum",
+    "fallbackDescription": "Kwa watumiaji wanaokua",
+    "fallbackFeature1": "Mikopo {{credits}} / mwezi",
+    "fallbackFeature2": "Usaidizi wa kawaida",
+    "descriptions": {
+      "free": "Kwa watu binafsi wanaoanza",
+      "pro": "Kwa wataalamu na watumiaji mahiri",
+      "team": "Kwa timu na mashirika",
+      "business": "Kwa timu zinazokua"
+    },
+    "features": {
+      "free": [
+        "Mikopo 1,000 / mwezi",
+        "Ufikiaji wa GPT-4o mini",
+        "Zana za msingi za AI",
+        "Usaidizi wa jamii"
+      ],
+      "pro": [
+        "Mikopo 2,000 / mwezi",
+        "Ufikiaji wa GPT-4o",
+        "Zana za juu za AI",
+        "Usaidizi wa kipaumbele",
+        "Ufikiaji wa mapema wa vipengele vipya"
+      ],
+      "team": [
+        "Mikopo 5,000 / mtumiaji / mwezi",
+        "Ufikiaji wa GPT-4o",
+        "Eneo la kazi la timu",
+        "Vidhibiti vya juu vya msimamizi",
+        "Usaidizi wa kipaumbele na SLA"
+      ],
+      "business": [
+        "Mikopo maalum",
+        "Usaidizi maalum",
+        "SSO na kumbukumbu za ukaguzi",
+        "Mifano maalum ya AI",
+        "Dhamana ya SLA"
+      ]
+    },
+    "names": {
+      "free": "Bure",
+      "pro": "Pro",
+      "team": "Timu",
+      "business": "Biashara"
+    }
+  },
+  "payment": {
+    "title": "Njia ya malipo",
+    "billingCountry": "Nchi ya malipo",
+    "ugandaHint": "Uganda: lipa kwa Kadi au Mobile Money (MTN / Airtel).",
+    "otherHint": "Lipa kwa Kadi au PayPal.",
+    "addMethod": "Ongeza njia ya malipo",
+    "makeDefault": "Fanya chaguomsingi",
+    "methods": {
+      "card": "Kadi",
+      "paypal": "PayPal",
+      "mtn": "MTN Mobile Money",
+      "airtel": "Airtel Money"
+    },
+    "pickerCard": "Kadi",
+    "pickerMobileMoney": "Mobile Money",
+    "phoneLabel": "Nambari ya simu",
+    "cardNumberLabel": "Nambari ya kadi",
+    "expiryLabel": "Muda wa kuisha",
+    "cvcLabel": "CVC",
+    "savedToast": "Njia ya malipo imehifadhiwa",
+    "none": "Hakuna njia ya malipo kwenye faili",
+    "manage": "Dhibiti njia za malipo"
+  },
+  "invoices": {
+    "title": "Ankara za hivi karibuni",
+    "viewAll": "Tazama ankara zote",
+    "allTitle": "Ankara Zote",
+    "allSubtitle": "JT-Code — historia ya malipo",
+    "date": "Tarehe",
+    "description": "Maelezo",
+    "amount": "Kiasi",
+    "status": "Hali",
+    "empty": "Bado hakuna ankara.",
+    "download": "Pakua ankara",
+    "statuses": {
+      "paid": "kulipwa",
+      "open": "wazi",
+      "draft": "rasimu",
+      "void": "utupu",
+      "uncollectible": "isiyoweza kukusanywa"
+    }
+  },
+  "topup": {
+    "title": "Ongeza Mikopo",
+    "description": "Nunua mikopo ya ziada kwa akaunti yako",
+    "amountLabel": "Kiasi (USD)",
+    "estimatedCredits": "Mikopo Ilivyokadiriwa",
+    "confirm": "Ongeza mikopo ya ${{amount}}",
+    "success": "Mikopo imeongezwa kwa mafanikio",
+    "invalidAmount": "Weka kiasi sahihi",
+    "processing": "Malipo yamepokelewa. Mikopo huonekana mara tu Stripe inapoithibitisha.",
+    "failed": "Malipo hayakuweza kukamilika.",
+    "payNow": "Lipa sasa"
+  },
+  "checkout": {
+    "title": "Kamilisha ununuzi wako",
+    "planSuffix": "Mpango wa {{name}}",
+    "customPricing": "Bei maalum",
+    "billedMonthly": "Inalipiwa kila mwezi",
+    "pay": "Lipa {{amount}}",
+    "enterPhone": "Weka nambari ya simu kwa Mobile Money.",
+    "activated": "Mpango wa {{name}} umewashwa — malipo yamefanikiwa",
+    "returned": "Asante! Usajili wako utasasishwa mara tu Stripe itakapothibitisha malipo.",
+    "cancelled": "Malipo yalighairiwa; hakuna chochote kilichoshtakiwa."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Inaisha mwishoni mwa kipindi hiki cha bili",
+    "freeMonthly": "Masalio ya bila malipo husasishwa kila mwezi",
+    "reactivate": "Endelea na usajili",
+    "cancel": "Ghairi usajili",
+    "cancelConfirm": "Ungependa kughairi usajili wako mwishoni mwa kipindi cha sasa?"
+  },
+  "wallet": {
+    "saved": "Mipangilio ya malipo imehifadhiwa.",
+    "reserved": "{{amount}} zimehifadhiwa kwa kazi zinazoendeshwa",
+    "autoRecharge": "Chaji upya kiotomatiki",
+    "autoRechargeDesc": "Ongeza kiotomatiki mikopo inapoanguka chini ya kiwango.",
+    "threshold": "Kizingiti (mikopo)",
+    "spendingLimit": "Kikomo cha kila mwezi (mikopo)",
+    "noLimit": "Hakuna kikomo"
+  },
+  "stripe": {
+    "loadFailed": "Haikuweza kupakia fomu ya malipo ya Stripe. Angalia muunganisho wako.",
+    "unavailable": "Stripe haipatikani."
+  }
+}

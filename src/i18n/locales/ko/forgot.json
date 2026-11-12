@@ -1,0 +1,32 @@
+{
+  "resetTitle": "비밀번호 재설정",
+  "emailLabel": "이메일 주소",
+  "sendCode": "재설정 코드 보내기",
+  "sending": "전송 중…",
+  "backToSignIn": "로그인으로 돌아가기",
+  "checkTitle": "이메일을 확인하세요",
+  "useCodeNow": "지금 이 코드 사용하기",
+  "haveCode": "재설정 코드가 이미 있습니다",
+  "newPasswordTitle": "새 비밀번호 만들기",
+  "newPasswordDesc": "재설정 코드를 입력하고 {{email}} 계정의 새 비밀번호를 설정하세요.",
+  "codeLabel": "재설정 코드",
+  "newPasswordLabel": "새 비밀번호",
+  "confirmPasswordLabel": "비밀번호 확인",
+  "updating": "업데이트 중…",
+  "resetButton": "비밀번호 재설정",
+  "backToCode": "코드 단계로 돌아가기",
+  "updatedTitle": "비밀번호가 업데이트되었습니다",
+  "updatedMessage": "비밀번호가 업데이트되었습니다. 새 비밀번호로 로그인할 수 있습니다.",
+  "returnToSignIn": "로그인으로 돌아가기",
+  "errors": {
+    "sendFailed": "비밀번호 재설정 링크를 보낼 수 없습니다.",
+    "resetFailed": "비밀번호를 재설정할 수 없습니다.",
+    "mismatch": "비밀번호가 일치하지 않습니다.",
+    "unexpected": "예기치 않은 오류가 발생했습니다."
+  },
+  "resetDesc": "이메일 주소를 입력하시면 여기에서 바로 완료할 수 있는 재설정 링크를 보내드립니다.",
+  "checkDesc": "<0>{{email}} </0>에 재설정 메시지를 보냈습니다. 아래 코드는 다음 단계의 잠금을 해제합니다.",
+  "checkDescPlain": "{{email}}(으)로 재설정 코드를 보냈습니다. 새 비밀번호를 선택하려면 다음 단계에서 입력하세요.",
+  "mockResetCode": "코드 재설정",
+  "enterEmailedCode": "이메일에 있는 코드를 입력하세요"
+}

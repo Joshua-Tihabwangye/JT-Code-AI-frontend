@@ -1,0 +1,9 @@
+{
+  "placeholder": "चॅट, इमेजेस, फाइल्स, डॉक्युमेंट्स शोधा…",
+  "noResults": "कोणतेही निकाल सापडले नाहीत.",
+  "conversation": "संभाषण",
+  "generatedImage": "निर्मित इमेज",
+  "imageType": "इमेज · {{style}}",
+  "file": "फाइल",
+  "document": "डॉक्युमेंट"
+}

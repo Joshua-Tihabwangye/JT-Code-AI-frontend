@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "~이다",
+      "ne": "아니다",
+      "contains": "포함",
+      "starts_with": "다음으로 시작",
+      "gt": "보다 크다",
+      "gte": "적어도",
+      "lt": "보다 작다",
+      "lte": "기껏해야",
+      "blank": "비어있습니다",
+      "not_blank": "비어 있지 않습니다"
+    },
+    "units": {
+      "day_one": "낮",
+      "day_other": "날",
+      "week_one": "주",
+      "week_other": "주",
+      "month_one": "월",
+      "month_other": "개월",
+      "quarter_one": "4분의 1",
+      "quarter_other": "병사",
+      "year_one": "년도",
+      "year_other": "연령"
+    },
+    "describe": {
+      "all": "{{name}}: 모두",
+      "in": "{{name}}은(는) {{values}}입니다",
+      "inMore": "{{name}}은 {{values}} +{{more}}입니다",
+      "notIn": "{{name}}은(는) {{values}}이 아닙니다",
+      "between": "{{name}} {{range}}",
+      "byCount": "세다",
+      "top": "{{by}}의 상위 {{n}} {{name}}",
+      "bottom": "하단 {{n}} {{name}} by {{by}}",
+      "relative": {
+        "last": "{{name}}: 마지막 {{count}} {{unit}}",
+        "next": "{{name}}: 다음 {{count}} {{unit}}",
+        "this": "{{name}}: 이 {{unit}}"
+      },
+      "orJoin": "또는",
+      "andJoin": "그리고",
+      "blank": "{{name}}은 비어 있습니다",
+      "notBlank": "{{name}}은(는) 비어 있지 않습니다",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "필터 유형",
+    "types": {
+      "basic": "기초적인",
+      "advanced": "고급의",
+      "top": "상위 N",
+      "relative": "상대 날짜"
+    },
+    "search": "찾다",
+    "searchValues": "검색값",
+    "loadingValues": "값 로드 중…",
+    "condition": "상태",
+    "value": "값",
+    "addAnd": "+ 그리고",
+    "addOr": "+ 또는",
+    "combineWith": "와 결합하다",
+    "and": "그리고",
+    "or": "또는",
+    "removeSecond": "두 번째 제거",
+    "topOrBottom": "상단 또는 하단",
+    "topWord": "맨 위",
+    "bottomWord": "맨 아래",
+    "howMany": "얼마나",
+    "byValue": "가치별",
+    "byRows": "행 수별",
+    "byTotal": "합계 {{field}}",
+    "period": "기간",
+    "modes": {
+      "last": "마지막",
+      "this": "이것",
+      "next": "다음"
+    },
+    "unit": "단위",
+    "onVisual": "이 시각적 개체에 대한 필터",
+    "onPage": "이 페이지의 필터",
+    "onAllPages": "모든 페이지에 대한 필터",
+    "active_one": "{{count}} 필터 활성화",
+    "active_other": "{{count}} 필터가 활성화되었습니다",
+    "resetToAuthor": "작성자로 재설정",
+    "lockedByAuthor": "작성자에 의해 잠김",
+    "unlock": "시청자를 위한 잠금 해제",
+    "lock": "시청자를 위한 잠금",
+    "showToViewers": "시청자에게 보여주기",
+    "hideFromViewers": "시청자에게 숨기기",
+    "remove": "필터 제거",
+    "backToAuthor": "작성자 필터로 돌아가기",
+    "cardName": "카드명(선택)",
+    "cardNameLabel": "카드 이름 필터링",
+    "none": "없음.",
+    "fieldToFilter": "필터링할 필드",
+    "chooseField": "분야를 선택하세요…",
+    "add": "필터 추가"
+  },
+  "ai": {
+    "sourceAiCredits_one": "AI 모델로 제작 · {{credits}} 크레딧",
+    "sourceAiCredits_other": "AI 모델로 제작됨 · {{credits}} 크레딧",
+    "sourceAiFree": "AI 모델로 제작 · 크레딧 없음",
+    "sourceRules": "내장된 규칙에 따라 제작됨(AI 모델은 사용되지 않음 · 크레딧 없음)",
+    "rowsWord": "행",
+    "previewLabel_one": "{{name}} 미리보기: {{count}} 시각적",
+    "previewLabel_other": "{{name}} 미리보기: {{count}} 영상",
+    "describe": "페이지 설명",
+    "describePlaceholder": "예를 들어 지역별, 상품별 매출 실적을 월간 추이와 상위 10개 고객사로",
+    "designing": "설계…",
+    "tryAgain": "다시 시도하세요",
+    "previewPage": "미리보기 페이지",
+    "costNote": "하나의 AI 메시지(크레딧)를 사용합니다. 적용하기 전까지는 아무것도 바뀌지 않습니다.",
+    "proposal_one": "<b>{{name}} </b> — {{count}} 시각적 개체가 포함된 페이지를 추가합니다.",
+    "proposal_other": "<b>{{name}} </b> — {{count}} 시각적 개체가 포함된 페이지를 추가합니다.",
+    "proposalWithCalcs_one": "<b>{{name}} </b> — {{count}} 시각적 및 {{calcs}} 계산이 포함된 페이지를 추가합니다.",
+    "proposalWithCalcs_other": "<b>{{name}} </b> — {{count}} 시각적 개체 및 {{calcs}} 계산이 포함된 페이지를 추가합니다.",
+    "discard": "버리다",
+    "applying": "신청 중…",
+    "apply": "적용하다",
+    "close": "닫다",
+    "suggestNote": "이 데이터세트에 적합한 시각적 개체(무료 - AI 크레딧 없음)",
+    "looking": "데이터를 보면…",
+    "working": "일하고 있는…",
+    "preview": "시사",
+    "format": {
+      "title": "자동 포맷",
+      "question": "어떻게 보일까요?",
+      "other": "다른 것",
+      "otherPlaceholder": "다른 건 없나요? (AI 모델에게 묻는다)",
+      "note": "강조 표시된 단어는 무료입니다. 상자에 입력된 모든 항목은 AI 모델에 묻습니다.",
+      "nothing": "해당 요청에 대해 변경할 사항이 없습니다.",
+      "theme": "주제",
+      "mode": "방법",
+      "density": "밀도",
+      "layout": "공들여 나열한 것",
+      "asIs": "있는 그대로",
+      "tidied": "그리드에 맞춰져 있음, 짧은 제목",
+      "modes": {
+        "light": "빛",
+        "dark": "어두운",
+        "system": "앱 팔로우"
+      },
+      "densities": {
+        "compact": "콤팩트",
+        "comfortable": "편안한"
+      },
+      "keywords": {
+        "executive": "경영진",
+        "midnight": "자정",
+        "dark": "어두운",
+        "light": "빛",
+        "compact": "콤팩트",
+        "comfortable": "편안한",
+        "aligned": "정렬됨"
+      }
+    },
+    "askTitle": "질문하기",
+    "askPlaceholder": "이 데이터에 대해 물어보세요. 서부 지역 매출 기준 상위 제품",
+    "question": "질문",
+    "thinking": "생각…",
+    "ask": "묻다",
+    "pin": "대시보드에 고정",
+    "explain": {
+      "title": "이 변경사항을 설명하세요",
+      "loading": "이전 기간과 비교하면…",
+      "none": "눈에 띄는 멤버는 하나도 없습니다.",
+      "periods": "{{from}} – {{to}} 대 {{previousFrom}} – {{previousTo}} · 데이터에서 계산, AI 없음"
+    }
+  },
+  "views": {
+    "yourDefault": "기본 보기",
+    "openWith": "이 보기로 열기",
+    "delete": "이 보기 삭제",
+    "title": "조회수",
+    "mine": "내 견해",
+    "mineEmpty": "필터, 슬라이서, 드릴, 변경 사항 등 표시된 내용을 저장하세요.",
+    "namePlaceholder": "이 뷰의 이름을 지정하세요",
+    "save": "구하다",
+    "forMe": "나를 위한",
+    "modes": {
+      "system": "체계",
+      "light": "빛",
+      "dark": "어두운"
+    },
+    "densities": {
+      "comfortable": "편안한",
+      "compact": "콤팩트"
+    },
+    "reset": "기본값으로 재설정"
+  },
+  "personalize": {
+    "title": "이 시각적 개체를 개인화하세요",
+    "close": "닫다",
+    "onlyYou": "이러한 변경사항은 본인에게만 표시됩니다.",
+    "type": "시각적 유형",
+    "aggregation": "집합",
+    "remove": "{{field}} 제거",
+    "add": "추가하다",
+    "legend": "전설",
+    "dataLabels": "데이터 라벨",
+    "sort": "종류",
+    "sorts": {
+      "largest": "가장 큰 것부터",
+      "smallest": "작은 것부터",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "끄르다",
+    "reset": "이 시각적 개체 재설정"
+  },
+  "share": {
+    "embedTitle": "계기반",
+    "copied": "복사됨",
+    "title": "대시보드 공유",
+    "heading": "“{{name}}” 공유",
+    "close": "닫다",
+    "workspace": "내 작업 공간의 모든 사람",
+    "workspaceNote": "동료들은 로그인하여 뷰어로 열 수 있습니다. 시각적 개체를 개인화하고 자신의 보기를 저장할 수 있습니다.",
+    "publicNote": "공개 링크: 링크가 있는 사람은 누구나 로그인 없이 이 대시보드를 보고 슬라이서를 사용할 수 있습니다(읽기 전용).",
+    "kind": "친절한",
+    "link": "링크",
+    "embed": "포함시키다",
+    "labelPlaceholder": "라벨(예: 보드 팩)",
+    "label": "상표",
+    "expires": "만료",
+    "expiryDate": "만료일",
+    "creating": "만드는 중…",
+    "createEmbed": "삽입 코드 만들기",
+    "createLink": "링크 만들기",
+    "copyNow": "지금 복사하세요. 안전을 위해 전체 주소는 다시 표시되지 않습니다.",
+    "address": "주소 공유",
+    "embedCode": "코드 삽입",
+    "copyLink": "링크 복사",
+    "copyEmbed": "삽입 코드 복사",
+    "links_one": "링크({{count}} 활성)",
+    "links_other": "링크({{count}} 활성)",
+    "loading": "로드 중…",
+    "none": "아직 링크가 없습니다.",
+    "by": "작성자: {{name}}",
+    "unknown": "알려지지 않은",
+    "revokedOn": "취소됨 {{date}}",
+    "expiresOn": "{{date}} 만료",
+    "noExpiry": "만료 없음",
+    "lastOpened": "마지막으로 열었던 날짜: {{date}}",
+    "notOpened": "아직 열리지 않았어",
+    "revoke": "취소"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} 필터 적용",
+    "filtersApply_other": "{{count}} 필터 적용",
+    "drillUp": "드릴업",
+    "drillModeOn": "드릴 모드 켜짐: 점을 클릭하여 드릴링합니다",
+    "drillMode": "드릴 모드: 점을 클릭하여 드릴링합니다",
+    "nextLevel": "다음 레벨로 이동",
+    "personalized": "귀하를 위한 맞춤형 — 변경 또는 재설정",
+    "personalize": "이 시각적 개체를 개인화하세요",
+    "focus": "초점 모드",
+    "more": "추가 옵션",
+    "filtersOnVisual": "이 시각적 개체에 대한 필터",
+    "showAsVisual": "시각적으로 표시",
+    "showAsTable": "표로 표시",
+    "exportCsv": "데이터 내보내기(CSV)",
+    "copyImage": "이미지로 복사",
+    "leaveSpotlight": "스포트라이트 떠나기",
+    "spotlight": "스포트라이트",
+    "closeFocus": "초점 모드 닫기"
+  },
+  "pointMenu": {
+    "drillThrough": "드릴스루 ▸ {{page}}",
+    "explain": "이 변경사항을 설명하세요",
+    "keepOnly": "유지만",
+    "exclude": "들어오지 못하게 하다"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "공백",
+        "hint": "빌드할 빈 페이지입니다."
+      },
+      "auto": {
+        "label": "자동",
+        "hint": "데이터에서 선택한 KPI, 추세, 분석, 지도 및 슬라이서입니다."
+      },
+      "template": {
+        "label": "주형",
+        "hint": "미리 만들어진 레이아웃: 열을 레이아웃에 매핑하세요."
+      },
+      "ai": {
+        "label": "AI에게 물어보세요",
+        "hint": "페이지를 설명하세요. 생성되기 전에 미리 보세요."
+      }
+    },
+    "kinds": {
+      "number": "숫자",
+      "date": "데이트",
+      "category": "카테고리"
+    },
+    "chooseColumn": "열을 선택하세요…",
+    "skip": "(건너뛰다)",
+    "untitled": "제목 없는 대시보드",
+    "chooseTemplate": "템플릿을 선택하세요.",
+    "title": "새로운 대시보드",
+    "close": "닫다",
+    "howToStart": "시작하는 방법",
+    "dataset": "데이터세트",
+    "addDatasetFirst": "먼저 데이터세트를 추가하세요",
+    "name": "이름",
+    "data": "데이터",
+    "overviewName": "{{name}} 개요",
+    "loadingTemplates": "템플릿 로드 중…",
+    "allTemplates": "모든 템플릿",
+    "matchColumns": "열 일치",
+    "stillNeeded": "아직 필요함: {{roles}}.",
+    "createDashboard": "대시보드 만들기",
+    "cancel": "취소",
+    "creating": "만드는 중…",
+    "createFromTemplate": "템플릿에서 만들기",
+    "build": "대시보드 구축",
+    "create": "만들다",
+    "templateLayout": "{{name}} 레이아웃"
+  },
+  "templates": {
+    "sales": {
+      "name": "판매개요",
+      "description": "제품 및 지역별 수익, 이익 및 추세입니다.",
+      "roles": {
+        "date": "날짜",
+        "amount": "수익",
+        "profit": "이익",
+        "quantity": "단위",
+        "target": "목표",
+        "product": "제품",
+        "region": "지역",
+        "channel": "채널"
+      }
+    },
+    "crm": {
+      "name": "CRM 파이프라인",
+      "description": "단계 및 소유자별 거래, 획득 가치 및 전환.",
+      "roles": {
+        "date": "날짜",
+        "amount": "거래 가치",
+        "stage": "단계",
+        "owner": "소유자",
+        "source": "리드 소스"
+      }
+    },
+    "finance": {
+      "name": "금융 손익",
+      "description": "시간 경과에 따른 계정별 수익, 비용 및 마진.",
+      "roles": {
+        "date": "날짜",
+        "amount": "수익",
+        "cost": "소송 비용",
+        "account": "계정/카테고리",
+        "budget": "예산"
+      }
+    },
+    "hr": {
+      "name": "HR 분석",
+      "description": "부서별 인원수, 급여, 만족도.",
+      "roles": {
+        "date": "날짜",
+        "employee": "직원 ID",
+        "department": "부서",
+        "salary": "샐러리",
+        "rating": "만족도/평가",
+        "status": "상태",
+        "gender": "성별"
+      }
+    },
+    "web": {
+      "name": "웹 분석",
+      "description": "소스 및 페이지별 세션, 사용자, 전환입니다.",
+      "roles": {
+        "date": "날짜",
+        "sessions": "세션/방문",
+        "users": "사용자",
+        "conversions": "전환",
+        "source": "트래픽 소스",
+        "page": "페이지"
+      }
+    },
+    "mobile": {
+      "name": "모바일 앱 분석",
+      "description": "활성 사용자 수, 플랫폼 및 버전별 설치 및 충돌.",
+      "roles": {
+        "date": "날짜",
+        "active": "활성 사용자",
+        "installs": "설치",
+        "crashes": "충돌",
+        "platform": "플랫폼",
+        "version": "앱 버전"
+      }
+    },
+    "marketing": {
+      "name": "마케팅 캠페인",
+      "description": "캠페인별 지출, 클릭, 전환 및 전환당 비용입니다.",
+      "roles": {
+        "date": "날짜",
+        "spend": "경비",
+        "clicks": "클릭수",
+        "conversions": "전환",
+        "campaign": "운동",
+        "channel": "채널"
+      }
+    },
+    "inventory": {
+      "name": "재고 및 운영",
+      "description": "품목 및 사이트별로 보유 재고, 이동 및 재주문 위험이 있습니다.",
+      "roles": {
+        "date": "날짜",
+        "stock": "재고 / 수량",
+        "item": "목",
+        "site": "창고/현장",
+        "value": "주식가치",
+        "reorder": "재정렬 수준"
+      }
+    },
+    "retail": {
+      "name": "소매",
+      "description": "매장 판매, 바구니 크기 및 베스트셀러.",
+      "roles": {
+        "date": "날짜",
+        "amount": "수익",
+        "quantity": "단위",
+        "store": "매장/지역",
+        "product": "제품",
+        "rating": "만족"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}}에서",
+    "to": "{{field}} ~에",
+    "clear": "분명한",
+    "minimum": "{{field}} 최소",
+    "maximum": "{{field}} 최대",
+    "period": "기간",
+    "allTime": "모든 시간",
+    "howMany": "얼마나",
+    "unit": "단위",
+    "operator": "연산자",
+    "typeValue": "{{field}}을 입력하세요",
+    "value": "{{field}} 값",
+    "collapse": "무너지다",
+    "expand": "확장하다",
+    "all": "모두",
+    "selected_one": "{{count}} 선택됨",
+    "selected_other": "{{count}} 선택됨",
+    "searchPlaceholder": "목록 검색 또는 붙여넣기",
+    "search": "{{field}} 검색",
+    "selectAll": "모두 선택"
+  },
+  "local": {
+    "snapshotEmpty": "이 스냅샷에는 차트가 없습니다.",
+    "snapshot": "스냅 사진",
+    "snapshotOn": "스냅샷 · {{date}}",
+    "chooseParameter": "형식 → 매개변수에서 매개변수를 선택합니다.",
+    "button": "단추",
+    "noViews": "여기에 나열하려면 보기(책갈피)를 추가하세요.",
+    "views": "조회수",
+    "pages": "페이지"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} 대시보드",
+    "newDashboard": "새로운 대시보드",
+    "overview": "개요",
+    "title": "대시보드에 고정",
+    "close": "닫다",
+    "pinnedTo": "<b>{{name}} </b>에 고정되었습니다.",
+    "stay": "여기있어",
+    "open": "대시보드 열기",
+    "dashboard": "계기반",
+    "newOption": "+ 새로운 대시보드…",
+    "name": "이름",
+    "page": "페이지",
+    "cancel": "취소",
+    "pinning": "고정하는 중…",
+    "pin": "핀"
+  },
+  "page": {
+    "backFromDetail": "뒤쪽에",
+    "back": "모든 대시보드",
+    "pages": "페이지",
+    "clear": "분명한",
+    "clearSelection": "선택 취소",
+    "apply": "적용하다",
+    "clearSlicers": "모든 슬라이서 지우기",
+    "updating": "업데이트 중…",
+    "filters": "필터",
+    "qa": "Q&A",
+    "present": "현재의",
+    "share": "공유하다",
+    "edit": "편집하다",
+    "painting": "{{total}}의 {{page}} 그림 페이지…",
+    "buildingPdf": "PDF 작성 중…",
+    "exported_one": "{{count}} 페이지를 내보냈습니다.",
+    "exported_other": "{{count}} 페이지를 내보냈습니다.",
+    "exportFailed": "내보내기에 실패했습니다.",
+    "notFound": "대시보드를 찾을 수 없습니다.",
+    "filtersActive_one": "{{count}} 필터 활성화",
+    "filtersActive_other": "{{count}} 필터가 활성화되었습니다",
+    "presentation": "프레젠테이션",
+    "previousPage": "이전 페이지",
+    "nextPage": "다음 페이지",
+    "pause": "정지시키다",
+    "autoPlay": "자동재생",
+    "leavePresentation": "프레젠테이션 나가기",
+    "keepExclude": "유지/제외 필터",
+    "excluding": "{{values}} 제외",
+    "only": "{{values}}만",
+    "dashboard": "계기반",
+    "seconds": "{{value}} 초"
+  },
+  "quick": {
+    "ratio": {
+      "label": "비율(A ¼ B), 예: 이익 마진"
+    },
+    "average-per-row": {
+      "label": "행당 평균(예: 평균 주문 금액)"
+    },
+    "vs-target": {
+      "label": "목표 대비(%)"
+    },
+    "difference": {
+      "label": "차이(A - B)"
+    },
+    "per-distinct": {
+      "label": "개별 품목당 가치(예: 고객당 수익)"
+    },
+    "fields": {
+      "numerator": "분자",
+      "denominator": "분모",
+      "value": "값",
+      "actual": "실제",
+      "target": "목표",
+      "minus": "마이너스",
+      "distinctItem": "고유 항목"
+    },
+    "names": {
+      "perRow": "행당 {{a}}",
+      "vsTarget": "{{a}} 대 대상",
+      "perDistinct": "{{a}} 당 {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "제목 없는 대시보드",
+    "title": "대시보드",
+    "subtitle": "KPI, 차트, 슬라이서를 한 화면에 모두 연결합니다.",
+    "noData": "먼저 데이터세트를 추가하세요",
+    "blank": "공백",
+    "template": "주형",
+    "building": "건물…",
+    "auto": "대시보드 구축",
+    "empty": "아직 대시보드가 ​​없습니다. 데이터세트를 선택하고 클릭 한 번으로 구축하세요.",
+    "duplicate": "복제하다",
+    "deleteTitle": "대시보드를 삭제하시겠습니까?",
+    "deleteText": "{{name}} 및 저장된 버전이 제거됩니다. 데이터 세트는 영향을 받지 않습니다.",
+    "more": "더 많은 데이터",
+    "start": "여기서 시작하세요",
+    "import": "데이터 업로드 또는 붙여넣기",
+    "loading": "로드 중…",
+    "library": "내 영상",
+    "allVisuals": "저장된 모든 영상",
+    "libraryHint": "편집기의 삽입 메뉴에서 대시보드에 삽입하세요.",
+    "delete": "삭제",
+    "datasetLabel": "새 대시보드의 데이터 세트",
+    "show": "보여주다",
+    "filter": {
+      "all": "모두",
+      "mine": "내 거",
+      "shared": "나와 공유됨"
+    },
+    "pages_one": "{{count}} 페이지",
+    "pages_other": "{{count}} 페이지",
+    "roles": {
+      "owner": "소유자",
+      "editor": "편집자",
+      "viewer": "뷰어"
+    },
+    "sharedFlag": "공유됨",
+    "deleteNamed": "{{name}} 삭제"
+  },
+  "visual": {
+    "target": "타겟 {{value}}",
+    "progress": "{{value}}/{{target}}",
+    "total": "총",
+    "failed": "이 시각적 개체를 그릴 수 없습니다.",
+    "empty": "현재 필터에 대한 데이터가 없습니다",
+    "clearSelection": "선택 취소",
+    "nothing": "보여줄 것이 없습니다."
+  },
+  "shared": {
+    "loading": "대시보드 로드 중…",
+    "missingTitle": "이 링크를 사용할 수 없습니다",
+    "missingText": "취소되었거나 만료되었을 수 있습니다. 공유한 사람에게 새 링크를 요청하세요.",
+    "pages": "페이지",
+    "clearSelection": "선택 취소",
+    "clearSlicers": "슬라이서 지우기",
+    "readOnly": "읽기 전용 공유 보기"
+  },
+  "capture": {
+    "unsupported": "이 브라우저는 페이지를 그릴 수 없습니다.",
+    "failed": "페이지를 그릴 수 없습니다.",
+    "timeout": "페이지를 그리는 데 시간이 너무 오래 걸렸습니다."
+  }
+}

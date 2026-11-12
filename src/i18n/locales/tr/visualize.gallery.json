@@ -1,0 +1,18 @@
+{
+  "title": "Grafik galerisi",
+  "subtitle": "{{count}} grafik türleri — Keşfet'te bir tane açın ve sütunlarınızı dolduracaktır.",
+  "search": "Arama grafikleri, ör. “tahmin”, “paylaş”",
+  "searchLabel": "Arama grafikleri",
+  "level": "Seviye",
+  "allLevels": "Tüm seviyeler",
+  "essentialShort": "Gerekli",
+  "advancedShort": "Gelişmiş",
+  "all": "Tüm",
+  "recommended": "{{name}} için önerilir",
+  "recommendedHint": "Sütunlarınızdan seçildi; verilerinizle birlikte görmek için birini açın.",
+  "empty": "Bu aramayla eşleşen grafik yok.",
+  "advancedBadge": "Gelişmiş",
+  "useInExplore": "Keşfet'te kullan",
+  "addToDashboard": "Kontrol paneline ekle",
+  "thisDataset": "bu veri kümesi"
+}

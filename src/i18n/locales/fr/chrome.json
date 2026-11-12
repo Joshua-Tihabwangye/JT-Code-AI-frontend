@@ -1,0 +1,16 @@
+{
+  "openNavigation": "Ouvrir la navigation",
+  "closeNavigation": "Fermer la navigation",
+  "toggleTheme": "Changer de thème",
+  "theme": "Thème",
+  "expandSidebar": "Déplier la barre latérale",
+  "collapseSidebar": "Replier la barre latérale",
+  "collapse": "Réduire",
+  "offlineMessage": "Vous êtes hors ligne. Les modifications sont enregistrées localement et seront synchronisées à la reconnexion.",
+  "fatalTitle": "Une erreur est survenue",
+  "unexpectedError": "Une erreur inattendue s'est produite.",
+  "reloadApp": "Recharger l'application",
+  "home": "Accueil JT-Code",
+  "primaryNavigation": "Navigation principale",
+  "fatalError": "JT-Code a rencontré une erreur."
+}

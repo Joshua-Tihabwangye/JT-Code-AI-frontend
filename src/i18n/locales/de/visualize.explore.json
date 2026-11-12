@@ -1,0 +1,38 @@
+{
+  "pick": "Wähle oben in der Leiste ein Dataset aus oder füge auf der Seite „Daten“ eines hinzu.",
+  "add": "Neues Diagramm",
+  "pin": "An Dashboard anheften",
+  "saved": "In „Meine Visuals“ gespeichert",
+  "save": "In „Meine Visuals“ speichern",
+  "viewData": "Daten anzeigen",
+  "pageName": "Erkunden",
+  "chartType": "Diagrammtyp",
+  "suggestions": "Vorschläge",
+  "charts": "Diagramme",
+  "buildAndFormat": "Erstellen und formatieren",
+  "build": "Erstellen",
+  "format": "Formatieren",
+  "remove": "Dieses Diagramm entfernen",
+  "drawer": {
+    "data": "Daten hinter dem Diagramm",
+    "rows": "Rohzeilen",
+    "query": "Abfrage"
+  },
+  "noData": "Noch keine Daten.",
+  "query": {
+    "chart": "{{chart}} von {{fields}} (alle Zeilen, bei mehr als 10.000 als Stichprobe).",
+    "noFields": "noch keine Felder",
+    "countRows": "Anzahl der Zeilen",
+    "measure": "{{agg}} von {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "Jahr",
+      "quarter": "Quartal",
+      "month": "Monat",
+      "week": "Woche",
+      "day": "Tag"
+    },
+    "grouped": "{{what}} nach {{groups}} – in der Datenbank berechnet, dann in Python gezeichnet.",
+    "total": "{{what}} – in der Datenbank berechnet, dann in Python gezeichnet."
+  }
+}

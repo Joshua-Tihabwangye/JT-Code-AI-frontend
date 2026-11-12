@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config';
 // Minimal Stripe.js loader for confirming credit top-ups (PaymentIntents) with
 // the Payment Element. Card data goes from the browser to Stripe only; the API
 // creates the intent and grants credits when Stripe's webhook confirms it.
@@ -38,7 +39,7 @@ function loadStripeScript(): Promise<void> {
     script.onload = () => resolve();
     script.onerror = () => {
       loading = null;
-      reject(new Error('Could not load the Stripe payment form. Check your connection.'));
+      reject(new Error(i18n.t('billing.stripe.loadFailed')));
     };
     document.head.appendChild(script);
   });
@@ -47,6 +48,6 @@ function loadStripeScript(): Promise<void> {
 
 export async function loadStripe(publishableKey: string): Promise<StripeClient> {
   await loadStripeScript();
-  if (!window.Stripe) throw new Error('Stripe is unavailable.');
+  if (!window.Stripe) throw new Error(i18n.t('billing.stripe.unavailable'));
   return window.Stripe(publishableKey);
 }

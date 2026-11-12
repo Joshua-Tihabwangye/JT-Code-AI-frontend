@@ -1,0 +1,19 @@
+{
+  "title": "خوش آمدید",
+  "subtitle": "JT-Code تک جاری رکھنے کے لیے سائن اِن کریں",
+  "connecting": "جوڑا جا رہا ہے…",
+  "emailLabel": "ای میل ایڈریس",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "پاس ورڈ",
+  "passwordPlaceholder": "اپنا پاس ورڈ درج کریں",
+  "forgotPassword": "پاس ورڈ بھول گئے؟",
+  "submit": "سائن اِن",
+  "noAccount": "اکاؤنٹ نہیں ہے؟",
+  "createAccount": "اکاؤنٹ بنائیں",
+  "helpText": "",
+  "signInWithGoogle": "گوگل کے ساتھ سائن ان کریں۔",
+  "signInWithApple": "ایپل کے ساتھ سائن ان کریں۔",
+  "offlineHint": "آف لائن ڈیزائن موڈ: پسدید استعمال نہیں کیا جاتا ہے۔ کسی بھی ای میل اور پاس ورڈ کے ساتھ سائن ان کریں (ایک مقامی اکاؤنٹ بنایا گیا ہے)، یا ڈیمو اکاؤنٹ کے ساتھ جاری رکھیں۔",
+  "demoAccount": "ڈیمو اکاؤنٹ کے ساتھ جاری رکھیں",
+  "continueWith": "{{provider}} کے ساتھ جاری رکھیں"
+}

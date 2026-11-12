@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "は",
+      "ne": "ではありません",
+      "contains": "含まれています",
+      "starts_with": "から始まる",
+      "gt": "より大きい",
+      "gte": "少なくとも",
+      "lt": "未満です",
+      "lte": "せいぜい",
+      "blank": "空白です",
+      "not_blank": "空白ではありません"
+    },
+    "units": {
+      "day_one": "日",
+      "day_other": "日",
+      "week_one": "週",
+      "week_other": "週",
+      "month_one": "月",
+      "month_other": "月",
+      "quarter_one": "四半期",
+      "quarter_other": "四半期",
+      "year_one": "年",
+      "year_other": "年"
+    },
+    "describe": {
+      "all": "{{name}}: すべて",
+      "in": "{{name}} は {{values}} です",
+      "inMore": "{{name}} は {{values}} +{{more}} です",
+      "notIn": "{{name}} は {{values}} ではありません",
+      "between": "{{name}} {{range}}",
+      "byCount": "カウント",
+      "top": "トップ {{n}} {{name}} by {{by}}",
+      "bottom": "下 {{n}} {{name}} by {{by}}",
+      "relative": {
+        "last": "{{name}}: 最後の {{count}} {{unit}}",
+        "next": "{{name}}: 次の {{count}} {{unit}}",
+        "this": "{{name}}: この {{unit}}"
+      },
+      "orJoin": "または",
+      "andJoin": "そして",
+      "blank": "{{name}} は空白です",
+      "notBlank": "{{name}} は空白ではありません",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "フィルターの種類",
+    "types": {
+      "basic": "基本",
+      "advanced": "高度な",
+      "top": "トップN",
+      "relative": "相対日付"
+    },
+    "search": "検索",
+    "searchValues": "検索値",
+    "loadingValues": "値をロード中…",
+    "condition": "状態",
+    "value": "価値",
+    "addAnd": "+そして",
+    "addOr": "+ または",
+    "combineWith": "と組み合わせる",
+    "and": "そして",
+    "or": "または",
+    "removeSecond": "2番目を削除",
+    "topOrBottom": "上部または下部",
+    "topWord": "トップ",
+    "bottomWord": "底",
+    "howMany": "幾つか",
+    "byValue": "値による",
+    "byRows": "行数による",
+    "byTotal": "合計{{field}}による",
+    "period": "期間",
+    "modes": {
+      "last": "最後",
+      "this": "これ",
+      "next": "次"
+    },
+    "unit": "ユニット",
+    "onVisual": "このビジュアルのフィルター",
+    "onPage": "このページのフィルター",
+    "onAllPages": "すべてのページのフィルター",
+    "active_one": "{{count}} フィルターがアクティブです",
+    "active_other": "{{count}} フィルターがアクティブです",
+    "resetToAuthor": "著者にリセット",
+    "lockedByAuthor": "作者によってロックされています",
+    "unlock": "視聴者向けにロックを解除する",
+    "lock": "視聴者に対してロックする",
+    "showToViewers": "視聴者に見せる",
+    "hideFromViewers": "視聴者から隠す",
+    "remove": "フィルターを削除する",
+    "backToAuthor": "著者のフィルターに戻る",
+    "cardName": "カード名（任意）",
+    "cardNameLabel": "フィルターカード名",
+    "none": "なし。",
+    "fieldToFilter": "フィルターするフィールド",
+    "chooseField": "フィールドを選択してください…",
+    "add": "フィルターを追加する"
+  },
+  "ai": {
+    "sourceAiCredits_one": "AI モデルによって作成されました · {{credits}} クレジット",
+    "sourceAiCredits_other": "AI モデルによって作成されました · {{credits}} クレジット",
+    "sourceAiFree": "AIモデルで作成・クレジットなし",
+    "sourceRules": "組み込みルールにより作成（AIモデル不使用・クレジットなし）",
+    "rowsWord": "行",
+    "previewLabel_one": "{{name}}: {{count}} ビジュアルのプレビュー",
+    "previewLabel_other": "{{name}}: {{count}} ビジュアルのプレビュー",
+    "describe": "ページの説明をする",
+    "describePlaceholder": "例えば地域別および製品別の売上実績、月ごとの傾向と上位 10 社の顧客",
+    "designing": "デザイン中…",
+    "tryAgain": "もう一度やり直してください",
+    "previewPage": "プレビューページ",
+    "costNote": "AI メッセージ (クレジット) を 1 つ使用します。適用するまでは何も変わりません。",
+    "proposal_one": "<b>{{name}} </b> — {{count}} ビジュアルを備えたページを追加します。",
+    "proposal_other": "<b>{{name}} </b> — {{count}} ビジュアルを含むページを追加します。",
+    "proposalWithCalcs_one": "<b>{{name}} </b> — {{count}} ビジュアルおよび {{calcs}} 計算を含むページを追加します。",
+    "proposalWithCalcs_other": "<b>{{name}} </b> — {{count}} ビジュアルと {{calcs}} 計算を含むページを追加します。",
+    "discard": "破棄",
+    "applying": "申請中…",
+    "apply": "適用する",
+    "close": "近い",
+    "suggestNote": "このデータセットに適したビジュアル (無料 - AI クレジットなし)。",
+    "looking": "データを見てみると…",
+    "working": "働く…",
+    "preview": "プレビュー",
+    "format": {
+      "title": "自動フォーマット",
+      "question": "どのように見えるべきでしょうか？",
+      "other": "他に何か",
+      "otherPlaceholder": "他に何か？ （AIモデルに質問）",
+      "note": "ハイライトされた単語は無料です。ボックスに入力されたものはすべて AI モデルに質問されます。",
+      "nothing": "そのリクエストに対して何も変更する必要はありません。",
+      "theme": "テーマ",
+      "mode": "モード",
+      "density": "密度",
+      "layout": "レイアウト",
+      "asIs": "そのまま",
+      "tidied": "グリッドにスナップ、短いタイトル",
+      "modes": {
+        "light": "ライト",
+        "dark": "暗い",
+        "system": "アプリをフォローする"
+      },
+      "densities": {
+        "compact": "コンパクト",
+        "comfortable": "快適"
+      },
+      "keywords": {
+        "executive": "エグゼクティブ",
+        "midnight": "夜中",
+        "dark": "暗い",
+        "light": "ライト",
+        "compact": "コンパクト",
+        "comfortable": "快適",
+        "aligned": "整列した"
+      }
+    },
+    "askTitle": "質問する",
+    "askPlaceholder": "このデータについて尋ねます。例:西部の収益でトップの製品",
+    "question": "質問",
+    "thinking": "考え…",
+    "ask": "聞く",
+    "pin": "ダッシュボードにピン留めする",
+    "explain": {
+      "title": "この変化を説明してください",
+      "loading": "一昔前と比べてみると…",
+      "none": "目立ったメンバーは一人もいない。",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · AI なしでデータから計算"
+    }
+  },
+  "views": {
+    "yourDefault": "デフォルトのビュー",
+    "openWith": "このビューで開く",
+    "delete": "このビューを削除します",
+    "title": "ビュー",
+    "mine": "私の見解",
+    "mineEmpty": "フィルター、スライサー、ドリル、変更など、表示されている内容を保存します。",
+    "namePlaceholder": "このビューに名前を付けます",
+    "save": "保存",
+    "forMe": "私にとって",
+    "modes": {
+      "system": "システム",
+      "light": "ライト",
+      "dark": "暗い"
+    },
+    "densities": {
+      "comfortable": "快適",
+      "compact": "コンパクト"
+    },
+    "reset": "デフォルトにリセットする"
+  },
+  "personalize": {
+    "title": "このビジュアルをカスタマイズする",
+    "close": "近い",
+    "onlyYou": "これらの変化を確認できるのはあなただけです。",
+    "type": "ビジュアルタイプ",
+    "aggregation": "集計",
+    "remove": "{{field}} を削除",
+    "add": "追加",
+    "legend": "伝説",
+    "dataLabels": "データラベル",
+    "sort": "選別",
+    "sorts": {
+      "largest": "大きい順",
+      "smallest": "小さいものから順",
+      "az": "A→Z",
+      "za": "Z→A"
+    },
+    "undo": "元に戻す",
+    "reset": "このビジュアルをリセット"
+  },
+  "share": {
+    "embedTitle": "ダッシュボード",
+    "copied": "コピーされました",
+    "title": "ダッシュボードを共有する",
+    "heading": "「{{name}}」をシェアする",
+    "close": "近い",
+    "workspace": "私のワークスペースにいる全員が",
+    "workspaceNote": "同僚は閲覧者としてサインインして開きます。ビジュアルをカスタマイズしたり、自分のビューを保存したりできます。",
+    "publicNote": "パブリック リンク: リンクを知っている人は誰でも、サインインせずにこのダッシュボードを表示し、そのスライサーを読み取り専用で使用できます。",
+    "kind": "親切",
+    "link": "リンク",
+    "embed": "埋め込む",
+    "labelPlaceholder": "ラベル (例: ボードパック)",
+    "label": "ラベル",
+    "expires": "有効期限が切れます",
+    "expiryDate": "有効期限",
+    "creating": "作成…",
+    "createEmbed": "埋め込みコードを作成する",
+    "createLink": "リンクの作成",
+    "copyNow": "今すぐコピーしてください。安全のため、完全なアドレスは再度表示されません。",
+    "address": "アドレスを共有する",
+    "embedCode": "コードを埋め込む",
+    "copyLink": "リンクをコピー",
+    "copyEmbed": "埋め込みコードをコピー",
+    "links_one": "リンク ({{count}} アクティブ)",
+    "links_other": "リンク ({{count}} アクティブ)",
+    "loading": "読み込み中…",
+    "none": "まだリンクはありません。",
+    "by": "{{name}} 著",
+    "unknown": "未知",
+    "revokedOn": "{{date}} を取り消しました",
+    "expiresOn": "期限切れ{{date}}",
+    "noExpiry": "有効期限なし",
+    "lastOpened": "最後に開いたのは {{date}}",
+    "notOpened": "まだ開けていない",
+    "revoke": "取り消す"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} フィルターが適用されます",
+    "filtersApply_other": "{{count}} フィルターが適用されます",
+    "drillUp": "ドリルアップ",
+    "drillModeOn": "ドリルモードがオン: ポイントをクリックしてドリルインします",
+    "drillMode": "ドリルモード: 点をクリックしてドリルインします",
+    "nextLevel": "次のレベルに進む",
+    "personalized": "あなたに合わせてカスタマイズ — 変更またはリセット",
+    "personalize": "このビジュアルをカスタマイズする",
+    "focus": "フォーカスモード",
+    "more": "その他のオプション",
+    "filtersOnVisual": "このビジュアルのフィルター",
+    "showAsVisual": "ビジュアルとして表示",
+    "showAsTable": "表として表示",
+    "exportCsv": "データのエクスポート(CSV)",
+    "copyImage": "画像としてコピー",
+    "leaveSpotlight": "スポットライトを離れる",
+    "spotlight": "スポットライト",
+    "closeFocus": "クローズフォーカスモード"
+  },
+  "pointMenu": {
+    "drillThrough": "ドリルスルー ▸ {{page}}",
+    "explain": "この変化を説明してください",
+    "keepOnly": "保管のみ",
+    "exclude": "除外する"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "空白",
+        "hint": "構築するための空のページ。"
+      },
+      "auto": {
+        "label": "自動",
+        "hint": "データから選択された KPI、トレンド、内訳、マップ、スライサー。"
+      },
+      "template": {
+        "label": "テンプレート",
+        "hint": "既製のレイアウト: 列をそれにマップします。"
+      },
+      "ai": {
+        "label": "AIに聞く",
+        "hint": "ページについて説明します。作成する前にプレビューしてください。"
+      }
+    },
+    "kinds": {
+      "number": "数字",
+      "date": "デート",
+      "category": "カテゴリ"
+    },
+    "chooseColumn": "列を選択してください…",
+    "skip": "（スキップ）",
+    "untitled": "無題のダッシュボード",
+    "chooseTemplate": "テンプレートを選択します。",
+    "title": "新しいダッシュボード",
+    "close": "近い",
+    "howToStart": "始め方",
+    "dataset": "データセット",
+    "addDatasetFirst": "最初にデータセットを追加します",
+    "name": "名前",
+    "data": "データ",
+    "overviewName": "{{name}} の概要",
+    "loadingTemplates": "テンプレートを読み込み中…",
+    "allTemplates": "すべてのテンプレート",
+    "matchColumns": "列を一致させる",
+    "stillNeeded": "まだ必要です: {{roles}}。",
+    "createDashboard": "ダッシュボードの作成",
+    "cancel": "キャンセル",
+    "creating": "作成…",
+    "createFromTemplate": "テンプレートから作成",
+    "build": "ダッシュボードを構築する",
+    "create": "作成する",
+    "templateLayout": "{{name}} レイアウト"
+  },
+  "templates": {
+    "sales": {
+      "name": "販売概要",
+      "description": "製品別、地域別の売上、利益、動向。",
+      "roles": {
+        "date": "日付",
+        "amount": "収益",
+        "profit": "利益",
+        "quantity": "単位",
+        "target": "ターゲット",
+        "product": "製品",
+        "region": "地域",
+        "channel": "チャネル"
+      }
+    },
+    "crm": {
+      "name": "CRMパイプライン",
+      "description": "ステージ別、オーナー別、獲得金額、コンバージョン別の取引。",
+      "roles": {
+        "date": "日付",
+        "amount": "取引額",
+        "stage": "ステージ",
+        "owner": "所有者",
+        "source": "鉛源"
+      }
+    },
+    "finance": {
+      "name": "財務損益",
+      "description": "経時的およびアカウント別の収益、コスト、マージン。",
+      "roles": {
+        "date": "日付",
+        "amount": "収益",
+        "cost": "コスト",
+        "account": "アカウント/カテゴリー",
+        "budget": "予算"
+      }
+    },
+    "hr": {
+      "name": "人事分析",
+      "description": "部門ごとの従業員数、給与、満足度。",
+      "roles": {
+        "date": "日付",
+        "employee": "従業員ID",
+        "department": "部門",
+        "salary": "給料",
+        "rating": "満足度・評価",
+        "status": "状態",
+        "gender": "性別"
+      }
+    },
+    "web": {
+      "name": "ウェブ分析",
+      "description": "ソースおよびページごとのセッション、ユーザー、コンバージョン。",
+      "roles": {
+        "date": "日付",
+        "sessions": "セッション/訪問",
+        "users": "ユーザー",
+        "conversions": "コンバージョン",
+        "source": "トラフィックソース",
+        "page": "ページ"
+      }
+    },
+    "mobile": {
+      "name": "モバイルアプリ分析",
+      "description": "アクティブ ユーザー、プラットフォームとバージョンごとのインストールとクラッシュ。",
+      "roles": {
+        "date": "日付",
+        "active": "アクティブユーザー",
+        "installs": "インストール",
+        "crashes": "クラッシュ",
+        "platform": "プラットフォーム",
+        "version": "アプリのバージョン"
+      }
+    },
+    "marketing": {
+      "name": "マーケティングキャンペーン",
+      "description": "キャンペーンごとの支出、クリック数、コンバージョン数、コンバージョンあたりの費用。",
+      "roles": {
+        "date": "日付",
+        "spend": "過ごす",
+        "clicks": "クリック数",
+        "conversions": "コンバージョン",
+        "campaign": "キャンペーン",
+        "channel": "チャネル"
+      }
+    },
+    "inventory": {
+      "name": "在庫と運用",
+      "description": "品目およびサイトごとの手持ち在庫、移動および再注文のリスク。",
+      "roles": {
+        "date": "日付",
+        "stock": "在庫・数量",
+        "item": "アイテム",
+        "site": "倉庫・現場",
+        "value": "株式価値",
+        "reorder": "並べ替えレベル"
+      }
+    },
+    "retail": {
+      "name": "小売り",
+      "description": "店舗の売上、バスケットのサイズ、ベストセラー。",
+      "roles": {
+        "date": "日付",
+        "amount": "収益",
+        "quantity": "単位",
+        "store": "店舗・地域",
+        "product": "製品",
+        "rating": "満足"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} から",
+    "to": "{{field}} へ",
+    "clear": "クリア",
+    "minimum": "{{field}} 最小値",
+    "maximum": "{{field}} 最大",
+    "period": "期間",
+    "allTime": "ずっと",
+    "howMany": "幾つか",
+    "unit": "ユニット",
+    "operator": "オペレーター",
+    "typeValue": "{{field}} と入力します",
+    "value": "{{field}} 値",
+    "collapse": "崩壊",
+    "expand": "拡大する",
+    "all": "全て",
+    "selected_one": "{{count}} が選択されました",
+    "selected_other": "{{count}} が選択されました",
+    "searchPlaceholder": "検索またはリストを貼り付けます",
+    "search": "{{field}} を検索",
+    "selectAll": "すべて選択"
+  },
+  "local": {
+    "snapshotEmpty": "このスナップショットにはチャートがありません。",
+    "snapshot": "スナップショット",
+    "snapshotOn": "スナップショット · {{date}}",
+    "chooseParameter": "「形式」→「パラメータ」でパラメータを選択します。",
+    "button": "ボタン",
+    "noViews": "ビュー (ブックマーク) を追加して、ここにリストします。",
+    "views": "ビュー",
+    "pages": "ページ"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} ダッシュボード",
+    "newDashboard": "新しいダッシュボード",
+    "overview": "概要",
+    "title": "ダッシュボードにピン留めする",
+    "close": "近い",
+    "pinnedTo": "<b>{{name}} </b> に固定されています。",
+    "stay": "ここにいてください",
+    "open": "ダッシュボードを開く",
+    "dashboard": "ダッシュボード",
+    "newOption": "+ 新しいダッシュボード…",
+    "name": "名前",
+    "page": "ページ",
+    "cancel": "キャンセル",
+    "pinning": "固定中…",
+    "pin": "ピン"
+  },
+  "page": {
+    "backFromDetail": "戻る",
+    "back": "すべてのダッシュボード",
+    "pages": "ページ",
+    "clear": "クリア",
+    "clearSelection": "選択をクリア",
+    "apply": "適用する",
+    "clearSlicers": "すべてのスライサーをクリアします",
+    "updating": "更新中…",
+    "filters": "フィルター",
+    "qa": "Q&A",
+    "present": "現在",
+    "share": "共有",
+    "edit": "編集",
+    "painting": "絵画ページ {{page}}/{{total}}…",
+    "buildingPdf": "PDF を構築中…",
+    "exported_one": "{{count}} ページをエクスポートしました。",
+    "exported_other": "{{count}} ページをエクスポートしました。",
+    "exportFailed": "エクスポートに失敗しました。",
+    "notFound": "ダッシュボードが見つかりません。",
+    "filtersActive_one": "{{count}} フィルターがアクティブです",
+    "filtersActive_other": "{{count}} フィルターがアクティブです",
+    "presentation": "プレゼンテーション",
+    "previousPage": "前のページへ",
+    "nextPage": "次のページ",
+    "pause": "一時停止",
+    "autoPlay": "自動再生",
+    "leavePresentation": "プレゼンテーションを離れる",
+    "keepExclude": "保持/除外フィルター",
+    "excluding": "{{values}}を除く",
+    "only": "{{values}} のみ",
+    "dashboard": "ダッシュボード",
+    "seconds": "{{value}} 秒"
+  },
+  "quick": {
+    "ratio": {
+      "label": "比率 (A ÷ B)、例:利益率"
+    },
+    "average-per-row": {
+      "label": "行ごとの平均 (例: 平均注文額)"
+    },
+    "vs-target": {
+      "label": "対目標 (%)"
+    },
+    "difference": {
+      "label": "差（A − B）"
+    },
+    "per-distinct": {
+      "label": "個別の項目ごとの価値 (例: 顧客ごとの収益)"
+    },
+    "fields": {
+      "numerator": "分子",
+      "denominator": "分母",
+      "value": "価値",
+      "actual": "実際の",
+      "target": "ターゲット",
+      "minus": "マイナス",
+      "distinctItem": "特徴的なアイテム"
+    },
+    "names": {
+      "perRow": "行ごとに {{a}}",
+      "vsTarget": "{{a}} 対ターゲット",
+      "perDistinct": "{{b}} ごとの {{a}}"
+    }
+  },
+  "home": {
+    "untitled": "無題のダッシュボード",
+    "title": "ダッシュボード",
+    "subtitle": "KPI、チャート、スライサーが 1 つの画面に表示され、すべて接続されています。",
+    "noData": "最初にデータセットを追加します",
+    "blank": "空白",
+    "template": "テンプレート",
+    "building": "建物…",
+    "auto": "ダッシュボードを構築する",
+    "empty": "ダッシュボードはまだありません。データセットを選択し、クリックするだけでデータセットを構築します。",
+    "duplicate": "重複",
+    "deleteTitle": "ダッシュボードを削除しますか?",
+    "deleteText": "{{name}} とその保存されたバージョンは削除されます。データセットは影響を受けません。",
+    "more": "さらなるデータ",
+    "start": "ここから始めましょう",
+    "import": "データをアップロードまたは貼り付けます",
+    "loading": "読み込み中…",
+    "library": "私のビジュアル",
+    "allVisuals": "保存されたすべてのビジュアル",
+    "libraryHint": "エディターの [挿入] メニューから、それらのいずれかをダッシュ​​ボードに挿入します。",
+    "delete": "消去",
+    "datasetLabel": "新しいダッシュボードのデータセット",
+    "show": "見せる",
+    "filter": {
+      "all": "全て",
+      "mine": "私の",
+      "shared": "私と共有しました"
+    },
+    "pages_one": "{{count}} ページ",
+    "pages_other": "{{count}} ページ",
+    "roles": {
+      "owner": "所有者",
+      "editor": "エディタ",
+      "viewer": "ビューア"
+    },
+    "sharedFlag": "共有",
+    "deleteNamed": "{{name}} を削除"
+  },
+  "visual": {
+    "target": "ターゲット{{value}}",
+    "progress": "{{value}}/{{target}}",
+    "total": "合計",
+    "failed": "このビジュアルは描けませんでした。",
+    "empty": "現在のフィルターにはデータがありません",
+    "clearSelection": "選択をクリア",
+    "nothing": "何も見せられない。"
+  },
+  "shared": {
+    "loading": "ダッシュボードを読み込み中…",
+    "missingTitle": "このリンクは利用できません",
+    "missingText": "取り消されているか、有効期限が切れている可能性があります。共有した人に新しいリンクを依頼してください。",
+    "pages": "ページ",
+    "clearSelection": "選択をクリア",
+    "clearSlicers": "クリアスライサー",
+    "readOnly": "読み取り専用の共有ビュー"
+  },
+  "capture": {
+    "unsupported": "このブラウザではページをペイントできません。",
+    "failed": "ページをペイントできませんでした。",
+    "timeout": "ページの描画に時間がかかりすぎました。"
+  }
+}

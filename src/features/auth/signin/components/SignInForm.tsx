@@ -9,7 +9,7 @@ import { SubmitButton } from './SubmitButton';
 import { useSignInForm } from '../hooks/useSignInForm';
 import { signin } from '../services/signin.service';
 import type { SignInPayload } from '../types';
-import { signInWithProvider } from '@/lib/supabase';
+import { frontendOnlyAuth, signInAsDemo, signInWithProvider } from '@/lib/supabase';
 import '../styles/signin.css';
 
 interface Props {
@@ -71,6 +71,25 @@ export function SignInForm({ onSignedIn }: Props) {
 
         <SubmitButton isSubmitting={isSubmitting} label={t('signin.submit')} />
       </form>
+
+      {frontendOnlyAuth && (
+        <div className="signin-demo" data-testid="signin-demo">
+          <p>{t('signin.offlineHint')}</p>
+          <button
+            type="button"
+            className="signin-demo__button"
+            disabled={isSubmitting}
+            onClick={() => {
+              const { error } = signInAsDemo();
+              if (error) setSubmitError(error);
+              else onSignedIn();
+            }}
+            data-testid="signin-demo-button"
+          >
+            {t('signin.demoAccount')}
+          </button>
+        </div>
+      )}
 
       <div className="signup-divider signin-divider--secondary">
         <span />

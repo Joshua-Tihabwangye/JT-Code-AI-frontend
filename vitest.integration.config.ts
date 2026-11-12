@@ -1,12 +1,16 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { fileURLToPath, URL } from 'node:url';
+import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
 
 // Live integration suite: the app's real repositories against a running backend
-// (jt-code-backend `make native-up`). Run with `npm run test:integration`.
+// (jt-code-backend `make docker-up`, or `make native-up` with JT_CODE_STACK=native). Run with `npm run test:integration`.
 function anonKey(): string {
   if (process.env.VITE_SUPABASE_ANON_KEY) return process.env.VITE_SUPABASE_ANON_KEY;
+  // The app's own .env.local (filled from `scripts/compose_env.py frontend local` for the Docker stack).
+  const local = loadEnv('development', process.cwd(), 'VITE_').VITE_SUPABASE_ANON_KEY;
+  if (local) return local;
   const secrets = `${homedir()}/.local/share/jt-code-native/etc/secrets.env`;
   if (!existsSync(secrets)) return '';
   const line = readFileSync(secrets, 'utf8').split('\n').find((l) => l.startsWith('JT_SUPABASE_ANON_KEY='));

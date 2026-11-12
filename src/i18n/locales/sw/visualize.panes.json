@@ -1,0 +1,37 @@
+{
+  "moveUp": "Sogeza juu",
+  "moveDown": "Sogeza chini",
+  "views": {
+    "intro": "Mwonekano unakumbuka ukurasa huu na vipasua vyake, vichujio, kiwango cha kuchimba visima, vigezo na taswira gani zimefichwa (Kichupo cha Uteuzi). Watazamaji huchagua maoni kutoka kwa \"Maoni ▾\"; vifungo na vivinjari vinaweza kuzifungua.",
+    "namePlaceholder": "Jina, k.m. Mtandaoni pekee",
+    "add": "Ongeza mwonekano",
+    "nameAria": "Tazama jina",
+    "show": "Onyesha mtazamo huu",
+    "update": "Sasisha na kile kinachoonyeshwa sasa",
+    "delete": "Futa"
+  },
+  "mobile": {
+    "phone": "Mpangilio wa simu",
+    "empty": "Simu zinaonyesha kila taswira katika mpangilio wa usomaji hadi uweke ukurasa huu nje.",
+    "auto": "Anza kutoka kwa mpangilio wa eneo-kazi",
+    "shorter": "Mfupi zaidi",
+    "taller": "Mrefu zaidi",
+    "remove": "Ondoa kwenye mpangilio wa simu",
+    "notOnPhones": "Sio kwenye simu",
+    "allPlaced": "Kila taswira iko kwenye mpangilio wa simu.",
+    "clear": "Futa mpangilio wa simu"
+  },
+  "selection": {
+    "group": "Kikundi",
+    "ungroup": "Tenganisha kikundi",
+    "inGroup": "Katika kikundi",
+    "layerName": "Jina la safu",
+    "show": "Onyesha",
+    "hide": "Ficha",
+    "lock": "Funga",
+    "unlock": "Fungua",
+    "forward": "Songa mbele",
+    "backward": "Tuma nyuma",
+    "empty": "Bado hakuna picha - tumia Chomeka."
+  }
+}

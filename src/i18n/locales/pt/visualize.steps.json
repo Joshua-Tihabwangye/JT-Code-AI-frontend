@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Limpar",
+    "rows": "Linhas",
+    "columns": "Colunas",
+    "text": "Texto",
+    "numbers": "Números e datas",
+    "shape": "Forma",
+    "combine": "Combinar"
+  },
+  "kinds": {
+    "removeDuplicates": "Remover linhas duplicadas",
+    "trim": "Apare espaços extras",
+    "removeBlankRows": "Remover linhas em branco",
+    "fillBlanks": "Preencha os espaços em branco",
+    "replaceValues": "Substituir valores",
+    "changeType": "Tipo de alteração",
+    "outliers": "Lidar com valores discrepantes",
+    "filterRows": "Filtrar linhas",
+    "sort": "Classificar linhas",
+    "keepRows": "Mantenha as linhas superiores ou inferiores",
+    "removeColumns": "Remover colunas",
+    "keepColumns": "Mantenha apenas essas colunas",
+    "rename": "Renomear uma coluna",
+    "calculatedColumn": "Coluna calculada",
+    "conditionalColumn": "Coluna condicional",
+    "splitColumn": "Dividir uma coluna",
+    "mergeColumns": "Mesclar colunas",
+    "textCase": "Alterar caixa de texto",
+    "bins": "Agrupar números em caixas",
+    "dateParts": "Extrair partes da data",
+    "dateTable": "Faça uma tabela de datas (calendário)",
+    "groupBy": "Agrupar por",
+    "pivot": "Pivô (linhas → colunas)",
+    "unpivot": "Não dinâmico (colunas → linhas)",
+    "merge": "Mesclar com outro conjunto de dados",
+    "append": "Anexar outro conjunto de dados"
+  },
+  "fields": {
+    "compareColumns": "Compare apenas essas colunas",
+    "trimColumns": "Colunas (todo o texto quando vazio)",
+    "blankIn": "Em branco em",
+    "removeWhen": "Remover quando",
+    "column": "Coluna",
+    "columns": "Colunas",
+    "with": "Com",
+    "value": "Valor",
+    "find": "Encontrar",
+    "replaceWith": "Substitua por",
+    "match": "Corresponder",
+    "to": "Para",
+    "action": "Ação",
+    "rowsThatMatch": "Linhas que correspondem",
+    "conditions": "Condições",
+    "sortBy": "Ordenar por",
+    "keep": "Manter",
+    "howMany": "Quantos",
+    "newName": "Novo nome",
+    "newColumn": "Nova coluna",
+    "formula": "Fórmula",
+    "ifThen": "Se... então",
+    "otherwise": "De outra forma",
+    "at": "No",
+    "intoParts": "Em (partes)",
+    "newNames": "Novos nomes (opcional)",
+    "separator": "Separador",
+    "case": "Caso",
+    "bins": "Caixas",
+    "howManyBins": "Quantas caixas",
+    "edges": "Bordas",
+    "dateColumn": "Coluna de data",
+    "parts": "Peças",
+    "fromDatesIn": "A partir das datas em",
+    "fiscalStart": "O ano fiscal começa no mês",
+    "groupBy": "Agrupar por",
+    "calculate": "Calcular",
+    "keepAsRows": "Manter como linhas",
+    "valuesBecomeColumns": "Valores tornam-se colunas",
+    "fillWith": "Preencha com",
+    "aggregation": "Agregação",
+    "keepTheseColumns": "Mantenha essas colunas",
+    "nameColumn": "Coluna Nome",
+    "valueColumn": "Coluna de valor",
+    "dataset": "Conjunto de dados",
+    "keyHere": "Digite esses dados",
+    "keyOther": "Digite o outro"
+  },
+  "options": {
+    "blankHow": {
+      "any": "qualquer um deles está em branco",
+      "all": "todos eles estão em branco"
+    },
+    "fill": {
+      "mean": "Média",
+      "median": "Mediana",
+      "mode": "Valor mais comum",
+      "zero": "Zero",
+      "down": "Valor acima (preencher)",
+      "up": "Valor abaixo (preencher)",
+      "value": "Meu próprio valor"
+    },
+    "replaceMatch": {
+      "exact": "Valor total",
+      "contains": "Parte do texto"
+    },
+    "types": {
+      "number": "Número",
+      "date": "Data",
+      "text": "Texto"
+    },
+    "outliers": {
+      "cap": "Limite nos limites",
+      "remove": "Remova essas linhas",
+      "flag": "Sinalizar em uma nova coluna"
+    },
+    "filterMode": {
+      "keep": "Manter",
+      "remove": "Remover"
+    },
+    "combine": {
+      "and": "todas as condições",
+      "or": "qualquer condição"
+    },
+    "keepRows": {
+      "top": "Primeiras linhas",
+      "bottom": "Últimas linhas"
+    },
+    "textCase": {
+      "title": "Caso de título",
+      "upper": "SUPERIOR",
+      "lower": "mais baixo"
+    },
+    "bins": {
+      "equal": "Largura igual",
+      "edges": "Minhas próprias bordas"
+    },
+    "mergeHow": {
+      "left": "Todas as linhas destes dados",
+      "inner": "Apenas linhas correspondentes",
+      "outer": "Todas as linhas de ambos"
+    },
+    "aggs": {
+      "sum": "Soma",
+      "avg": "Média",
+      "count": "Contar",
+      "distinct": "Contagem distinta",
+      "min": "Mínimo",
+      "max": "Máx",
+      "median": "Mediana"
+    }
+  },
+  "parts": {
+    "year": "Ano",
+    "quarter": "Trimestre",
+    "month": "Mês",
+    "monthName": "Nome do mês",
+    "week": "Semana",
+    "weekday": "Dia da semana",
+    "weekdayName": "Nome do dia da semana",
+    "day": "Dia",
+    "hour": "Hora"
+  },
+  "conditionOps": {
+    "eq": "é igual",
+    "ne": "não é igual",
+    "in": "é um dos",
+    "notIn": "não é um dos",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "entre",
+    "contains": "contém",
+    "startsWith": "começa com",
+    "endsWith": "termina com",
+    "blank": "está em branco",
+    "notBlank": "não está em branco"
+  },
+  "summary": {
+    "keepConditions": "manter {{count}} condição(ões)",
+    "removeConditions": "remover condição(ões) {{count}}",
+    "by": "por {{columns}}",
+    "anotherDataset": "outro conjunto de dados",
+    "types": {
+      "number": "número",
+      "date": "data",
+      "text": "texto"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Remover duplicatas",
+    "keepOnePerId": "Mantenha uma linha por ID",
+    "removeMissingId": "Remover linhas sem ID",
+    "fillBlanks": "Preencha os espaços em branco",
+    "blankOut": "Apague “{{value}}”",
+    "trimSpaces": "Aparar espaços",
+    "toNumber": "Converter para número",
+    "toDate": "Converter para a data",
+    "consistentSpelling": "Torne a ortografia consistente",
+    "capOutliers": "Valores discrepantes",
+    "removeColumn": "Remover coluna"
+  }
+}

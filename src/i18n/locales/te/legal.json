@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "సంప్రదింపు",
+    "title": "JT-Code‌తో సహాయం పొందండి",
+    "backToSignIn": "సైన్ ఇన్‌కు తిరిగి వెళ్లండి",
+    "createAccount": "ఖాతా సృష్టించండి",
+    "p1": "",
+    "p2": ""
+  },
+  "privacy": {
+    "eyebrow": "గోప్యతా విధానం",
+    "title": "JT-Code గోప్యత",
+    "signIn": "సైన్ ఇన్",
+    "readTerms": "నిబంధనలను చదవండి",
+    "p1": "",
+    "p2": ""
+  },
+  "terms": {
+    "eyebrow": "సేవా నిబంధనలు",
+    "title": "JT-Code నిబంధనలు",
+    "createAccount": "ఖాతా సృష్టించండి",
+    "contactSupport": "సపోర్ట్‌ను సంప్రదించండి",
+    "p1": "",
+    "p2": ""
+  },
+  "notFound": {
+    "title": "పేజీ కనుగొనబడలేదు",
+    "returnHome": "JT-Code‌కు తిరిగి వెళ్లండి"
+  }
+}

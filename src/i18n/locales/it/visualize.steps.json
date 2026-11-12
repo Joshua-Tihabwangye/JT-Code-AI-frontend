@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Pulito",
+    "rows": "Righe",
+    "columns": "Colonne",
+    "text": "Testo",
+    "numbers": "Numeri e date",
+    "shape": "Forma",
+    "combine": "Combina"
+  },
+  "kinds": {
+    "removeDuplicates": "Rimuovi le righe duplicate",
+    "trim": "Taglia gli spazi extra",
+    "removeBlankRows": "Rimuovi le righe vuote",
+    "fillBlanks": "Riempi gli spazi vuoti",
+    "replaceValues": "Sostituisci i valori",
+    "changeType": "Cambia tipo",
+    "outliers": "Gestire i valori anomali",
+    "filterRows": "Filtra righe",
+    "sort": "Ordina le righe",
+    "keepRows": "Mantieni le righe superiori o inferiori",
+    "removeColumns": "Rimuovi colonne",
+    "keepColumns": "Conserva solo queste colonne",
+    "rename": "Rinominare una colonna",
+    "calculatedColumn": "Colonna calcolata",
+    "conditionalColumn": "Colonna condizionale",
+    "splitColumn": "Dividere una colonna",
+    "mergeColumns": "Unisci colonne",
+    "textCase": "Cambia maiuscole/minuscole nel testo",
+    "bins": "Raggruppare i numeri in contenitori",
+    "dateParts": "Estrai parti della data",
+    "dateTable": "Crea una tabella delle date (calendario)",
+    "groupBy": "Raggruppa per",
+    "pivot": "Pivot (righe → colonne)",
+    "unpivot": "Unpivot (colonne → righe)",
+    "merge": "Unisci con un altro set di dati",
+    "append": "Aggiungi un altro set di dati"
+  },
+  "fields": {
+    "compareColumns": "Confronta solo queste colonne",
+    "trimColumns": "Colonne (tutto il testo quando vuoto)",
+    "blankIn": "Vuoto dentro",
+    "removeWhen": "Rimuovi quando",
+    "column": "Colonna",
+    "columns": "Colonne",
+    "with": "Con",
+    "value": "Valore",
+    "find": "Trovare",
+    "replaceWith": "Sostituisci con",
+    "match": "Incontro",
+    "to": "A",
+    "action": "Azione",
+    "rowsThatMatch": "Righe che corrispondono",
+    "conditions": "Condizioni",
+    "sortBy": "Ordina per",
+    "keep": "Mantenere",
+    "howMany": "Quanti",
+    "newName": "Nuovo nome",
+    "newColumn": "Nuova rubrica",
+    "formula": "Formula",
+    "ifThen": "Se... allora",
+    "otherwise": "Altrimenti",
+    "at": "A",
+    "intoParts": "In (parti)",
+    "newNames": "Nuovi nomi (facoltativo)",
+    "separator": "Separatore",
+    "case": "Caso",
+    "bins": "Contenitori",
+    "howManyBins": "Quanti bidoni",
+    "edges": "Bordi",
+    "dateColumn": "Colonna della data",
+    "parts": "Parti",
+    "fromDatesIn": "Dalle date in",
+    "fiscalStart": "L'anno fiscale inizia tra il mese",
+    "groupBy": "Raggruppa per",
+    "calculate": "Calcolare",
+    "keepAsRows": "Conserva come righe",
+    "valuesBecomeColumns": "I valori diventano colonne",
+    "fillWith": "Riempi con",
+    "aggregation": "Aggregazione",
+    "keepTheseColumns": "Mantieni queste colonne",
+    "nameColumn": "Colonna del nome",
+    "valueColumn": "Colonna valore",
+    "dataset": "Set di dati",
+    "keyHere": "Inserisci questi dati",
+    "keyOther": "Digitare l'altro"
+  },
+  "options": {
+    "blankHow": {
+      "any": "nessuno di essi è vuoto",
+      "all": "sono tutti vuoti"
+    },
+    "fill": {
+      "mean": "Media",
+      "median": "Mediano",
+      "mode": "Valore più comune",
+      "zero": "Zero",
+      "down": "Valore sopra (riempire)",
+      "up": "Valore inferiore (riempire)",
+      "value": "Il mio valore"
+    },
+    "replaceMatch": {
+      "exact": "Intero valore",
+      "contains": "Parte del testo"
+    },
+    "types": {
+      "number": "Numero",
+      "date": "Data",
+      "text": "Testo"
+    },
+    "outliers": {
+      "cap": "Tappo ai limiti",
+      "remove": "Rimuovi quelle righe",
+      "flag": "Contrassegna in una nuova colonna"
+    },
+    "filterMode": {
+      "keep": "Mantenere",
+      "remove": "Rimuovere"
+    },
+    "combine": {
+      "and": "tutte le condizioni",
+      "or": "qualsiasi condizione"
+    },
+    "keepRows": {
+      "top": "Prime file",
+      "bottom": "Ultime righe"
+    },
+    "textCase": {
+      "title": "Caso del titolo",
+      "upper": "SUPERIORE",
+      "lower": "inferiore"
+    },
+    "bins": {
+      "equal": "Uguale larghezza",
+      "edges": "I miei bordi"
+    },
+    "mergeHow": {
+      "left": "Tutte le righe di questi dati",
+      "inner": "Solo righe corrispondenti",
+      "outer": "Tutte le righe di entrambi"
+    },
+    "aggs": {
+      "sum": "Somma",
+      "avg": "Media",
+      "count": "Contare",
+      "distinct": "Conteggio distinto",
+      "min": "minimo",
+      "max": "Massimo",
+      "median": "Mediano"
+    }
+  },
+  "parts": {
+    "year": "Anno",
+    "quarter": "Trimestre",
+    "month": "Mese",
+    "monthName": "Nome del mese",
+    "week": "Settimana",
+    "weekday": "Giorno feriale",
+    "weekdayName": "Nome del giorno della settimana",
+    "day": "Giorno",
+    "hour": "Ora"
+  },
+  "conditionOps": {
+    "eq": "è uguale",
+    "ne": "non è uguale",
+    "in": "è uno di",
+    "notIn": "non è uno di",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "fra",
+    "contains": "contiene",
+    "startsWith": "inizia con",
+    "endsWith": "termina con",
+    "blank": "è vuoto",
+    "notBlank": "non è vuoto"
+  },
+  "summary": {
+    "keepConditions": "mantieni {{count}} condizione/i",
+    "removeConditions": "rimuovi {{count}} condizione/i",
+    "by": "di {{columns}}",
+    "anotherDataset": "un altro set di dati",
+    "types": {
+      "number": "numero",
+      "date": "data",
+      "text": "testo"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Rimuovi i duplicati",
+    "keepOnePerId": "Mantieni una riga per ID",
+    "removeMissingId": "Rimuovi le righe senza ID",
+    "fillBlanks": "Riempi gli spazi vuoti",
+    "blankOut": "Cancella \"{{value}}\"",
+    "trimSpaces": "Ritaglia gli spazi",
+    "toNumber": "Converti in numero",
+    "toDate": "Converti fino ad oggi",
+    "consistentSpelling": "Rendi coerente l'ortografia",
+    "capOutliers": "Limitare i valori anomali",
+    "removeColumn": "Rimuovi colonna"
+  }
+}

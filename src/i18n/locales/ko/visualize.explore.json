@@ -1,0 +1,38 @@
+{
+  "pick": "위 막대에서 데이터세트를 선택하거나 데이터 페이지에서 추가하세요.",
+  "add": "새 차트",
+  "pin": "대시보드에 고정",
+  "saved": "내 영상에 저장됨",
+  "save": "내 영상에 저장",
+  "viewData": "데이터 보기",
+  "pageName": "탐구하다",
+  "chartType": "차트 종류",
+  "suggestions": "제안",
+  "charts": "차트",
+  "buildAndFormat": "빌드 및 형식",
+  "build": "짓다",
+  "format": "체재",
+  "remove": "이 차트 삭제",
+  "drawer": {
+    "data": "차트 뒤의 데이터",
+    "rows": "원시 행",
+    "query": "질문"
+  },
+  "noData": "아직 데이터가 없습니다.",
+  "query": {
+    "chart": "{{fields}}의 {{chart}}(모든 행, 더 클 경우 10,000으로 샘플링됨)",
+    "noFields": "아직 필드가 없습니다",
+    "countRows": "행 수",
+    "measure": "{{agg}}/{{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "년도",
+      "quarter": "4분의 1",
+      "month": "월",
+      "week": "주",
+      "day": "낮"
+    },
+    "grouped": "{{what}} by {{groups}} — 데이터베이스에서 계산된 다음 Python으로 그려집니다.",
+    "total": "{{what}} — 데이터베이스에서 계산된 다음 Python으로 그려집니다."
+  }
+}

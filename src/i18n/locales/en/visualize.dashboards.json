@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "is",
+      "ne": "is not",
+      "contains": "contains",
+      "starts_with": "starts with",
+      "gt": "is greater than",
+      "gte": "is at least",
+      "lt": "is less than",
+      "lte": "is at most",
+      "blank": "is blank",
+      "not_blank": "is not blank"
+    },
+    "units": {
+      "day_one": "day",
+      "day_other": "days",
+      "week_one": "week",
+      "week_other": "weeks",
+      "month_one": "month",
+      "month_other": "months",
+      "quarter_one": "quarter",
+      "quarter_other": "quarters",
+      "year_one": "year",
+      "year_other": "years"
+    },
+    "describe": {
+      "all": "{{name}}: all",
+      "in": "{{name}} is {{values}}",
+      "inMore": "{{name}} is {{values}} +{{more}}",
+      "notIn": "{{name}} is not {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "count",
+      "top": "Top {{n}} {{name}} by {{by}}",
+      "bottom": "Bottom {{n}} {{name}} by {{by}}",
+      "relative": {
+        "last": "{{name}}: last {{count}} {{unit}}",
+        "next": "{{name}}: next {{count}} {{unit}}",
+        "this": "{{name}}: this {{unit}}"
+      },
+      "orJoin": " or ",
+      "andJoin": " and ",
+      "blank": "{{name}} is blank",
+      "notBlank": "{{name}} is not blank",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Filter type",
+    "types": {
+      "basic": "Basic",
+      "advanced": "Advanced",
+      "top": "Top N",
+      "relative": "Relative date"
+    },
+    "search": "Search",
+    "searchValues": "Search values",
+    "loadingValues": "Loading values…",
+    "condition": "Condition",
+    "value": "Value",
+    "addAnd": "+ And",
+    "addOr": "+ Or",
+    "combineWith": "Combine with",
+    "and": "And",
+    "or": "Or",
+    "removeSecond": "Remove second",
+    "topOrBottom": "Top or bottom",
+    "topWord": "Top",
+    "bottomWord": "Bottom",
+    "howMany": "How many",
+    "byValue": "By value",
+    "byRows": "by number of rows",
+    "byTotal": "by total {{field}}",
+    "period": "Period",
+    "modes": {
+      "last": "Last",
+      "this": "This",
+      "next": "Next"
+    },
+    "unit": "Unit",
+    "onVisual": "Filters on this visual",
+    "onPage": "Filters on this page",
+    "onAllPages": "Filters on all pages",
+    "active_one": "{{count}} filter active",
+    "active_other": "{{count}} filters active",
+    "resetToAuthor": "Reset to author",
+    "lockedByAuthor": "Locked by the author",
+    "unlock": "Unlock for viewers",
+    "lock": "Lock for viewers",
+    "showToViewers": "Show to viewers",
+    "hideFromViewers": "Hide from viewers",
+    "remove": "Remove filter",
+    "backToAuthor": "Back to the author's filter",
+    "cardName": "Card name (optional)",
+    "cardNameLabel": "Filter card name",
+    "none": "None.",
+    "fieldToFilter": "Field to filter",
+    "chooseField": "Choose a field…",
+    "add": "Add a filter"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Made by the AI model · {{credits}} credit",
+    "sourceAiCredits_other": "Made by the AI model · {{credits}} credits",
+    "sourceAiFree": "Made by the AI model · no credits",
+    "sourceRules": "Made by the built-in rules (the AI model was not used · no credits)",
+    "rowsWord": "rows",
+    "previewLabel_one": "Preview of {{name}}: {{count}} visual",
+    "previewLabel_other": "Preview of {{name}}: {{count}} visuals",
+    "describe": "Describe the page",
+    "describePlaceholder": "e.g. Sales performance by region and product, with the monthly trend and top 10 customers",
+    "designing": "Designing…",
+    "tryAgain": "Try again",
+    "previewPage": "Preview page",
+    "costNote": "Uses one AI message (credits). Nothing changes until you apply it.",
+    "proposal_one": "<b>{{name}}</b> — adds a page with {{count}} visual.",
+    "proposal_other": "<b>{{name}}</b> — adds a page with {{count}} visuals.",
+    "proposalWithCalcs_one": "<b>{{name}}</b> — adds a page with {{count}} visual and {{calcs}} calculation(s).",
+    "proposalWithCalcs_other": "<b>{{name}}</b> — adds a page with {{count}} visuals and {{calcs}} calculation(s).",
+    "discard": "Discard",
+    "applying": "Applying…",
+    "apply": "Apply",
+    "close": "Close",
+    "suggestNote": "Visuals that suit this dataset (free — no AI credits).",
+    "looking": "Looking at the data…",
+    "working": "Working…",
+    "preview": "Preview",
+    "format": {
+      "title": "Auto-format",
+      "question": "How should it look?",
+      "other": "Anything else",
+      "otherPlaceholder": "Anything else? (asks the AI model)",
+      "note": "The highlighted words are free; anything typed in the box asks the AI model.",
+      "nothing": "Nothing to change for that request.",
+      "theme": "Theme",
+      "mode": "Mode",
+      "density": "Density",
+      "layout": "Layout",
+      "asIs": "as is",
+      "tidied": "snapped to the grid, short titles",
+      "modes": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "Follow app"
+      },
+      "densities": {
+        "compact": "Compact",
+        "comfortable": "Comfortable"
+      },
+      "keywords": {
+        "executive": "Executive",
+        "midnight": "Midnight",
+        "dark": "Dark",
+        "light": "Light",
+        "compact": "Compact",
+        "comfortable": "Comfortable",
+        "aligned": "Aligned"
+      }
+    },
+    "askTitle": "Ask a question",
+    "askPlaceholder": "Ask about this data, e.g. top products by revenue in West",
+    "question": "Question",
+    "thinking": "Thinking…",
+    "ask": "Ask",
+    "pin": "Pin to dashboard",
+    "explain": {
+      "title": "Explain this change",
+      "loading": "Comparing with the period before…",
+      "none": "No single member stands out.",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · computed from the data, no AI"
+    }
+  },
+  "views": {
+    "yourDefault": "Your default view",
+    "openWith": "Open with this view",
+    "delete": "Delete this view",
+    "title": "Views",
+    "mine": "My views",
+    "mineEmpty": "Save what you see — filters, slicers, drill, your changes.",
+    "namePlaceholder": "Name this view",
+    "save": "Save",
+    "forMe": "For me",
+    "modes": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "densities": {
+      "comfortable": "Comfortable",
+      "compact": "Compact"
+    },
+    "reset": "Reset to default"
+  },
+  "personalize": {
+    "title": "Personalize this visual",
+    "close": "Close",
+    "onlyYou": "Only you see these changes.",
+    "type": "Visual type",
+    "aggregation": "Aggregation",
+    "remove": "Remove {{field}}",
+    "add": "Add",
+    "legend": "Legend",
+    "dataLabels": "Data labels",
+    "sort": "Sort",
+    "sorts": {
+      "largest": "Largest first",
+      "smallest": "Smallest first",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "Undo",
+    "reset": "Reset this visual"
+  },
+  "share": {
+    "embedTitle": "Dashboard",
+    "copied": "Copied",
+    "title": "Share dashboard",
+    "heading": "Share “{{name}}”",
+    "close": "Close",
+    "workspace": "Everyone in my workspace",
+    "workspaceNote": "Colleagues open it signed in, as viewers: they can personalize visuals and save their own views.",
+    "publicNote": "Public links: anyone with the link can view this dashboard and use its slicers — read-only, without signing in.",
+    "kind": "Kind",
+    "link": "Link",
+    "embed": "Embed",
+    "labelPlaceholder": "Label (e.g. Board pack)",
+    "label": "Label",
+    "expires": "Expires",
+    "expiryDate": "Expiry date",
+    "creating": "Creating…",
+    "createEmbed": "Create embed code",
+    "createLink": "Create link",
+    "copyNow": "Copy it now — for safety the full address is not shown again.",
+    "address": "Share address",
+    "embedCode": "Embed code",
+    "copyLink": "Copy link",
+    "copyEmbed": "Copy embed code",
+    "links_one": "Links ({{count}} active)",
+    "links_other": "Links ({{count}} active)",
+    "loading": "Loading…",
+    "none": "No links yet.",
+    "by": "by {{name}}",
+    "unknown": "unknown",
+    "revokedOn": "Revoked {{date}}",
+    "expiresOn": "Expires {{date}}",
+    "noExpiry": "No expiry",
+    "lastOpened": "last opened {{date}}",
+    "notOpened": "not opened yet",
+    "revoke": "Revoke"
+  },
+  "header": {
+    "filtersApply_one": "{{count}} filter applies",
+    "filtersApply_other": "{{count}} filters apply",
+    "drillUp": "Drill up",
+    "drillModeOn": "Drill mode on: click a point to drill into it",
+    "drillMode": "Drill mode: click a point to drill into it",
+    "nextLevel": "Go to the next level",
+    "personalized": "Personalized for you — change or reset",
+    "personalize": "Personalize this visual",
+    "focus": "Focus mode",
+    "more": "More options",
+    "filtersOnVisual": "Filters on this visual",
+    "showAsVisual": "Show as visual",
+    "showAsTable": "Show as table",
+    "exportCsv": "Export data (CSV)",
+    "copyImage": "Copy as image",
+    "leaveSpotlight": "Leave spotlight",
+    "spotlight": "Spotlight",
+    "closeFocus": "Close focus mode"
+  },
+  "pointMenu": {
+    "drillThrough": "Drill through ▸ {{page}}",
+    "explain": "Explain this change",
+    "keepOnly": "Keep only",
+    "exclude": "Exclude"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Blank",
+        "hint": "An empty page to build on."
+      },
+      "auto": {
+        "label": "Auto",
+        "hint": "KPIs, a trend, a breakdown, a map and slicers, chosen from your data."
+      },
+      "template": {
+        "label": "Template",
+        "hint": "A ready-made layout: map your columns to it."
+      },
+      "ai": {
+        "label": "Ask AI",
+        "hint": "Describe the page; preview it before it is created."
+      }
+    },
+    "kinds": {
+      "number": "a number",
+      "date": "a date",
+      "category": "a category"
+    },
+    "chooseColumn": "Choose a column…",
+    "skip": "(skip)",
+    "untitled": "Untitled dashboard",
+    "chooseTemplate": "Choose a template.",
+    "title": "New dashboard",
+    "close": "Close",
+    "howToStart": "How to start",
+    "dataset": "Dataset",
+    "addDatasetFirst": "Add a dataset first",
+    "name": "Name",
+    "data": "Data",
+    "overviewName": "{{name}} overview",
+    "loadingTemplates": "Loading templates…",
+    "allTemplates": "All templates",
+    "matchColumns": "Match your columns",
+    "stillNeeded": "Still needed: {{roles}}.",
+    "createDashboard": "Create dashboard",
+    "cancel": "Cancel",
+    "creating": "Creating…",
+    "createFromTemplate": "Create from template",
+    "build": "Build dashboard",
+    "create": "Create",
+    "templateLayout": "{{name}} layout"
+  },
+  "templates": {
+    "sales": {
+      "name": "Sales overview",
+      "description": "Revenue, profit and trends by product and region.",
+      "roles": {
+        "date": "Date",
+        "amount": "Revenue",
+        "profit": "Profit",
+        "quantity": "Units",
+        "target": "Target",
+        "product": "Product",
+        "region": "Region",
+        "channel": "Channel"
+      }
+    },
+    "crm": {
+      "name": "CRM pipeline",
+      "description": "Deals by stage and owner, won value and conversion.",
+      "roles": {
+        "date": "Date",
+        "amount": "Deal value",
+        "stage": "Stage",
+        "owner": "Owner",
+        "source": "Lead source"
+      }
+    },
+    "finance": {
+      "name": "Finance P&L",
+      "description": "Revenue, costs and margin over time and by account.",
+      "roles": {
+        "date": "Date",
+        "amount": "Revenue",
+        "cost": "Costs",
+        "account": "Account / category",
+        "budget": "Budget"
+      }
+    },
+    "hr": {
+      "name": "HR analytics",
+      "description": "Headcount, salary and satisfaction by department.",
+      "roles": {
+        "date": "Date",
+        "employee": "Employee ID",
+        "department": "Department",
+        "salary": "Salary",
+        "rating": "Satisfaction / rating",
+        "status": "Status",
+        "gender": "Gender"
+      }
+    },
+    "web": {
+      "name": "Web analytics",
+      "description": "Sessions, users and conversions by source and page.",
+      "roles": {
+        "date": "Date",
+        "sessions": "Sessions / visits",
+        "users": "Users",
+        "conversions": "Conversions",
+        "source": "Traffic source",
+        "page": "Page"
+      }
+    },
+    "mobile": {
+      "name": "Mobile app analytics",
+      "description": "Active users, installs and crashes by platform and version.",
+      "roles": {
+        "date": "Date",
+        "active": "Active users",
+        "installs": "Installs",
+        "crashes": "Crashes",
+        "platform": "Platform",
+        "version": "App version"
+      }
+    },
+    "marketing": {
+      "name": "Marketing campaigns",
+      "description": "Spend, clicks, conversions and cost per conversion by campaign.",
+      "roles": {
+        "date": "Date",
+        "spend": "Spend",
+        "clicks": "Clicks",
+        "conversions": "Conversions",
+        "campaign": "Campaign",
+        "channel": "Channel"
+      }
+    },
+    "inventory": {
+      "name": "Inventory and operations",
+      "description": "Stock on hand, movement and reorder risk by item and site.",
+      "roles": {
+        "date": "Date",
+        "stock": "Stock / quantity",
+        "item": "Item",
+        "site": "Warehouse / site",
+        "value": "Stock value",
+        "reorder": "Reorder level"
+      }
+    },
+    "retail": {
+      "name": "Retail",
+      "description": "Store sales, basket size and best sellers.",
+      "roles": {
+        "date": "Date",
+        "amount": "Revenue",
+        "quantity": "Units",
+        "store": "Store / region",
+        "product": "Product",
+        "rating": "Satisfaction"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} from",
+    "to": "{{field}} to",
+    "clear": "Clear",
+    "minimum": "{{field}} minimum",
+    "maximum": "{{field}} maximum",
+    "period": "Period",
+    "allTime": "All time",
+    "howMany": "How many",
+    "unit": "Unit",
+    "operator": "Operator",
+    "typeValue": "Type a {{field}}",
+    "value": "{{field}} value",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "all": "All",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "searchPlaceholder": "Search, or paste a list",
+    "search": "Search {{field}}",
+    "selectAll": "Select all"
+  },
+  "local": {
+    "snapshotEmpty": "This snapshot has no chart.",
+    "snapshot": "Snapshot",
+    "snapshotOn": "Snapshot · {{date}}",
+    "chooseParameter": "Choose a parameter in Format → Parameter.",
+    "button": "Button",
+    "noViews": "Add views (bookmarks) to list them here.",
+    "views": "Views",
+    "pages": "Pages"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} dashboard",
+    "newDashboard": "New dashboard",
+    "overview": "Overview",
+    "title": "Pin to dashboard",
+    "close": "Close",
+    "pinnedTo": "Pinned to <b>{{name}}</b>.",
+    "stay": "Stay here",
+    "open": "Open dashboard",
+    "dashboard": "Dashboard",
+    "newOption": "+ New dashboard…",
+    "name": "Name",
+    "page": "Page",
+    "cancel": "Cancel",
+    "pinning": "Pinning…",
+    "pin": "Pin"
+  },
+  "page": {
+    "backFromDetail": "Back",
+    "back": "All dashboards",
+    "pages": "Pages",
+    "clear": "Clear",
+    "clearSelection": "Clear selection",
+    "apply": "Apply",
+    "clearSlicers": "Clear all slicers",
+    "updating": "Updating…",
+    "filters": "Filters",
+    "qa": "Q&A",
+    "present": "Present",
+    "share": "Share",
+    "edit": "Edit",
+    "painting": "Painting page {{page}} of {{total}}…",
+    "buildingPdf": "Building the PDF…",
+    "exported_one": "Exported {{count}} page.",
+    "exported_other": "Exported {{count}} pages.",
+    "exportFailed": "The export failed.",
+    "notFound": "Dashboard not found.",
+    "filtersActive_one": "{{count}} filter active",
+    "filtersActive_other": "{{count}} filters active",
+    "presentation": "Presentation",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "pause": "Pause",
+    "autoPlay": "Auto-play",
+    "leavePresentation": "Leave presentation",
+    "keepExclude": "Your keep/exclude filters",
+    "excluding": "Excluding {{values}}",
+    "only": "Only {{values}}",
+    "dashboard": "Dashboard",
+    "seconds": "{{value}} s"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Ratio (A ÷ B), e.g. profit margin"
+    },
+    "average-per-row": {
+      "label": "Average per row (e.g. average order value)"
+    },
+    "vs-target": {
+      "label": "Versus target (%)"
+    },
+    "difference": {
+      "label": "Difference (A − B)"
+    },
+    "per-distinct": {
+      "label": "Value per distinct item (e.g. revenue per customer)"
+    },
+    "fields": {
+      "numerator": "Numerator",
+      "denominator": "Denominator",
+      "value": "Value",
+      "actual": "Actual",
+      "target": "Target",
+      "minus": "Minus",
+      "distinctItem": "Distinct item"
+    },
+    "names": {
+      "perRow": "{{a}} per row",
+      "vsTarget": "{{a}} vs target",
+      "perDistinct": "{{a}} per {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Untitled dashboard",
+    "title": "Dashboards",
+    "subtitle": "KPIs, charts and slicers on one screen, all connected.",
+    "noData": "Add a dataset first",
+    "blank": "Blank",
+    "template": "Template",
+    "building": "Building…",
+    "auto": "Build dashboard",
+    "empty": "No dashboards yet. Pick a dataset and build one in a click.",
+    "duplicate": "Duplicate",
+    "deleteTitle": "Delete dashboard?",
+    "deleteText": "{{name}} and its saved versions will be removed. Datasets are not affected.",
+    "more": "More data",
+    "start": "Start here",
+    "import": "Upload or paste data",
+    "loading": "Loading…",
+    "library": "My visuals",
+    "allVisuals": "All saved visuals",
+    "libraryHint": "Insert any of them into a dashboard from the editor’s Insert menu.",
+    "delete": "Delete",
+    "datasetLabel": "Dataset for a new dashboard",
+    "show": "Show",
+    "filter": {
+      "all": "All",
+      "mine": "Mine",
+      "shared": "Shared with me"
+    },
+    "pages_one": "{{count}} page",
+    "pages_other": "{{count}} pages",
+    "roles": {
+      "owner": "owner",
+      "editor": "editor",
+      "viewer": "viewer"
+    },
+    "sharedFlag": "shared",
+    "deleteNamed": "Delete {{name}}"
+  },
+  "visual": {
+    "target": "Target {{value}}",
+    "progress": "{{value}} of {{target}}",
+    "total": "Total",
+    "failed": "This visual could not be drawn.",
+    "empty": "No data for the current filters",
+    "clearSelection": "Clear selection",
+    "nothing": "Nothing to show."
+  },
+  "shared": {
+    "loading": "Loading dashboard…",
+    "missingTitle": "This link is not available",
+    "missingText": "It may have been revoked or have expired. Ask the person who shared it for a new link.",
+    "pages": "Pages",
+    "clearSelection": "Clear selection",
+    "clearSlicers": "Clear slicers",
+    "readOnly": "Read-only shared view"
+  },
+  "capture": {
+    "unsupported": "This browser cannot paint the page.",
+    "failed": "The page could not be painted.",
+    "timeout": "The page took too long to draw."
+  }
+}

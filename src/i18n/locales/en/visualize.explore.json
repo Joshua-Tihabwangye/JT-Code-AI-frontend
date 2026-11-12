@@ -1,0 +1,38 @@
+{
+  "pick": "Choose a dataset in the bar above, or add one on the Data page.",
+  "add": "New chart",
+  "pin": "Pin to dashboard",
+  "saved": "Saved to My visuals",
+  "save": "Save to My visuals",
+  "viewData": "View data",
+  "pageName": "Explore",
+  "chartType": "Chart type",
+  "suggestions": "Suggestions",
+  "charts": "Charts",
+  "buildAndFormat": "Build and format",
+  "build": "Build",
+  "format": "Format",
+  "remove": "Remove this chart",
+  "drawer": {
+    "data": "Data behind the chart",
+    "rows": "Raw rows",
+    "query": "Query"
+  },
+  "noData": "No data yet.",
+  "query": {
+    "chart": "{{chart}} of {{fields}} (every row, sampled to 10,000 when larger).",
+    "noFields": "no fields yet",
+    "countRows": "Count of rows",
+    "measure": "{{agg}} of {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "year",
+      "quarter": "quarter",
+      "month": "month",
+      "week": "week",
+      "day": "day"
+    },
+    "grouped": "{{what}} by {{groups}} — computed in the database, then drawn in Python.",
+    "total": "{{what}} — computed in the database, then drawn in Python."
+  }
+}

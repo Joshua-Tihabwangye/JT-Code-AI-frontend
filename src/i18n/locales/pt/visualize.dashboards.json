@@ -1,0 +1,624 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "é",
+      "ne": "não é",
+      "contains": "contém",
+      "starts_with": "começa com",
+      "gt": "é maior que",
+      "gte": "é pelo menos",
+      "lt": "é menor que",
+      "lte": "é no máximo",
+      "blank": "está em branco",
+      "not_blank": "não está em branco"
+    },
+    "units": {
+      "day_one": "dia",
+      "day_other": "dias",
+      "week_one": "semana",
+      "week_other": "semanas",
+      "month_one": "mês",
+      "month_other": "meses",
+      "quarter_one": "trimestre",
+      "quarter_other": "trimestres",
+      "year_one": "ano",
+      "year_other": "anos",
+      "day_many": "dias",
+      "week_many": "semanas",
+      "month_many": "meses",
+      "quarter_many": "trimestres",
+      "year_many": "anos"
+    },
+    "describe": {
+      "all": "{{name}}: todos",
+      "in": "{{name}} é {{values}}",
+      "inMore": "{{name}} é {{values}} +{{more}}",
+      "notIn": "{{name}} não é {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "contar",
+      "top": "Principais {{n}} {{name}} por {{by}}",
+      "bottom": "Inferior {{n}} {{name}} por {{by}}",
+      "relative": {
+        "last": "{{name}}: último {{count}} {{unit}}",
+        "next": "{{name}}: próximo {{count}} {{unit}}",
+        "this": "{{name}}: este {{unit}}"
+      },
+      "orJoin": "ou",
+      "andJoin": "e",
+      "blank": "{{name}} está em branco",
+      "notBlank": "{{name}} não está em branco",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Tipo de filtro",
+    "types": {
+      "basic": "Básico",
+      "advanced": "Avançado",
+      "top": "Principais N",
+      "relative": "Data relativa"
+    },
+    "search": "Procurar",
+    "searchValues": "Valores de pesquisa",
+    "loadingValues": "Carregando valores…",
+    "condition": "Doença",
+    "value": "Valor",
+    "addAnd": "+ E",
+    "addOr": "+ Ou",
+    "combineWith": "Combine com",
+    "and": "E",
+    "or": "Ou",
+    "removeSecond": "Remover segundo",
+    "topOrBottom": "Superior ou inferior",
+    "topWord": "Principal",
+    "bottomWord": "Fundo",
+    "howMany": "Quantos",
+    "byValue": "Por valor",
+    "byRows": "por número de linhas",
+    "byTotal": "pelo total {{field}}",
+    "period": "Período",
+    "modes": {
+      "last": "Durar",
+      "this": "Esse",
+      "next": "Próximo"
+    },
+    "unit": "Unidade",
+    "onVisual": "Filtros neste visual",
+    "onPage": "Filtros nesta página",
+    "onAllPages": "Filtros em todas as páginas",
+    "active_one": "{{count}} filtro ativo",
+    "active_other": "{{count}} filtros ativos",
+    "resetToAuthor": "Redefinir para autor",
+    "lockedByAuthor": "Bloqueado pelo autor",
+    "unlock": "Desbloqueio para espectadores",
+    "lock": "Bloqueio para visualizadores",
+    "showToViewers": "Mostrar aos espectadores",
+    "hideFromViewers": "Ocultar dos espectadores",
+    "remove": "Remover filtro",
+    "backToAuthor": "Voltar ao filtro do autor",
+    "cardName": "Nome do cartão (opcional)",
+    "cardNameLabel": "Filtrar nome do cartão",
+    "none": "Nenhum.",
+    "fieldToFilter": "Campo para filtrar",
+    "chooseField": "Escolha um campo…",
+    "add": "Adicionar um filtro",
+    "active_many": "{{count}} filtros ativos"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Feito pelo modelo de IA · Crédito {{credits}}",
+    "sourceAiCredits_other": "Feito pelo modelo de IA · {{credits}} créditos",
+    "sourceAiFree": "Feito pelo modelo AI · sem créditos",
+    "sourceRules": "Feito pelas regras integradas (o modelo de IA não foi usado · sem créditos)",
+    "rowsWord": "linhas",
+    "previewLabel_one": "Visualização de {{name}}: visual de {{count}}",
+    "previewLabel_other": "Visualização de {{name}}: recursos visuais de {{count}}",
+    "describe": "Descreva a página",
+    "describePlaceholder": "por exemplo Desempenho de vendas por região e produto, com tendência mensal e 10 principais clientes",
+    "designing": "Projetando…",
+    "tryAgain": "Tente novamente",
+    "previewPage": "Página de visualização",
+    "costNote": "Usa uma mensagem AI (créditos). Nada muda até que você o aplique.",
+    "proposal_one": "<b>{{name}} </b> — adiciona uma página com visual {{count}}.",
+    "proposal_other": "<b>{{name}} </b> — adiciona uma página com recursos visuais {{count}}.",
+    "proposalWithCalcs_one": "<b>{{name}} </b> — adiciona uma página com visual {{count}} e cálculo(s) {{calcs}}.",
+    "proposalWithCalcs_other": "<b>{{name}} </b> — adiciona uma página com recursos visuais {{count}} e cálculos {{calcs}}.",
+    "discard": "Descartar",
+    "applying": "Aplicando…",
+    "apply": "Aplicar",
+    "close": "Fechar",
+    "suggestNote": "Visuais adequados a este conjunto de dados (gratuito – sem créditos de IA).",
+    "looking": "Olhando os dados…",
+    "working": "Trabalhando…",
+    "preview": "Visualização",
+    "format": {
+      "title": "Formatação automática",
+      "question": "Como deveria ser?",
+      "other": "Algo mais",
+      "otherPlaceholder": "Algo mais? (pergunta o modelo de IA)",
+      "note": "As palavras destacadas são gratuitas; qualquer coisa digitada na caixa solicita o modelo de IA.",
+      "nothing": "Nada a mudar para esse pedido.",
+      "theme": "Tema",
+      "mode": "Modo",
+      "density": "Densidade",
+      "layout": "Disposição",
+      "asIs": "como está",
+      "tidied": "ajustados à grade, títulos curtos",
+      "modes": {
+        "light": "Luz",
+        "dark": "Escuro",
+        "system": "Siga o aplicativo"
+      },
+      "densities": {
+        "compact": "Compactar",
+        "comfortable": "Confortável"
+      },
+      "keywords": {
+        "executive": "Executivo",
+        "midnight": "Meia-noite",
+        "dark": "Escuro",
+        "light": "Luz",
+        "compact": "Compactar",
+        "comfortable": "Confortável",
+        "aligned": "Alinhado"
+      }
+    },
+    "askTitle": "Faça uma pergunta",
+    "askPlaceholder": "Pergunte sobre esses dados, por ex. principais produtos por receita no Oeste",
+    "question": "Pergunta",
+    "thinking": "Pensamento…",
+    "ask": "Perguntar",
+    "pin": "Fixar no painel",
+    "explain": {
+      "title": "Explique essa mudança",
+      "loading": "Comparando com o período anterior…",
+      "none": "Nenhum membro se destaca.",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · calculado a partir dos dados, sem IA"
+    },
+    "sourceAiCredits_many": "Feito pelo modelo de IA · {{credits}} créditos",
+    "previewLabel_many": "Visualização de {{name}}: recursos visuais de {{count}}",
+    "proposal_many": "<b>{{name}} </b> — adiciona uma página com recursos visuais {{count}}.",
+    "proposalWithCalcs_many": "<b>{{name}} </b> — adiciona uma página com recursos visuais {{count}} e cálculos {{calcs}}."
+  },
+  "views": {
+    "yourDefault": "Sua visualização padrão",
+    "openWith": "Abra com esta visualização",
+    "delete": "Excluir esta visualização",
+    "title": "Visualizações",
+    "mine": "Minhas opiniões",
+    "mineEmpty": "Salve o que você vê: filtros, segmentações, detalhamento e suas alterações.",
+    "namePlaceholder": "Dê um nome a esta visualização",
+    "save": "Salvar",
+    "forMe": "Para mim",
+    "modes": {
+      "system": "Sistema",
+      "light": "Luz",
+      "dark": "Escuro"
+    },
+    "densities": {
+      "comfortable": "Confortável",
+      "compact": "Compactar"
+    },
+    "reset": "Redefinir para o padrão"
+  },
+  "personalize": {
+    "title": "Personalize este visual",
+    "close": "Fechar",
+    "onlyYou": "Só você vê essas mudanças.",
+    "type": "Tipo visual",
+    "aggregation": "Agregação",
+    "remove": "Remover {{field}}",
+    "add": "Adicionar",
+    "legend": "Lenda",
+    "dataLabels": "Rótulos de dados",
+    "sort": "Organizar",
+    "sorts": {
+      "largest": "Maior primeiro",
+      "smallest": "O menor primeiro",
+      "az": "A → Z",
+      "za": "Z → UMA"
+    },
+    "undo": "Desfazer",
+    "reset": "Redefinir este visual"
+  },
+  "share": {
+    "embedTitle": "Painel",
+    "copied": "Copiado",
+    "title": "Compartilhar painel",
+    "heading": "Compartilhe “{{name}}”",
+    "close": "Fechar",
+    "workspace": "Todos no meu espaço de trabalho",
+    "workspaceNote": "Os colegas abrem-no como visualizadores: eles podem personalizar os recursos visuais e salvar suas próprias visualizações.",
+    "publicNote": "Links públicos: qualquer pessoa com o link pode visualizar este painel e usar suas segmentações — somente leitura, sem fazer login.",
+    "kind": "Tipo",
+    "link": "Link",
+    "embed": "Incorporar",
+    "labelPlaceholder": "Etiqueta (por exemplo, pacote de tabuleiro)",
+    "label": "Rótulo",
+    "expires": "Expira",
+    "expiryDate": "Data de validade",
+    "creating": "Criando…",
+    "createEmbed": "Criar código incorporado",
+    "createLink": "Criar link",
+    "copyNow": "Copie agora – por segurança, o endereço completo não será mostrado novamente.",
+    "address": "Compartilhar endereço",
+    "embedCode": "Incorporar código",
+    "copyLink": "Copiar link",
+    "copyEmbed": "Copiar código incorporado",
+    "links_one": "Links ({{count}} ativos)",
+    "links_other": "Links ({{count}} ativos)",
+    "loading": "Carregando…",
+    "none": "Ainda não há links.",
+    "by": "por {{name}}",
+    "unknown": "desconhecido",
+    "revokedOn": "Revogado {{date}}",
+    "expiresOn": "Expira em {{date}}",
+    "noExpiry": "Sem vencimento",
+    "lastOpened": "última abertura {{date}}",
+    "notOpened": "ainda não abriu",
+    "revoke": "Revogar",
+    "links_many": "Links ({{count}} ativos)"
+  },
+  "header": {
+    "filtersApply_one": "O filtro {{count}} se aplica",
+    "filtersApply_other": "Filtros {{count}} se aplicam",
+    "drillUp": "Aprofundar",
+    "drillModeOn": "Modo Drill ativado: clique em um ponto para fazer drill nele",
+    "drillMode": "Modo Drill: clique em um ponto para fazer drill nele",
+    "nextLevel": "Vá para o próximo nível",
+    "personalized": "Personalizado para você – altere ou redefina",
+    "personalize": "Personalize este visual",
+    "focus": "Modo de foco",
+    "more": "Mais opções",
+    "filtersOnVisual": "Filtros neste visual",
+    "showAsVisual": "Mostrar como visual",
+    "showAsTable": "Mostrar como tabela",
+    "exportCsv": "Exportar dados (CSV)",
+    "copyImage": "Copiar como imagem",
+    "leaveSpotlight": "Sair dos holofotes",
+    "spotlight": "Destaque",
+    "closeFocus": "Modo de foco próximo",
+    "filtersApply_many": "Filtros {{count}} se aplicam"
+  },
+  "pointMenu": {
+    "drillThrough": "Drill through ▸ {{page}}",
+    "explain": "Explique essa mudança",
+    "keepOnly": "Mantenha apenas",
+    "exclude": "Excluir"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Em branco",
+        "hint": "Uma página vazia para construir."
+      },
+      "auto": {
+        "label": "Auto",
+        "hint": "KPIs, uma tendência, um detalhamento, um mapa e segmentações de dados, escolhidos a partir de seus dados."
+      },
+      "template": {
+        "label": "Modelo",
+        "hint": "Um layout pronto: mapeie suas colunas para ele."
+      },
+      "ai": {
+        "label": "Pergunte à IA",
+        "hint": "Descreva a página; visualize-o antes de ser criado."
+      }
+    },
+    "kinds": {
+      "number": "um número",
+      "date": "um encontro",
+      "category": "uma categoria"
+    },
+    "chooseColumn": "Escolha uma coluna…",
+    "skip": "(pular)",
+    "untitled": "Painel sem título",
+    "chooseTemplate": "Escolha um modelo.",
+    "title": "Novo painel",
+    "close": "Fechar",
+    "howToStart": "Como começar",
+    "dataset": "Conjunto de dados",
+    "addDatasetFirst": "Adicione um conjunto de dados primeiro",
+    "name": "Nome",
+    "data": "Dados",
+    "overviewName": "Visão geral de {{name}}",
+    "loadingTemplates": "Carregando modelos…",
+    "allTemplates": "Todos os modelos",
+    "matchColumns": "Combine suas colunas",
+    "stillNeeded": "Ainda necessário: {{roles}}.",
+    "createDashboard": "Criar painel",
+    "cancel": "Cancelar",
+    "creating": "Criando…",
+    "createFromTemplate": "Criar a partir do modelo",
+    "build": "Construir painel",
+    "create": "Criar",
+    "templateLayout": "Layout {{name}}"
+  },
+  "templates": {
+    "sales": {
+      "name": "Visão geral de vendas",
+      "description": "Receita, lucro e tendências por produto e região.",
+      "roles": {
+        "date": "Data",
+        "amount": "Receita",
+        "profit": "Lucro",
+        "quantity": "Unidades",
+        "target": "Alvo",
+        "product": "Produto",
+        "region": "Região",
+        "channel": "Canal"
+      }
+    },
+    "crm": {
+      "name": "Pipeline de CRM",
+      "description": "Negócios por estágio e proprietário, valor ganho e conversão.",
+      "roles": {
+        "date": "Data",
+        "amount": "Valor do negócio",
+        "stage": "Estágio",
+        "owner": "Proprietário",
+        "source": "Fonte de leads"
+      }
+    },
+    "finance": {
+      "name": "Lucro e prejuízo financeiro",
+      "description": "Receita, custos e margem ao longo do tempo e por conta.",
+      "roles": {
+        "date": "Data",
+        "amount": "Receita",
+        "cost": "Custos",
+        "account": "Conta/categoria",
+        "budget": "Orçamento"
+      }
+    },
+    "hr": {
+      "name": "Análise de RH",
+      "description": "Número de funcionários, salário e satisfação por departamento.",
+      "roles": {
+        "date": "Data",
+        "employee": "ID do funcionário",
+        "department": "Departamento",
+        "salary": "Salário",
+        "rating": "Satisfação / avaliação",
+        "status": "Status",
+        "gender": "Gênero"
+      }
+    },
+    "web": {
+      "name": "Análise da web",
+      "description": "Sessões, usuários e conversões por origem e página.",
+      "roles": {
+        "date": "Data",
+        "sessions": "Sessões/visitas",
+        "users": "Usuários",
+        "conversions": "Conversões",
+        "source": "Fonte de tráfego",
+        "page": "Página"
+      }
+    },
+    "mobile": {
+      "name": "Análise de aplicativos móveis",
+      "description": "Usuários ativos, instalações e falhas por plataforma e versão.",
+      "roles": {
+        "date": "Data",
+        "active": "Usuários ativos",
+        "installs": "Instalações",
+        "crashes": "Falhas",
+        "platform": "Plataforma",
+        "version": "Versão do aplicativo"
+      }
+    },
+    "marketing": {
+      "name": "Campanhas de marketing",
+      "description": "Gastos, cliques, conversões e custo por conversão por campanha.",
+      "roles": {
+        "date": "Data",
+        "spend": "Gastar",
+        "clicks": "Cliques",
+        "conversions": "Conversões",
+        "campaign": "Campanha",
+        "channel": "Canal"
+      }
+    },
+    "inventory": {
+      "name": "Estoque e operações",
+      "description": "Estoque disponível, risco de movimentação e novo pedido por item e local.",
+      "roles": {
+        "date": "Data",
+        "stock": "Estoque/quantidade",
+        "item": "Item",
+        "site": "Armazém / local",
+        "value": "Valor das ações",
+        "reorder": "Nível de reordenamento"
+      }
+    },
+    "retail": {
+      "name": "Varejo",
+      "description": "Vendas na loja, tamanho da cesta e best-sellers.",
+      "roles": {
+        "date": "Data",
+        "amount": "Receita",
+        "quantity": "Unidades",
+        "store": "Loja/região",
+        "product": "Produto",
+        "rating": "Satisfação"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} de",
+    "to": "{{field}} para",
+    "clear": "Claro",
+    "minimum": "{{field}} mínimo",
+    "maximum": "{{field}} máximo",
+    "period": "Período",
+    "allTime": "Todo o tempo",
+    "howMany": "Quantos",
+    "unit": "Unidade",
+    "operator": "Operador",
+    "typeValue": "Digite um {{field}}",
+    "value": "Valor {{field}}",
+    "collapse": "Colapso",
+    "expand": "Expandir",
+    "all": "Todos",
+    "selected_one": "{{count}} selecionado",
+    "selected_other": "{{count}} selecionado",
+    "searchPlaceholder": "Pesquise ou cole uma lista",
+    "search": "Pesquisar {{field}}",
+    "selectAll": "Selecionar tudo",
+    "selected_many": "{{count}} selecionado"
+  },
+  "local": {
+    "snapshotEmpty": "Este instantâneo não possui gráfico.",
+    "snapshot": "Instantâneo",
+    "snapshotOn": "Instantâneo · {{date}}",
+    "chooseParameter": "Escolha um parâmetro em Formatar → Parâmetro.",
+    "button": "Botão",
+    "noViews": "Adicione visualizações (marcadores) para listá-las aqui.",
+    "views": "Visualizações",
+    "pages": "Páginas"
+  },
+  "pin": {
+    "namedDashboard": "Painel {{title}}",
+    "newDashboard": "Novo painel",
+    "overview": "Visão geral",
+    "title": "Fixar no painel",
+    "close": "Fechar",
+    "pinnedTo": "Fixado em <b>{{name}} </b>.",
+    "stay": "Fique aqui",
+    "open": "Abrir painel",
+    "dashboard": "Painel",
+    "newOption": "+ Novo painel…",
+    "name": "Nome",
+    "page": "Página",
+    "cancel": "Cancelar",
+    "pinning": "Fixando…",
+    "pin": "Alfinete"
+  },
+  "page": {
+    "backFromDetail": "Voltar",
+    "back": "Todos os painéis",
+    "pages": "Páginas",
+    "clear": "Claro",
+    "clearSelection": "Limpar seleção",
+    "apply": "Aplicar",
+    "clearSlicers": "Limpar todas as segmentações",
+    "updating": "Atualizando…",
+    "filters": "Filtros",
+    "qa": "Perguntas e respostas",
+    "present": "Presente",
+    "share": "Compartilhar",
+    "edit": "Editar",
+    "painting": "Pintura página {{page}} de {{total}}…",
+    "buildingPdf": "Construindo o PDF…",
+    "exported_one": "Página {{count}} exportada.",
+    "exported_other": "Páginas {{count}} exportadas.",
+    "exportFailed": "A exportação falhou.",
+    "notFound": "Painel não encontrado.",
+    "filtersActive_one": "{{count}} filtro ativo",
+    "filtersActive_other": "{{count}} filtros ativos",
+    "presentation": "Apresentação",
+    "previousPage": "Página anterior",
+    "nextPage": "Próxima página",
+    "pause": "Pausa",
+    "autoPlay": "Reprodução automática",
+    "leavePresentation": "Sair da apresentação",
+    "keepExclude": "Seus filtros manter/excluir",
+    "excluding": "Excluindo {{values}}",
+    "only": "Apenas {{values}}",
+    "dashboard": "Painel",
+    "seconds": "{{value}}s",
+    "exported_many": "Páginas {{count}} exportadas.",
+    "filtersActive_many": "{{count}} filtros ativos"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Razão (A ÷ B), por ex. margem de lucro"
+    },
+    "average-per-row": {
+      "label": "Média por linha (por exemplo, valor médio do pedido)"
+    },
+    "vs-target": {
+      "label": "Versus meta (%)"
+    },
+    "difference": {
+      "label": "Diferença (A − B)"
+    },
+    "per-distinct": {
+      "label": "Valor por item distinto (por exemplo, receita por cliente)"
+    },
+    "fields": {
+      "numerator": "Numerador",
+      "denominator": "Denominador",
+      "value": "Valor",
+      "actual": "Real",
+      "target": "Alvo",
+      "minus": "Menos",
+      "distinctItem": "Item distinto"
+    },
+    "names": {
+      "perRow": "{{a}} por linha",
+      "vsTarget": "{{a}} vs alvo",
+      "perDistinct": "{{a}} por {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Painel sem título",
+    "title": "Painéis",
+    "subtitle": "KPIs, gráficos e segmentações de dados em uma tela, todos conectados.",
+    "noData": "Adicione um conjunto de dados primeiro",
+    "blank": "Em branco",
+    "template": "Modelo",
+    "building": "Prédio…",
+    "auto": "Construir painel",
+    "empty": "Ainda não há painéis. Escolha um conjunto de dados e crie um com um clique.",
+    "duplicate": "Duplicado",
+    "deleteTitle": "Excluir painel?",
+    "deleteText": "{{name}} e suas versões salvas serão removidas. Os conjuntos de dados não são afetados.",
+    "more": "Mais dados",
+    "start": "Comece aqui",
+    "import": "Carregar ou colar dados",
+    "loading": "Carregando…",
+    "library": "Meus recursos visuais",
+    "allVisuals": "Todos os recursos visuais salvos",
+    "libraryHint": "Insira qualquer um deles em um painel no menu Inserir do editor.",
+    "delete": "Excluir",
+    "datasetLabel": "Conjunto de dados para um novo painel",
+    "show": "Mostrar",
+    "filter": {
+      "all": "Todos",
+      "mine": "Meu",
+      "shared": "Compartilhado comigo"
+    },
+    "pages_one": "página {{count}}",
+    "pages_other": "{{count}} páginas",
+    "roles": {
+      "owner": "proprietário",
+      "editor": "editor",
+      "viewer": "visualizador"
+    },
+    "sharedFlag": "compartilhado",
+    "deleteNamed": "Excluir {{name}}",
+    "pages_many": "{{count}} páginas"
+  },
+  "visual": {
+    "target": "Alvo {{value}}",
+    "progress": "{{value}} de {{target}}",
+    "total": "Total",
+    "failed": "Este visual não pôde ser desenhado.",
+    "empty": "Não há dados para os filtros atuais",
+    "clearSelection": "Limpar seleção",
+    "nothing": "Nada para mostrar."
+  },
+  "shared": {
+    "loading": "Carregando painel…",
+    "missingTitle": "Este link não está disponível",
+    "missingText": "Pode ter sido revogado ou expirado. Peça à pessoa que o compartilhou um novo link.",
+    "pages": "Páginas",
+    "clearSelection": "Limpar seleção",
+    "clearSlicers": "Fatiadores claros",
+    "readOnly": "Visualização compartilhada somente leitura"
+  },
+  "capture": {
+    "unsupported": "Este navegador não pode pintar a página.",
+    "failed": "A página não pôde ser pintada.",
+    "timeout": "A página demorou muito para ser desenhada."
+  }
+}

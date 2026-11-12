@@ -1,0 +1,14 @@
+{
+  "primary": "메인",
+  "workspace": "워크스페이스",
+  "connections": "연결",
+  "account": "계정",
+  "chat": "채팅",
+  "images": "이미지",
+  "history": "기록",
+  "billing": "결제",
+  "settings": "설정",
+  "integrations": "통합",
+  "analytics": "데이터 분석",
+  "visualize": "데이터 시각화"
+}

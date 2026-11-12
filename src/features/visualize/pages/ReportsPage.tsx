@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Braces, Code2, FileImage, FileSpreadsheet, FileText, Globe, Library, Share2, Trash2 } from 'lucide-react';
+import { formatDate } from '@/i18n/format';
 import { useRepository } from '@/lib/data';
 import { Button } from '@/shared/components';
+import { useCatalogText } from '../catalogText';
 import { useVisualize } from '../context';
 import { saveBlob, safeName } from '../echarts';
 import { ChartThumb } from '../thumbs';
@@ -15,6 +17,7 @@ export function ReportsPage() {
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
   const { catalog, setAssistantContext } = useVisualize();
+  const { chartName } = useCatalogText();
   const charts = useQuery({ queryKey: ['visualize', 'charts'], queryFn: () => visualize.listCharts() });
   const navigate = useNavigate();
   const dashboards = useQuery({ queryKey: ['visualize', 'dashboards'], queryFn: () => visualize.listDashboards() });
@@ -45,16 +48,16 @@ export function ReportsPage() {
     <div className="space-y-6" data-testid="visualize-reports">
       <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h1 className="flex items-center gap-2 text-xl font-bold">
-          <FileText size={20} aria-hidden /> {t('visualize.reports.title', 'Reports')}
+          <FileText size={20} aria-hidden /> {t('visualize.reports.title')}
         </h1>
-        <p className="text-sm text-muted-foreground">{t('visualize.reports.subtitle', 'Export a dashboard, or reuse the visuals you saved.')}</p>
+        <p className="text-sm text-muted-foreground">{t('visualize.reports.subtitle')}</p>
       </header>
 
       <section className="viz-card viz-card-pad space-y-3" data-testid="report-export">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 className="mr-auto text-sm font-semibold">{t('visualize.reports.export', 'Export a dashboard')}</h2>
-          <select className="viz-field w-64" value={target} onChange={(event) => setChosen(event.target.value)} aria-label="Dashboard to export" data-testid="report-dashboard">
-            {!dashboards.data?.length && <option value="">No dashboards yet</option>}
+          <h2 className="mr-auto text-sm font-semibold">{t('visualize.reports.export')}</h2>
+          <select className="viz-field w-64" value={target} onChange={(event) => setChosen(event.target.value)} aria-label={t('visualize.reports.dashboardToExport')} data-testid="report-dashboard">
+            {!dashboards.data?.length && <option value="">{t('visualize.reports.noDashboards')}</option>}
             {dashboards.data?.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
@@ -65,13 +68,13 @@ export function ReportsPage() {
         <div className="viz-export-grid">
           {(
             [
-              ['pdf', FileText, 'PDF', 'One page per dashboard page, exactly as on screen'],
-              ['png', FileImage, 'PNG images', 'One image per page'],
-              ['xlsx', FileSpreadsheet, 'Excel', 'Every visual’s data with native charts, plus the raw data'],
-              ['html', Globe, 'Interactive HTML', 'A single file that works offline'],
-              ['json', Braces, 'JSON', 'The dashboard definition'],
+              ['pdf', FileText],
+              ['png', FileImage],
+              ['xlsx', FileSpreadsheet],
+              ['html', Globe],
+              ['json', Braces],
             ] as const
-          ).map(([format, Icon, label, hint]) => (
+          ).map(([format, Icon]) => (
             <button
               key={format}
               type="button"
@@ -81,8 +84,8 @@ export function ReportsPage() {
               data-testid={`export-${format}`}
             >
               <Icon size={20} aria-hidden />
-              <b>{label}</b>
-              <span className="text-[11px] text-muted-foreground">{exportFile.isPending && exportFile.variables === format ? 'Preparing…' : hint}</span>
+              <b>{t(`visualize.reports.formats.${format}.label`)}</b>
+              <span className="text-[11px] text-muted-foreground">{exportFile.isPending && exportFile.variables === format ? t('visualize.reports.preparing') : t(`visualize.reports.formats.${format}.hint`)}</span>
             </button>
           ))}
         </div>
@@ -90,7 +93,7 @@ export function ReportsPage() {
       </section>
 
       <h2 className="flex items-center gap-2 text-sm font-semibold">
-        <Library size={16} aria-hidden /> {t('visualize.library.title', 'My visuals')}
+        <Library size={16} aria-hidden /> {t('visualize.reports.library.title')}
       </h2>
 
       <section>
@@ -106,28 +109,28 @@ export function ReportsPage() {
                   <ChartThumb id={chart.config.visual?.type ?? chart.chartType.replace(/^(prediction|visual):/, '')} category={type?.category} color={category?.color} />
                 </span>
                 <div className="flex items-center justify-between gap-2">
-                  {category ? <CategoryBadge category={category} /> : <span className="viz-badge">{chart.chartType.startsWith('visual:') ? 'Explore' : 'Prediction'}</span>}
-                  <span className="text-xs text-muted-foreground">{new Date(chart.updatedAt).toLocaleDateString()}</span>
+                  {category ? <CategoryBadge category={category} /> : <span className="viz-badge">{chart.chartType.startsWith('visual:') ? t('visualize.reports.explore') : t('visualize.reports.prediction')}</span>}
+                  <span className="text-xs text-muted-foreground">{formatDate(chart.updatedAt)}</span>
                 </div>
                 <p className="font-semibold">{chart.title}</p>
                 <p className="text-xs text-muted-foreground">
-                  {type?.name ?? (chart.config.visual ? `${chart.config.visual.type.replace(/_/g, ' ')} visual` : chart.chartType.replace('prediction:', '').replace(/_/g, ' '))} · {chart.datasetName || 'deleted dataset'}
+                  {type ? chartName(type) : chart.config.visual ? t('visualize.reports.visualOf', { type: chart.config.visual.type.replace(/_/g, ' ') }) : chart.chartType.replace('prediction:', '').replace(/_/g, ' ')} · {chart.datasetName || t('visualize.reports.deletedDataset')}
                 </p>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   <Button size="sm" variant="outline" className="gap-1" onClick={() => exportChart.mutate({ id: chart.id, name: chart.title })}>
                     <Code2 size={13} aria-hidden /> HTML
                   </Button>
                   <Button size="sm" variant="outline" className="gap-1" onClick={() => shareChart.mutate({ id: chart.id, isShared: !chart.isShared })}>
-                    <Share2 size={13} aria-hidden /> {chart.isShared ? 'Unshare' : 'Share'}
+                    <Share2 size={13} aria-hidden /> {chart.isShared ? t('visualize.reports.unshare') : t('visualize.reports.share')}
                   </Button>
-                  <Button size="sm" variant="ghost" className="gap-1 text-destructive" onClick={() => removeChart.mutate(chart.id)} aria-label={`Delete ${chart.title}`}>
+                  <Button size="sm" variant="ghost" className="gap-1 text-destructive" onClick={() => removeChart.mutate(chart.id)} aria-label={t('visualize.reports.deleteNamed', { name: chart.title })}>
                     <Trash2 size={13} aria-hidden />
                   </Button>
                 </div>
               </div>
             );
           })}
-          {charts.data && !charts.data.length && <p className="text-sm text-muted-foreground">{t('visualize.reports.noCharts', 'Save visuals from Explore or Predict to reuse them in dashboards.')}</p>}
+          {charts.data && !charts.data.length && <p className="text-sm text-muted-foreground">{t('visualize.reports.noCharts')}</p>}
         </div>
       </section>
     </div>

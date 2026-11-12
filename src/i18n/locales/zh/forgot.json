@@ -1,0 +1,32 @@
+{
+  "resetTitle": "重置密码",
+  "emailLabel": "电子邮箱地址",
+  "sendCode": "发送重置码",
+  "sending": "发送中…",
+  "backToSignIn": "返回登录",
+  "checkTitle": "请查收您的邮箱",
+  "useCodeNow": "立即使用此重置码",
+  "haveCode": "我已经有重置码",
+  "newPasswordTitle": "设置新密码",
+  "newPasswordDesc": "输入重置码，并为 {{email}} 设置新密码。",
+  "codeLabel": "重置码",
+  "newPasswordLabel": "新密码",
+  "confirmPasswordLabel": "确认密码",
+  "updating": "更新中…",
+  "resetButton": "重置密码",
+  "backToCode": "返回重置码步骤",
+  "updatedTitle": "密码已更新",
+  "updatedMessage": "您的密码已更新。现在可以使用新密码登录。",
+  "returnToSignIn": "返回登录",
+  "errors": {
+    "sendFailed": "无法发送密码重置链接。",
+    "resetFailed": "无法重置您的密码。",
+    "mismatch": "两次输入的密码不一致。",
+    "unexpected": "发生了意外错误。"
+  },
+  "resetDesc": "输入你的邮箱地址，我们将发送一个重置链接，你可以直接在此处完成重置。",
+  "checkDesc": "我们已向 <0>{{email}}</0> 发送重置邮件。下方的验证码将解锁下一步。",
+  "checkDescPlain": "我们已向 {{email}} 发送重置验证码。请在下一步输入该验证码以设置新密码。",
+  "mockResetCode": "重置验证码",
+  "enterEmailedCode": "输入邮件中的验证码"
+}

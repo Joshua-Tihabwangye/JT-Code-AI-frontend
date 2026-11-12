@@ -1,0 +1,19 @@
+{
+  "title": "Welcome back",
+  "subtitle": "Sign in to continue to JT-Code",
+  "helpText": "",
+  "signInWithGoogle": "Sign in with Google",
+  "signInWithApple": "Sign in with Apple",
+  "connecting": "Connecting…",
+  "emailLabel": "Email address",
+  "emailPlaceholder": "you@example.com",
+  "passwordLabel": "Password",
+  "passwordPlaceholder": "Enter your password",
+  "forgotPassword": "Forgot password?",
+  "submit": "Sign in",
+  "noAccount": "Don't have an account?",
+  "createAccount": "Create account",
+  "offlineHint": "Offline design mode: the backend is not used. Sign in with any email and password (a local account is created), or continue with the demo account.",
+  "demoAccount": "Continue with the demo account",
+  "continueWith": "Continue with {{provider}}"
+}

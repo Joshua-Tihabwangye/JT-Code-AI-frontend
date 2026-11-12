@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Get help with JT-Code",
+    "p1": "",
+    "p2": "",
+    "backToSignIn": "Back to sign in",
+    "createAccount": "Create account"
+  },
+  "privacy": {
+    "eyebrow": "Privacy Policy",
+    "title": "JT-Code Privacy",
+    "p1": "",
+    "p2": "",
+    "signIn": "Sign in",
+    "readTerms": "Read terms"
+  },
+  "terms": {
+    "eyebrow": "Terms of Service",
+    "title": "JT-Code Terms",
+    "p1": "",
+    "p2": "",
+    "createAccount": "Create account",
+    "contactSupport": "Contact support"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "returnHome": "Return to JT-Code"
+  }
+}

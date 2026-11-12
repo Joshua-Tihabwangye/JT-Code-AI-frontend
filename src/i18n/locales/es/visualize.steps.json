@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Limpiar",
+    "rows": "Filas",
+    "columns": "Columnas",
+    "text": "Texto",
+    "numbers": "Números y fechas",
+    "shape": "Forma",
+    "combine": "Combinar"
+  },
+  "kinds": {
+    "removeDuplicates": "Quitar filas duplicadas",
+    "trim": "Recortar espacios sobrantes",
+    "removeBlankRows": "Quitar filas en blanco",
+    "fillBlanks": "Rellenar vacíos",
+    "replaceValues": "Reemplazar valores",
+    "changeType": "Cambiar tipo",
+    "outliers": "Tratar valores atípicos",
+    "filterRows": "Filtrar filas",
+    "sort": "Ordenar filas",
+    "keepRows": "Conservar filas superiores o inferiores",
+    "removeColumns": "Quitar columnas",
+    "keepColumns": "Conservar solo estas columnas",
+    "rename": "Cambiar nombre de una columna",
+    "calculatedColumn": "Columna calculada",
+    "conditionalColumn": "Columna condicional",
+    "splitColumn": "Dividir una columna",
+    "mergeColumns": "Combinar columnas",
+    "textCase": "Cambiar mayúsculas y minúsculas",
+    "bins": "Agrupar números en intervalos",
+    "dateParts": "Extraer partes de la fecha",
+    "dateTable": "Crear una tabla de fechas (calendario)",
+    "groupBy": "Agrupar por",
+    "pivot": "Dinamizar (filas → columnas)",
+    "unpivot": "Anular dinamización (columnas → filas)",
+    "merge": "Combinar con otro conjunto de datos",
+    "append": "Anexar otro conjunto de datos"
+  },
+  "fields": {
+    "compareColumns": "Comparar solo estas columnas",
+    "trimColumns": "Columnas (todas las de texto si está vacío)",
+    "blankIn": "Vacío en",
+    "removeWhen": "Quitar cuando",
+    "column": "Columna",
+    "columns": "Columnas",
+    "with": "Con",
+    "value": "Valor",
+    "find": "Buscar",
+    "replaceWith": "Reemplazar por",
+    "match": "Coincidencia",
+    "to": "A",
+    "action": "Acción",
+    "rowsThatMatch": "Filas que cumplen",
+    "conditions": "Condiciones",
+    "sortBy": "Ordenar por",
+    "keep": "Conservar",
+    "howMany": "Cuántas",
+    "newName": "Nuevo nombre",
+    "newColumn": "Nueva columna",
+    "formula": "Fórmula",
+    "ifThen": "Si … entonces",
+    "otherwise": "De lo contrario",
+    "at": "En",
+    "intoParts": "En (partes)",
+    "newNames": "Nuevos nombres (opcional)",
+    "separator": "Separador",
+    "case": "Mayúsculas/minúsculas",
+    "bins": "Intervalos",
+    "howManyBins": "Cuántos intervalos",
+    "edges": "Límites",
+    "dateColumn": "Columna de fecha",
+    "parts": "Partes",
+    "fromDatesIn": "A partir de las fechas de",
+    "fiscalStart": "El año fiscal empieza en el mes",
+    "groupBy": "Agrupar por",
+    "calculate": "Calcular",
+    "keepAsRows": "Mantener como filas",
+    "valuesBecomeColumns": "Los valores pasan a columnas",
+    "fillWith": "Rellenar con",
+    "aggregation": "Agregación",
+    "keepTheseColumns": "Conservar estas columnas",
+    "nameColumn": "Columna de nombres",
+    "valueColumn": "Columna de valores",
+    "dataset": "Conjunto de datos",
+    "keyHere": "Clave en estos datos",
+    "keyOther": "Clave en el otro"
+  },
+  "options": {
+    "blankHow": {
+      "any": "alguna de ellas está vacía",
+      "all": "todas están vacías"
+    },
+    "fill": {
+      "mean": "Promedio",
+      "median": "Mediana",
+      "mode": "Valor más frecuente",
+      "zero": "Cero",
+      "down": "Valor de arriba (rellenar hacia abajo)",
+      "up": "Valor de abajo (rellenar hacia arriba)",
+      "value": "Mi propio valor"
+    },
+    "replaceMatch": {
+      "exact": "Valor completo",
+      "contains": "Parte del texto"
+    },
+    "types": {
+      "number": "Número",
+      "date": "Fecha",
+      "text": "Texto"
+    },
+    "outliers": {
+      "cap": "Limitar a los extremos",
+      "remove": "Quitar esas filas",
+      "flag": "Marcar en una nueva columna"
+    },
+    "filterMode": {
+      "keep": "Conservar",
+      "remove": "Quitar"
+    },
+    "combine": {
+      "and": "todas las condiciones",
+      "or": "cualquier condición"
+    },
+    "keepRows": {
+      "top": "Primeras filas",
+      "bottom": "Últimas filas"
+    },
+    "textCase": {
+      "title": "Mayúscula Inicial",
+      "upper": "MAYÚSCULAS",
+      "lower": "minúsculas"
+    },
+    "bins": {
+      "equal": "Mismo ancho",
+      "edges": "Mis propios límites"
+    },
+    "mergeHow": {
+      "left": "Todas las filas de estos datos",
+      "inner": "Solo las filas coincidentes",
+      "outer": "Todas las filas de ambos"
+    },
+    "aggs": {
+      "sum": "Suma",
+      "avg": "Promedio",
+      "count": "Recuento",
+      "distinct": "Recuento de distintos",
+      "min": "Mín.",
+      "max": "Máx.",
+      "median": "Mediana"
+    }
+  },
+  "parts": {
+    "year": "Año",
+    "quarter": "Trimestre",
+    "month": "Mes",
+    "monthName": "Nombre del mes",
+    "week": "Semana",
+    "weekday": "Día de la semana",
+    "weekdayName": "Nombre del día de la semana",
+    "day": "Día",
+    "hour": "Hora"
+  },
+  "conditionOps": {
+    "eq": "es igual a",
+    "ne": "no es igual a",
+    "in": "es uno de",
+    "notIn": "no es uno de",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "entre",
+    "contains": "contiene",
+    "startsWith": "empieza por",
+    "endsWith": "termina en",
+    "blank": "está vacío",
+    "notBlank": "no está vacío"
+  },
+  "summary": {
+    "keepConditions": "conservar {{count}} condición(es)",
+    "removeConditions": "quitar {{count}} condición(es)",
+    "by": "por {{columns}}",
+    "anotherDataset": "otro conjunto de datos",
+    "types": {
+      "number": "número",
+      "date": "fecha",
+      "text": "texto"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Quitar duplicados",
+    "keepOnePerId": "Conservar una fila por ID",
+    "removeMissingId": "Quitar filas sin ID",
+    "fillBlanks": "Rellenar vacíos",
+    "blankOut": "Vaciar “{{value}}”",
+    "trimSpaces": "Recortar espacios",
+    "toNumber": "Convertir a número",
+    "toDate": "Convertir a fecha",
+    "consistentSpelling": "Unificar la ortografía",
+    "capOutliers": "Limitar valores atípicos",
+    "removeColumn": "Quitar columna"
+  }
+}

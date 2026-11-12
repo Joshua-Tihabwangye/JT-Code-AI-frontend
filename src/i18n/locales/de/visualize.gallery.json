@@ -1,0 +1,18 @@
+{
+  "title": "Diagrammgalerie",
+  "subtitle": "{{count}} Diagrammtypen – öffne einen in „Erkunden“, und er wird mit deinen Spalten befüllt.",
+  "search": "Diagramme suchen, z. B. „Prognose“, „Anteil“",
+  "searchLabel": "Diagramme suchen",
+  "level": "Stufe",
+  "allLevels": "Alle Stufen",
+  "essentialShort": "Basis",
+  "advancedShort": "Erweitert",
+  "all": "Alle",
+  "recommended": "Empfohlen für {{name}}",
+  "recommendedHint": "Anhand deiner Spalten ausgewählt – öffne eines, um es mit deinen Daten zu sehen.",
+  "empty": "Kein Diagramm entspricht dieser Suche.",
+  "advancedBadge": "Erweitert",
+  "useInExplore": "In „Erkunden“ verwenden",
+  "addToDashboard": "Zum Dashboard hinzufügen",
+  "thisDataset": "dieses Dataset"
+}

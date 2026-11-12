@@ -1,0 +1,17 @@
+{
+  "openApp": "JT-Code खोलें",
+  "signIn": "साइन इन",
+  "createAccount": "खाता बनाएँ",
+  "eyebrow": "WEB + MOBILE AI असिस्टेंट",
+  "headline": "सवालों, फ़ाइलों, रिसर्च और निर्माण के लिए एक स्पष्ट वर्कस्पेस।",
+  "copy": "JT-Code इस प्लेटफ़ॉर्म में प्रयुक्त होने वाला एकमात्र असिस्टेंट नाम है। वेब क्लाइंट React और TypeScript पर आधारित है; प्रमाणीकरण Supabase Auth से होता है और सारा बिज़नेस स्टेट Django API में रहता है।",
+  "continueToWorkspace": "वर्कस्पेस पर जारी रखें",
+  "startWith": "JT-Code से शुरू करें",
+  "foundationsLabel": "प्लेटफ़ॉर्म की नींव",
+  "feature1Title": "सुरक्षित पहचान",
+  "feature1Desc": "Supabase Auth सेशन को हर संरक्षित कार्रवाई से पहले Django दोबारा सत्यापित करता है।",
+  "feature2Title": "टिकाऊ डेटा",
+  "feature2Desc": "Supabase-होस्टेड PostgreSQL लेन-देन का भरोसेमंद स्रोत बना रहता है।",
+  "feature3Title": "प्रबंधित ऐसेट",
+  "feature3Desc": "Cloudinary के साइंड अपलोड सीक्रेट को ब्राउज़र से बाहर रखते हैं।"
+}

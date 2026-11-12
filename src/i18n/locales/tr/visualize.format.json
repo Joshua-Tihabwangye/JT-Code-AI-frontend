@@ -1,0 +1,326 @@
+{
+  "search": "Arama biçimi seçenekleri",
+  "resetSection": "Tema varsayılanına sıfırla",
+  "automatic": "Otomatik",
+  "on": "Açık",
+  "off": "Kapalı",
+  "sections": {
+    "python": "Python betiği",
+    "parameter": "Parametre",
+    "button": "Düğme",
+    "navigator": "Gezgin",
+    "general": "Unvan ve konum",
+    "tile": "Fayans",
+    "colors": "Renkler",
+    "labels": "Veri etiketleri",
+    "legend": "Efsane",
+    "sort": "Sırala ve En İyi N",
+    "bars": "Çubuklar ve çizgiler",
+    "donut": "Dilimler",
+    "kpi": "KPI",
+    "gauge": "Gösterge aralığı",
+    "table": "Masa",
+    "slicer": "dilimleyici",
+    "tooltip": "İpucu",
+    "conditional": "Koşullu biçimlendirme",
+    "analytics": "Analitik (referans çizgileri, trend, tahmin)",
+    "map": "Harita"
+  },
+  "general": {
+    "title": "Başlık",
+    "showTitle": "Başlığı göster",
+    "axes": {
+      "x": "X",
+      "y": "sen",
+      "w": "w",
+      "h": "H"
+    },
+    "layoutAria": "Düzen {{axis}}",
+    "altText": "Alternatif metin",
+    "altPlaceholder": "Ekran okuyucular için"
+  },
+  "tile": {
+    "background": "Arka plan",
+    "border": "Sınır",
+    "radius": "Köşe yarıçapı",
+    "shadow": "Gölge"
+  },
+  "colors": {
+    "seriesAria": "Seri rengi {{index}}",
+    "custom": "Gelenek",
+    "fromTheme": "Temadan"
+  },
+  "labels": {
+    "showValues": "Değerleri göster"
+  },
+  "legend": {
+    "show": "Göstergeyi göster",
+    "position": "Konum",
+    "positions": {
+      "top": "Tepe",
+      "bottom": "Alt",
+      "left": "Sol",
+      "right": "Sağ"
+    }
+  },
+  "sort": {
+    "by": "Göre sırala",
+    "value": "Değer",
+    "name": "İsim",
+    "direction": "Yön",
+    "desc": "Azalan",
+    "asc": "Artan",
+    "topN": "En İyi N",
+    "showTop": "Üstü göster",
+    "others": "Geri kalanları “Diğerleri” olarak gruplandırın"
+  },
+  "bars": {
+    "stacking": "İstifleme",
+    "none": "Yan yana",
+    "stacked": "Yığılmış",
+    "percent": "%100 yığılmış",
+    "smooth": "Pürüzsüz çizgiler"
+  },
+  "donut": {
+    "maxSlices": "Maksimum dilim (dinlenme → Diğerleri)"
+  },
+  "kpi": {
+    "compareBy": "Şuna göre karşılaştır:",
+    "grains": {
+      "day": "Gün",
+      "week": "Hafta",
+      "month": "Ay",
+      "quarter": "Çeyrek",
+      "year": "Yıl"
+    },
+    "upIsGood": "Yukarı iyidir"
+  },
+  "gauge": {
+    "min": "Min",
+    "max": "Maksimum",
+    "auto": "Otomatik"
+  },
+  "table": {
+    "dataBars": "Veri çubukları"
+  },
+  "slicer": {
+    "style": "Stil",
+    "styles": {
+      "dropdown": "Yıkılmak",
+      "list": "Liste",
+      "tiles": "Düğmeler",
+      "between": "Sayı aralığı",
+      "dateRange": "Tarih aralığı",
+      "relative": "Göreceli tarih",
+      "input": "Bir değer yazın",
+      "hierarchy": "Hiyerarşi (daha fazla alan ekleyin)"
+    },
+    "single": "Tek seçim",
+    "sync": "Sayfalar arasında senkronizasyon",
+    "page": "Sayfa",
+    "syncColumn": "Senkronizasyon",
+    "visible": "Görünür",
+    "syncTo": "{{page}} ile senkronize et",
+    "visibleOn": "{{page}} tarihinde görülebilir"
+  },
+  "tooltip": {
+    "page": "Araç ipucu sayfası",
+    "default": "Varsayılan araç ipucu",
+    "noPages": "Önce bir sayfayı araç ipucu sayfası haline getirin"
+  },
+  "map": {
+    "zoomTo": "Yakınlaştır",
+    "scopes": {
+      "world": "Dünya",
+      "africa": "Afrika",
+      "europe": "Avrupa",
+      "asia": "Asya",
+      "northAmerica": "Kuzey Amerika",
+      "southAmerica": "Güney Amerika"
+    }
+  },
+  "page": {
+    "label": "Sayfa",
+    "name": "İsim",
+    "canvasSize": "Tuval boyutu",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Mektup (portre)",
+      "fitWidth": "Genişliğe sığdır (büyür)"
+    },
+    "background": "Arka plan",
+    "themeBackground": "Tema arka planı",
+    "type": "Sayfa türü",
+    "types": {
+      "page": "Sayfa",
+      "drillthrough": "Detaya geçiş (ayrıntı)",
+      "tooltip": "İpucu"
+    },
+    "tooltipHint": "Format → Araç İpucu altında seçilen görsel noktalarının üzerine gelindiğinde küçük gösterilir.",
+    "drillthroughHint": "Başka bir sayfada bu alanlardan birinin üyesine sağ tıklayın → “Detaylı inceleme”."
+  },
+  "dashboard": {
+    "label": "Kontrol Paneli",
+    "slicersApply": "Dilimleyiciler uygulanır",
+    "instant": "Hemen",
+    "button": "Uygula düğmesiyle",
+    "filtersPane": "İzleyiciler için filtreler bölmesi",
+    "personalize": "İzleyiciler kişiselleştirebilir"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Renk skalası",
+      "rules": "Tüzük",
+      "bars": "Veri çubukları",
+      "icons": "Simgeler ▲●▼"
+    },
+    "ruleType": "Kural türü",
+    "value": "Değer",
+    "colour": "Renk",
+    "background": "Arka plan",
+    "text": "Metin",
+    "removeRule": "Kuralı kaldır",
+    "lowest": "En düşük",
+    "middle": "Orta",
+    "highest": "En yüksek",
+    "lowestColour": "En düşük renk",
+    "middleColour": "Orta renk",
+    "highestColour": "En yüksek renk",
+    "ifValueIs": "Değer ise",
+    "between": "arasında",
+    "and": "Ve",
+    "removeCondition": "Koşulu kaldır",
+    "addCondition": "Durum (ilk maç kazanır)",
+    "barColour": "Çubuk rengi",
+    "iconsHint": "▲ değerlerin üst üçte biri, ● ortası, ▼ alt üçte biri.",
+    "addRule": "Kural ekle"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Sabit (hedef)",
+      "average": "Ortalama",
+      "median": "Medyan",
+      "min": "Asgari",
+      "max": "Maksimum",
+      "percentile": "Yüzdelik dilim",
+      "trend": "Trend çizgisi",
+      "forecast": "Tahmin etmek"
+    },
+    "line": "Astar",
+    "value": "Değer",
+    "percentile": "Yüzdelik dilim",
+    "periods": "Dönemler",
+    "colour": "Renk",
+    "removeLine": "Satırı kaldır",
+    "labelPlaceholder": "Etiket (isteğe bağlı)",
+    "addLine": "Satır ekle",
+    "forecastHint": "Tahminlerin bir tarih eksenine ihtiyacı vardır (ör. aya göre tarih)."
+  },
+  "python": {
+    "starter": "Bir örnekten başlayın",
+    "sandbox": "Kilitli bir Python sanal alanında çalışır: pandas, numpy, scipy, statsmodels ve scikit-learn; dosya, ağ veya sistem erişimi yok."
+  },
+  "button": {
+    "text": "Metin",
+    "action": "Aksiyon",
+    "actions": {
+      "page": "Sayfaya git",
+      "bookmark": "Görünüm uygulama (yer imi)",
+      "back": "Geri",
+      "clearSlicers": "Tüm dilimleyicileri temizle",
+      "applySlicers": "Dilimleyicileri uygula",
+      "toggle": "Bir görseli göster / gizle",
+      "url": "Bir web bağlantısını açın",
+      "askAi": "Yapay zekaya sor",
+      "reset": "Varsayılana sıfırla"
+    },
+    "page": "Sayfa",
+    "choose": "Seçmek…",
+    "view": "Görüş",
+    "addViewsFirst": "Önce görünümleri ekleyin (Görünümler sekmesi)",
+    "visual": "Görsel",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Bağlantı",
+    "style": "Stil",
+    "fills": {
+      "primary": "Dolu",
+      "outline": "Taslak",
+      "ghost": "Ova"
+    }
+  },
+  "navigator": {
+    "shows": "Gösteriler",
+    "pages": "Sayfalar",
+    "bookmarks": "Görünümler (yer imleri)"
+  },
+  "parameter": {
+    "parameter": "Parametre",
+    "new": "Yeni parametre…",
+    "showAs": "Farklı göster",
+    "tiles": "Düğmeler",
+    "dropdown": "Yıkılmak",
+    "delete": "Bu parametreyi sil"
+  },
+  "theme": {
+    "title": "Temayı özelleştir",
+    "name": "Tema adı",
+    "close": "Kapalı",
+    "dataColours": "Veri renkleri",
+    "colour": "Renk {{index}}",
+    "removeColour": "{{index}} rengini kaldır",
+    "addColour": "Renk ekle",
+    "brandColour": "Marka rengi",
+    "generate": "Markamın renginden palet",
+    "sentiment": {
+      "good": "İyi",
+      "neutral": "Doğal",
+      "bad": "Kötü"
+    },
+    "pageAndTiles": "Sayfa ve kutucuklar",
+    "light": "Işık",
+    "dark": "Karanlık",
+    "roles": {
+      "canvas": "Tuval",
+      "tile": "Fayans",
+      "border": "Kenarlıklar",
+      "gridline": "Kılavuz çizgileri",
+      "text": "Metin",
+      "mutedText": "Sessiz metin",
+      "accent": "Aksan"
+    },
+    "contrast": "Parçalardaki metnin okunması zordur ({{ratio}}:1 — 4,5:1 veya daha fazlasını hedefleyin).",
+    "font": "Yazı tipi",
+    "systemFont": "Sistem",
+    "corners": "Köşeler",
+    "shadow": "Gölge",
+    "shadows": {
+      "none": "Hiçbiri",
+      "soft": "Yumuşak",
+      "medium": "Orta"
+    },
+    "kpiTiles": "KPI parçaları",
+    "kpiStyles": {
+      "plain": "Ova",
+      "solid": "Düz renk",
+      "gradient": "Gradyan",
+      "outlined": "özetlenen",
+      "icon": "Vurgu çubuğu"
+    },
+    "orgThemes": "Kuruluşumun temaları",
+    "deleteTheme": "{{name}}'yi sil",
+    "importJson": "JSON'u içe aktar",
+    "exportJson": "JSON'u dışa aktar",
+    "saveAs": "Temam olarak kaydet",
+    "defaultName": "Benim temam",
+    "importedName": "İçe aktarılan tema",
+    "imported": "İthal.",
+    "saved": "Kuruluşunuz için “{{name}}” kaydedildi.",
+    "cancel": "İptal etmek",
+    "done": "Tamamlamak",
+    "errors": {
+      "notTheme": "Dosya bir tema değil.",
+      "needColours": "Bir temanın en az 3 veri rengine (dataColors) ihtiyacı vardır."
+    }
+  }
+}

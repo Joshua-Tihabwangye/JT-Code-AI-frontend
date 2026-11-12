@@ -3315,3 +3315,323 @@ textarea.viz-field {
   font-size: 0.72rem;
   background: var(--card);
 }
+
+/* Smart summary: up to three short sentences, every number from the data. */
+.dash-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.15rem 0.25rem 0 1.1rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--dash-text);
+  list-style: disc;
+  overflow: auto;
+  height: 100%;
+}
+.dash-summary li::marker {
+  color: var(--dash-accent);
+}
+
+/* --- Phase 6: new dashboard, templates, AI previews, Q&A, explain, present, share ---------- */
+.dash-dialog.wide {
+  width: min(880px, 100%);
+}
+
+.dash-new-modes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.dash-new-modes > button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--foreground);
+  text-align: left;
+  font-size: 0.8125rem;
+}
+
+.dash-new-modes > button small {
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  line-height: 1.3;
+}
+
+.dash-new-modes > button[aria-selected='true'] {
+  border-color: var(--viz-indigo);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--viz-indigo) 25%, transparent);
+}
+
+.dash-new-modes > button:focus-visible,
+.dash-template-card:focus-visible,
+.dash-suggestion:focus-visible {
+  outline: 2px solid var(--viz-indigo);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .dash-new-modes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dash-template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.dash-template-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--foreground);
+  text-align: left;
+  font-size: 0.8125rem;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.dash-template-card:hover {
+  border-color: var(--viz-indigo);
+  transform: translateY(-1px);
+}
+
+.dash-template-card small {
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  line-height: 1.3;
+}
+
+.dash-template-preview {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.dash-template-preview .canvas {
+  fill: var(--muted, #f1f5f9);
+}
+
+.dash-template-preview .tile {
+  fill: var(--card);
+  stroke: var(--border);
+  stroke-width: 0.6;
+}
+
+.dash-page-preview {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--muted, #f1f5f9);
+  overflow: hidden;
+}
+
+.dash-preview-box {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  box-sizing: border-box;
+  padding: 3px 4px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--card);
+  color: var(--muted-foreground);
+  font-size: 0.625rem;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.dash-preview-box span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-preview-box.kpi,
+.dash-preview-box.card {
+  border-top: 2px solid var(--viz-indigo);
+}
+
+.dash-suggestion {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--foreground);
+  text-align: left;
+  font-size: 0.75rem;
+}
+
+.dash-suggestion span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.dash-suggestion small {
+  color: var(--muted-foreground);
+}
+
+.dash-suggestion:hover {
+  border-color: var(--viz-indigo);
+}
+
+.dash-diff {
+  width: 100%;
+  font-size: 0.8125rem;
+}
+
+.dash-diff th {
+  padding: 3px 8px 3px 0;
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.dash-diff td.before {
+  text-decoration: line-through;
+  color: var(--muted-foreground);
+}
+
+.dash-diff td.after {
+  font-weight: 600;
+  color: var(--viz-indigo);
+}
+
+.dash-ask {
+  position: fixed;
+  z-index: 80;
+  top: 72px;
+  right: 16px;
+  display: flex;
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100dvh - 96px);
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 24px 60px -20px rgb(15 23 42 / 0.45);
+}
+
+.dash-ask-visual {
+  height: 260px;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.dash-explain {
+  position: fixed;
+  width: 320px;
+  max-width: 320px;
+  right: auto;
+}
+
+/* Present mode: the page alone, full screen; arrows change page, Esc leaves. */
+.dash-present {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  background: var(--dash-canvas, #0f172a);
+}
+
+.dash-present > .dash-canvas {
+  flex: 1;
+  border-radius: 0;
+  overflow: auto;
+}
+
+.dash-present-bar {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.75);
+  color: #fff;
+  font-size: 0.75rem;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+.dash-present-bar:hover,
+.dash-present-bar:focus-within {
+  opacity: 1;
+}
+
+.dash-present-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: inherit;
+}
+
+.dash-present-bar button:hover,
+.dash-present-bar button[aria-pressed='true'] {
+  background: rgb(255 255 255 / 0.15);
+}
+
+.dash-share-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+.dash-share-link.revoked {
+  opacity: 0.55;
+}
+
+.dash-share-code {
+  width: 100%;
+  min-height: 64px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.6875rem;
+}
+
+/* Keyboard: a focused tile shows where you are; Enter opens it in focus mode. */
+.dash-tile:focus-visible {
+  outline: 2px solid var(--dash-accent);
+  outline-offset: 2px;
+  z-index: 30;
+}
+
+.dash-shared {
+  min-height: 100dvh;
+  padding: 12px;
+  background: var(--background);
+}
+
+.dash-shared.embed {
+  padding: 0;
+}

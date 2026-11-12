@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import { inlineLabel } from '@/i18n/format';
 import { apiErrorMessage } from '@/lib/api/http';
 import { useRepository, type ImageGeneration } from '@/lib/data';
 import { Button, Input, Textarea, Card, CardContent, CardHeader, CardTitle, Alert, Spinner, Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/components';
@@ -268,7 +269,7 @@ export function ImagePlaygroundPage() {
               <p className="text-sm text-muted-foreground whitespace-pre-wrap">{understandingResult}</p>
             </div>
           ) : inputImagePreview ? (
-            <img src={inputImagePreview} alt="Preview" className="max-w-full max-h-[400px] rounded-md object-contain" />
+            <img src={inputImagePreview} alt={t('images.preview')} className="max-w-full max-h-[400px] rounded-md object-contain" />
           ) : (
             <div className="flex flex-col items-center gap-3">
               <ImageIcon size={48} className="text-muted-foreground/40" />
@@ -390,7 +391,7 @@ export function ImagePlaygroundPage() {
                 </div>
               ) : (
                 <div className="image-upload-preview">
-                  <img src={inputImagePreview} alt="Upload preview" className="w-full max-h-[200px] object-cover" />
+                  <img src={inputImagePreview} alt={t('images.uploadPreview')} className="w-full max-h-[200px] object-cover" />
                   <Button
                     type="button"
                     variant="outline"
@@ -421,7 +422,7 @@ export function ImagePlaygroundPage() {
                 {generatedImages.filter((img) => img.type === 'edit').length > 0 ? (
                   (() => {
                     const edit = generatedImages.filter((img) => img.type === 'edit')[0];
-                    return edit ? <img src={edit.url} alt="Edited result" className="w-full rounded-md object-contain max-h-[400px]" /> : null;
+                    return edit ? <img src={edit.url} alt={t('images.editedResult')} className="w-full rounded-md object-contain max-h-[400px]" /> : null;
                   })()
                 ) : (
                   <div className="image-preview-area">
@@ -460,7 +461,7 @@ export function ImagePlaygroundPage() {
                 </div>
               ) : (
                 <div className="image-upload-preview">
-                  <img src={inputImagePreview} alt="Upload preview" className="w-full max-h-[200px] object-cover" />
+                  <img src={inputImagePreview} alt={t('images.uploadPreview')} className="w-full max-h-[200px] object-cover" />
                   <Button
                     type="button"
                     variant="outline"
@@ -507,7 +508,7 @@ export function ImagePlaygroundPage() {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => setPrompt((prev) => `${prev} ${template.label.toLowerCase()}`.trim())}
+              onClick={() => setPrompt((prev) => `${prev} ${inlineLabel(template.label)}`.trim())}
               className="text-muted-foreground hover:text-primary hover:border-primary"
             >
               {template.label}

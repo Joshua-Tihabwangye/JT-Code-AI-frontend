@@ -1,0 +1,37 @@
+{
+  "moveUp": "Naik",
+  "moveDown": "Pindah ke bawah",
+  "views": {
+    "intro": "Tampilan mengingat halaman ini dengan pemotongnya, filter, tingkat pengeboran, parameter, dan visual mana yang disembunyikan (tab Pilihan). Pemirsa memilih penayangan dari “Tampilan ▾”; tombol dan navigator dapat membukanya.",
+    "namePlaceholder": "Nama, mis. Hanya online",
+    "add": "Tambahkan tampilan",
+    "nameAria": "Lihat nama",
+    "show": "Tunjukkan pandangan ini",
+    "update": "Perbarui dengan apa yang ditampilkan sekarang",
+    "delete": "Menghapus"
+  },
+  "mobile": {
+    "phone": "Tata letak telepon",
+    "empty": "Ponsel menampilkan setiap visual dalam urutan bacaan hingga Anda meletakkan halaman ini.",
+    "auto": "Mulai dari tata letak desktop",
+    "shorter": "Singkat",
+    "taller": "Lebih tinggi",
+    "remove": "Hapus dari tata letak ponsel",
+    "notOnPhones": "Bukan di ponsel",
+    "allPlaced": "Setiap visual ada di tata letak ponsel.",
+    "clear": "Hapus tata letak telepon"
+  },
+  "selection": {
+    "group": "Kelompok",
+    "ungroup": "Pisahkan",
+    "inGroup": "Dalam kelompok",
+    "layerName": "Nama lapisan",
+    "show": "Menunjukkan",
+    "hide": "Bersembunyi",
+    "lock": "Kunci",
+    "unlock": "Membuka kunci",
+    "forward": "Memajukan",
+    "backward": "Kirim mundur",
+    "empty": "Belum ada visual — gunakan Sisipkan."
+  }
+}
