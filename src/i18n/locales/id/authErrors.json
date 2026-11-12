@@ -6,8 +6,6 @@
   "invalidEmail": "Masukkan alamat email yang valid.",
   "passwordMinLength": "Kata sandi harus memuat minimal 8 karakter.",
   "passwordLetter": "Kata sandi harus menyertakan setidaknya satu huruf.",
-  "passwordUppercase": "Kata sandi harus memuat huruf besar.",
-  "passwordLowercase": "Kata sandi harus memuat huruf kecil.",
   "passwordNumber": "Kata sandi harus memuat angka.",
   "selectCountry": "Pilih negara Anda.",
   "selectDialCode": "Pilih kode telepon.",
@@ -19,5 +17,13 @@
   "passwordRequired": "Masukkan kata sandi Anda.",
   "authenticationFailed": "Autentikasi gagal.",
   "finishingSignIn": "Menyelesaikan proses masuk…",
-  "redirecting": "Mengalihkan…"
+  "redirecting": "Mengalihkan…",
+  "accountExists": "Akun dengan email ini sudah ada.",
+  "invalidCredentials": "Email atau kata sandi tidak valid.",
+  "noAccount": "Tidak ada akun untuk alamat email itu.",
+  "invalidResetCode": "Kode reset tidak valid atau kedaluwarsa.",
+  "signInToReset": "Masuk untuk mengatur ulang kata sandi Anda.",
+  "providerDisabled": "Masuk dengan {{provider}} tidak diaktifkan. Gunakan email dan kata sandi Anda.",
+  "serviceUnreachable": "Tidak dapat menjangkau layanan masuk. Periksa koneksi Anda dan coba lagi.",
+  "invalidCountry": "Negara tidak valid."
 }

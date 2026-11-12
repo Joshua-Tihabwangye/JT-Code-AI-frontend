@@ -13,5 +13,12 @@
   "requestFailed": "فشل الطلب.",
   "statusRunning": "الحالة: {{status}}…",
   "defaultPlan": "مجاني",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "headlineLead": "ماذا ",
+  "headlineAccent": "نبني اليوم؟",
+  "subhead": "",
+  "assistant": "JT-Code",
+  "stop": "إيقاف التوليد",
+  "stopped": "تم الإيقاف."
 }

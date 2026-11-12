@@ -1,8 +1,6 @@
 {
   "title": "Bem-vindo de volta",
   "subtitle": "Entre para continuar no JT-Code",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "Conectando…",
   "emailLabel": "Endereço de email",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "Esqueceu a senha?",
   "submit": "Entrar",
   "noAccount": "Não tem uma conta?",
-  "createAccount": "Criar conta"
+  "createAccount": "Criar conta",
+  "helpText": "",
+  "signInWithGoogle": "Faça login com o Google",
+  "signInWithApple": "Faça login com a Apple",
+  "offlineHint": "Modo de design offline: o backend não é usado. Faça login com qualquer e-mail e senha (uma conta local é criada) ou continue com a conta demo.",
+  "demoAccount": "Continue com a conta demo",
+  "continueWith": "Continue com {{provider}}"
 }

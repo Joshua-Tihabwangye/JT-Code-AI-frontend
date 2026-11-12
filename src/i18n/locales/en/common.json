@@ -14,5 +14,13 @@
   "default": "Default",
   "creditsUnit": "credits",
   "messagesCount_one": "{{count}} message",
-  "messagesCount_other": "{{count}} messages"
+  "messagesCount_other": "{{count}} messages",
+  "dismiss": "Dismiss",
+  "avatar": "Avatar",
+  "hidePassword": "Hide password",
+  "showPassword": "Show password",
+  "clearSearch": "Clear search",
+  "confirm": "Confirm",
+  "notifications": "Notifications",
+  "dismissNotification": "Dismiss notification"
 }

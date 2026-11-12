@@ -23,5 +23,10 @@
     "resetFailed": "Não foi possível redefinir sua senha.",
     "mismatch": "As senhas não coincidem.",
     "unexpected": "Ocorreu um erro inesperado."
-  }
+  },
+  "resetDesc": "Digite seu endereço de e-mail e enviaremos um link de redefinição que você pode preencher aqui.",
+  "checkDesc": "Enviamos uma mensagem de redefinição para <0>{{email}} </0>. O código abaixo irá desbloquear a próxima etapa.",
+  "checkDescPlain": "Enviamos um código de redefinição para {{email}}. Digite-o na próxima etapa para escolher uma nova senha.",
+  "mockResetCode": "Redefinir código",
+  "enterEmailedCode": "Digite o código do e-mail"
 }

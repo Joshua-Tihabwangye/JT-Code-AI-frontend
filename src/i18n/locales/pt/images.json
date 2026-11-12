@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Envie uma imagem e digite um prompt",
     "noResult": "Sem resultado"
   },
-  "defaultQuestion": "Descreva esta imagem em detalhes"
+  "defaultQuestion": "Descreva esta imagem em detalhes",
+  "uploadPreview": "Pré-visualização do upload",
+  "autoModel": "Automático (recomendado)"
 }

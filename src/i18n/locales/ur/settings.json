@@ -29,5 +29,20 @@
   "changePhoto": "تصویر تبدیل کرنے کے لیے کلک کریں",
   "profileUpdated": "پروفائل کامیابی سے اپ ڈیٹ ہو گئی",
   "updateProfileError": "پروفائل اپ ڈیٹ کرنے میں ناکامی",
-  "uploadAvatarError": "اوتار اپ لوڈ کرنے میں ناکامی"
+  "uploadAvatarError": "اوتار اپ لوڈ کرنے میں ناکامی",
+  "eyebrow": "ترتیبات",
+  "avatarUpdated": "پروفائل تصویر اپ ڈیٹ ہو گئی۔",
+  "removePhoto": "تصویر ہٹا دیں۔",
+  "passwordChanged": "آپ کا پاس ورڈ تبدیل کر دیا گیا تھا۔",
+  "passwordMismatch": "نئے پاس ورڈز مماثل نہیں ہیں۔",
+  "workspace": "کام کی جگہ",
+  "workspaceDesc": "JT-Code میں آپ کی تنظیم۔ بات چیت، فائلیں اور کریڈٹ اسی سے تعلق رکھتے ہیں۔",
+  "workspaceName": "ورک اسپیس کا نام",
+  "workspaceUpdated": "ورک اسپیس کا نام تبدیل کر دیا گیا۔",
+  "password": "پاس ورڈ",
+  "passwordDesc": "وہ پاس ورڈ تبدیل کریں جسے آپ سائن ان کرنے کے لیے استعمال کرتے ہیں۔",
+  "currentPassword": "موجودہ پاس ورڈ",
+  "newPassword": "نیا پاس ورڈ (8+ حروف)",
+  "confirmPassword": "نئے پاس ورڈ کی تصدیق کریں۔",
+  "changePassword": "پاس ورڈ تبدیل کریں۔"
 }

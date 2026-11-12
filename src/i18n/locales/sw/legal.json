@@ -3,19 +3,25 @@
     "eyebrow": "Mawasiliano",
     "title": "Pata msaada wa JT-Code",
     "backToSignIn": "Rudi kuingia",
-    "createAccount": "Fungua akaunti"
+    "createAccount": "Fungua akaunti",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "Sera ya Faragha",
     "title": "Faragha ya JT-Code",
     "signIn": "Ingia",
-    "readTerms": "Soma masharti"
+    "readTerms": "Soma masharti",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "Masharti ya Huduma",
     "title": "Masharti ya JT-Code",
     "createAccount": "Fungua akaunti",
-    "contactSupport": "Wasiliana na usaidizi"
+    "contactSupport": "Wasiliana na usaidizi",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "Ukurasa haupatikani",

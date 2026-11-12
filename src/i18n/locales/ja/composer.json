@@ -5,5 +5,6 @@
   "currentPlan": "現在のプラン",
   "voiceInput": "音声入力",
   "sendMessage": "メッセージを送信",
-  "defaultPlaceholder": "JT-Code に何でも聞いてください…"
+  "defaultPlaceholder": "JT-Code に何でも聞いてください…",
+  "removeAttachment": "{{name}} を削除"
 }

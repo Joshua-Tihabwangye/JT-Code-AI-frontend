@@ -13,5 +13,12 @@
   "requestFailed": "Не удалось выполнить запрос.",
   "statusRunning": "Статус: {{status}}…",
   "defaultPlan": "Free",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "Что нам следует",
+  "headlineAccent": "построить сегодня?",
+  "assistant": "JT-код",
+  "stop": "Прекратить генерировать",
+  "stopped": "Остановился."
 }

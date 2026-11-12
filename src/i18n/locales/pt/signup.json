@@ -14,7 +14,8 @@
     "uppercase": "Uma letra maiúscula",
     "lowercase": "Uma letra minúscula",
     "number": "Um número",
-    "singleRule": "A senha deve ter pelo menos 8 caracteres e incluir pelo menos uma letra e um número."
+    "singleRule": "A senha deve ter pelo menos 8 caracteres e incluir pelo menos uma letra e um número.",
+    "special": "Um personagem especial"
   },
   "matchOk": "As senhas coincidem.",
   "matchError": "As senhas ainda não coincidem.",
@@ -48,5 +49,12 @@
   "privacyLink": "Política de Privacidade",
   "termsHelp": "Você pode revisar estas páginas legais antes de concluir o cadastro.",
   "submit": "Criar conta",
-  "haveAccountQuestion": "Já tem uma conta?"
+  "haveAccountQuestion": "Já tem uma conta?",
+  "helpText": "",
+  "section": {
+    "account": "Conta",
+    "profile": "Perfil",
+    "region": "Região"
+  },
+  "confirmEmail": "Quase lá! Enviamos um link de confirmação para {{email}}. Abra-o e faça login."
 }

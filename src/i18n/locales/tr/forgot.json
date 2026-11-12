@@ -23,5 +23,10 @@
     "resetFailed": "Şifreniz sıfırlanamadı.",
     "mismatch": "Şifreler eşleşmiyor.",
     "unexpected": "Beklenmeyen bir hata oluştu."
-  }
+  },
+  "resetDesc": "E-posta adresinizi girin, burada tamamlayabileceğiniz bir sıfırlama bağlantısı göndereceğiz.",
+  "checkDesc": "<0>{{email}} </0> adresine bir sıfırlama mesajı gönderdik. Aşağıdaki kod bir sonraki adımın kilidini açacaktır.",
+  "checkDescPlain": "{{email}}'a bir sıfırlama kodu gönderdik. Yeni bir şifre seçmek için bir sonraki adımda girin.",
+  "mockResetCode": "Kodu sıfırla",
+  "enterEmailedCode": "E-postadaki kodu girin"
 }

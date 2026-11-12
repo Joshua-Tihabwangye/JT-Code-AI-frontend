@@ -5,5 +5,6 @@
   "currentPlan": "موجودہ پلان",
   "voiceInput": "وائس ان پٹ",
   "sendMessage": "پیغام بھیجیں",
-  "defaultPlaceholder": "JT-Code سے کچھ بھی پوچھیں…"
+  "defaultPlaceholder": "JT-Code سے کچھ بھی پوچھیں…",
+  "removeAttachment": "ہٹائیں {{name}}"
 }

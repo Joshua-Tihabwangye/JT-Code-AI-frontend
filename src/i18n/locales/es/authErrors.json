@@ -6,8 +6,6 @@
   "invalidEmail": "Introduce una dirección de correo válida.",
   "passwordMinLength": "La contraseña debe contener al menos 8 caracteres.",
   "passwordLetter": "La contraseña debe contener al menos una letra.",
-  "passwordUppercase": "La contraseña debe contener una letra mayúscula.",
-  "passwordLowercase": "La contraseña debe contener una letra minúscula.",
   "passwordNumber": "La contraseña debe contener un número.",
   "selectCountry": "Selecciona tu país.",
   "selectDialCode": "Selecciona un prefijo telefónico.",
@@ -19,5 +17,13 @@
   "passwordRequired": "Introduce tu contraseña.",
   "authenticationFailed": "Error de autenticación.",
   "finishingSignIn": "Finalizando el inicio de sesión…",
-  "redirecting": "Redirigiendo…"
+  "redirecting": "Redirigiendo…",
+  "accountExists": "Ya existe una cuenta con este correo electrónico.",
+  "invalidCredentials": "Correo electrónico o contraseña no válidos.",
+  "noAccount": "No existe ninguna cuenta con esa dirección de correo electrónico.",
+  "invalidResetCode": "Código de restablecimiento no válido o caducado.",
+  "signInToReset": "Inicia sesión para restablecer tu contraseña.",
+  "providerDisabled": "El inicio de sesión con {{provider}} no está habilitado. Usa tu correo electrónico y contraseña.",
+  "serviceUnreachable": "No se puede conectar con el servicio de inicio de sesión. Comprueba tu conexión e inténtalo de nuevo.",
+  "invalidCountry": "País no válido."
 }

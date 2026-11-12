@@ -14,7 +14,8 @@
     "uppercase": "大文字を 1 文字",
     "lowercase": "小文字を 1 文字",
     "number": "数字を 1 つ",
-    "singleRule": "パスワードは8文字以上で、少なくとも1つの文字と1つの数字を含む必要があります。"
+    "singleRule": "パスワードは8文字以上で、少なくとも1つの文字と1つの数字を含む必要があります。",
+    "special": "特殊文字 1 文字"
   },
   "matchOk": "パスワードが一致しています。",
   "matchError": "パスワードがまだ一致していません。",
@@ -48,5 +49,12 @@
   "privacyLink": "プライバシーポリシー",
   "termsHelp": "サインアップを完了する前に、これらの法務ページをご確認いただけます。",
   "submit": "アカウント作成",
-  "haveAccountQuestion": "既にアカウントをお持ちですか？"
+  "haveAccountQuestion": "既にアカウントをお持ちですか？",
+  "helpText": "",
+  "section": {
+    "account": "アカウント",
+    "profile": "プロフィール",
+    "region": "地域"
+  },
+  "confirmEmail": "もうすぐそこです！確認リンクを {{email}} に送信しました。それを開いてサインインします。"
 }

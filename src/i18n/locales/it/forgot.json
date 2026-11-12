@@ -23,5 +23,10 @@
     "resetFailed": "Impossibile reimpostare la password.",
     "mismatch": "Le password non coincidono.",
     "unexpected": "Si è verificato un errore imprevisto."
-  }
+  },
+  "resetDesc": "Inserisci il tuo indirizzo email e ti invieremo un collegamento per il ripristino che potrai completare proprio qui.",
+  "checkDesc": "Abbiamo inviato un messaggio di reimpostazione a <0>{{email}} </0>. Il codice seguente sbloccherà il passaggio successivo.",
+  "checkDescPlain": "Abbiamo inviato un codice di ripristino a {{email}}. Inseriscila nel passaggio successivo per scegliere una nuova password.",
+  "mockResetCode": "Reimposta il codice",
+  "enterEmailedCode": "Inserisci il codice dall'e-mail"
 }

@@ -13,5 +13,12 @@
   "requestFailed": "Ombi limeshindikana.",
   "statusRunning": "Hali: {{status}}…",
   "defaultPlan": "Bure",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "Tunapaswa nini",
+  "headlineAccent": "kujenga leo?",
+  "assistant": "Msimbo wa JT",
+  "stop": "Acha kuzalisha",
+  "stopped": "Imesimamishwa."
 }

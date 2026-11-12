@@ -1,0 +1,326 @@
+{
+  "search": "Opzioni di formato di ricerca",
+  "resetSection": "Ripristina il tema predefinito",
+  "automatic": "Automatico",
+  "on": "SU",
+  "off": "Spento",
+  "sections": {
+    "python": "Scrittura Python",
+    "parameter": "Parametro",
+    "button": "Pulsante",
+    "navigator": "Navigatore",
+    "general": "Titolo e posizione",
+    "tile": "Piastrella",
+    "colors": "Colori",
+    "labels": "Etichette dati",
+    "legend": "Leggenda",
+    "sort": "Ordina e Top N",
+    "bars": "Barre e linee",
+    "donut": "Fette",
+    "kpi": "KPI",
+    "gauge": "Gamma di indicatori",
+    "table": "Tavolo",
+    "slicer": "Affettatrice",
+    "tooltip": "Descrizione comando",
+    "conditional": "Formattazione condizionale",
+    "analytics": "Analytics (linee di riferimento, trend, previsioni)",
+    "map": "Mappa"
+  },
+  "general": {
+    "title": "Titolo",
+    "showTitle": "Mostra titolo",
+    "axes": {
+      "x": "X",
+      "y": "sì",
+      "w": "w",
+      "h": "H"
+    },
+    "layoutAria": "Disposizione {{axis}}",
+    "altText": "Testo alternativo",
+    "altPlaceholder": "Per lettori di schermo"
+  },
+  "tile": {
+    "background": "Sfondo",
+    "border": "Confine",
+    "radius": "Raggio dell'angolo",
+    "shadow": "Ombra"
+  },
+  "colors": {
+    "seriesAria": "Colore serie {{index}}",
+    "custom": "Costume",
+    "fromTheme": "Dal tema"
+  },
+  "labels": {
+    "showValues": "Mostra valori"
+  },
+  "legend": {
+    "show": "Mostra legenda",
+    "position": "Posizione",
+    "positions": {
+      "top": "Superiore",
+      "bottom": "Metter il fondo a",
+      "left": "Sinistra",
+      "right": "Giusto"
+    }
+  },
+  "sort": {
+    "by": "Ordina per",
+    "value": "Valore",
+    "name": "Nome",
+    "direction": "Direzione",
+    "desc": "Discendente",
+    "asc": "Ascendente",
+    "topN": "I migliori N",
+    "showTop": "Mostra in alto",
+    "others": "Raggruppa il resto come \"Altri\""
+  },
+  "bars": {
+    "stacking": "Impilamento",
+    "none": "Fianco a fianco",
+    "stacked": "Impilato",
+    "percent": "Impilato al 100%",
+    "smooth": "Linee morbide"
+  },
+  "donut": {
+    "maxSlices": "Fette max (resto → Altro)"
+  },
+  "kpi": {
+    "compareBy": "Confronta per",
+    "grains": {
+      "day": "Giorno",
+      "week": "Settimana",
+      "month": "Mese",
+      "quarter": "Trimestre",
+      "year": "Anno"
+    },
+    "upIsGood": "Su va bene"
+  },
+  "gauge": {
+    "min": "minimo",
+    "max": "Massimo",
+    "auto": "Auto"
+  },
+  "table": {
+    "dataBars": "Barre dati"
+  },
+  "slicer": {
+    "style": "Stile",
+    "styles": {
+      "dropdown": "Cadere in picchiata",
+      "list": "Lista",
+      "tiles": "Pulsanti",
+      "between": "Intervallo di numeri",
+      "dateRange": "Intervallo di date",
+      "relative": "Data relativa",
+      "input": "Digitare un valore",
+      "hierarchy": "Gerarchia (aggiungi più campi)"
+    },
+    "single": "Scelta unica",
+    "sync": "Sincronizzazione tra le pagine",
+    "page": "Pagina",
+    "syncColumn": "Sincronizzazione",
+    "visible": "Visibile",
+    "syncTo": "Sincronizza con {{page}}",
+    "visibleOn": "Visibile il {{page}}"
+  },
+  "tooltip": {
+    "page": "Pagina delle descrizioni comandi",
+    "default": "Descrizione comando predefinita",
+    "noPages": "Trasforma prima una pagina in una pagina di descrizione comando"
+  },
+  "map": {
+    "zoomTo": "Zoom su",
+    "scopes": {
+      "world": "Mondo",
+      "africa": "Africa",
+      "europe": "Europa",
+      "asia": "Asia",
+      "northAmerica": "America del Nord",
+      "southAmerica": "Sud America"
+    }
+  },
+  "page": {
+    "label": "Pagina",
+    "name": "Nome",
+    "canvasSize": "Dimensioni della tela",
+    "canvasPresets": {
+      "wide": "16:9 (1280×720)",
+      "standard": "4:3 (1280×960)",
+      "letter": "Lettera (ritratto)",
+      "fitWidth": "Adatta alla larghezza (cresce)"
+    },
+    "background": "Sfondo",
+    "themeBackground": "Sfondo a tema",
+    "type": "Tipo di pagina",
+    "types": {
+      "page": "Pagina",
+      "drillthrough": "Drill-through (dettaglio)",
+      "tooltip": "Descrizione comando"
+    },
+    "tooltipHint": "Visualizzato in piccolo quando si passa il mouse su punti di elementi visivi che lo selezionano in Formato → Descrizione comando.",
+    "drillthroughHint": "Fare clic con il tasto destro su un membro di uno di questi campi in un'altra pagina → “Drill through”."
+  },
+  "dashboard": {
+    "label": "Pannello di controllo",
+    "slicersApply": "Si applicano gli affettatori",
+    "instant": "Immediatamente",
+    "button": "Con un pulsante Applica",
+    "filtersPane": "Riquadro Filtri per i visualizzatori",
+    "personalize": "Gli spettatori possono personalizzare"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Scala di colori",
+      "rules": "Regole",
+      "bars": "Barre dati",
+      "icons": "Icone ▲▼▼"
+    },
+    "ruleType": "Tipo di regola",
+    "value": "Valore",
+    "colour": "Colore",
+    "background": "Sfondo",
+    "text": "Testo",
+    "removeRule": "Rimuovi regola",
+    "lowest": "Il più basso",
+    "middle": "Mezzo",
+    "highest": "Più alto",
+    "lowestColour": "Colore più basso",
+    "middleColour": "Colore medio",
+    "highestColour": "Colore più alto",
+    "ifValueIs": "Se il valore è",
+    "between": "fra",
+    "and": "E",
+    "removeCondition": "Rimuovi condizione",
+    "addCondition": "Condizione (la prima partita vince)",
+    "barColour": "Colore della barra",
+    "iconsHint": "▲ terzo superiore, ● centrale, ▼ terzo inferiore dei valori.",
+    "addRule": "Aggiungi una regola"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Costante (obiettivo)",
+      "average": "Media",
+      "median": "Mediano",
+      "min": "Minimo",
+      "max": "Massimo",
+      "percentile": "percentile",
+      "trend": "Linea di tendenza",
+      "forecast": "Previsione"
+    },
+    "line": "Linea",
+    "value": "Valore",
+    "percentile": "percentile",
+    "periods": "Periodi",
+    "colour": "Colore",
+    "removeLine": "Rimuovi riga",
+    "labelPlaceholder": "Etichetta (facoltativa)",
+    "addLine": "Aggiungi una riga",
+    "forecastHint": "Le previsioni necessitano di un asse delle date (ad esempio data per mese)."
+  },
+  "python": {
+    "starter": "Parti da un esempio",
+    "sandbox": "Funziona in un sandbox Python bloccato: pandas, numpy, scipy, statsmodels e scikit-learn; nessun accesso a file, rete o sistema."
+  },
+  "button": {
+    "text": "Testo",
+    "action": "Azione",
+    "actions": {
+      "page": "Vai alla pagina",
+      "bookmark": "Applicare una vista (segnalibro)",
+      "back": "Indietro",
+      "clearSlicers": "Cancella tutte le affettatrici",
+      "applySlicers": "Applicare affettatrici",
+      "toggle": "Mostra/nascondi un'immagine",
+      "url": "Aprire un collegamento Web",
+      "askAi": "Chiedi all'AI",
+      "reset": "Ripristina le impostazioni predefinite"
+    },
+    "page": "Pagina",
+    "choose": "Scegliere…",
+    "view": "Visualizzazione",
+    "addViewsFirst": "Aggiungi prima le visualizzazioni (scheda Visualizzazioni)",
+    "visual": "Visivo",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Collegamento",
+    "style": "Stile",
+    "fills": {
+      "primary": "Riempito",
+      "outline": "Contorno",
+      "ghost": "Pianura"
+    }
+  },
+  "navigator": {
+    "shows": "Spettacoli",
+    "pages": "Pagine",
+    "bookmarks": "Visualizzazioni (segnalibri)"
+  },
+  "parameter": {
+    "parameter": "Parametro",
+    "new": "Nuovo parametro..",
+    "showAs": "Mostra come",
+    "tiles": "Pulsanti",
+    "dropdown": "Cadere in picchiata",
+    "delete": "Elimina questo parametro"
+  },
+  "theme": {
+    "title": "Personalizza il tema",
+    "name": "Nome del tema",
+    "close": "Vicino",
+    "dataColours": "Colori dei dati",
+    "colour": "Colore {{index}}",
+    "removeColour": "Rimuovi colore {{index}}",
+    "addColour": "Aggiungi un colore",
+    "brandColour": "Colore del marchio",
+    "generate": "Tavolozza del colore del mio marchio",
+    "sentiment": {
+      "good": "Bene",
+      "neutral": "Neutro",
+      "bad": "Cattivo"
+    },
+    "pageAndTiles": "Pagina e riquadri",
+    "light": "Leggero",
+    "dark": "Buio",
+    "roles": {
+      "canvas": "Tela",
+      "tile": "Piastrelle",
+      "border": "Confini",
+      "gridline": "Linee della griglia",
+      "text": "Testo",
+      "mutedText": "Testo disattivato",
+      "accent": "Accento"
+    },
+    "contrast": "Il testo è difficile da leggere sui riquadri ({{ratio}}:1 — punta a 4,5:1 o più).",
+    "font": "Font",
+    "systemFont": "Sistema",
+    "corners": "Angoli",
+    "shadow": "Ombra",
+    "shadows": {
+      "none": "Nessuno",
+      "soft": "Morbido",
+      "medium": "Medio"
+    },
+    "kpiTiles": "Riquadri KPI",
+    "kpiStyles": {
+      "plain": "Pianura",
+      "solid": "Colore solido",
+      "gradient": "Pendenza",
+      "outlined": "Delineato",
+      "icon": "Barra d'accento"
+    },
+    "orgThemes": "I temi della mia organizzazione",
+    "deleteTheme": "Elimina {{name}}",
+    "importJson": "Importa JSON",
+    "exportJson": "Esporta JSON",
+    "saveAs": "Salva come tema",
+    "defaultName": "Il mio tema",
+    "importedName": "Tema importato",
+    "imported": "Importato.",
+    "saved": "Salvato \"{{name}}\" per la tua organizzazione.",
+    "cancel": "Cancellare",
+    "done": "Fatto",
+    "errors": {
+      "notTheme": "Il file non è un tema.",
+      "needColours": "Un tema necessita di almeno 3 colori dati (dataColors)."
+    }
+  }
+}

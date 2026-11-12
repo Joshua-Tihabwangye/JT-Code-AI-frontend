@@ -1,0 +1,37 @@
+{
+  "moveUp": "上移",
+  "moveDown": "下移",
+  "views": {
+    "intro": "视图会记住此页面的切片器、筛选器、钻取级别、参数以及隐藏了哪些视觉对象（“选择”选项卡）。查看者可从“视图 ▾”中选择视图；按钮和导航器也可以打开视图。",
+    "namePlaceholder": "名称，例如：仅线上",
+    "add": "添加视图",
+    "nameAria": "视图名称",
+    "show": "显示此视图",
+    "update": "用当前显示内容更新",
+    "delete": "删除"
+  },
+  "mobile": {
+    "phone": "手机布局",
+    "empty": "在你为此页面设置布局之前，手机将按阅读顺序显示所有视觉对象。",
+    "auto": "从桌面布局开始",
+    "shorter": "缩短",
+    "taller": "加高",
+    "remove": "从手机布局中移除",
+    "notOnPhones": "不在手机上显示",
+    "allPlaced": "所有视觉对象均已放入手机布局。",
+    "clear": "清除手机布局"
+  },
+  "selection": {
+    "group": "组合",
+    "ungroup": "取消组合",
+    "inGroup": "在组中",
+    "layerName": "图层名称",
+    "show": "显示",
+    "hide": "隐藏",
+    "lock": "锁定",
+    "unlock": "解锁",
+    "forward": "上移一层",
+    "backward": "下移一层",
+    "empty": "暂无视觉对象 — 请使用“插入”。"
+  }
+}

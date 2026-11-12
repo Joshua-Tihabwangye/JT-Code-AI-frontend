@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Veri Analitiği",
+  "title": "Veri Analitiği",
+  "subtitle": "Bir CSV yükleyin, sütunlarını inceleyin, analizler yapın ve sonuçları grafiklere dönüştürün.",
+  "upload": {
+    "title": "Veri kümesi ekleme",
+    "name": "İsim",
+    "namePlaceholder": "örneğin 3. çeyrek satışları",
+    "file": "CSV dosyası (25 MB'a kadar)",
+    "or": "— veya CSV'yi yapıştırın —",
+    "paste": "CSV metni",
+    "pastePlaceholder": "bölge,gelir\nDoğu,120\nBatı,80",
+    "submit": "Veri kümesi ekle",
+    "limits": "Başlık satırına sahip UTF-8 CSV; 100.000'e kadar satır ve 200 sütun.",
+    "needData": "Bir CSV dosyası seçin veya CSV metnini yapıştırın."
+  },
+  "datasets": "Veri kümeleri",
+  "noDatasets": "Henüz veri kümesi yok.",
+  "datasetMeta": "{{rows}} satırlar · {{columns}} sütunlar",
+  "emptyTitle": "Hiçbir veri kümesi seçilmedi",
+  "emptyDesc": "Analize başlamak için sola bir CSV ekleyin.",
+  "deleteDataset": "Silmek",
+  "deleteConfirm": "Analizleri ve grafikleriyle birlikte bu veri kümesi silinsin mi?",
+  "profilePending": "Sütun istatistikleri, yüklenen bir dosyanın ilk analizinden sonra görünür.",
+  "profile": {
+    "column": "Kolon",
+    "kind": "Tip",
+    "missing": "Eksik",
+    "distinct": "Belirgin",
+    "summary": "Özet"
+  },
+  "builder": {
+    "title": "Analiz et",
+    "filters": "Filtreler",
+    "addFilter": "Filtre ekle",
+    "noFilters": "Filtre yok: her satır dahildir.",
+    "removeFilter": "Filtreyi kaldır",
+    "column": "Kolon",
+    "operator": "Operatör",
+    "value": "Değer",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Gruplandırma ölçütü",
+    "aggregate": "Agrega",
+    "ofColumn": "Sütun",
+    "allNumeric": "Tüm sayısal sütunlar",
+    "sortBy": "Göre sırala",
+    "direction": "Yön",
+    "asc": "Artan",
+    "desc": "Azalan",
+    "limit": "Satır sınırı",
+    "none": "Hiçbiri",
+    "run": "Analizi çalıştır",
+    "cost": "Her analiz 10 kredi kullanır; grafikler ücretsizdir."
+  },
+  "operators": {
+    "eq": "eşittir",
+    "ne": "eşit değil",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "içerir",
+    "in": "biridir"
+  },
+  "aggregates": {
+    "count": "Satırları say",
+    "sum": "Toplam",
+    "mean": "Ortalama",
+    "min": "Asgari",
+    "max": "Maksimum"
+  },
+  "status": {
+    "queued": "Sıraya alındı",
+    "running": "Koşma",
+    "completed": "Tamamlanmış",
+    "failed": "Arızalı",
+    "ready": "Hazır"
+  },
+  "results": {
+    "title": "Sonuçlar",
+    "rows": "{{count}} satırları ({{shown}} gösteriliyor)",
+    "download": "CSV'yi indirin",
+    "retry": "Yeniden dene",
+    "pickRun": "Analiz çalıştırması"
+  },
+  "charts": {
+    "title": "Grafikler",
+    "kind": "Çizelge",
+    "x": "X ekseni",
+    "y": "Y ekseni (sayısal)",
+    "chartTitle": "Başlık",
+    "create": "Grafik oluştur",
+    "delete": "Grafiği sil",
+    "noImage": "Grafikler sunucuda API modunda işlenir."
+  },
+  "chartKinds": {
+    "bar": "Çubuk",
+    "line": "Astar",
+    "scatter": "Dağılım",
+    "area": "Alan",
+    "histogram": "Histogram",
+    "box": "Kutu",
+    "pie": "Pasta"
+  }
+}

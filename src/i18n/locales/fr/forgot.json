@@ -23,5 +23,10 @@
     "resetFailed": "Impossible de réinitialiser votre mot de passe.",
     "mismatch": "Les mots de passe ne correspondent pas.",
     "unexpected": "Une erreur inattendue s'est produite."
-  }
+  },
+  "resetDesc": "Saisissez votre adresse e-mail et nous vous enverrons un lien de réinitialisation à compléter ici même.",
+  "checkDesc": "Nous avons envoyé un message de réinitialisation à <0>{{email}}</0>. Le code ci-dessous débloquera l'étape suivante.",
+  "checkDescPlain": "Nous avons envoyé un code de réinitialisation à {{email}}. Saisissez-le à l'étape suivante pour choisir un nouveau mot de passe.",
+  "mockResetCode": "Code de réinitialisation",
+  "enterEmailedCode": "Saisissez le code reçu par e-mail"
 }

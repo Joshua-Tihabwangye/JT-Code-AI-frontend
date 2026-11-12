@@ -7,5 +7,15 @@
   "emptyTitle": "Noch kein Verlauf",
   "emptyDesc": "Starte einen Chat und deine Unterhaltungen erscheinen hier.",
   "startChatting": "Chat starten",
-  "deleteItemAria": "{{title}} löschen"
+  "deleteItemAria": "{{title}} löschen",
+  "searchPlaceholder": "Unterhaltungen durchsuchen",
+  "archived": "Archiviert",
+  "openAria": "{{title}} öffnen",
+  "pinned": "Angeheftet",
+  "untitled": "Unbenannte Unterhaltung",
+  "pin": "Anheften",
+  "unpin": "Lösen",
+  "archive": "Archivieren",
+  "unarchive": "Aus dem Archiv wiederherstellen",
+  "export": "Als Markdown exportieren"
 }

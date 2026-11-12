@@ -29,5 +29,20 @@
   "changePhoto": "फोटो बदलण्यासाठी क्लिक करा",
   "profileUpdated": "प्रोफाइल यशस्वीरित्या अपडेट झाले",
   "updateProfileError": "प्रोफाइल अपडेट करणे अयशस्वी झाले",
-  "uploadAvatarError": "ॲव्हाटार अपलोड करणे अयशस्वी झाले"
+  "uploadAvatarError": "ॲव्हाटार अपलोड करणे अयशस्वी झाले",
+  "eyebrow": "सेटिंग्ज",
+  "avatarUpdated": "प्रोफाइल चित्र अपडेट केले.",
+  "removePhoto": "फोटो काढा",
+  "passwordChanged": "तुमचा पासवर्ड बदलला होता.",
+  "passwordMismatch": "नवीन पासवर्ड जुळत नाहीत.",
+  "workspace": "कार्यक्षेत्र",
+  "workspaceDesc": "JT-कोडमधील तुमची संस्था. संभाषणे, फायली आणि क्रेडिट त्याच्या मालकीचे आहेत.",
+  "workspaceName": "कार्यक्षेत्राचे नाव",
+  "workspaceUpdated": "कार्यक्षेत्राचे नाव बदलले.",
+  "password": "पासवर्ड",
+  "passwordDesc": "तुम्ही साइन इन करण्यासाठी वापरत असलेला पासवर्ड बदला.",
+  "currentPassword": "वर्तमान पासवर्ड",
+  "newPassword": "नवीन पासवर्ड (8+ वर्ण)",
+  "confirmPassword": "नवीन पासवर्डची पुष्टी करा",
+  "changePassword": "पासवर्ड बदला"
 }

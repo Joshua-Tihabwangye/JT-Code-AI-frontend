@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Carica un'immagine e inserisci un prompt",
     "noResult": "Nessun risultato"
   },
-  "defaultQuestion": "Descrivi questa immagine in dettaglio"
+  "defaultQuestion": "Descrivi questa immagine in dettaglio",
+  "uploadPreview": "Carica anteprima",
+  "autoModel": "Automatico (consigliato)"
 }

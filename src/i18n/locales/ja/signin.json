@@ -1,8 +1,6 @@
 {
   "title": "おかえりなさい",
   "subtitle": "JT-Code を続けるにはサインインしてください",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "接続中…",
   "emailLabel": "メールアドレス",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "パスワードをお忘れですか？",
   "submit": "サインイン",
   "noAccount": "アカウントをお持ちでないですか？",
-  "createAccount": "アカウント作成"
+  "createAccount": "アカウント作成",
+  "helpText": "",
+  "signInWithGoogle": "Googleでサインイン",
+  "signInWithApple": "Apple でサインインする",
+  "offlineHint": "オフライン設計モード: バックエンドは使用されません。任意の電子メールとパスワードでサインインするか (ローカル アカウントが作成されます)、デモ アカウントを続行します。",
+  "demoAccount": "デモ口座で続行する",
+  "continueWith": "{{provider}} に進む"
 }

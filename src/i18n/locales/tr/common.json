@@ -14,5 +14,13 @@
   "default": "Varsayılan",
   "creditsUnit": "kredi",
   "messagesCount_one": "{{count}} mesaj",
-  "messagesCount_other": "{{count}} mesaj"
+  "messagesCount_other": "{{count}} mesaj",
+  "dismiss": "Azletmek",
+  "avatar": "avatar",
+  "hidePassword": "Şifreyi gizle",
+  "showPassword": "Şifreyi göster",
+  "clearSearch": "Aramayı temizle",
+  "confirm": "Onaylamak",
+  "notifications": "Bildirimler",
+  "dismissNotification": "Bildirimi reddet"
 }

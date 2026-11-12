@@ -5,5 +5,6 @@
   "currentPlan": "Paket saat ini",
   "voiceInput": "Input suara",
   "sendMessage": "Kirim pesan",
-  "defaultPlaceholder": "Tanyakan apa saja kepada JT-Code…"
+  "defaultPlaceholder": "Tanyakan apa saja kepada JT-Code…",
+  "removeAttachment": "Hapus {{name}}"
 }

@@ -1,0 +1,37 @@
+{
+  "moveUp": "Monter",
+  "moveDown": "Descendre",
+  "views": {
+    "intro": "Une vue mémorise cette page avec ses segments, filtres, niveau d'exploration, paramètres et les visuels masqués (onglet Sélection). Les lecteurs choisissent des vues dans « Vues ▾ » ; les boutons et les navigateurs peuvent les ouvrir.",
+    "namePlaceholder": "Nom, ex. En ligne uniquement",
+    "add": "Ajouter une vue",
+    "nameAria": "Nom de la vue",
+    "show": "Afficher cette vue",
+    "update": "Mettre à jour avec l'affichage actuel",
+    "delete": "Supprimer"
+  },
+  "mobile": {
+    "phone": "Disposition mobile",
+    "empty": "Sur téléphone, tous les visuels s'affichent dans l'ordre de lecture tant que vous n'avez pas disposé cette page.",
+    "auto": "Partir de la disposition bureau",
+    "shorter": "Moins haut",
+    "taller": "Plus haut",
+    "remove": "Retirer de la disposition mobile",
+    "notOnPhones": "Absents sur téléphone",
+    "allPlaced": "Tous les visuels sont dans la disposition mobile.",
+    "clear": "Effacer la disposition mobile"
+  },
+  "selection": {
+    "group": "Grouper",
+    "ungroup": "Dissocier",
+    "inGroup": "Dans un groupe",
+    "layerName": "Nom du calque",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "lock": "Verrouiller",
+    "unlock": "Déverrouiller",
+    "forward": "Avancer",
+    "backward": "Reculer",
+    "empty": "Aucun visuel pour le moment — utilisez Insérer."
+  }
+}

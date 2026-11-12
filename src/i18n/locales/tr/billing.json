@@ -14,7 +14,14 @@
   "usage": {
     "title": "Kredi kullanımı",
     "usedOf": "Bu ay {{limit}} kredinin {{used}} kadarı kullanıldı",
-    "left": "{{amount}} kaldı"
+    "left": "{{amount}} kaldı",
+    "thisMonth": "Bu ay kullanılan {{amount}} kredi",
+    "types": {
+      "chat": "Sohbet",
+      "images": "Görseller",
+      "documents": "Belgeler",
+      "agent": "Temsilciler"
+    }
   },
   "plans": {
     "title": "Size uygun planı seçin",
@@ -62,6 +69,12 @@
         "Özel yapay zeka modelleri",
         "SLA garantisi"
       ]
+    },
+    "names": {
+      "free": "Özgür",
+      "pro": "Profesyonel",
+      "team": "Takım",
+      "business": "İşletme"
     }
   },
   "payment": {
@@ -83,7 +96,9 @@
     "cardNumberLabel": "Kart numarası",
     "expiryLabel": "Son kullanma",
     "cvcLabel": "CVC",
-    "savedToast": "Ödeme yöntemi kaydedildi"
+    "savedToast": "Ödeme yöntemi kaydedildi",
+    "none": "Kayıtlı ödeme yöntemi yok",
+    "manage": "Ödeme yöntemlerini yönetin"
   },
   "invoices": {
     "title": "Son faturalar",
@@ -93,7 +108,16 @@
     "date": "Tarih",
     "description": "Açıklama",
     "amount": "Tutar",
-    "status": "Durum"
+    "status": "Durum",
+    "empty": "Henüz fatura yok.",
+    "download": "Faturayı indir",
+    "statuses": {
+      "paid": "paralı",
+      "open": "açık",
+      "draft": "taslak",
+      "void": "geçersiz",
+      "uncollectible": "tahsil edilemeyen"
+    }
   },
   "topup": {
     "title": "Kredi Ekle",
@@ -102,7 +126,10 @@
     "estimatedCredits": "Tahmini Kredi",
     "confirm": "${{amount}} tutarında kredi ekle",
     "success": "Krediler başarıyla eklendi",
-    "invalidAmount": "Geçerli bir tutar girin"
+    "invalidAmount": "Geçerli bir tutar girin",
+    "processing": "Ödeme alındı. Krediler Stripe onayladığı anda görünür.",
+    "failed": "Ödeme tamamlanamadı.",
+    "payNow": "Şimdi öde"
   },
   "checkout": {
     "title": "Satın alımınızı tamamlayın",
@@ -111,6 +138,28 @@
     "billedMonthly": "Aylık faturalandırılır",
     "pay": "{{amount}} öde",
     "enterPhone": "Mobile Money için telefon numarasını girin.",
-    "activated": "{{name}} planı etkinleştirildi — ödeme başarılı"
+    "activated": "{{name}} planı etkinleştirildi — ödeme başarılı",
+    "returned": "Teşekkürler! Stripe ödemeyi onayladığında aboneliğiniz güncellenecektir.",
+    "cancelled": "Ödeme iptal edildi; hiçbir şey tahsil edilmedi."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Bu fatura döneminin sonunda sona erer",
+    "freeMonthly": "Ücretsiz krediler aylık olarak yenilenir",
+    "reactivate": "Aboneliği devam ettir",
+    "cancel": "Aboneliği iptal et",
+    "cancelConfirm": "Aboneliğiniz cari dönem sonunda iptal edilsin mi?"
+  },
+  "wallet": {
+    "saved": "Faturalandırma ayarları kaydedildi.",
+    "reserved": "{{amount}} çalışan işler için ayrılmıştır",
+    "autoRecharge": "Otomatik şarj",
+    "autoRechargeDesc": "Krediler eşiğin altına düştüğünde otomatik olarak yükleme yapın.",
+    "threshold": "Eşik (kredi)",
+    "spendingLimit": "Aylık limit (kredi)",
+    "noLimit": "Sınır yok"
+  },
+  "stripe": {
+    "loadFailed": "Stripe ödeme formu yüklenemedi. Bağlantınızı kontrol edin.",
+    "unavailable": "Şerit kullanılamıyor."
   }
 }

@@ -13,5 +13,12 @@
   "requestFailed": "La solicitud falló.",
   "statusRunning": "Estado: {{status}}…",
   "defaultPlan": "Gratis",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "headlineLead": "¿Qué vamos a ",
+  "headlineAccent": "crear hoy?",
+  "subhead": "",
+  "assistant": "JT-Code",
+  "stop": "Detener la generación",
+  "stopped": "Detenido."
 }

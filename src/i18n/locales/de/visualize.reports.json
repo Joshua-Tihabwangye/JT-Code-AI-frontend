@@ -1,0 +1,41 @@
+{
+  "title": "Berichte",
+  "subtitle": "Exportiere ein Dashboard oder verwende deine gespeicherten Visuals wieder.",
+  "export": "Dashboard exportieren",
+  "noCharts": "Speichere Visuals aus „Erkunden“ oder „Prognose“, um sie in Dashboards wiederzuverwenden.",
+  "library": {
+    "title": "Meine Visuals"
+  },
+  "dashboardToExport": "Zu exportierendes Dashboard",
+  "noDashboards": "Noch keine Dashboards",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Eine Seite pro Dashboardseite, genau wie auf dem Bildschirm"
+    },
+    "png": {
+      "label": "PNG-Bilder",
+      "hint": "Ein Bild pro Seite"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Die Daten jedes Visuals mit nativen Diagrammen, dazu die Rohdaten"
+    },
+    "html": {
+      "label": "Interaktives HTML",
+      "hint": "Eine einzelne Datei, die offline funktioniert"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "Die Dashboard-Definition"
+    }
+  },
+  "preparing": "Wird vorbereitet…",
+  "explore": "Erkunden",
+  "prediction": "Prognose",
+  "visualOf": "Visual: {{type}}",
+  "deletedDataset": "gelöschtes Dataset",
+  "unshare": "Freigabe aufheben",
+  "share": "Freigeben",
+  "deleteNamed": "{{name}} löschen"
+}

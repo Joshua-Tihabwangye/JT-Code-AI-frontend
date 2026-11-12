@@ -36,7 +36,7 @@
       "datetime": "No datetime columns",
       "categorical": "No categorical columns",
       "dimension": "No dimension columns",
-      "any": "No any columns"
+      "any": "No columns"
     },
     "chooseColumn": "Choose a column…",
     "none": "None",

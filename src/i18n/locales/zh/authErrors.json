@@ -6,8 +6,6 @@
   "invalidEmail": "请输入有效的电子邮箱地址。",
   "passwordMinLength": "密码必须至少包含 8 个字符。",
   "passwordLetter": "密码必须包含至少一个字母。",
-  "passwordUppercase": "密码必须包含一个大写字母。",
-  "passwordLowercase": "密码必须包含一个小写字母。",
   "passwordNumber": "密码必须包含一个数字。",
   "selectCountry": "请选择您的国家/地区。",
   "selectDialCode": "请选择区号。",
@@ -19,5 +17,13 @@
   "passwordRequired": "请输入密码。",
   "authenticationFailed": "身份验证失败。",
   "finishingSignIn": "正在完成登录…",
-  "redirecting": "正在跳转…"
+  "redirecting": "正在跳转…",
+  "accountExists": "使用此邮箱的账户已存在。",
+  "invalidCredentials": "邮箱或密码无效。",
+  "noAccount": "该邮箱地址没有对应的账户。",
+  "invalidResetCode": "重置验证码无效或已过期。",
+  "signInToReset": "请登录以重置密码。",
+  "providerDisabled": "未启用 {{provider}} 登录。请使用邮箱和密码。",
+  "serviceUnreachable": "无法连接登录服务。请检查网络连接后重试。",
+  "invalidCountry": "国家/地区无效。"
 }

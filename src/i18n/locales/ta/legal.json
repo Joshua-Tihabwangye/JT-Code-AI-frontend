@@ -3,19 +3,25 @@
     "eyebrow": "தொடர்பு",
     "title": "JT-Code உதவியைப் பெறுங்கள்",
     "backToSignIn": "உள்நுழைவுக்குத் திரும்பு",
-    "createAccount": "கணக்கை உருவாக்கு"
+    "createAccount": "கணக்கை உருவாக்கு",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "தனியுரிமைக் கொள்கை",
     "title": "JT-Code தனியுரிமை",
     "signIn": "உள்நுழை",
-    "readTerms": "விதிமுறைகளைப் படி"
+    "readTerms": "விதிமுறைகளைப் படி",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "சேவை விதிமுறைகள்",
     "title": "JT-Code விதிமுறைகள்",
     "createAccount": "கணக்கை உருவாக்கு",
-    "contactSupport": "ஆதரவைத் தொடர்பு கொள்"
+    "contactSupport": "ஆதரவைத் தொடர்பு கொள்",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "பக்கம் கிடைக்கவில்லை",

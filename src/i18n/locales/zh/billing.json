@@ -14,7 +14,14 @@
   "usage": {
     "title": "积分用量",
     "usedOf": "本月已使用 {{used}}，共 {{limit}}",
-    "left": "剩余 {{amount}}"
+    "left": "剩余 {{amount}}",
+    "thisMonth": "本月已使用 {{amount}} 积分",
+    "types": {
+      "chat": "聊天",
+      "images": "图片",
+      "documents": "文档",
+      "agent": "智能体"
+    }
   },
   "plans": {
     "title": "选择适合您的方案",
@@ -62,6 +69,12 @@
         "自定义 AI 模型",
         "SLA 保障"
       ]
+    },
+    "names": {
+      "free": "免费版",
+      "pro": "专业版",
+      "team": "团队版",
+      "business": "企业版"
     }
   },
   "payment": {
@@ -83,7 +96,9 @@
     "cardNumberLabel": "卡号",
     "expiryLabel": "有效期",
     "cvcLabel": "CVC",
-    "savedToast": "支付方式已保存"
+    "savedToast": "支付方式已保存",
+    "none": "未保存付款方式",
+    "manage": "管理付款方式"
   },
   "invoices": {
     "title": "近期发票",
@@ -93,7 +108,16 @@
     "date": "日期",
     "description": "描述",
     "amount": "金额",
-    "status": "状态"
+    "status": "状态",
+    "empty": "暂无发票。",
+    "download": "下载发票",
+    "statuses": {
+      "paid": "已付款",
+      "open": "待付款",
+      "draft": "草稿",
+      "void": "已作废",
+      "uncollectible": "无法收款"
+    }
   },
   "topup": {
     "title": "充值积分",
@@ -102,7 +126,10 @@
     "estimatedCredits": "预估积分",
     "confirm": "充值 ${{amount}} 积分",
     "success": "积分充值成功",
-    "invalidAmount": "请输入有效金额"
+    "invalidAmount": "请输入有效金额",
+    "processing": "已收到付款。Stripe 确认后积分将立即到账。",
+    "failed": "付款未能完成。",
+    "payNow": "立即付款"
   },
   "checkout": {
     "title": "完成购买",
@@ -111,6 +138,28 @@
     "billedMonthly": "按月计费",
     "pay": "支付 {{amount}}",
     "enterPhone": "请输入 Mobile Money 的电话号码。",
-    "activated": "{{name}} 方案已激活 — 支付成功"
+    "activated": "{{name}} 方案已激活 — 支付成功",
+    "returned": "谢谢！Stripe 确认付款后，你的订阅将立即更新。",
+    "cancelled": "结账已取消，未产生任何费用。"
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "将于本计费周期结束时终止",
+    "freeMonthly": "免费积分每月更新",
+    "reactivate": "恢复订阅",
+    "cancel": "取消订阅",
+    "cancelConfirm": "在当前周期结束时取消订阅？"
+  },
+  "wallet": {
+    "saved": "计费设置已保存。",
+    "reserved": "已为运行中的任务预留 {{amount}}",
+    "autoRecharge": "自动充值",
+    "autoRechargeDesc": "积分低于阈值时自动充值。",
+    "threshold": "阈值（积分）",
+    "spendingLimit": "每月限额（积分）",
+    "noLimit": "无限额"
+  },
+  "stripe": {
+    "loadFailed": "无法加载 Stripe 付款表单。请检查网络连接。",
+    "unavailable": "Stripe 不可用。"
   }
 }

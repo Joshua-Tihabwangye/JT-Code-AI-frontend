@@ -14,5 +14,13 @@
   "default": "기본값",
   "creditsUnit": "크레딧",
   "messagesCount_one": "메시지 {{count}}개",
-  "messagesCount_other": "메시지 {{count}}개"
+  "messagesCount_other": "메시지 {{count}}개",
+  "dismiss": "해고하다",
+  "avatar": "화신",
+  "hidePassword": "비밀번호 숨기기",
+  "showPassword": "비밀번호 표시",
+  "clearSearch": "검색 지우기",
+  "confirm": "확인하다",
+  "notifications": "알림",
+  "dismissNotification": "알림 닫기"
 }

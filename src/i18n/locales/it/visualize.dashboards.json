@@ -1,0 +1,624 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "È",
+      "ne": "non lo è",
+      "contains": "contiene",
+      "starts_with": "inizia con",
+      "gt": "è maggiore di",
+      "gte": "è almeno",
+      "lt": "è inferiore a",
+      "lte": "è al massimo",
+      "blank": "è vuoto",
+      "not_blank": "non è vuoto"
+    },
+    "units": {
+      "day_one": "giorno",
+      "day_other": "giorni",
+      "week_one": "settimana",
+      "week_other": "settimane",
+      "month_one": "mese",
+      "month_other": "mesi",
+      "quarter_one": "trimestre",
+      "quarter_other": "quarti",
+      "year_one": "anno",
+      "year_other": "anni",
+      "day_many": "giorni",
+      "week_many": "settimane",
+      "month_many": "mesi",
+      "quarter_many": "quarti",
+      "year_many": "anni"
+    },
+    "describe": {
+      "all": "{{name}}: tutti",
+      "in": "{{name}} è {{values}}",
+      "inMore": "{{name}} è {{values}} +{{more}}",
+      "notIn": "{{name}} non è {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "contare",
+      "top": "Superiore {{n}} {{name}} di {{by}}",
+      "bottom": "In basso {{n}} {{name}} di {{by}}",
+      "relative": {
+        "last": "{{name}}: ultimo {{count}} {{unit}}",
+        "next": "{{name}}: successivo {{count}} {{unit}}",
+        "this": "{{name}}: questo {{unit}}"
+      },
+      "orJoin": "O",
+      "andJoin": "E",
+      "blank": "{{name}} è vuoto",
+      "notBlank": "{{name}} non è vuoto",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Tipo di filtro",
+    "types": {
+      "basic": "Di base",
+      "advanced": "Avanzato",
+      "top": "I migliori N",
+      "relative": "Data relativa"
+    },
+    "search": "Ricerca",
+    "searchValues": "Cerca valori",
+    "loadingValues": "Caricamento valori…",
+    "condition": "Condizione",
+    "value": "Valore",
+    "addAnd": "+ E",
+    "addOr": "+ Oppure",
+    "combineWith": "Combina con",
+    "and": "E",
+    "or": "O",
+    "removeSecond": "Rimuovi il secondo",
+    "topOrBottom": "In alto o in basso",
+    "topWord": "Superiore",
+    "bottomWord": "Metter il fondo a",
+    "howMany": "Quanti",
+    "byValue": "Per valore",
+    "byRows": "per numero di righe",
+    "byTotal": "per totale {{field}}",
+    "period": "Periodo",
+    "modes": {
+      "last": "Scorso",
+      "this": "Questo",
+      "next": "Prossimo"
+    },
+    "unit": "Unità",
+    "onVisual": "Filtra su questo oggetto visivo",
+    "onPage": "Filtri in questa pagina",
+    "onAllPages": "Filtri su tutte le pagine",
+    "active_one": "{{count}} filtro attivo",
+    "active_other": "Filtri {{count}} attivi",
+    "resetToAuthor": "Ripristina l'autore",
+    "lockedByAuthor": "Bloccato dall'autore",
+    "unlock": "Sblocco per gli spettatori",
+    "lock": "Blocco per gli spettatori",
+    "showToViewers": "Mostra agli spettatori",
+    "hideFromViewers": "Nascondi agli spettatori",
+    "remove": "Rimuovi il filtro",
+    "backToAuthor": "Torna al filtro dell'autore",
+    "cardName": "Nome della carta (facoltativo)",
+    "cardNameLabel": "Nome della scheda filtro",
+    "none": "Nessuno.",
+    "fieldToFilter": "Campo da filtrare",
+    "chooseField": "Scegli un campo..",
+    "add": "Aggiungi un filtro",
+    "active_many": "Filtri {{count}} attivi"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Realizzato dal modello AI · {{credits}} credito",
+    "sourceAiCredits_other": "Realizzato dal modello AI · {{credits}} crediti",
+    "sourceAiFree": "Realizzato dal modello AI · nessun credito",
+    "sourceRules": "Realizzato secondo le regole integrate (non è stato utilizzato il modello AI · nessun credito)",
+    "rowsWord": "righe",
+    "previewLabel_one": "Anteprima di {{name}}: {{count}} visivo",
+    "previewLabel_other": "Anteprima delle immagini {{name}}: {{count}}",
+    "describe": "Descrivi la pagina",
+    "describePlaceholder": "per esempio. Andamento delle vendite per regione e prodotto, con l'andamento mensile e i primi 10 clienti",
+    "designing": "Progettare…",
+    "tryAgain": "Riprova",
+    "previewPage": "Pagina di anteprima",
+    "costNote": "Utilizza un messaggio AI (crediti). Non cambia nulla finché non lo applichi.",
+    "proposal_one": "<b>{{name}} </b>: aggiunge una pagina con l'oggetto visivo {{count}}.",
+    "proposal_other": "<b>{{name}} </b>: aggiunge una pagina con immagini {{count}}.",
+    "proposalWithCalcs_one": "<b>{{name}} </b>: aggiunge una pagina con la visualizzazione {{count}} e i calcoli {{calcs}}.",
+    "proposalWithCalcs_other": "<b>{{name}} </b>: aggiunge una pagina con elementi visivi {{count}} e calcoli {{calcs}}.",
+    "discard": "Scartare",
+    "applying": "Applicazione…",
+    "apply": "Fare domanda a",
+    "close": "Vicino",
+    "suggestNote": "Elementi visivi adatti a questo set di dati (gratuiti, senza crediti AI).",
+    "looking": "Guardando i dati…",
+    "working": "Lavorando…",
+    "preview": "Anteprima",
+    "format": {
+      "title": "Formattazione automatica",
+      "question": "Come dovrebbe apparire?",
+      "other": "Qualunque altra cosa",
+      "otherPlaceholder": "Qualunque altra cosa? (chiede al modello AI)",
+      "note": "Le parole evidenziate sono libere; qualsiasi cosa digitata nella casella richiede il modello AI.",
+      "nothing": "Niente da cambiare per quella richiesta.",
+      "theme": "Tema",
+      "mode": "Modalità",
+      "density": "Densità",
+      "layout": "Disposizione",
+      "asIs": "così com'è",
+      "tidied": "scattati in griglia, titoli brevi",
+      "modes": {
+        "light": "Leggero",
+        "dark": "Buio",
+        "system": "Segui l'app"
+      },
+      "densities": {
+        "compact": "Compatto",
+        "comfortable": "Comodo"
+      },
+      "keywords": {
+        "executive": "Esecutivo",
+        "midnight": "Mezzanotte",
+        "dark": "Buio",
+        "light": "Leggero",
+        "compact": "Compatto",
+        "comfortable": "Comodo",
+        "aligned": "Allineato"
+      }
+    },
+    "askTitle": "Fai una domanda",
+    "askPlaceholder": "Chiedi informazioni su questi dati, ad es. i migliori prodotti per fatturato in Occidente",
+    "question": "Domanda",
+    "thinking": "Pensiero…",
+    "ask": "Chiedere",
+    "pin": "Aggiungi alla dashboard",
+    "explain": {
+      "title": "Spiega questo cambiamento",
+      "loading": "Rispetto al periodo precedente..",
+      "none": "Nessun singolo membro si distingue.",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · calcolato dai dati, senza AI"
+    },
+    "sourceAiCredits_many": "Realizzato dal modello AI · {{credits}} crediti",
+    "previewLabel_many": "Anteprima delle immagini {{name}}: {{count}}",
+    "proposal_many": "<b>{{name}} </b>: aggiunge una pagina con immagini {{count}}.",
+    "proposalWithCalcs_many": "<b>{{name}} </b>: aggiunge una pagina con elementi visivi {{count}} e calcoli {{calcs}}."
+  },
+  "views": {
+    "yourDefault": "La tua visualizzazione predefinita",
+    "openWith": "Apri con questa vista",
+    "delete": "Elimina questa visualizzazione",
+    "title": "Viste",
+    "mine": "Le mie opinioni",
+    "mineEmpty": "Salva ciò che vedi: filtri, affettatrici, drill, le tue modifiche.",
+    "namePlaceholder": "Dai un nome a questa vista",
+    "save": "Salva",
+    "forMe": "Per me",
+    "modes": {
+      "system": "Sistema",
+      "light": "Leggero",
+      "dark": "Buio"
+    },
+    "densities": {
+      "comfortable": "Comodo",
+      "compact": "Compatto"
+    },
+    "reset": "Ripristina le impostazioni predefinite"
+  },
+  "personalize": {
+    "title": "Personalizza questa immagine",
+    "close": "Vicino",
+    "onlyYou": "Solo tu vedi questi cambiamenti.",
+    "type": "Tipo visivo",
+    "aggregation": "Aggregazione",
+    "remove": "Rimuovi {{field}}",
+    "add": "Aggiungere",
+    "legend": "Leggenda",
+    "dataLabels": "Etichette dati",
+    "sort": "Ordinare",
+    "sorts": {
+      "largest": "Prima il più grande",
+      "smallest": "Prima il più piccolo",
+      "az": "A→Z",
+      "za": "Z→A"
+    },
+    "undo": "Disfare",
+    "reset": "Reimposta questo oggetto visivo"
+  },
+  "share": {
+    "embedTitle": "Pannello di controllo",
+    "copied": "Copiato",
+    "title": "Condividi dashboard",
+    "heading": "Condividi “{{name}}”",
+    "close": "Vicino",
+    "workspace": "Tutti nel mio spazio di lavoro",
+    "workspaceNote": "I colleghi lo aprono accedendo come spettatori: possono personalizzare le immagini e salvare le proprie visualizzazioni.",
+    "publicNote": "Collegamenti pubblici: chiunque abbia il collegamento può visualizzare questa dashboard e utilizzare i relativi filtri dei dati: in sola lettura, senza effettuare l'accesso.",
+    "kind": "Tipo",
+    "link": "Collegamento",
+    "embed": "Incorpora",
+    "labelPlaceholder": "Etichetta (ad esempio pacchetto di cartone)",
+    "label": "Etichetta",
+    "expires": "Scade",
+    "expiryDate": "Data di scadenza",
+    "creating": "Creazione…",
+    "createEmbed": "Crea codice di incorporamento",
+    "createLink": "Crea collegamento",
+    "copyNow": "Copialo adesso: per sicurezza l'indirizzo completo non verrà più mostrato.",
+    "address": "Condividi indirizzo",
+    "embedCode": "Incorpora il codice",
+    "copyLink": "Copia collegamento",
+    "copyEmbed": "Copia il codice di incorporamento",
+    "links_one": "Collegamenti ({{count}} attivi)",
+    "links_other": "Collegamenti ({{count}} attivi)",
+    "loading": "Caricamento…",
+    "none": "Nessun collegamento ancora.",
+    "by": "di {{name}}",
+    "unknown": "sconosciuto",
+    "revokedOn": "Revocato {{date}}",
+    "expiresOn": "Scadenza {{date}}",
+    "noExpiry": "Nessuna scadenza",
+    "lastOpened": "ultima apertura {{date}}",
+    "notOpened": "non ancora aperto",
+    "revoke": "Revocare",
+    "links_many": "Collegamenti ({{count}} attivi)"
+  },
+  "header": {
+    "filtersApply_one": "Si applica il filtro {{count}}",
+    "filtersApply_other": "Si applicano i filtri {{count}}",
+    "drillUp": "Approfondire",
+    "drillModeOn": "Modalità Drill attiva: fare clic su un punto per eseguire il drill",
+    "drillMode": "Modalità Drill: fare clic su un punto per eseguire il drill",
+    "nextLevel": "Vai al livello successivo",
+    "personalized": "Personalizzato per te: modifica o ripristina",
+    "personalize": "Personalizza questa immagine",
+    "focus": "Modalità di messa a fuoco",
+    "more": "Più opzioni",
+    "filtersOnVisual": "Filtra su questo oggetto visivo",
+    "showAsVisual": "Mostra come visivo",
+    "showAsTable": "Mostra come tabella",
+    "exportCsv": "Esporta dati (CSV)",
+    "copyImage": "Copia come immagine",
+    "leaveSpotlight": "Lascia i riflettori",
+    "spotlight": "Riflettore",
+    "closeFocus": "Modalità di messa a fuoco ravvicinata",
+    "filtersApply_many": "Si applicano i filtri {{count}}"
+  },
+  "pointMenu": {
+    "drillThrough": "Eseguire il drill-through ▸ {{page}}",
+    "explain": "Spiega questo cambiamento",
+    "keepOnly": "Conserva solo",
+    "exclude": "Escludere"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Vuoto",
+        "hint": "Una pagina vuota su cui costruire."
+      },
+      "auto": {
+        "label": "Auto",
+        "hint": "KPI, una tendenza, una ripartizione, una mappa e filtri dei dati, scelti dai tuoi dati."
+      },
+      "template": {
+        "label": "Modello",
+        "hint": "Un layout già pronto: mappa le tue colonne su di esso."
+      },
+      "ai": {
+        "label": "Chiedi all'AI",
+        "hint": "Descrivere la pagina; visualizzalo in anteprima prima che venga creato."
+      }
+    },
+    "kinds": {
+      "number": "un numero",
+      "date": "una data",
+      "category": "una categoria"
+    },
+    "chooseColumn": "Scegli una colonna..",
+    "skip": "(saltare)",
+    "untitled": "Cruscotto senza titolo",
+    "chooseTemplate": "Scegli un modello.",
+    "title": "Nuovo cruscotto",
+    "close": "Vicino",
+    "howToStart": "Come iniziare",
+    "dataset": "Set di dati",
+    "addDatasetFirst": "Aggiungi prima un set di dati",
+    "name": "Nome",
+    "data": "Dati",
+    "overviewName": "{{name}} panoramica",
+    "loadingTemplates": "Caricamento modelli…",
+    "allTemplates": "Tutti i modelli",
+    "matchColumns": "Abbina le tue colonne",
+    "stillNeeded": "Ancora necessario: {{roles}}.",
+    "createDashboard": "Crea dashboard",
+    "cancel": "Cancellare",
+    "creating": "Creazione…",
+    "createFromTemplate": "Crea da modello",
+    "build": "Costruisci dashboard",
+    "create": "Creare",
+    "templateLayout": "disposizione {{name}}"
+  },
+  "templates": {
+    "sales": {
+      "name": "Panoramica delle vendite",
+      "description": "Entrate, profitti e tendenze per prodotto e regione.",
+      "roles": {
+        "date": "Data",
+        "amount": "Reddito",
+        "profit": "Profitto",
+        "quantity": "Unità",
+        "target": "Bersaglio",
+        "product": "Prodotto",
+        "region": "Regione",
+        "channel": "Canale"
+      }
+    },
+    "crm": {
+      "name": "pipeline CRM",
+      "description": "Offerte per fase e proprietario, valore vinto e conversione.",
+      "roles": {
+        "date": "Data",
+        "amount": "Valore dell'affare",
+        "stage": "Palcoscenico",
+        "owner": "Proprietario",
+        "source": "Fonte principale"
+      }
+    },
+    "finance": {
+      "name": "Conto economico finanziario",
+      "description": "Ricavi, costi e margine nel tempo e per conto.",
+      "roles": {
+        "date": "Data",
+        "amount": "Reddito",
+        "cost": "Costi",
+        "account": "Conto/categoria",
+        "budget": "Bilancio"
+      }
+    },
+    "hr": {
+      "name": "Analisi delle risorse umane",
+      "description": "Organico, stipendio e soddisfazione per dipartimento.",
+      "roles": {
+        "date": "Data",
+        "employee": "ID dipendente",
+        "department": "Dipartimento",
+        "salary": "Stipendio",
+        "rating": "Soddisfazione/voto",
+        "status": "Stato",
+        "gender": "Genere"
+      }
+    },
+    "web": {
+      "name": "Analisi web",
+      "description": "Sessioni, utenti e conversioni per fonte e pagina.",
+      "roles": {
+        "date": "Data",
+        "sessions": "Sessioni/visite",
+        "users": "Utenti",
+        "conversions": "Conversioni",
+        "source": "Sorgente di traffico",
+        "page": "Pagina"
+      }
+    },
+    "mobile": {
+      "name": "Analisi delle app mobili",
+      "description": "Utenti attivi, installazioni e arresti anomali per piattaforma e versione.",
+      "roles": {
+        "date": "Data",
+        "active": "Utenti attivi",
+        "installs": "Installa",
+        "crashes": "Si blocca",
+        "platform": "Piattaforma",
+        "version": "Versione dell'app"
+      }
+    },
+    "marketing": {
+      "name": "Campagne di marketing",
+      "description": "Spesa, clic, conversioni e costo per conversione per campagna.",
+      "roles": {
+        "date": "Data",
+        "spend": "Trascorrere",
+        "clicks": "Clic",
+        "conversions": "Conversioni",
+        "campaign": "Campagna",
+        "channel": "Canale"
+      }
+    },
+    "inventory": {
+      "name": "Inventario e operazioni",
+      "description": "Scorte disponibili, movimento e rischio di riordino per articolo e sito.",
+      "roles": {
+        "date": "Data",
+        "stock": "Stock/quantità",
+        "item": "Articolo",
+        "site": "Magazzino/sito",
+        "value": "Valore delle azioni",
+        "reorder": "Livello di riordino"
+      }
+    },
+    "retail": {
+      "name": "Vedere al dettaglio",
+      "description": "Vendite in negozio, dimensioni del carrello e best seller.",
+      "roles": {
+        "date": "Data",
+        "amount": "Reddito",
+        "quantity": "Unità",
+        "store": "Negozio/regione",
+        "product": "Prodotto",
+        "rating": "Soddisfazione"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} da",
+    "to": "{{field}} a",
+    "clear": "Chiaro",
+    "minimum": "{{field}} minimo",
+    "maximum": "{{field}} massimo",
+    "period": "Periodo",
+    "allTime": "Tutto il tempo",
+    "howMany": "Quanti",
+    "unit": "Unità",
+    "operator": "Operatore",
+    "typeValue": "Digita un {{field}}",
+    "value": "valore {{field}}",
+    "collapse": "Crollo",
+    "expand": "Espandere",
+    "all": "Tutto",
+    "selected_one": "{{count}} selezionato",
+    "selected_other": "{{count}} selezionato",
+    "searchPlaceholder": "Cerca o incolla un elenco",
+    "search": "Cerca {{field}}",
+    "selectAll": "Seleziona tutto",
+    "selected_many": "{{count}} selezionato"
+  },
+  "local": {
+    "snapshotEmpty": "Questa istantanea non ha un grafico.",
+    "snapshot": "Istantanea",
+    "snapshotOn": "Istantanea · {{date}}",
+    "chooseParameter": "Scegli un parametro in Formato → Parametro.",
+    "button": "Pulsante",
+    "noViews": "Aggiungi visualizzazioni (segnalibri) per elencarle qui.",
+    "views": "Viste",
+    "pages": "Pagine"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} cruscotto",
+    "newDashboard": "Nuovo cruscotto",
+    "overview": "Panoramica",
+    "title": "Aggiungi alla dashboard",
+    "close": "Vicino",
+    "pinnedTo": "Fissato a <b>{{name}} </b>.",
+    "stay": "Resta qui",
+    "open": "Apri il cruscotto",
+    "dashboard": "Pannello di controllo",
+    "newOption": "+ Nuovo cruscotto…",
+    "name": "Nome",
+    "page": "Pagina",
+    "cancel": "Cancellare",
+    "pinning": "Appuntamento…",
+    "pin": "Spillo"
+  },
+  "page": {
+    "backFromDetail": "Indietro",
+    "back": "Tutti i dashboard",
+    "pages": "Pagine",
+    "clear": "Chiaro",
+    "clearSelection": "Cancella selezione",
+    "apply": "Fare domanda a",
+    "clearSlicers": "Cancella tutte le affettatrici",
+    "updating": "Aggiornamento…",
+    "filters": "Filtri",
+    "qa": "Domande e risposte",
+    "present": "Presente",
+    "share": "Condividere",
+    "edit": "Modificare",
+    "painting": "Pagina del dipinto {{page}} di {{total}}…",
+    "buildingPdf": "Creazione del PDF…",
+    "exported_one": "Pagina {{count}} esportata.",
+    "exported_other": "Pagine {{count}} esportate.",
+    "exportFailed": "L'esportazione non è riuscita.",
+    "notFound": "Cruscotto non trovato.",
+    "filtersActive_one": "{{count}} filtro attivo",
+    "filtersActive_other": "Filtri {{count}} attivi",
+    "presentation": "Presentazione",
+    "previousPage": "Pagina precedente",
+    "nextPage": "Pagina successiva",
+    "pause": "Pausa",
+    "autoPlay": "Riproduzione automatica",
+    "leavePresentation": "Lascia la presentazione",
+    "keepExclude": "I tuoi filtri Mantieni/Escludi",
+    "excluding": "Escluso {{values}}",
+    "only": "Solo {{values}}",
+    "dashboard": "Pannello di controllo",
+    "seconds": "{{value}} s",
+    "exported_many": "Pagine {{count}} esportate.",
+    "filtersActive_many": "Filtri {{count}} attivi"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Rapporto (A ÷ B), ad es. margine di profitto"
+    },
+    "average-per-row": {
+      "label": "Media per riga (ad esempio valore medio dell'ordine)"
+    },
+    "vs-target": {
+      "label": "Rispetto all'obiettivo (%)"
+    },
+    "difference": {
+      "label": "Differenza (A - B)"
+    },
+    "per-distinct": {
+      "label": "Valore per articolo distinto (ad esempio entrate per cliente)"
+    },
+    "fields": {
+      "numerator": "Numeratore",
+      "denominator": "Denominatore",
+      "value": "Valore",
+      "actual": "Reale",
+      "target": "Bersaglio",
+      "minus": "Meno",
+      "distinctItem": "Articolo distinto"
+    },
+    "names": {
+      "perRow": "{{a}} per riga",
+      "vsTarget": "{{a}} rispetto all'obiettivo",
+      "perDistinct": "{{a}} al {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Cruscotto senza titolo",
+    "title": "Cruscotti",
+    "subtitle": "KPI, grafici e filtri dei dati su un unico schermo, tutti connessi.",
+    "noData": "Aggiungi prima un set di dati",
+    "blank": "Vuoto",
+    "template": "Modello",
+    "building": "Edificio…",
+    "auto": "Costruisci dashboard",
+    "empty": "Ancora nessuna dashboard. Scegli un set di dati e creane uno con un clic.",
+    "duplicate": "Duplicato",
+    "deleteTitle": "Eliminare il pannello di controllo?",
+    "deleteText": "{{name}} e le relative versioni salvate verranno rimosse. I set di dati non sono interessati.",
+    "more": "Più dati",
+    "start": "Inizia qui",
+    "import": "Carica o incolla i dati",
+    "loading": "Caricamento…",
+    "library": "Le mie immagini",
+    "allVisuals": "Tutti gli elementi visivi salvati",
+    "libraryHint": "Inseriscine uno qualsiasi in una dashboard dal menu Inserisci dell'editor.",
+    "delete": "Eliminare",
+    "datasetLabel": "Set di dati per una nuova dashboard",
+    "show": "Spettacolo",
+    "filter": {
+      "all": "Tutto",
+      "mine": "Mio",
+      "shared": "Condiviso con me"
+    },
+    "pages_one": "{{count}} pagina",
+    "pages_other": "{{count}} pagine",
+    "roles": {
+      "owner": "proprietario",
+      "editor": "editore",
+      "viewer": "spettatore"
+    },
+    "sharedFlag": "condiviso",
+    "deleteNamed": "Elimina {{name}}",
+    "pages_many": "{{count}} pagine"
+  },
+  "visual": {
+    "target": "Obiettivo {{value}}",
+    "progress": "{{value}} di {{target}}",
+    "total": "Totale",
+    "failed": "Impossibile disegnare questa immagine.",
+    "empty": "Nessun dato per i filtri attuali",
+    "clearSelection": "Cancella selezione",
+    "nothing": "Niente da mostrare."
+  },
+  "shared": {
+    "loading": "Caricamento dashboard…",
+    "missingTitle": "Questo collegamento non è disponibile",
+    "missingText": "Potrebbe essere stato revocato o essere scaduto. Chiedi alla persona che lo ha condiviso un nuovo collegamento.",
+    "pages": "Pagine",
+    "clearSelection": "Cancella selezione",
+    "clearSlicers": "Affettatrici trasparenti",
+    "readOnly": "Visualizzazione condivisa di sola lettura"
+  },
+  "capture": {
+    "unsupported": "Questo browser non può disegnare la pagina.",
+    "failed": "Impossibile dipingere la pagina.",
+    "timeout": "La pagina ha impiegato troppo tempo per essere disegnata."
+  }
+}

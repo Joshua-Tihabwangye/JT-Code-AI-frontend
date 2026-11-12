@@ -60,6 +60,7 @@ export function LanguageMenu({ collapsed = false }: LanguageMenuProps) {
         <FloatingPanel
           anchorRef={triggerRef}
           placement={collapsed ? 'side-down' : 'below'}
+          edgeSelector=".sidebar"
           width={collapsed ? 230 : 0}
           panelRef={popoverRef}
           className={`language-menu__popover${collapsed ? ' language-menu__popover--collapsed' : ''}`}

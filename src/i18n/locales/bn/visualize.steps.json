@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "পরিষ্কার",
+    "rows": "সারি",
+    "columns": "কলাম",
+    "text": "পাঠ্য",
+    "numbers": "সংখ্যা এবং তারিখ",
+    "shape": "আকৃতি",
+    "combine": "একত্রিত করুন"
+  },
+  "kinds": {
+    "removeDuplicates": "ডুপ্লিকেট সারি সরান",
+    "trim": "অতিরিক্ত স্পেস ট্রিম করুন",
+    "removeBlankRows": "ফাঁকা সারি সরান",
+    "fillBlanks": "শূন্যস্থান পূরণ করুন",
+    "replaceValues": "মান প্রতিস্থাপন করুন",
+    "changeType": "ধরন পরিবর্তন করুন",
+    "outliers": "বহিরাগতদের হ্যান্ডেল",
+    "filterRows": "ফিল্টার সারি",
+    "sort": "সারি সাজান",
+    "keepRows": "উপরে বা নীচের সারি রাখুন",
+    "removeColumns": "কলাম সরান",
+    "keepColumns": "শুধুমাত্র এই কলাম রাখুন",
+    "rename": "একটি কলাম পুনঃনামকরণ করুন",
+    "calculatedColumn": "গণনা করা কলাম",
+    "conditionalColumn": "শর্তাধীন কলাম",
+    "splitColumn": "একটি কলাম বিভক্ত করুন",
+    "mergeColumns": "কলাম মার্জ করুন",
+    "textCase": "টেক্সট কেস পরিবর্তন করুন",
+    "bins": "বিনে গ্রুপ সংখ্যা",
+    "dateParts": "তারিখ অংশ নিষ্কাশন",
+    "dateTable": "একটি তারিখ টেবিল তৈরি করুন (ক্যালেন্ডার)",
+    "groupBy": "দ্বারা গ্রুপ",
+    "pivot": "পিভট (সারি → কলাম)",
+    "unpivot": "আনপিভট (কলাম → সারি)",
+    "merge": "অন্য ডেটাসেটের সাথে মার্জ করুন",
+    "append": "অন্য ডেটাসেট যোগ করুন"
+  },
+  "fields": {
+    "compareColumns": "শুধুমাত্র এই কলাম তুলনা করুন",
+    "trimColumns": "কলাম (খালি হলে সমস্ত পাঠ্য)",
+    "blankIn": "মধ্যে ফাঁকা",
+    "removeWhen": "যখন সরান",
+    "column": "কলাম",
+    "columns": "কলাম",
+    "with": "সঙ্গে",
+    "value": "মান",
+    "find": "খুঁজুন",
+    "replaceWith": "দিয়ে প্রতিস্থাপন করুন",
+    "match": "ম্যাচ",
+    "to": "প্রতি",
+    "action": "অ্যাকশন",
+    "rowsThatMatch": "সারি যে মিল",
+    "conditions": "শর্তাবলী",
+    "sortBy": "অনুসারে সাজান",
+    "keep": "রাখা",
+    "howMany": "কতগুলো",
+    "newName": "নতুন নাম",
+    "newColumn": "নতুন কলাম",
+    "formula": "সূত্র",
+    "ifThen": "যদি … তারপর",
+    "otherwise": "অন্যথায়",
+    "at": "এ",
+    "intoParts": "মধ্যে (অংশ)",
+    "newNames": "নতুন নাম (ঐচ্ছিক)",
+    "separator": "বিভাজক",
+    "case": "মামলা",
+    "bins": "বিনস",
+    "howManyBins": "কয়টি বিন",
+    "edges": "প্রান্ত",
+    "dateColumn": "তারিখ কলাম",
+    "parts": "অংশ",
+    "fromDatesIn": "তারিখ থেকে",
+    "fiscalStart": "অর্থবছর শুরু হয় মাসে",
+    "groupBy": "দ্বারা গ্রুপ",
+    "calculate": "হিসাব করুন",
+    "keepAsRows": "সারি হিসাবে রাখুন",
+    "valuesBecomeColumns": "মান কলাম হয়",
+    "fillWith": "দিয়ে পূরণ করুন",
+    "aggregation": "সমষ্টি",
+    "keepTheseColumns": "এই কলাম রাখুন",
+    "nameColumn": "নাম কলাম",
+    "valueColumn": "মান কলাম",
+    "dataset": "ডেটাসেট",
+    "keyHere": "এই তথ্যে কী",
+    "keyOther": "অন্য মধ্যে কী"
+  },
+  "options": {
+    "blankHow": {
+      "any": "তাদের যে কোনো একটি ফাঁকা",
+      "all": "তাদের সব ফাঁকা"
+    },
+    "fill": {
+      "mean": "গড়",
+      "median": "মাঝামাঝি",
+      "mode": "সবচেয়ে সাধারণ মান",
+      "zero": "শূন্য",
+      "down": "উপরের মান (নিচে পূরণ করুন)",
+      "up": "নীচের মান (পূরণ করুন)",
+      "value": "আমার নিজের মান"
+    },
+    "replaceMatch": {
+      "exact": "পুরো মান",
+      "contains": "লেখার অংশ"
+    },
+    "types": {
+      "number": "সংখ্যা",
+      "date": "তারিখ",
+      "text": "পাঠ্য"
+    },
+    "outliers": {
+      "cap": "সীমাতে ক্যাপ",
+      "remove": "সেই সারিগুলি সরান",
+      "flag": "একটি নতুন কলামে ফ্ল্যাগ করুন"
+    },
+    "filterMode": {
+      "keep": "রাখা",
+      "remove": "সরান"
+    },
+    "combine": {
+      "and": "সব শর্ত",
+      "or": "যে কোন শর্ত"
+    },
+    "keepRows": {
+      "top": "প্রথম সারি",
+      "bottom": "শেষ সারি"
+    },
+    "textCase": {
+      "title": "শিরোনাম মামলা",
+      "upper": "উপরের",
+      "lower": "নিম্ন"
+    },
+    "bins": {
+      "equal": "সমান প্রস্থ",
+      "edges": "আমার নিজের প্রান্ত"
+    },
+    "mergeHow": {
+      "left": "এই ডেটার সমস্ত সারি",
+      "inner": "শুধুমাত্র মিলে যাওয়া সারি",
+      "outer": "উভয়ের সমস্ত সারি"
+    },
+    "aggs": {
+      "sum": "সমষ্টি",
+      "avg": "গড়",
+      "count": "গণনা",
+      "distinct": "স্বতন্ত্র গণনা",
+      "min": "মিন",
+      "max": "সর্বোচ্চ",
+      "median": "মাঝামাঝি"
+    }
+  },
+  "parts": {
+    "year": "বছর",
+    "quarter": "কোয়ার্টার",
+    "month": "মাস",
+    "monthName": "মাসের নাম",
+    "week": "সপ্তাহ",
+    "weekday": "সপ্তাহের দিন",
+    "weekdayName": "সপ্তাহের দিন নাম",
+    "day": "দিন",
+    "hour": "ঘন্টা"
+  },
+  "conditionOps": {
+    "eq": "সমান",
+    "ne": "সমান হয় না",
+    "in": "এক",
+    "notIn": "এর একটি নয়",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "মধ্যে",
+    "contains": "ধারণ করে",
+    "startsWith": "দিয়ে শুরু হয়",
+    "endsWith": "দিয়ে শেষ হয়",
+    "blank": "ফাঁকা",
+    "notBlank": "ফাঁকা নয়"
+  },
+  "summary": {
+    "keepConditions": "{{count}} শর্ত(গুলি) রাখুন",
+    "removeConditions": "{{count}} শর্ত(গুলি) সরান",
+    "by": "{{columns}} দ্বারা",
+    "anotherDataset": "আরেকটি ডেটাসেট",
+    "types": {
+      "number": "সংখ্যা",
+      "date": "তারিখ",
+      "text": "পাঠ্য"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "সদৃশ সরান",
+    "keepOnePerId": "আইডি প্রতি এক সারি রাখুন",
+    "removeMissingId": "আইডি ছাড়া সারি সরান",
+    "fillBlanks": "শূন্যস্থান পূরণ করুন",
+    "blankOut": "\"{{value}}\" খালি করুন",
+    "trimSpaces": "স্পেস ট্রিম করুন",
+    "toNumber": "সংখ্যায় রূপান্তর করুন",
+    "toDate": "তারিখে রূপান্তর করুন",
+    "consistentSpelling": "বানান সামঞ্জস্যপূর্ণ করুন",
+    "capOutliers": "ক্যাপ outliers",
+    "removeColumn": "কলাম সরান"
+  }
+}

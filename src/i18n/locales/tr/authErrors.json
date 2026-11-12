@@ -6,8 +6,6 @@
   "invalidEmail": "Geçerli bir e-posta adresi girin.",
   "passwordMinLength": "Şifre en az 8 karakter içermelidir.",
   "passwordLetter": "Şifre en az bir harf içermelidir.",
-  "passwordUppercase": "Şifre bir büyük harf içermelidir.",
-  "passwordLowercase": "Şifre bir küçük harf içermelidir.",
   "passwordNumber": "Şifre bir rakam içermelidir.",
   "selectCountry": "Ülkenizi seçin.",
   "selectDialCode": "Bir arama kodu seçin.",
@@ -19,5 +17,13 @@
   "passwordRequired": "Şifrenizi girin.",
   "authenticationFailed": "Kimlik doğrulama başarısız oldu.",
   "finishingSignIn": "Oturum açma tamamlanıyor…",
-  "redirecting": "Yönlendiriliyor…"
+  "redirecting": "Yönlendiriliyor…",
+  "accountExists": "Bu e-postaya sahip bir hesap zaten mevcut.",
+  "invalidCredentials": "Geçersiz e-posta veya şifre.",
+  "noAccount": "Bu e-posta adresi için hesap mevcut değil.",
+  "invalidResetCode": "Geçersiz veya süresi dolmuş sıfırlama kodu.",
+  "signInToReset": "Şifrenizi sıfırlamak için oturum açın.",
+  "providerDisabled": "{{provider}} ile oturum açma etkin değil. E-postanızı ve şifrenizi kullanın.",
+  "serviceUnreachable": "Oturum açma hizmetine ulaşılamıyor. Bağlantınızı kontrol edip tekrar deneyin.",
+  "invalidCountry": "Geçersiz ülke."
 }

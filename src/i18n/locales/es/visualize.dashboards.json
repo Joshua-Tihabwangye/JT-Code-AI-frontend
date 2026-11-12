@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "es",
+      "ne": "no es",
+      "contains": "contiene",
+      "starts_with": "empieza por",
+      "gt": "es mayor que",
+      "gte": "es como mínimo",
+      "lt": "es menor que",
+      "lte": "es como máximo",
+      "blank": "está vacío",
+      "not_blank": "no está vacío"
+    },
+    "units": {
+      "day_one": "día",
+      "day_other": "días",
+      "week_one": "semana",
+      "week_other": "semanas",
+      "month_one": "mes",
+      "month_other": "meses",
+      "quarter_one": "trimestre",
+      "quarter_other": "trimestres",
+      "year_one": "año",
+      "year_other": "años"
+    },
+    "describe": {
+      "all": "{{name}}: todos",
+      "in": "{{name}} es {{values}}",
+      "inMore": "{{name}} es {{values}} +{{more}}",
+      "notIn": "{{name}} no es {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "recuento",
+      "top": "{{n}} primeros de {{name}} por {{by}}",
+      "bottom": "{{n}} últimos de {{name}} por {{by}}",
+      "relative": {
+        "last": "{{name}}: período anterior de {{count}} {{unit}}",
+        "next": "{{name}}: período siguiente de {{count}} {{unit}}",
+        "this": "{{name}}: {{unit}} actual"
+      },
+      "orJoin": " o ",
+      "andJoin": " y ",
+      "blank": "{{name}} está vacío",
+      "notBlank": "{{name}} no está vacío",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Tipo de filtro",
+    "types": {
+      "basic": "Básico",
+      "advanced": "Avanzado",
+      "top": "N superior",
+      "relative": "Fecha relativa"
+    },
+    "search": "Buscar",
+    "searchValues": "Buscar valores",
+    "loadingValues": "Cargando valores…",
+    "condition": "Condición",
+    "value": "Valor",
+    "addAnd": "+ Y",
+    "addOr": "+ O",
+    "combineWith": "Combinar con",
+    "and": "Y",
+    "or": "O",
+    "removeSecond": "Quitar la segunda",
+    "topOrBottom": "Superior o inferior",
+    "topWord": "Superior",
+    "bottomWord": "Inferior",
+    "howMany": "Cuántos",
+    "byValue": "Por valor",
+    "byRows": "por número de filas",
+    "byTotal": "por total de {{field}}",
+    "period": "Período",
+    "modes": {
+      "last": "En los últimos",
+      "this": "En este",
+      "next": "En los próximos"
+    },
+    "unit": "Unidad",
+    "onVisual": "Filtros en este objeto visual",
+    "onPage": "Filtros en esta página",
+    "onAllPages": "Filtros en todas las páginas",
+    "active_one": "{{count}} filtro activo",
+    "active_other": "{{count}} filtros activos",
+    "resetToAuthor": "Restablecer al del autor",
+    "lockedByAuthor": "Bloqueado por el autor",
+    "unlock": "Desbloquear para los lectores",
+    "lock": "Bloquear para los lectores",
+    "showToViewers": "Mostrar a los lectores",
+    "hideFromViewers": "Ocultar a los lectores",
+    "remove": "Quitar filtro",
+    "backToAuthor": "Volver al filtro del autor",
+    "cardName": "Nombre de la tarjeta (opcional)",
+    "cardNameLabel": "Nombre de la tarjeta de filtro",
+    "none": "Ninguno.",
+    "fieldToFilter": "Campo para filtrar",
+    "chooseField": "Elige un campo…",
+    "add": "Agregar un filtro"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Creado por el modelo de IA · {{credits}} crédito",
+    "sourceAiCredits_other": "Creado por el modelo de IA · {{credits}} créditos",
+    "sourceAiFree": "Creado por el modelo de IA · sin créditos",
+    "sourceRules": "Creado por las reglas integradas (no se usó el modelo de IA · sin créditos)",
+    "rowsWord": "filas",
+    "previewLabel_one": "Vista previa de {{name}}: {{count}} objeto visual",
+    "previewLabel_other": "Vista previa de {{name}}: {{count}} objetos visuales",
+    "describe": "Describe la página",
+    "describePlaceholder": "p. ej., Rendimiento de ventas por región y producto, con la tendencia mensual y los 10 mejores clientes",
+    "designing": "Diseñando…",
+    "tryAgain": "Intentar de nuevo",
+    "previewPage": "Previsualizar página",
+    "costNote": "Usa un mensaje de IA (créditos). No cambia nada hasta que lo apliques.",
+    "proposal_one": "<b>{{name}}</b>: agrega una página con {{count}} objeto visual.",
+    "proposal_other": "<b>{{name}}</b>: agrega una página con {{count}} objetos visuales.",
+    "proposalWithCalcs_one": "<b>{{name}}</b>: agrega una página con {{count}} objeto visual y {{calcs}} cálculo(s).",
+    "proposalWithCalcs_other": "<b>{{name}}</b>: agrega una página con {{count}} objetos visuales y {{calcs}} cálculo(s).",
+    "discard": "Descartar",
+    "applying": "Aplicando…",
+    "apply": "Aplicar",
+    "close": "Cerrar",
+    "suggestNote": "Objetos visuales adecuados para este conjunto de datos (gratis, sin créditos de IA).",
+    "looking": "Analizando los datos…",
+    "working": "Trabajando…",
+    "preview": "Vista previa",
+    "format": {
+      "title": "Formato automático",
+      "question": "¿Qué aspecto debería tener?",
+      "other": "Otra cosa",
+      "otherPlaceholder": "¿Algo más? (se pregunta al modelo de IA)",
+      "note": "Las palabras resaltadas son gratuitas; lo que escribas en el cuadro se pregunta al modelo de IA.",
+      "nothing": "No hay nada que cambiar para esa solicitud.",
+      "theme": "Tema",
+      "mode": "Modo",
+      "density": "Densidad",
+      "layout": "Diseño",
+      "asIs": "sin cambios",
+      "tidied": "ajustado a la cuadrícula, títulos cortos",
+      "modes": {
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Igual que la aplicación"
+      },
+      "densities": {
+        "compact": "Compacta",
+        "comfortable": "Cómoda"
+      },
+      "keywords": {
+        "executive": "Ejecutivo",
+        "midnight": "Medianoche",
+        "dark": "Oscuro",
+        "light": "Claro",
+        "compact": "Compacto",
+        "comfortable": "Cómodo",
+        "aligned": "Alineado"
+      }
+    },
+    "askTitle": "Hacer una pregunta",
+    "askPlaceholder": "Pregunta sobre estos datos, p. ej., productos con más ingresos en el Oeste",
+    "question": "Pregunta",
+    "thinking": "Pensando…",
+    "ask": "Preguntar",
+    "pin": "Anclar al panel",
+    "explain": {
+      "title": "Explicar este cambio",
+      "loading": "Comparando con el período anterior…",
+      "none": "Ningún miembro destaca por sí solo.",
+      "periods": "{{from}} – {{to}} frente a {{previousFrom}} – {{previousTo}} · calculado a partir de los datos, sin IA"
+    }
+  },
+  "views": {
+    "yourDefault": "Tu vista predeterminada",
+    "openWith": "Abrir con esta vista",
+    "delete": "Eliminar esta vista",
+    "title": "Vistas",
+    "mine": "Mis vistas",
+    "mineEmpty": "Guarda lo que ves: filtros, segmentaciones, exploración y tus cambios.",
+    "namePlaceholder": "Ponle nombre a esta vista",
+    "save": "Guardar",
+    "forMe": "Para mí",
+    "modes": {
+      "system": "Sistema",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "densities": {
+      "comfortable": "Cómoda",
+      "compact": "Compacta"
+    },
+    "reset": "Restablecer valores predeterminados"
+  },
+  "personalize": {
+    "title": "Personalizar este objeto visual",
+    "close": "Cerrar",
+    "onlyYou": "Solo tú ves estos cambios.",
+    "type": "Tipo de objeto visual",
+    "aggregation": "Agregación",
+    "remove": "Quitar {{field}}",
+    "add": "Agregar",
+    "legend": "Leyenda",
+    "dataLabels": "Etiquetas de datos",
+    "sort": "Ordenar",
+    "sorts": {
+      "largest": "De mayor a menor",
+      "smallest": "De menor a mayor",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "Deshacer",
+    "reset": "Restablecer este objeto visual"
+  },
+  "share": {
+    "embedTitle": "Panel",
+    "copied": "Copiado",
+    "title": "Compartir panel",
+    "heading": "Compartir “{{name}}”",
+    "close": "Cerrar",
+    "workspace": "Todos los miembros de mi espacio de trabajo",
+    "workspaceNote": "Tus compañeros lo abren con su sesión iniciada, como lectores: pueden personalizar objetos visuales y guardar sus propias vistas.",
+    "publicNote": "Vínculos públicos: cualquier persona con el vínculo puede ver este panel y usar sus segmentaciones, en modo de solo lectura y sin iniciar sesión.",
+    "kind": "Tipo",
+    "link": "Vínculo",
+    "embed": "Insertar",
+    "labelPlaceholder": "Etiqueta (p. ej., Dosier del consejo)",
+    "label": "Etiqueta",
+    "expires": "Caduca",
+    "expiryDate": "Fecha de caducidad",
+    "creating": "Creando…",
+    "createEmbed": "Crear código para insertar",
+    "createLink": "Crear vínculo",
+    "copyNow": "Cópialo ahora: por seguridad, la dirección completa no se vuelve a mostrar.",
+    "address": "Dirección para compartir",
+    "embedCode": "Código para insertar",
+    "copyLink": "Copiar vínculo",
+    "copyEmbed": "Copiar código para insertar",
+    "links_one": "Vínculos ({{count}} activo)",
+    "links_other": "Vínculos ({{count}} activos)",
+    "loading": "Cargando…",
+    "none": "Aún no hay vínculos.",
+    "by": "por {{name}}",
+    "unknown": "desconocido",
+    "revokedOn": "Revocado el {{date}}",
+    "expiresOn": "Caduca el {{date}}",
+    "noExpiry": "Sin caducidad",
+    "lastOpened": "abierto por última vez el {{date}}",
+    "notOpened": "aún no se ha abierto",
+    "revoke": "Revocar"
+  },
+  "header": {
+    "filtersApply_one": "Se aplica {{count}} filtro",
+    "filtersApply_other": "Se aplican {{count}} filtros",
+    "drillUp": "Rastrear agrupando datos",
+    "drillModeOn": "Modo de exploración activado: haz clic en un punto para explorarlo en profundidad",
+    "drillMode": "Modo de exploración: haz clic en un punto para explorarlo en profundidad",
+    "nextLevel": "Ir al siguiente nivel",
+    "personalized": "Personalizado para ti: cámbialo o restablécelo",
+    "personalize": "Personalizar este objeto visual",
+    "focus": "Modo de enfoque",
+    "more": "Más opciones",
+    "filtersOnVisual": "Filtros en este objeto visual",
+    "showAsVisual": "Mostrar como objeto visual",
+    "showAsTable": "Mostrar como tabla",
+    "exportCsv": "Exportar datos (CSV)",
+    "copyImage": "Copiar como imagen",
+    "leaveSpotlight": "Salir del foco",
+    "spotlight": "Foco",
+    "closeFocus": "Cerrar el modo de enfoque"
+  },
+  "pointMenu": {
+    "drillThrough": "Obtener detalles ▸ {{page}}",
+    "explain": "Explicar este cambio",
+    "keepOnly": "Conservar solo",
+    "exclude": "Excluir"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "En blanco",
+        "hint": "Una página vacía para empezar a crear."
+      },
+      "auto": {
+        "label": "Automático",
+        "hint": "KPI, una tendencia, un desglose, un mapa y segmentaciones, elegidos a partir de tus datos."
+      },
+      "template": {
+        "label": "Plantilla",
+        "hint": "Un diseño ya preparado: asigna tus columnas."
+      },
+      "ai": {
+        "label": "Preguntar a la IA",
+        "hint": "Describe la página y previsualízala antes de crearla."
+      }
+    },
+    "kinds": {
+      "number": "un número",
+      "date": "una fecha",
+      "category": "una categoría"
+    },
+    "chooseColumn": "Elige una columna…",
+    "skip": "(omitir)",
+    "untitled": "Panel sin título",
+    "chooseTemplate": "Elige una plantilla.",
+    "title": "Nuevo panel",
+    "close": "Cerrar",
+    "howToStart": "Cómo empezar",
+    "dataset": "Conjunto de datos",
+    "addDatasetFirst": "Primero agrega un conjunto de datos",
+    "name": "Nombre",
+    "data": "Datos",
+    "overviewName": "Información general de {{name}}",
+    "loadingTemplates": "Cargando plantillas…",
+    "allTemplates": "Todas las plantillas",
+    "matchColumns": "Asigna tus columnas",
+    "stillNeeded": "Todavía falta: {{roles}}.",
+    "createDashboard": "Crear panel",
+    "cancel": "Cancelar",
+    "creating": "Creando…",
+    "createFromTemplate": "Crear a partir de la plantilla",
+    "build": "Generar panel",
+    "create": "Crear",
+    "templateLayout": "Diseño de {{name}}"
+  },
+  "templates": {
+    "sales": {
+      "name": "Resumen de ventas",
+      "description": "Ingresos, beneficios y tendencias por producto y región.",
+      "roles": {
+        "date": "Fecha",
+        "amount": "Ingresos",
+        "profit": "Beneficio",
+        "quantity": "Unidades",
+        "target": "Objetivo",
+        "product": "Producto",
+        "region": "Región",
+        "channel": "Canal"
+      }
+    },
+    "crm": {
+      "name": "Embudo de CRM",
+      "description": "Oportunidades por etapa y propietario, valor ganado y conversión.",
+      "roles": {
+        "date": "Fecha",
+        "amount": "Valor de la oportunidad",
+        "stage": "Etapa",
+        "owner": "Propietario",
+        "source": "Origen del cliente potencial"
+      }
+    },
+    "finance": {
+      "name": "Pérdidas y ganancias",
+      "description": "Ingresos, costes y margen a lo largo del tiempo y por cuenta.",
+      "roles": {
+        "date": "Fecha",
+        "amount": "Ingresos",
+        "cost": "Costes",
+        "account": "Cuenta / categoría",
+        "budget": "Presupuesto"
+      }
+    },
+    "hr": {
+      "name": "Análisis de RR. HH.",
+      "description": "Plantilla, salario y satisfacción por departamento.",
+      "roles": {
+        "date": "Fecha",
+        "employee": "ID de empleado",
+        "department": "Departamento",
+        "salary": "Salario",
+        "rating": "Satisfacción / valoración",
+        "status": "Estado",
+        "gender": "Género"
+      }
+    },
+    "web": {
+      "name": "Análisis web",
+      "description": "Sesiones, usuarios y conversiones por origen y página.",
+      "roles": {
+        "date": "Fecha",
+        "sessions": "Sesiones / visitas",
+        "users": "Usuarios",
+        "conversions": "Conversiones",
+        "source": "Origen del tráfico",
+        "page": "Página"
+      }
+    },
+    "mobile": {
+      "name": "Análisis de aplicaciones móviles",
+      "description": "Usuarios activos, instalaciones y bloqueos por plataforma y versión.",
+      "roles": {
+        "date": "Fecha",
+        "active": "Usuarios activos",
+        "installs": "Instalaciones",
+        "crashes": "Bloqueos",
+        "platform": "Plataforma",
+        "version": "Versión de la aplicación"
+      }
+    },
+    "marketing": {
+      "name": "Campañas de marketing",
+      "description": "Gasto, clics, conversiones y coste por conversión por campaña.",
+      "roles": {
+        "date": "Fecha",
+        "spend": "Gasto",
+        "clicks": "Clics",
+        "conversions": "Conversiones",
+        "campaign": "Campaña",
+        "channel": "Canal"
+      }
+    },
+    "inventory": {
+      "name": "Inventario y operaciones",
+      "description": "Existencias disponibles, movimientos y riesgo de reposición por artículo y ubicación.",
+      "roles": {
+        "date": "Fecha",
+        "stock": "Existencias / cantidad",
+        "item": "Artículo",
+        "site": "Almacén / ubicación",
+        "value": "Valor de las existencias",
+        "reorder": "Punto de reposición"
+      }
+    },
+    "retail": {
+      "name": "Comercio minorista",
+      "description": "Ventas por tienda, tamaño de la cesta y productos más vendidos.",
+      "roles": {
+        "date": "Fecha",
+        "amount": "Ingresos",
+        "quantity": "Unidades",
+        "store": "Tienda / región",
+        "product": "Producto",
+        "rating": "Satisfacción"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} desde",
+    "to": "{{field}} hasta",
+    "clear": "Borrar",
+    "minimum": "{{field}} mínimo",
+    "maximum": "{{field}} máximo",
+    "period": "Período",
+    "allTime": "Todo el período",
+    "howMany": "Cuántos",
+    "unit": "Unidad",
+    "operator": "Operador",
+    "typeValue": "Escribe un valor de {{field}}",
+    "value": "Valor de {{field}}",
+    "collapse": "Contraer",
+    "expand": "Expandir",
+    "all": "Todo",
+    "selected_one": "{{count}} seleccionado",
+    "selected_other": "{{count}} seleccionados",
+    "searchPlaceholder": "Busca o pega una lista",
+    "search": "Buscar {{field}}",
+    "selectAll": "Seleccionar todo"
+  },
+  "local": {
+    "snapshotEmpty": "Esta instantánea no tiene ningún gráfico.",
+    "snapshot": "Instantánea",
+    "snapshotOn": "Instantánea · {{date}}",
+    "chooseParameter": "Elige un parámetro en Formato → Parámetro.",
+    "button": "Botón",
+    "noViews": "Agrega vistas (marcadores) para que aparezcan aquí.",
+    "views": "Vistas",
+    "pages": "Páginas"
+  },
+  "pin": {
+    "namedDashboard": "Panel de {{title}}",
+    "newDashboard": "Nuevo panel",
+    "overview": "Información general",
+    "title": "Anclar al panel",
+    "close": "Cerrar",
+    "pinnedTo": "Anclado a <b>{{name}}</b>.",
+    "stay": "Quedarme aquí",
+    "open": "Abrir panel",
+    "dashboard": "Panel",
+    "newOption": "+ Nuevo panel…",
+    "name": "Nombre",
+    "page": "Página",
+    "cancel": "Cancelar",
+    "pinning": "Anclando…",
+    "pin": "Anclar"
+  },
+  "page": {
+    "backFromDetail": "Volver",
+    "back": "Todos los paneles",
+    "pages": "Páginas",
+    "clear": "Borrar",
+    "clearSelection": "Borrar selección",
+    "apply": "Aplicar",
+    "clearSlicers": "Borrar todas las segmentaciones",
+    "updating": "Actualizando…",
+    "filters": "Filtros",
+    "qa": "Preguntas y respuestas",
+    "present": "Presentar",
+    "share": "Compartir",
+    "edit": "Editar",
+    "painting": "Dibujando la página {{page}} de {{total}}…",
+    "buildingPdf": "Generando el PDF…",
+    "exported_one": "Se exportó {{count}} página.",
+    "exported_other": "Se exportaron {{count}} páginas.",
+    "exportFailed": "Se produjo un error en la exportación.",
+    "notFound": "No se encontró el panel.",
+    "filtersActive_one": "{{count}} filtro activo",
+    "filtersActive_other": "{{count}} filtros activos",
+    "presentation": "Presentación",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "pause": "Pausar",
+    "autoPlay": "Reproducción automática",
+    "leavePresentation": "Salir de la presentación",
+    "keepExclude": "Tus filtros de conservar/excluir",
+    "excluding": "Excluyendo {{values}}",
+    "only": "Solo {{values}}",
+    "dashboard": "Panel",
+    "seconds": "{{value}} s"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Proporción (A ÷ B), p. ej., margen de beneficio"
+    },
+    "average-per-row": {
+      "label": "Promedio por fila (p. ej., valor medio del pedido)"
+    },
+    "vs-target": {
+      "label": "Frente al objetivo (%)"
+    },
+    "difference": {
+      "label": "Diferencia (A − B)"
+    },
+    "per-distinct": {
+      "label": "Valor por elemento distinto (p. ej., ingresos por cliente)"
+    },
+    "fields": {
+      "numerator": "Numerador",
+      "denominator": "Denominador",
+      "value": "Valor",
+      "actual": "Real",
+      "target": "Objetivo",
+      "minus": "Menos",
+      "distinctItem": "Elemento distinto"
+    },
+    "names": {
+      "perRow": "{{a}} por fila",
+      "vsTarget": "{{a}} frente al objetivo",
+      "perDistinct": "{{a}} por {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Panel sin título",
+    "title": "Paneles",
+    "subtitle": "KPI, gráficos y segmentaciones en una sola pantalla, todos conectados.",
+    "noData": "Primero agrega un conjunto de datos",
+    "blank": "En blanco",
+    "template": "Plantilla",
+    "building": "Generando…",
+    "auto": "Generar panel",
+    "empty": "Aún no hay paneles. Elige un conjunto de datos y genera uno con un clic.",
+    "duplicate": "Duplicar",
+    "deleteTitle": "¿Eliminar el panel?",
+    "deleteText": "Se quitarán {{name}} y sus versiones guardadas. Los conjuntos de datos no se ven afectados.",
+    "more": "Más datos",
+    "start": "Empieza aquí",
+    "import": "Subir o pegar datos",
+    "loading": "Cargando…",
+    "library": "Mis objetos visuales",
+    "allVisuals": "Todos los objetos visuales guardados",
+    "libraryHint": "Inserta cualquiera de ellos en un panel desde el menú Insertar del editor.",
+    "delete": "Eliminar",
+    "datasetLabel": "Conjunto de datos para un nuevo panel",
+    "show": "Mostrar",
+    "filter": {
+      "all": "Todos",
+      "mine": "Míos",
+      "shared": "Compartidos conmigo"
+    },
+    "pages_one": "{{count}} página",
+    "pages_other": "{{count}} páginas",
+    "roles": {
+      "owner": "propietario",
+      "editor": "editor",
+      "viewer": "lector"
+    },
+    "sharedFlag": "compartido",
+    "deleteNamed": "Eliminar {{name}}"
+  },
+  "visual": {
+    "target": "Objetivo {{value}}",
+    "progress": "{{value}} de {{target}}",
+    "total": "Total",
+    "failed": "No se pudo dibujar este objeto visual.",
+    "empty": "No hay datos para los filtros actuales",
+    "clearSelection": "Borrar selección",
+    "nothing": "No hay nada que mostrar."
+  },
+  "shared": {
+    "loading": "Cargando el panel…",
+    "missingTitle": "Este vínculo no está disponible",
+    "missingText": "Puede que se haya revocado o que haya caducado. Pide un nuevo vínculo a la persona que lo compartió.",
+    "pages": "Páginas",
+    "clearSelection": "Borrar selección",
+    "clearSlicers": "Borrar segmentaciones",
+    "readOnly": "Vista compartida de solo lectura"
+  },
+  "capture": {
+    "unsupported": "Este navegador no puede dibujar la página.",
+    "failed": "No se pudo dibujar la página.",
+    "timeout": "La página tardó demasiado en dibujarse."
+  }
+}

@@ -745,7 +745,7 @@ function svgAsset(label: string, hue: number): ImageAsset {
 class MockImageRepository implements ImageRepository {
   listModels(): Promise<{ id: ImageModel; label: string }[]> {
     return Promise.resolve([
-      { id: 'auto', label: 'Auto (recommended)' },
+      { id: 'auto', label: i18n.t('images.autoModel') },
       { id: 'dall-e-3', label: 'DALL·E 3' },
       { id: 'stable-diffusion', label: 'Stable Diffusion' },
       { id: 'imagen', label: 'Imagen' },
@@ -1100,8 +1100,8 @@ class MockIntegrationRepository implements IntegrationRepository {
   async test(id: string): Promise<{ ok: boolean; message: string }> {
     return simulate(`integrations.test.${id}`, async () => {
       const item = await this.require(id);
-      if (!item.connected) return { ok: false, message: 'Not connected.' };
-      return { ok: true, message: `${item.name} connection is healthy.` };
+      if (!item.connected) return { ok: false, message: i18n.t('errors.notConnected') };
+      return { ok: true, message: i18n.t('errors.connectionHealthy', { name: item.name }) };
     });
   }
 

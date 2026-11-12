@@ -29,5 +29,20 @@
   "changePhoto": "Clique para alterar a foto",
   "profileUpdated": "Perfil atualizado com sucesso",
   "updateProfileError": "Falha ao atualizar o perfil",
-  "uploadAvatarError": "Falha ao enviar o avatar"
+  "uploadAvatarError": "Falha ao enviar o avatar",
+  "eyebrow": "Configurações",
+  "avatarUpdated": "Foto do perfil atualizada.",
+  "removePhoto": "Remover foto",
+  "passwordChanged": "Sua senha foi alterada.",
+  "passwordMismatch": "As novas senhas não coincidem.",
+  "workspace": "Espaço de trabalho",
+  "workspaceDesc": "Sua organização em JT-Code. Conversas, arquivos e créditos pertencem a ele.",
+  "workspaceName": "Nome do espaço de trabalho",
+  "workspaceUpdated": "Espaço de trabalho renomeado.",
+  "password": "Senha",
+  "passwordDesc": "Altere a senha que você usa para fazer login.",
+  "currentPassword": "Senha atual",
+  "newPassword": "Nova senha (8+ caracteres)",
+  "confirmPassword": "Confirme a nova senha",
+  "changePassword": "Alterar a senha"
 }

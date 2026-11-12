@@ -107,7 +107,7 @@ export function AppShell() {
         >
           {mobileNavOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
         </button>
-        <NavLink to="/app/chat" className="brand mobile-brand" aria-label="JT-Code home">
+        <NavLink to="/app/chat" className="brand mobile-brand" aria-label={t('chrome.home')}>
           <span className="brand-mark">JT</span>
           <span className="mobile-brand-name">JT-Code</span>
         </NavLink>
@@ -126,10 +126,10 @@ export function AppShell() {
       <aside
         ref={mobileDrawerRef}
         className={`sidebar ${collapsed ? 'collapsed' : ''}`}
-        aria-label="Primary navigation"
+        aria-label={t('chrome.primaryNavigation')}
       >
         <div className="sidebar-logo-row">
-          <NavLink to="/app/chat" className="brand" aria-label="JT-Code home" onClick={closeDrawer}>
+          <NavLink to="/app/chat" className="brand" aria-label={t('chrome.home')} onClick={closeDrawer}>
             <span className="brand-mark">JT</span>
             {!collapsed && <span className="nav-label">JT-Code</span>}
           </NavLink>

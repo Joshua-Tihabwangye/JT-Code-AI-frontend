@@ -14,7 +14,8 @@
     "uppercase": "Satu huruf besar",
     "lowercase": "Satu huruf kecil",
     "number": "Satu angka",
-    "singleRule": "Kata sandi harus minimal 8 karakter dan menyertakan setidaknya satu huruf dan satu angka."
+    "singleRule": "Kata sandi harus minimal 8 karakter dan menyertakan setidaknya satu huruf dan satu angka.",
+    "special": "Satu karakter khusus"
   },
   "matchOk": "Kata sandi cocok.",
   "matchError": "Kata sandi belum cocok.",
@@ -48,5 +49,12 @@
   "privacyLink": "Kebijakan Privasi",
   "termsHelp": "Anda dapat meninjau halaman legal ini sebelum menyelesaikan pendaftaran.",
   "submit": "Buat akun",
-  "haveAccountQuestion": "Sudah punya akun?"
+  "haveAccountQuestion": "Sudah punya akun?",
+  "helpText": "",
+  "section": {
+    "account": "Akun",
+    "profile": "Profil",
+    "region": "Wilayah"
+  },
+  "confirmEmail": "Hampir sampai! Kami mengirimkan tautan konfirmasi ke {{email}}. Buka, lalu masuk."
 }

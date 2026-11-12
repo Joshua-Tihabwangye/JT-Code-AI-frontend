@@ -6,8 +6,6 @@
   "invalidEmail": "有効なメールアドレスを入力してください。",
   "passwordMinLength": "パスワードは 8 文字以上である必要があります。",
   "passwordLetter": "パスワードには少なくとも1つの文字を含める必要があります。",
-  "passwordUppercase": "パスワードには大文字を含める必要があります。",
-  "passwordLowercase": "パスワードには小文字を含める必要があります。",
   "passwordNumber": "パスワードには数字を含める必要があります。",
   "selectCountry": "国を選択してください。",
   "selectDialCode": "国番号を選択してください。",
@@ -19,5 +17,13 @@
   "passwordRequired": "パスワードを入力してください。",
   "authenticationFailed": "認証に失敗しました。",
   "finishingSignIn": "サインインを完了しています…",
-  "redirecting": "リダイレクト中…"
+  "redirecting": "リダイレクト中…",
+  "accountExists": "このメールアドレスを持つアカウントはすでに存在します。",
+  "invalidCredentials": "メールアドレスまたはパスワードが無効です。",
+  "noAccount": "そのメール アドレスにはアカウントが存在しません。",
+  "invalidResetCode": "リセット コードが無効または期限切れです。",
+  "signInToReset": "サインインしてパスワードをリセットします。",
+  "providerDisabled": "{{provider}} によるサインインは有効になっていません。メールアドレスとパスワードを使用してください。",
+  "serviceUnreachable": "サインイン サービスにアクセスできません。接続を確認して、もう一度試してください。",
+  "invalidCountry": "無効な国です。"
 }

@@ -29,5 +29,20 @@
   "changePhoto": "クリックして写真を変更",
   "profileUpdated": "プロフィールを更新しました",
   "updateProfileError": "プロフィールの更新に失敗しました",
-  "uploadAvatarError": "アバターのアップロードに失敗しました"
+  "uploadAvatarError": "アバターのアップロードに失敗しました",
+  "eyebrow": "設定",
+  "avatarUpdated": "プロフィール写真を更新しました。",
+  "removePhoto": "写真を削除",
+  "passwordChanged": "パスワードが変更されました。",
+  "passwordMismatch": "新しいパスワードが一致しません。",
+  "workspace": "ワークスペース",
+  "workspaceDesc": "JT-Code 内のあなたの組織。会話、ファイル、クレジットはそれに属します。",
+  "workspaceName": "ワークスペース名",
+  "workspaceUpdated": "ワークスペースの名前が変更されました。",
+  "password": "パスワード",
+  "passwordDesc": "サインインに使用するパスワードを変更します。",
+  "currentPassword": "現在のパスワード",
+  "newPassword": "新しいパスワード (8 文字以上)",
+  "confirmPassword": "新しいパスワードを確認します",
+  "changePassword": "パスワードを変更する"
 }

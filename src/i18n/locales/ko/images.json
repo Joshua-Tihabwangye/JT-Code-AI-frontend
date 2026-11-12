@@ -57,5 +57,7 @@
     "uploadAndPrompt": "이미지를 업로드하고 프롬프트를 입력하세요",
     "noResult": "결과 없음"
   },
-  "defaultQuestion": "이 이미지를 자세히 설명해 주세요"
+  "defaultQuestion": "이 이미지를 자세히 설명해 주세요",
+  "uploadPreview": "미리보기 업로드",
+  "autoModel": "자동(권장)"
 }

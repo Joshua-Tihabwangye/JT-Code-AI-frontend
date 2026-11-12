@@ -3,13 +3,30 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CalendarDays, Check, Coins, CreditCard, Crown, Download, Plus, ShieldCheck } from 'lucide-react';
+import i18n from '@/i18n/config';
+import { formatDate, formatNumber } from '@/i18n/format';
 import { useRepository, type Plan, type TopupIntent } from '@/lib/data';
 import { apiErrorMessage } from '@/lib/api/http';
 import { Alert, Badge, Button, Card, CardContent, CardHeader, CardTitle, Input, Modal, Switch } from '@/shared/components';
 import { loadStripe, type StripeClient } from '@/features/billing/stripe';
 
-const usd = (cents: number, currency = 'USD') => new Intl.NumberFormat(undefined, { style: 'currency', currency }).format(cents / 100);
-const credits = (value: number) => new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
+const usd = (cents: number, currency = 'USD') => formatNumber(cents / 100, { style: 'currency', currency });
+const credits = (value: number) => formatNumber(value, { maximumFractionDigits: 0 });
+
+/** Plan text in the chosen language: known plans are translated by slug while the server still
+ *  sends the English text the translations were made from; anything else is shown as sent. */
+function planText(plan: Plan) {
+  const en = i18n.getFixedT('en');
+  const known = (key: string, server: string) => (i18n.exists(key) && en(key) === server ? i18n.t(key) : server);
+  const featuresKey = `billing.plans.features.${plan.slug}`;
+  const englishFeatures = i18n.exists(featuresKey) ? (en(featuresKey, { returnObjects: true }) as unknown) : null;
+  const sameFeatures = Array.isArray(englishFeatures) && JSON.stringify(englishFeatures) === JSON.stringify(plan.features);
+  return {
+    name: known(`billing.plans.names.${plan.slug}`, plan.name),
+    description: plan.description ? known(`billing.plans.descriptions.${plan.slug}`, plan.description) : '',
+    features: sameFeatures ? (i18n.t(featuresKey, { returnObjects: true }) as string[]) : plan.features,
+  };
+}
 
 function StripePaymentForm({ intent, onDone, onError }: { intent: TopupIntent; onDone: () => void; onError: (message: string) => void }) {
   const { t } = useTranslation();
@@ -152,9 +169,9 @@ export function BillingPage() {
   const remainingCredits = Math.max(0, monthlyCredits - usageTotal);
   const loadError = [plans, wallet, usage].find((query) => query.isError)?.error;
   const summaryCards = [
-    { icon: Crown, label: t('billing.summary.currentPlan'), value: sub?.planName ?? currentPlan?.name ?? '—', helper: sub?.cancelAtPeriodEnd ? t('billing.subscription.endsAtPeriodEnd') : undefined, action: t('billing.summary.managePlan'), onClick: () => document.getElementById('billing-plans')?.scrollIntoView({ behavior: 'smooth' }) },
+    { icon: Crown, label: t('billing.summary.currentPlan'), value: sub?.planName ?? (currentPlan ? planText(currentPlan).name : '—'), helper: sub?.cancelAtPeriodEnd ? t('billing.subscription.endsAtPeriodEnd') : undefined, action: t('billing.summary.managePlan'), onClick: () => document.getElementById('billing-plans')?.scrollIntoView({ behavior: 'smooth' }) },
     { icon: Coins, label: t('billing.summary.availableCredits'), value: wallet.data ? credits(available) : '—', helper: wallet.data?.reservedBalance ? t('billing.wallet.reserved', { amount: credits(wallet.data.reservedBalance) }) : undefined, action: t('billing.summary.addCreditsAction'), onClick: () => { setIntent(null); setShowTopup(true); } },
-    { icon: CalendarDays, label: t('billing.summary.renewsOn'), value: sub?.currentPeriodEnd ? new Date(sub.currentPeriodEnd).toLocaleDateString() : '—', helper: sub ? t('billing.summary.renewsHelper') : t('billing.subscription.freeMonthly') },
+    { icon: CalendarDays, label: t('billing.summary.renewsOn'), value: sub?.currentPeriodEnd ? formatDate(sub.currentPeriodEnd) : '—', helper: sub ? t('billing.summary.renewsHelper') : t('billing.subscription.freeMonthly') },
   ];
 
   return (
@@ -196,11 +213,12 @@ export function BillingPage() {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-testid="plan-grid">
           {(plans.data ?? []).map((plan) => {
             const isCurrent = plan.slug === currentSlug;
-            const features = plan.features.length ? plan.features : [t('billing.plans.fallbackFeature1', { credits: credits(plan.monthlyCredits) })];
+            const text = planText(plan);
+            const features = text.features.length ? text.features : [t('billing.plans.fallbackFeature1', { credits: credits(plan.monthlyCredits) })];
             return <Card key={plan.id} interactive={!isCurrent} className={`relative flex flex-col rounded-xl ${isCurrent ? 'border-2 border-primary shadow-lg ring-4 ring-primary/10' : 'border-border/60'}`}>
               {isCurrent && <span className="absolute -top-3 end-3 z-10 inline-flex items-center rounded-full bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary-foreground shadow-md">{t('billing.plans.ribbonCurrent')}</span>}
-              <CardHeader className="pb-3 pt-6"><CardTitle className="text-base font-semibold text-foreground">{plan.name}</CardTitle><p className="text-xs text-muted-foreground mt-1">{plan.description || t('billing.plans.fallbackDescription')}</p></CardHeader>
-              <CardContent className="flex-1 flex flex-col"><div className="flex items-baseline gap-1 mb-5"><span className="text-3xl font-bold text-foreground tabular-nums">{usd(plan.priceCents, plan.currency)}</span><span className="text-sm text-muted-foreground">{t('billing.plans.perMonth')}</span></div><ul className="space-y-3 mb-6 flex-1">{features.map((feature) => <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground"><Check size={14} className="mt-0.5 text-primary shrink-0" /><span>{feature}</span></li>)}</ul><Button className="w-full rounded-md" variant={isCurrent ? 'outline' : 'primary'} disabled={isCurrent || plan.priceCents === 0 || checkout.isPending} onClick={() => checkout.mutate(plan)}>{isCurrent ? t('billing.plans.currentCta') : t('billing.plans.chooseCta', { name: plan.name })}</Button></CardContent>
+              <CardHeader className="pb-3 pt-6"><CardTitle className="text-base font-semibold text-foreground">{text.name}</CardTitle><p className="text-xs text-muted-foreground mt-1">{text.description || t('billing.plans.fallbackDescription')}</p></CardHeader>
+              <CardContent className="flex-1 flex flex-col"><div className="flex items-baseline gap-1 mb-5"><span className="text-3xl font-bold text-foreground tabular-nums">{usd(plan.priceCents, plan.currency)}</span><span className="text-sm text-muted-foreground">{t('billing.plans.perMonth')}</span></div><ul className="space-y-3 mb-6 flex-1">{features.map((feature) => <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground"><Check size={14} className="mt-0.5 text-primary shrink-0" /><span>{feature}</span></li>)}</ul><Button className="w-full rounded-md" variant={isCurrent ? 'outline' : 'primary'} disabled={isCurrent || plan.priceCents === 0 || checkout.isPending} onClick={() => checkout.mutate(plan)}>{isCurrent ? t('billing.plans.currentCta') : t('billing.plans.chooseCta', { name: text.name })}</Button></CardContent>
             </Card>;
           })}
         </div>
@@ -215,7 +233,7 @@ export function BillingPage() {
         </CardContent></Card>
 
         <Card className="rounded-xl border-border/60"><CardHeader className="flex flex-row items-center justify-between pb-3"><CardTitle className="text-base font-semibold text-foreground">{t('billing.invoices.title')}</CardTitle><button type="button" className="inline-flex items-center gap-1 rounded-sm text-sm font-semibold text-primary transition-opacity hover:opacity-75" onClick={() => setShowInvoices(true)}>{t('billing.invoices.viewAll')} <span>→</span></button></CardHeader><CardContent>
-          {(invoices.data ?? []).length === 0 ? <p className="text-sm text-muted-foreground">{t('billing.invoices.empty')}</p> : <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-start text-muted-foreground border-b"><th className="pb-2 font-medium text-start">{t('billing.invoices.date')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.description')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.amount')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.status')}</th><th /></tr></thead><tbody>{(invoices.data ?? []).slice(0, 3).map((invoice) => <tr key={invoice.id} className="border-b last:border-0 transition-colors hover:bg-muted/40"><td className="py-3 text-muted-foreground">{new Date(invoice.date).toLocaleDateString()}</td><td className="py-3 font-medium text-foreground">{invoice.description || invoice.number}</td><td className="py-3 text-foreground tabular-nums">{usd(invoice.amountCents, invoice.currency)}</td><td className="py-3"><Badge variant={invoice.status === 'paid' ? 'success' : 'secondary'} className="text-xs">{invoice.status}</Badge></td><td className="py-3 text-right"><Button variant="ghost" size="sm" onClick={() => downloadInvoice.mutate(invoice.id)} aria-label={t('billing.invoices.download')}><Download size={14} /></Button></td></tr>)}</tbody></table></div>}
+          {(invoices.data ?? []).length === 0 ? <p className="text-sm text-muted-foreground">{t('billing.invoices.empty')}</p> : <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-start text-muted-foreground border-b"><th className="pb-2 font-medium text-start">{t('billing.invoices.date')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.description')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.amount')}</th><th className="pb-2 font-medium text-start">{t('billing.invoices.status')}</th><th /></tr></thead><tbody>{(invoices.data ?? []).slice(0, 3).map((invoice) => <tr key={invoice.id} className="border-b last:border-0 transition-colors hover:bg-muted/40"><td className="py-3 text-muted-foreground">{formatDate(invoice.date)}</td><td className="py-3 font-medium text-foreground">{invoice.description || invoice.number}</td><td className="py-3 text-foreground tabular-nums">{usd(invoice.amountCents, invoice.currency)}</td><td className="py-3"><Badge variant={invoice.status === 'paid' ? 'success' : 'secondary'} className="text-xs">{t(`billing.invoices.statuses.${invoice.status}`, { defaultValue: invoice.status })}</Badge></td><td className="py-3 text-right"><Button variant="ghost" size="sm" onClick={() => downloadInvoice.mutate(invoice.id)} aria-label={t('billing.invoices.download')}><Download size={14} /></Button></td></tr>)}</tbody></table></div>}
         </CardContent></Card>
       </div>
 
@@ -224,7 +242,7 @@ export function BillingPage() {
       </Modal>
 
       <Modal isOpen={showInvoices} onClose={() => setShowInvoices(false)} title={t('billing.invoices.allTitle')} description={t('billing.invoices.allSubtitle')}>
-        <div className="space-y-3">{(invoices.data ?? []).map((invoice) => <div key={invoice.id} className="flex items-center justify-between gap-4 rounded-xl border border-border p-4"><div><div className="font-semibold text-foreground">{invoice.description || invoice.number}</div><div className="text-xs text-muted-foreground mt-0.5">{new Date(invoice.date).toLocaleDateString()} · {invoice.number}</div></div><div className="flex items-center gap-3"><div className="text-end"><div className="font-semibold text-foreground tabular-nums">{usd(invoice.amountCents, invoice.currency)}</div><Badge variant={invoice.status === 'paid' ? 'success' : 'secondary'} className="text-xs mt-1">{invoice.status}</Badge></div><Button variant="ghost" size="sm" onClick={() => downloadInvoice.mutate(invoice.id)} aria-label={t('billing.invoices.download')}><Download size={14} /></Button></div></div>)}</div>
+        <div className="space-y-3">{(invoices.data ?? []).map((invoice) => <div key={invoice.id} className="flex items-center justify-between gap-4 rounded-xl border border-border p-4"><div><div className="font-semibold text-foreground">{invoice.description || invoice.number}</div><div className="text-xs text-muted-foreground mt-0.5">{formatDate(invoice.date)} · {invoice.number}</div></div><div className="flex items-center gap-3"><div className="text-end"><div className="font-semibold text-foreground tabular-nums">{usd(invoice.amountCents, invoice.currency)}</div><Badge variant={invoice.status === 'paid' ? 'success' : 'secondary'} className="text-xs mt-1">{t(`billing.invoices.statuses.${invoice.status}`, { defaultValue: invoice.status })}</Badge></div><Button variant="ghost" size="sm" onClick={() => downloadInvoice.mutate(invoice.id)} aria-label={t('billing.invoices.download')}><Download size={14} /></Button></div></div>)}</div>
       </Modal>
     </section>
   );

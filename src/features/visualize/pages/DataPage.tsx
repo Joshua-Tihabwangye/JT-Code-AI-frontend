@@ -55,7 +55,7 @@ import {
   type VizPipelineStep,
   type VizQualityReport,
 } from '@/lib/data';
-import { formatNumber } from '@/i18n/format';
+import { formatNumber, inlineLabel } from '@/i18n/format';
 import { Button, ConfirmDialog } from '@/shared/components';
 import { useVisualize } from '../context';
 import { safeName, saveBlob } from '../echarts';
@@ -983,7 +983,7 @@ function DataGrid({
           </h1>
           <p className="text-xs text-muted-foreground">
             {t('visualize.data.grid.size', { rows: formatNumber(preview.data?.datasetRows ?? dataset.rowCount ?? 0), columns: formatNumber(columns.length) })}
-            {filter && ` · ${filter === 'issues' ? t('visualize.data.grid.showingIssues', { count: total, rows: formatNumber(total) }) : t('visualize.data.grid.showingType', { count: total, rows: formatNumber(total), label: (meta[filter]?.label ?? filter).toLowerCase() })}`}
+            {filter && ` · ${filter === 'issues' ? t('visualize.data.grid.showingIssues', { count: total, rows: formatNumber(total) }) : t('visualize.data.grid.showingType', { count: total, rows: formatNumber(total), label: inlineLabel(meta[filter]?.label ?? filter) })}`}
             {' · '}
             {t('visualize.data.grid.editHint')}
           </p>

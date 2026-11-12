@@ -14,7 +14,14 @@
   "usage": {
     "title": "Credit-Verbrauch",
     "usedOf": "{{used}} von {{limit}} in diesem Monat verbraucht",
-    "left": "{{amount}} übrig"
+    "left": "{{amount}} übrig",
+    "thisMonth": "{{amount}} Credits in diesem Monat verbraucht",
+    "types": {
+      "chat": "Chat",
+      "images": "Bilder",
+      "documents": "Dokumente",
+      "agent": "Agenten"
+    }
   },
   "plans": {
     "title": "Wähle den Plan, der zu dir passt",
@@ -62,6 +69,12 @@
         "Individuelle KI-Modelle",
         "SLA-Garantie"
       ]
+    },
+    "names": {
+      "free": "Free",
+      "pro": "Pro",
+      "team": "Team",
+      "business": "Business"
     }
   },
   "payment": {
@@ -83,7 +96,9 @@
     "cardNumberLabel": "Kartennummer",
     "expiryLabel": "Gültig bis",
     "cvcLabel": "CVC",
-    "savedToast": "Zahlungsmethode gespeichert"
+    "savedToast": "Zahlungsmethode gespeichert",
+    "none": "Keine Zahlungsmethode hinterlegt",
+    "manage": "Zahlungsmethoden verwalten"
   },
   "invoices": {
     "title": "Aktuelle Rechnungen",
@@ -93,7 +108,16 @@
     "date": "Datum",
     "description": "Beschreibung",
     "amount": "Betrag",
-    "status": "Status"
+    "status": "Status",
+    "empty": "Noch keine Rechnungen.",
+    "download": "Rechnung herunterladen",
+    "statuses": {
+      "paid": "bezahlt",
+      "open": "offen",
+      "draft": "Entwurf",
+      "void": "storniert",
+      "uncollectible": "uneinbringlich"
+    }
   },
   "topup": {
     "title": "Credits hinzufügen",
@@ -102,7 +126,10 @@
     "estimatedCredits": "Geschätzte Credits",
     "confirm": "${{amount}} Credits hinzufügen",
     "success": "Credits erfolgreich hinzugefügt",
-    "invalidAmount": "Gib einen gültigen Betrag ein"
+    "invalidAmount": "Gib einen gültigen Betrag ein",
+    "processing": "Zahlung erhalten. Die Credits erscheinen, sobald Stripe sie bestätigt.",
+    "failed": "Die Zahlung konnte nicht abgeschlossen werden.",
+    "payNow": "Jetzt bezahlen"
   },
   "checkout": {
     "title": "Schließe deinen Kauf ab",
@@ -111,6 +138,28 @@
     "billedMonthly": "Monatliche Abrechnung",
     "pay": "{{amount}} zahlen",
     "enterPhone": "Gib die Telefonnummer für Mobile Money ein.",
-    "activated": "{{name}}-Plan aktiviert — Zahlung erfolgreich"
+    "activated": "{{name}}-Plan aktiviert — Zahlung erfolgreich",
+    "returned": "Danke! Dein Abonnement wird aktualisiert, sobald Stripe die Zahlung bestätigt.",
+    "cancelled": "Der Bezahlvorgang wurde abgebrochen; es wurde nichts berechnet."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Endet am Ende dieses Abrechnungszeitraums",
+    "freeMonthly": "Kostenlose Credits werden monatlich erneuert",
+    "reactivate": "Abonnement fortsetzen",
+    "cancel": "Abonnement kündigen",
+    "cancelConfirm": "Dein Abonnement zum Ende des aktuellen Zeitraums kündigen?"
+  },
+  "wallet": {
+    "saved": "Abrechnungseinstellungen gespeichert.",
+    "reserved": "{{amount}} für laufende Jobs reserviert",
+    "autoRecharge": "Automatisches Aufladen",
+    "autoRechargeDesc": "Automatisch aufladen, wenn die Credits unter den Schwellenwert fallen.",
+    "threshold": "Schwellenwert (Credits)",
+    "spendingLimit": "Monatliches Limit (Credits)",
+    "noLimit": "Kein Limit"
+  },
+  "stripe": {
+    "loadFailed": "Das Stripe-Zahlungsformular konnte nicht geladen werden. Prüfe deine Verbindung.",
+    "unavailable": "Stripe ist nicht verfügbar."
   }
 }

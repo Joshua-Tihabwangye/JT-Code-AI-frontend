@@ -9,5 +9,8 @@
   "offlineMessage": "Çevrimdışısınız. Değişiklikler yerel olarak kaydedilir ve yeniden bağlandığınızda eşitlenir.",
   "fatalTitle": "Bir şeyler ters gitti",
   "unexpectedError": "Beklenmeyen bir hata oluştu.",
-  "reloadApp": "Uygulamayı yeniden yükle"
+  "reloadApp": "Uygulamayı yeniden yükle",
+  "home": "JT-Kodu ana sayfası",
+  "primaryNavigation": "Birincil gezinme",
+  "fatalError": "JT-Code bir hatayla karşılaştı."
 }

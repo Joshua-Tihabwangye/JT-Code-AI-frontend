@@ -14,5 +14,13 @@
   "default": "ڈیفالٹ",
   "creditsUnit": "کریڈٹس",
   "messagesCount_one": "{{count}} پیغام",
-  "messagesCount_other": "{{count}} پیغامات"
+  "messagesCount_other": "{{count}} پیغامات",
+  "dismiss": "برطرف کرنا",
+  "avatar": "اوتار",
+  "hidePassword": "پاس ورڈ چھپائیں۔",
+  "showPassword": "پاس ورڈ دکھائیں۔",
+  "clearSearch": "تلاش صاف کریں۔",
+  "confirm": "تصدیق کریں۔",
+  "notifications": "اطلاعات",
+  "dismissNotification": "اطلاع برخاست کریں۔"
 }

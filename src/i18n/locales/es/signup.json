@@ -14,7 +14,8 @@
     "uppercase": "Una letra mayúscula",
     "lowercase": "Una letra minúscula",
     "number": "Un número",
-    "singleRule": "La contraseña debe tener al menos 8 caracteres e incluir al menos una letra y un número."
+    "singleRule": "La contraseña debe tener al menos 8 caracteres e incluir al menos una letra y un número.",
+    "special": "Un carácter especial"
   },
   "matchOk": "Las contraseñas coinciden.",
   "matchError": "Las contraseñas aún no coinciden.",
@@ -48,5 +49,12 @@
   "privacyLink": "Política de Privacidad",
   "termsHelp": "Puedes revisar estas páginas legales antes de terminar el registro.",
   "submit": "Crear cuenta",
-  "haveAccountQuestion": "¿Ya tienes una cuenta?"
+  "haveAccountQuestion": "¿Ya tienes una cuenta?",
+  "helpText": "",
+  "section": {
+    "account": "Cuenta",
+    "profile": "Perfil",
+    "region": "Región"
+  },
+  "confirmEmail": "¡Ya casi está! Hemos enviado un enlace de confirmación a {{email}}. Ábrelo y luego inicia sesión."
 }

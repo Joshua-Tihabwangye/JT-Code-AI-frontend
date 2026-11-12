@@ -1,0 +1,38 @@
+{
+  "pick": "Yukarıdaki çubuktan bir veri kümesi seçin veya Veri sayfasına bir tane ekleyin.",
+  "add": "Yeni grafik",
+  "pin": "Kontrol paneline sabitle",
+  "saved": "Görsellerim'e kaydedildi",
+  "save": "Görsellerim'e kaydet",
+  "viewData": "Verileri görüntüle",
+  "pageName": "Keşfetmek",
+  "chartType": "Grafik türü",
+  "suggestions": "Öneriler",
+  "charts": "Grafikler",
+  "buildAndFormat": "Oluşturun ve biçimlendirin",
+  "build": "İnşa etmek",
+  "format": "Biçim",
+  "remove": "Bu grafiği kaldır",
+  "drawer": {
+    "data": "Grafiğin arkasındaki veriler",
+    "rows": "Ham satırlar",
+    "query": "Sorgu"
+  },
+  "noData": "Henüz veri yok.",
+  "query": {
+    "chart": "{{chart}} / {{fields}} (her satır, daha büyük olduğunda 10.000'e örneklenir).",
+    "noFields": "henüz alan yok",
+    "countRows": "Satır sayısı",
+    "measure": "{{agg}} / {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "yıl",
+      "quarter": "çeyrek",
+      "month": "ay",
+      "week": "hafta",
+      "day": "gün"
+    },
+    "grouped": "{{what}} by {{groups}} — veritabanında hesaplanır, ardından Python'da çizilir.",
+    "total": "{{what}} — veritabanında hesaplanır, ardından Python'da çizilir."
+  }
+}

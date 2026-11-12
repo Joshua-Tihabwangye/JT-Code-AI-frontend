@@ -57,5 +57,7 @@
     "uploadAndPrompt": "请上传图片并输入提示词",
     "noResult": "无结果"
   },
-  "defaultQuestion": "请详细描述这张图片"
+  "defaultQuestion": "请详细描述这张图片",
+  "uploadPreview": "上传预览",
+  "autoModel": "自动（推荐）"
 }

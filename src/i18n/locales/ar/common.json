@@ -14,5 +14,13 @@
   "default": "افتراضي",
   "creditsUnit": "رصيد",
   "messagesCount_one": "{{count}} رسالة",
-  "messagesCount_other": "{{count}} رسائل"
+  "messagesCount_other": "{{count}} رسائل",
+  "dismiss": "تجاهل",
+  "avatar": "الصورة الرمزية",
+  "hidePassword": "إخفاء كلمة المرور",
+  "showPassword": "إظهار كلمة المرور",
+  "clearSearch": "مسح البحث",
+  "confirm": "تأكيد",
+  "notifications": "الإشعارات",
+  "dismissNotification": "تجاهل الإشعار"
 }

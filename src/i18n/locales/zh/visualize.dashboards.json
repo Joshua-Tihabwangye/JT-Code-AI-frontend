@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "是",
+      "ne": "不是",
+      "contains": "包含",
+      "starts_with": "开头为",
+      "gt": "大于",
+      "gte": "大于或等于",
+      "lt": "小于",
+      "lte": "小于或等于",
+      "blank": "为空",
+      "not_blank": "不为空"
+    },
+    "units": {
+      "day_one": "天",
+      "day_other": "天",
+      "week_one": "周",
+      "week_other": "周",
+      "month_one": "月",
+      "month_other": "月",
+      "quarter_one": "季度",
+      "quarter_other": "季度",
+      "year_one": "年",
+      "year_other": "年"
+    },
+    "describe": {
+      "all": "{{name}}：全部",
+      "in": "{{name}} 是 {{values}}",
+      "inMore": "{{name}} 是 {{values}} +{{more}}",
+      "notIn": "{{name}} 不是 {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "计数",
+      "top": "按 {{by}} 排名前 {{n}} 的 {{name}}",
+      "bottom": "按 {{by}} 排名后 {{n}} 的 {{name}}",
+      "relative": {
+        "last": "{{name}}：过去 {{count}} {{unit}}",
+        "next": "{{name}}：未来 {{count}} {{unit}}",
+        "this": "{{name}}：当前{{unit}}"
+      },
+      "orJoin": " 或 ",
+      "andJoin": " 且 ",
+      "blank": "{{name}} 为空",
+      "notBlank": "{{name}} 不为空",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "筛选类型",
+    "types": {
+      "basic": "基本筛选",
+      "advanced": "高级筛选",
+      "top": "前 N 个",
+      "relative": "相对日期"
+    },
+    "search": "搜索",
+    "searchValues": "搜索值",
+    "loadingValues": "正在加载值…",
+    "condition": "条件",
+    "value": "值",
+    "addAnd": "+ 且",
+    "addOr": "+ 或",
+    "combineWith": "组合方式",
+    "and": "且",
+    "or": "或",
+    "removeSecond": "移除第二个条件",
+    "topOrBottom": "前或后",
+    "topWord": "前",
+    "bottomWord": "后",
+    "howMany": "数量",
+    "byValue": "依据值",
+    "byRows": "按行数",
+    "byTotal": "按 {{field}} 总计",
+    "period": "期间",
+    "modes": {
+      "last": "过去",
+      "this": "当前",
+      "next": "未来"
+    },
+    "unit": "单位",
+    "onVisual": "此视觉对象上的筛选器",
+    "onPage": "此页上的筛选器",
+    "onAllPages": "所有页面上的筛选器",
+    "active_one": "{{count}} 个筛选器生效中",
+    "active_other": "{{count}} 个筛选器生效中",
+    "resetToAuthor": "重置为作者设置",
+    "lockedByAuthor": "已被作者锁定",
+    "unlock": "为查看者解锁",
+    "lock": "为查看者锁定",
+    "showToViewers": "向查看者显示",
+    "hideFromViewers": "对查看者隐藏",
+    "remove": "移除筛选器",
+    "backToAuthor": "恢复为作者的筛选器",
+    "cardName": "卡片名称（可选）",
+    "cardNameLabel": "筛选器卡片名称",
+    "none": "无。",
+    "fieldToFilter": "要筛选的字段",
+    "chooseField": "选择字段…",
+    "add": "添加筛选器"
+  },
+  "ai": {
+    "sourceAiCredits_one": "由 AI 模型生成 · {{credits}} 积分",
+    "sourceAiCredits_other": "由 AI 模型生成 · {{credits}} 积分",
+    "sourceAiFree": "由 AI 模型生成 · 未消耗积分",
+    "sourceRules": "由内置规则生成（未使用 AI 模型 · 未消耗积分）",
+    "rowsWord": "行",
+    "previewLabel_one": "{{name}} 预览：{{count}} 个视觉对象",
+    "previewLabel_other": "{{name}} 预览：{{count}} 个视觉对象",
+    "describe": "描述页面",
+    "describePlaceholder": "例如：按地区和产品的销售业绩，包含月度趋势和前 10 名客户",
+    "designing": "设计中…",
+    "tryAgain": "重试",
+    "previewPage": "预览页面",
+    "costNote": "消耗一条 AI 消息（积分）。应用之前不会更改任何内容。",
+    "proposal_one": "<b>{{name}}</b> — 添加一个包含 {{count}} 个视觉对象的页面。",
+    "proposal_other": "<b>{{name}}</b> — 添加一个包含 {{count}} 个视觉对象的页面。",
+    "proposalWithCalcs_one": "<b>{{name}}</b> — 添加一个包含 {{count}} 个视觉对象和 {{calcs}} 个计算的页面。",
+    "proposalWithCalcs_other": "<b>{{name}}</b> — 添加一个包含 {{count}} 个视觉对象和 {{calcs}} 个计算的页面。",
+    "discard": "放弃",
+    "applying": "应用中…",
+    "apply": "应用",
+    "close": "关闭",
+    "suggestNote": "适合此数据集的视觉对象（免费 — 不消耗 AI 积分）。",
+    "looking": "正在分析数据…",
+    "working": "处理中…",
+    "preview": "预览",
+    "format": {
+      "title": "自动格式",
+      "question": "希望呈现什么样式？",
+      "other": "其他要求",
+      "otherPlaceholder": "还有其他要求吗？（将询问 AI 模型）",
+      "note": "高亮的词免费；在输入框中键入的任何内容都会询问 AI 模型。",
+      "nothing": "该请求无需更改任何内容。",
+      "theme": "主题",
+      "mode": "模式",
+      "density": "密度",
+      "layout": "布局",
+      "asIs": "保持不变",
+      "tidied": "对齐网格，缩短标题",
+      "modes": {
+        "light": "浅色",
+        "dark": "深色",
+        "system": "跟随应用"
+      },
+      "densities": {
+        "compact": "紧凑",
+        "comfortable": "宽松"
+      },
+      "keywords": {
+        "executive": "商务",
+        "midnight": "午夜",
+        "dark": "深色",
+        "light": "浅色",
+        "compact": "紧凑",
+        "comfortable": "宽松",
+        "aligned": "对齐"
+      }
+    },
+    "askTitle": "提问",
+    "askPlaceholder": "询问有关此数据的问题，例如：西部收入最高的产品",
+    "question": "问题",
+    "thinking": "思考中…",
+    "ask": "提问",
+    "pin": "固定到仪表板",
+    "explain": {
+      "title": "解释此变化",
+      "loading": "正在与上一期间比较…",
+      "none": "没有特别突出的成员。",
+      "periods": "{{from}} – {{to}} 对比 {{previousFrom}} – {{previousTo}} · 根据数据计算，未使用 AI"
+    }
+  },
+  "views": {
+    "yourDefault": "你的默认视图",
+    "openWith": "以此视图打开",
+    "delete": "删除此视图",
+    "title": "视图",
+    "mine": "我的视图",
+    "mineEmpty": "保存你看到的内容 — 筛选器、切片器、钻取以及你的更改。",
+    "namePlaceholder": "为此视图命名",
+    "save": "保存",
+    "forMe": "仅限我",
+    "modes": {
+      "system": "系统",
+      "light": "浅色",
+      "dark": "深色"
+    },
+    "densities": {
+      "comfortable": "宽松",
+      "compact": "紧凑"
+    },
+    "reset": "重置为默认值"
+  },
+  "personalize": {
+    "title": "个性化此视觉对象",
+    "close": "关闭",
+    "onlyYou": "只有你能看到这些更改。",
+    "type": "视觉对象类型",
+    "aggregation": "聚合",
+    "remove": "移除 {{field}}",
+    "add": "添加",
+    "legend": "图例",
+    "dataLabels": "数据标签",
+    "sort": "排序",
+    "sorts": {
+      "largest": "从大到小",
+      "smallest": "从小到大",
+      "az": "A → Z",
+      "za": "Z → A"
+    },
+    "undo": "撤消",
+    "reset": "重置此视觉对象"
+  },
+  "share": {
+    "embedTitle": "仪表板",
+    "copied": "已复制",
+    "title": "共享仪表板",
+    "heading": "共享“{{name}}”",
+    "close": "关闭",
+    "workspace": "我的工作区中的所有人",
+    "workspaceNote": "同事登录后以查看者身份打开：可以个性化视觉对象并保存自己的视图。",
+    "publicNote": "公共链接：任何拥有链接的人都可以查看此仪表板并使用其切片器 — 只读，无需登录。",
+    "kind": "类型",
+    "link": "链接",
+    "embed": "嵌入",
+    "labelPlaceholder": "标签（例如：董事会资料）",
+    "label": "标签",
+    "expires": "到期",
+    "expiryDate": "到期日期",
+    "creating": "创建中…",
+    "createEmbed": "创建嵌入代码",
+    "createLink": "创建链接",
+    "copyNow": "请立即复制 — 出于安全考虑，完整地址不会再次显示。",
+    "address": "共享地址",
+    "embedCode": "嵌入代码",
+    "copyLink": "复制链接",
+    "copyEmbed": "复制嵌入代码",
+    "links_one": "链接（{{count}} 个有效）",
+    "links_other": "链接（{{count}} 个有效）",
+    "loading": "加载中…",
+    "none": "暂无链接。",
+    "by": "创建者：{{name}}",
+    "unknown": "未知",
+    "revokedOn": "已于 {{date}} 撤销",
+    "expiresOn": "{{date}} 到期",
+    "noExpiry": "永不过期",
+    "lastOpened": "上次打开于 {{date}}",
+    "notOpened": "尚未打开",
+    "revoke": "撤销"
+  },
+  "header": {
+    "filtersApply_one": "已应用 {{count}} 个筛选器",
+    "filtersApply_other": "已应用 {{count}} 个筛选器",
+    "drillUp": "向上钻取",
+    "drillModeOn": "钻取模式已开启：单击数据点可向下钻取",
+    "drillMode": "钻取模式：单击数据点可向下钻取",
+    "nextLevel": "转到下一级别",
+    "personalized": "已为你个性化 — 可更改或重置",
+    "personalize": "个性化此视觉对象",
+    "focus": "聚焦模式",
+    "more": "更多选项",
+    "filtersOnVisual": "此视觉对象上的筛选器",
+    "showAsVisual": "以视觉对象显示",
+    "showAsTable": "以表格显示",
+    "exportCsv": "导出数据 (CSV)",
+    "copyImage": "复制为图片",
+    "leaveSpotlight": "退出焦点",
+    "spotlight": "焦点",
+    "closeFocus": "关闭聚焦模式"
+  },
+  "pointMenu": {
+    "drillThrough": "钻取 ▸ {{page}}",
+    "explain": "解释此变化",
+    "keepOnly": "仅保留",
+    "exclude": "排除"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "空白",
+        "hint": "从空白页面开始构建。"
+      },
+      "auto": {
+        "label": "自动",
+        "hint": "根据你的数据选择 KPI、趋势、细分、地图和切片器。"
+      },
+      "template": {
+        "label": "模板",
+        "hint": "现成的布局：将你的列映射到其中。"
+      },
+      "ai": {
+        "label": "询问 AI",
+        "hint": "描述页面；创建前可先预览。"
+      }
+    },
+    "kinds": {
+      "number": "数字",
+      "date": "日期",
+      "category": "类别"
+    },
+    "chooseColumn": "选择列…",
+    "skip": "（跳过）",
+    "untitled": "未命名仪表板",
+    "chooseTemplate": "请选择模板。",
+    "title": "新建仪表板",
+    "close": "关闭",
+    "howToStart": "开始方式",
+    "dataset": "数据集",
+    "addDatasetFirst": "请先添加数据集",
+    "name": "名称",
+    "data": "数据",
+    "overviewName": "{{name}} 概览",
+    "loadingTemplates": "正在加载模板…",
+    "allTemplates": "所有模板",
+    "matchColumns": "匹配你的列",
+    "stillNeeded": "仍需：{{roles}}。",
+    "createDashboard": "创建仪表板",
+    "cancel": "取消",
+    "creating": "创建中…",
+    "createFromTemplate": "从模板创建",
+    "build": "生成仪表板",
+    "create": "创建",
+    "templateLayout": "{{name}} 布局"
+  },
+  "templates": {
+    "sales": {
+      "name": "销售概览",
+      "description": "按产品和地区查看收入、利润和趋势。",
+      "roles": {
+        "date": "日期",
+        "amount": "收入",
+        "profit": "利润",
+        "quantity": "数量",
+        "target": "目标",
+        "product": "产品",
+        "region": "地区",
+        "channel": "渠道"
+      }
+    },
+    "crm": {
+      "name": "CRM 销售管道",
+      "description": "按阶段和负责人查看交易、成交金额和转化率。",
+      "roles": {
+        "date": "日期",
+        "amount": "交易金额",
+        "stage": "阶段",
+        "owner": "负责人",
+        "source": "潜在客户来源"
+      }
+    },
+    "finance": {
+      "name": "财务损益",
+      "description": "按时间和科目查看收入、成本和利润率。",
+      "roles": {
+        "date": "日期",
+        "amount": "收入",
+        "cost": "成本",
+        "account": "科目 / 类别",
+        "budget": "预算"
+      }
+    },
+    "hr": {
+      "name": "人力资源分析",
+      "description": "按部门查看员工人数、薪资和满意度。",
+      "roles": {
+        "date": "日期",
+        "employee": "员工 ID",
+        "department": "部门",
+        "salary": "薪资",
+        "rating": "满意度 / 评分",
+        "status": "状态",
+        "gender": "性别"
+      }
+    },
+    "web": {
+      "name": "网站分析",
+      "description": "按来源和页面查看会话、用户和转化。",
+      "roles": {
+        "date": "日期",
+        "sessions": "会话 / 访问",
+        "users": "用户",
+        "conversions": "转化",
+        "source": "流量来源",
+        "page": "页面"
+      }
+    },
+    "mobile": {
+      "name": "移动应用分析",
+      "description": "按平台和版本查看活跃用户、安装量和崩溃次数。",
+      "roles": {
+        "date": "日期",
+        "active": "活跃用户",
+        "installs": "安装量",
+        "crashes": "崩溃次数",
+        "platform": "平台",
+        "version": "应用版本"
+      }
+    },
+    "marketing": {
+      "name": "营销活动",
+      "description": "按活动查看支出、点击量、转化和单次转化成本。",
+      "roles": {
+        "date": "日期",
+        "spend": "支出",
+        "clicks": "点击量",
+        "conversions": "转化",
+        "campaign": "活动",
+        "channel": "渠道"
+      }
+    },
+    "inventory": {
+      "name": "库存和运营",
+      "description": "按物料和站点查看现有库存、出入库变动和补货风险。",
+      "roles": {
+        "date": "日期",
+        "stock": "库存 / 数量",
+        "item": "物料",
+        "site": "仓库 / 站点",
+        "value": "库存价值",
+        "reorder": "再订货点"
+      }
+    },
+    "retail": {
+      "name": "零售",
+      "description": "门店销售额、客单量和畅销商品。",
+      "roles": {
+        "date": "日期",
+        "amount": "收入",
+        "quantity": "数量",
+        "store": "门店 / 地区",
+        "product": "产品",
+        "rating": "满意度"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} 起",
+    "to": "{{field}} 止",
+    "clear": "清除",
+    "minimum": "{{field}} 最小值",
+    "maximum": "{{field}} 最大值",
+    "period": "期间",
+    "allTime": "全部时间",
+    "howMany": "数量",
+    "unit": "单位",
+    "operator": "运算符",
+    "typeValue": "输入 {{field}}",
+    "value": "{{field}} 值",
+    "collapse": "折叠",
+    "expand": "展开",
+    "all": "全部",
+    "selected_one": "已选择 {{count}} 项",
+    "selected_other": "已选择 {{count}} 项",
+    "searchPlaceholder": "搜索，或粘贴列表",
+    "search": "搜索 {{field}}",
+    "selectAll": "全选"
+  },
+  "local": {
+    "snapshotEmpty": "此快照不含图表。",
+    "snapshot": "快照",
+    "snapshotOn": "快照 · {{date}}",
+    "chooseParameter": "请在“格式 → 参数”中选择参数。",
+    "button": "按钮",
+    "noViews": "添加视图（书签）后将在此处列出。",
+    "views": "视图",
+    "pages": "页面"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} 仪表板",
+    "newDashboard": "新建仪表板",
+    "overview": "概览",
+    "title": "固定到仪表板",
+    "close": "关闭",
+    "pinnedTo": "已固定到 <b>{{name}}</b>。",
+    "stay": "留在此处",
+    "open": "打开仪表板",
+    "dashboard": "仪表板",
+    "newOption": "+ 新建仪表板…",
+    "name": "名称",
+    "page": "页面",
+    "cancel": "取消",
+    "pinning": "正在固定…",
+    "pin": "固定"
+  },
+  "page": {
+    "backFromDetail": "返回",
+    "back": "所有仪表板",
+    "pages": "页面",
+    "clear": "清除",
+    "clearSelection": "清除选择",
+    "apply": "应用",
+    "clearSlicers": "清除所有切片器",
+    "updating": "更新中…",
+    "filters": "筛选器",
+    "qa": "问答",
+    "present": "演示",
+    "share": "共享",
+    "edit": "编辑",
+    "painting": "正在绘制第 {{page}} 页，共 {{total}} 页…",
+    "buildingPdf": "正在生成 PDF…",
+    "exported_one": "已导出 {{count}} 页。",
+    "exported_other": "已导出 {{count}} 页。",
+    "exportFailed": "导出失败。",
+    "notFound": "未找到仪表板。",
+    "filtersActive_one": "{{count}} 个筛选器生效中",
+    "filtersActive_other": "{{count}} 个筛选器生效中",
+    "presentation": "演示",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "pause": "暂停",
+    "autoPlay": "自动播放",
+    "leavePresentation": "退出演示",
+    "keepExclude": "你的保留/排除筛选器",
+    "excluding": "排除 {{values}}",
+    "only": "仅 {{values}}",
+    "dashboard": "仪表板",
+    "seconds": "{{value}} 秒"
+  },
+  "quick": {
+    "ratio": {
+      "label": "比率 (A ÷ B)，例如利润率"
+    },
+    "average-per-row": {
+      "label": "每行平均值（例如平均订单金额）"
+    },
+    "vs-target": {
+      "label": "与目标对比 (%)"
+    },
+    "difference": {
+      "label": "差值 (A − B)"
+    },
+    "per-distinct": {
+      "label": "每个非重复项的值（例如每位客户的收入）"
+    },
+    "fields": {
+      "numerator": "分子",
+      "denominator": "分母",
+      "value": "值",
+      "actual": "实际值",
+      "target": "目标",
+      "minus": "减去",
+      "distinctItem": "非重复项"
+    },
+    "names": {
+      "perRow": "每行 {{a}}",
+      "vsTarget": "{{a}} 与目标对比",
+      "perDistinct": "每个 {{b}} 的 {{a}}"
+    }
+  },
+  "home": {
+    "untitled": "未命名仪表板",
+    "title": "仪表板",
+    "subtitle": "KPI、图表和切片器集中在一个屏幕上，彼此联动。",
+    "noData": "请先添加数据集",
+    "blank": "空白",
+    "template": "模板",
+    "building": "生成中…",
+    "auto": "生成仪表板",
+    "empty": "暂无仪表板。选择一个数据集，一键即可生成。",
+    "duplicate": "复制",
+    "deleteTitle": "删除仪表板？",
+    "deleteText": "{{name}} 及其已保存的版本将被删除。数据集不受影响。",
+    "more": "更多数据",
+    "start": "从这里开始",
+    "import": "上传或粘贴数据",
+    "loading": "加载中…",
+    "library": "我的视觉对象",
+    "allVisuals": "所有已保存的视觉对象",
+    "libraryHint": "可通过编辑器的“插入”菜单将其中任意一个插入仪表板。",
+    "delete": "删除",
+    "datasetLabel": "新仪表板的数据集",
+    "show": "显示",
+    "filter": {
+      "all": "全部",
+      "mine": "我的",
+      "shared": "与我共享"
+    },
+    "pages_one": "{{count}} 页",
+    "pages_other": "{{count}} 页",
+    "roles": {
+      "owner": "所有者",
+      "editor": "编辑者",
+      "viewer": "查看者"
+    },
+    "sharedFlag": "已共享",
+    "deleteNamed": "删除 {{name}}"
+  },
+  "visual": {
+    "target": "目标 {{value}}",
+    "progress": "{{value}} / {{target}}",
+    "total": "总计",
+    "failed": "无法绘制此视觉对象。",
+    "empty": "当前筛选条件下没有数据",
+    "clearSelection": "清除选择",
+    "nothing": "没有可显示的内容。"
+  },
+  "shared": {
+    "loading": "正在加载仪表板…",
+    "missingTitle": "此链接不可用",
+    "missingText": "该链接可能已被撤销或已过期。请向共享者索取新链接。",
+    "pages": "页面",
+    "clearSelection": "清除选择",
+    "clearSlicers": "清除切片器",
+    "readOnly": "只读共享视图"
+  },
+  "capture": {
+    "unsupported": "此浏览器无法绘制该页面。",
+    "failed": "无法绘制该页面。",
+    "timeout": "页面绘制时间过长。"
+  }
+}

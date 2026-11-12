@@ -21,5 +21,13 @@
   "sourceNotFound": "Source not found.",
   "collectionNotFound": "Collection not found.",
   "noAccount": "No account found. Please sign in.",
-  "mockReply": "Here is a mock response to: \"{{prompt}}\". In mock mode the assistant returns deterministic text so the UI can exercise streaming, retry and persistence without a backend."
+  "mockReply": "Here is a mock response to: \"{{prompt}}\". In mock mode the assistant returns deterministic text so the UI can exercise streaming, retry and persistence without a backend.",
+  "notConnected": "Not connected.",
+  "connectionHealthy": "{{name}} connection is healthy.",
+  "csvHeader": "The CSV needs a header row.",
+  "uniqueColumns": "Column names must be unique.",
+  "runNotFound": "Analysis run not found.",
+  "datasetNotFound": "Dataset not found.",
+  "chartNotFound": "Chart not found.",
+  "visualizeNeedsApi": "Data Visualization runs on the backend. Set VITE_DATA_MODE=api and start the API to use it."
 }

@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Silakan unggah gambar dan masukkan prompt",
     "noResult": "Tidak ada hasil"
   },
-  "defaultQuestion": "Jelaskan gambar ini secara detail"
+  "defaultQuestion": "Jelaskan gambar ini secara detail",
+  "uploadPreview": "Unggah pratinjau",
+  "autoModel": "Otomatis (disarankan)"
 }

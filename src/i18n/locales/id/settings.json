@@ -29,5 +29,20 @@
   "changePhoto": "Klik untuk mengubah foto",
   "profileUpdated": "Profil berhasil diperbarui",
   "updateProfileError": "Gagal memperbarui profil",
-  "uploadAvatarError": "Gagal mengunggah avatar"
+  "uploadAvatarError": "Gagal mengunggah avatar",
+  "eyebrow": "Pengaturan",
+  "avatarUpdated": "Gambar profil diperbarui.",
+  "removePhoto": "Hapus foto",
+  "passwordChanged": "Kata sandi Anda telah diubah.",
+  "passwordMismatch": "Kata sandi baru tidak cocok.",
+  "workspace": "Ruang kerja",
+  "workspaceDesc": "Organisasi Anda di JT-Code. Percakapan, file, dan kredit adalah miliknya.",
+  "workspaceName": "Nama ruang kerja",
+  "workspaceUpdated": "Ruang kerja diganti namanya.",
+  "password": "Kata sandi",
+  "passwordDesc": "Ubah kata sandi yang Anda gunakan untuk masuk.",
+  "currentPassword": "Kata sandi saat ini",
+  "newPassword": "Kata sandi baru (8+ karakter)",
+  "confirmPassword": "Konfirmasikan kata sandi baru",
+  "changePassword": "Ubah kata sandi"
 }

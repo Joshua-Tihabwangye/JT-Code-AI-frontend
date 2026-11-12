@@ -1,8 +1,6 @@
 {
   "title": "Willkommen zurück",
   "subtitle": "Melde dich an, um mit JT-Code fortzufahren",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "Verbindung wird hergestellt…",
   "emailLabel": "E-Mail-Adresse",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "Passwort vergessen?",
   "submit": "Anmelden",
   "noAccount": "Noch kein Konto?",
-  "createAccount": "Konto erstellen"
+  "createAccount": "Konto erstellen",
+  "helpText": "",
+  "signInWithGoogle": "Mit Google anmelden",
+  "signInWithApple": "Mit Apple anmelden",
+  "offlineHint": "Offline-Designmodus: Das Backend wird nicht verwendet. Melde dich mit einer beliebigen E-Mail-Adresse und einem beliebigen Passwort an (es wird ein lokales Konto erstellt) oder fahre mit dem Demokonto fort.",
+  "demoAccount": "Mit dem Demokonto fortfahren",
+  "continueWith": "Weiter mit {{provider}}"
 }

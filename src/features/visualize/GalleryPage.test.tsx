@@ -4,7 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import type * as DataModule from '@/lib/data';
 import type { VizCatalog } from '@/lib/data';
-import { createMockVisualizeRepository, VISUALIZE_NEEDS_API } from '@/lib/data/mock/visualize';
+import { createMockVisualizeRepository, visualizeNeedsApi } from '@/lib/data/mock/visualize';
 import { VisualizeProvider } from './context';
 import { GalleryPage } from './pages/GalleryPage';
 
@@ -69,7 +69,7 @@ describe('GalleryPage', () => {
 describe('mock mode', () => {
   it('explains that the tool needs the API', async () => {
     const repository = createMockVisualizeRepository();
-    await expect(repository.catalog()).rejects.toThrow(VISUALIZE_NEEDS_API);
+    await expect(repository.catalog()).rejects.toThrow(visualizeNeedsApi());
     expect((repository as unknown as { then?: unknown }).then).toBeUndefined();
   });
 });

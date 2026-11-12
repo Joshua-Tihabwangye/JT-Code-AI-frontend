@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Check, ChevronDown, ChevronRight, Minus, Search, X } from 'lucide-react';
-import { formatNumber } from '@/i18n/format';
+import { formatNumber, inlineLabel } from '@/i18n/format';
 import type { DashboardFilter, DashboardVisual, SlicerData, SlicerNode } from '@/lib/data';
 
 type Primitive = string | number | boolean | null;
@@ -139,7 +139,7 @@ function InputSlicer({ slicer, value, onChange }: { slicer: SlicerData; value: S
         <option value="lt">&lt;</option>
         <option value="lte">≤</option>
       </select>
-      <input value={input.text} onChange={(event) => onChange(event.target.value ? { input: { ...input, text: event.target.value } } : undefined)} placeholder={t('visualize.dashboards.slicer.typeValue', { field: slicer.label.toLowerCase() })} aria-label={t('visualize.dashboards.slicer.value', { field: slicer.label })} />
+      <input value={input.text} onChange={(event) => onChange(event.target.value ? { input: { ...input, text: event.target.value } } : undefined)} placeholder={t('visualize.dashboards.slicer.typeValue', { field: inlineLabel(slicer.label) })} aria-label={t('visualize.dashboards.slicer.value', { field: slicer.label })} />
     </div>
   );
 }

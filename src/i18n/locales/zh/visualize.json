@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "仪表板",
+    "data": "数据",
+    "gallery": "图库",
+    "predict": "预测",
+    "reports": "报表",
+    "explore": "探索"
+  },
+  "askAi": "询问 AI",
+  "hero": {
+    "title": "数据可视化工作室"
+  },
+  "assistant": {
+    "title": "JT-Code AI",
+    "cost": "仅在发送提示时消耗积分。图表、洞察和建议均免费。",
+    "about": "询问内容",
+    "intro": "描述你想看到的内容。我会选择图表并填入列，在运行任何操作前由你审阅。",
+    "thinking": "思考中…",
+    "builtIn": "内置",
+    "credits": "{{credits}} 积分",
+    "free": "未消耗积分",
+    "openExplore": "在“探索”中打开",
+    "setUp": "设置预测",
+    "placeholder": "例如：按地区显示每月收入",
+    "prompt": "提示",
+    "send": "发送",
+    "close": "关闭"
+  },
+  "dataset": "数据集",
+  "noDataset": "暂无数据集",
+  "sections": "数据可视化分区",
+  "controls": {
+    "noColumns": {
+      "numeric": "没有数值列",
+      "datetime": "没有日期时间列",
+      "categorical": "没有分类列",
+      "dimension": "没有维度列",
+      "any": "没有任何列"
+    },
+    "chooseColumn": "选择列…",
+    "none": "无",
+    "automatic": "自动"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "优秀",
+      "good": "良好",
+      "fair": "一般",
+      "weak": "较弱",
+      "unknown": "未知"
+    },
+    "dataset": "数据集",
+    "noDatasets": "暂无数据集",
+    "rows_one": "{{rows}} 行",
+    "rows_other": "{{rows}} 行",
+    "less": "收起",
+    "howToRead": "如何解读",
+    "dataOf": "{{title}} 数据",
+    "tableSize": "{{rows}} 行 × {{columns}} 列 — 此图表显示的数据",
+    "tableSizeFirst": "{{rows}} 行 × {{columns}} 列（前几行）— 此图表显示的数据",
+    "close": "关闭",
+    "expandRibbon": "展开功能区",
+    "collapseRibbon": "折叠功能区"
+  }
+}

@@ -57,5 +57,7 @@
     "uploadAndPrompt": "يرجى رفع صورة وإدخال وصف",
     "noResult": "لا توجد نتيجة"
   },
-  "defaultQuestion": "صِف هذه الصورة بالتفصيل"
+  "defaultQuestion": "صِف هذه الصورة بالتفصيل",
+  "uploadPreview": "معاينة الملف المرفوع",
+  "autoModel": "تلقائي (موصى به)"
 }

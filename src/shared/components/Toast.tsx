@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import { CheckCircle2, AlertTriangle, XCircle, Info, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export type ToastVariant = 'default' | 'success' | 'error' | 'warning';
 
@@ -45,6 +46,7 @@ const ACCENT: Record<ToastVariant, string> = {
 };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const { t } = useTranslation();
   const [toasts, setToasts] = useState<ToastRecord[]>([]);
 
   const dismiss = useCallback((id: string) => {
@@ -75,26 +77,26 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="toast-viewport" role="region" aria-label="Notifications" aria-live="polite">
-        {toasts.map((t) => {
-          const Icon = ICONS[t.variant];
+      <div className="toast-viewport" role="region" aria-label={t('common.notifications')} aria-live="polite">
+        {toasts.map((toast) => {
+          const Icon = ICONS[toast.variant];
           return (
             <div
-              key={t.id}
+              key={toast.id}
               className="toast"
               role="status"
-              style={{ '--toast-accent': ACCENT[t.variant] } as CSSProperties}
+              style={{ '--toast-accent': ACCENT[toast.variant] } as CSSProperties}
             >
-              <Icon size={18} style={{ color: ACCENT[t.variant] }} aria-hidden className="mt-0.5 shrink-0" />
+              <Icon size={18} style={{ color: ACCENT[toast.variant] }} aria-hidden className="mt-0.5 shrink-0" />
               <div className="min-w-0">
-                <div className="toast-title">{t.title}</div>
-                {t.description && <div className="toast-description">{t.description}</div>}
+                <div className="toast-title">{toast.title}</div>
+                {toast.description && <div className="toast-description">{toast.description}</div>}
               </div>
               <button
                 type="button"
                 className="toast-close"
-                aria-label="Dismiss notification"
-                onClick={() => dismiss(t.id)}
+                aria-label={t('common.dismissNotification')}
+                onClick={() => dismiss(toast.id)}
               >
                 <X size={14} aria-hidden />
               </button>

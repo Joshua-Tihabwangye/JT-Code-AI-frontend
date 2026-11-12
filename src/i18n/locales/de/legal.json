@@ -3,19 +3,25 @@
     "eyebrow": "Kontakt",
     "title": "Hilfe zu JT-Code erhalten",
     "backToSignIn": "Zurück zur Anmeldung",
-    "createAccount": "Konto erstellen"
+    "createAccount": "Konto erstellen",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "Datenschutzerklärung",
     "title": "JT-Code Datenschutz",
     "signIn": "Anmelden",
-    "readTerms": "Bedingungen lesen"
+    "readTerms": "Bedingungen lesen",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "Nutzungsbedingungen",
     "title": "JT-Code Bedingungen",
     "createAccount": "Konto erstellen",
-    "contactSupport": "Support kontaktieren"
+    "contactSupport": "Support kontaktieren",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "Seite nicht gefunden",

@@ -14,5 +14,13 @@
   "default": "ডিফল্ট",
   "creditsUnit": "ক্রেডিট",
   "messagesCount_one": "{{count}}টি মেসেজ",
-  "messagesCount_other": "{{count}}টি মেসেজ"
+  "messagesCount_other": "{{count}}টি মেসেজ",
+  "dismiss": "খারিজ",
+  "avatar": "অবতার",
+  "hidePassword": "পাসওয়ার্ড লুকান",
+  "showPassword": "পাসওয়ার্ড দেখান",
+  "clearSearch": "সাফ অনুসন্ধান",
+  "confirm": "নিশ্চিত করুন",
+  "notifications": "বিজ্ঞপ্তি",
+  "dismissNotification": "বিজ্ঞপ্তি খারিজ করুন"
 }

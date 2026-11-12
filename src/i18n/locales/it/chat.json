@@ -13,5 +13,12 @@
   "requestFailed": "La richiesta non è andata a buon fine.",
   "statusRunning": "Stato: {{status}}…",
   "defaultPlan": "Free",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "Cosa dovremmo",
+  "headlineAccent": "costruire oggi?",
+  "assistant": "Codice JT",
+  "stop": "Smetti di generare",
+  "stopped": "Fermato."
 }

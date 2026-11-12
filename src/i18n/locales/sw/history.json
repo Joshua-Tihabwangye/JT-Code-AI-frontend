@@ -7,5 +7,15 @@
   "emptyTitle": "Hakuna historia bado",
   "emptyDesc": "Anzisha mazungumzo na mazungumzo yako yataonekana hapa.",
   "startChatting": "Anza mazungumzo",
-  "deleteItemAria": "Futa {{title}}"
+  "deleteItemAria": "Futa {{title}}",
+  "searchPlaceholder": "Tafuta mazungumzo",
+  "archived": "Imehifadhiwa",
+  "openAria": "Fungua {{title}}",
+  "pinned": "Imebandikwa",
+  "untitled": "Mazungumzo yasiyo na jina",
+  "pin": "Bandika",
+  "unpin": "Bandua",
+  "archive": "Hifadhi",
+  "unarchive": "Rejesha kutoka kwenye kumbukumbu",
+  "export": "Hamisha kama Markdown"
 }

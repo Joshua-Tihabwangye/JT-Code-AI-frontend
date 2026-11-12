@@ -7,5 +7,15 @@
   "emptyTitle": "Ancora nessuna cronologia",
   "emptyDesc": "Avvia una chat e le tue conversazioni compariranno qui.",
   "startChatting": "Inizia a chattare",
-  "deleteItemAria": "Elimina {{title}}"
+  "deleteItemAria": "Elimina {{title}}",
+  "searchPlaceholder": "Cerca conversazioni",
+  "archived": "Archiviato",
+  "openAria": "Apri {{title}}",
+  "pinned": "Appuntato",
+  "untitled": "Conversazione senza titolo",
+  "pin": "Spillo",
+  "unpin": "Sblocca",
+  "archive": "Archivio",
+  "unarchive": "Ripristina dall'archivio",
+  "export": "Esporta come Markdown"
 }

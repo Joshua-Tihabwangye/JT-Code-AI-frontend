@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { inlineLabel } from '@/i18n/format';
 import { ArrowLeftRight, Calendar, FunctionSquare, Hash, Search, Sparkles, Type, X } from 'lucide-react';
 import type { ColumnProfile, DashboardCalculation, DashboardFieldRef, DashboardSpec, DashboardVisual, DashboardWell } from '@/lib/data';
 import { useCatalogText } from '../../catalogText';
@@ -93,7 +94,7 @@ export function BuildPane({
         <div className="space-y-2">
           {suggestion && suggestion !== visual.type && (
             <button type="button" className="viz-chip w-full justify-center" onClick={() => update((v) => ({ ...v, type: suggestion }))} data-testid="suggested-type">
-              <Sparkles size={12} aria-hidden /> {t('visualize.editor.build.betterAs', { type: VISUAL_BY_TYPE[suggestion]?.label.toLowerCase() })}
+              <Sparkles size={12} aria-hidden /> {t('visualize.editor.build.betterAs', { type: inlineLabel(VISUAL_BY_TYPE[suggestion]?.label ?? suggestion) })}
             </button>
           )}
           {spec.wells.map((well) => (

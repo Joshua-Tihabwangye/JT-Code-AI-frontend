@@ -9,5 +9,8 @@
   "offlineMessage": "Você está offline. As alterações são salvas localmente e serão sincronizadas quando você se reconectar.",
   "fatalTitle": "Algo deu errado",
   "unexpectedError": "Ocorreu um erro inesperado.",
-  "reloadApp": "Recarregar aplicativo"
+  "reloadApp": "Recarregar aplicativo",
+  "home": "Página inicial do código JT",
+  "primaryNavigation": "Navegação primária",
+  "fatalError": "O código JT encontrou um erro."
 }

@@ -23,5 +23,10 @@
     "resetFailed": "Imeshindikana kuweka upya nenosiri lako.",
     "mismatch": "Manenosiri hayalingani.",
     "unexpected": "Hitilafu isiyotarajiwa imetokea."
-  }
+  },
+  "resetDesc": "Ingiza anwani yako ya barua pepe na tutakutumia kiungo cha kuweka upya unaweza kukamilisha papa hapa.",
+  "checkDesc": "Tulituma ujumbe wa kuweka upya kwa <0>{{email}} </0>. Nambari iliyo hapa chini itafungua hatua inayofuata.",
+  "checkDescPlain": "Tulituma msimbo wa kuweka upya kwa {{email}}. Ingiza kwenye hatua inayofuata ili kuchagua nenosiri jipya.",
+  "mockResetCode": "Weka upya msimbo",
+  "enterEmailedCode": "Ingiza msimbo kutoka kwa barua pepe"
 }

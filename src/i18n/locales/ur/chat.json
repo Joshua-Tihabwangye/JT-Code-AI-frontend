@@ -13,5 +13,12 @@
   "requestFailed": "درخواست ناکام ہو گئی۔",
   "statusRunning": "حالت: {{status}}…",
   "defaultPlan": "مفت",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "ہمیں کیا کرنا چاہئے",
+  "headlineAccent": "آج تعمیر کریں؟",
+  "assistant": "جے ٹی کوڈ",
+  "stop": "پیدا کرنا بند کریں۔",
+  "stopped": "رک گیا۔"
 }

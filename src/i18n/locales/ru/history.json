@@ -7,5 +7,15 @@
   "emptyTitle": "Истории пока нет",
   "emptyDesc": "Начните чат, и ваши диалоги появятся здесь.",
   "startChatting": "Начать общение",
-  "deleteItemAria": "Удалить {{title}}"
+  "deleteItemAria": "Удалить {{title}}",
+  "searchPlaceholder": "Поиск бесед",
+  "archived": "В архиве",
+  "openAria": "Открыть {{title}}",
+  "pinned": "Закреплено",
+  "untitled": "Беседа без названия",
+  "pin": "Приколоть",
+  "unpin": "Открепить",
+  "archive": "Архив",
+  "unarchive": "Восстановить из архива",
+  "export": "Экспортировать как Markdown"
 }

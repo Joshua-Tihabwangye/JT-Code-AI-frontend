@@ -1,8 +1,6 @@
 {
   "title": "С возвращением",
   "subtitle": "Войдите, чтобы продолжить работу с JT-Code",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "Подключение…",
   "emailLabel": "Электронная почта",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "Забыли пароль?",
   "submit": "Войти",
   "noAccount": "Нет аккаунта?",
-  "createAccount": "Создать аккаунт"
+  "createAccount": "Создать аккаунт",
+  "helpText": "",
+  "signInWithGoogle": "Войти через Google",
+  "signInWithApple": "Войти через Apple",
+  "offlineHint": "Автономный режим разработки: бэкэнд не используется. Войдите в систему, используя любой адрес электронной почты и пароль (создается локальная учетная запись), или продолжите работу с демо-учетной записью.",
+  "demoAccount": "Продолжить работу с демо-счетом",
+  "continueWith": "Продолжить с {{provider}}"
 }

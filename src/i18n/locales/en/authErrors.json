@@ -24,5 +24,6 @@
   "invalidResetCode": "Invalid or expired reset code.",
   "signInToReset": "Sign in to reset your password.",
   "providerDisabled": "Sign-in with {{provider}} is not enabled. Use your email and password.",
-  "serviceUnreachable": "Cannot reach the sign-in service. Check your connection and try again."
+  "serviceUnreachable": "Cannot reach the sign-in service. Check your connection and try again.",
+  "invalidCountry": "Invalid country."
 }

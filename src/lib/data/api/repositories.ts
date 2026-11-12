@@ -1,4 +1,5 @@
 import type { AxiosResponse } from 'axios';
+import i18n from '@/i18n/config';
 import { apiErrorMessage, http as api } from '@/lib/api/http';
 import { supabase } from '@/lib/supabase';
 import type { Paginated } from '@/lib/api/types';
@@ -334,7 +335,8 @@ class ApiChatRepository implements ChatRepository {
         conversationId: options.conversationId,
         chatInput: options.content,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        locale: navigator.language,
+        // The language chosen in the app (the reply should use it), not the browser's.
+        locale: i18n.resolvedLanguage || i18n.language || navigator.language,
       },
       { headers: { 'Idempotency-Key': crypto.randomUUID() } },
     );

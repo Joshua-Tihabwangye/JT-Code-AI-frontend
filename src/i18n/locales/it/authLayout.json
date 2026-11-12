@@ -3,5 +3,7 @@
   "switchToDark": "Passa al tema scuro",
   "light": "Chiaro",
   "dark": "Scuro",
-  "tagline": "Area di lavoro AI privata"
+  "tagline": "Area di lavoro AI privata",
+  "notice": "",
+  "back": "Indietro"
 }

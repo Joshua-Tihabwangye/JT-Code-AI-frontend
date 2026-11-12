@@ -1,0 +1,38 @@
+{
+  "pick": "在上方栏中选择数据集，或在“数据”页面添加一个。",
+  "add": "新建图表",
+  "pin": "固定到仪表板",
+  "saved": "已保存到“我的视觉对象”",
+  "save": "保存到“我的视觉对象”",
+  "viewData": "查看数据",
+  "pageName": "探索",
+  "chartType": "图表类型",
+  "suggestions": "建议",
+  "charts": "图表",
+  "buildAndFormat": "生成和格式",
+  "build": "生成",
+  "format": "格式",
+  "remove": "移除此图表",
+  "drawer": {
+    "data": "图表背后的数据",
+    "rows": "原始行",
+    "query": "查询"
+  },
+  "noData": "暂无数据。",
+  "query": {
+    "chart": "{{fields}} 的{{chart}}（所有行，超过 10,000 行时抽样至 10,000 行）。",
+    "noFields": "尚无字段",
+    "countRows": "行计数",
+    "measure": "{{field}} 的{{agg}}",
+    "grain": "{{field}}（{{grain}}）",
+    "grains": {
+      "year": "年",
+      "quarter": "季度",
+      "month": "月",
+      "week": "周",
+      "day": "日"
+    },
+    "grouped": "按 {{groups}} 分组的{{what}} — 在数据库中计算，然后用 Python 绘制。",
+    "total": "{{what}} — 在数据库中计算，然后用 Python 绘制。"
+  }
+}

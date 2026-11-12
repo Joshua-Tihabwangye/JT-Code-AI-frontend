@@ -7,5 +7,15 @@
   "emptyTitle": "لا يوجد سجل بعد",
   "emptyDesc": "ابدأ محادثة وستظهر محادثاتك هنا.",
   "startChatting": "ابدأ المحادثة",
-  "deleteItemAria": "حذف {{title}}"
+  "deleteItemAria": "حذف {{title}}",
+  "searchPlaceholder": "البحث في المحادثات",
+  "archived": "المؤرشفة",
+  "openAria": "فتح {{title}}",
+  "pinned": "المثبّتة",
+  "untitled": "محادثة بلا عنوان",
+  "pin": "تثبيت",
+  "unpin": "إلغاء التثبيت",
+  "archive": "أرشفة",
+  "unarchive": "استعادة من الأرشيف",
+  "export": "تصدير بتنسيق Markdown"
 }

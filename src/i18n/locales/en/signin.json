@@ -14,5 +14,6 @@
   "noAccount": "Don't have an account?",
   "createAccount": "Create account",
   "offlineHint": "Offline design mode: the backend is not used. Sign in with any email and password (a local account is created), or continue with the demo account.",
-  "demoAccount": "Continue with the demo account"
+  "demoAccount": "Continue with the demo account",
+  "continueWith": "Continue with {{provider}}"
 }

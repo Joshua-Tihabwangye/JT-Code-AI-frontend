@@ -13,5 +13,12 @@
   "requestFailed": "অনুরোধটি ব্যর্থ হয়েছে।",
   "statusRunning": "স্ট্যাটাস: {{status}}…",
   "defaultPlan": "ফ্রি",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "আমরা কি উচিত",
+  "headlineAccent": "আজ নির্মাণ?",
+  "assistant": "JT-কোড",
+  "stop": "জেনারেট করা বন্ধ করুন",
+  "stopped": "থেমে গেল।"
 }

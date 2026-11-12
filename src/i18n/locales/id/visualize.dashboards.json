@@ -1,0 +1,608 @@
+{
+  "filters": {
+    "ops": {
+      "eq": "adalah",
+      "ne": "tidak",
+      "contains": "berisi",
+      "starts_with": "dimulai dengan",
+      "gt": "lebih besar dari",
+      "gte": "setidaknya",
+      "lt": "kurang dari",
+      "lte": "paling banyak",
+      "blank": "kosong",
+      "not_blank": "tidak kosong"
+    },
+    "units": {
+      "day_one": "hari",
+      "day_other": "hari",
+      "week_one": "pekan",
+      "week_other": "minggu",
+      "month_one": "bulan",
+      "month_other": "bulan",
+      "quarter_one": "seperempat",
+      "quarter_other": "perempat",
+      "year_one": "tahun",
+      "year_other": "bertahun-tahun"
+    },
+    "describe": {
+      "all": "{{name}}: semuanya",
+      "in": "{{name}} adalah {{values}}",
+      "inMore": "{{name}} adalah {{values}} +{{more}}",
+      "notIn": "{{name}} bukan {{values}}",
+      "between": "{{name}} {{range}}",
+      "byCount": "menghitung",
+      "top": "{{n}} {{name}} teratas oleh {{by}}",
+      "bottom": "Bawah {{n}} {{name}} oleh {{by}}",
+      "relative": {
+        "last": "{{name}}: terakhir {{count}} {{unit}}",
+        "next": "{{name}}: selanjutnya {{count}} {{unit}}",
+        "this": "{{name}}: ini {{unit}}"
+      },
+      "orJoin": "atau",
+      "andJoin": "Dan",
+      "blank": "{{name}} kosong",
+      "notBlank": "{{name}} tidak kosong",
+      "condition": "{{name}} {{op}} {{value}}"
+    },
+    "type": "Jenis penyaring",
+    "types": {
+      "basic": "Dasar",
+      "advanced": "Canggih",
+      "top": "N atas",
+      "relative": "Tanggal relatif"
+    },
+    "search": "Mencari",
+    "searchValues": "Nilai pencarian",
+    "loadingValues": "Memuat nilai…",
+    "condition": "Kondisi",
+    "value": "Nilai",
+    "addAnd": "+ Dan",
+    "addOr": "+ Atau",
+    "combineWith": "Gabungkan dengan",
+    "and": "Dan",
+    "or": "Atau",
+    "removeSecond": "Hapus yang kedua",
+    "topOrBottom": "Atas atau bawah",
+    "topWord": "Atas",
+    "bottomWord": "Dasar",
+    "howMany": "Berapa banyak",
+    "byValue": "Berdasarkan nilai",
+    "byRows": "berdasarkan jumlah baris",
+    "byTotal": "dengan jumlah {{field}}",
+    "period": "Periode",
+    "modes": {
+      "last": "Terakhir",
+      "this": "Ini",
+      "next": "Berikutnya"
+    },
+    "unit": "Satuan",
+    "onVisual": "Filter pada visual ini",
+    "onPage": "Filter di halaman ini",
+    "onAllPages": "Filter di semua halaman",
+    "active_one": "{{count}} filter aktif",
+    "active_other": "{{count}} filter aktif",
+    "resetToAuthor": "Setel ulang ke penulis",
+    "lockedByAuthor": "Dikunci oleh penulis",
+    "unlock": "Buka kunci untuk pemirsa",
+    "lock": "Kunci untuk pemirsa",
+    "showToViewers": "Tunjukkan kepada pemirsa",
+    "hideFromViewers": "Sembunyikan dari pemirsa",
+    "remove": "Hapus penyaring",
+    "backToAuthor": "Kembali ke filter penulis",
+    "cardName": "Nama kartu (opsional)",
+    "cardNameLabel": "Filter nama kartu",
+    "none": "Tidak ada.",
+    "fieldToFilter": "Bidang untuk difilter",
+    "chooseField": "Pilih bidang…",
+    "add": "Tambahkan penyaring"
+  },
+  "ai": {
+    "sourceAiCredits_one": "Dibuat dengan model AI · kredit {{credits}}",
+    "sourceAiCredits_other": "Dibuat dengan model AI · {{credits}} kredit",
+    "sourceAiFree": "Dibuat dengan model AI · tanpa kredit",
+    "sourceRules": "Dibuat berdasarkan aturan bawaan (model AI tidak digunakan · tanpa kredit)",
+    "rowsWord": "baris",
+    "previewLabel_one": "Pratinjau {{name}}: {{count}} visual",
+    "previewLabel_other": "Pratinjau visual {{name}}: {{count}}",
+    "describe": "Jelaskan halamannya",
+    "describePlaceholder": "misalnya Kinerja penjualan berdasarkan wilayah dan produk, dengan tren bulanan dan 10 pelanggan teratas",
+    "designing": "Merancang…",
+    "tryAgain": "Coba lagi",
+    "previewPage": "Halaman pratinjau",
+    "costNote": "Menggunakan satu pesan AI (kredit). Tidak ada yang berubah sampai Anda menerapkannya.",
+    "proposal_one": "<b>{{name}} </b> — menambahkan halaman dengan visual {{count}}.",
+    "proposal_other": "<b>{{name}} </b> — menambahkan halaman dengan visual {{count}}.",
+    "proposalWithCalcs_one": "<b>{{name}} </b> — menambahkan halaman dengan {{count}} visual dan {{calcs}} perhitungan.",
+    "proposalWithCalcs_other": "<b>{{name}} </b> — menambahkan halaman dengan visual {{count}} dan perhitungan {{calcs}}.",
+    "discard": "Membuang",
+    "applying": "Melamar…",
+    "apply": "Menerapkan",
+    "close": "Menutup",
+    "suggestNote": "Visual yang sesuai dengan kumpulan data ini (gratis — tanpa kredit AI).",
+    "looking": "Melihat datanya…",
+    "working": "Bekerja…",
+    "preview": "Pratinjau",
+    "format": {
+      "title": "Format otomatis",
+      "question": "Bagaimana tampilannya?",
+      "other": "Ada lagi",
+      "otherPlaceholder": "Ada lagi? (bertanya pada model AI)",
+      "note": "Kata-kata yang disorot gratis; apa pun yang diketik di dalam kotak menanyakan model AI.",
+      "nothing": "Tidak ada yang berubah untuk permintaan itu.",
+      "theme": "Tema",
+      "mode": "Mode",
+      "density": "Kepadatan",
+      "layout": "Tata Letak",
+      "asIs": "dengan adanya",
+      "tidied": "bentak ke grid, judul pendek",
+      "modes": {
+        "light": "Lampu",
+        "dark": "Gelap",
+        "system": "Ikuti aplikasi"
+      },
+      "densities": {
+        "compact": "Kompak",
+        "comfortable": "Nyaman"
+      },
+      "keywords": {
+        "executive": "Eksekutif",
+        "midnight": "Tengah malam",
+        "dark": "Gelap",
+        "light": "Lampu",
+        "compact": "Kompak",
+        "comfortable": "Nyaman",
+        "aligned": "Selaras"
+      }
+    },
+    "askTitle": "Ajukan pertanyaan",
+    "askPlaceholder": "Tanyakan tentang data ini, mis. produk teratas berdasarkan pendapatan di Barat",
+    "question": "Pertanyaan",
+    "thinking": "Pemikiran…",
+    "ask": "Bertanya",
+    "pin": "Sematkan ke dasbor",
+    "explain": {
+      "title": "Jelaskan perubahan ini",
+      "loading": "Bandingkan dengan periode sebelumnya…",
+      "none": "Tidak ada satu pun anggota yang menonjol.",
+      "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · dihitung dari data, tanpa AI"
+    }
+  },
+  "views": {
+    "yourDefault": "Tampilan default Anda",
+    "openWith": "Buka dengan tampilan ini",
+    "delete": "Hapus tampilan ini",
+    "title": "Tampilan",
+    "mine": "pandangan saya",
+    "mineEmpty": "Simpan apa yang Anda lihat — filter, pemotong, bor, perubahan Anda.",
+    "namePlaceholder": "Beri nama tampilan ini",
+    "save": "Menyimpan",
+    "forMe": "Bagi saya",
+    "modes": {
+      "system": "Sistem",
+      "light": "Lampu",
+      "dark": "Gelap"
+    },
+    "densities": {
+      "comfortable": "Nyaman",
+      "compact": "Kompak"
+    },
+    "reset": "Atur ulang ke default"
+  },
+  "personalize": {
+    "title": "Personalisasikan visual ini",
+    "close": "Menutup",
+    "onlyYou": "Hanya Anda yang melihat perubahan ini.",
+    "type": "Tipe visual",
+    "aggregation": "Pengumpulan",
+    "remove": "Hapus {{field}}",
+    "add": "Menambahkan",
+    "legend": "Legenda",
+    "dataLabels": "Label data",
+    "sort": "Menyortir",
+    "sorts": {
+      "largest": "Yang terbesar terlebih dahulu",
+      "smallest": "Yang terkecil terlebih dahulu",
+      "az": "SEBUAH → Z",
+      "za": "Z → SEBUAH"
+    },
+    "undo": "Membuka",
+    "reset": "Setel ulang visual ini"
+  },
+  "share": {
+    "embedTitle": "Dasbor",
+    "copied": "Disalin",
+    "title": "Bagikan dasbor",
+    "heading": "Bagikan “{{name}}”",
+    "close": "Menutup",
+    "workspace": "Semua orang di ruang kerja saya",
+    "workspaceNote": "Kolega membukanya dengan masuk, sebagai pemirsa: mereka dapat mempersonalisasi visual dan menyimpan pandangan mereka sendiri.",
+    "publicNote": "Tautan publik: siapa pun yang memiliki tautan dapat melihat dasbor ini dan menggunakan pemotongnya — hanya baca, tanpa masuk.",
+    "kind": "Baik",
+    "link": "Link",
+    "embed": "Menanamkan",
+    "labelPlaceholder": "Label (misalnya paket papan)",
+    "label": "Label",
+    "expires": "Kedaluwarsa",
+    "expiryDate": "Tanggal kadaluwarsa",
+    "creating": "Membuat…",
+    "createEmbed": "Buat kode semat",
+    "createLink": "Buat tautan",
+    "copyNow": "Salin sekarang — demi keamanan, alamat lengkap tidak ditampilkan lagi.",
+    "address": "Bagikan alamat",
+    "embedCode": "Sematkan kode",
+    "copyLink": "Salin tautan",
+    "copyEmbed": "Salin kode semat",
+    "links_one": "Tautan ({{count}} aktif)",
+    "links_other": "Tautan ({{count}} aktif)",
+    "loading": "Memuat…",
+    "none": "Belum ada tautan.",
+    "by": "oleh {{name}}",
+    "unknown": "tidak dikenal",
+    "revokedOn": "Dicabut {{date}}",
+    "expiresOn": "Kedaluwarsa {{date}}",
+    "noExpiry": "Tidak ada kadaluwarsa",
+    "lastOpened": "terakhir dibuka {{date}}",
+    "notOpened": "belum dibuka",
+    "revoke": "Menarik kembali"
+  },
+  "header": {
+    "filtersApply_one": "Filter {{count}} berlaku",
+    "filtersApply_other": "Filter {{count}} berlaku",
+    "drillUp": "Telusuri",
+    "drillModeOn": "Mode bor aktif: klik satu titik untuk menelusurinya",
+    "drillMode": "Mode bor: klik satu titik untuk menelusurinya",
+    "nextLevel": "Pergi ke tingkat berikutnya",
+    "personalized": "Dipersonalisasi untuk Anda — ubah atau setel ulang",
+    "personalize": "Personalisasikan visual ini",
+    "focus": "Modus fokus",
+    "more": "Opsi lainnya",
+    "filtersOnVisual": "Filter pada visual ini",
+    "showAsVisual": "Tampilkan sebagai visual",
+    "showAsTable": "Tampilkan sebagai tabel",
+    "exportCsv": "Ekspor data (CSV)",
+    "copyImage": "Salin sebagai gambar",
+    "leaveSpotlight": "Tinggalkan sorotan",
+    "spotlight": "Menyoroti",
+    "closeFocus": "Tutup mode fokus"
+  },
+  "pointMenu": {
+    "drillThrough": "Telusuri ▸ {{page}}",
+    "explain": "Jelaskan perubahan ini",
+    "keepOnly": "Simpan saja",
+    "exclude": "Mengecualikan"
+  },
+  "new": {
+    "modes": {
+      "blank": {
+        "label": "Kosong",
+        "hint": "Halaman kosong untuk dibangun."
+      },
+      "auto": {
+        "label": "Mobil",
+        "hint": "KPI, tren, perincian, peta dan pemotong, dipilih dari data Anda."
+      },
+      "template": {
+        "label": "Templat",
+        "hint": "Tata letak yang sudah jadi: petakan kolom Anda ke sana."
+      },
+      "ai": {
+        "label": "Tanya AI",
+        "hint": "Jelaskan halamannya; pratinjau sebelum dibuat."
+      }
+    },
+    "kinds": {
+      "number": "sebuah nomor",
+      "date": "kencan",
+      "category": "sebuah kategori"
+    },
+    "chooseColumn": "Pilih kolom…",
+    "skip": "(melewati)",
+    "untitled": "Dasbor tanpa judul",
+    "chooseTemplate": "Pilih templat.",
+    "title": "Dasbor baru",
+    "close": "Menutup",
+    "howToStart": "Bagaimana memulainya",
+    "dataset": "Kumpulan data",
+    "addDatasetFirst": "Tambahkan kumpulan data terlebih dahulu",
+    "name": "Nama",
+    "data": "Data",
+    "overviewName": "{{name}} ikhtisar",
+    "loadingTemplates": "Memuat template…",
+    "allTemplates": "Semua templat",
+    "matchColumns": "Cocokkan kolom Anda",
+    "stillNeeded": "Masih dibutuhkan: {{roles}}.",
+    "createDashboard": "Buat dasbor",
+    "cancel": "Membatalkan",
+    "creating": "Membuat…",
+    "createFromTemplate": "Buat dari templat",
+    "build": "Bangun dasbor",
+    "create": "Membuat",
+    "templateLayout": "{{name}} tata letak"
+  },
+  "templates": {
+    "sales": {
+      "name": "Ikhtisar penjualan",
+      "description": "Pendapatan, keuntungan, dan tren berdasarkan produk dan wilayah.",
+      "roles": {
+        "date": "Tanggal",
+        "amount": "Pendapatan",
+        "profit": "Laba",
+        "quantity": "Satuan",
+        "target": "Target",
+        "product": "Produk",
+        "region": "Wilayah",
+        "channel": "Saluran"
+      }
+    },
+    "crm": {
+      "name": "Saluran CRM",
+      "description": "Penawaran berdasarkan tahap dan pemilik, memenangkan nilai dan konversi.",
+      "roles": {
+        "date": "Tanggal",
+        "amount": "Nilai kesepakatan",
+        "stage": "Panggung",
+        "owner": "Pemilik",
+        "source": "Sumber utama"
+      }
+    },
+    "finance": {
+      "name": "Keuntungan dan Kerugian Keuangan",
+      "description": "Pendapatan, biaya dan margin dari waktu ke waktu dan berdasarkan akun.",
+      "roles": {
+        "date": "Tanggal",
+        "amount": "Pendapatan",
+        "cost": "Biaya",
+        "account": "Akun / kategori",
+        "budget": "Anggaran"
+      }
+    },
+    "hr": {
+      "name": "Analisis SDM",
+      "description": "Jumlah karyawan, gaji dan kepuasan menurut departemen.",
+      "roles": {
+        "date": "Tanggal",
+        "employee": "ID Karyawan",
+        "department": "Departemen",
+        "salary": "Gaji",
+        "rating": "Kepuasan/peringkat",
+        "status": "Status",
+        "gender": "Jenis kelamin"
+      }
+    },
+    "web": {
+      "name": "Analisis web",
+      "description": "Sesi, pengguna, dan konversi berdasarkan sumber dan halaman.",
+      "roles": {
+        "date": "Tanggal",
+        "sessions": "Sesi / kunjungan",
+        "users": "Pengguna",
+        "conversions": "Konversi",
+        "source": "Sumber lalu lintas",
+        "page": "Halaman"
+      }
+    },
+    "mobile": {
+      "name": "Analisis aplikasi seluler",
+      "description": "Pengguna aktif, pemasangan dan kerusakan berdasarkan platform dan versi.",
+      "roles": {
+        "date": "Tanggal",
+        "active": "Pengguna aktif",
+        "installs": "Pemasangan",
+        "crashes": "Gangguan",
+        "platform": "Platform",
+        "version": "Versi aplikasi"
+      }
+    },
+    "marketing": {
+      "name": "Kampanye pemasaran",
+      "description": "Pembelanjaan, klik, konversi, dan biaya per konversi menurut kampanye.",
+      "roles": {
+        "date": "Tanggal",
+        "spend": "Membelanjakan",
+        "clicks": "Klik",
+        "conversions": "Konversi",
+        "campaign": "Kampanye",
+        "channel": "Saluran"
+      }
+    },
+    "inventory": {
+      "name": "Persediaan dan operasi",
+      "description": "Stok tersedia, risiko pergerakan dan pemesanan ulang berdasarkan item dan lokasi.",
+      "roles": {
+        "date": "Tanggal",
+        "stock": "Stok / kuantitas",
+        "item": "Barang",
+        "site": "Gudang / situs",
+        "value": "Nilai saham",
+        "reorder": "Susun ulang tingkat"
+      }
+    },
+    "retail": {
+      "name": "Pengecer",
+      "description": "Penjualan toko, ukuran keranjang dan best seller.",
+      "roles": {
+        "date": "Tanggal",
+        "amount": "Pendapatan",
+        "quantity": "Satuan",
+        "store": "Toko / wilayah",
+        "product": "Produk",
+        "rating": "Kepuasan"
+      }
+    }
+  },
+  "slicer": {
+    "from": "{{field}} dari",
+    "to": "{{field}} ke",
+    "clear": "Jernih",
+    "minimum": "{{field}} minimal",
+    "maximum": "{{field}} maksimal",
+    "period": "Periode",
+    "allTime": "Sepanjang waktu",
+    "howMany": "Berapa banyak",
+    "unit": "Satuan",
+    "operator": "Operator",
+    "typeValue": "Ketik {{field}}",
+    "value": "nilai {{field}}",
+    "collapse": "Runtuh",
+    "expand": "Memperluas",
+    "all": "Semua",
+    "selected_one": "{{count}} dipilih",
+    "selected_other": "{{count}} dipilih",
+    "searchPlaceholder": "Cari, atau tempelkan daftar",
+    "search": "Cari {{field}}",
+    "selectAll": "Pilih semua"
+  },
+  "local": {
+    "snapshotEmpty": "Cuplikan ini tidak memiliki bagan.",
+    "snapshot": "Foto",
+    "snapshotOn": "Cuplikan · {{date}}",
+    "chooseParameter": "Pilih parameter dalam Format → Parameter.",
+    "button": "Tombol",
+    "noViews": "Tambahkan tampilan (bookmark) untuk mencantumkannya di sini.",
+    "views": "Tampilan",
+    "pages": "Halaman"
+  },
+  "pin": {
+    "namedDashboard": "{{title}} dasbor",
+    "newDashboard": "Dasbor baru",
+    "overview": "Ringkasan",
+    "title": "Sematkan ke dasbor",
+    "close": "Menutup",
+    "pinnedTo": "Disematkan ke <b>{{name}} </b>.",
+    "stay": "Tetap di sini",
+    "open": "Buka dasbor",
+    "dashboard": "Dasbor",
+    "newOption": "+ Dasbor baru…",
+    "name": "Nama",
+    "page": "Halaman",
+    "cancel": "Membatalkan",
+    "pinning": "Menyematkan…",
+    "pin": "Pin"
+  },
+  "page": {
+    "backFromDetail": "Kembali",
+    "back": "Semua dasbor",
+    "pages": "Halaman",
+    "clear": "Jernih",
+    "clearSelection": "Hapus pilihan",
+    "apply": "Menerapkan",
+    "clearSlicers": "Hapus semua pemotong",
+    "updating": "Memperbarui…",
+    "filters": "Filter",
+    "qa": "Tanya Jawab",
+    "present": "Hadiah",
+    "share": "Membagikan",
+    "edit": "Sunting",
+    "painting": "Lukisan halaman {{page}} dari {{total}}…",
+    "buildingPdf": "Membangun PDF…",
+    "exported_one": "Halaman {{count}} yang diekspor.",
+    "exported_other": "Mengekspor halaman {{count}}.",
+    "exportFailed": "Ekspor gagal.",
+    "notFound": "Dasbor tidak ditemukan.",
+    "filtersActive_one": "{{count}} filter aktif",
+    "filtersActive_other": "{{count}} filter aktif",
+    "presentation": "Presentasi",
+    "previousPage": "Halaman sebelumnya",
+    "nextPage": "Halaman berikutnya",
+    "pause": "Berhenti sebentar",
+    "autoPlay": "Putar otomatis",
+    "leavePresentation": "Tinggalkan presentasi",
+    "keepExclude": "Filter simpan/kecualikan Anda",
+    "excluding": "Tidak termasuk {{values}}",
+    "only": "Hanya {{values}}",
+    "dashboard": "Dasbor",
+    "seconds": "{{value}} dtk"
+  },
+  "quick": {
+    "ratio": {
+      "label": "Rasio (A ÷ B), mis. margin keuntungan"
+    },
+    "average-per-row": {
+      "label": "Rata-rata per baris (misalnya nilai pesanan rata-rata)"
+    },
+    "vs-target": {
+      "label": "Dibandingkan dengan target (%)"
+    },
+    "difference": {
+      "label": "Selisih (A − B)"
+    },
+    "per-distinct": {
+      "label": "Nilai per item berbeda (misalnya pendapatan per pelanggan)"
+    },
+    "fields": {
+      "numerator": "Pembilang",
+      "denominator": "Penyebut",
+      "value": "Nilai",
+      "actual": "Sebenarnya",
+      "target": "Target",
+      "minus": "dikurangi",
+      "distinctItem": "Barang berbeda"
+    },
+    "names": {
+      "perRow": "{{a}} per baris",
+      "vsTarget": "{{a}} vs sasaran",
+      "perDistinct": "{{a}} per {{b}}"
+    }
+  },
+  "home": {
+    "untitled": "Dasbor tanpa judul",
+    "title": "Dasbor",
+    "subtitle": "KPI, bagan, dan pemotong dalam satu layar, semuanya terhubung.",
+    "noData": "Tambahkan kumpulan data terlebih dahulu",
+    "blank": "Kosong",
+    "template": "Templat",
+    "building": "Bangunan…",
+    "auto": "Bangun dasbor",
+    "empty": "Belum ada dasbor. Pilih kumpulan data dan buat kumpulan data dalam satu klik.",
+    "duplicate": "Duplikat",
+    "deleteTitle": "Hapus dasbor?",
+    "deleteText": "{{name}} dan versi tersimpannya akan dihapus. Kumpulan data tidak terpengaruh.",
+    "more": "Lebih banyak data",
+    "start": "Mulai di sini",
+    "import": "Unggah atau tempel data",
+    "loading": "Memuat…",
+    "library": "Visual saya",
+    "allVisuals": "Semua visual disimpan",
+    "libraryHint": "Masukkan salah satu dari mereka ke dasbor dari menu Sisipkan editor.",
+    "delete": "Menghapus",
+    "datasetLabel": "Kumpulan data untuk dasbor baru",
+    "show": "Menunjukkan",
+    "filter": {
+      "all": "Semua",
+      "mine": "Milikku",
+      "shared": "Dibagikan dengan saya"
+    },
+    "pages_one": "{{count}} halaman",
+    "pages_other": "{{count}} halaman",
+    "roles": {
+      "owner": "pemilik",
+      "editor": "editor",
+      "viewer": "penonton"
+    },
+    "sharedFlag": "dibagikan",
+    "deleteNamed": "Hapus {{name}}"
+  },
+  "visual": {
+    "target": "Sasaran {{value}}",
+    "progress": "{{value}} dari {{target}}",
+    "total": "Total",
+    "failed": "Visual ini tidak dapat digambar.",
+    "empty": "Tidak ada data untuk filter saat ini",
+    "clearSelection": "Hapus pilihan",
+    "nothing": "Tidak ada yang perlu ditunjukkan."
+  },
+  "shared": {
+    "loading": "Memuat dasbor…",
+    "missingTitle": "Tautan ini tidak tersedia",
+    "missingText": "Itu mungkin telah dicabut atau telah habis masa berlakunya. Mintalah tautan baru kepada orang yang membagikannya.",
+    "pages": "Halaman",
+    "clearSelection": "Hapus pilihan",
+    "clearSlicers": "Hapus alat pengiris",
+    "readOnly": "Tampilan bersama hanya-baca"
+  },
+  "capture": {
+    "unsupported": "Browser ini tidak dapat mengecat halaman tersebut.",
+    "failed": "Halaman itu tidak dapat dicat.",
+    "timeout": "Halamannya terlalu lama untuk digambar."
+  }
+}

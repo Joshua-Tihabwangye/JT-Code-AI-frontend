@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Confronto",
+      "description": "Confronta i valori tra le categorie e classificali."
+    },
+    "trend": {
+      "name": "Tendenze e tempo",
+      "description": "Mostra come i valori cambiano nel tempo."
+    },
+    "composition": {
+      "name": "Composizione",
+      "description": "Suddividi un totale nelle sue parti."
+    },
+    "distribution": {
+      "name": "Distribuzione",
+      "description": "Comprendere diffusione, forma e valori anomali."
+    },
+    "statistical": {
+      "name": "Statistico",
+      "description": "Intervalli di confidenza, limiti di controllo e diagnostica."
+    },
+    "relationship": {
+      "name": "Relazione e correlazione",
+      "description": "Scopri come le variabili si muovono insieme."
+    },
+    "flow": {
+      "name": "Flusso e gerarchia",
+      "description": "Seguire le quantità tra fasi e livelli."
+    },
+    "geo": {
+      "name": "Mappe",
+      "description": "Tracciare i valori per paese o coordinate."
+    },
+    "dimensional": {
+      "name": "Dimensionale",
+      "description": "Riduci ed esplora molte variabili contemporaneamente."
+    },
+    "ml": {
+      "name": "Valutazione del modello",
+      "description": "Giudicare classificatori, regressori e cluster."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Grafico a barre",
+      "description": "Confronta un valore tra le categorie.",
+      "howToRead": "La lunghezza di ciascuna barra è il valore per quella categoria; confrontare le altezze per classificarle.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Barra raggruppata",
+      "description": "Barre affiancate per ogni sottogruppo.",
+      "howToRead": "Le barre sono affiancate all'interno di ciascuna categoria in modo da poter confrontare direttamente i sottogruppi.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        },
+        "color": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Barra impilata",
+      "description": "Totali con il contributo di ciascun sottogruppo.",
+      "howToRead": "Ogni barra è un totale; i segmenti colorati mostrano quanto contribuisce ciascun sottogruppo.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        },
+        "color": {
+          "label": "Impilare"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "Barra impilata al 100%",
+      "description": "Quota di ogni sottogruppo all'interno di ogni categoria.",
+      "howToRead": "La somma di ogni barra corrisponde al 100%, quindi le altezze dei segmenti mostrano il mix all'interno di ciascuna categoria.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        },
+        "color": {
+          "label": "Impilare"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Grafico lecca-lecca",
+      "description": "Un grafico a barre più leggero per i valori classificati.",
+      "howToRead": "Il punto contrassegna il valore di ciascuna categoria; più lungo è lo stick, maggiore è il valore.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Grafico a punti",
+      "description": "Confronta diverse misure per categoria come punti.",
+      "howToRead": "Ogni punto rappresenta una misura per una categoria; i punti più a destra sono più grandi.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        },
+        "y": {
+          "label": "Valori"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Grafico con manubri",
+      "description": "Mostra il divario tra due misure per categoria.",
+      "howToRead": "I due punti sono i valori iniziale e finale; una barra verde significa che è salito, rossa che è caduta.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        }
+      }
+    },
+    "radar": {
+      "name": "Grafico radar",
+      "description": "Profilare diverse misure per alcuni elementi.",
+      "howToRead": "Ogni raggio è una misura; una forma più grande significa valori più alti nelle misure.",
+      "slots": {
+        "x": {
+          "label": "Articolo"
+        },
+        "features": {
+          "label": "Misure"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Grafico puntato/bersaglio",
+      "description": "Effettivo rispetto al target per ciascuna categoria.",
+      "howToRead": "La barra scura è il valore effettivo, la barra chiara e il segno di spunta sono il target; verde significa che l'obiettivo è stato raggiunto.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        },
+        "y": {
+          "label": "Reale"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Grafico di Pareto",
+      "description": "Barre ordinate con la linea di quota cumulativa (80/20).",
+      "howToRead": "Le barre vengono ordinate per prime; la riga mostra la quota corrente, quindi puoi vedere quali pochi elementi costituiscono l'80%.",
+      "slots": {
+        "x": {
+          "label": "Categoria"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Tabella della mappa termica",
+      "description": "Colora un valore in due categorie.",
+      "howToRead": "Le celle più scure contengono valori più alti per quella combinazione di riga e colonna.",
+      "slots": {
+        "x": {
+          "label": "Colonne"
+        },
+        "y": {
+          "label": "Righe"
+        }
+      },
+      "options": {
+        "show_values": "Mostra valori"
+      }
+    },
+    "line": {
+      "name": "Grafico a linee",
+      "description": "La visione classica del cambiamento nel tempo.",
+      "howToRead": "La linea segue il valore nel tempo; le pendenze mostrano crescita o declino.",
+      "slots": {
+        "y": {
+          "label": "Valori"
+        }
+      }
+    },
+    "area": {
+      "name": "Grafico ad area",
+      "description": "Enfatizza il volume di un trend.",
+      "howToRead": "L'area riempita mostra il valore nel tempo; la sua altezza è l'importo ad ogni data."
+    },
+    "stacked_area": {
+      "name": "Area accatastata",
+      "description": "Come le parti di un totale cambiano nel tempo.",
+      "howToRead": "Gli strati sono impilati uno sopra l'altro, quindi il bordo superiore è il totale e ciascuna fascia è un gruppo.",
+      "slots": {
+        "color": {
+          "label": "Impilare"
+        }
+      },
+      "options": {
+        "normalize": "Mostra come 100%"
+      }
+    },
+    "step_line": {
+      "name": "Linea del passo",
+      "description": "Valori che cambiano in momenti discreti (prezzi, livelli delle scorte).",
+      "howToRead": "Il valore rimane invariato finché non cambia, il che si adatta ai prezzi, ai livelli delle scorte e ad altri aggiornamenti discreti."
+    },
+    "rolling_average": {
+      "name": "Media mobile",
+      "description": "Serie rumorose e regolari con media mobile.",
+      "howToRead": "La linea debole è la serie grezza; la linea in grassetto calcola la media dei punti recenti per rivelare la tendenza."
+    },
+    "cumulative": {
+      "name": "Totale cumulativo",
+      "description": "Totale parziale nel tempo.",
+      "howToRead": "La linea aggiunge ogni periodo al totale precedente, quindi la sua pendenza mostra la velocità con cui cresce il totale."
+    },
+    "period_change": {
+      "name": "Cambiamento periodo su periodo",
+      "description": "Variazione percentuale rispetto al periodo precedente.",
+      "howToRead": "Le barre mostrano la variazione percentuale rispetto al periodo precedente: il verde è la crescita, il rosso il declino."
+    },
+    "candlestick": {
+      "name": "Candeliere",
+      "description": "Movimento di apertura/massimo/basso/chiusura (finanza).",
+      "howToRead": "Ogni candela copre l'intervallo basso-alto; il corpo va dall'apertura alla chiusura (verde su, rosso giù)."
+    },
+    "range_band": {
+      "name": "Banda di portata",
+      "description": "Una linea con la sua fascia min-max o di incertezza.",
+      "howToRead": "La linea è il valore; la fascia ombreggiata ne mostra i limiti inferiore e superiore."
+    },
+    "calendar_heatmap": {
+      "name": "Mappa termica del calendario",
+      "description": "Andamento del giorno della settimana × della settimana di una misura giornaliera.",
+      "howToRead": "Ogni quadrato rappresenta un giorno; i quadrati più scuri hanno valori più alti, rivelando giorni feriali e modelli stagionali."
+    },
+    "seasonal_decompose": {
+      "name": "Decomposizione stagionale",
+      "description": "Suddividi una serie in trend, stagionalità e residuo.",
+      "howToRead": "La serie è suddivisa in trend (direzione), stagionale (schema ripetuto) e residuo (rumore)."
+    },
+    "autocorrelation": {
+      "name": "Autocorrelazione (ACF/PACF)",
+      "description": "Come una serie si relaziona ai propri valori passati.",
+      "howToRead": "Le barre all'esterno della fascia rossa mostrano i ritardi nei punti in cui la serie si ripete."
+    },
+    "pie": {
+      "name": "Grafico a torta",
+      "description": "Parti di un intero (meglio con poche fette).",
+      "howToRead": "Ogni fetta è una parte del tutto; le fette più grandi sono parti più grandi.",
+      "slots": {
+        "x": {
+          "label": "Fette"
+        }
+      }
+    },
+    "donut": {
+      "name": "Grafico a ciambella",
+      "description": "Una torta con spazio per un totale al centro.",
+      "howToRead": "Ogni segmento rappresenta una quota del totale mostrato al centro.",
+      "slots": {
+        "x": {
+          "label": "Fette"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Mappa ad albero",
+      "description": "Rettangoli nidificati dimensionati in base al valore.",
+      "howToRead": "L'area del rettangolo è proporzionale al valore; i rettangoli nidificati dividono un gruppo nelle sue parti."
+    },
+    "sunburst": {
+      "name": "Sprazzo di sole",
+      "description": "Gerarchia ad anelli concentrici.",
+      "howToRead": "Gli anelli interni sono i gruppi di livello superiore, gli anelli esterni i loro sottogruppi; la lunghezza dell'arco è il valore.",
+      "slots": {
+        "path": {
+          "label": "Livelli (dall'interno all'esterno)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Grafico del ghiacciolo",
+      "description": "Gerarchia come rettangoli impilati.",
+      "howToRead": "Ogni riga rappresenta un livello della gerarchia; la larghezza di un blocco è la sua quota del totale.",
+      "slots": {
+        "path": {
+          "label": "Livelli (dall'alto al basso)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Cascata",
+      "description": "Come i passi positivi e negativi costruiscono un totale.",
+      "howToRead": "I passi verdi si sommano, i passi rossi si sottraggono e l'ultima barra è il totale risultante.",
+      "slots": {
+        "x": {
+          "label": "Fare un passo"
+        },
+        "y": {
+          "help": "Lasciare un conteggio scegliendo Conteggio come aggregazione."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Imbuto",
+      "description": "Conversione per stadi ordinati.",
+      "howToRead": "Ogni fase è più stretta della precedente; il salto tra le fasi è il luogo in cui le persone si perdono.",
+      "slots": {
+        "x": {
+          "label": "Palcoscenico"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (mosaico)",
+      "description": "Composizione a due vie con larghezze variabili.",
+      "howToRead": "La larghezza della colonna corrisponde alla quota di ciascuna colonna rispetto al totale; l'altezza del segmento è il mix al suo interno.",
+      "slots": {
+        "x": {
+          "label": "Colonne"
+        },
+        "color": {
+          "label": "Segmenti"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Istogramma",
+      "description": "La frequenza con cui i valori rientrano in ciascun intervallo.",
+      "howToRead": "Le barre contano quanti valori rientrano in ciascun intervallo; le barre più alte sono i valori più comuni.",
+      "slots": {
+        "x": {
+          "label": "Valore"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Curva di densità (KDE)",
+      "description": "Una stima uniforme della distribuzione.",
+      "howToRead": "La curva uniforme stima come vengono distribuiti i valori; i picchi sono i valori più comuni.",
+      "slots": {
+        "x": {
+          "label": "Valore"
+        }
+      }
+    },
+    "box": {
+      "name": "Trama a scatola",
+      "description": "Mediana, quartili e valori anomali per gruppo.",
+      "howToRead": "La casella contiene il 50% centrale dei valori, la linea è la mediana, i baffi mostrano l'intervallo tipico e i punti sono valori anomali.",
+      "slots": {
+        "x": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "violin": {
+      "name": "Trama del violino",
+      "description": "Box plot più la forma di distribuzione completa.",
+      "howToRead": "La larghezza ad ogni livello mostra quanti valori sono presenti; la barra scura rappresenta il 50% centrale.",
+      "slots": {
+        "x": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "strip": {
+      "name": "Grafico striscia/jitter",
+      "description": "Ogni osservazione come un punto per gruppo.",
+      "howToRead": "Ogni punto è una riga, distribuita lateralmente in modo che i valori sovrapposti rimangano visibili.",
+      "slots": {
+        "x": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Distribuzione cumulativa (ECDF)",
+      "description": "Quota di valori al di sotto di ciascun livello.",
+      "howToRead": "Per qualsiasi valore sull'asse x, la curva mostra la quota di valori in corrispondenza o al di sotto di esso.",
+      "slots": {
+        "x": {
+          "label": "Valore"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Linea di cresta",
+      "description": "Distribuzioni in pila per molti gruppi.",
+      "howToRead": "Ogni cresta è la distribuzione di un gruppo; confrontare dove si trovano i picchi e quanto sono larghi.",
+      "slots": {
+        "x": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Trama delle nuvole piovose",
+      "description": "Mezzo violino, scatola e punti grezzi insieme.",
+      "howToRead": "Ogni gruppo mostra la sua distribuzione (nuvole), il suo 50% medio (barra) e ogni valore (pioggia).",
+      "slots": {
+        "x": {
+          "label": "Raggruppa per"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Media con intervallo di confidenza",
+      "description": "Gruppo significa con intervalli di confidenza al 95%.",
+      "howToRead": "Le barre rappresentano le medie dei gruppi mentre i baffi rappresentano l'intervallo di confidenza; i baffi sovrapposti indicano che la differenza potrebbe essere casuale.",
+      "slots": {
+        "x": {
+          "label": "Gruppo"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Trama Q-Q",
+      "description": "Controlla se i valori seguono una distribuzione teorica.",
+      "howToRead": "Se i punti seguono la linea rossa, i dati corrispondono alla distribuzione scelta.",
+      "slots": {
+        "x": {
+          "label": "Valore"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Adattamento della distribuzione",
+      "description": "Istogramma con distribuzione adattata e bontà di adattamento.",
+      "howToRead": "Le barre rappresentano la distribuzione osservata; la curva è la distribuzione teorica più adatta.",
+      "slots": {
+        "x": {
+          "label": "Valore"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Carta di controllo (SPC)",
+      "description": "Valori di processo con media e limiti di controllo di ±3σ.",
+      "howToRead": "I punti tra i limiti tratteggiati rappresentano una variazione normale; i punti rossi all'esterno richiedono attenzione.",
+      "slots": {
+        "x": {
+          "label": "Ordine/ora"
+        },
+        "y": {
+          "label": "Misurazione"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Bland-Altman",
+      "description": "Accordo tra due metodi di misurazione.",
+      "howToRead": "Ogni punto confronta due misurazioni della stessa cosa; le linee mostrano la distorsione media e i limiti di accordo.",
+      "slots": {
+        "x": {
+          "label": "Metodo A"
+        },
+        "y": {
+          "label": "Metodo B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Mappa dei valori mancanti",
+      "description": "Dove mancano i dati tra le colonne.",
+      "howToRead": "Le barre mostrano la quota di spazi vuoti per colonna; i segni rossi nel modello mostrano dove si verificano."
+    },
+    "scatter": {
+      "name": "Grafico a dispersione",
+      "description": "La relazione tra due misure.",
+      "howToRead": "Ogni punto è una riga; una nuvola in aumento significa che le due misure aumentano insieme.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      },
+      "options": {
+        "marginal": "Trame a margine"
+      }
+    },
+    "bubble": {
+      "name": "Grafico a bolle",
+      "description": "Un grafico a dispersione con una terza misura come dimensione.",
+      "howToRead": "Come un grafico a dispersione, ma la dimensione della bolla mostra una terza misura.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Adattamento alla regressione",
+      "description": "Dispersione con una retta, R² ed equazione.",
+      "howToRead": "La curva è il modello adattato e la banda il suo intervallo di confidenza al 95%; R² è la quota di variazione spiegata.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Matrice di correlazione",
+      "description": "Correlazione tra ogni coppia di misure.",
+      "howToRead": "Ogni cella rappresenta la correlazione tra due misure, da −1 (blu) a +1 (rosso).",
+      "options": {
+        "show_values": "Mostra coefficienti"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Matrice di dispersione (grafico a coppie)",
+      "description": "Ogni coppia di misure a colpo d'occhio.",
+      "howToRead": "Ogni coppia di misure ha la propria dispersione; la diagonale mostra la distribuzione di ciascuna misura.",
+      "slots": {
+        "color": {
+          "label": "Colora per (etichetta)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "Mappa termica della densità 2D",
+      "description": "Dove si concentrano i punti (per molte righe).",
+      "howToRead": "Le celle più scure contengono più righe, il che mostra dove si concentrano i punti.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Contorno di densità",
+      "description": "Contorni della densità di punti.",
+      "howToRead": "Gli anelli racchiudono aree di uguale densità di punti; gli anelli interni contengono il maggior numero di file.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Trama congiunta",
+      "description": "Dispersione con la distribuzione di ciascun asse.",
+      "howToRead": "La dispersione mostra la relazione; gli istogrammi laterali mostrano la distribuzione di ciascuna misura.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Coordinate parallele",
+      "description": "Confronta molte misure su righe.",
+      "howToRead": "Ogni linea è una riga che attraversa l'asse di ogni misura; fasci di linee rivelano profili comuni.",
+      "slots": {
+        "color": {
+          "label": "Colora per (numerico)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Categorie parallele",
+      "description": "Flussi tra colonne categoriali.",
+      "howToRead": "Le fasce scorrono tra le colonne delle categorie; il loro spessore è il numero di righe.",
+      "slots": {
+        "path": {
+          "label": "Colonne categoriali"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Tabella di contingenza",
+      "description": "Conta in due categorie con un test chi quadrato.",
+      "howToRead": "Le celle contano le righe per ogni coppia di categorie; il test del chi quadrato dice se sono correlati.",
+      "slots": {
+        "x": {
+          "label": "Colonne"
+        },
+        "y": {
+          "label": "Righe"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Diagramma di Sankey",
+      "description": "Quantità che fluiscono tra gli stadi.",
+      "howToRead": "Le bande scorrono da uno stadio a quello successivo; la loro larghezza è la quantità che si muove tra di loro.",
+      "slots": {
+        "path": {
+          "label": "Tappe (in ordine)"
+        }
+      }
+    },
+    "network": {
+      "name": "Grafico di rete",
+      "description": "Connessioni tra entità.",
+      "howToRead": "I nodi sono entità e le linee sono connessioni; i nodi più grandi e più scuri hanno più collegamenti.",
+      "slots": {
+        "target": {
+          "label": "A"
+        },
+        "y": {
+          "label": "Peso"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Mappa coropletica",
+      "description": "Colora i paesi in base a un valore.",
+      "howToRead": "I paesi sono ombreggiati in base al valore; più scuro significa più alto."
+    },
+    "scatter_geo": {
+      "name": "Punti su una mappa",
+      "description": "Traccia i punti di latitudine/longitudine.",
+      "howToRead": "Ogni punto è una posizione tracciata in base alla latitudine e alla longitudine."
+    },
+    "scatter_3d": {
+      "name": "Dispersione 3D",
+      "description": "Esplora tre misure in 3D rotante.",
+      "howToRead": "Trascina per ruotare; ogni punto è una riga posizionata da tre misure.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        },
+        "z": {
+          "label": "Asse Z"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "Superficie 3D",
+      "description": "Una superficie su due misure.",
+      "howToRead": "L'altezza e il colore della superficie mostrano la terza misura tra le prime due; trascina per ruotare.",
+      "slots": {
+        "x": {
+          "label": "Asse X"
+        },
+        "y": {
+          "label": "Asse Y"
+        },
+        "z": {
+          "label": "Altezza"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "Mappa PCA (2D)",
+      "description": "Proiettare molte misure su due componenti principali.",
+      "howToRead": "Molte misure sono compresse in due componenti; i punti vicini sono righe simili.",
+      "slots": {
+        "color": {
+          "label": "Colora per (etichetta)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "Mappa PCA (3D)",
+      "description": "Tre componenti principali in 3D.",
+      "howToRead": "Tre componenti principali in 3D; trascina per ruotare e cercare i cluster.",
+      "slots": {
+        "color": {
+          "label": "Colora per (etichetta)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "Biploma PCA",
+      "description": "Righe e misure che guidano ciascun componente.",
+      "howToRead": "I punti sono righe e le frecce sono misure; le frecce che puntano nella stessa direzione sono correlate.",
+      "slots": {
+        "color": {
+          "label": "Colora per (etichetta)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Trama del ghiaione",
+      "description": "Varianza spiegata da ciascun componente.",
+      "howToRead": "Le barre mostrano quante informazioni contiene ciascun componente; la riga mostra il totale parziale."
+    },
+    "tsne_2d": {
+      "name": "mappa t-SNE",
+      "description": "Mappa 2D non lineare che mantiene i vicini vicini.",
+      "howToRead": "Una mappa non lineare che mantiene insieme righe simili; cercare cluster separati.",
+      "slots": {
+        "color": {
+          "label": "Colora per (etichetta)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "Proiezione LDA",
+      "description": "Proiezione che separa meglio i gruppi etichettati.",
+      "howToRead": "Una proiezione scelta per separare il più possibile i gruppi etichettati.",
+      "slots": {
+        "color": {
+          "label": "Etichetta"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Mappa del cluster (k-medie)",
+      "description": "Raggruppa righe simili e mostrale su una mappa PCA.",
+      "howToRead": "I colori mostrano i cluster trovati da k-means; i diamanti segnano il centro di ogni grappolo."
+    },
+    "confusion_matrix": {
+      "name": "Matrice di confusione",
+      "description": "Dove un classificatore è giusto e sbagliato.",
+      "howToRead": "La diagonale contiene previsioni corrette; altre celle mostrano quali classi vengono confuse."
+    },
+    "roc_curve": {
+      "name": "Curva ROC",
+      "description": "Tasso di veri e falsi positivi a ogni soglia, con AUC.",
+      "howToRead": "Quanto più alta è la curva sopra la diagonale, tanto migliore è il posizionamento positivo del modello; L'AUC lo riassume."
+    },
+    "pr_curve": {
+      "name": "Curva di richiamo di precisione",
+      "description": "Compromesso tra precisione e richiamo, con precisione media.",
+      "howToRead": "Mostra la precisione mantenuta man mano che il ricordo aumenta; più in alto e più a destra è meglio."
+    },
+    "calibration_curve": {
+      "name": "Curva di calibrazione",
+      "description": "Le probabilità previste corrispondono ai tassi osservati?",
+      "howToRead": "I punti sulla linea tratteggiata indicano che le probabilità previste corrispondono ai tassi osservati.",
+      "options": {
+        "bins": "Contenitori"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Guadagno e incremento cumulativi",
+      "description": "Quanto è migliore del targeting casuale il modello.",
+      "howToRead": "Mostra quanti aspetti positivi acquisisci prendendo di mira la quota di righe con il punteggio più alto e l'incremento rispetto al casuale."
+    },
+    "threshold_metrics": {
+      "name": "Esploratore di soglie",
+      "description": "Precisione, richiamo e F1 ad ogni soglia.",
+      "howToRead": "Precisione, richiamo e F1 ad ogni cut-off; la linea tratteggiata segna il miglior equilibrio."
+    },
+    "predicted_vs_actual": {
+      "name": "Previsto vs reale",
+      "description": "Precisione della regressione rispetto alla linea perfetta.",
+      "howToRead": "I punti sulla diagonale tratteggiata sono previsioni perfette; spread mostra l'errore."
+    },
+    "residual_plot": {
+      "name": "Trama residua",
+      "description": "Errori contro le previsioni per individuare i bias.",
+      "howToRead": "Errori tracciati rispetto alle previsioni; una nuvola casuale intorno allo zero non significa alcuna distorsione sistematica."
+    },
+    "error_distribution": {
+      "name": "Distribuzione degli errori",
+      "description": "Istogramma degli errori di previsione.",
+      "howToRead": "Quanto sono grandi gli errori di previsione; un picco stretto attorno allo zero è la soluzione migliore."
+    },
+    "feature_importance": {
+      "name": "Importanza delle caratteristiche",
+      "description": "Quali input guidano un obiettivo (foresta casuale + permutazione).",
+      "howToRead": "Le barre più lunghe sono gli input su cui il modello fa più affidamento; i baffi mostrano incertezza.",
+      "slots": {
+        "target": {
+          "label": "Obiettivo da spiegare"
+        }
+      },
+      "options": {
+        "top_n": "Mostra in alto"
+      }
+    },
+    "learning_curve": {
+      "name": "Curva di apprendimento",
+      "description": "Più dati aiuterebbero il modello?",
+      "howToRead": "Punteggi di formazione e convalida man mano che i dati crescono; un ampio divario significa adattamento eccessivo.",
+      "options": {
+        "model": "Modello"
+      }
+    },
+    "elbow": {
+      "name": "Grafico del gomito",
+      "description": "Scegli il numero di cluster per inerzia.",
+      "howToRead": "L'inerzia diminuisce man mano che vengono aggiunti i cluster; il gomito è il punto in cui i cluster aggiuntivi smettono di aiutare."
+    },
+    "silhouette": {
+      "name": "Analisi della sagoma",
+      "description": "Qualità del cluster per ogni k.",
+      "howToRead": "Le barre più alte indicano cluster meglio separati; la barra verde rappresenta il miglior numero di cluster."
+    },
+    "kpi_card": {
+      "name": "Scheda KPI",
+      "description": "Un numero del titolo con la relativa modifica e uno sparkline.",
+      "howToRead": "Il grande numero è l'ultimo periodo; la freccia mostra il cambiamento rispetto al periodo precedente e la sparkline la tendenza recente.",
+      "slots": {
+        "y": {
+          "label": "Misura"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Indicatore (avanzamento verso l'obiettivo)",
+      "description": "Quanto è lontana una misura rispetto a un obiettivo.",
+      "howToRead": "L'ago mostra la misura rispetto al suo target; verde significa in pista, ambra vicino, rosso dietro.",
+      "slots": {
+        "y": {
+          "label": "Misura"
+        },
+        "target": {
+          "label": "Obiettivo (facoltativo)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Albero di decomposizione",
+      "description": "Suddividi un totale livello per livello per vedere da dove proviene.",
+      "howToRead": "Parti dal totale a sinistra e segui i rami per vedere quali parti lo compongono; i nodi più grandi contribuiscono di più.",
+      "slots": {
+        "path": {
+          "label": "Suddiviso per (in ordine)"
+        }
+      },
+      "options": {
+        "top_n": "Rami per livello"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Prevedere una serie temporale",
+      "description": "Proiettare una misura in avanti (vendite, domanda, ricavi) con bande di incertezza.",
+      "models": {
+        "auto": "Il migliore di tutti (scelto dal backtest)",
+        "holt_winters": "Levigamento esponenziale di Holt-Winters",
+        "arima": "ARIMA/SARIMAX",
+        "linear_trend": "Trend lineare + stagionalità"
+      },
+      "outputs": [
+        "Grafico previsionale con fasce 80%/95%",
+        "Nel migliore e nel peggiore dei casi",
+        "Accuratezza del backtest (MAE, MAPE)",
+        "Tabella dei valori futuri"
+      ],
+      "slots": {
+        "target": {
+          "label": "Misurare per prevedere"
+        }
+      }
+    },
+    "trend": {
+      "name": "Analisi di trend e stagionalità",
+      "description": "Tassi di crescita, medie mobili, andamenti stagionali, punti di cambiamento e periodi insoliti.",
+      "models": {
+        "robust": "Automatico (trend robusto + rilevamento anomalie)"
+      },
+      "outputs": [
+        "Crescita: totale, media, più recente e anno su anno",
+        "Profilo stagionale",
+        "Punti di cambiamento e anomalie"
+      ],
+      "slots": {
+        "target": {
+          "label": "Misura"
+        }
+      },
+      "options": {
+        "window": "Media mobile (periodi)"
+      }
+    },
+    "drivers": {
+      "name": "Fattori chiave (cosa influenza un risultato)",
+      "description": "Scopri quali fattori e segmenti spingono un risultato verso l'alto o verso il basso: abbandono, vendite, soddisfazione.",
+      "models": {
+        "segments": "Confronto di segmenti + importanza casuale della foresta"
+      },
+      "outputs": [
+        "Top influencer con lift",
+        "Importanza delle caratteristiche",
+        "Segmenti migliori e peggiori"
+      ],
+      "slots": {
+        "target": {
+          "label": "Risultato da spiegare"
+        },
+        "features": {
+          "label": "Colonne di input",
+          "help": "Vuoto utilizza ogni altra colonna; le categorie sono codificate a caldo e le date sono divise in parti."
+        }
+      }
+    },
+    "regression": {
+      "name": "Prevedere un numero",
+      "description": "Stimare un risultato numerico (prezzo, domanda, punteggio) da altre colonne.",
+      "models": {
+        "auto": "Meglio di tutti (convalidazione incrociata)",
+        "linear": "Regressione lineare",
+        "ridge": "Regressione della cresta",
+        "random_forest": "Foresta casuale",
+        "gradient_boosting": "Aumento del gradiente"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Previsto vs effettivo, residui",
+        "Importanza delle caratteristiche"
+      ],
+      "slots": {
+        "target": {
+          "label": "Numero da prevedere"
+        },
+        "features": {
+          "label": "Colonne di input",
+          "help": "Vuoto utilizza ogni altra colonna; le categorie sono codificate a caldo e le date sono divise in parti."
+        }
+      }
+    },
+    "classification": {
+      "name": "Prevedere una categoria",
+      "description": "Classificare le righe (abbandono, approvazione, segmento) e giudicare il classificatore.",
+      "models": {
+        "auto": "Meglio di tutti (convalidazione incrociata)",
+        "logistic": "Regressione logistica",
+        "random_forest": "Foresta casuale",
+        "gradient_boosting": "Aumento del gradiente"
+      },
+      "outputs": [
+        "Precisione, F1, ROC AUC",
+        "Matrice di confusione, curve ROC e PR",
+        "Importanza delle caratteristiche"
+      ],
+      "slots": {
+        "target": {
+          "label": "Categoria da prevedere"
+        },
+        "features": {
+          "label": "Colonne di input",
+          "help": "Vuoto utilizza ogni altra colonna; le categorie sono codificate a caldo e le date sono divise in parti."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Trova segmenti",
+      "description": "Raggruppa righe simili (clienti, prodotti) senza etichette.",
+      "models": {
+        "kmeans": "k-significa",
+        "gaussian_mixture": "Miscela gaussiana",
+        "agglomerative": "Gerarchico (reparto)"
+      },
+      "outputs": [
+        "Punteggio della sagoma",
+        "Mappa e profili dei cluster",
+        "Segmento per ogni riga"
+      ],
+      "slots": {
+        "features": {
+          "label": "Colonne di input",
+          "help": "Vuoto utilizza ogni altra colonna; le categorie sono codificate a caldo e le date sono divise in parti."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Rilevare anomalie",
+      "description": "Contrassegna righe insolite (frodi, guasti, errori di dati).",
+      "models": {
+        "isolation_forest": "Foresta di isolamento",
+        "zscore": "Punteggio z robusto",
+        "lof": "Fattore anomalo locale"
+      },
+      "outputs": [
+        "Conteggio e condivisione delle anomalie",
+        "Anomalie evidenziate su una mappa",
+        "Punteggio per ogni riga"
+      ],
+      "slots": {
+        "features": {
+          "label": "Colonne di input",
+          "help": "Vuoto utilizza ogni altra colonna; le categorie sono codificate a caldo e le date sono divise in parti."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Data/ora"
+    },
+    "y": {
+      "label": "Valore",
+      "help": "Facoltativo: le righe vengono conteggiate quando sono vuote."
+    },
+    "color": {
+      "label": "Colora per"
+    },
+    "facet": {
+      "label": "Diviso in pannelli per"
+    },
+    "start": {
+      "label": "Valore iniziale"
+    },
+    "end": {
+      "label": "Valore finale"
+    },
+    "features": {
+      "label": "Colonne numeriche",
+      "help": "Vuoto utilizza tutte le colonne numeriche."
+    },
+    "target": {
+      "label": "Bersaglio"
+    },
+    "z": {
+      "label": "Valore"
+    },
+    "open": {
+      "label": "Aprire"
+    },
+    "high": {
+      "label": "Alto"
+    },
+    "low": {
+      "label": "Basso"
+    },
+    "close": {
+      "label": "Vicino"
+    },
+    "lower": {
+      "label": "Limite inferiore"
+    },
+    "upper": {
+      "label": "Limite superiore"
+    },
+    "path": {
+      "label": "Livelli (da esterno a interno)"
+    },
+    "size": {
+      "label": "Dimensione della bolla"
+    },
+    "source": {
+      "label": "Da"
+    },
+    "location": {
+      "label": "Paese"
+    },
+    "lat": {
+      "label": "Latitudine"
+    },
+    "lon": {
+      "label": "Longitudine"
+    },
+    "actual": {
+      "label": "Valore effettivo/etichetta vera"
+    },
+    "predicted": {
+      "label": "Valore/etichetta previsto"
+    },
+    "score": {
+      "label": "Probabilità/punteggio previsto"
+    },
+    "date": {
+      "label": "Data/ora"
+    },
+    "split_by": {
+      "label": "Prevedi ciascuno (facoltativo)",
+      "help": "per esempio. una previsione per regione"
+    }
+  },
+  "options": {
+    "aggregation": "Combina valori con",
+    "sort": "Ordine",
+    "top_n": "Mostra solo la parte superiore",
+    "orientation": "Direzione",
+    "show_values": "Mostra i valori sul grafico",
+    "log_y": "Asse dei valori logaritmici",
+    "time_grain": "Raggruppa le date per",
+    "markers": "Mostra marcatori",
+    "normalize": "Mostra come",
+    "window": "Finestra mobile (punti)",
+    "model": "Stagionalità",
+    "lags": "Ritardi",
+    "hole": "Foro centrale",
+    "total": "Mostra la barra totale",
+    "bins": "Numero di contenitori",
+    "histnorm": "Mostra come",
+    "marginal": "Aggiungi un grafico dei margini",
+    "bandwidth": "Levigatura",
+    "points": "Mostra punti",
+    "box": "Mostra la scatola all'interno",
+    "confidence": "Fiducia",
+    "distribution": "Distribuzione",
+    "sigma": "Limiti (σ)",
+    "trendline": "Linea di tendenza",
+    "opacity": "Opacità del punto",
+    "degree": "Grado polinomiale",
+    "band": "Mostra la banda del 95%",
+    "method": "Correlazione",
+    "triangle": "Solo triangolo inferiore",
+    "nbins": "Contenitori",
+    "location_mode": "Le posizioni sono",
+    "scope": "Area della mappa",
+    "contours": "Contorni del progetto",
+    "standardize": "Standardizzare le funzionalità",
+    "perplexity": "Perplessità",
+    "clusters": "Cluster (0 = scegli automaticamente)",
+    "positive_class": "Classe positiva (vuoto = automatico)",
+    "max_k": "Prova fino a k",
+    "goal": "Valore target (0 = utilizza la colonna target)",
+    "horizon": "Periodi in anticipo",
+    "positive": "Valore del risultato da spiegare (vuoto = automatico)",
+    "test_size": "Azione hold-out",
+    "contamination": "Quota prevista di anomalie"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Somma",
+      "mean": "Media",
+      "median": "Mediano",
+      "count": "Contare",
+      "min": "Minimo",
+      "max": "Massimo"
+    },
+    "sort": {
+      "none": "Come nei dati",
+      "desc": "Prima il più grande",
+      "asc": "Prima il più piccolo",
+      "label": "Alfabetico"
+    },
+    "orientation": {
+      "v": "Verticale",
+      "h": "Orizzontale"
+    },
+    "time_grain": {
+      "auto": "Automatico",
+      "none": "Nessun raggruppamento",
+      "D": "Giorno",
+      "W": "Settimana",
+      "M": "Mese",
+      "Q": "Trimestre",
+      "Y": "Anno"
+    },
+    "model": {
+      "additive": "Additivo",
+      "multiplicative": "Moltiplicativo",
+      "random_forest": "Foresta casuale",
+      "gradient_boosting": "Aumento del gradiente",
+      "linear": "Lineare/logistico"
+    },
+    "histnorm": {
+      "_none": "Conta",
+      "percent": "Percentuale",
+      "probability_density": "Densità"
+    },
+    "marginal": {
+      "_none": "Nessuno",
+      "box": "Scatola",
+      "histogram": "Istogramma"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Silverman"
+    },
+    "points": {
+      "outliers": "Valori anomali",
+      "all": "Tutto",
+      "none": "Nessuno"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "Normale",
+      "lognorm": "Log-normale",
+      "expon": "Esponenziale",
+      "gamma": "Gamma",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "Nessuno",
+      "ols": "Lineare (OLS)",
+      "lowess": "Levigato (BASSO)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Lanciere",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "Conta",
+      "index": "% di riga",
+      "columns": "% della colonna",
+      "all": "% del totale",
+      "true": "% dell'effettivo",
+      "pred": "% del previsto"
+    },
+    "location_mode": {
+      "country_names": "Nomi dei paesi",
+      "ISO-3": "Codici ISO-3"
+    },
+    "scope": {
+      "world": "Mondo",
+      "africa": "Africa",
+      "europe": "Europa",
+      "asia": "Asia",
+      "north_america": "America del Nord",
+      "south_america": "Sud America"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Vivido",
+    "colorblind": "Cassaforte daltonico (Okabe-Ito)",
+    "tableau": "Tabella 10",
+    "ocean": "Oceano",
+    "sunset": "Tramonto",
+    "corporate": "Aziendale",
+    "pastel": "Pastello",
+    "earth": "Terra"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Vendite al dettaglio",
+      "description": "Due anni di ordini per regione, prodotto e canale.",
+      "audience": "Piccola impresa"
+    },
+    "customer_churn": {
+      "name": "Abbandono dei clienti",
+      "description": "Abbonati, contratti e punteggi del modello di abbandono.",
+      "audience": "Impresa"
+    },
+    "website_traffic": {
+      "name": "Traffico del sito web",
+      "description": "Sessioni giornaliere e conversioni per sorgente di traffico.",
+      "audience": "Marketing"
+    },
+    "house_prices": {
+      "name": "I prezzi delle case",
+      "description": "Case con dimensioni, posizione e previsioni del modello di prezzo.",
+      "audience": "Analisti"
+    },
+    "stock_prices": {
+      "name": "Prezzi delle azioni",
+      "description": "Apertura/massimo/minimo/chiusura giornaliero per tre ticker.",
+      "audience": "Finanza"
+    },
+    "world_indicators": {
+      "name": "Indicatori mondiali",
+      "description": "PIL, aspettativa di vita ed emissioni per paese.",
+      "audience": "Tutti"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (separati da virgole)",
+    "tsv": "TSV (tabulazioni separate)",
+    "txt": "Testo delimitato (rilevamento automatico ; | ,)",
+    "json": "JSON (array di record)",
+    "jsonl": "Linee JSON",
+    "xlsx": "Cartella di lavoro Excel (primo foglio)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (dati, schede di profilo e riepilogo)",
+    "json": "Record JSON"
+  }
+}

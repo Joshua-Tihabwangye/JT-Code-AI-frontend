@@ -29,5 +29,20 @@
   "changePhoto": "클릭하여 사진 변경",
   "profileUpdated": "프로필이 성공적으로 업데이트되었습니다",
   "updateProfileError": "프로필 업데이트 실패",
-  "uploadAvatarError": "아바타 업로드 실패"
+  "uploadAvatarError": "아바타 업로드 실패",
+  "eyebrow": "설정",
+  "avatarUpdated": "프로필 사진이 업데이트되었습니다.",
+  "removePhoto": "사진 삭제",
+  "passwordChanged": "비밀번호가 변경되었습니다.",
+  "passwordMismatch": "새 비밀번호가 일치하지 않습니다.",
+  "workspace": "작업공간",
+  "workspaceDesc": "JT-Code의 귀하의 조직. 대화, 파일 및 크레딧이 이에 속합니다.",
+  "workspaceName": "작업공간 이름",
+  "workspaceUpdated": "작업공간 이름이 변경되었습니다.",
+  "password": "비밀번호",
+  "passwordDesc": "로그인에 사용하는 비밀번호를 변경하세요.",
+  "currentPassword": "현재 비밀번호",
+  "newPassword": "새 비밀번호(8자 이상)",
+  "confirmPassword": "새 비밀번호 확인",
+  "changePassword": "비밀번호 변경"
 }

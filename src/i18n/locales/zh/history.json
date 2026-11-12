@@ -7,5 +7,15 @@
   "emptyTitle": "还没有历史记录",
   "emptyDesc": "开始聊天后，您的对话将显示在这里。",
   "startChatting": "开始聊天",
-  "deleteItemAria": "删除 {{title}}"
+  "deleteItemAria": "删除 {{title}}",
+  "searchPlaceholder": "搜索对话",
+  "archived": "已归档",
+  "openAria": "打开 {{title}}",
+  "pinned": "已置顶",
+  "untitled": "未命名对话",
+  "pin": "置顶",
+  "unpin": "取消置顶",
+  "archive": "归档",
+  "unarchive": "从归档中恢复",
+  "export": "导出为 Markdown"
 }

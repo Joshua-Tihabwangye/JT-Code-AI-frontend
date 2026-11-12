@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "クリーン",
+    "rows": "行",
+    "columns": "コラム",
+    "text": "文章",
+    "numbers": "数字と日付",
+    "shape": "形",
+    "combine": "組み合わせる"
+  },
+  "kinds": {
+    "removeDuplicates": "重複した行を削除する",
+    "trim": "余分なスペースをトリミングする",
+    "removeBlankRows": "空白行を削除する",
+    "fillBlanks": "空白を埋める",
+    "replaceValues": "値を置換する",
+    "changeType": "種類の変更",
+    "outliers": "外れ値の処理",
+    "filterRows": "行をフィルタリングする",
+    "sort": "行を並べ替える",
+    "keepRows": "上の行または下の行を維持する",
+    "removeColumns": "列を削除する",
+    "keepColumns": "これらの列のみを保持します",
+    "rename": "列の名前を変更する",
+    "calculatedColumn": "計算列",
+    "conditionalColumn": "条件付き列",
+    "splitColumn": "列を分割する",
+    "mergeColumns": "列を結合する",
+    "textCase": "テキストの大文字と小文字を変更する",
+    "bins": "数値をビンにグループ化する",
+    "dateParts": "日付部分を抽出する",
+    "dateTable": "日付表（カレンダー）を作る",
+    "groupBy": "グループ化",
+    "pivot": "ピボット（行→列）",
+    "unpivot": "アンピボット (列 → 行)",
+    "merge": "別のデータセットと結合する",
+    "append": "別のデータセットを追加する"
+  },
+  "fields": {
+    "compareColumns": "これらの列のみを比較します",
+    "trimColumns": "列 (空の場合はすべてのテキスト)",
+    "blankIn": "空白で入力",
+    "removeWhen": "削除する場合",
+    "column": "カラム",
+    "columns": "コラム",
+    "with": "と",
+    "value": "価値",
+    "find": "探す",
+    "replaceWith": "と置き換えます",
+    "match": "マッチ",
+    "to": "に",
+    "action": "アクション",
+    "rowsThatMatch": "一致する行",
+    "conditions": "条件",
+    "sortBy": "並べ替え",
+    "keep": "保つ",
+    "howMany": "幾つか",
+    "newName": "新しい名前",
+    "newColumn": "新しいコラム",
+    "formula": "式",
+    "ifThen": "もし…なら",
+    "otherwise": "さもないと",
+    "at": "で",
+    "intoParts": "(パーツ)に入る",
+    "newNames": "新しい名前 (オプション)",
+    "separator": "セパレータ",
+    "case": "場合",
+    "bins": "ビン",
+    "howManyBins": "ビンはいくつありますか",
+    "edges": "エッジ",
+    "dateColumn": "日付列",
+    "parts": "部品",
+    "fromDatesIn": "の日付から",
+    "fiscalStart": "会計年度は月から始まります",
+    "groupBy": "グループ化",
+    "calculate": "計算する",
+    "keepAsRows": "行として保持",
+    "valuesBecomeColumns": "値が列になる",
+    "fillWith": "で埋める",
+    "aggregation": "集計",
+    "keepTheseColumns": "これらの列を保持します",
+    "nameColumn": "名前列",
+    "valueColumn": "値列",
+    "dataset": "データセット",
+    "keyHere": "このデータを入力します",
+    "keyOther": "もう一方を入力してください"
+  },
+  "options": {
+    "blankHow": {
+      "any": "どれかが空白です",
+      "all": "それらはすべて空白です"
+    },
+    "fill": {
+      "mean": "平均",
+      "median": "中央値",
+      "mode": "最も一般的な値",
+      "zero": "ゼロ",
+      "down": "上の値 (下に記入)",
+      "up": "以下の値 (記入)",
+      "value": "自分の価値観"
+    },
+    "replaceMatch": {
+      "exact": "整数値",
+      "contains": "本文の一部"
+    },
+    "types": {
+      "number": "番号",
+      "date": "日付",
+      "text": "文章"
+    },
+    "outliers": {
+      "cap": "限界に達する",
+      "remove": "それらの行を削除します",
+      "flag": "新しい列にフラグを立てる"
+    },
+    "filterMode": {
+      "keep": "保つ",
+      "remove": "取り除く"
+    },
+    "combine": {
+      "and": "すべての条件",
+      "or": "あらゆる条件"
+    },
+    "keepRows": {
+      "top": "最初の行",
+      "bottom": "最後の行"
+    },
+    "textCase": {
+      "title": "タイトルケース",
+      "upper": "アッパー",
+      "lower": "より低い"
+    },
+    "bins": {
+      "equal": "等幅",
+      "edges": "自分自身のエッジ"
+    },
+    "mergeHow": {
+      "left": "このデータのすべての行",
+      "inner": "一致する行のみ",
+      "outer": "両方のすべての行"
+    },
+    "aggs": {
+      "sum": "和",
+      "avg": "平均",
+      "count": "カウント",
+      "distinct": "個別のカウント",
+      "min": "分",
+      "max": "マックス",
+      "median": "中央値"
+    }
+  },
+  "parts": {
+    "year": "年",
+    "quarter": "四半期",
+    "month": "月",
+    "monthName": "月の名前",
+    "week": "週",
+    "weekday": "平日",
+    "weekdayName": "曜日名",
+    "day": "日",
+    "hour": "時間"
+  },
+  "conditionOps": {
+    "eq": "等しい",
+    "ne": "等しくない",
+    "in": "の 1 つです",
+    "notIn": "のどれかではありません",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "間",
+    "contains": "含まれています",
+    "startsWith": "から始まる",
+    "endsWith": "で終わる",
+    "blank": "空白です",
+    "notBlank": "空白ではありません"
+  },
+  "summary": {
+    "keepConditions": "{{count}} 状態を維持する",
+    "removeConditions": "{{count}} 条件を削除します",
+    "by": "{{columns}} 著",
+    "anotherDataset": "別のデータセット",
+    "types": {
+      "number": "番号",
+      "date": "日付",
+      "text": "文章"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "重複を削除する",
+    "keepOnePerId": "ID ごとに 1 行を保持する",
+    "removeMissingId": "IDのない行を削除する",
+    "fillBlanks": "空白を埋める",
+    "blankOut": "「{{value}}」を空白にする",
+    "trimSpaces": "スペースをトリムする",
+    "toNumber": "数値に変換",
+    "toDate": "日付に変換する",
+    "consistentSpelling": "スペルに一貫性を持たせる",
+    "capOutliers": "外れ値の上限",
+    "removeColumn": "列を削除"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Bereinigen",
+    "rows": "Zeilen",
+    "columns": "Spalten",
+    "text": "Text",
+    "numbers": "Zahlen und Datumswerte",
+    "shape": "Struktur",
+    "combine": "Kombinieren"
+  },
+  "kinds": {
+    "removeDuplicates": "Doppelte Zeilen entfernen",
+    "trim": "Überflüssige Leerzeichen kürzen",
+    "removeBlankRows": "Leere Zeilen entfernen",
+    "fillBlanks": "Leere Zellen füllen",
+    "replaceValues": "Werte ersetzen",
+    "changeType": "Typ ändern",
+    "outliers": "Ausreißer behandeln",
+    "filterRows": "Zeilen filtern",
+    "sort": "Zeilen sortieren",
+    "keepRows": "Erste oder letzte Zeilen beibehalten",
+    "removeColumns": "Spalten entfernen",
+    "keepColumns": "Nur diese Spalten beibehalten",
+    "rename": "Spalte umbenennen",
+    "calculatedColumn": "Berechnete Spalte",
+    "conditionalColumn": "Bedingte Spalte",
+    "splitColumn": "Spalte teilen",
+    "mergeColumns": "Spalten zusammenführen",
+    "textCase": "Groß-/Kleinschreibung ändern",
+    "bins": "Zahlen in Klassen gruppieren",
+    "dateParts": "Datumsteile extrahieren",
+    "dateTable": "Datumstabelle erstellen (Kalender)",
+    "groupBy": "Gruppieren nach",
+    "pivot": "Pivotieren (Zeilen → Spalten)",
+    "unpivot": "Entpivotieren (Spalten → Zeilen)",
+    "merge": "Mit einem anderen Dataset zusammenführen",
+    "append": "Anderes Dataset anfügen"
+  },
+  "fields": {
+    "compareColumns": "Nur diese Spalten vergleichen",
+    "trimColumns": "Spalten (alle Textspalten, wenn leer)",
+    "blankIn": "Leer in",
+    "removeWhen": "Entfernen, wenn",
+    "column": "Spalte",
+    "columns": "Spalten",
+    "with": "Mit",
+    "value": "Wert",
+    "find": "Suchen",
+    "replaceWith": "Ersetzen durch",
+    "match": "Übereinstimmung",
+    "to": "In",
+    "action": "Aktion",
+    "rowsThatMatch": "Zeilen, die zutreffen",
+    "conditions": "Bedingungen",
+    "sortBy": "Sortieren nach",
+    "keep": "Beibehalten",
+    "howMany": "Anzahl",
+    "newName": "Neuer Name",
+    "newColumn": "Neue Spalte",
+    "formula": "Formel",
+    "ifThen": "Wenn … dann",
+    "otherwise": "Sonst",
+    "at": "Bei",
+    "intoParts": "In (Teile)",
+    "newNames": "Neue Namen (optional)",
+    "separator": "Trennzeichen",
+    "case": "Schreibweise",
+    "bins": "Klassen",
+    "howManyBins": "Anzahl der Klassen",
+    "edges": "Grenzen",
+    "dateColumn": "Datumsspalte",
+    "parts": "Teile",
+    "fromDatesIn": "Aus den Datumswerten in",
+    "fiscalStart": "Geschäftsjahr beginnt im Monat",
+    "groupBy": "Gruppieren nach",
+    "calculate": "Berechnen",
+    "keepAsRows": "Als Zeilen beibehalten",
+    "valuesBecomeColumns": "Werte werden zu Spalten",
+    "fillWith": "Füllen mit",
+    "aggregation": "Aggregation",
+    "keepTheseColumns": "Diese Spalten beibehalten",
+    "nameColumn": "Namensspalte",
+    "valueColumn": "Wertespalte",
+    "dataset": "Dataset",
+    "keyHere": "Schlüssel in diesen Daten",
+    "keyOther": "Schlüssel im anderen Dataset"
+  },
+  "options": {
+    "blankHow": {
+      "any": "eine davon leer ist",
+      "all": "alle leer sind"
+    },
+    "fill": {
+      "mean": "Durchschnitt",
+      "median": "Median",
+      "mode": "Häufigster Wert",
+      "zero": "Null",
+      "down": "Wert darüber (nach unten ausfüllen)",
+      "up": "Wert darunter (nach oben ausfüllen)",
+      "value": "Eigener Wert"
+    },
+    "replaceMatch": {
+      "exact": "Ganzer Wert",
+      "contains": "Teil des Textes"
+    },
+    "types": {
+      "number": "Zahl",
+      "date": "Datum",
+      "text": "Text"
+    },
+    "outliers": {
+      "cap": "Auf die Grenzen kappen",
+      "remove": "Diese Zeilen entfernen",
+      "flag": "In einer neuen Spalte markieren"
+    },
+    "filterMode": {
+      "keep": "Beibehalten",
+      "remove": "Entfernen"
+    },
+    "combine": {
+      "and": "alle Bedingungen",
+      "or": "eine beliebige Bedingung"
+    },
+    "keepRows": {
+      "top": "Erste Zeilen",
+      "bottom": "Letzte Zeilen"
+    },
+    "textCase": {
+      "title": "Jedes Wort Groß",
+      "upper": "GROSS",
+      "lower": "klein"
+    },
+    "bins": {
+      "equal": "Gleiche Breite",
+      "edges": "Eigene Grenzen"
+    },
+    "mergeHow": {
+      "left": "Alle Zeilen dieser Daten",
+      "inner": "Nur übereinstimmende Zeilen",
+      "outer": "Alle Zeilen aus beiden"
+    },
+    "aggs": {
+      "sum": "Summe",
+      "avg": "Durchschnitt",
+      "count": "Anzahl",
+      "distinct": "Anzahl (eindeutig)",
+      "min": "Min.",
+      "max": "Max.",
+      "median": "Median"
+    }
+  },
+  "parts": {
+    "year": "Jahr",
+    "quarter": "Quartal",
+    "month": "Monat",
+    "monthName": "Monatsname",
+    "week": "Woche",
+    "weekday": "Wochentag",
+    "weekdayName": "Name des Wochentags",
+    "day": "Tag",
+    "hour": "Stunde"
+  },
+  "conditionOps": {
+    "eq": "gleich",
+    "ne": "ungleich",
+    "in": "ist eines von",
+    "notIn": "ist keines von",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "zwischen",
+    "contains": "enthält",
+    "startsWith": "beginnt mit",
+    "endsWith": "endet mit",
+    "blank": "ist leer",
+    "notBlank": "ist nicht leer"
+  },
+  "summary": {
+    "keepConditions": "{{count}} Bedingung(en) beibehalten",
+    "removeConditions": "{{count}} Bedingung(en) entfernen",
+    "by": "nach {{columns}}",
+    "anotherDataset": "ein anderes Dataset",
+    "types": {
+      "number": "Zahl",
+      "date": "Datum",
+      "text": "Text"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Duplikate entfernen",
+    "keepOnePerId": "Eine Zeile pro ID beibehalten",
+    "removeMissingId": "Zeilen ohne ID entfernen",
+    "fillBlanks": "Leere Zellen füllen",
+    "blankOut": "„{{value}}“ leeren",
+    "trimSpaces": "Leerzeichen kürzen",
+    "toNumber": "In Zahl umwandeln",
+    "toDate": "In Datum umwandeln",
+    "consistentSpelling": "Schreibweise vereinheitlichen",
+    "capOutliers": "Ausreißer kappen",
+    "removeColumn": "Spalte entfernen"
+  }
+}

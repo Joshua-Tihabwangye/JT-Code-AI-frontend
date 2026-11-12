@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "صاف",
+    "rows": "قطاریں",
+    "columns": "کالم",
+    "text": "متن",
+    "numbers": "نمبر اور تاریخیں۔",
+    "shape": "شکل",
+    "combine": "یکجا"
+  },
+  "kinds": {
+    "removeDuplicates": "ڈپلیکیٹ قطاریں ہٹا دیں۔",
+    "trim": "اضافی جگہوں کو تراشیں۔",
+    "removeBlankRows": "خالی قطاریں ہٹا دیں۔",
+    "fillBlanks": "خالی جگہ پر کریں۔",
+    "replaceValues": "اقدار کو تبدیل کریں۔",
+    "changeType": "قسم تبدیل کریں۔",
+    "outliers": "باہر والوں کو ہینڈل کریں۔",
+    "filterRows": "قطاروں کو فلٹر کریں۔",
+    "sort": "قطاریں ترتیب دیں۔",
+    "keepRows": "اوپر یا نیچے کی قطاریں رکھیں",
+    "removeColumns": "کالم ہٹا دیں۔",
+    "keepColumns": "صرف یہ کالم رکھیں",
+    "rename": "کالم کا نام تبدیل کریں۔",
+    "calculatedColumn": "حساب شدہ کالم",
+    "conditionalColumn": "مشروط کالم",
+    "splitColumn": "ایک کالم تقسیم کریں۔",
+    "mergeColumns": "کالم ضم کریں۔",
+    "textCase": "ٹیکسٹ کیس تبدیل کریں۔",
+    "bins": "نمبروں کو ڈبوں میں گروپ کریں۔",
+    "dateParts": "تاریخ کے حصے نکالیں۔",
+    "dateTable": "تاریخ کی میز بنائیں (کیلنڈر)",
+    "groupBy": "کی طرف سے گروپ",
+    "pivot": "محور (قطاریں → کالم)",
+    "unpivot": "ان پیوٹ (کالم → قطاریں)",
+    "merge": "دوسرے ڈیٹاسیٹ کے ساتھ ضم کریں۔",
+    "append": "دوسرا ڈیٹا سیٹ شامل کریں۔"
+  },
+  "fields": {
+    "compareColumns": "صرف ان کالموں کا موازنہ کریں۔",
+    "trimColumns": "کالم (خالی ہونے پر تمام متن)",
+    "blankIn": "میں خالی",
+    "removeWhen": "جب ہٹائیں",
+    "column": "کالم",
+    "columns": "کالم",
+    "with": "کے ساتھ",
+    "value": "قدر",
+    "find": "تلاش کریں۔",
+    "replaceWith": "سے بدل دیں۔",
+    "match": "میچ",
+    "to": "کو",
+    "action": "ایکشن",
+    "rowsThatMatch": "قطاریں جو ملتی ہیں۔",
+    "conditions": "شرائط",
+    "sortBy": "ترتیب دیں",
+    "keep": "رکھو",
+    "howMany": "کتنے",
+    "newName": "نیا نام",
+    "newColumn": "نیا کالم",
+    "formula": "فارمولا",
+    "ifThen": "اگر… پھر",
+    "otherwise": "ورنہ۔۔۔",
+    "at": "پر",
+    "intoParts": "(حصوں) میں",
+    "newNames": "نئے نام (اختیاری)",
+    "separator": "الگ کرنے والا",
+    "case": "کیس",
+    "bins": "ڈبے",
+    "howManyBins": "کتنے ڈبے؟",
+    "edges": "کناروں",
+    "dateColumn": "تاریخ کا کالم",
+    "parts": "حصے",
+    "fromDatesIn": "میں تاریخوں سے",
+    "fiscalStart": "مالی سال مہینے میں شروع ہوتا ہے۔",
+    "groupBy": "کی طرف سے گروپ",
+    "calculate": "حساب لگانا",
+    "keepAsRows": "قطاروں کی طرح رکھیں",
+    "valuesBecomeColumns": "قدریں کالم بن جاتی ہیں۔",
+    "fillWith": "سے بھریں۔",
+    "aggregation": "جمع کرنا",
+    "keepTheseColumns": "یہ کالم رکھیں",
+    "nameColumn": "کالم کا نام",
+    "valueColumn": "ویلیو کالم",
+    "dataset": "ڈیٹا سیٹ",
+    "keyHere": "اس ڈیٹا میں کلید",
+    "keyOther": "دوسرے میں کلید"
+  },
+  "options": {
+    "blankHow": {
+      "any": "ان میں سے کوئی بھی خالی ہے۔",
+      "all": "ان میں سے سب خالی ہیں"
+    },
+    "fill": {
+      "mean": "اوسط",
+      "median": "میڈین",
+      "mode": "سب سے عام قدر",
+      "zero": "صفر",
+      "down": "اوپر کی قدر (نیچے بھریں)",
+      "up": "نیچے کی قیمت (پُر کریں)",
+      "value": "میری اپنی قدر"
+    },
+    "replaceMatch": {
+      "exact": "پوری قدر",
+      "contains": "متن کا حصہ"
+    },
+    "types": {
+      "number": "نمبر",
+      "date": "تاریخ",
+      "text": "متن"
+    },
+    "outliers": {
+      "cap": "حد میں ٹوپی",
+      "remove": "ان قطاروں کو ہٹا دیں۔",
+      "flag": "ایک نئے کالم میں جھنڈا لگائیں۔"
+    },
+    "filterMode": {
+      "keep": "رکھو",
+      "remove": "ہٹا دیں۔"
+    },
+    "combine": {
+      "and": "تمام شرائط",
+      "or": "کسی بھی شرط"
+    },
+    "keepRows": {
+      "top": "پہلی قطاریں۔",
+      "bottom": "آخری قطاریں"
+    },
+    "textCase": {
+      "title": "عنوان کیس",
+      "upper": "اوپری",
+      "lower": "کم"
+    },
+    "bins": {
+      "equal": "مساوی چوڑائی",
+      "edges": "میرے اپنے کنارے"
+    },
+    "mergeHow": {
+      "left": "اس ڈیٹا کی تمام قطاریں۔",
+      "inner": "صرف مماثل قطاریں۔",
+      "outer": "دونوں کی تمام قطاریں۔"
+    },
+    "aggs": {
+      "sum": "رقم",
+      "avg": "اوسط",
+      "count": "شمار",
+      "distinct": "الگ شمار",
+      "min": "کم از کم",
+      "max": "زیادہ سے زیادہ",
+      "median": "میڈین"
+    }
+  },
+  "parts": {
+    "year": "سال",
+    "quarter": "کوارٹر",
+    "month": "مہینہ",
+    "monthName": "مہینے کا نام",
+    "week": "ہفتہ",
+    "weekday": "ہفتے کا دن",
+    "weekdayName": "ہفتے کے دن کا نام",
+    "day": "دن",
+    "hour": "گھنٹہ"
+  },
+  "conditionOps": {
+    "eq": "برابر",
+    "ne": "برابر نہیں ہے",
+    "in": "میں سے ایک ہے",
+    "notIn": "میں سے ایک نہیں ہے",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "کے درمیان",
+    "contains": "پر مشتمل ہے",
+    "startsWith": "کے ساتھ شروع ہوتا ہے",
+    "endsWith": "کے ساتھ ختم ہوتا ہے",
+    "blank": "خالی ہے",
+    "notBlank": "خالی نہیں ہے"
+  },
+  "summary": {
+    "keepConditions": "رکھیں {{count}} شرطیں",
+    "removeConditions": "{{count}} شرطیں ہٹائیں",
+    "by": "بذریعہ {{columns}}",
+    "anotherDataset": "ایک اور ڈیٹا سیٹ",
+    "types": {
+      "number": "نمبر",
+      "date": "تاریخ",
+      "text": "متن"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "ڈپلیکیٹس کو ہٹا دیں۔",
+    "keepOnePerId": "فی آئی ڈی ایک قطار رکھیں",
+    "removeMissingId": "ID کے بغیر قطاریں ہٹا دیں۔",
+    "fillBlanks": "خالی جگہ پر کریں۔",
+    "blankOut": "\"{{value}}\" کو خالی کریں",
+    "trimSpaces": "خالی جگہوں کو تراشیں۔",
+    "toNumber": "نمبر میں تبدیل کریں۔",
+    "toDate": "تاریخ میں تبدیل کریں۔",
+    "consistentSpelling": "ہجے کو ہم آہنگ بنائیں",
+    "capOutliers": "ٹوپی باہر کرنے والے",
+    "removeColumn": "کالم کو ہٹا دیں۔"
+  }
+}

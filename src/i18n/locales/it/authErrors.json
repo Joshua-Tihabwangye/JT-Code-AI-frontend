@@ -6,8 +6,6 @@
   "invalidEmail": "Inserisci un indirizzo email valido.",
   "passwordMinLength": "La password deve contenere almeno 8 caratteri.",
   "passwordLetter": "La password deve contenere almeno una lettera.",
-  "passwordUppercase": "La password deve contenere una lettera maiuscola.",
-  "passwordLowercase": "La password deve contenere una lettera minuscola.",
   "passwordNumber": "La password deve contenere un numero.",
   "selectCountry": "Seleziona il tuo paese.",
   "selectDialCode": "Seleziona un prefisso telefonico.",
@@ -19,5 +17,13 @@
   "passwordRequired": "Inserisci la password.",
   "authenticationFailed": "Autenticazione non riuscita.",
   "finishingSignIn": "Completamento dell'accesso…",
-  "redirecting": "Reindirizzamento…"
+  "redirecting": "Reindirizzamento…",
+  "accountExists": "Esiste già un account con questa email.",
+  "invalidCredentials": "E-mail o password non valide.",
+  "noAccount": "Non esiste alcun account per quell'indirizzo email.",
+  "invalidResetCode": "Codice di ripristino non valido o scaduto.",
+  "signInToReset": "Accedi per reimpostare la password.",
+  "providerDisabled": "L'accesso con {{provider}} non è abilitato. Usa la tua email e la tua password.",
+  "serviceUnreachable": "Impossibile raggiungere il servizio di accesso. Controlla la connessione e riprova.",
+  "invalidCountry": "Paese non valido."
 }

@@ -1,0 +1,326 @@
+{
+  "search": "検索形式のオプション",
+  "resetSection": "テーマのデフォルトにリセット",
+  "automatic": "自動",
+  "on": "の上",
+  "off": "オフ",
+  "sections": {
+    "python": "Python スクリプト",
+    "parameter": "パラメータ",
+    "button": "ボタン",
+    "navigator": "ナビゲーター",
+    "general": "役職と役職",
+    "tile": "タイル",
+    "colors": "色",
+    "labels": "データラベル",
+    "legend": "伝説",
+    "sort": "並べ替えと上位 N",
+    "bars": "バーとライン",
+    "donut": "スライス",
+    "kpi": "KPI",
+    "gauge": "ゲージ範囲",
+    "table": "テーブル",
+    "slicer": "スライサー",
+    "tooltip": "ツールチップ",
+    "conditional": "条件付き書式設定",
+    "analytics": "分析（基準線、トレンド、予測）",
+    "map": "地図"
+  },
+  "general": {
+    "title": "タイトル",
+    "showTitle": "番組タイトル",
+    "axes": {
+      "x": "×",
+      "y": "y",
+      "w": "w",
+      "h": "h"
+    },
+    "layoutAria": "レイアウト {{axis}}",
+    "altText": "代替テキスト",
+    "altPlaceholder": "スクリーンリーダー用"
+  },
+  "tile": {
+    "background": "背景",
+    "border": "国境",
+    "radius": "コーナー半径",
+    "shadow": "影"
+  },
+  "colors": {
+    "seriesAria": "シリーズカラー {{index}}",
+    "custom": "カスタム",
+    "fromTheme": "テーマから"
+  },
+  "labels": {
+    "showValues": "値を表示"
+  },
+  "legend": {
+    "show": "凡例を表示",
+    "position": "位置",
+    "positions": {
+      "top": "トップ",
+      "bottom": "底",
+      "left": "左",
+      "right": "右"
+    }
+  },
+  "sort": {
+    "by": "並べ替え",
+    "value": "価値",
+    "name": "名前",
+    "direction": "方向",
+    "desc": "降順",
+    "asc": "上昇",
+    "topN": "トップN",
+    "showTop": "トップを表示",
+    "others": "残りを「その他」としてグループ化します"
+  },
+  "bars": {
+    "stacking": "スタッキング",
+    "none": "並んで",
+    "stacked": "積み重ねられた",
+    "percent": "100% 積み上げ",
+    "smooth": "滑らかなライン"
+  },
+  "donut": {
+    "maxSlices": "最大スライス数（残り→その他）"
+  },
+  "kpi": {
+    "compareBy": "比較基準",
+    "grains": {
+      "day": "日",
+      "week": "週",
+      "month": "月",
+      "quarter": "四半期",
+      "year": "年"
+    },
+    "upIsGood": "アップはいいよ"
+  },
+  "gauge": {
+    "min": "分",
+    "max": "マックス",
+    "auto": "自動"
+  },
+  "table": {
+    "dataBars": "データバー"
+  },
+  "slicer": {
+    "style": "スタイル",
+    "styles": {
+      "dropdown": "落ちる",
+      "list": "リスト",
+      "tiles": "ボタン",
+      "between": "数値範囲",
+      "dateRange": "日付範囲",
+      "relative": "相対日付",
+      "input": "値を入力します",
+      "hierarchy": "階層 (フィールドを追加)"
+    },
+    "single": "単一の選択",
+    "sync": "ページ間で同期する",
+    "page": "ページ",
+    "syncColumn": "同期",
+    "visible": "見える",
+    "syncTo": "{{page}} に同期",
+    "visibleOn": "{{page}} で表示されます"
+  },
+  "tooltip": {
+    "page": "ツールチップページ",
+    "default": "デフォルトのツールチップ",
+    "noPages": "まずページをツールヒント ページにします"
+  },
+  "map": {
+    "zoomTo": "ズームイン",
+    "scopes": {
+      "world": "世界",
+      "africa": "アフリカ",
+      "europe": "ヨーロッパ",
+      "asia": "アジア",
+      "northAmerica": "北米",
+      "southAmerica": "南アメリカ"
+    }
+  },
+  "page": {
+    "label": "ページ",
+    "name": "名前",
+    "canvasSize": "キャンバスサイズ",
+    "canvasPresets": {
+      "wide": "16:9 (1280×720)",
+      "standard": "4:3 (1280×960)",
+      "letter": "手紙（縦）",
+      "fitWidth": "幅に合わせる（成長する）"
+    },
+    "background": "背景",
+    "themeBackground": "テーマの背景",
+    "type": "ページの種類",
+    "types": {
+      "page": "ページ",
+      "drillthrough": "ドリルスルー (詳細)",
+      "tooltip": "ツールチップ"
+    },
+    "tooltipHint": "[形式] → [ツールチップ] で選択したビジュアルのポイントにカーソルを合わせると小さく表示されます。",
+    "drillthroughHint": "別のページでこれらのフィールドのいずれかのメンバーを右クリック→「ドリルスルー」をクリックします。"
+  },
+  "dashboard": {
+    "label": "ダッシュボード",
+    "slicersApply": "スライサー適用",
+    "instant": "すぐに",
+    "button": "適用ボタンあり",
+    "filtersPane": "閲覧者用のフィルター ペイン",
+    "personalize": "視聴者はカスタマイズ可能"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "カラースケール",
+      "rules": "ルール",
+      "bars": "データバー",
+      "icons": "アイコン▲●▼"
+    },
+    "ruleType": "ルールの種類",
+    "value": "価値",
+    "colour": "色",
+    "background": "背景",
+    "text": "文章",
+    "removeRule": "ルールの削除",
+    "lowest": "最低",
+    "middle": "真ん中",
+    "highest": "最高",
+    "lowestColour": "最低の色",
+    "middleColour": "ミドルカラー",
+    "highestColour": "最高の色",
+    "ifValueIs": "値が",
+    "between": "間",
+    "and": "そして",
+    "removeCondition": "条件の削除",
+    "addCondition": "条件（先攻勝利）",
+    "barColour": "バーの色",
+    "iconsHint": "▲上3分の1、●中、▼下3分の1の値です。",
+    "addRule": "ルールを追加する"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "定数（目標）",
+      "average": "平均",
+      "median": "中央値",
+      "min": "最小",
+      "max": "最大",
+      "percentile": "パーセンタイル",
+      "trend": "トレンドライン",
+      "forecast": "予報"
+    },
+    "line": "ライン",
+    "value": "価値",
+    "percentile": "パーセンタイル",
+    "periods": "期間",
+    "colour": "色",
+    "removeLine": "行を削除",
+    "labelPlaceholder": "ラベル (オプション)",
+    "addLine": "行を追加",
+    "forecastHint": "予測には日付軸 (月ごとの日付など) が必要です。"
+  },
+  "python": {
+    "starter": "例から始める",
+    "sandbox": "ロックダウンされた Python サンドボックス (pandas、numpy、scipy、statsmodels、scikit-learn) で実行されます。ファイル、ネットワーク、システムへのアクセスはありません。"
+  },
+  "button": {
+    "text": "文章",
+    "action": "アクション",
+    "actions": {
+      "page": "ページに移動",
+      "bookmark": "ビュー (ブックマーク) を適用する",
+      "back": "戻る",
+      "clearSlicers": "すべてのスライサーをクリアします",
+      "applySlicers": "スライサーを適用する",
+      "toggle": "ビジュアルの表示/非表示",
+      "url": "Web リンクを開く",
+      "askAi": "AIに聞く",
+      "reset": "デフォルトにリセットする"
+    },
+    "page": "ページ",
+    "choose": "選ぶ…",
+    "view": "ビュー",
+    "addViewsFirst": "最初にビューを追加します ([ビュー] タブ)",
+    "visual": "ビジュアル",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "リンク",
+    "style": "スタイル",
+    "fills": {
+      "primary": "満たされた",
+      "outline": "概要",
+      "ghost": "無地"
+    }
+  },
+  "navigator": {
+    "shows": "ショー",
+    "pages": "ページ",
+    "bookmarks": "ビュー (ブックマーク)"
+  },
+  "parameter": {
+    "parameter": "パラメータ",
+    "new": "新しいパラメータ…",
+    "showAs": "として表示",
+    "tiles": "ボタン",
+    "dropdown": "落ちる",
+    "delete": "このパラメータを削除します"
+  },
+  "theme": {
+    "title": "テーマのカスタマイズ",
+    "name": "テーマ名",
+    "close": "近い",
+    "dataColours": "データの色",
+    "colour": "色 {{index}}",
+    "removeColour": "色を削除 {{index}}",
+    "addColour": "色を追加する",
+    "brandColour": "ブランドカラー",
+    "generate": "私のブランドカラーのパレット",
+    "sentiment": {
+      "good": "良い",
+      "neutral": "中性",
+      "bad": "悪い"
+    },
+    "pageAndTiles": "ページとタイル",
+    "light": "ライト",
+    "dark": "暗い",
+    "roles": {
+      "canvas": "キャンバス",
+      "tile": "タイル",
+      "border": "国境",
+      "gridline": "グリッド線",
+      "text": "文章",
+      "mutedText": "ミュートされたテキスト",
+      "accent": "アクセント"
+    },
+    "contrast": "タイル上のテキストは読みにくい ({{ratio}}:1 — 4.5:1 以上を目指す)。",
+    "font": "フォント",
+    "systemFont": "システム",
+    "corners": "コーナー",
+    "shadow": "影",
+    "shadows": {
+      "none": "なし",
+      "soft": "柔らかい",
+      "medium": "中くらい"
+    },
+    "kpiTiles": "KPI タイル",
+    "kpiStyles": {
+      "plain": "無地",
+      "solid": "ソリッドカラー",
+      "gradient": "勾配",
+      "outlined": "概要",
+      "icon": "アクセントバー"
+    },
+    "orgThemes": "私の組織のテーマ",
+    "deleteTheme": "{{name}} を削除",
+    "importJson": "JSONをインポートする",
+    "exportJson": "JSONのエクスポート",
+    "saveAs": "私のテーマとして保存",
+    "defaultName": "私のテーマ",
+    "importedName": "インポートされたテーマ",
+    "imported": "輸入済み。",
+    "saved": "組織用に「{{name}}」を保存しました。",
+    "cancel": "キャンセル",
+    "done": "終わり",
+    "errors": {
+      "notTheme": "ファイルはテーマではありません。",
+      "needColours": "テーマには少なくとも 3 つのデータ カラー (dataColors) が必要です。"
+    }
+  }
+}

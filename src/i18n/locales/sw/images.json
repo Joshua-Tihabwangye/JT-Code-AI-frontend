@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Tafadhali pakia picha na weka maelekezo",
     "noResult": "Hakuna matokeo"
   },
-  "defaultQuestion": "Eleza picha hii kwa undani"
+  "defaultQuestion": "Eleza picha hii kwa undani",
+  "uploadPreview": "Pakia onyesho la kukagua",
+  "autoModel": "Otomatiki (inapendekezwa)"
 }

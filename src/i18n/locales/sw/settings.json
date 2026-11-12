@@ -29,5 +29,20 @@
   "changePhoto": "Bonyeza kubadilisha picha",
   "profileUpdated": "Wasifu umesasishwa kwa mafanikio",
   "updateProfileError": "Imeshindikana kusasisha wasifu",
-  "uploadAvatarError": "Imeshindikana kupakia picha ya mtumiaji"
+  "uploadAvatarError": "Imeshindikana kupakia picha ya mtumiaji",
+  "eyebrow": "Mipangilio",
+  "avatarUpdated": "Picha ya wasifu imesasishwa.",
+  "removePhoto": "Ondoa picha",
+  "passwordChanged": "Nenosiri lako lilibadilishwa.",
+  "passwordMismatch": "Manenosiri mapya hayalingani.",
+  "workspace": "Nafasi ya kazi",
+  "workspaceDesc": "Shirika lako katika JT-Code. Mazungumzo, faili na mikopo ni mali yake.",
+  "workspaceName": "Jina la nafasi ya kazi",
+  "workspaceUpdated": "Nafasi ya kazi imebadilishwa jina.",
+  "password": "Nenosiri",
+  "passwordDesc": "Badilisha nenosiri unalotumia kuingia.",
+  "currentPassword": "Nenosiri la sasa",
+  "newPassword": "Nenosiri jipya (herufi 8+)",
+  "confirmPassword": "Thibitisha nenosiri jipya",
+  "changePassword": "Badilisha nenosiri"
 }

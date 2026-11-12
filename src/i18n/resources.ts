@@ -4,15 +4,18 @@
  * `locales/fr/visualize.editor.json` provides every `visualize.editor.*` key in French.
  * Areas can be edited (and translated) independently; they are merged into one namespace.
  */
-type Tree = { [key: string]: string | Tree };
+type Tree = { [key: string]: string | string[] | Tree };
+
+const isTree = (value: unknown): value is Tree => typeof value === 'object' && value !== null && !Array.isArray(value);
 
 const files = import.meta.glob<Tree>('./locales/*/*.json', { eager: true, import: 'default' });
 
 function merge(target: Tree, source: Tree): Tree {
   for (const [key, value] of Object.entries(source)) {
     const current = target[key];
-    if (typeof value === 'object' && value && typeof current === 'object' && current) merge(current, value);
-    else target[key] = typeof value === 'object' ? merge({}, value) : value;
+    // Lists (plan features, prediction outputs) are values, not trees.
+    if (isTree(value) && isTree(current)) merge(current, value);
+    else target[key] = isTree(value) ? merge({}, value) : value;
   }
   return target;
 }

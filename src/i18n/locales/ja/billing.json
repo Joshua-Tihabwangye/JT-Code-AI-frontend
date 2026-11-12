@@ -14,7 +14,14 @@
   "usage": {
     "title": "クレジット使用状況",
     "usedOf": "今月は {{limit}} のうち {{used}} を使用",
-    "left": "残り {{amount}}"
+    "left": "残り {{amount}}",
+    "thisMonth": "今月使用されたクレジットは {{amount}} 個です",
+    "types": {
+      "chat": "チャット",
+      "images": "画像",
+      "documents": "書類",
+      "agent": "エージェント"
+    }
   },
   "plans": {
     "title": "あなたに合ったプランを選びましょう",
@@ -62,6 +69,12 @@
         "カスタム AI モデル",
         "SLA 保証"
       ]
+    },
+    "names": {
+      "free": "無料",
+      "pro": "プロ",
+      "team": "チーム",
+      "business": "仕事"
     }
   },
   "payment": {
@@ -83,7 +96,9 @@
     "cardNumberLabel": "カード番号",
     "expiryLabel": "有効期限",
     "cvcLabel": "CVC",
-    "savedToast": "お支払い方法を保存しました"
+    "savedToast": "お支払い方法を保存しました",
+    "none": "支払い方法が登録されていません",
+    "manage": "支払い方法を管理する"
   },
   "invoices": {
     "title": "最近の請求書",
@@ -93,7 +108,16 @@
     "date": "日付",
     "description": "説明",
     "amount": "金額",
-    "status": "ステータス"
+    "status": "ステータス",
+    "empty": "まだ請求書はありません。",
+    "download": "請求書のダウンロード",
+    "statuses": {
+      "paid": "支払われた",
+      "open": "開ける",
+      "draft": "下書き",
+      "void": "空所",
+      "uncollectible": "収集不可能な"
+    }
   },
   "topup": {
     "title": "クレジットを追加",
@@ -102,7 +126,10 @@
     "estimatedCredits": "概算クレジット",
     "confirm": "${{amount}} 分のクレジットを追加",
     "success": "クレジットを追加しました",
-    "invalidAmount": "有効な金額を入力してください"
+    "invalidAmount": "有効な金額を入力してください",
+    "processing": "支払いを受け取りました。 Stripe が確認するとすぐにクレジットが表示されます。",
+    "failed": "支払いを完了できませんでした。",
+    "payNow": "今すぐお支払いください"
   },
   "checkout": {
     "title": "ご購入を完了してください",
@@ -111,6 +138,28 @@
     "billedMonthly": "月額課金",
     "pay": "{{amount}} を支払う",
     "enterPhone": "モバイルマネーの電話番号を入力してください。",
-    "activated": "{{name}} プランが有効になりました — お支払いが完了しました"
+    "activated": "{{name}} プランが有効になりました — お支払いが完了しました",
+    "returned": "ありがとう！ Stripe が支払いを確認するとすぐに、サブスクリプションが更新されます。",
+    "cancelled": "チェックアウトがキャンセルされました。何も請求されませんでした。"
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "この請求期間の終了時に終了します",
+    "freeMonthly": "無料クレジットは毎月更新されます",
+    "reactivate": "サブスクリプションを再開する",
+    "cancel": "サブスクリプションをキャンセルする",
+    "cancelConfirm": "現在の期間の終了時にサブスクリプションをキャンセルしますか?"
+  },
+  "wallet": {
+    "saved": "課金設定が保存されました。",
+    "reserved": "{{amount}} ジョブの実行用に予約されています",
+    "autoRecharge": "オートリチャージ",
+    "autoRechargeDesc": "クレジットがしきい値を下回ると、自動的に補充されます。",
+    "threshold": "しきい値（クレジット）",
+    "spendingLimit": "月間制限（クレジット）",
+    "noLimit": "制限なし"
+  },
+  "stripe": {
+    "loadFailed": "Stripe 支払いフォームを読み込めませんでした。接続を確認してください。",
+    "unavailable": "ストライプは使用できません。"
   }
 }

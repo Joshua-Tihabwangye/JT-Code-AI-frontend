@@ -14,7 +14,14 @@
   "usage": {
     "title": "Uso de créditos",
     "usedOf": "{{used}} usados de {{limit}} neste mês",
-    "left": "{{amount}} restantes"
+    "left": "{{amount}} restantes",
+    "thisMonth": "{{amount}} créditos usados ​​este mês",
+    "types": {
+      "chat": "Bater papo",
+      "images": "Imagens",
+      "documents": "Documentos",
+      "agent": "Agentes"
+    }
   },
   "plans": {
     "title": "Escolha o plano ideal para você",
@@ -62,6 +69,12 @@
         "Modelos de IA personalizados",
         "Garantia de SLA"
       ]
+    },
+    "names": {
+      "free": "Livre",
+      "pro": "Pró",
+      "team": "Equipe",
+      "business": "Negócios"
     }
   },
   "payment": {
@@ -83,7 +96,9 @@
     "cardNumberLabel": "Número do cartão",
     "expiryLabel": "Validade",
     "cvcLabel": "CVC",
-    "savedToast": "Forma de pagamento salva"
+    "savedToast": "Forma de pagamento salva",
+    "none": "Nenhuma forma de pagamento cadastrada",
+    "manage": "Gerenciar métodos de pagamento"
   },
   "invoices": {
     "title": "Faturas recentes",
@@ -93,7 +108,16 @@
     "date": "Data",
     "description": "Descrição",
     "amount": "Valor",
-    "status": "Status"
+    "status": "Status",
+    "empty": "Ainda não há faturas.",
+    "download": "Baixar fatura",
+    "statuses": {
+      "paid": "pago",
+      "open": "abrir",
+      "draft": "rascunho",
+      "void": "vazio",
+      "uncollectible": "incobrável"
+    }
   },
   "topup": {
     "title": "Adicionar Créditos",
@@ -102,7 +126,10 @@
     "estimatedCredits": "Créditos Estimados",
     "confirm": "Adicionar ${{amount}} em créditos",
     "success": "Créditos adicionados com sucesso",
-    "invalidAmount": "Informe um valor válido"
+    "invalidAmount": "Informe um valor válido",
+    "processing": "Pagamento recebido. Os créditos aparecem assim que Stripe confirma.",
+    "failed": "O pagamento não pôde ser concluído.",
+    "payNow": "Pague agora"
   },
   "checkout": {
     "title": "Conclua sua compra",
@@ -111,6 +138,28 @@
     "billedMonthly": "Cobrança mensal",
     "pay": "Pagar {{amount}}",
     "enterPhone": "Digite o número de telefone para o Mobile Money.",
-    "activated": "Plano {{name}} ativado — pagamento bem-sucedido"
+    "activated": "Plano {{name}} ativado — pagamento bem-sucedido",
+    "returned": "Obrigado! Sua assinatura será atualizada assim que Stripe confirmar o pagamento.",
+    "cancelled": "O check-out foi cancelado; nada foi cobrado."
+  },
+  "subscription": {
+    "endsAtPeriodEnd": "Termina no final deste período de faturamento",
+    "freeMonthly": "Créditos gratuitos são renovados mensalmente",
+    "reactivate": "Retomar assinatura",
+    "cancel": "Cancelar assinatura",
+    "cancelConfirm": "Cancelar sua assinatura no final do período atual?"
+  },
+  "wallet": {
+    "saved": "Configurações de faturamento salvas.",
+    "reserved": "{{amount}} reservado para execução de jobs",
+    "autoRecharge": "Recarga automática",
+    "autoRechargeDesc": "Recarregue automaticamente quando os créditos ficarem abaixo do limite.",
+    "threshold": "Limite (créditos)",
+    "spendingLimit": "Limite mensal (créditos)",
+    "noLimit": "Sem limite"
+  },
+  "stripe": {
+    "loadFailed": "Não foi possível carregar o formulário de pagamento Stripe. Verifique sua conexão.",
+    "unavailable": "A faixa não está disponível."
   }
 }

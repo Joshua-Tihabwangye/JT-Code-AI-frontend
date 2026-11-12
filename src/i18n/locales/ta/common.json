@@ -14,5 +14,13 @@
   "default": "இயல்புநிலை",
   "creditsUnit": "கிரெடிட்கள்",
   "messagesCount_one": "{{count}} செய்தி",
-  "messagesCount_other": "{{count}} செய்திகள்"
+  "messagesCount_other": "{{count}} செய்திகள்",
+  "dismiss": "நிராகரி",
+  "avatar": "அவதாரம்",
+  "hidePassword": "கடவுச்சொல்லை மறை",
+  "showPassword": "கடவுச்சொல்லைக் காட்டு",
+  "clearSearch": "தெளிவான தேடல்",
+  "confirm": "உறுதிப்படுத்தவும்",
+  "notifications": "அறிவிப்புகள்",
+  "dismissNotification": "அறிவிப்பை நிராகரி"
 }

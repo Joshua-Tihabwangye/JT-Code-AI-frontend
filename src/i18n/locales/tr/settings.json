@@ -29,5 +29,20 @@
   "changePhoto": "Fotoğrafı değiştirmek için tıklayın",
   "profileUpdated": "Profil başarıyla güncellendi",
   "updateProfileError": "Profil güncellenemedi",
-  "uploadAvatarError": "Avatar yüklenemedi"
+  "uploadAvatarError": "Avatar yüklenemedi",
+  "eyebrow": "Ayarlar",
+  "avatarUpdated": "Profil resmi güncellendi.",
+  "removePhoto": "Fotoğrafı kaldır",
+  "passwordChanged": "Şifreniz değiştirildi.",
+  "passwordMismatch": "Yeni şifreler eşleşmiyor.",
+  "workspace": "Çalışma alanı",
+  "workspaceDesc": "JT-Code'daki kuruluşunuz. Konuşmalar, dosyalar ve jenerikler kendisine aittir.",
+  "workspaceName": "Çalışma alanı adı",
+  "workspaceUpdated": "Çalışma alanı yeniden adlandırıldı.",
+  "password": "Şifre",
+  "passwordDesc": "Oturum açmak için kullandığınız şifreyi değiştirin.",
+  "currentPassword": "Mevcut Şifre",
+  "newPassword": "Yeni şifre (8+ karakter)",
+  "confirmPassword": "Yeni şifreyi onayla",
+  "changePassword": "Şifre değiştir"
 }

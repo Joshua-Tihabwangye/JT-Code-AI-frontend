@@ -9,5 +9,8 @@
   "offlineMessage": "オフラインです。変更はローカルに保存され、再接続時に同期されます。",
   "fatalTitle": "問題が発生しました",
   "unexpectedError": "予期しないエラーが発生しました。",
-  "reloadApp": "アプリを再読み込み"
+  "reloadApp": "アプリを再読み込み",
+  "home": "JTコードホーム",
+  "primaryNavigation": "プライマリナビゲーション",
+  "fatalError": "JT コードでエラーが発生しました。"
 }

@@ -69,6 +69,12 @@
         "Custom AI models",
         "SLA guarantee"
       ]
+    },
+    "names": {
+      "free": "Free",
+      "pro": "Pro",
+      "team": "Team",
+      "business": "Business"
     }
   },
   "payment": {
@@ -104,7 +110,14 @@
     "amount": "Amount",
     "status": "Status",
     "empty": "No invoices yet.",
-    "download": "Download invoice"
+    "download": "Download invoice",
+    "statuses": {
+      "paid": "paid",
+      "open": "open",
+      "draft": "draft",
+      "void": "void",
+      "uncollectible": "uncollectible"
+    }
   },
   "topup": {
     "title": "Add Credits",
@@ -144,5 +157,9 @@
     "threshold": "Threshold (credits)",
     "spendingLimit": "Monthly limit (credits)",
     "noLimit": "No limit"
+  },
+  "stripe": {
+    "loadFailed": "Could not load the Stripe payment form. Check your connection.",
+    "unavailable": "Stripe is unavailable."
   }
 }

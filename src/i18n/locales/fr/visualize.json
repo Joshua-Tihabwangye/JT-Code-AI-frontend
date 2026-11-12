@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Tableaux de bord",
+    "data": "Données",
+    "gallery": "Galerie",
+    "predict": "Prévoir",
+    "reports": "Rapports",
+    "explore": "Explorer"
+  },
+  "askAi": "Demander à l'IA",
+  "hero": {
+    "title": "Studio de visualisation de données"
+  },
+  "assistant": {
+    "title": "JT-Code IA",
+    "cost": "Consomme des crédits uniquement lorsque vous envoyez une requête. Les graphiques, analyses et suggestions sont gratuits.",
+    "about": "Question sur",
+    "intro": "Décrivez ce que vous voulez voir. Je choisis le graphique, je renseigne les colonnes, et vous vérifiez le tout avant toute exécution.",
+    "thinking": "Réflexion…",
+    "builtIn": "Intégré",
+    "credits": "{{credits}} crédits",
+    "free": "aucun crédit utilisé",
+    "openExplore": "Ouvrir dans Explorer",
+    "setUp": "Configurer la prévision",
+    "placeholder": "ex. Afficher le chiffre d'affaires mensuel par région",
+    "prompt": "Requête",
+    "send": "Envoyer",
+    "close": "Fermer"
+  },
+  "dataset": "Jeu de données",
+  "noDataset": "Aucun jeu de données pour le moment",
+  "sections": "Sections de visualisation de données",
+  "controls": {
+    "noColumns": {
+      "numeric": "Aucune colonne numérique",
+      "datetime": "Aucune colonne date/heure",
+      "categorical": "Aucune colonne catégorielle",
+      "dimension": "Aucune colonne de dimension",
+      "any": "Aucune colonne"
+    },
+    "chooseColumn": "Choisir une colonne…",
+    "none": "Aucun",
+    "automatic": "Automatique"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "excellente",
+      "good": "bonne",
+      "fair": "correcte",
+      "weak": "faible",
+      "unknown": "inconnue"
+    },
+    "dataset": "Jeu de données",
+    "noDatasets": "Aucun jeu de données pour le moment",
+    "rows_one": "{{rows}} ligne",
+    "rows_other": "{{rows}} lignes",
+    "less": "Moins",
+    "howToRead": "Comment le lire",
+    "dataOf": "Données de {{title}}",
+    "tableSize": "{{rows}} lignes × {{columns}} colonnes — les données affichées par ce graphique",
+    "tableSizeFirst": "{{rows}} lignes × {{columns}} colonnes (premières lignes) — les données affichées par ce graphique",
+    "close": "Fermer",
+    "expandRibbon": "Développer le ruban",
+    "collapseRibbon": "Réduire le ruban"
+  }
+}

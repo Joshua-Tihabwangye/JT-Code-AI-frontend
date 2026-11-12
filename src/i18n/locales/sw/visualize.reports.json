@@ -1,0 +1,41 @@
+{
+  "title": "Ripoti",
+  "subtitle": "Hamisha dashibodi, au tumia tena taswira ulizohifadhi.",
+  "export": "Hamisha dashibodi",
+  "noCharts": "Hifadhi picha kutoka kwa Chunguza au Bashiri ili uzitumie tena kwenye dashibodi.",
+  "library": {
+    "title": "Vielelezo vyangu"
+  },
+  "dashboardToExport": "Dashibodi ya kusafirisha",
+  "noDashboards": "Bado hakuna dashibodi",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Ukurasa mmoja kwa kila ukurasa wa dashibodi, haswa kama kwenye skrini"
+    },
+    "png": {
+      "label": "Picha za PNG",
+      "hint": "Picha moja kwa kila ukurasa"
+    },
+    "xlsx": {
+      "label": "Excel",
+      "hint": "Kila data inayoonekana iliyo na chati asili, pamoja na data ghafi"
+    },
+    "html": {
+      "label": "HTML inayoingiliana",
+      "hint": "Faili moja inayofanya kazi nje ya mtandao"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "Ufafanuzi wa dashibodi"
+    }
+  },
+  "preparing": "Inatayarisha..",
+  "explore": "Chunguza",
+  "prediction": "Utabiri",
+  "visualOf": "{{type}} ya kuona",
+  "deletedDataset": "seti ya data iliyofutwa",
+  "unshare": "Batilisha kushiriki",
+  "share": "Shiriki",
+  "deleteNamed": "Futa {{name}}"
+}

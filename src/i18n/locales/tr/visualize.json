@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Gösterge tabloları",
+    "data": "Veri",
+    "gallery": "Galeri",
+    "predict": "Tahmin etmek",
+    "reports": "Raporlar",
+    "explore": "Keşfetmek"
+  },
+  "askAi": "Yapay zekaya sor",
+  "hero": {
+    "title": "Veri Görselleştirme Stüdyosu"
+  },
+  "assistant": {
+    "title": "JT Kodu AI",
+    "cost": "Kredileri yalnızca bir istem gönderdiğinizde kullanır. Grafikler, analizler ve öneriler ücretsizdir.",
+    "about": "Hakkında bilgi isteyin",
+    "intro": "Ne görmek istediğinizi açıklayın. Ben grafiği seçerim, sütunları doldururum ve sen herhangi bir şey çalıştırılmadan önce onu incelersin.",
+    "thinking": "Düşünüyorum…",
+    "builtIn": "Yerleşik",
+    "credits": "{{credits}} kredi",
+    "free": "kredi kullanılmadı",
+    "openExplore": "Keşfet'te aç",
+    "setUp": "Tahmini ayarla",
+    "placeholder": "örneğin Aylık geliri bölgeye göre göster",
+    "prompt": "Çabuk",
+    "send": "Göndermek",
+    "close": "Kapalı"
+  },
+  "dataset": "Veri kümesi",
+  "noDataset": "Henüz veri kümesi yok",
+  "sections": "Veri görselleştirme bölümleri",
+  "controls": {
+    "noColumns": {
+      "numeric": "Sayısal sütun yok",
+      "datetime": "Tarihsaat sütunu yok",
+      "categorical": "Kategorik sütun yok",
+      "dimension": "Boyut sütunu yok",
+      "any": "Sütun yok"
+    },
+    "chooseColumn": "Bir sütun seçin…",
+    "none": "Hiçbiri",
+    "automatic": "Otomatik"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "harika",
+      "good": "iyi",
+      "fair": "adil",
+      "weak": "zayıf",
+      "unknown": "bilinmiyor"
+    },
+    "dataset": "Veri kümesi",
+    "noDatasets": "Henüz veri kümesi yok",
+    "rows_one": "{{rows}} satır",
+    "rows_other": "{{rows}} satırlar",
+    "less": "Az",
+    "howToRead": "Nasıl okunur",
+    "dataOf": "{{title}} verileri",
+    "tableSize": "{{rows}} satırlar × {{columns}} sütunlar — bu grafiğin gösterdiği veriler",
+    "tableSizeFirst": "{{rows}} satırlar × {{columns}} sütunlar (ilk satırlar) — bu grafiğin gösterdiği veriler",
+    "close": "Kapalı",
+    "expandRibbon": "Şeridi genişlet",
+    "collapseRibbon": "Şeridi daralt"
+  }
+}

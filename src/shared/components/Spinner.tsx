@@ -1,5 +1,6 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg';
@@ -7,6 +8,7 @@ interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   ({ className, size = 'md', ...props }, ref) => {
+    const { t } = useTranslation();
     const sizes = {
       sm: 'h-4 w-4',
       md: 'h-8 w-8',
@@ -44,7 +46,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
             strokeLinecap="round"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">{t('common.loading')}</span>
       </div>
     );
   }

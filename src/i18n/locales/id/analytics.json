@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Analisis Data",
+  "title": "Analisis Data",
+  "subtitle": "Unggah CSV, jelajahi kolomnya, jalankan analisis, dan ubah hasilnya menjadi diagram.",
+  "upload": {
+    "title": "Tambahkan kumpulan data",
+    "name": "Nama",
+    "namePlaceholder": "misalnya Penjualan Q3",
+    "file": "File CSV (hingga 25 MB)",
+    "or": "— atau tempel CSV —",
+    "paste": "teks CSV",
+    "pastePlaceholder": "wilayah, pendapatan\nTimur, 120\nBarat,80",
+    "submit": "Tambahkan kumpulan data",
+    "limits": "CSV UTF-8 dengan baris header; hingga 100.000 baris dan 200 kolom.",
+    "needData": "Pilih file CSV atau tempel teks CSV."
+  },
+  "datasets": "Kumpulan data",
+  "noDatasets": "Belum ada kumpulan data.",
+  "datasetMeta": "{{rows}} baris · {{columns}} kolom",
+  "emptyTitle": "Tidak ada kumpulan data yang dipilih",
+  "emptyDesc": "Tambahkan CSV di sebelah kiri untuk mulai menganalisis.",
+  "deleteDataset": "Menghapus",
+  "deleteConfirm": "Hapus kumpulan data ini beserta analisis dan diagramnya?",
+  "profilePending": "Statistik kolom muncul setelah analisis pertama file yang diunggah.",
+  "profile": {
+    "column": "Kolom",
+    "kind": "Jenis",
+    "missing": "Hilang",
+    "distinct": "Berbeda",
+    "summary": "Ringkasan"
+  },
+  "builder": {
+    "title": "Menganalisa",
+    "filters": "Filter",
+    "addFilter": "Tambahkan penyaring",
+    "noFilters": "Tanpa filter: setiap baris disertakan.",
+    "removeFilter": "Hapus penyaring",
+    "column": "Kolom",
+    "operator": "Operator",
+    "value": "Nilai",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Kelompokkan berdasarkan",
+    "aggregate": "Agregat",
+    "ofColumn": "Dari kolom",
+    "allNumeric": "Semua kolom numerik",
+    "sortBy": "Urutkan berdasarkan",
+    "direction": "Arah",
+    "asc": "Naik",
+    "desc": "Menurun",
+    "limit": "Batas baris",
+    "none": "Tidak ada",
+    "run": "Jalankan analisis",
+    "cost": "Setiap analisis menggunakan 10 SKS; grafiknya gratis."
+  },
+  "operators": {
+    "eq": "sama",
+    "ne": "tidak sama",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "berisi",
+    "in": "adalah salah satu dari"
+  },
+  "aggregates": {
+    "count": "Hitung baris",
+    "sum": "Jumlah",
+    "mean": "Rata-rata",
+    "min": "Minimum",
+    "max": "Maksimum"
+  },
+  "status": {
+    "queued": "Mengantri",
+    "running": "Berlari",
+    "completed": "Selesai",
+    "failed": "Gagal",
+    "ready": "Siap"
+  },
+  "results": {
+    "title": "Hasil",
+    "rows": "{{count}} baris (menampilkan {{shown}})",
+    "download": "Unduh CSV",
+    "retry": "Mencoba kembali",
+    "pickRun": "Analisis dijalankan"
+  },
+  "charts": {
+    "title": "Grafik",
+    "kind": "Bagan",
+    "x": "sumbu X",
+    "y": "Sumbu Y (numerik)",
+    "chartTitle": "Judul",
+    "create": "Buat bagan",
+    "delete": "Hapus bagan",
+    "noImage": "Grafik dirender di server dalam mode API."
+  },
+  "chartKinds": {
+    "bar": "Batang",
+    "line": "Garis",
+    "scatter": "Menyebarkan",
+    "area": "Daerah",
+    "histogram": "Histogram",
+    "box": "Kotak",
+    "pie": "Pai"
+  }
+}

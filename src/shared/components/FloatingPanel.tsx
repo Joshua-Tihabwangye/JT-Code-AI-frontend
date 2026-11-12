@@ -14,13 +14,14 @@ export type FloatingPlacement = 'above' | 'below' | 'side-up' | 'side-down';
 const GAP = 8;
 const MARGIN = 8;
 
-function position(anchor: DOMRect, placement: FloatingPlacement, width: number): CSSProperties {
+function position(anchor: DOMRect, placement: FloatingPlacement, width: number, edge?: DOMRect): CSSProperties {
   const rtl = document.documentElement.dir === 'rtl';
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
   const clampLeft = (left: number) => Math.max(MARGIN, Math.min(left, viewportWidth - width - MARGIN));
   if (placement === 'side-up' || placement === 'side-down') {
-    const left = rtl ? anchor.left - GAP - width : anchor.right + GAP;
+    // Beside the container's edge (the sidebar), not just the trigger, so nothing overlaps it.
+    const left = rtl ? (edge?.left ?? anchor.left) - GAP - width : (edge?.right ?? anchor.right) + GAP;
     const style: CSSProperties = { left: clampLeft(left), width };
     if (placement === 'side-up') {
       style.bottom = Math.max(MARGIN, viewportHeight - anchor.bottom);
@@ -46,6 +47,7 @@ export function FloatingPanel({
   placement,
   width = 256,
   panelRef,
+  edgeSelector,
   className = '',
   style,
   children,
@@ -55,12 +57,16 @@ export function FloatingPanel({
   placement: FloatingPlacement;
   width?: number;
   panelRef?: Ref<HTMLDivElement>;
+  /** Side placements: open beside the nearest ancestor matching this selector (e.g. `.sidebar`). */
+  edgeSelector?: string;
 } & HTMLAttributes<HTMLDivElement>) {
   const [box, setBox] = useState<CSSProperties | null>(null);
   useLayoutEffect(() => {
     const update = () => {
-      const anchor = anchorRef.current?.getBoundingClientRect();
-      if (anchor) setBox(position(anchor, placement, width));
+      const element = anchorRef.current;
+      const anchor = element?.getBoundingClientRect();
+      const edge = edgeSelector ? element?.closest(edgeSelector)?.getBoundingClientRect() : undefined;
+      if (anchor) setBox(position(anchor, placement, width, edge));
     };
     update();
     window.addEventListener('resize', update);
@@ -70,10 +76,11 @@ export function FloatingPanel({
       window.removeEventListener('resize', update);
       window.removeEventListener('scroll', update, true);
     };
-  }, [anchorRef, placement, width]);
-  if (!box) return null;
+  }, [anchorRef, placement, width, edgeSelector]);
+  // Rendered at once (transparent until measured) so the menu can take keyboard focus as it opens.
+  const placed = box ?? { left: 0, top: 0, opacity: 0 };
   return createPortal(
-    <div ref={panelRef} className={`floating-panel ${className}`} style={{ ...box, ...style }} data-placement={placement} {...rest}>
+    <div ref={panelRef} className={`floating-panel ${className}`} style={{ ...placed, ...style }} data-placement={placement} {...rest}>
       {children}
     </div>,
     document.body,

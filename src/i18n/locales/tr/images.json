@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Lütfen bir görsel yükleyin ve bir istem girin",
     "noResult": "Sonuç yok"
   },
-  "defaultQuestion": "Bu görseli ayrıntılı olarak açıkla"
+  "defaultQuestion": "Bu görseli ayrıntılı olarak açıkla",
+  "uploadPreview": "Önizlemeyi yükle",
+  "autoModel": "Otomatik (önerilen)"
 }

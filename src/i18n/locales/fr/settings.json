@@ -29,5 +29,20 @@
   "changePhoto": "Cliquez pour changer de photo",
   "profileUpdated": "Profil mis à jour avec succès",
   "updateProfileError": "Échec de la mise à jour du profil",
-  "uploadAvatarError": "Échec de l'importation de l'avatar"
+  "uploadAvatarError": "Échec de l'importation de l'avatar",
+  "eyebrow": "Paramètres",
+  "avatarUpdated": "Photo de profil mise à jour.",
+  "removePhoto": "Supprimer la photo",
+  "passwordChanged": "Votre mot de passe a été modifié.",
+  "passwordMismatch": "Les nouveaux mots de passe ne correspondent pas.",
+  "workspace": "Espace de travail",
+  "workspaceDesc": "Votre organisation dans JT-Code. Les conversations, fichiers et crédits lui appartiennent.",
+  "workspaceName": "Nom de l'espace de travail",
+  "workspaceUpdated": "Espace de travail renommé.",
+  "password": "Mot de passe",
+  "passwordDesc": "Modifiez le mot de passe que vous utilisez pour vous connecter.",
+  "currentPassword": "Mot de passe actuel",
+  "newPassword": "Nouveau mot de passe (8 caractères min.)",
+  "confirmPassword": "Confirmer le nouveau mot de passe",
+  "changePassword": "Changer le mot de passe"
 }

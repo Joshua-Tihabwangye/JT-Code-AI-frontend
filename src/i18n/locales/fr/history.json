@@ -7,5 +7,15 @@
   "emptyTitle": "Pas encore d'historique",
   "emptyDesc": "Démarrez un chat et vos conversations apparaîtront ici.",
   "startChatting": "Commencer à discuter",
-  "deleteItemAria": "Supprimer {{title}}"
+  "deleteItemAria": "Supprimer {{title}}",
+  "searchPlaceholder": "Rechercher des conversations",
+  "archived": "Archivées",
+  "openAria": "Ouvrir {{title}}",
+  "pinned": "Épinglées",
+  "untitled": "Conversation sans titre",
+  "pin": "Épingler",
+  "unpin": "Désépingler",
+  "archive": "Archiver",
+  "unarchive": "Restaurer depuis l'archive",
+  "export": "Exporter en Markdown"
 }

@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Safi",
+    "rows": "Safu",
+    "columns": "Safu",
+    "text": "Maandishi",
+    "numbers": "Nambari na tarehe",
+    "shape": "Umbo",
+    "combine": "Unganisha"
+  },
+  "kinds": {
+    "removeDuplicates": "Ondoa safu mlalo nakala",
+    "trim": "Punguza nafasi za ziada",
+    "removeBlankRows": "Ondoa safu tupu",
+    "fillBlanks": "Jaza nafasi zilizoachwa wazi",
+    "replaceValues": "Badilisha maadili",
+    "changeType": "Badilisha aina",
+    "outliers": "Kushughulikia nje",
+    "filterRows": "Chuja safu",
+    "sort": "Panga safu",
+    "keepRows": "Weka safu za juu au chini",
+    "removeColumns": "Ondoa safuwima",
+    "keepColumns": "Weka safu wima hizi pekee",
+    "rename": "Badilisha jina la safu",
+    "calculatedColumn": "Safu wima iliyohesabiwa",
+    "conditionalColumn": "Safu wima yenye masharti",
+    "splitColumn": "Gawanya safu",
+    "mergeColumns": "Unganisha safu wima",
+    "textCase": "Badilisha kesi ya maandishi",
+    "bins": "Panga nambari kwenye mapipa",
+    "dateParts": "Dondoo sehemu za tarehe",
+    "dateTable": "Tengeneza jedwali la tarehe (kalenda)",
+    "groupBy": "Kundi kwa",
+    "pivot": "Egemeo (safu → safu wima)",
+    "unpivot": "Ondoa mhimili (safu wima → safu mlalo)",
+    "merge": "Unganisha na mkusanyiko mwingine wa data",
+    "append": "Ongeza mkusanyiko mwingine wa data"
+  },
+  "fields": {
+    "compareColumns": "Linganisha safu wima hizi pekee",
+    "trimColumns": "Safu wima (maandishi yote yakiwa tupu)",
+    "blankIn": "tupu ndani",
+    "removeWhen": "Ondoa wakati",
+    "column": "Safu",
+    "columns": "Safu",
+    "with": "Na",
+    "value": "Thamani",
+    "find": "Tafuta",
+    "replaceWith": "Badilisha na",
+    "match": "Mechi",
+    "to": "Kwa",
+    "action": "Kitendo",
+    "rowsThatMatch": "Safu zinazolingana",
+    "conditions": "Masharti",
+    "sortBy": "Panga kwa",
+    "keep": "Weka",
+    "howMany": "Ngapi",
+    "newName": "Jina jipya",
+    "newColumn": "Safu mpya",
+    "formula": "Mfumo",
+    "ifThen": "Ikiwa ... basi",
+    "otherwise": "Vinginevyo",
+    "at": "Saa",
+    "intoParts": "Katika (sehemu)",
+    "newNames": "Majina mapya (si lazima)",
+    "separator": "Kitenganishi",
+    "case": "Kesi",
+    "bins": "Mapipa",
+    "howManyBins": "Mapipa ngapi",
+    "edges": "Kingo",
+    "dateColumn": "Safu ya tarehe",
+    "parts": "Sehemu",
+    "fromDatesIn": "Kutoka tarehe katika",
+    "fiscalStart": "Mwaka wa fedha huanza mwezi",
+    "groupBy": "Kundi kwa",
+    "calculate": "Kokotoa",
+    "keepAsRows": "Weka kama safu",
+    "valuesBecomeColumns": "Thamani huwa safu wima",
+    "fillWith": "Jaza na",
+    "aggregation": "Kujumlisha",
+    "keepTheseColumns": "Weka safu wima hizi",
+    "nameColumn": "Safu wima ya jina",
+    "valueColumn": "Safu ya thamani",
+    "dataset": "Seti ya data",
+    "keyHere": "Muhimu katika data hii",
+    "keyOther": "Muhimu katika nyingine"
+  },
+  "options": {
+    "blankHow": {
+      "any": "yoyote kati yao ni tupu",
+      "all": "zote ni tupu"
+    },
+    "fill": {
+      "mean": "Wastani",
+      "median": "Wastani",
+      "mode": "Thamani ya kawaida zaidi",
+      "zero": "Sifuri",
+      "down": "Thamani hapo juu (jaza)",
+      "up": "Thamani hapa chini (jaza)",
+      "value": "Thamani yangu mwenyewe"
+    },
+    "replaceMatch": {
+      "exact": "Thamani nzima",
+      "contains": "Sehemu ya maandishi"
+    },
+    "types": {
+      "number": "Nambari",
+      "date": "Tarehe",
+      "text": "Maandishi"
+    },
+    "outliers": {
+      "cap": "Kofia kwenye mipaka",
+      "remove": "Ondoa safu hizo",
+      "flag": "Tia alama kwenye safu mpya"
+    },
+    "filterMode": {
+      "keep": "Weka",
+      "remove": "Ondoa"
+    },
+    "combine": {
+      "and": "masharti yote",
+      "or": "hali yoyote"
+    },
+    "keepRows": {
+      "top": "Safu za kwanza",
+      "bottom": "Safu za mwisho"
+    },
+    "textCase": {
+      "title": "Kesi ya Kichwa",
+      "upper": "JUU",
+      "lower": "chini"
+    },
+    "bins": {
+      "equal": "Upana sawa",
+      "edges": "Mipaka yangu mwenyewe"
+    },
+    "mergeHow": {
+      "left": "Safu mlalo zote za data hii",
+      "inner": "Safu zinazolingana pekee",
+      "outer": "Safu zote mbili"
+    },
+    "aggs": {
+      "sum": "Jumla",
+      "avg": "Wastani",
+      "count": "Hesabu",
+      "distinct": "Hesabu tofauti",
+      "min": "Dak",
+      "max": "Max",
+      "median": "Wastani"
+    }
+  },
+  "parts": {
+    "year": "Mwaka",
+    "quarter": "Robo",
+    "month": "Mwezi",
+    "monthName": "Jina la mwezi",
+    "week": "Wiki",
+    "weekday": "Siku ya juma",
+    "weekdayName": "Jina la siku ya wiki",
+    "day": "Siku",
+    "hour": "Saa"
+  },
+  "conditionOps": {
+    "eq": "sawa",
+    "ne": "hailingani",
+    "in": "ni mmoja wa",
+    "notIn": "si mmoja wa",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "kati",
+    "contains": "ina",
+    "startsWith": "huanza na",
+    "endsWith": "inaisha na",
+    "blank": "ni tupu",
+    "notBlank": "sio tupu"
+  },
+  "summary": {
+    "keepConditions": "weka {{count}} masharti",
+    "removeConditions": "ondoa {{count}} masharti",
+    "by": "na {{columns}}",
+    "anotherDataset": "seti nyingine ya data",
+    "types": {
+      "number": "nambari",
+      "date": "tarehe",
+      "text": "maandishi"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Ondoa nakala",
+    "keepOnePerId": "Weka safu mlalo moja kwa kila kitambulisho",
+    "removeMissingId": "Ondoa safu mlalo bila kitambulisho",
+    "fillBlanks": "Jaza nafasi zilizoachwa wazi",
+    "blankOut": "Tuma \"{{value}}\"",
+    "trimSpaces": "Punguza nafasi",
+    "toNumber": "Badilisha kuwa nambari",
+    "toDate": "Badilisha hadi tarehe",
+    "consistentSpelling": "Fanya tahajia ifanane",
+    "capOutliers": "Cap outliers",
+    "removeColumn": "Ondoa safu"
+  }
+}

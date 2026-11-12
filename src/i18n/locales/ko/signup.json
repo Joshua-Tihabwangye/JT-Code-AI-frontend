@@ -14,7 +14,8 @@
     "uppercase": "대문자 1개 포함",
     "lowercase": "소문자 1개 포함",
     "number": "숫자 1개 포함",
-    "singleRule": "비밀번호는 8자 이상이어야 하며, 최소 하나의 문자와 하나의 숫자를 포함해야 합니다."
+    "singleRule": "비밀번호는 8자 이상이어야 하며, 최소 하나의 문자와 하나의 숫자를 포함해야 합니다.",
+    "special": "특수 문자 1개"
   },
   "matchOk": "비밀번호가 일치합니다.",
   "matchError": "비밀번호가 아직 일치하지 않습니다.",
@@ -48,5 +49,12 @@
   "privacyLink": "개인정보 처리방침",
   "termsHelp": "가입을 완료하기 전에 법적 페이지를 검토할 수 있습니다.",
   "submit": "계정 만들기",
-  "haveAccountQuestion": "이미 계정이 있으신가요?"
+  "haveAccountQuestion": "이미 계정이 있으신가요?",
+  "helpText": "",
+  "section": {
+    "account": "계정",
+    "profile": "윤곽",
+    "region": "지역"
+  },
+  "confirmEmail": "거의 다 왔어요! {{email}}에 확인 링크를 보냈습니다. 그것을 열고 로그인하세요."
 }

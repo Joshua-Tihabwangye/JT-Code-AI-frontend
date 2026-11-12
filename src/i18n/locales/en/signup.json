@@ -20,7 +20,8 @@
     "uppercase": "One uppercase letter",
     "lowercase": "One lowercase letter",
     "number": "One number",
-    "singleRule": "Password must be at least 8 characters and include at least one letter and one number."
+    "singleRule": "Password must be at least 8 characters and include at least one letter and one number.",
+    "special": "One special character"
   },
   "matchOk": "Passwords match.",
   "matchError": "Passwords do not match yet.",

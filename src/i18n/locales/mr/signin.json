@@ -1,8 +1,6 @@
 {
   "title": "पुन्हा स्वागत आहे",
   "subtitle": "JT-Code वर सुरू ठेवण्यासाठी साइन इन करा",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "कनेक्ट होत आहे…",
   "emailLabel": "ईमेल पत्ता",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "पासवर्ड विसरलात?",
   "submit": "साइन इन",
   "noAccount": "खाते नाही का?",
-  "createAccount": "खाते तयार करा"
+  "createAccount": "खाते तयार करा",
+  "helpText": "",
+  "signInWithGoogle": "Google सह साइन इन करा",
+  "signInWithApple": "Apple सह साइन इन करा",
+  "offlineHint": "ऑफलाइन डिझाइन मोड: बॅकएंड वापरला जात नाही. कोणत्याही ईमेल आणि पासवर्डसह साइन इन करा (स्थानिक खाते तयार केले आहे), किंवा डेमो खात्यासह सुरू ठेवा.",
+  "demoAccount": "डेमो खात्यासह सुरू ठेवा",
+  "continueWith": "{{provider}} सह सुरू ठेवा"
 }

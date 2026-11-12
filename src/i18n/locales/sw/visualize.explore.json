@@ -1,0 +1,38 @@
+{
+  "pick": "Chagua seti ya data kwenye upau hapo juu, au ongeza moja kwenye ukurasa wa Data.",
+  "add": "Chati mpya",
+  "pin": "Bandika kwenye dashibodi",
+  "saved": "Imehifadhiwa kwa taswira Zangu",
+  "save": "Hifadhi kwa taswira Zangu",
+  "viewData": "Tazama data",
+  "pageName": "Chunguza",
+  "chartType": "Aina ya chati",
+  "suggestions": "Mapendekezo",
+  "charts": "Chati",
+  "buildAndFormat": "Kujenga na muundo",
+  "build": "Jenga",
+  "format": "Umbizo",
+  "remove": "Ondoa chati hii",
+  "drawer": {
+    "data": "Data nyuma ya chati",
+    "rows": "Safu mbichi",
+    "query": "Hoja"
+  },
+  "noData": "Hakuna data bado.",
+  "query": {
+    "chart": "{{chart}} ya {{fields}} (kila safu, sampuli hadi 10,000 ikiwa kubwa).",
+    "noFields": "hakuna mashamba bado",
+    "countRows": "Hesabu ya safu",
+    "measure": "{{agg}} ya {{field}}",
+    "grain": "{{field}} ({{grain}})",
+    "grains": {
+      "year": "mwaka",
+      "quarter": "robo",
+      "month": "mwezi",
+      "week": "wiki",
+      "day": "siku"
+    },
+    "grouped": "{{what}} na {{groups}} - imekokotwa katika hifadhidata, kisha ikachorwa katika Chatu.",
+    "total": "{{what}} - imekokotwa kwenye hifadhidata, kisha ikachorwa kwa Python."
+  }
+}

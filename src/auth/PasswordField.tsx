@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config'
 import { Eye, EyeOff, LockKeyhole } from 'lucide-react'
 import { useState } from 'react'
 
@@ -45,7 +46,7 @@ export default function PasswordField({
           type="button"
           className="icon-button"
           onClick={() => setVisible((current) => !current)}
-          aria-label={visible ? 'Hide password' : 'Show password'}
+          aria-label={visible ? i18n.t('common.hidePassword') : i18n.t('common.showPassword')}
         >
           {visible ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>

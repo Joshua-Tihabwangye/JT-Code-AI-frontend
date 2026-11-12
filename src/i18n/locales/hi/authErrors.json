@@ -6,8 +6,6 @@
   "invalidEmail": "एक मान्य ईमेल पता दर्ज करें।",
   "passwordMinLength": "पासवर्ड में कम से कम 8 वर्ण होने चाहिए।",
   "passwordLetter": "पासवर्ड में कम से कम एक अक्षर होना चाहिए।",
-  "passwordUppercase": "पासवर्ड में एक बड़ा अक्षर होना चाहिए।",
-  "passwordLowercase": "पासवर्ड में एक छोटा अक्षर होना चाहिए।",
   "passwordNumber": "पासवर्ड में एक अंक होना चाहिए।",
   "selectCountry": "अपना देश चुनें।",
   "selectDialCode": "एक डायल कोड चुनें।",
@@ -19,5 +17,13 @@
   "passwordRequired": "अपना पासवर्ड दर्ज करें।",
   "authenticationFailed": "प्रमाणीकरण विफल रहा।",
   "finishingSignIn": "साइन इन पूरा हो रहा है…",
-  "redirecting": "रीडायरेक्ट हो रहा है…"
+  "redirecting": "रीडायरेक्ट हो रहा है…",
+  "accountExists": "इस ईमेल वाला एक खाता पहले से मौजूद है.",
+  "invalidCredentials": "अमान्य ईमेल या पासवर्ड.",
+  "noAccount": "उस ईमेल पते के लिए कोई खाता मौजूद नहीं है.",
+  "invalidResetCode": "अमान्य या समाप्त हो चुका रीसेट कोड.",
+  "signInToReset": "अपना पासवर्ड रीसेट करने के लिए साइन इन करें.",
+  "providerDisabled": "{{provider}} के साथ साइन-इन सक्षम नहीं है। अपने ईमेल और पासवर्ड का प्रयोग करें.",
+  "serviceUnreachable": "साइन-इन सेवा तक नहीं पहुंच सकते. अपना कनेक्शन जांचें और पुनः प्रयास करें।",
+  "invalidCountry": "अमान्य देश."
 }

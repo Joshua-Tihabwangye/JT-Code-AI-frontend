@@ -29,5 +29,20 @@
   "changePhoto": "Klicken, um das Foto zu ändern",
   "profileUpdated": "Profil erfolgreich aktualisiert",
   "updateProfileError": "Profil konnte nicht aktualisiert werden",
-  "uploadAvatarError": "Avatar konnte nicht hochgeladen werden"
+  "uploadAvatarError": "Avatar konnte nicht hochgeladen werden",
+  "eyebrow": "Einstellungen",
+  "avatarUpdated": "Profilbild aktualisiert.",
+  "removePhoto": "Foto entfernen",
+  "passwordChanged": "Dein Passwort wurde geändert.",
+  "passwordMismatch": "Die neuen Passwörter stimmen nicht überein.",
+  "workspace": "Arbeitsbereich",
+  "workspaceDesc": "Deine Organisation in JT-Code. Unterhaltungen, Dateien und Credits gehören zu ihr.",
+  "workspaceName": "Name des Arbeitsbereichs",
+  "workspaceUpdated": "Arbeitsbereich umbenannt.",
+  "password": "Passwort",
+  "passwordDesc": "Ändere das Passwort, mit dem du dich anmeldest.",
+  "currentPassword": "Aktuelles Passwort",
+  "newPassword": "Neues Passwort (mind. 8 Zeichen)",
+  "confirmPassword": "Neues Passwort bestätigen",
+  "changePassword": "Passwort ändern"
 }

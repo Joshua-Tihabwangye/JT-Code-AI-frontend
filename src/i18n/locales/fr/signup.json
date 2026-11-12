@@ -14,7 +14,8 @@
     "uppercase": "Une lettre majuscule",
     "lowercase": "Une lettre minuscule",
     "number": "Un chiffre",
-    "singleRule": "Le mot de passe doit contenir au moins 8 caractères et inclure au moins une lettre et un chiffre."
+    "singleRule": "Le mot de passe doit contenir au moins 8 caractères et inclure au moins une lettre et un chiffre.",
+    "special": "Un caractère spécial"
   },
   "matchOk": "Les mots de passe correspondent.",
   "matchError": "Les mots de passe ne correspondent pas encore.",
@@ -48,5 +49,12 @@
   "privacyLink": "Politique de confidentialité",
   "termsHelp": "Vous pouvez consulter ces pages légales avant de finaliser votre inscription.",
   "submit": "Créer un compte",
-  "haveAccountQuestion": "Vous avez déjà un compte ?"
+  "haveAccountQuestion": "Vous avez déjà un compte ?",
+  "helpText": "",
+  "section": {
+    "account": "Compte",
+    "profile": "Profil",
+    "region": "Région"
+  },
+  "confirmEmail": "Presque terminé ! Nous avons envoyé un lien de confirmation à {{email}}. Ouvrez-le, puis connectez-vous."
 }

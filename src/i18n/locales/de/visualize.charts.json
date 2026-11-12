@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Vergleich",
+      "description": "Werte über Kategorien hinweg vergleichen und in eine Rangfolge bringen."
+    },
+    "trend": {
+      "name": "Trends & Zeit",
+      "description": "Zeigen, wie sich Werte im Zeitverlauf ändern."
+    },
+    "composition": {
+      "name": "Zusammensetzung",
+      "description": "Eine Summe in ihre Bestandteile zerlegen."
+    },
+    "distribution": {
+      "name": "Verteilung",
+      "description": "Streuung, Form und Ausreißer verstehen."
+    },
+    "statistical": {
+      "name": "Statistik",
+      "description": "Konfidenzintervalle, Kontrollgrenzen und Diagnosen."
+    },
+    "relationship": {
+      "name": "Beziehung & Korrelation",
+      "description": "Herausfinden, wie sich Variablen gemeinsam bewegen."
+    },
+    "flow": {
+      "name": "Fluss & Hierarchie",
+      "description": "Mengen zwischen Phasen und Ebenen verfolgen."
+    },
+    "geo": {
+      "name": "Karten",
+      "description": "Werte nach Land oder Koordinaten darstellen."
+    },
+    "dimensional": {
+      "name": "Mehrdimensional",
+      "description": "Viele Variablen gleichzeitig reduzieren und erkunden."
+    },
+    "ml": {
+      "name": "Modellbewertung",
+      "description": "Klassifikatoren, Regressoren und Cluster beurteilen."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Balkendiagramm",
+      "description": "Einen Wert über Kategorien hinweg vergleichen.",
+      "howToRead": "Die Länge jedes Balkens ist der Wert dieser Kategorie; vergleiche die Höhen, um sie zu ordnen.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Gruppierte Balken",
+      "description": "Nebeneinanderliegende Balken für jede Untergruppe.",
+      "howToRead": "Die Balken stehen innerhalb jeder Kategorie nebeneinander, sodass du Untergruppen direkt vergleichen kannst.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        },
+        "color": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Gestapelte Balken",
+      "description": "Summen mit dem Beitrag jeder Untergruppe.",
+      "howToRead": "Jeder Balken ist eine Summe; die farbigen Segmente zeigen, wie viel jede Untergruppe beiträgt.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        },
+        "color": {
+          "label": "Stapeln nach"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "100% gestapelte Balken",
+      "description": "Anteil jeder Untergruppe innerhalb jeder Kategorie.",
+      "howToRead": "Jeder Balken ergibt 100%, daher zeigen die Segmenthöhen die Zusammensetzung innerhalb jeder Kategorie.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        },
+        "color": {
+          "label": "Stapeln nach"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Lollipop-Diagramm",
+      "description": "Ein leichteres Balkendiagramm für geordnete Werte.",
+      "howToRead": "Der Punkt markiert den Wert jeder Kategorie; je länger der Stiel, desto größer der Wert.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Punktdiagramm",
+      "description": "Mehrere Measures pro Kategorie als Punkte vergleichen.",
+      "howToRead": "Jeder Punkt ist ein Measure für eine Kategorie; Punkte weiter rechts sind größer.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        },
+        "y": {
+          "label": "Werte"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Hantel-Diagramm",
+      "description": "Den Abstand zwischen zwei Measures pro Kategorie zeigen.",
+      "howToRead": "Die beiden Punkte sind Start- und Endwert; ein grüner Balken bedeutet einen Anstieg, ein roter einen Rückgang.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        }
+      }
+    },
+    "radar": {
+      "name": "Netzdiagramm",
+      "description": "Mehrere Measures für wenige Elemente als Profil darstellen.",
+      "howToRead": "Jede Speiche ist ein Measure; eine größere Form bedeutet höhere Werte über die Measures hinweg.",
+      "slots": {
+        "x": {
+          "label": "Element"
+        },
+        "features": {
+          "label": "Measures"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Bullet-/Zieldiagramm",
+      "description": "Ist im Vergleich zum Ziel für jede Kategorie.",
+      "howToRead": "Der dunkle Balken ist der Istwert, der helle Balken und die Markierung sind das Ziel; Grün bedeutet, dass das Ziel erreicht wurde.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        },
+        "y": {
+          "label": "Ist"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Pareto-Diagramm",
+      "description": "Sortierte Balken mit der Linie des kumulierten Anteils (80/20).",
+      "howToRead": "Die Balken sind absteigend sortiert; die Linie zeigt den laufenden Anteil, sodass du siehst, welche wenigen Elemente 80% ausmachen.",
+      "slots": {
+        "x": {
+          "label": "Kategorie"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Heatmap-Tabelle",
+      "description": "Einen Wert über zwei Kategorien hinweg einfärben.",
+      "howToRead": "Dunklere Zellen enthalten höhere Werte für diese Kombination aus Zeile und Spalte.",
+      "slots": {
+        "x": {
+          "label": "Spalten"
+        },
+        "y": {
+          "label": "Zeilen"
+        }
+      },
+      "options": {
+        "show_values": "Werte anzeigen"
+      }
+    },
+    "line": {
+      "name": "Liniendiagramm",
+      "description": "Die klassische Darstellung von Veränderungen im Zeitverlauf.",
+      "howToRead": "Die Linie folgt dem Wert im Zeitverlauf; Steigungen zeigen Wachstum oder Rückgang.",
+      "slots": {
+        "y": {
+          "label": "Werte"
+        }
+      }
+    },
+    "area": {
+      "name": "Flächendiagramm",
+      "description": "Das Volumen eines Trends betonen.",
+      "howToRead": "Die gefüllte Fläche zeigt den Wert im Zeitverlauf; ihre Höhe ist die Menge zu jedem Datum."
+    },
+    "stacked_area": {
+      "name": "Gestapelte Fläche",
+      "description": "Wie sich Teile einer Summe im Zeitverlauf ändern.",
+      "howToRead": "Die Schichten liegen übereinander, daher ist die Oberkante die Summe und jedes Band eine Gruppe.",
+      "slots": {
+        "color": {
+          "label": "Stapeln nach"
+        }
+      },
+      "options": {
+        "normalize": "Als 100% anzeigen"
+      }
+    },
+    "step_line": {
+      "name": "Stufenlinie",
+      "description": "Werte, die sich zu diskreten Zeitpunkten ändern (Preise, Lagerbestände).",
+      "howToRead": "Der Wert bleibt konstant, bis er sich ändert – passend für Preise, Lagerbestände und andere diskrete Aktualisierungen."
+    },
+    "rolling_average": {
+      "name": "Gleitender Durchschnitt",
+      "description": "Unruhige Reihen mit einem gleitenden Mittelwert glätten.",
+      "howToRead": "Die blasse Linie ist die Rohreihe; die kräftige Linie mittelt die letzten Punkte, um den Trend sichtbar zu machen."
+    },
+    "cumulative": {
+      "name": "Kumulierte Summe",
+      "description": "Laufende Summe im Zeitverlauf.",
+      "howToRead": "Die Linie addiert jede Periode zur bisherigen Summe, daher zeigt ihre Steigung, wie schnell die Summe wächst."
+    },
+    "period_change": {
+      "name": "Veränderung zur Vorperiode",
+      "description": "Prozentuale Veränderung gegenüber der Vorperiode.",
+      "howToRead": "Die Balken zeigen die prozentuale Veränderung gegenüber der Vorperiode: Grün ist Wachstum, Rot ist Rückgang."
+    },
+    "candlestick": {
+      "name": "Kerzendiagramm",
+      "description": "Eröffnungs-, Höchst-, Tiefst- und Schlusskurs (Finanzen).",
+      "howToRead": "Jede Kerze reicht vom Tiefst- bis zum Höchstwert; der Körper verläuft von Eröffnung bis Schluss (grün steigend, rot fallend)."
+    },
+    "range_band": {
+      "name": "Bereichsband",
+      "description": "Eine Linie mit ihrem Min.–Max.- oder Unsicherheitsband.",
+      "howToRead": "Die Linie ist der Wert; das schattierte Band zeigt die Unter- und Obergrenze."
+    },
+    "calendar_heatmap": {
+      "name": "Kalender-Heatmap",
+      "description": "Wochentag-×-Woche-Muster eines täglichen Measures.",
+      "howToRead": "Jedes Quadrat ist ein Tag; dunklere Quadrate haben höhere Werte und zeigen Wochentags- und saisonale Muster."
+    },
+    "seasonal_decompose": {
+      "name": "Saisonale Zerlegung",
+      "description": "Eine Reihe in Trend, Saisonalität und Rest zerlegen.",
+      "howToRead": "Die Reihe wird in Trend (Richtung), Saison (wiederkehrendes Muster) und Rest (Rauschen) zerlegt."
+    },
+    "autocorrelation": {
+      "name": "Autokorrelation (ACF / PACF)",
+      "description": "Wie eine Reihe mit ihren eigenen früheren Werten zusammenhängt.",
+      "howToRead": "Balken außerhalb des roten Bands zeigen Verzögerungen (Lags), bei denen sich die Reihe wiederholt."
+    },
+    "pie": {
+      "name": "Kreisdiagramm",
+      "description": "Teile eines Ganzen (am besten mit wenigen Segmenten).",
+      "howToRead": "Jedes Segment ist ein Anteil am Ganzen; größere Segmente sind größere Anteile.",
+      "slots": {
+        "x": {
+          "label": "Segmente"
+        }
+      }
+    },
+    "donut": {
+      "name": "Ringdiagramm",
+      "description": "Ein Kreis mit Platz für eine Summe in der Mitte.",
+      "howToRead": "Jedes Segment ist ein Anteil an der in der Mitte gezeigten Summe.",
+      "slots": {
+        "x": {
+          "label": "Segmente"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Treemap",
+      "description": "Verschachtelte Rechtecke, nach Wert skaliert.",
+      "howToRead": "Die Fläche eines Rechtecks ist proportional zum Wert; verschachtelte Rechtecke zerlegen eine Gruppe in ihre Teile."
+    },
+    "sunburst": {
+      "name": "Sunburst",
+      "description": "Hierarchie als konzentrische Ringe.",
+      "howToRead": "Innere Ringe sind Gruppen der obersten Ebene, äußere Ringe ihre Untergruppen; die Bogenlänge ist der Wert.",
+      "slots": {
+        "path": {
+          "label": "Ebenen (innen nach außen)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Eiszapfendiagramm",
+      "description": "Hierarchie als gestapelte Rechtecke.",
+      "howToRead": "Jede Zeile ist eine Hierarchieebene; die Breite eines Blocks ist sein Anteil an der Summe.",
+      "slots": {
+        "path": {
+          "label": "Ebenen (oben nach unten)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Wasserfall",
+      "description": "Wie positive und negative Schritte eine Summe ergeben.",
+      "howToRead": "Grüne Schritte addieren, rote subtrahieren, und der letzte Balken ist die resultierende Summe.",
+      "slots": {
+        "x": {
+          "label": "Schritt"
+        },
+        "y": {
+          "help": "Für eine Anzahl wähle „Anzahl“ als Aggregation."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Trichter",
+      "description": "Konversion über geordnete Phasen.",
+      "howToRead": "Jede Phase ist schmaler als die vorherige; der Rückgang zwischen den Phasen zeigt, wo Personen verloren gehen.",
+      "slots": {
+        "x": {
+          "label": "Phase"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (Mosaik)",
+      "description": "Zweidimensionale Zusammensetzung mit variablen Breiten.",
+      "howToRead": "Die Spaltenbreite ist der Anteil jeder Spalte an der Summe; die Segmenthöhe ist die Zusammensetzung darin.",
+      "slots": {
+        "x": {
+          "label": "Spalten"
+        },
+        "color": {
+          "label": "Segmente"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Histogramm",
+      "description": "Wie oft Werte in jeden Bereich fallen.",
+      "howToRead": "Die Balken zählen, wie viele Werte in jeden Bereich fallen; die höchsten Balken sind die häufigsten Werte.",
+      "slots": {
+        "x": {
+          "label": "Wert"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Dichtekurve (KDE)",
+      "description": "Eine geglättete Schätzung der Verteilung.",
+      "howToRead": "Die glatte Kurve schätzt, wie die Werte verteilt sind; Spitzen sind die häufigsten Werte.",
+      "slots": {
+        "x": {
+          "label": "Wert"
+        }
+      }
+    },
+    "box": {
+      "name": "Boxplot",
+      "description": "Median, Quartile und Ausreißer pro Gruppe.",
+      "howToRead": "Die Box enthält die mittleren 50% der Werte, die Linie ist der Median, die Whisker zeigen den typischen Bereich, und Punkte sind Ausreißer.",
+      "slots": {
+        "x": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "violin": {
+      "name": "Violinplot",
+      "description": "Boxplot plus die vollständige Form der Verteilung.",
+      "howToRead": "Die Breite auf jeder Höhe zeigt, wie viele Werte dort liegen; der dunkle Balken sind die mittleren 50%.",
+      "slots": {
+        "x": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "strip": {
+      "name": "Streifen-/Jitter-Diagramm",
+      "description": "Jede Beobachtung als Punkt pro Gruppe.",
+      "howToRead": "Jeder Punkt ist eine Zeile, seitlich gestreut, damit überlappende Werte sichtbar bleiben.",
+      "slots": {
+        "x": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Kumulierte Verteilung (ECDF)",
+      "description": "Anteil der Werte unterhalb jeder Stufe.",
+      "howToRead": "Für jeden Wert auf der x-Achse zeigt die Kurve den Anteil der Werte, die kleiner oder gleich diesem sind.",
+      "slots": {
+        "x": {
+          "label": "Wert"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Ridgeline",
+      "description": "Gestapelte Verteilungen für viele Gruppen.",
+      "howToRead": "Jeder Kamm ist die Verteilung einer Gruppe; vergleiche, wo die Spitzen liegen und wie breit sie sind.",
+      "slots": {
+        "x": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Raincloud-Plot",
+      "description": "Halbe Violine, Box und Rohpunkte zusammen.",
+      "howToRead": "Jede Gruppe zeigt ihre Verteilung (Wolke), ihre mittleren 50% (Balken) und jeden Wert (Regen).",
+      "slots": {
+        "x": {
+          "label": "Gruppieren nach"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Mittelwert mit Konfidenzintervall",
+      "description": "Gruppenmittelwerte mit 95%-Konfidenzintervallen.",
+      "howToRead": "Die Balken sind Gruppendurchschnitte und die Whisker das Konfidenzintervall; überlappende Whisker bedeuten, dass der Unterschied Zufall sein kann.",
+      "slots": {
+        "x": {
+          "label": "Gruppe"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Q–Q-Plot",
+      "description": "Prüfen, ob Werte einer theoretischen Verteilung folgen.",
+      "howToRead": "Wenn die Punkte der roten Linie folgen, entsprechen die Daten der gewählten Verteilung.",
+      "slots": {
+        "x": {
+          "label": "Wert"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Verteilungsanpassung",
+      "description": "Histogramm mit angepasster Verteilung und Anpassungsgüte.",
+      "howToRead": "Die Balken sind die beobachtete Verteilung; die Kurve ist die am besten passende theoretische Verteilung.",
+      "slots": {
+        "x": {
+          "label": "Wert"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Regelkarte (SPC)",
+      "description": "Prozesswerte mit Mittelwert und ±3σ-Kontrollgrenzen.",
+      "howToRead": "Punkte zwischen den gestrichelten Grenzen sind normale Schwankungen; rote Punkte außerhalb erfordern Aufmerksamkeit.",
+      "slots": {
+        "x": {
+          "label": "Reihenfolge / Zeit"
+        },
+        "y": {
+          "label": "Messwert"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Bland–Altman",
+      "description": "Übereinstimmung zwischen zwei Messmethoden.",
+      "howToRead": "Jeder Punkt vergleicht zwei Messungen derselben Sache; die Linien zeigen die mittlere Abweichung und die Übereinstimmungsgrenzen.",
+      "slots": {
+        "x": {
+          "label": "Methode A"
+        },
+        "y": {
+          "label": "Methode B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Karte fehlender Werte",
+      "description": "Wo in den Spalten Daten fehlen.",
+      "howToRead": "Die Balken zeigen den Anteil leerer Werte pro Spalte; rote Markierungen im Muster zeigen, wo sie auftreten."
+    },
+    "scatter": {
+      "name": "Punktdiagramm (Streuung)",
+      "description": "Die Beziehung zwischen zwei Measures.",
+      "howToRead": "Jeder Punkt ist eine Zeile; eine ansteigende Punktwolke bedeutet, dass beide Measures gemeinsam zunehmen.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      },
+      "options": {
+        "marginal": "Randdiagramme"
+      }
+    },
+    "bubble": {
+      "name": "Blasendiagramm",
+      "description": "Ein Punktdiagramm mit einem dritten Measure als Größe.",
+      "howToRead": "Wie ein Punktdiagramm, aber die Blasengröße zeigt ein drittes Measure.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Regressionsanpassung",
+      "description": "Punktdiagramm mit angepasster Linie, R² und Gleichung.",
+      "howToRead": "Die Kurve ist das angepasste Modell und das Band sein 95%-Konfidenzintervall; R² ist der Anteil der erklärten Varianz.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Korrelationsmatrix",
+      "description": "Korrelation zwischen jedem Paar von Measures.",
+      "howToRead": "Jede Zelle ist die Korrelation zwischen zwei Measures, von −1 (blau) bis +1 (rot).",
+      "options": {
+        "show_values": "Koeffizienten anzeigen"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Streudiagramm-Matrix (Pair Plot)",
+      "description": "Alle Paare von Measures auf einen Blick.",
+      "howToRead": "Jedes Paar von Measures erhält ein eigenes Punktdiagramm; die Diagonale zeigt die Verteilung jedes Measures.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (Label)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "2D-Dichte-Heatmap",
+      "description": "Wo sich Punkte konzentrieren (für viele Zeilen).",
+      "howToRead": "Dunklere Zellen enthalten mehr Zeilen und zeigen, wo sich Punkte konzentrieren.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Dichte-Konturen",
+      "description": "Konturlinien der Punktdichte.",
+      "howToRead": "Ringe umschließen Bereiche gleicher Punktdichte; innere Ringe enthalten die meisten Zeilen.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Joint Plot",
+      "description": "Punktdiagramm mit der Verteilung jeder Achse.",
+      "howToRead": "Das Punktdiagramm zeigt die Beziehung; die seitlichen Histogramme zeigen die Verteilung jedes Measures.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Parallele Koordinaten",
+      "description": "Viele Measures über Zeilen hinweg vergleichen.",
+      "howToRead": "Jede Linie ist eine Zeile, die die Achse jedes Measures kreuzt; Linienbündel zeigen gemeinsame Profile.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (numerisch)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Parallele Kategorien",
+      "description": "Flüsse zwischen kategorialen Spalten.",
+      "howToRead": "Bänder fließen zwischen Kategoriespalten; ihre Dicke ist die Anzahl der Zeilen.",
+      "slots": {
+        "path": {
+          "label": "Kategoriale Spalten"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Kontingenztafel",
+      "description": "Häufigkeiten über zwei Kategorien mit Chi-Quadrat-Test.",
+      "howToRead": "Die Zellen zählen Zeilen für jedes Kategorienpaar; der Chi-Quadrat-Test zeigt, ob sie zusammenhängen.",
+      "slots": {
+        "x": {
+          "label": "Spalten"
+        },
+        "y": {
+          "label": "Zeilen"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Sankey-Diagramm",
+      "description": "Mengen, die zwischen Phasen fließen.",
+      "howToRead": "Bänder fließen von einer Phase zur nächsten; ihre Breite ist die Menge, die zwischen ihnen wechselt.",
+      "slots": {
+        "path": {
+          "label": "Phasen (in Reihenfolge)"
+        }
+      }
+    },
+    "network": {
+      "name": "Netzwerkgraph",
+      "description": "Verbindungen zwischen Entitäten.",
+      "howToRead": "Knoten sind Entitäten und Linien Verbindungen; größere, dunklere Knoten haben mehr Verbindungen.",
+      "slots": {
+        "target": {
+          "label": "Nach"
+        },
+        "y": {
+          "label": "Gewicht"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Flächenkartogramm",
+      "description": "Länder nach einem Wert einfärben.",
+      "howToRead": "Länder sind nach Wert schattiert; dunkler bedeutet höher."
+    },
+    "scatter_geo": {
+      "name": "Punkte auf einer Karte",
+      "description": "Punkte nach Breiten- und Längengrad darstellen.",
+      "howToRead": "Jeder Punkt ist ein Ort, dargestellt nach Breiten- und Längengrad."
+    },
+    "scatter_3d": {
+      "name": "3D-Punktdiagramm",
+      "description": "Drei Measures in drehbarem 3D erkunden.",
+      "howToRead": "Zum Drehen ziehen; jeder Punkt ist eine Zeile, positioniert nach drei Measures.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        },
+        "z": {
+          "label": "Z-Achse"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "3D-Oberfläche",
+      "description": "Eine Oberfläche über zwei Measures.",
+      "howToRead": "Höhe und Farbe der Oberfläche zeigen das dritte Measure über die ersten beiden; zum Drehen ziehen.",
+      "slots": {
+        "x": {
+          "label": "X-Achse"
+        },
+        "y": {
+          "label": "Y-Achse"
+        },
+        "z": {
+          "label": "Höhe"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "PCA-Karte (2D)",
+      "description": "Viele Measures auf zwei Hauptkomponenten projizieren.",
+      "howToRead": "Viele Measures werden in zwei Komponenten verdichtet; nahe beieinanderliegende Punkte sind ähnliche Zeilen.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (Label)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "PCA-Karte (3D)",
+      "description": "Drei Hauptkomponenten in 3D.",
+      "howToRead": "Drei Hauptkomponenten in 3D; zum Drehen ziehen und nach Clustern suchen.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (Label)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "PCA-Biplot",
+      "description": "Zeilen und die Measures, die jede Komponente bestimmen.",
+      "howToRead": "Punkte sind Zeilen und Pfeile Measures; in dieselbe Richtung zeigende Pfeile sind korreliert.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (Label)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Scree-Plot",
+      "description": "Durch jede Komponente erklärte Varianz.",
+      "howToRead": "Die Balken zeigen, wie viel Information jede Komponente enthält; die Linie zeigt die laufende Summe."
+    },
+    "tsne_2d": {
+      "name": "t-SNE-Karte",
+      "description": "Nichtlineare 2D-Karte, die Nachbarn nah beieinander hält.",
+      "howToRead": "Eine nichtlineare Karte, die ähnliche Zeilen zusammenhält; achte auf getrennte Cluster.",
+      "slots": {
+        "color": {
+          "label": "Färben nach (Label)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "LDA-Projektion",
+      "description": "Projektion, die beschriftete Gruppen am besten trennt.",
+      "howToRead": "Eine Projektion, die so gewählt ist, dass die beschrifteten Gruppen möglichst gut getrennt werden.",
+      "slots": {
+        "color": {
+          "label": "Label"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Clusterkarte (k-Means)",
+      "description": "Ähnliche Zeilen gruppieren und auf einer PCA-Karte zeigen.",
+      "howToRead": "Farben zeigen die von k-Means gefundenen Cluster; Rauten markieren den Mittelpunkt jedes Clusters."
+    },
+    "confusion_matrix": {
+      "name": "Konfusionsmatrix",
+      "description": "Wo ein Klassifikator richtig und falsch liegt.",
+      "howToRead": "Die Diagonale enthält richtige Vorhersagen; andere Zellen zeigen, welche Klassen verwechselt werden."
+    },
+    "roc_curve": {
+      "name": "ROC-Kurve",
+      "description": "Richtig- vs. Falsch-Positiv-Rate bei jedem Schwellenwert, mit AUC.",
+      "howToRead": "Je höher die Kurve über der Diagonale liegt, desto besser ordnet das Modell Positive ein; die AUC fasst das zusammen."
+    },
+    "pr_curve": {
+      "name": "Precision-Recall-Kurve",
+      "description": "Abwägung zwischen Precision und Recall, mit Average Precision.",
+      "howToRead": "Zeigt, wie viel Precision erhalten bleibt, wenn der Recall steigt; höher und weiter rechts ist besser."
+    },
+    "calibration_curve": {
+      "name": "Kalibrierungskurve",
+      "description": "Stimmen vorhergesagte Wahrscheinlichkeiten mit beobachteten Raten überein?",
+      "howToRead": "Punkte auf der gestrichelten Linie bedeuten, dass vorhergesagte Wahrscheinlichkeiten den beobachteten Raten entsprechen.",
+      "options": {
+        "bins": "Klassen"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Kumulativer Gain & Lift",
+      "description": "Wie viel besser das Modell als zufällige Auswahl ist.",
+      "howToRead": "Zeigt, wie viele Positive du erfasst, wenn du den am höchsten bewerteten Anteil der Zeilen auswählst, und den Lift gegenüber dem Zufall."
+    },
+    "threshold_metrics": {
+      "name": "Schwellenwert-Explorer",
+      "description": "Precision, Recall und F1 bei jedem Schwellenwert.",
+      "howToRead": "Precision, Recall und F1 bei jedem Schwellenwert; die gepunktete Linie markiert das beste Gleichgewicht."
+    },
+    "predicted_vs_actual": {
+      "name": "Vorhersage vs. Ist",
+      "description": "Regressionsgenauigkeit im Vergleich zur perfekten Linie.",
+      "howToRead": "Punkte auf der gestrichelten Diagonale sind perfekte Vorhersagen; die Streuung zeigt den Fehler."
+    },
+    "residual_plot": {
+      "name": "Residuendiagramm",
+      "description": "Fehler gegen Vorhersagen, um Verzerrungen zu erkennen.",
+      "howToRead": "Fehler gegen Vorhersagen aufgetragen; eine zufällige Wolke um null bedeutet keine systematische Verzerrung."
+    },
+    "error_distribution": {
+      "name": "Fehlerverteilung",
+      "description": "Histogramm der Vorhersagefehler.",
+      "howToRead": "Wie groß die Vorhersagefehler sind; eine schmale Spitze um null ist am besten."
+    },
+    "feature_importance": {
+      "name": "Merkmalswichtigkeit",
+      "description": "Welche Eingaben eine Zielgröße bestimmen (Random Forest + Permutation).",
+      "howToRead": "Längere Balken sind Eingaben, auf die sich das Modell am meisten stützt; Whisker zeigen die Unsicherheit.",
+      "slots": {
+        "target": {
+          "label": "Zu erklärende Zielgröße"
+        }
+      },
+      "options": {
+        "top_n": "Top anzeigen"
+      }
+    },
+    "learning_curve": {
+      "name": "Lernkurve",
+      "description": "Würden mehr Daten dem Modell helfen?",
+      "howToRead": "Trainings- und Validierungswerte bei wachsender Datenmenge; eine große Lücke bedeutet Überanpassung.",
+      "options": {
+        "model": "Modell"
+      }
+    },
+    "elbow": {
+      "name": "Ellbogendiagramm",
+      "description": "Die Anzahl der Cluster anhand der Trägheit wählen.",
+      "howToRead": "Die Trägheit sinkt, wenn Cluster hinzukommen; der Ellbogen ist die Stelle, ab der zusätzliche Cluster nicht mehr helfen."
+    },
+    "silhouette": {
+      "name": "Silhouettenanalyse",
+      "description": "Clusterqualität für jedes k.",
+      "howToRead": "Höhere Balken bedeuten besser getrennte Cluster; der grüne Balken ist die beste Anzahl an Clustern."
+    },
+    "kpi_card": {
+      "name": "KPI-Karte",
+      "description": "Eine zentrale Kennzahl mit ihrer Veränderung und einem Sparkline.",
+      "howToRead": "Die große Zahl ist die letzte Periode; der Pfeil zeigt die Veränderung gegenüber der Vorperiode und das Sparkline den jüngsten Trend.",
+      "slots": {
+        "y": {
+          "label": "Measure"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Messgerät (Fortschritt zum Ziel)",
+      "description": "Wie weit ein Measure vom Ziel entfernt ist.",
+      "howToRead": "Die Nadel zeigt das Measure im Vergleich zum Ziel; Grün bedeutet im Plan, Gelb knapp, Rot im Rückstand.",
+      "slots": {
+        "y": {
+          "label": "Measure"
+        },
+        "target": {
+          "label": "Ziel (optional)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Analysebaum",
+      "description": "Eine Summe Ebene für Ebene aufschlüsseln, um zu sehen, woher sie stammt.",
+      "howToRead": "Beginne links bei der Summe und folge den Zweigen, um zu sehen, aus welchen Teilen sie besteht; größere Knoten tragen mehr bei.",
+      "slots": {
+        "path": {
+          "label": "Aufschlüsseln nach (in Reihenfolge)"
+        }
+      },
+      "options": {
+        "top_n": "Zweige pro Ebene"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Zeitreihe prognostizieren",
+      "description": "Ein Measure (Umsatz, Nachfrage, Erlöse) mit Unsicherheitsbändern in die Zukunft fortschreiben.",
+      "models": {
+        "auto": "Das beste von allen (per Backtest gewählt)",
+        "holt_winters": "Holt–Winters exponentielle Glättung",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "Linearer Trend + Saisonalität"
+      },
+      "outputs": [
+        "Prognosediagramm mit 80%/95%-Bändern",
+        "Best Case und Worst Case",
+        "Backtest-Genauigkeit (MAE, MAPE)",
+        "Tabelle der künftigen Werte"
+      ],
+      "slots": {
+        "target": {
+          "label": "Zu prognostizierendes Measure"
+        }
+      }
+    },
+    "trend": {
+      "name": "Trend- & Saisonalitätsanalyse",
+      "description": "Wachstumsraten, gleitende Durchschnitte, saisonale Muster, Strukturbrüche und ungewöhnliche Perioden.",
+      "models": {
+        "robust": "Automatisch (robuster Trend + Anomalieerkennung)"
+      },
+      "outputs": [
+        "Wachstum: gesamt, durchschnittlich, zuletzt und gegenüber Vorjahr",
+        "Saisonales Profil",
+        "Strukturbrüche und Anomalien"
+      ],
+      "slots": {
+        "target": {
+          "label": "Measure"
+        }
+      },
+      "options": {
+        "window": "Gleitender Durchschnitt (Perioden)"
+      }
+    },
+    "drivers": {
+      "name": "Haupteinflussfaktoren (was ein Ergebnis beeinflusst)",
+      "description": "Herausfinden, welche Faktoren und Segmente ein Ergebnis nach oben oder unten treiben – Abwanderung, Umsatz, Zufriedenheit.",
+      "models": {
+        "segments": "Segmentvergleich + Random-Forest-Wichtigkeit"
+      },
+      "outputs": [
+        "Wichtigste Einflussfaktoren mit Lift",
+        "Merkmalswichtigkeit",
+        "Beste und schlechteste Segmente"
+      ],
+      "slots": {
+        "target": {
+          "label": "Zu erklärendes Ergebnis"
+        },
+        "features": {
+          "label": "Eingabespalten",
+          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+        }
+      }
+    },
+    "regression": {
+      "name": "Eine Zahl vorhersagen",
+      "description": "Ein numerisches Ergebnis (Preis, Nachfrage, Punktzahl) aus anderen Spalten schätzen.",
+      "models": {
+        "auto": "Das beste von allen (kreuzvalidiert)",
+        "linear": "Lineare Regression",
+        "ridge": "Ridge-Regression",
+        "random_forest": "Random Forest",
+        "gradient_boosting": "Gradient Boosting"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Vorhersage vs. Ist, Residuen",
+        "Merkmalswichtigkeit"
+      ],
+      "slots": {
+        "target": {
+          "label": "Vorherzusagende Zahl"
+        },
+        "features": {
+          "label": "Eingabespalten",
+          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+        }
+      }
+    },
+    "classification": {
+      "name": "Eine Kategorie vorhersagen",
+      "description": "Zeilen klassifizieren (Abwanderung, Genehmigung, Segment) und den Klassifikator beurteilen.",
+      "models": {
+        "auto": "Das beste von allen (kreuzvalidiert)",
+        "logistic": "Logistische Regression",
+        "random_forest": "Random Forest",
+        "gradient_boosting": "Gradient Boosting"
+      },
+      "outputs": [
+        "Genauigkeit, F1, ROC AUC",
+        "Konfusionsmatrix, ROC- und PR-Kurven",
+        "Merkmalswichtigkeit"
+      ],
+      "slots": {
+        "target": {
+          "label": "Vorherzusagende Kategorie"
+        },
+        "features": {
+          "label": "Eingabespalten",
+          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Segmente finden",
+      "description": "Ähnliche Zeilen (Kunden, Produkte) ohne Labels gruppieren.",
+      "models": {
+        "kmeans": "k-Means",
+        "gaussian_mixture": "Gaußsches Mischmodell",
+        "agglomerative": "Hierarchisch (Ward)"
+      },
+      "outputs": [
+        "Silhouettenwert",
+        "Clusterkarte und Profile",
+        "Segment für jede Zeile"
+      ],
+      "slots": {
+        "features": {
+          "label": "Eingabespalten",
+          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Anomalien erkennen",
+      "description": "Ungewöhnliche Zeilen markieren (Betrug, Störungen, Datenfehler).",
+      "models": {
+        "isolation_forest": "Isolation Forest",
+        "zscore": "Robuster z-Wert",
+        "lof": "Local Outlier Factor"
+      },
+      "outputs": [
+        "Anzahl und Anteil der Anomalien",
+        "Anomalien auf einer Karte hervorgehoben",
+        "Bewertung für jede Zeile"
+      ],
+      "slots": {
+        "features": {
+          "label": "Eingabespalten",
+          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Datum / Uhrzeit"
+    },
+    "y": {
+      "label": "Wert",
+      "help": "Optional: Wenn leer, werden Zeilen gezählt."
+    },
+    "color": {
+      "label": "Färben nach"
+    },
+    "facet": {
+      "label": "In Felder aufteilen nach"
+    },
+    "start": {
+      "label": "Startwert"
+    },
+    "end": {
+      "label": "Endwert"
+    },
+    "features": {
+      "label": "Numerische Spalten",
+      "help": "Leer verwendet alle numerischen Spalten."
+    },
+    "target": {
+      "label": "Ziel"
+    },
+    "z": {
+      "label": "Wert"
+    },
+    "open": {
+      "label": "Eröffnung"
+    },
+    "high": {
+      "label": "Hoch"
+    },
+    "low": {
+      "label": "Tief"
+    },
+    "close": {
+      "label": "Schluss"
+    },
+    "lower": {
+      "label": "Untergrenze"
+    },
+    "upper": {
+      "label": "Obergrenze"
+    },
+    "path": {
+      "label": "Ebenen (außen nach innen)"
+    },
+    "size": {
+      "label": "Blasengröße"
+    },
+    "source": {
+      "label": "Von"
+    },
+    "location": {
+      "label": "Land"
+    },
+    "lat": {
+      "label": "Breitengrad"
+    },
+    "lon": {
+      "label": "Längengrad"
+    },
+    "actual": {
+      "label": "Istwert / tatsächliches Label"
+    },
+    "predicted": {
+      "label": "Vorhergesagter Wert / Label"
+    },
+    "score": {
+      "label": "Vorhergesagte Wahrscheinlichkeit / Bewertung"
+    },
+    "date": {
+      "label": "Datum / Uhrzeit"
+    },
+    "split_by": {
+      "label": "Je eine Prognose pro (optional)",
+      "help": "z. B. eine Prognose pro Region"
+    }
+  },
+  "options": {
+    "aggregation": "Werte kombinieren mit",
+    "sort": "Reihenfolge",
+    "top_n": "Nur die Top anzeigen",
+    "orientation": "Ausrichtung",
+    "show_values": "Werte im Diagramm anzeigen",
+    "log_y": "Logarithmische Werteachse",
+    "time_grain": "Datumswerte gruppieren nach",
+    "markers": "Markierungen anzeigen",
+    "normalize": "Anzeigen als",
+    "window": "Gleitendes Fenster (Punkte)",
+    "model": "Saisonalität",
+    "lags": "Lags",
+    "hole": "Loch in der Mitte",
+    "total": "Summenbalken anzeigen",
+    "bins": "Anzahl der Klassen",
+    "histnorm": "Anzeigen als",
+    "marginal": "Randdiagramm hinzufügen",
+    "bandwidth": "Glättung",
+    "points": "Punkte anzeigen",
+    "box": "Box innen anzeigen",
+    "confidence": "Konfidenz",
+    "distribution": "Verteilung",
+    "sigma": "Grenzen (σ)",
+    "trendline": "Trendlinie",
+    "opacity": "Deckkraft der Punkte",
+    "degree": "Polynomgrad",
+    "band": "95%-Band anzeigen",
+    "method": "Korrelation",
+    "triangle": "Nur unteres Dreieck",
+    "nbins": "Klassen",
+    "location_mode": "Orte sind",
+    "scope": "Kartenbereich",
+    "contours": "Konturen projizieren",
+    "standardize": "Merkmale standardisieren",
+    "perplexity": "Perplexität",
+    "clusters": "Cluster (0 = automatisch wählen)",
+    "positive_class": "Positive Klasse (leer = automatisch)",
+    "max_k": "Bis k ausprobieren",
+    "goal": "Zielwert (0 = Zielspalte verwenden)",
+    "horizon": "Perioden voraus",
+    "positive": "Zu erklärender Ergebniswert (leer = automatisch)",
+    "test_size": "Anteil der Testdaten",
+    "contamination": "Erwarteter Anteil an Anomalien"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Summe",
+      "mean": "Durchschnitt",
+      "median": "Median",
+      "count": "Anzahl",
+      "min": "Minimum",
+      "max": "Maximum"
+    },
+    "sort": {
+      "none": "Wie in den Daten",
+      "desc": "Größte zuerst",
+      "asc": "Kleinste zuerst",
+      "label": "Alphabetisch"
+    },
+    "orientation": {
+      "v": "Vertikal",
+      "h": "Horizontal"
+    },
+    "time_grain": {
+      "auto": "Automatisch",
+      "none": "Keine Gruppierung",
+      "D": "Tag",
+      "W": "Woche",
+      "M": "Monat",
+      "Q": "Quartal",
+      "Y": "Jahr"
+    },
+    "model": {
+      "additive": "Additiv",
+      "multiplicative": "Multiplikativ",
+      "random_forest": "Random Forest",
+      "gradient_boosting": "Gradient Boosting",
+      "linear": "Linear / logistisch"
+    },
+    "histnorm": {
+      "_none": "Häufigkeiten",
+      "percent": "Prozent",
+      "probability_density": "Dichte"
+    },
+    "marginal": {
+      "_none": "Keine",
+      "box": "Box",
+      "histogram": "Histogramm"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Silverman"
+    },
+    "points": {
+      "outliers": "Ausreißer",
+      "all": "Alle",
+      "none": "Keine"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "Normal",
+      "lognorm": "Log-normal",
+      "expon": "Exponentiell",
+      "gamma": "Gamma",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "Keine",
+      "ols": "Linear (OLS)",
+      "lowess": "Geglättet (LOWESS)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Spearman",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "Häufigkeiten",
+      "index": "% der Zeile",
+      "columns": "% der Spalte",
+      "all": "% der Summe",
+      "true": "% der Istwerte",
+      "pred": "% der Vorhersagen"
+    },
+    "location_mode": {
+      "country_names": "Ländernamen",
+      "ISO-3": "ISO-3-Codes"
+    },
+    "scope": {
+      "world": "Welt",
+      "africa": "Afrika",
+      "europe": "Europa",
+      "asia": "Asien",
+      "north_america": "Nordamerika",
+      "south_america": "Südamerika"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Vivid",
+    "colorblind": "Farbenblind-sicher (Okabe–Ito)",
+    "tableau": "Tableau 10",
+    "ocean": "Ozean",
+    "sunset": "Sonnenuntergang",
+    "corporate": "Unternehmen",
+    "pastel": "Pastell",
+    "earth": "Erde"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Einzelhandelsumsatz",
+      "description": "Zwei Jahre Bestellungen nach Region, Produkt und Kanal.",
+      "audience": "Kleinunternehmen"
+    },
+    "customer_churn": {
+      "name": "Kundenabwanderung",
+      "description": "Abonnenten, Verträge und die Bewertungen eines Abwanderungsmodells.",
+      "audience": "Großunternehmen"
+    },
+    "website_traffic": {
+      "name": "Website-Traffic",
+      "description": "Tägliche Sitzungen und Konversionen nach Traffic-Quelle.",
+      "audience": "Marketing"
+    },
+    "house_prices": {
+      "name": "Immobilienpreise",
+      "description": "Häuser mit Größe, Lage und den Vorhersagen eines Preismodells.",
+      "audience": "Analysten"
+    },
+    "stock_prices": {
+      "name": "Aktienkurse",
+      "description": "Tägliche Eröffnungs-, Höchst-, Tiefst- und Schlusskurse für drei Ticker.",
+      "audience": "Finanzen"
+    },
+    "world_indicators": {
+      "name": "Weltindikatoren",
+      "description": "BIP, Lebenserwartung und Emissionen nach Land.",
+      "audience": "Alle"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (kommagetrennt)",
+    "tsv": "TSV (tabulatorgetrennt)",
+    "txt": "Text mit Trennzeichen (automatische Erkennung ; | ,)",
+    "json": "JSON (Array von Datensätzen)",
+    "jsonl": "JSON Lines",
+    "xlsx": "Excel-Arbeitsmappe (erstes Blatt)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (Blätter für Daten, Profil und Zusammenfassung)",
+    "json": "JSON-Datensätze"
+  }
+}

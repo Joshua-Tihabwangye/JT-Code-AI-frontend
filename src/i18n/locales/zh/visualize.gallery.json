@@ -1,0 +1,18 @@
+{
+  "title": "图表库",
+  "subtitle": "{{count}} 种图表类型 — 在“探索”中打开任一图表，即可自动填入你的列。",
+  "search": "搜索图表，例如“预测”“占比”",
+  "searchLabel": "搜索图表",
+  "level": "级别",
+  "allLevels": "所有级别",
+  "essentialShort": "基础",
+  "advancedShort": "高级",
+  "all": "全部",
+  "recommended": "为 {{name}} 推荐",
+  "recommendedHint": "根据你的列挑选 — 打开任一图表即可查看你的数据效果。",
+  "empty": "没有与该搜索匹配的图表。",
+  "advancedBadge": "高级",
+  "useInExplore": "在“探索”中使用",
+  "addToDashboard": "添加到仪表板",
+  "thisDataset": "此数据集"
+}

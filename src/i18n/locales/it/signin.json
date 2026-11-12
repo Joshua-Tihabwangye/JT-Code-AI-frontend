@@ -1,8 +1,6 @@
 {
   "title": "Bentornato",
   "subtitle": "Accedi per continuare su JT-Code",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "Connessione in corso…",
   "emailLabel": "Indirizzo email",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "Password dimenticata?",
   "submit": "Accedi",
   "noAccount": "Non hai un account?",
-  "createAccount": "Crea account"
+  "createAccount": "Crea account",
+  "helpText": "",
+  "signInWithGoogle": "Accedi con Google",
+  "signInWithApple": "Accedi con Apple",
+  "offlineHint": "Modalità di progettazione offline: il backend non viene utilizzato. Accedi con qualsiasi email e password (viene creato un account locale) oppure continua con l'account demo.",
+  "demoAccount": "Continua con il conto demo",
+  "continueWith": "Continua con {{provider}}"
 }

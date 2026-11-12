@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "स्वच्छ",
+    "rows": "पंक्ती",
+    "columns": "स्तंभ",
+    "text": "मजकूर",
+    "numbers": "संख्या आणि तारखा",
+    "shape": "आकार",
+    "combine": "एकत्र करा"
+  },
+  "kinds": {
+    "removeDuplicates": "डुप्लिकेट पंक्ती काढा",
+    "trim": "अतिरिक्त जागा ट्रिम करा",
+    "removeBlankRows": "रिक्त पंक्ती काढा",
+    "fillBlanks": "रिक्त जागा भरा",
+    "replaceValues": "मूल्ये बदला",
+    "changeType": "प्रकार बदला",
+    "outliers": "आउटलियर्स हाताळा",
+    "filterRows": "पंक्ती फिल्टर करा",
+    "sort": "पंक्ती क्रमवारी लावा",
+    "keepRows": "वरच्या किंवा खालच्या पंक्ती ठेवा",
+    "removeColumns": "स्तंभ काढा",
+    "keepColumns": "फक्त हे स्तंभ ठेवा",
+    "rename": "स्तंभ पुनर्नामित करा",
+    "calculatedColumn": "गणना केलेला स्तंभ",
+    "conditionalColumn": "सशर्त स्तंभ",
+    "splitColumn": "एक स्तंभ विभाजित करा",
+    "mergeColumns": "स्तंभ विलीन करा",
+    "textCase": "मजकूर केस बदला",
+    "bins": "डब्यात क्रमांक गट करा",
+    "dateParts": "तारीख भाग काढा",
+    "dateTable": "तारीख सारणी बनवा (कॅलेंडर)",
+    "groupBy": "द्वारे गट",
+    "pivot": "पिव्होट (पंक्ती → स्तंभ)",
+    "unpivot": "अनपिव्होट (स्तंभ → पंक्ती)",
+    "merge": "दुसऱ्या डेटासेटसह विलीन करा",
+    "append": "दुसरा डेटासेट जोडा"
+  },
+  "fields": {
+    "compareColumns": "फक्त या स्तंभांची तुलना करा",
+    "trimColumns": "स्तंभ (सर्व मजकूर रिक्त असताना)",
+    "blankIn": "मध्ये रिक्त",
+    "removeWhen": "तेव्हा काढा",
+    "column": "स्तंभ",
+    "columns": "स्तंभ",
+    "with": "सह",
+    "value": "मूल्य",
+    "find": "शोधा",
+    "replaceWith": "सह बदला",
+    "match": "जुळवा",
+    "to": "ला",
+    "action": "कृती",
+    "rowsThatMatch": "जुळणाऱ्या पंक्ती",
+    "conditions": "अटी",
+    "sortBy": "यानुसार क्रमवारी लावा",
+    "keep": "ठेवा",
+    "howMany": "किती",
+    "newName": "नवीन नाव",
+    "newColumn": "नवीन स्तंभ",
+    "formula": "सूत्र",
+    "ifThen": "जर ... तर",
+    "otherwise": "नाहीतर",
+    "at": "येथे",
+    "intoParts": "मध्ये (भाग)",
+    "newNames": "नवीन नावे (पर्यायी)",
+    "separator": "विभाजक",
+    "case": "केस",
+    "bins": "डबा",
+    "howManyBins": "किती डबे",
+    "edges": "कडा",
+    "dateColumn": "तारीख स्तंभ",
+    "parts": "भाग",
+    "fromDatesIn": "मध्ये तारखा पासून",
+    "fiscalStart": "आर्थिक वर्ष महिन्यात सुरू होते",
+    "groupBy": "द्वारे गट",
+    "calculate": "गणना करा",
+    "keepAsRows": "पंक्ती म्हणून ठेवा",
+    "valuesBecomeColumns": "मूल्ये स्तंभ होतात",
+    "fillWith": "सह भरा",
+    "aggregation": "एकत्रीकरण",
+    "keepTheseColumns": "हे स्तंभ ठेवा",
+    "nameColumn": "नाव स्तंभ",
+    "valueColumn": "मूल्य स्तंभ",
+    "dataset": "डेटासेट",
+    "keyHere": "या डेटामध्ये की",
+    "keyOther": "इतर मध्ये की"
+  },
+  "options": {
+    "blankHow": {
+      "any": "त्यापैकी कोणतेही रिक्त आहे",
+      "all": "ते सर्व रिक्त आहेत"
+    },
+    "fill": {
+      "mean": "सरासरी",
+      "median": "मध्यक",
+      "mode": "सर्वात सामान्य मूल्य",
+      "zero": "शून्य",
+      "down": "वरील मूल्य (खाली भरा)",
+      "up": "खाली मूल्य (भरा)",
+      "value": "माझे स्वतःचे मूल्य"
+    },
+    "replaceMatch": {
+      "exact": "संपूर्ण मूल्य",
+      "contains": "मजकूराचा भाग"
+    },
+    "types": {
+      "number": "क्रमांक",
+      "date": "तारीख",
+      "text": "मजकूर"
+    },
+    "outliers": {
+      "cap": "मर्यादा येथे कॅप",
+      "remove": "त्या पंक्ती काढा",
+      "flag": "नवीन स्तंभात ध्वजांकित करा"
+    },
+    "filterMode": {
+      "keep": "ठेवा",
+      "remove": "काढा"
+    },
+    "combine": {
+      "and": "सर्व अटी",
+      "or": "कोणतीही अट"
+    },
+    "keepRows": {
+      "top": "पहिल्या पंक्ती",
+      "bottom": "शेवटच्या पंक्ती"
+    },
+    "textCase": {
+      "title": "शीर्षक प्रकरण",
+      "upper": "UPPER",
+      "lower": "कमी"
+    },
+    "bins": {
+      "equal": "समान रुंदी",
+      "edges": "माझ्या स्वतःच्या कडा"
+    },
+    "mergeHow": {
+      "left": "या डेटाच्या सर्व पंक्ती",
+      "inner": "फक्त जुळणाऱ्या पंक्ती",
+      "outer": "दोन्हीच्या सर्व पंक्ती"
+    },
+    "aggs": {
+      "sum": "बेरीज",
+      "avg": "सरासरी",
+      "count": "मोजा",
+      "distinct": "वेगळी गणना",
+      "min": "मि",
+      "max": "कमाल",
+      "median": "मध्यक"
+    }
+  },
+  "parts": {
+    "year": "वर्ष",
+    "quarter": "क्वार्टर",
+    "month": "महिना",
+    "monthName": "महिन्याचे नाव",
+    "week": "आठवडा",
+    "weekday": "आठवड्याचा दिवस",
+    "weekdayName": "आठवड्याच्या दिवसाचे नाव",
+    "day": "दिवस",
+    "hour": "तास"
+  },
+  "conditionOps": {
+    "eq": "समान",
+    "ne": "समान नाही",
+    "in": "पैकी एक आहे",
+    "notIn": "पैकी एक नाही",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "दरम्यान",
+    "contains": "समाविष्टीत आहे",
+    "startsWith": "ने सुरू होते",
+    "endsWith": "ने समाप्त होते",
+    "blank": "रिक्त आहे",
+    "notBlank": "रिक्त नाही"
+  },
+  "summary": {
+    "keepConditions": "{{count}} अट ठेवा",
+    "removeConditions": "{{count}} अटी काढून टाका",
+    "by": "{{columns}} द्वारे",
+    "anotherDataset": "दुसरा डेटासेट",
+    "types": {
+      "number": "संख्या",
+      "date": "तारीख",
+      "text": "मजकूर"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "डुप्लिकेट काढा",
+    "keepOnePerId": "प्रति आयडी एक पंक्ती ठेवा",
+    "removeMissingId": "आयडीशिवाय पंक्ती काढा",
+    "fillBlanks": "रिक्त जागा भरा",
+    "blankOut": "\"{{value}}\" रिक्त करा",
+    "trimSpaces": "मोकळी जागा ट्रिम करा",
+    "toNumber": "संख्येमध्ये रूपांतरित करा",
+    "toDate": "तारखेत रूपांतरित करा",
+    "consistentSpelling": "शुद्धलेखन सुसंगत करा",
+    "capOutliers": "कॅप outliers",
+    "removeColumn": "स्तंभ काढा"
+  }
+}

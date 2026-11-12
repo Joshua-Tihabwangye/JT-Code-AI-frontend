@@ -9,5 +9,8 @@
   "offlineMessage": "Du bist offline. Änderungen werden lokal gespeichert und synchronisiert, sobald du wieder verbunden bist.",
   "fatalTitle": "Etwas ist schiefgelaufen",
   "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
-  "reloadApp": "Anwendung neu laden"
+  "reloadApp": "Anwendung neu laden",
+  "home": "JT-Code Startseite",
+  "primaryNavigation": "Hauptnavigation",
+  "fatalError": "Bei JT-Code ist ein Fehler aufgetreten."
 }

@@ -3,19 +3,25 @@
     "eyebrow": "اتصل بنا",
     "title": "احصل على مساعدة بشأن JT-Code",
     "backToSignIn": "العودة إلى تسجيل الدخول",
-    "createAccount": "إنشاء حساب"
+    "createAccount": "إنشاء حساب",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "سياسة الخصوصية",
     "title": "خصوصية JT-Code",
     "signIn": "تسجيل الدخول",
-    "readTerms": "قراءة الشروط"
+    "readTerms": "قراءة الشروط",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "شروط الخدمة",
     "title": "شروط JT-Code",
     "createAccount": "إنشاء حساب",
-    "contactSupport": "اتصل بالدعم"
+    "contactSupport": "اتصل بالدعم",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

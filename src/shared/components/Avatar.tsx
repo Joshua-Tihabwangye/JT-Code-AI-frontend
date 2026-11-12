@@ -1,5 +1,6 @@
 import { forwardRef, useState, type HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   src?: string;
@@ -18,6 +19,7 @@ const sizes = {
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, src, alt, fallback, size = 'md', ...props }, ref) => {
+    const { t } = useTranslation();
     const [imageError, setImageError] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -53,7 +55,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       >
         <img
           src={src}
-          alt={alt || fallback || 'Avatar'}
+          alt={alt || fallback || t('common.avatar')}
           className={clsx(
             'aspect-square h-full w-full object-cover',
             'transition-opacity duration-300',

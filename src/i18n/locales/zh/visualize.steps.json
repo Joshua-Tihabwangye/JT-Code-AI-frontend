@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "清理",
+    "rows": "行",
+    "columns": "列",
+    "text": "文本",
+    "numbers": "数字和日期",
+    "shape": "结构",
+    "combine": "合并"
+  },
+  "kinds": {
+    "removeDuplicates": "删除重复行",
+    "trim": "修整多余空格",
+    "removeBlankRows": "删除空行",
+    "fillBlanks": "填充空值",
+    "replaceValues": "替换值",
+    "changeType": "更改类型",
+    "outliers": "处理离群值",
+    "filterRows": "筛选行",
+    "sort": "对行排序",
+    "keepRows": "保留最前或最后几行",
+    "removeColumns": "删除列",
+    "keepColumns": "仅保留这些列",
+    "rename": "重命名列",
+    "calculatedColumn": "计算列",
+    "conditionalColumn": "条件列",
+    "splitColumn": "拆分列",
+    "mergeColumns": "合并列",
+    "textCase": "更改大小写",
+    "bins": "将数字分组到分箱",
+    "dateParts": "提取日期部分",
+    "dateTable": "创建日期表（日历）",
+    "groupBy": "分组依据",
+    "pivot": "透视（行 → 列）",
+    "unpivot": "逆透视（列 → 行）",
+    "merge": "与其他数据集合并",
+    "append": "追加其他数据集"
+  },
+  "fields": {
+    "compareColumns": "仅比较这些列",
+    "trimColumns": "列（留空则为所有文本列）",
+    "blankIn": "空值所在列",
+    "removeWhen": "删除条件",
+    "column": "列",
+    "columns": "列",
+    "with": "填充方式",
+    "value": "值",
+    "find": "查找",
+    "replaceWith": "替换为",
+    "match": "匹配",
+    "to": "目标",
+    "action": "操作",
+    "rowsThatMatch": "匹配的行",
+    "conditions": "条件",
+    "sortBy": "排序依据",
+    "keep": "保留",
+    "howMany": "数量",
+    "newName": "新名称",
+    "newColumn": "新列",
+    "formula": "公式",
+    "ifThen": "如果 … 则",
+    "otherwise": "否则",
+    "at": "拆分位置",
+    "intoParts": "拆分为（部分数）",
+    "newNames": "新名称（可选）",
+    "separator": "分隔符",
+    "case": "大小写",
+    "bins": "分箱",
+    "howManyBins": "分箱数量",
+    "edges": "边界",
+    "dateColumn": "日期列",
+    "parts": "部分",
+    "fromDatesIn": "日期来源",
+    "fiscalStart": "财年起始月份",
+    "groupBy": "分组依据",
+    "calculate": "计算",
+    "keepAsRows": "保留为行",
+    "valuesBecomeColumns": "值转为列",
+    "fillWith": "填充值",
+    "aggregation": "聚合",
+    "keepTheseColumns": "保留这些列",
+    "nameColumn": "名称列",
+    "valueColumn": "值列",
+    "dataset": "数据集",
+    "keyHere": "此数据中的键",
+    "keyOther": "另一数据中的键"
+  },
+  "options": {
+    "blankHow": {
+      "any": "任一为空",
+      "all": "全部为空"
+    },
+    "fill": {
+      "mean": "平均值",
+      "median": "中值",
+      "mode": "最常见的值",
+      "zero": "零",
+      "down": "上方的值（向下填充）",
+      "up": "下方的值（向上填充）",
+      "value": "自定义值"
+    },
+    "replaceMatch": {
+      "exact": "整个值",
+      "contains": "部分文本"
+    },
+    "types": {
+      "number": "数字",
+      "date": "日期",
+      "text": "文本"
+    },
+    "outliers": {
+      "cap": "限制在边界内",
+      "remove": "删除这些行",
+      "flag": "在新列中标记"
+    },
+    "filterMode": {
+      "keep": "保留",
+      "remove": "删除"
+    },
+    "combine": {
+      "and": "满足所有条件",
+      "or": "满足任一条件"
+    },
+    "keepRows": {
+      "top": "前几行",
+      "bottom": "后几行"
+    },
+    "textCase": {
+      "title": "首字母大写",
+      "upper": "大写",
+      "lower": "小写"
+    },
+    "bins": {
+      "equal": "等宽",
+      "edges": "自定义边界"
+    },
+    "mergeHow": {
+      "left": "此数据的所有行",
+      "inner": "仅匹配的行",
+      "outer": "两者的所有行"
+    },
+    "aggs": {
+      "sum": "求和",
+      "avg": "平均值",
+      "count": "计数",
+      "distinct": "非重复计数",
+      "min": "最小值",
+      "max": "最大值",
+      "median": "中值"
+    }
+  },
+  "parts": {
+    "year": "年",
+    "quarter": "季度",
+    "month": "月",
+    "monthName": "月份名称",
+    "week": "周",
+    "weekday": "星期",
+    "weekdayName": "星期名称",
+    "day": "日",
+    "hour": "小时"
+  },
+  "conditionOps": {
+    "eq": "等于",
+    "ne": "不等于",
+    "in": "属于其中之一",
+    "notIn": "不属于其中任何一个",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "介于",
+    "contains": "包含",
+    "startsWith": "开头为",
+    "endsWith": "结尾为",
+    "blank": "为空",
+    "notBlank": "不为空"
+  },
+  "summary": {
+    "keepConditions": "保留 {{count}} 个条件",
+    "removeConditions": "删除 {{count}} 个条件",
+    "by": "按 {{columns}}",
+    "anotherDataset": "另一个数据集",
+    "types": {
+      "number": "数字",
+      "date": "日期",
+      "text": "文本"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "删除重复项",
+    "keepOnePerId": "每个 ID 保留一行",
+    "removeMissingId": "删除无 ID 的行",
+    "fillBlanks": "填充空值",
+    "blankOut": "将“{{value}}”置为空",
+    "trimSpaces": "修整空格",
+    "toNumber": "转换为数字",
+    "toDate": "转换为日期",
+    "consistentSpelling": "统一拼写",
+    "capOutliers": "限制离群值",
+    "removeColumn": "删除列"
+  }
+}

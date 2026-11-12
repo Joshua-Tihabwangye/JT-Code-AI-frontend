@@ -3,5 +3,7 @@
   "switchToDark": "Beralih ke tema gelap",
   "light": "Terang",
   "dark": "Gelap",
-  "tagline": "Ruang kerja AI pribadi"
+  "tagline": "Ruang kerja AI pribadi",
+  "notice": "",
+  "back": "Kembali"
 }

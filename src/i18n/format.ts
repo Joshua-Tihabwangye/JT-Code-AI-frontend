@@ -21,3 +21,13 @@ export function formatDateTime(value: string | number | Date, options?: Intl.Dat
 export function formatList(items: string[], type: Intl.ListFormatType = 'conjunction'): string {
   return new Intl.ListFormat(currentLocale(), { style: 'long', type }).format(items);
 }
+
+/** Languages whose nouns keep their capital letter inside a sentence. */
+const KEEPS_NOUN_CASE = new Set(['de', 'lb']);
+
+/** A label placed inside a sentence ("Showing 3 numeric rows"): lowercased where the language does
+ *  that (with its own casing rules, e.g. Turkish dotted i), kept as is where nouns stay capitalized. */
+export function inlineLabel(label: string): string {
+  const locale = currentLocale();
+  return KEEPS_NOUN_CASE.has(locale.split('-')[0] ?? locale) ? label : label.toLocaleLowerCase(locale);
+}

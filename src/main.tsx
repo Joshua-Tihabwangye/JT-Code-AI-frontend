@@ -1,3 +1,4 @@
+import i18n from '@/i18n/config';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import * as Sentry from '@sentry/react';
@@ -14,7 +15,7 @@ if (!root) throw new Error('Root element not found');
 
 createRoot(root).render(
   <StrictMode>
-    <Sentry.ErrorBoundary fallback={<div className="fatal-error">JT-Code encountered an error.</div>}>
+    <Sentry.ErrorBoundary fallback={<div className="fatal-error">{i18n.t('chrome.fatalError')}</div>}>
       <AppProviders>
         <App />
       </AppProviders>

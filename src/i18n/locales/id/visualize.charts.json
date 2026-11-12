@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Perbandingan",
+      "description": "Bandingkan nilai antar kategori dan beri peringkat."
+    },
+    "trend": {
+      "name": "Tren & waktu",
+      "description": "Tunjukkan bagaimana nilai berubah seiring waktu."
+    },
+    "composition": {
+      "name": "Komposisi",
+      "description": "Pecahkan total menjadi beberapa bagian."
+    },
+    "distribution": {
+      "name": "Distribusi",
+      "description": "Pahami penyebaran, bentuk, dan outlier."
+    },
+    "statistical": {
+      "name": "Statistik",
+      "description": "Interval kepercayaan, batas kendali dan diagnostik."
+    },
+    "relationship": {
+      "name": "Hubungan & korelasi",
+      "description": "Temukan bagaimana variabel bergerak bersama."
+    },
+    "flow": {
+      "name": "Aliran & hierarki",
+      "description": "Ikuti kuantitas antara tahapan dan level."
+    },
+    "geo": {
+      "name": "Peta",
+      "description": "Plot nilai berdasarkan negara atau koordinat."
+    },
+    "dimensional": {
+      "name": "Dimensi",
+      "description": "Kurangi dan jelajahi banyak variabel sekaligus."
+    },
+    "ml": {
+      "name": "Evaluasi model",
+      "description": "Menilai pengklasifikasi, regresi, dan klaster."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Bagan batang",
+      "description": "Bandingkan nilai antar kategori.",
+      "howToRead": "Panjang setiap batang adalah nilai untuk kategori tersebut; bandingkan ketinggian untuk menentukan peringkatnya.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Bilah yang dikelompokkan",
+      "description": "Bilah berdampingan untuk setiap subgrup.",
+      "howToRead": "Batang ditempatkan berdampingan dalam setiap kategori sehingga Anda dapat membandingkan subgrup secara langsung.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Batang bertumpuk",
+      "description": "Total dengan kontribusi masing-masing subkelompok.",
+      "howToRead": "Setiap batang adalah total; segmen berwarna menunjukkan seberapa besar kontribusi masing-masing subkelompok.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Tumpuk"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "Batang bertumpuk 100%",
+      "description": "Bagikan setiap subgrup dalam setiap kategori.",
+      "howToRead": "Setiap batang berjumlah 100%, sehingga tinggi segmen menunjukkan campuran dalam setiap kategori.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Tumpuk"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Bagan lolipop",
+      "description": "Diagram batang yang lebih ringan untuk nilai yang diberi peringkat.",
+      "howToRead": "Titik menandai nilai setiap kategori; semakin panjang tongkatnya, semakin besar nilainya.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Plot titik",
+      "description": "Bandingkan beberapa ukuran per kategori sebagai titik.",
+      "howToRead": "Setiap titik adalah satu ukuran untuk suatu kategori; titik di sebelah kanan lebih besar.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "y": {
+          "label": "Nilai-nilai"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Bagan halter",
+      "description": "Tunjukkan kesenjangan antara dua ukuran per kategori.",
+      "howToRead": "Kedua titik tersebut adalah nilai awal dan akhir; garis hijau berarti naik, merah berarti turun.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "radar": {
+      "name": "Bagan radar",
+      "description": "Profil beberapa ukuran untuk beberapa item.",
+      "howToRead": "Setiap jari-jari adalah suatu ukuran; bentuk yang lebih besar berarti nilai yang lebih tinggi di seluruh ukuran.",
+      "slots": {
+        "x": {
+          "label": "Barang"
+        },
+        "features": {
+          "label": "Tindakan"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Bagan peluru/target",
+      "description": "Realisasi terhadap target masing-masing kategori.",
+      "howToRead": "Bilah gelap adalah nilai sebenarnya, bilah terang dan centang adalah targetnya; hijau berarti target terpenuhi.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "y": {
+          "label": "Sebenarnya"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Bagan Pareto",
+      "description": "Batang yang diurutkan dengan garis pembagian kumulatif (80/20).",
+      "howToRead": "Batangan diurutkan yang terbesar terlebih dahulu; garis tersebut menunjukkan pembagian berjalan, sehingga Anda dapat melihat beberapa item mana yang mencapai 80%.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Tabel peta panas",
+      "description": "Warnai nilai di dua kategori.",
+      "howToRead": "Sel yang lebih gelap memiliki nilai lebih tinggi untuk kombinasi baris dan kolom tersebut.",
+      "slots": {
+        "x": {
+          "label": "Kolom"
+        },
+        "y": {
+          "label": "Baris"
+        }
+      },
+      "options": {
+        "show_values": "Tunjukkan nilai"
+      }
+    },
+    "line": {
+      "name": "Bagan garis",
+      "description": "Pandangan klasik tentang perubahan seiring berjalannya waktu.",
+      "howToRead": "Garis mengikuti nilai dari waktu ke waktu; lereng menunjukkan pertumbuhan atau penurunan.",
+      "slots": {
+        "y": {
+          "label": "Nilai-nilai"
+        }
+      }
+    },
+    "area": {
+      "name": "Bagan wilayah",
+      "description": "Tekankan volume suatu tren.",
+      "howToRead": "Area yang terisi menunjukkan nilai dari waktu ke waktu; tingginya adalah jumlah pada setiap tanggal."
+    },
+    "stacked_area": {
+      "name": "Daerah bertumpuk",
+      "description": "Bagaimana bagian dari perubahan total seiring berjalannya waktu.",
+      "howToRead": "Lapisan ditumpuk di atas satu sama lain, sehingga tepi atas adalah total dan masing-masing pita merupakan satu kelompok.",
+      "slots": {
+        "color": {
+          "label": "Tumpuk"
+        }
+      },
+      "options": {
+        "normalize": "Tampilkan sebagai 100%"
+      }
+    },
+    "step_line": {
+      "name": "Garis langkah",
+      "description": "Nilai yang berubah pada saat-saat tertentu (harga, tingkat stok).",
+      "howToRead": "Nilainya tetap datar hingga berubah, sesuai dengan harga, tingkat stok, dan pembaruan terpisah lainnya."
+    },
+    "rolling_average": {
+      "name": "Rata-rata bergerak",
+      "description": "Seri berisik halus dengan mean bergulir.",
+      "howToRead": "Garis samar adalah rangkaian mentah; garis tebal rata-rata poin terkini untuk mengungkapkan tren."
+    },
+    "cumulative": {
+      "name": "Jumlah kumulatif",
+      "description": "Berjalan total seiring berjalannya waktu.",
+      "howToRead": "Garis tersebut menambahkan setiap periode ke total sebelumnya, sehingga kemiringannya menunjukkan seberapa cepat pertumbuhan totalnya."
+    },
+    "period_change": {
+      "name": "Perubahan periode demi periode",
+      "description": "Perubahan persentase dari periode sebelumnya.",
+      "howToRead": "Batang menunjukkan persentase perubahan dari periode sebelumnya: hijau adalah pertumbuhan, merah adalah penurunan."
+    },
+    "candlestick": {
+      "name": "Kandil",
+      "description": "Pergerakan buka/tinggi/rendah/tutup (keuangan).",
+      "howToRead": "Setiap candle mencakup kisaran rendah-tinggi; badan berjalan dari terbuka ke tertutup (hijau ke atas, merah ke bawah)."
+    },
+    "range_band": {
+      "name": "Pita jangkauan",
+      "description": "Garis dengan batas min–maks atau ketidakpastiannya.",
+      "howToRead": "Garis adalah nilainya; pita yang diarsir menunjukkan batas bawah dan batas atasnya."
+    },
+    "calendar_heatmap": {
+      "name": "Peta panas kalender",
+      "description": "Pola ukuran harian hari kerja × minggu.",
+      "howToRead": "Setiap kotak adalah satu hari; kotak yang lebih gelap memiliki nilai lebih tinggi, menunjukkan pola hari kerja dan musiman."
+    },
+    "seasonal_decompose": {
+      "name": "Dekomposisi musiman",
+      "description": "Pisahkan rangkaian menjadi tren, musiman, dan sisa.",
+      "howToRead": "Rangkaian ini dibagi menjadi tren (arah), musiman (pola berulang), dan residu (kebisingan)."
+    },
+    "autocorrelation": {
+      "name": "Autokorelasi (ACF/PACF)",
+      "description": "Bagaimana suatu rangkaian berhubungan dengan nilai-nilai masa lalunya.",
+      "howToRead": "Bilah di luar pita merah menunjukkan kelambatan di mana rangkaian tersebut berulang."
+    },
+    "pie": {
+      "name": "Bagan lingkaran",
+      "description": "Bagian dari keseluruhan (paling baik dengan beberapa irisan).",
+      "howToRead": "Setiap bagian merupakan bagian dari keseluruhan; irisan yang lebih besar adalah bagian yang lebih besar.",
+      "slots": {
+        "x": {
+          "label": "Irisan"
+        }
+      }
+    },
+    "donut": {
+      "name": "Bagan donat",
+      "description": "Pai dengan ruang total di tengahnya.",
+      "howToRead": "Setiap segmen merupakan bagian dari total yang ditampilkan di tengah.",
+      "slots": {
+        "x": {
+          "label": "Irisan"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Peta Hierarki",
+      "description": "Persegi panjang bersarang diukur berdasarkan nilai.",
+      "howToRead": "Luas persegi panjang sebanding dengan nilainya; persegi panjang bersarang memecah grup menjadi beberapa bagiannya."
+    },
+    "sunburst": {
+      "name": "sinar matahari",
+      "description": "Hirarki sebagai cincin konsentris.",
+      "howToRead": "Lingkaran dalam adalah kelompok tingkat atas, lingkaran luar adalah subgrupnya; panjang busur adalah nilainya.",
+      "slots": {
+        "path": {
+          "label": "Tingkatan (dalam ke luar)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Bagan es",
+      "description": "Hierarki sebagai persegi panjang bertumpuk.",
+      "howToRead": "Setiap baris adalah tingkat hierarki; lebar sebuah blok adalah bagiannya dari total.",
+      "slots": {
+        "path": {
+          "label": "Level (atas ke bawah)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Air terjun",
+      "description": "Bagaimana langkah positif dan negatif membangun total.",
+      "howToRead": "Langkah hijau menambah, langkah merah mengurangi, dan bilah terakhir adalah total yang dihasilkan.",
+      "slots": {
+        "x": {
+          "label": "Melangkah"
+        },
+        "y": {
+          "help": "Tinggalkan hitungan dengan memilih Hitungan sebagai agregasi."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Corong",
+      "description": "Konversi melalui tahapan yang dipesan.",
+      "howToRead": "Setiap tahap lebih sempit dibandingkan tahap sebelumnya; penurunan antar tahap adalah saat orang tersesat.",
+      "slots": {
+        "x": {
+          "label": "Panggung"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (mosaik)",
+      "description": "Komposisi dua arah dengan lebar bervariasi.",
+      "howToRead": "Lebar kolom adalah bagian setiap kolom dari total; tinggi segmen adalah campuran di dalamnya.",
+      "slots": {
+        "x": {
+          "label": "Kolom"
+        },
+        "color": {
+          "label": "Segmen"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Histogram",
+      "description": "Seberapa sering nilai turun di setiap rentang.",
+      "howToRead": "Batang menghitung berapa banyak nilai yang ada di setiap rentang; batang tertinggi adalah nilai yang paling umum.",
+      "slots": {
+        "x": {
+          "label": "Nilai"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Kurva kepadatan (KDE)",
+      "description": "Perkiraan distribusi yang lancar.",
+      "howToRead": "Kurva halus memperkirakan bagaimana nilai didistribusikan; puncak adalah nilai yang paling umum.",
+      "slots": {
+        "x": {
+          "label": "Nilai"
+        }
+      }
+    },
+    "box": {
+      "name": "Plot kotak",
+      "description": "Median, kuartil, dan outlier per grup.",
+      "howToRead": "Kotak tersebut berisi 50% nilai tengah, garis adalah median, garis menunjukkan kisaran tipikal, dan titik adalah outlier.",
+      "slots": {
+        "x": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "violin": {
+      "name": "Plot biola",
+      "description": "Plot kotak ditambah bentuk distribusi lengkap.",
+      "howToRead": "Lebar di setiap tingkat menunjukkan berapa banyak nilai yang ada di sana; bilah gelap adalah 50% tengah.",
+      "slots": {
+        "x": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "strip": {
+      "name": "Plot strip / jitter",
+      "description": "Setiap pengamatan sebagai titik per kelompok.",
+      "howToRead": "Setiap titik merupakan satu baris, tersebar ke samping sehingga nilai yang tumpang tindih tetap terlihat.",
+      "slots": {
+        "x": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Distribusi kumulatif (ECDF)",
+      "description": "Pembagian nilai di bawah setiap level.",
+      "howToRead": "Untuk nilai apa pun pada sumbu x, kurva menunjukkan pembagian nilai pada atau di bawahnya.",
+      "slots": {
+        "x": {
+          "label": "Nilai"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Garis Punggung Bukit",
+      "description": "Distribusi bertumpuk untuk banyak grup.",
+      "howToRead": "Setiap punggungan merupakan sebaran satu kelompok; bandingkan letak puncak dan lebarnya.",
+      "slots": {
+        "x": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Plot awan hujan",
+      "description": "Setengah biola, kotak, dan titik mentah menjadi satu.",
+      "howToRead": "Setiap kelompok menunjukkan sebarannya (awan), 50% tengahnya (batang) dan setiap nilainya (hujan).",
+      "slots": {
+        "x": {
+          "label": "Kelompokkan berdasarkan"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Berarti dengan selang kepercayaan",
+      "description": "Kelompok berarti dengan interval kepercayaan 95%.",
+      "howToRead": "Batangan adalah rata-rata kelompok dan menunjukkan interval kepercayaan; kumis yang tumpang tindih berarti perbedaannya mungkin kebetulan.",
+      "slots": {
+        "x": {
+          "label": "Kelompok"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "alur Q–Q",
+      "description": "Periksa apakah nilai mengikuti distribusi teoretis.",
+      "howToRead": "Jika titik-titik mengikuti garis merah, maka datanya cocok dengan distribusi yang dipilih.",
+      "slots": {
+        "x": {
+          "label": "Nilai"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Distribusi sesuai",
+      "description": "Histogram dengan distribusi yang pas dan kesesuaian yang baik.",
+      "howToRead": "Batangan adalah distribusi yang diamati; kurva tersebut merupakan distribusi teoretis yang paling sesuai.",
+      "slots": {
+        "x": {
+          "label": "Nilai"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Bagan kendali (SPC)",
+      "description": "Nilai proses dengan batas kendali mean dan ±3σ.",
+      "howToRead": "Titik-titik di antara batas putus-putus merupakan variasi normal; titik merah di luarnya perlu diperhatikan.",
+      "slots": {
+        "x": {
+          "label": "Pesanan / waktu"
+        },
+        "y": {
+          "label": "Pengukuran"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Hambar – Altman",
+      "description": "Kesepakatan antara dua metode pengukuran.",
+      "howToRead": "Setiap titik membandingkan dua pengukuran dari hal yang sama; garis-garis tersebut menunjukkan bias rata-rata dan batas kesepakatan.",
+      "slots": {
+        "x": {
+          "label": "Metode A"
+        },
+        "y": {
+          "label": "Metode B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Peta nilai yang hilang",
+      "description": "Dimana data hilang di seluruh kolom.",
+      "howToRead": "Batang menunjukkan bagian yang kosong per kolom; tanda merah pada pola menunjukkan lokasi terjadinya."
+    },
+    "scatter": {
+      "name": "Plot sebar",
+      "description": "Hubungan antara dua ukuran.",
+      "howToRead": "Setiap titik adalah satu baris; awan yang meninggi berarti kedua ukuran tersebut meningkat secara bersamaan.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      },
+      "options": {
+        "marginal": "Plot margin"
+      }
+    },
+    "bubble": {
+      "name": "Bagan gelembung",
+      "description": "Plot sebar dengan ukuran ketiga sebagai ukurannya.",
+      "howToRead": "Seperti plot sebar, namun ukuran gelembung menunjukkan ukuran ketiga.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Regresi cocok",
+      "description": "Sebarkan dengan garis pas, R² dan persamaan.",
+      "howToRead": "Kurva adalah model yang dipasang dan pita memiliki interval kepercayaan 95%; R² adalah bagian variasi yang dijelaskan.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Matriks korelasi",
+      "description": "Korelasi antara setiap pasangan ukuran.",
+      "howToRead": "Setiap sel adalah korelasi antara dua ukuran, dari −1 (biru) hingga +1 (merah).",
+      "options": {
+        "show_values": "Tunjukkan koefisien"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Matriks sebar (plot berpasangan)",
+      "description": "Sekilas tentang setiap pasangan ukuran.",
+      "howToRead": "Setiap pasangan ukuran mempunyai penyebarannya sendiri; diagonal menunjukkan distribusi masing-masing ukuran.",
+      "slots": {
+        "color": {
+          "label": "Warna menurut (label)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "Peta panas kepadatan 2D",
+      "description": "Dimana titik terkonsentrasi (untuk banyak baris).",
+      "howToRead": "Sel yang lebih gelap berisi lebih banyak baris, yang menunjukkan di mana titik-titik terkonsentrasi.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Kontur kepadatan",
+      "description": "Kontur kepadatan titik.",
+      "howToRead": "Cincin melingkupi area dengan kepadatan titik yang sama; cincin bagian dalam menampung baris terbanyak.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Plot bersama",
+      "description": "Menyebar dengan sebaran pada masing-masing sumbu.",
+      "howToRead": "Pencar menunjukkan hubungan; histogram samping menunjukkan distribusi setiap ukuran.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Koordinat paralel",
+      "description": "Bandingkan banyak ukuran di seluruh baris.",
+      "howToRead": "Setiap garis adalah baris yang melintasi sumbu setiap ukuran; kumpulan garis mengungkapkan profil umum.",
+      "slots": {
+        "color": {
+          "label": "Warnai menurut (numerik)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Kategori paralel",
+      "description": "Mengalir antar kolom kategorikal.",
+      "howToRead": "Pita mengalir antar kolom kategori; ketebalannya adalah jumlah baris.",
+      "slots": {
+        "path": {
+          "label": "Kolom kategoris"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Tabel kontingensi",
+      "description": "Menghitung dua kategori dengan uji chi-kuadrat.",
+      "howToRead": "Sel menghitung baris untuk setiap pasangan kategori; uji chi-kuadrat menunjukkan apakah keduanya berhubungan.",
+      "slots": {
+        "x": {
+          "label": "Kolom"
+        },
+        "y": {
+          "label": "Baris"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Diagram Sankey",
+      "description": "Kuantitas mengalir antar tahapan.",
+      "howToRead": "Band mengalir dari satu tahap ke tahap berikutnya; lebarnya adalah besaran yang bergerak di antara keduanya.",
+      "slots": {
+        "path": {
+          "label": "Tahapan (berurutan)"
+        }
+      }
+    },
+    "network": {
+      "name": "Grafik jaringan",
+      "description": "Koneksi antar entitas.",
+      "howToRead": "Node adalah entitas dan garis adalah koneksi; node yang lebih besar dan lebih gelap memiliki lebih banyak tautan.",
+      "slots": {
+        "target": {
+          "label": "Ke"
+        },
+        "y": {
+          "label": "Berat"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Peta Choropleth",
+      "description": "Warnai negara berdasarkan nilainya.",
+      "howToRead": "Negara-negara dinaungi oleh nilai; lebih gelap berarti lebih tinggi."
+    },
+    "scatter_geo": {
+      "name": "Poin pada peta",
+      "description": "Plot titik lintang/bujur.",
+      "howToRead": "Setiap titik merupakan lokasi yang diplot berdasarkan garis lintang dan garis bujur."
+    },
+    "scatter_3d": {
+      "name": "Penyebaran 3D",
+      "description": "Jelajahi tiga langkah dalam memutar 3D.",
+      "howToRead": "Seret untuk memutar; setiap titik adalah satu baris yang diposisikan oleh tiga ukuran.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        },
+        "z": {
+          "label": "sumbu Z"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "permukaan 3D",
+      "description": "Permukaan dengan dua ukuran.",
+      "howToRead": "Tinggi dan warna permukaan menunjukkan ukuran ketiga dari dua ukuran pertama; seret untuk memutar.",
+      "slots": {
+        "x": {
+          "label": "sumbu X"
+        },
+        "y": {
+          "label": "sumbu Y"
+        },
+        "z": {
+          "label": "Tinggi"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "Peta PCA (2D)",
+      "description": "Proyeksikan banyak tindakan ke dalam dua komponen utama.",
+      "howToRead": "Banyak tindakan yang diringkas menjadi dua komponen; titik-titik yang berdekatan merupakan barisan yang sebangun.",
+      "slots": {
+        "color": {
+          "label": "Warna menurut (label)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "Peta PCA (3D)",
+      "description": "Tiga komponen utama dalam 3D.",
+      "howToRead": "Tiga komponen utama dalam 3D; seret untuk memutar dan mencari cluster.",
+      "slots": {
+        "color": {
+          "label": "Warna menurut (label)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "biplot PCA",
+      "description": "Baris dan ukuran yang menggerakkan setiap komponen.",
+      "howToRead": "Poin adalah baris dan panah adalah ukuran; panah yang menunjuk ke arah yang sama berkorelasi.",
+      "slots": {
+        "color": {
+          "label": "Warna menurut (label)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Plot layar",
+      "description": "Varians dijelaskan oleh masing-masing komponen.",
+      "howToRead": "Batang menunjukkan berapa banyak informasi yang dimiliki setiap komponen; garis menunjukkan total berjalan."
+    },
+    "tsne_2d": {
+      "name": "peta t-SNE",
+      "description": "Peta 2D non-linier yang membuat tetangga tetap dekat.",
+      "howToRead": "Peta non-linier yang menyatukan baris-baris serupa; mencari cluster yang terpisah.",
+      "slots": {
+        "color": {
+          "label": "Warna menurut (label)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "proyeksi LDA",
+      "description": "Proyeksi yang paling baik memisahkan kelompok berlabel.",
+      "howToRead": "Proyeksi yang dipilih untuk memisahkan kelompok berlabel sebanyak mungkin.",
+      "slots": {
+        "color": {
+          "label": "Label"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Peta cluster (k-means)",
+      "description": "Kelompokkan baris serupa dan tunjukkan pada peta PCA.",
+      "howToRead": "Warna menunjukkan cluster yang ditemukan oleh k-means; berlian menandai pusat setiap cluster."
+    },
+    "confusion_matrix": {
+      "name": "Matriks kebingungan",
+      "description": "Dimana pengklasifikasi benar dan salah.",
+      "howToRead": "Diagonal memberikan prediksi yang benar; sel lain menunjukkan kelas mana yang bingung."
+    },
+    "roc_curve": {
+      "name": "Kurva ROC",
+      "description": "Rasio positif benar vs salah di setiap ambang batas, dengan AUC.",
+      "howToRead": "Semakin tinggi kurva berada di atas diagonal, semakin baik peringkat positif model tersebut; AUC merangkumnya."
+    },
+    "pr_curve": {
+      "name": "Kurva presisi-recall",
+      "description": "Pertukaran presisi dan penarikan kembali, dengan presisi rata-rata.",
+      "howToRead": "Menunjukkan presisi yang Anda pertahankan seiring peningkatan perolehan; lebih tinggi dan lebih jauh ke kanan lebih baik."
+    },
+    "calibration_curve": {
+      "name": "Kurva kalibrasi",
+      "description": "Apakah probabilitas yang diprediksi sesuai dengan tingkat observasi?",
+      "howToRead": "Titik-titik pada garis putus-putus berarti probabilitas yang diprediksi sesuai dengan tingkat yang diamati.",
+      "options": {
+        "bins": "Tempat sampah"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Perolehan & peningkatan kumulatif",
+      "description": "Betapa jauh lebih baik daripada model penargetan acak.",
+      "howToRead": "Menunjukkan berapa banyak hal positif yang Anda peroleh dengan menargetkan bagian baris dengan skor tertinggi, dan peningkatan secara acak."
+    },
+    "threshold_metrics": {
+      "name": "Penjelajah ambang batas",
+      "description": "Presisi, perolehan kembali, dan F1 di setiap ambang batas.",
+      "howToRead": "Presisi, recall dan F1 di setiap cut-off; garis putus-putus menandai keseimbangan terbaik."
+    },
+    "predicted_vs_actual": {
+      "name": "Prediksi vs aktual",
+      "description": "Akurasi regresi terhadap garis sempurna.",
+      "howToRead": "Titik-titik pada diagonal putus-putus adalah prediksi yang sempurna; penyebaran menunjukkan kesalahan."
+    },
+    "residual_plot": {
+      "name": "Plot sisa",
+      "description": "Kesalahan terhadap prediksi untuk menemukan bias.",
+      "howToRead": "Kesalahan diplot berlawanan dengan prediksi; awan acak di sekitar nol berarti tidak ada bias sistematis."
+    },
+    "error_distribution": {
+      "name": "Distribusi kesalahan",
+      "description": "Histogram kesalahan prediksi.",
+      "howToRead": "Seberapa besar kesalahan prediksinya; puncak sempit di sekitar nol adalah yang terbaik."
+    },
+    "feature_importance": {
+      "name": "Pentingnya fitur",
+      "description": "Input mana yang mendorong target (hutan acak + permutasi).",
+      "howToRead": "Batang yang lebih panjang merupakan masukan yang paling diandalkan oleh model; kumis menunjukkan ketidakpastian.",
+      "slots": {
+        "target": {
+          "label": "Target untuk menjelaskan"
+        }
+      },
+      "options": {
+        "top_n": "Tampilkan atas"
+      }
+    },
+    "learning_curve": {
+      "name": "Kurva belajar",
+      "description": "Apakah lebih banyak data akan membantu model ini?",
+      "howToRead": "Skor pelatihan dan validasi seiring bertambahnya data; kesenjangan yang besar berarti pemasangan yang berlebihan.",
+      "options": {
+        "model": "Model"
+      }
+    },
+    "elbow": {
+      "name": "Bagan siku",
+      "description": "Pilih jumlah cluster berdasarkan inersia.",
+      "howToRead": "Inersia menurun seiring bertambahnya cluster; siku adalah tempat kelompok tambahan berhenti membantu."
+    },
+    "silhouette": {
+      "name": "Analisis siluet",
+      "description": "Kualitas cluster untuk setiap k.",
+      "howToRead": "Batang yang lebih tinggi berarti cluster yang terpisah lebih baik; bilah hijau adalah jumlah cluster terbaik."
+    },
+    "kpi_card": {
+      "name": "kartu KPI",
+      "description": "Satu nomor judul dengan perubahannya dan grafik mini.",
+      "howToRead": "Angka yang besar adalah periode terakhir; panah menunjukkan perubahan dari periode sebelumnya, dan grafik mini menunjukkan tren terkini.",
+      "slots": {
+        "y": {
+          "label": "Ukuran"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Gauge (kemajuan menuju target)",
+      "description": "Seberapa jauh suatu ukuran menuju sasaran.",
+      "howToRead": "Jarum menunjukkan ukuran terhadap sasarannya; hijau artinya dalam jalur, kuning dekat, merah di belakang.",
+      "slots": {
+        "y": {
+          "label": "Ukuran"
+        },
+        "target": {
+          "label": "Sasaran (opsional)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Pohon dekomposisi",
+      "description": "Pisahkan total tingkat demi tingkat untuk melihat dari mana asalnya.",
+      "howToRead": "Mulailah dari jumlah total di sebelah kiri dan ikuti cabang-cabangnya untuk melihat bagian mana yang menyusunnya; node yang lebih besar berkontribusi lebih banyak.",
+      "slots": {
+        "path": {
+          "label": "Uraikan berdasarkan (secara berurutan)"
+        }
+      },
+      "options": {
+        "top_n": "Cabang per level"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Perkiraan rangkaian waktu",
+      "description": "Proyeksikan ukuran ke depan (penjualan, permintaan, pendapatan) dengan rentang ketidakpastian.",
+      "models": {
+        "auto": "Yang terbaik dari semuanya (dipilih berdasarkan backtest)",
+        "holt_winters": "Pemulusan eksponensial Holt – Winters",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "Tren linier + musiman"
+      },
+      "outputs": [
+        "Grafik perkiraan dengan pita 80%/95%",
+        "Kasus terbaik dan terburuk",
+        "Akurasi tes balik (MAE, MAPE)",
+        "Tabel nilai masa depan"
+      ],
+      "slots": {
+        "target": {
+          "label": "Ukur untuk memperkirakan"
+        }
+      }
+    },
+    "trend": {
+      "name": "Analisis tren & musiman",
+      "description": "Tingkat pertumbuhan, rata-rata pergerakan, pola musiman, titik perubahan, dan periode yang tidak biasa.",
+      "models": {
+        "robust": "Otomatis (tren kuat + deteksi anomali)"
+      },
+      "outputs": [
+        "Pertumbuhan: total, rata-rata, terkini dan tahun ke tahun",
+        "Profil musiman",
+        "Perubahan poin dan anomali"
+      ],
+      "slots": {
+        "target": {
+          "label": "Ukuran"
+        }
+      },
+      "options": {
+        "window": "Rata-rata pergerakan (periode)"
+      }
+    },
+    "drivers": {
+      "name": "Penggerak utama (apa yang memengaruhi suatu hasil)",
+      "description": "Temukan faktor dan segmen mana yang mendorong naik atau turunnya hasil — churn, penjualan, kepuasan.",
+      "models": {
+        "segments": "Perbandingan segmen + kepentingan hutan secara acak"
+      },
+      "outputs": [
+        "Influencer teratas dengan peningkatan",
+        "Pentingnya fitur",
+        "Segmen terbaik dan terburuk"
+      ],
+      "slots": {
+        "target": {
+          "label": "Hasil untuk menjelaskan"
+        },
+        "features": {
+          "label": "Kolom masukan",
+          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+        }
+      }
+    },
+    "regression": {
+      "name": "Memprediksi suatu angka",
+      "description": "Perkirakan hasil numerik (harga, permintaan, skor) dari kolom lain.",
+      "models": {
+        "auto": "Yang terbaik dari semuanya (divalidasi silang)",
+        "linear": "Regresi linier",
+        "ridge": "Regresi punggungan",
+        "random_forest": "Hutan acak",
+        "gradient_boosting": "Peningkatan gradien"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Residual yang diprediksi vs aktual",
+        "Pentingnya fitur"
+      ],
+      "slots": {
+        "target": {
+          "label": "Angka untuk diprediksi"
+        },
+        "features": {
+          "label": "Kolom masukan",
+          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+        }
+      }
+    },
+    "classification": {
+      "name": "Memprediksi suatu kategori",
+      "description": "Klasifikasikan baris (churn, persetujuan, segmen) dan nilai pengklasifikasinya.",
+      "models": {
+        "auto": "Yang terbaik dari semuanya (divalidasi silang)",
+        "logistic": "Regresi logistik",
+        "random_forest": "Hutan acak",
+        "gradient_boosting": "Peningkatan gradien"
+      },
+      "outputs": [
+        "Akurasi, F1, ROC AUC",
+        "Matriks kebingungan, kurva ROC dan PR",
+        "Pentingnya fitur"
+      ],
+      "slots": {
+        "target": {
+          "label": "Kategori untuk diprediksi"
+        },
+        "features": {
+          "label": "Kolom masukan",
+          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Temukan segmen",
+      "description": "Kelompokkan baris serupa (pelanggan, produk) tanpa label.",
+      "models": {
+        "kmeans": "k-berarti",
+        "gaussian_mixture": "Campuran Gaussian",
+        "agglomerative": "Hierarki (Bangsal)"
+      },
+      "outputs": [
+        "Skor siluet",
+        "Peta dan profil cluster",
+        "Segmen untuk setiap baris"
+      ],
+      "slots": {
+        "features": {
+          "label": "Kolom masukan",
+          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Deteksi anomali",
+      "description": "Tandai baris yang tidak biasa (penipuan, kesalahan, kesalahan data).",
+      "models": {
+        "isolation_forest": "Hutan isolasi",
+        "zscore": "Skor-z yang kuat",
+        "lof": "Faktor outlier lokal"
+      },
+      "outputs": [
+        "Hitung anomali dan bagikan",
+        "Anomali disorot pada peta",
+        "Skor untuk setiap baris"
+      ],
+      "slots": {
+        "features": {
+          "label": "Kolom masukan",
+          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Tanggal / waktu"
+    },
+    "y": {
+      "label": "Nilai",
+      "help": "Opsional: baris dihitung saat kosong."
+    },
+    "color": {
+      "label": "Warnai menurut"
+    },
+    "facet": {
+      "label": "Dibagi menjadi beberapa panel oleh"
+    },
+    "start": {
+      "label": "Nilai awal"
+    },
+    "end": {
+      "label": "Nilai akhir"
+    },
+    "features": {
+      "label": "Kolom numerik",
+      "help": "Kosong menggunakan semua kolom numerik."
+    },
+    "target": {
+      "label": "Target"
+    },
+    "z": {
+      "label": "Nilai"
+    },
+    "open": {
+      "label": "Membuka"
+    },
+    "high": {
+      "label": "Tinggi"
+    },
+    "low": {
+      "label": "Rendah"
+    },
+    "close": {
+      "label": "Menutup"
+    },
+    "lower": {
+      "label": "Batas bawah"
+    },
+    "upper": {
+      "label": "Batas atas"
+    },
+    "path": {
+      "label": "Tingkatan (luar ke dalam)"
+    },
+    "size": {
+      "label": "Ukuran gelembung"
+    },
+    "source": {
+      "label": "Dari"
+    },
+    "location": {
+      "label": "Negara"
+    },
+    "lat": {
+      "label": "Lintang"
+    },
+    "lon": {
+      "label": "Garis bujur"
+    },
+    "actual": {
+      "label": "Nilai aktual/label sebenarnya"
+    },
+    "predicted": {
+      "label": "Nilai / label yang diprediksi"
+    },
+    "score": {
+      "label": "Probabilitas/skor yang diprediksi"
+    },
+    "date": {
+      "label": "Tanggal / waktu"
+    },
+    "split_by": {
+      "label": "Perkiraan masing-masing (opsional)",
+      "help": "misalnya satu perkiraan per wilayah"
+    }
+  },
+  "options": {
+    "aggregation": "Gabungkan nilai dengan",
+    "sort": "Memesan",
+    "top_n": "Tampilkan hanya bagian atas",
+    "orientation": "Arah",
+    "show_values": "Tampilkan nilai pada grafik",
+    "log_y": "Sumbu nilai logaritmik",
+    "time_grain": "Kelompokkan tanggal menurut",
+    "markers": "Tunjukkan penanda",
+    "normalize": "Tunjukkan sebagai",
+    "window": "Jendela bergulir (titik)",
+    "model": "Musiman",
+    "lags": "Keterlambatan",
+    "hole": "Lubang tengah",
+    "total": "Tunjukkan total bar",
+    "bins": "Jumlah tempat sampah",
+    "histnorm": "Tunjukkan sebagai",
+    "marginal": "Tambahkan plot margin",
+    "bandwidth": "Menghaluskan",
+    "points": "Tunjukkan poin",
+    "box": "Tunjukkan kotak di dalamnya",
+    "confidence": "Kepercayaan diri",
+    "distribution": "Distribusi",
+    "sigma": "Batas (σ)",
+    "trendline": "Garis tren",
+    "opacity": "Opasitas titik",
+    "degree": "Derajat polinomial",
+    "band": "Tampilkan 95% pita",
+    "method": "Korelasi",
+    "triangle": "Segitiga bawah saja",
+    "nbins": "Tempat sampah",
+    "location_mode": "Lokasi adalah",
+    "scope": "Daerah peta",
+    "contours": "Kontur proyek",
+    "standardize": "Standarisasi fitur",
+    "perplexity": "Kebingungan",
+    "clusters": "Cluster (0 = pilih secara otomatis)",
+    "positive_class": "Kelas positif (kosong = otomatis)",
+    "max_k": "Coba sampai ke k",
+    "goal": "Nilai target (0 = gunakan kolom target)",
+    "horizon": "Periode ke depan",
+    "positive": "Nilai hasil yang ingin dijelaskan (kosong = otomatis)",
+    "test_size": "Bagian yang bertahan",
+    "contamination": "Bagian anomali yang diharapkan"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Jumlah",
+      "mean": "Rata-rata",
+      "median": "median",
+      "count": "Menghitung",
+      "min": "Minimum",
+      "max": "Maksimum"
+    },
+    "sort": {
+      "none": "Seperti pada datanya",
+      "desc": "Yang terbesar terlebih dahulu",
+      "asc": "Yang terkecil terlebih dahulu",
+      "label": "Alfabetis"
+    },
+    "orientation": {
+      "v": "Vertikal",
+      "h": "Horisontal"
+    },
+    "time_grain": {
+      "auto": "Otomatis",
+      "none": "Tidak ada pengelompokan",
+      "D": "Hari",
+      "W": "Pekan",
+      "M": "Bulan",
+      "Q": "Seperempat",
+      "Y": "Tahun"
+    },
+    "model": {
+      "additive": "Aditif",
+      "multiplicative": "Perkalian",
+      "random_forest": "Hutan acak",
+      "gradient_boosting": "Peningkatan gradien",
+      "linear": "Linier / logistik"
+    },
+    "histnorm": {
+      "_none": "Hitungan",
+      "percent": "Persen",
+      "probability_density": "Kepadatan"
+    },
+    "marginal": {
+      "_none": "Tidak ada",
+      "box": "Kotak",
+      "histogram": "Histogram"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "manusia perak"
+    },
+    "points": {
+      "outliers": "Pencilan",
+      "all": "Semua",
+      "none": "Tidak ada"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "Normal",
+      "lognorm": "Log-normal",
+      "expon": "Eksponensial",
+      "gamma": "Gamma",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "Tidak ada",
+      "ols": "Linier (OLS)",
+      "lowess": "Dihaluskan (RENDAH)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Tombak",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "Hitungan",
+      "index": "% baris",
+      "columns": "% kolom",
+      "all": "% dari jumlah total",
+      "true": "% dari aktual",
+      "pred": "% dari prediksi"
+    },
+    "location_mode": {
+      "country_names": "Nama negara",
+      "ISO-3": "kode ISO-3"
+    },
+    "scope": {
+      "world": "Dunia",
+      "africa": "Afrika",
+      "europe": "Eropa",
+      "asia": "Asia",
+      "north_america": "Amerika Utara",
+      "south_america": "Amerika Selatan"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Jelas",
+    "colorblind": "Brankas buta warna (Okabe–Ito)",
+    "tableau": "Tabel 10",
+    "ocean": "Laut",
+    "sunset": "Matahari terbenam",
+    "corporate": "Perusahaan",
+    "pastel": "Pastel",
+    "earth": "Bumi"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Penjualan eceran",
+      "description": "Pesanan dua tahun berdasarkan wilayah, produk, dan saluran.",
+      "audience": "Bisnis kecil"
+    },
+    "customer_churn": {
+      "name": "Pergantian pelanggan",
+      "description": "Skor pelanggan, kontrak, dan model churn.",
+      "audience": "Perusahaan"
+    },
+    "website_traffic": {
+      "name": "Lalu lintas situs web",
+      "description": "Sesi harian dan konversi berdasarkan sumber lalu lintas.",
+      "audience": "Pemasaran"
+    },
+    "house_prices": {
+      "name": "Harga rumah",
+      "description": "Rumah dengan ukuran, lokasi dan prediksi model harga.",
+      "audience": "Analis"
+    },
+    "stock_prices": {
+      "name": "Harga saham",
+      "description": "Pembukaan/tinggi/rendah/penutupan harian untuk tiga ticker.",
+      "audience": "Keuangan"
+    },
+    "world_indicators": {
+      "name": "Indikator dunia",
+      "description": "PDB, harapan hidup dan emisi menurut negara.",
+      "audience": "Setiap orang"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (dipisahkan koma)",
+    "tsv": "TSV (dipisahkan tab)",
+    "txt": "Teks yang dibatasi (deteksi otomatis; | ,)",
+    "json": "JSON (array catatan)",
+    "jsonl": "Garis JSON",
+    "xlsx": "Buku kerja Excel (lembar pertama)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (data, profil dan lembar ringkasan)",
+    "json": "Catatan JSON"
+  }
+}

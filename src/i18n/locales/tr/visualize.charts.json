@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "Karşılaştırmak",
+      "description": "Değerleri kategoriler arasında karşılaştırın ve sıralayın."
+    },
+    "trend": {
+      "name": "Trendler ve zaman",
+      "description": "Değerlerin zaman içinde nasıl değiştiğini gösterin."
+    },
+    "composition": {
+      "name": "Kompozisyon",
+      "description": "Toplamı parçalarına ayırın."
+    },
+    "distribution": {
+      "name": "Dağıtım",
+      "description": "Yayılımı, şekli ve aykırı değerleri anlayın."
+    },
+    "statistical": {
+      "name": "İstatistiksel",
+      "description": "Güven aralıkları, kontrol sınırları ve teşhis."
+    },
+    "relationship": {
+      "name": "İlişki ve korelasyon",
+      "description": "Değişkenlerin birlikte nasıl hareket ettiğini bulun."
+    },
+    "flow": {
+      "name": "Akış ve hiyerarşi",
+      "description": "Aşamalar ve seviyeler arasındaki miktarları takip edin."
+    },
+    "geo": {
+      "name": "Haritalar",
+      "description": "Değerleri ülkeye veya koordinatlara göre çizin."
+    },
+    "dimensional": {
+      "name": "Boyutlu",
+      "description": "Aynı anda birçok değişkeni azaltın ve keşfedin."
+    },
+    "ml": {
+      "name": "Model değerlendirmesi",
+      "description": "Sınıflandırıcıları, regresörleri ve kümeleri değerlendirin."
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "Çubuk grafik",
+      "description": "Bir değeri kategoriler arasında karşılaştırın.",
+      "howToRead": "Her çubuğun uzunluğu o kategorinin değeridir; sıralamak için yükseklikleri karşılaştırın.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "Gruplandırılmış çubuk",
+      "description": "Her alt grup için yan yana çubuklar.",
+      "howToRead": "Çubuklar her kategoride yan yana yer aldığından alt grupları doğrudan karşılaştırabilirsiniz.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "Yığılmış çubuk",
+      "description": "Her alt grubun katkısıyla toplamlar.",
+      "howToRead": "Her çubuk bir toplamdır; renkli bölümler her bir alt grubun ne kadar katkıda bulunduğunu gösterir.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Yığınlama ölçütü"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "%100 yığılmış çubuk",
+      "description": "Her kategorideki her alt grubun payı.",
+      "howToRead": "Her çubuğun toplamı %100 olduğundan segment yükseklikleri her kategorideki karışımı gösterir.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "color": {
+          "label": "Yığınlama ölçütü"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "Lolipop grafiği",
+      "description": "Sıralanmış değerler için daha hafif bir çubuk grafik.",
+      "howToRead": "Nokta her kategorinin değerini belirtir; Çubuk ne kadar uzun olursa değer de o kadar büyük olur.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "Nokta grafiği",
+      "description": "Kategori başına çeşitli ölçümleri nokta olarak karşılaştırın.",
+      "howToRead": "Her nokta bir kategori için bir ölçüdür; daha sağdaki noktalar daha büyüktür.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "y": {
+          "label": "Değerler"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "Dambıl grafiği",
+      "description": "Kategori başına iki ölçüm arasındaki boşluğu gösterin.",
+      "howToRead": "İki nokta başlangıç ​​ve bitiş değerleridir; Yeşil çubuk yükseldiği, kırmızı ise düştüğü anlamına gelir.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "radar": {
+      "name": "Radar grafiği",
+      "description": "Birkaç öğe için çeşitli önlemlerin profilini çıkarın.",
+      "howToRead": "Her bir jant teli bir ölçüdür; daha büyük bir şekil, ölçümler genelinde daha yüksek değerler anlamına gelir.",
+      "slots": {
+        "x": {
+          "label": "Öğe"
+        },
+        "features": {
+          "label": "Miktar"
+        }
+      }
+    },
+    "bullet": {
+      "name": "Madde işareti / hedef grafiği",
+      "description": "Her kategori için hedefe göre gerçek.",
+      "howToRead": "Koyu çubuk gerçek değerdir, açık renkli çubuk ve onay işareti ise hedeftir; yeşil, hedefe ulaşıldığı anlamına gelir.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        },
+        "y": {
+          "label": "Gerçek"
+        }
+      }
+    },
+    "pareto": {
+      "name": "Pareto grafiği",
+      "description": "Kümülatif paylaşım çizgisine (80/20) göre sıralanmış çubuklar.",
+      "howToRead": "Çubuklar ilk önce en büyüğüne göre sıralanır; satır çalışan payı gösterir, böylece hangi birkaç öğenin %80'i oluşturduğunu görebilirsiniz.",
+      "slots": {
+        "x": {
+          "label": "Kategori"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "Isı haritası tablosu",
+      "description": "İki kategorideki bir değeri renklendirin.",
+      "howToRead": "Koyu hücreler o satır ve sütun birleşimi için daha yüksek değerlere sahiptir.",
+      "slots": {
+        "x": {
+          "label": "Sütunlar"
+        },
+        "y": {
+          "label": "Satırlar"
+        }
+      },
+      "options": {
+        "show_values": "Değerleri göster"
+      }
+    },
+    "line": {
+      "name": "Çizgi grafiği",
+      "description": "Zaman içindeki değişime ilişkin klasik görüş.",
+      "howToRead": "Çizgi, değeri zaman içinde takip eder; eğimler büyüme veya düşüş gösterir.",
+      "slots": {
+        "y": {
+          "label": "Değerler"
+        }
+      }
+    },
+    "area": {
+      "name": "Alan grafiği",
+      "description": "Bir trendin hacmini vurgulayın.",
+      "howToRead": "Doldurulan alan zaman içindeki değeri gösterir; yüksekliği her tarihteki miktardır."
+    },
+    "stacked_area": {
+      "name": "Yığılmış alan",
+      "description": "Toplamın bazı kısımlarının zaman içinde nasıl değiştiği.",
+      "howToRead": "Katmanlar üst üste yığılır, böylece üst kenar toplamdır ve her bant bir gruptur.",
+      "slots": {
+        "color": {
+          "label": "Yığınlama ölçütü"
+        }
+      },
+      "options": {
+        "normalize": "%100 olarak göster"
+      }
+    },
+    "step_line": {
+      "name": "Adım çizgisi",
+      "description": "Belirli anlarda değişen değerler (fiyatlar, stok seviyeleri).",
+      "howToRead": "Değer değişene kadar aynı kalır; bu da fiyatlara, stok seviyelerine ve diğer ayrık güncellemelere uygundur."
+    },
+    "rolling_average": {
+      "name": "Hareketli ortalama",
+      "description": "Yuvarlanan ortalamaya sahip düzgün gürültülü seriler.",
+      "howToRead": "Soluk çizgi ham seridir; kalın çizgi, eğilimi ortaya çıkarmak için son noktaların ortalamasını alır."
+    },
+    "cumulative": {
+      "name": "Kümülatif toplam",
+      "description": "Zaman içinde toplam koşuyor.",
+      "howToRead": "Çizgi her periyodu bir önceki toplama ekler, dolayısıyla eğimi toplamın ne kadar hızlı büyüdüğünü gösterir."
+    },
+    "period_change": {
+      "name": "Dönemden döneme değişiklik",
+      "description": "Önceki döneme göre yüzde değişim.",
+      "howToRead": "Çubuklar önceki döneme göre yüzde değişimi gösterir: yeşil büyümeyi, kırmızı ise düşüşü gösterir."
+    },
+    "candlestick": {
+      "name": "Şamdan",
+      "description": "Açık/yüksek/düşük/kapanış hareketi (finans).",
+      "howToRead": "Her mum düşük-yüksek aralığı kapsar; gövde açıktan kapalıya doğru uzanır (yeşil yukarı, kırmızı aşağı)."
+    },
+    "range_band": {
+      "name": "Menzil bandı",
+      "description": "Min-maks veya belirsizlik bandına sahip bir çizgi.",
+      "howToRead": "Çizgi değerdir; gölgeli bant alt ve üst sınırlarını gösterir."
+    },
+    "calendar_heatmap": {
+      "name": "Takvim ısı haritası",
+      "description": "Günlük ölçümün hafta içi × hafta modeli.",
+      "howToRead": "Her kare bir gündür; koyu renkli kareler daha yüksek değerlere sahip olup hafta içi ve mevsimsel kalıpları ortaya çıkarır."
+    },
+    "seasonal_decompose": {
+      "name": "Mevsimsel ayrışma",
+      "description": "Bir seriyi trend, mevsimsellik ve artık olarak ayırın.",
+      "howToRead": "Seri, trend (yön), mevsimsel (tekrarlanan model) ve artık (gürültü) olarak ayrılmıştır."
+    },
+    "autocorrelation": {
+      "name": "Otokorelasyon (ACF / PACF)",
+      "description": "Bir serinin kendi geçmiş değerleriyle ilişkisi.",
+      "howToRead": "Kırmızı bandın dışındaki çubuklar, serinin tekrar ettiği yerlerdeki gecikmeleri gösterir."
+    },
+    "pie": {
+      "name": "Pasta grafiği",
+      "description": "Bir bütünün parçaları (birkaç dilimle en iyisi).",
+      "howToRead": "Her dilim bütünün bir payıdır; daha büyük dilimler daha büyük paylardır.",
+      "slots": {
+        "x": {
+          "label": "Dilimler"
+        }
+      }
+    },
+    "donut": {
+      "name": "Halka grafiği",
+      "description": "Ortasında toplam yer olan bir pasta.",
+      "howToRead": "Her segment, merkezde gösterilen toplamın bir payıdır.",
+      "slots": {
+        "x": {
+          "label": "Dilimler"
+        }
+      }
+    },
+    "treemap": {
+      "name": "Ağaç haritası",
+      "description": "Değere göre boyutlandırılmış iç içe dikdörtgenler.",
+      "howToRead": "Dikdörtgenin alanı değerle orantılıdır; iç içe geçmiş dikdörtgenler bir grubu parçalarına ayırır."
+    },
+    "sunburst": {
+      "name": "Güneş patlaması",
+      "description": "Eşmerkezli halkalar halinde hiyerarşi.",
+      "howToRead": "İç halkalar üst düzey gruplardır, dış halkalar ise alt gruplarıdır; Yay uzunluğu değerdir.",
+      "slots": {
+        "path": {
+          "label": "Seviyeler (içten dışa)"
+        }
+      }
+    },
+    "icicle": {
+      "name": "Buz saçağı grafiği",
+      "description": "Yığılmış dikdörtgenler halinde hiyerarşi.",
+      "howToRead": "Her satır hiyerarşinin bir düzeyini temsil eder; Bir bloğun genişliği toplamdaki payıdır.",
+      "slots": {
+        "path": {
+          "label": "Seviyeler (yukarıdan aşağıya)"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "Şelale",
+      "description": "Olumlu ve olumsuz adımların nasıl bir toplam oluşturduğu.",
+      "howToRead": "Yeşil adımlar toplanır, kırmızı adımlar çıkarılır ve son çubuk sonuçtaki toplamdır.",
+      "slots": {
+        "x": {
+          "label": "Adım"
+        },
+        "y": {
+          "help": "Toplama olarak Sayım'ı seçerek bir sayım bırakın."
+        }
+      }
+    },
+    "funnel": {
+      "name": "Huni",
+      "description": "Sıralı aşamalar yoluyla dönüşüm.",
+      "howToRead": "Her aşama bir öncekinden daha dardır; aşamalar arasındaki düşüş insanların kaybolduğu yerdir.",
+      "slots": {
+        "x": {
+          "label": "Sahne"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "Marimekko (mozaik)",
+      "description": "Değişken genişliklere sahip iki yönlü kompozisyon.",
+      "howToRead": "Sütun genişliği, her sütunun toplam içindeki payıdır; segment yüksekliği içindeki karışımdır.",
+      "slots": {
+        "x": {
+          "label": "Sütunlar"
+        },
+        "color": {
+          "label": "Segmentler"
+        }
+      }
+    },
+    "histogram": {
+      "name": "Histogram",
+      "description": "Değerlerin her aralığa düşme sıklığı.",
+      "howToRead": "Çubuklar, her aralığa kaç değerin düştüğünü sayar; en uzun çubuklar en yaygın değerlerdir.",
+      "slots": {
+        "x": {
+          "label": "Değer"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "Yoğunluk eğrisi (KDE)",
+      "description": "Dağıtımın düzgün bir tahmini.",
+      "howToRead": "Düzgün eğri, değerlerin nasıl dağıtıldığını tahmin eder; zirveler en yaygın değerlerdir.",
+      "slots": {
+        "x": {
+          "label": "Değer"
+        }
+      }
+    },
+    "box": {
+      "name": "Kutu grafiği",
+      "description": "Grup başına medyan, çeyrekler ve aykırı değerler.",
+      "howToRead": "Kutu değerlerin ortadaki %50'sini tutar, çizgi medyandır, bıyıklar tipik aralığı gösterir ve noktalar aykırı değerleri gösterir.",
+      "slots": {
+        "x": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "violin": {
+      "name": "Keman konusu",
+      "description": "Kutu grafiği artı tam dağıtım şekli.",
+      "howToRead": "Her düzeydeki genişlik orada kaç değerin bulunduğunu gösterir; koyu çubuk ortadaki %50'dir.",
+      "slots": {
+        "x": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "strip": {
+      "name": "Şerit / titreşim grafiği",
+      "description": "Her gözlem grup başına bir nokta olarak.",
+      "howToRead": "Her nokta bir satırdır ve yanlara doğru yayılır, böylece örtüşen değerler görünür kalır.",
+      "slots": {
+        "x": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "Kümülatif dağılım (ECDF)",
+      "description": "Her seviyenin altındaki değerlerin paylaşımı.",
+      "howToRead": "X eksenindeki herhangi bir değer için eğri, bu değerin altındaki veya altındaki değerlerin payını gösterir.",
+      "slots": {
+        "x": {
+          "label": "Değer"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "Sırt çizgisi",
+      "description": "Birçok grup için yığılmış dağıtımlar.",
+      "howToRead": "Her çıkıntı bir grubun dağılımıdır; zirvelerin nerede bulunduğunu ve ne kadar geniş olduklarını karşılaştırın.",
+      "slots": {
+        "x": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "Yağmur bulutu arsası",
+      "description": "Yarım keman, kutu ve ham noktalar bir arada.",
+      "howToRead": "Her grup kendi dağılımını (bulut), ortadaki %50'sini (çubuk) ve her değeri (yağmur) gösterir.",
+      "slots": {
+        "x": {
+          "label": "Gruplandırma ölçütü"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "Güven aralığı ile ortalama",
+      "description": "Grup, %95 güven aralığına sahip anlamına gelir.",
+      "howToRead": "Çubuklar grup ortalamalarıdır ve güven aralığını belirtir; örtüşen bıyıklar, farkın şans eseri olabileceği anlamına gelir.",
+      "slots": {
+        "x": {
+          "label": "Grup"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Q–Q grafiği",
+      "description": "Değerlerin teorik bir dağılıma uyup uymadığını kontrol edin.",
+      "howToRead": "Noktalar kırmızı çizgiyi takip ediyorsa veriler seçilen dağılımla eşleşiyor demektir.",
+      "slots": {
+        "x": {
+          "label": "Değer"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "Dağıtım uyumu",
+      "description": "Uygun dağılıma ve uyum iyiliğine sahip histogram.",
+      "howToRead": "Çubuklar gözlemlenen dağılımdır; eğri en uygun teorik dağılımdır.",
+      "slots": {
+        "x": {
+          "label": "Değer"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "Kontrol grafiği (SPC)",
+      "description": "Ortalama ve ±3σ kontrol limitli proses değerleri.",
+      "howToRead": "Kesikli sınırlar arasındaki noktalar normal değişimdir; bunların dışındaki kırmızı noktalara dikkat edilmesi gerekir.",
+      "slots": {
+        "x": {
+          "label": "Sipariş / zaman"
+        },
+        "y": {
+          "label": "Ölçüm"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Mülayim – Altman",
+      "description": "İki ölçüm yöntemi arasındaki uyum.",
+      "howToRead": "Her nokta aynı şeyin iki ölçümünü karşılaştırır; çizgiler ortalama önyargıyı ve anlaşmanın sınırlarını gösterir.",
+      "slots": {
+        "x": {
+          "label": "Yöntem A"
+        },
+        "y": {
+          "label": "Yöntem B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "Eksik değerler haritası",
+      "description": "Sütunlarda verilerin eksik olduğu yer.",
+      "howToRead": "Çubuklar sütun başına boşluk payını gösterir; desendeki kırmızı işaretler bunların nerede meydana geldiğini gösterir."
+    },
+    "scatter": {
+      "name": "Dağılım grafiği",
+      "description": "İki ölçü arasındaki ilişki.",
+      "howToRead": "Her nokta bir satırdır; Yükselen bir bulut, iki ölçünün birlikte artması anlamına gelir.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      },
+      "options": {
+        "marginal": "Marj grafikleri"
+      }
+    },
+    "bubble": {
+      "name": "Kabarcık grafiği",
+      "description": "Boyut olarak üçüncü bir ölçüye sahip bir dağılım grafiği.",
+      "howToRead": "Dağılım grafiğine benzer ancak kabarcık boyutu üçüncü bir ölçüyü gösterir.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "Regresyon uyumu",
+      "description": "Uygun bir çizgi, R² ve denklem ile dağılım.",
+      "howToRead": "Eğri, uygun modeldir ve bant da %95 güven aralığıdır; R² açıklanan varyasyonun payıdır.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "Korelasyon matrisi",
+      "description": "Her ölçü çifti arasındaki korelasyon.",
+      "howToRead": "Her hücre, -1'den (mavi) +1'e (kırmızı) kadar iki ölçüm arasındaki korelasyondur.",
+      "options": {
+        "show_values": "Katsayıları göster"
+      }
+    },
+    "scatter_matrix": {
+      "name": "Dağılım matrisi (çift grafiği)",
+      "description": "Bir bakışta her ölçüm çifti.",
+      "howToRead": "Her ölçü çifti kendi dağılımını alır; köşegen her ölçünün dağılımını gösterir.",
+      "slots": {
+        "color": {
+          "label": "Renk (etiket)"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "2D yoğunluk ısı haritası",
+      "description": "Noktaların yoğunlaştığı yer (birçok satır için).",
+      "howToRead": "Daha koyu hücreler daha fazla satır içerir, bu da noktaların nerede yoğunlaştığını gösterir.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "Yoğunluk konturu",
+      "description": "Nokta yoğunluğunun konturları.",
+      "howToRead": "Halkalar eşit nokta yoğunluğuna sahip alanları çevreler; iç halkalar en fazla sırayı tutar.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "Ortak arsa",
+      "description": "Her eksenin dağılımına göre dağılım.",
+      "howToRead": "Dağılım ilişkiyi gösterir; yan histogramlar her ölçümün dağılımını gösterir.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "Paralel koordinatlar",
+      "description": "Satırlarda birçok ölçümü karşılaştırın.",
+      "howToRead": "Her çizgi, her ölçünün eksenini kesen bir satırdır; çizgi demetleri ortak profilleri ortaya çıkarır.",
+      "slots": {
+        "color": {
+          "label": "Renklendirme ölçütü (sayısal)"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "Paralel kategoriler",
+      "description": "Kategorik sütunlar arasındaki akışlar.",
+      "howToRead": "Bantlar kategori sütunları arasında akar; kalınlıkları sıra sayısıdır.",
+      "slots": {
+        "path": {
+          "label": "Kategorik sütunlar"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "Acil durum tablosu",
+      "description": "Ki-kare testiyle iki kategoride sayılır.",
+      "howToRead": "Hücreler, her kategori çifti için satırları sayar; ki-kare testi bunların ilişkili olup olmadığını söylüyor.",
+      "slots": {
+        "x": {
+          "label": "Sütunlar"
+        },
+        "y": {
+          "label": "Satırlar"
+        }
+      }
+    },
+    "sankey": {
+      "name": "Sankey diyagramı",
+      "description": "Aşamalar arasında akan miktarlar.",
+      "howToRead": "Gruplar bir aşamadan diğerine akar; genişlikleri aralarında hareket eden miktardır.",
+      "slots": {
+        "path": {
+          "label": "Aşamalar (sırasıyla)"
+        }
+      }
+    },
+    "network": {
+      "name": "Ağ grafiği",
+      "description": "Varlıklar arasındaki bağlantılar.",
+      "howToRead": "Düğümler varlıklardır ve çizgiler bağlantılardır; daha büyük, daha koyu düğümlerin daha fazla bağlantısı vardır.",
+      "slots": {
+        "target": {
+          "label": "İle"
+        },
+        "y": {
+          "label": "Ağırlık"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "Koroplet haritası",
+      "description": "Ülkeleri bir değere göre renklendirin.",
+      "howToRead": "Ülkeler değerlerine göre gölgelendirilmiştir; Daha koyu, daha yüksek anlamına gelir."
+    },
+    "scatter_geo": {
+      "name": "Haritadaki noktalar",
+      "description": "Enlem/boylam noktalarını çizin.",
+      "howToRead": "Her nokta enlem ve boylam tarafından çizilen bir konumdur."
+    },
+    "scatter_3d": {
+      "name": "3 boyutlu dağılım",
+      "description": "3D döndürmede üç ölçüyü keşfedin.",
+      "howToRead": "Döndürmek için sürükleyin; her nokta üç ölçüye göre konumlandırılmış bir satırdır.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        },
+        "z": {
+          "label": "Z ekseni"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "3 boyutlu yüzey",
+      "description": "İki ölçünün üzerinde bir yüzey.",
+      "howToRead": "Yüzey yüksekliği ve rengi, ilk ikisinin karşısındaki üçüncü ölçüyü gösterir; döndürmek için sürükleyin.",
+      "slots": {
+        "x": {
+          "label": "X ekseni"
+        },
+        "y": {
+          "label": "Y ekseni"
+        },
+        "z": {
+          "label": "Yükseklik"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "PCA haritası (2D)",
+      "description": "Birçok önlemi iki ana bileşene yansıtın.",
+      "howToRead": "Birçok önlem iki bileşene sıkıştırılmıştır; birbirine yakın noktalar benzer satırlardır.",
+      "slots": {
+        "color": {
+          "label": "Renk (etiket)"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "PCA haritası (3D)",
+      "description": "3D'de üç ana bileşen.",
+      "howToRead": "3D'de üç ana bileşen; döndürmek ve kümeleri aramak için sürükleyin.",
+      "slots": {
+        "color": {
+          "label": "Renk (etiket)"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "PCA ikili planı",
+      "description": "Her bir bileşeni yönlendiren satırlar ve ölçüler.",
+      "howToRead": "Noktalar satırlardır ve oklar ölçülerdir; Aynı yolu gösteren oklar ilişkilidir.",
+      "slots": {
+        "color": {
+          "label": "Renk (etiket)"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "Kayşat grafiği",
+      "description": "Her bileşen tarafından açıklanan varyans.",
+      "howToRead": "Çubuklar her bileşenin ne kadar bilgi barındırdığını gösterir; çizgi, cari toplamı gösterir."
+    },
+    "tsne_2d": {
+      "name": "t-SNE haritası",
+      "description": "Komşuları yakın tutan doğrusal olmayan 2 boyutlu harita.",
+      "howToRead": "Benzer satırları bir arada tutan doğrusal olmayan bir harita; ayrılmış kümeleri arayın.",
+      "slots": {
+        "color": {
+          "label": "Renk (etiket)"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "LDA projeksiyonu",
+      "description": "Etiketli grupları en iyi şekilde ayıran projeksiyon.",
+      "howToRead": "Etiketli grupları mümkün olduğunca ayırmak için seçilen bir projeksiyon.",
+      "slots": {
+        "color": {
+          "label": "Etiket"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "Küme haritası (k-aracı)",
+      "description": "Benzer satırları gruplandırın ve bunları bir PCA haritasında gösterin.",
+      "howToRead": "Renkler k-aracıyla bulunan kümeleri gösterir; elmaslar her kümenin merkezini işaretler."
+    },
+    "confusion_matrix": {
+      "name": "Karışıklık matrisi",
+      "description": "Bir sınıflandırıcının doğru ve yanlış olduğu yer.",
+      "howToRead": "Köşegen doğru tahminleri barındırır; diğer hücreler hangi sınıfların karıştığını gösterir."
+    },
+    "roc_curve": {
+      "name": "ROC eğrisi",
+      "description": "AUC ile her eşikteki doğru ve yanlış pozitif oranı.",
+      "howToRead": "Eğri köşegenin üzerinde ne kadar yüksek olursa, model pozitif sıralamada o kadar iyi olur; AUC bunu özetlemektedir."
+    },
+    "pr_curve": {
+      "name": "Hassasiyet-geri çağırma eğrisi",
+      "description": "Ortalama hassasiyetle hassasiyet ve geri çağırma dengesi.",
+      "howToRead": "Hatırlama arttıkça koruduğunuz hassasiyeti gösterir; daha yüksek ve daha sağ daha iyidir."
+    },
+    "calibration_curve": {
+      "name": "Kalibrasyon eğrisi",
+      "description": "Tahmin edilen olasılıklar gözlemlenen oranlarla eşleşiyor mu?",
+      "howToRead": "Kesikli çizgi üzerindeki noktalar, tahmin edilen olasılıkların gözlemlenen oranlarla eşleştiği anlamına gelir.",
+      "options": {
+        "bins": "Kutular"
+      }
+    },
+    "cumulative_gain": {
+      "name": "Kümülatif kazanç ve artış",
+      "description": "Modelin rastgele hedeflemesinden ne kadar daha iyi olduğu.",
+      "howToRead": "Satırların en yüksek puanlı payını ve rastgele artışı hedefleyerek kaç tane pozitif yakaladığınızı gösterir."
+    },
+    "threshold_metrics": {
+      "name": "Eşik gezgini",
+      "description": "Her eşikte hassasiyet, geri çağırma ve F1.",
+      "howToRead": "Her kesmede hassasiyet, geri çağırma ve F1; noktalı çizgi en iyi dengeyi gösterir."
+    },
+    "predicted_vs_actual": {
+      "name": "Tahmin edilen ve gerçek",
+      "description": "Mükemmel çizgiye karşı regresyon doğruluğu.",
+      "howToRead": "Kesikli köşegendeki noktalar mükemmel tahminlerdir; yayılma hatayı gösterir."
+    },
+    "residual_plot": {
+      "name": "Artık arsa",
+      "description": "Önyargıyı tespit etmek için tahminlere karşı yapılan hatalar.",
+      "howToRead": "Tahminlere karşı çizilen hatalar; sıfır civarında rastgele bir bulut, sistematik önyargının olmadığı anlamına gelir."
+    },
+    "error_distribution": {
+      "name": "Hata dağılımı",
+      "description": "Tahmin hatalarının histogramı.",
+      "howToRead": "Tahmin hatalarının ne kadar büyük olduğu; sıfır civarında dar bir tepe en iyisidir."
+    },
+    "feature_importance": {
+      "name": "Özellik önemi",
+      "description": "Hangi girdiler bir hedefi yönlendirir (rastgele orman + permütasyon).",
+      "howToRead": "Daha uzun çubuklar, modelin en çok güvendiği girdilerdir; bıyıklar belirsizliği gösterir.",
+      "slots": {
+        "target": {
+          "label": "Açıklamak için hedef"
+        }
+      },
+      "options": {
+        "top_n": "Üstü göster"
+      }
+    },
+    "learning_curve": {
+      "name": "Öğrenme eğrisi",
+      "description": "Daha fazla veri modele yardımcı olur mu?",
+      "howToRead": "Veriler büyüdükçe eğitim ve doğrulama puanları; büyük bir boşluk aşırı uyum anlamına gelir.",
+      "options": {
+        "model": "Modeli"
+      }
+    },
+    "elbow": {
+      "name": "Dirsek grafiği",
+      "description": "Atalete göre küme sayısını seçin.",
+      "howToRead": "Kümeler eklendikçe eylemsizlik azalır; dirsek, fazladan kümelerin yardım etmeyi bıraktığı yerdir."
+    },
+    "silhouette": {
+      "name": "Siluet analizi",
+      "description": "Her k için küme kalitesi.",
+      "howToRead": "Daha yüksek çubuklar daha iyi ayrılmış kümeler anlamına gelir; yeşil çubuk en iyi küme sayısıdır."
+    },
+    "kpi_card": {
+      "name": "KPI kartı",
+      "description": "Üzerinde değişiklik ve mini grafik bulunan bir başlık numarası.",
+      "howToRead": "Büyük rakam son dönemdir; ok önceki döneme göre değişimi, mini çizgi ise son trendi gösterir.",
+      "slots": {
+        "y": {
+          "label": "Ölçüm"
+        }
+      }
+    },
+    "gauge": {
+      "name": "Ölçer (hedefe doğru ilerleme)",
+      "description": "Bir tedbirin hedefe ne kadar uzak olduğu.",
+      "howToRead": "İbre, hedefine göre ölçüyü gösterir; yeşil yolda, sarı yakın, kırmızı arka anlamına gelir.",
+      "slots": {
+        "y": {
+          "label": "Ölçüm"
+        },
+        "target": {
+          "label": "Hedef (isteğe bağlı)"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "Ayrıştırma ağacı",
+      "description": "Nereden geldiğini görmek için toplam seviyeyi seviye bazında kırın.",
+      "howToRead": "Soldaki toplamdan başlayın ve hangi kısımların oluştuğunu görmek için dalları takip edin; daha büyük düğümler daha fazla katkıda bulunur.",
+      "slots": {
+        "path": {
+          "label": "Dağılımı (sırasıyla)"
+        }
+      },
+      "options": {
+        "top_n": "Seviye başına dallar"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "Bir zaman serisini tahmin etme",
+      "description": "Belirsizlik bantlarıyla ileriye yönelik bir önlem (satışlar, talep, gelir) yansıtın.",
+      "models": {
+        "auto": "Hepsinden iyisi (geriye dönük testlerle seçilmiş)",
+        "holt_winters": "Holt – Winters üstel yumuşatma",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "Doğrusal trend + mevsimsellik"
+      },
+      "outputs": [
+        "%80/%95 bantlı tahmin tablosu",
+        "En iyi ve en kötü durum",
+        "Arka test doğruluğu (MAE, MAPE)",
+        "Gelecek değerler tablosu"
+      ],
+      "slots": {
+        "target": {
+          "label": "Tahmin etmek için ölçün"
+        }
+      }
+    },
+    "trend": {
+      "name": "Trend ve sezonsallık analizi",
+      "description": "Büyüme oranları, hareketli ortalamalar, mevsimsel kalıplar, değişim noktaları ve olağandışı dönemler.",
+      "models": {
+        "robust": "Otomatik (güçlü trend + anormallik tespiti)"
+      },
+      "outputs": [
+        "Büyüme: toplam, ortalama, en son ve yıllık bazda",
+        "Sezonluk profil",
+        "Değişiklik noktaları ve anormallikler"
+      ],
+      "slots": {
+        "target": {
+          "label": "Ölçüm"
+        }
+      },
+      "options": {
+        "window": "Hareketli ortalama (dönemler)"
+      }
+    },
+    "drivers": {
+      "name": "Anahtar faktörler (sonucu etkileyen şeyler)",
+      "description": "Hangi faktörlerin ve segmentlerin bir sonucu yukarı veya aşağı ittiğini öğrenin (kayıt kaybı, satışlar, memnuniyet).",
+      "models": {
+        "segments": "Segment karşılaştırması + rastgele ormanın önemi"
+      },
+      "outputs": [
+        "Artışı olan en iyi etkileyiciler",
+        "Özellik önemi",
+        "En iyi ve en kötü bölümler"
+      ],
+      "slots": {
+        "target": {
+          "label": "Açıklanacak sonuç"
+        },
+        "features": {
+          "label": "Giriş sütunları",
+          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+        }
+      }
+    },
+    "regression": {
+      "name": "Bir sayıyı tahmin et",
+      "description": "Diğer sütunlardan sayısal bir sonuç (fiyat, talep, puan) tahmin edin.",
+      "models": {
+        "auto": "Hepsinden iyisi (çapraz doğrulamalı)",
+        "linear": "Doğrusal regresyon",
+        "ridge": "Sırt regresyonu",
+        "random_forest": "Rastgele orman",
+        "gradient_boosting": "Gradyan artırma"
+      },
+      "outputs": [
+        "R², MAE, RMSE",
+        "Tahmin edilen ve gerçek kalanlar karşılaştırması",
+        "Özellik önemi"
+      ],
+      "slots": {
+        "target": {
+          "label": "Tahmin edilecek sayı"
+        },
+        "features": {
+          "label": "Giriş sütunları",
+          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+        }
+      }
+    },
+    "classification": {
+      "name": "Bir kategoriyi tahmin edin",
+      "description": "Satırları sınıflandırın (kayıp, onay, segment) ve sınıflandırıcıyı değerlendirin.",
+      "models": {
+        "auto": "Hepsinden iyisi (çapraz doğrulamalı)",
+        "logistic": "Lojistik regresyon",
+        "random_forest": "Rastgele orman",
+        "gradient_boosting": "Gradyan artırma"
+      },
+      "outputs": [
+        "Doğruluk, F1, ROC AUC",
+        "Karışıklık matrisi, ROC ve PR eğrileri",
+        "Özellik önemi"
+      ],
+      "slots": {
+        "target": {
+          "label": "Tahmin edilecek kategori"
+        },
+        "features": {
+          "label": "Giriş sütunları",
+          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+        }
+      }
+    },
+    "clustering": {
+      "name": "Segmentleri bul",
+      "description": "Benzer satırları (müşteriler, ürünler) etiket olmadan gruplandırın.",
+      "models": {
+        "kmeans": "k-anlamına gelir",
+        "gaussian_mixture": "Gauss karışımı",
+        "agglomerative": "Hiyerarşik (Koğuş)"
+      },
+      "outputs": [
+        "Siluet puanı",
+        "Küme haritası ve profilleri",
+        "Her satır için segment"
+      ],
+      "slots": {
+        "features": {
+          "label": "Giriş sütunları",
+          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+        }
+      }
+    },
+    "anomaly": {
+      "name": "Anormallikleri tespit edin",
+      "description": "Olağandışı satırları (dolandırıcılık, hatalar, veri hataları) işaretleyin.",
+      "models": {
+        "isolation_forest": "İzolasyon ormanı",
+        "zscore": "Sağlam z puanı",
+        "lof": "Yerel aykırı değer faktörü"
+      },
+      "outputs": [
+        "Anormallik sayımı ve paylaşımı",
+        "Haritada vurgulanan anormallikler",
+        "Her satır için puan"
+      ],
+      "slots": {
+        "features": {
+          "label": "Giriş sütunları",
+          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "Tarih / saat"
+    },
+    "y": {
+      "label": "Değer",
+      "help": "İsteğe bağlı: satırlar boş olduğunda sayılır."
+    },
+    "color": {
+      "label": "Renklendirme ölçütü"
+    },
+    "facet": {
+      "label": "Panellere bölün"
+    },
+    "start": {
+      "label": "Başlangıç ​​değeri"
+    },
+    "end": {
+      "label": "Bitiş değeri"
+    },
+    "features": {
+      "label": "Sayısal sütunlar",
+      "help": "Boş tüm sayısal sütunları kullanır."
+    },
+    "target": {
+      "label": "Hedef"
+    },
+    "z": {
+      "label": "Değer"
+    },
+    "open": {
+      "label": "Açık"
+    },
+    "high": {
+      "label": "Yüksek"
+    },
+    "low": {
+      "label": "Düşük"
+    },
+    "close": {
+      "label": "Kapalı"
+    },
+    "lower": {
+      "label": "Alt sınır"
+    },
+    "upper": {
+      "label": "Üst sınır"
+    },
+    "path": {
+      "label": "Seviyeler (dıştan içe)"
+    },
+    "size": {
+      "label": "Kabarcık boyutu"
+    },
+    "source": {
+      "label": "İtibaren"
+    },
+    "location": {
+      "label": "Ülke"
+    },
+    "lat": {
+      "label": "Enlem"
+    },
+    "lon": {
+      "label": "Boylam"
+    },
+    "actual": {
+      "label": "Gerçek değer / gerçek etiket"
+    },
+    "predicted": {
+      "label": "Tahmini değer / etiket"
+    },
+    "score": {
+      "label": "Tahmin edilen olasılık / puan"
+    },
+    "date": {
+      "label": "Tarih / saat"
+    },
+    "split_by": {
+      "label": "Her birini tahmin edin (isteğe bağlı)",
+      "help": "örneğin bölge başına bir tahmin"
+    }
+  },
+  "options": {
+    "aggregation": "Değerleri şununla birleştir:",
+    "sort": "Emir",
+    "top_n": "Yalnızca üst kısmı göster",
+    "orientation": "Yön",
+    "show_values": "Değerleri grafikte göster",
+    "log_y": "Logaritmik değer ekseni",
+    "time_grain": "Tarihleri ​​şuna göre gruplandır:",
+    "markers": "İşaretçileri göster",
+    "normalize": "Farklı göster",
+    "window": "Dönen pencere (noktalar)",
+    "model": "Mevsimsellik",
+    "lags": "Gecikmeler",
+    "hole": "Merkez delik",
+    "total": "Toplam çubuğu göster",
+    "bins": "Kutu sayısı",
+    "histnorm": "Farklı göster",
+    "marginal": "Kenar boşluğu grafiği ekleme",
+    "bandwidth": "Pürüzsüzleştirme",
+    "points": "Noktaları göster",
+    "box": "İçerideki kutuyu göster",
+    "confidence": "Kendinden emin",
+    "distribution": "Dağıtım",
+    "sigma": "Limitler (σ)",
+    "trendline": "Trend çizgisi",
+    "opacity": "Nokta opaklığı",
+    "degree": "Polinom derecesi",
+    "band": "%95 bandını göster",
+    "method": "Korelasyon",
+    "triangle": "Yalnızca alt üçgen",
+    "nbins": "Kutular",
+    "location_mode": "Konumlar:",
+    "scope": "Harita alanı",
+    "contours": "Proje konturları",
+    "standardize": "Özellikleri standartlaştırın",
+    "perplexity": "Şaşkınlık",
+    "clusters": "Kümeler (0 = otomatik olarak seç)",
+    "positive_class": "Pozitif sınıf (boş = otomatik)",
+    "max_k": "K'ya kadar deneyin",
+    "goal": "Hedef değer (0 = hedef sütunu kullanın)",
+    "horizon": "Önümüzdeki dönemler",
+    "positive": "Açıklanacak sonuç değeri (boş = otomatik)",
+    "test_size": "Bekletilen paylaşım",
+    "contamination": "Anormalliklerin beklenen payı"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "Toplam",
+      "mean": "Ortalama",
+      "median": "Medyan",
+      "count": "Saymak",
+      "min": "Asgari",
+      "max": "Maksimum"
+    },
+    "sort": {
+      "none": "Verilerde olduğu gibi",
+      "desc": "Önce en büyüğü",
+      "asc": "Önce en küçük",
+      "label": "Alfabetik"
+    },
+    "orientation": {
+      "v": "Dikey",
+      "h": "Yatay"
+    },
+    "time_grain": {
+      "auto": "Otomatik",
+      "none": "Gruplandırma yok",
+      "D": "Gün",
+      "W": "Hafta",
+      "M": "Ay",
+      "Q": "Çeyrek",
+      "Y": "Yıl"
+    },
+    "model": {
+      "additive": "Katkı maddesi",
+      "multiplicative": "çarpımsal",
+      "random_forest": "Rastgele orman",
+      "gradient_boosting": "Gradyan artırma",
+      "linear": "Doğrusal / lojistik"
+    },
+    "histnorm": {
+      "_none": "Sayımlar",
+      "percent": "Yüzde",
+      "probability_density": "Yoğunluk"
+    },
+    "marginal": {
+      "_none": "Hiçbiri",
+      "box": "Kutu",
+      "histogram": "Histogram"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Gümüş Adam"
+    },
+    "points": {
+      "outliers": "Aykırı Değerler",
+      "all": "Tüm",
+      "none": "Hiçbiri"
+    },
+    "confidence": {
+      "0_9": "%90",
+      "0_95": "%95",
+      "0_99": "%99"
+    },
+    "distribution": {
+      "norm": "Normal",
+      "lognorm": "Log-normal",
+      "expon": "Üstel",
+      "gamma": "Gama",
+      "weibull_min": "Weibull"
+    },
+    "trendline": {
+      "none": "Hiçbiri",
+      "ols": "Doğrusal (OLS)",
+      "lowess": "Düzleştirilmiş (DÜŞÜK)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Mızrakçı",
+      "kendall": "Kendal"
+    },
+    "normalize": {
+      "none": "Sayımlar",
+      "index": "satırın %'si",
+      "columns": "sütunun %'si",
+      "all": "toplamın %'si",
+      "true": "gerçek yüzde",
+      "pred": "tahmin edilenin %'si"
+    },
+    "location_mode": {
+      "country_names": "Ülke adları",
+      "ISO-3": "ISO-3 kodları"
+    },
+    "scope": {
+      "world": "Dünya",
+      "africa": "Afrika",
+      "europe": "Avrupa",
+      "asia": "Asya",
+      "north_america": "Kuzey Amerika",
+      "south_america": "Güney Amerika"
+    },
+    "test_size": {
+      "0_2": "%20",
+      "0_25": "%25",
+      "0_3": "%30"
+    },
+    "contamination": {
+      "0_01": "%1",
+      "0_02": "%2",
+      "0_05": "%5",
+      "0_1": "%10"
+    }
+  },
+  "palettes": {
+    "vivid": "JT Canlı",
+    "colorblind": "Renk körü kasa (Okabe–Ito)",
+    "tableau": "Tablo 10",
+    "ocean": "Okyanus",
+    "sunset": "Gün batımı",
+    "corporate": "Kurumsal",
+    "pastel": "Pastel",
+    "earth": "Toprak"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "Perakende satışlar",
+      "description": "Bölgeye, ürüne ve kanala göre iki yıllık siparişler.",
+      "audience": "Küçük işletme"
+    },
+    "customer_churn": {
+      "name": "Müşteri kaybı",
+      "description": "Aboneler, sözleşmeler ve kayıp modelinin puanları.",
+      "audience": "Girişim"
+    },
+    "website_traffic": {
+      "name": "Web sitesi trafiği",
+      "description": "Trafik kaynağına göre günlük oturumlar ve dönüşümler.",
+      "audience": "Pazarlama"
+    },
+    "house_prices": {
+      "name": "Ev fiyatları",
+      "description": "Büyüklüğü, konumu ve fiyat modelinin tahminleri olan evler.",
+      "audience": "Analistler"
+    },
+    "stock_prices": {
+      "name": "Hisse senedi fiyatları",
+      "description": "Üç şerit için günlük açılış/yüksek/düşük/kapanış.",
+      "audience": "Finans"
+    },
+    "world_indicators": {
+      "name": "Dünya göstergeleri",
+      "description": "Ülkelere göre GSYİH, yaşam beklentisi ve emisyonlar.",
+      "audience": "Herkes"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV (virgülle ayrılmış)",
+    "tsv": "TSV (sekmeyle ayrılmış)",
+    "txt": "Sınırlandırılmış metin (otomatik algılama ; | ,)",
+    "json": "JSON (kayıt dizisi)",
+    "jsonl": "JSON Hatları",
+    "xlsx": "Excel çalışma kitabı (ilk sayfa)"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel (veri, profil ve özet sayfaları)",
+    "json": "JSON kayıtları"
+  }
+}

@@ -3,5 +3,7 @@
   "switchToDark": "Passer au thème sombre",
   "light": "Clair",
   "dark": "Sombre",
-  "tagline": "Espace de travail IA privé"
+  "tagline": "Espace de travail IA privé",
+  "notice": "",
+  "back": "Retour"
 }

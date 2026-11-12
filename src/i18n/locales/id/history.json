@@ -7,5 +7,15 @@
   "emptyTitle": "Belum ada riwayat",
   "emptyDesc": "Mulai sebuah obrolan dan percakapan Anda akan muncul di sini.",
   "startChatting": "Mulai mengobrol",
-  "deleteItemAria": "Hapus {{title}}"
+  "deleteItemAria": "Hapus {{title}}",
+  "searchPlaceholder": "Cari percakapan",
+  "archived": "Diarsipkan",
+  "openAria": "Buka {{title}}",
+  "pinned": "Disematkan",
+  "untitled": "Percakapan tanpa judul",
+  "pin": "Pin",
+  "unpin": "Membuka peniti",
+  "archive": "Arsip",
+  "unarchive": "Pulihkan dari arsip",
+  "export": "Ekspor sebagai Penurunan Harga"
 }

@@ -1,6 +1,7 @@
 import { forwardRef, useState, type InputHTMLAttributes } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   id?: string;
@@ -8,6 +9,7 @@ interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   ({ className, id, ...props }, ref) => {
+    const { t } = useTranslation();
     const [visible, setVisible] = useState(false);
     return (
       <div className="password-input">
@@ -21,7 +23,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         <button
           type="button"
           className="password-input-toggle"
-          aria-label={visible ? 'Hide password' : 'Show password'}
+          aria-label={visible ? t('common.hidePassword') : t('common.showPassword')}
           aria-pressed={visible}
           onClick={() => setVisible((prev) => !prev)}
         >

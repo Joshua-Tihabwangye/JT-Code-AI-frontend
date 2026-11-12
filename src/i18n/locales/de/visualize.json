@@ -1,0 +1,66 @@
+{
+  "tabs": {
+    "dashboards": "Dashboards",
+    "data": "Daten",
+    "gallery": "Galerie",
+    "predict": "Prognose",
+    "reports": "Berichte",
+    "explore": "Erkunden"
+  },
+  "askAi": "KI fragen",
+  "hero": {
+    "title": "Datenvisualisierungsstudio"
+  },
+  "assistant": {
+    "title": "JT-Code KI",
+    "cost": "Verbraucht nur Credits, wenn du einen Prompt sendest. Diagramme, Erkenntnisse und Vorschläge sind kostenlos.",
+    "about": "Frage zu",
+    "intro": "Beschreibe, was du sehen möchtest. Ich wähle das Diagramm, fülle die Spalten aus, und du prüfst es, bevor etwas ausgeführt wird.",
+    "thinking": "Denkt nach…",
+    "builtIn": "Integriert",
+    "credits": "{{credits}} Credits",
+    "free": "keine Credits verbraucht",
+    "openExplore": "In „Erkunden“ öffnen",
+    "setUp": "Prognose einrichten",
+    "placeholder": "z. B. Monatlichen Umsatz nach Region anzeigen",
+    "prompt": "Prompt",
+    "send": "Senden",
+    "close": "Schließen"
+  },
+  "dataset": "Dataset",
+  "noDataset": "Noch kein Dataset",
+  "sections": "Bereiche der Datenvisualisierung",
+  "controls": {
+    "noColumns": {
+      "numeric": "Keine numerischen Spalten",
+      "datetime": "Keine Datum/Uhrzeit-Spalten",
+      "categorical": "Keine kategorialen Spalten",
+      "dimension": "Keine Dimensionsspalten",
+      "any": "Keine Spalten"
+    },
+    "chooseColumn": "Spalte auswählen…",
+    "none": "Keine",
+    "automatic": "Automatisch"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "ausgezeichnet",
+      "good": "gut",
+      "fair": "mittel",
+      "weak": "schwach",
+      "unknown": "unbekannt"
+    },
+    "dataset": "Dataset",
+    "noDatasets": "Noch keine Datasets",
+    "rows_one": "{{rows}} Zeile",
+    "rows_other": "{{rows}} Zeilen",
+    "less": "Weniger",
+    "howToRead": "So liest du es",
+    "dataOf": "Daten: {{title}}",
+    "tableSize": "{{rows}} Zeilen × {{columns}} Spalten – die Daten, die dieses Diagramm zeigt",
+    "tableSizeFirst": "{{rows}} Zeilen × {{columns}} Spalten (erste Zeilen) – die Daten, die dieses Diagramm zeigt",
+    "close": "Schließen",
+    "expandRibbon": "Menüband erweitern",
+    "collapseRibbon": "Menüband reduzieren"
+  }
+}

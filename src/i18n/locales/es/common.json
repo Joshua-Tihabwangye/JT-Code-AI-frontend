@@ -14,5 +14,13 @@
   "default": "Predeterminado",
   "creditsUnit": "créditos",
   "messagesCount_one": "{{count}} mensaje",
-  "messagesCount_other": "{{count}} mensajes"
+  "messagesCount_other": "{{count}} mensajes",
+  "dismiss": "Descartar",
+  "avatar": "Avatar",
+  "hidePassword": "Ocultar contraseña",
+  "showPassword": "Mostrar contraseña",
+  "clearSearch": "Borrar búsqueda",
+  "confirm": "Confirmar",
+  "notifications": "Notificaciones",
+  "dismissNotification": "Descartar notificación"
 }

@@ -14,7 +14,8 @@
     "uppercase": "Herufi kubwa moja",
     "lowercase": "Herufi ndogo moja",
     "number": "Nambari moja",
-    "singleRule": "Nenosiri lazima liwe na herufi angalau 8 na liwe na angalau herufi moja na nambari moja."
+    "singleRule": "Nenosiri lazima liwe na herufi angalau 8 na liwe na angalau herufi moja na nambari moja.",
+    "special": "Tabia moja maalum"
   },
   "matchOk": "Manenosiri yanalingana.",
   "matchError": "Manenosiri bado hayalingani.",
@@ -48,5 +49,12 @@
   "privacyLink": "Sera ya Faragha",
   "termsHelp": "Unaweza kupitia kurasa hizi za kisheria kabla ya kukamilisha usajili.",
   "submit": "Fungua akaunti",
-  "haveAccountQuestion": "Una akaunti tayari?"
+  "haveAccountQuestion": "Una akaunti tayari?",
+  "helpText": "",
+  "section": {
+    "account": "Akaunti",
+    "profile": "Wasifu",
+    "region": "Mkoa"
+  },
+  "confirmEmail": "Karibu umefika! Tulituma kiungo cha uthibitishaji kwa {{email}}. Ifungue, kisha ingia."
 }

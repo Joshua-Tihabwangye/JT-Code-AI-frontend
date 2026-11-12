@@ -29,5 +29,20 @@
   "changePhoto": "انقر لتغيير الصورة",
   "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
   "updateProfileError": "فشل تحديث الملف الشخصي",
-  "uploadAvatarError": "فشل رفع الصورة الشخصية"
+  "uploadAvatarError": "فشل رفع الصورة الشخصية",
+  "eyebrow": "الإعدادات",
+  "avatarUpdated": "تم تحديث صورة الملف الشخصي.",
+  "removePhoto": "إزالة الصورة",
+  "passwordChanged": "تم تغيير كلمة المرور.",
+  "passwordMismatch": "كلمتا المرور الجديدتان غير متطابقتين.",
+  "workspace": "مساحة العمل",
+  "workspaceDesc": "مؤسستك في JT-Code. المحادثات والملفات والأرصدة تابعة لها.",
+  "workspaceName": "اسم مساحة العمل",
+  "workspaceUpdated": "تمت إعادة تسمية مساحة العمل.",
+  "password": "كلمة المرور",
+  "passwordDesc": "غيّر كلمة المرور التي تستخدمها لتسجيل الدخول.",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة (8 أحرف أو أكثر)",
+  "confirmPassword": "تأكيد كلمة المرور الجديدة",
+  "changePassword": "تغيير كلمة المرور"
 }

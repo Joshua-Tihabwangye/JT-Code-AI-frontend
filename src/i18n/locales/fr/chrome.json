@@ -9,5 +9,8 @@
   "offlineMessage": "Vous êtes hors ligne. Les modifications sont enregistrées localement et seront synchronisées à la reconnexion.",
   "fatalTitle": "Une erreur est survenue",
   "unexpectedError": "Une erreur inattendue s'est produite.",
-  "reloadApp": "Recharger l'application"
+  "reloadApp": "Recharger l'application",
+  "home": "Accueil JT-Code",
+  "primaryNavigation": "Navigation principale",
+  "fatalError": "JT-Code a rencontré une erreur."
 }

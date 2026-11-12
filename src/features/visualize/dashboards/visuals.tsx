@@ -1,5 +1,6 @@
 import { useMemo, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
+import { formatNumber } from '@/i18n/format';
 import type { CellStyle, DashboardFilter, DashboardTheme, DashboardVisual, KpiData, VisualOutput, VisualTable } from '@/lib/data';
 import { EChart, type EChartClick } from '../EChart';
 import { LOCAL_TYPES } from './customize';
@@ -83,7 +84,7 @@ function formatCell(value: unknown, percent?: boolean): string {
   const magnitude = Math.abs(value);
   if (magnitude >= 1e6) return `${(value / 1e6).toFixed(2).replace(/\.?0+$/, '')}M`;
   if (magnitude >= 1e4) return `${(value / 1e3).toFixed(1).replace(/\.0$/, '')}K`;
-  return value.toLocaleString(undefined, { maximumFractionDigits: magnitude >= 100 ? 0 : 2 });
+  return formatNumber(value, { maximumFractionDigits: magnitude >= 100 ? 0 : 2 });
 }
 
 type RowHandler = (index: number, event: React.MouseEvent, kind?: 'menu') => void;

@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Análise de dados",
+  "title": "Análise de dados",
+  "subtitle": "Carregue um CSV, explore suas colunas, faça análises e transforme os resultados em gráficos.",
+  "upload": {
+    "title": "Adicionar um conjunto de dados",
+    "name": "Nome",
+    "namePlaceholder": "por exemplo Vendas do terceiro trimestre",
+    "file": "Arquivo CSV (até 25 MB)",
+    "or": "— ou cole CSV —",
+    "paste": "Texto CSV",
+    "pastePlaceholder": "região, receita\nLeste, 120\nOeste, 80",
+    "submit": "Adicionar conjunto de dados",
+    "limits": "CSV UTF-8 com linha de cabeçalho; até 100.000 linhas e 200 colunas.",
+    "needData": "Escolha um arquivo CSV ou cole o texto CSV."
+  },
+  "datasets": "Conjuntos de dados",
+  "noDatasets": "Ainda não há conjuntos de dados.",
+  "datasetMeta": "{{rows}} linhas · {{columns}} colunas",
+  "emptyTitle": "Nenhum conjunto de dados selecionado",
+  "emptyDesc": "Adicione um CSV à esquerda para iniciar a análise.",
+  "deleteDataset": "Excluir",
+  "deleteConfirm": "Excluir este conjunto de dados com suas análises e gráficos?",
+  "profilePending": "As estatísticas da coluna aparecem após a primeira análise de um arquivo carregado.",
+  "profile": {
+    "column": "Coluna",
+    "kind": "Tipo",
+    "missing": "Ausente",
+    "distinct": "Distinto",
+    "summary": "Resumo"
+  },
+  "builder": {
+    "title": "Analisar",
+    "filters": "Filtros",
+    "addFilter": "Adicionar filtro",
+    "noFilters": "Sem filtros: todas as linhas estão incluídas.",
+    "removeFilter": "Remover filtro",
+    "column": "Coluna",
+    "operator": "Operador",
+    "value": "Valor",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Agrupar por",
+    "aggregate": "Agregar",
+    "ofColumn": "Da coluna",
+    "allNumeric": "Todas as colunas numéricas",
+    "sortBy": "Ordenar por",
+    "direction": "Direção",
+    "asc": "Ascendente",
+    "desc": "Descendente",
+    "limit": "Limite de linhas",
+    "none": "Nenhum",
+    "run": "Executar análise",
+    "cost": "Cada análise utiliza 10 créditos; os gráficos são gratuitos."
+  },
+  "operators": {
+    "eq": "é igual",
+    "ne": "não é igual",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "contém",
+    "in": "é um dos"
+  },
+  "aggregates": {
+    "count": "Contar linhas",
+    "sum": "Soma",
+    "mean": "Média",
+    "min": "Mínimo",
+    "max": "Máximo"
+  },
+  "status": {
+    "queued": "Na fila",
+    "running": "Correndo",
+    "completed": "Concluído",
+    "failed": "Fracassado",
+    "ready": "Preparar"
+  },
+  "results": {
+    "title": "Resultados",
+    "rows": "{{count}} linhas (mostrando {{shown}})",
+    "download": "Baixar CSV",
+    "retry": "Tentar novamente",
+    "pickRun": "Execução de análise"
+  },
+  "charts": {
+    "title": "Gráficos",
+    "kind": "Gráfico",
+    "x": "Eixo X",
+    "y": "Eixo Y (numérico)",
+    "chartTitle": "Título",
+    "create": "Criar gráfico",
+    "delete": "Excluir gráfico",
+    "noImage": "Os gráficos são renderizados no servidor no modo API."
+  },
+  "chartKinds": {
+    "bar": "Bar",
+    "line": "Linha",
+    "scatter": "Dispersão",
+    "area": "Área",
+    "histogram": "Histograma",
+    "box": "Caixa",
+    "pie": "Torta"
+  }
+}

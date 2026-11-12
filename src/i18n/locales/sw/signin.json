@@ -1,8 +1,6 @@
 {
   "title": "Karibu tena",
   "subtitle": "Ingia ili kuendelea na JT-Code",
-  "google": "Google",
-  "apple": "Apple",
   "connecting": "Inaunganisha…",
   "emailLabel": "Barua pepe",
   "emailPlaceholder": "you@example.com",
@@ -11,5 +9,11 @@
   "forgotPassword": "Ulisahau nenosiri?",
   "submit": "Ingia",
   "noAccount": "Hauna akaunti?",
-  "createAccount": "Fungua akaunti"
+  "createAccount": "Fungua akaunti",
+  "helpText": "",
+  "signInWithGoogle": "Ingia kwa kutumia Google",
+  "signInWithApple": "Ingia kwa kutumia Apple",
+  "offlineHint": "Hali ya muundo wa nje ya mtandao: mandharinyuma haitumiki. Ingia kwa barua pepe na nenosiri lolote (akaunti ya karibu imeundwa), au endelea na akaunti ya onyesho.",
+  "demoAccount": "Endelea na akaunti ya onyesho",
+  "continueWith": "Endelea na {{provider}}"
 }

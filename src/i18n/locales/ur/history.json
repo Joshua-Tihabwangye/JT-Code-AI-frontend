@@ -7,5 +7,15 @@
   "emptyTitle": "ابھی کوئی تاریخچہ نہیں",
   "emptyDesc": "چیٹ شروع کریں اور آپ کی گفتگوئیں یہاں نظر آئیں گی۔",
   "startChatting": "چیٹ شروع کریں",
-  "deleteItemAria": "{{title}} حذف کریں"
+  "deleteItemAria": "{{title}} حذف کریں",
+  "searchPlaceholder": "مکالمات تلاش کریں۔",
+  "archived": "محفوظ شدہ",
+  "openAria": "کھولیں {{title}}",
+  "pinned": "پن لگا ہوا",
+  "untitled": "بلا عنوان گفتگو",
+  "pin": "پن",
+  "unpin": "پن کھول دیں۔",
+  "archive": "آرکائیو",
+  "unarchive": "محفوظ شدہ دستاویزات سے بحال کریں۔",
+  "export": "مارک ڈاؤن کے بطور برآمد کریں۔"
 }

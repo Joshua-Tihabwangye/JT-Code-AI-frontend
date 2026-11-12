@@ -10,5 +10,9 @@
   "all": "All",
   "recommended": "Recommended for {{name}}",
   "recommendedHint": "Picked from your columns — open one to see it with your data.",
-  "empty": "No chart matches that search."
+  "empty": "No chart matches that search.",
+  "advancedBadge": "Advanced",
+  "useInExplore": "Use in Explore",
+  "addToDashboard": "Add to dashboard",
+  "thisDataset": "this dataset"
 }

@@ -14,5 +14,13 @@
   "default": "डीफॉल्ट",
   "creditsUnit": "क्रेडिट",
   "messagesCount_one": "{{count}} संदेश",
-  "messagesCount_other": "{{count}} संदेश"
+  "messagesCount_other": "{{count}} संदेश",
+  "dismiss": "डिसमिस करा",
+  "avatar": "अवतार",
+  "hidePassword": "पासवर्ड लपवा",
+  "showPassword": "पासवर्ड दाखवा",
+  "clearSearch": "शोध साफ करा",
+  "confirm": "पुष्टी करा",
+  "notifications": "सूचना",
+  "dismissNotification": "सूचना डिसमिस करा"
 }

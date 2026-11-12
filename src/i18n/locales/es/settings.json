@@ -29,5 +29,20 @@
   "changePhoto": "Haz clic para cambiar la foto",
   "profileUpdated": "Perfil actualizado correctamente",
   "updateProfileError": "No se pudo actualizar el perfil",
-  "uploadAvatarError": "No se pudo subir el avatar"
+  "uploadAvatarError": "No se pudo subir el avatar",
+  "eyebrow": "Configuración",
+  "avatarUpdated": "Foto de perfil actualizada.",
+  "removePhoto": "Quitar foto",
+  "passwordChanged": "Se ha cambiado tu contraseña.",
+  "passwordMismatch": "Las nuevas contraseñas no coinciden.",
+  "workspace": "Espacio de trabajo",
+  "workspaceDesc": "Tu organización en JT-Code. Las conversaciones, los archivos y los créditos le pertenecen.",
+  "workspaceName": "Nombre del espacio de trabajo",
+  "workspaceUpdated": "Espacio de trabajo renombrado.",
+  "password": "Contraseña",
+  "passwordDesc": "Cambia la contraseña que usas para iniciar sesión.",
+  "currentPassword": "Contraseña actual",
+  "newPassword": "Nueva contraseña (8 caracteres o más)",
+  "confirmPassword": "Confirmar nueva contraseña",
+  "changePassword": "Cambiar contraseña"
 }

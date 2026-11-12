@@ -29,5 +29,20 @@
   "changePhoto": "点击更换照片",
   "profileUpdated": "个人资料更新成功",
   "updateProfileError": "更新个人资料失败",
-  "uploadAvatarError": "头像上传失败"
+  "uploadAvatarError": "头像上传失败",
+  "eyebrow": "设置",
+  "avatarUpdated": "头像已更新。",
+  "removePhoto": "移除照片",
+  "passwordChanged": "密码已更改。",
+  "passwordMismatch": "两次输入的新密码不一致。",
+  "workspace": "工作区",
+  "workspaceDesc": "你在 JT-Code 中的组织。对话、文件和积分均归属于该组织。",
+  "workspaceName": "工作区名称",
+  "workspaceUpdated": "工作区已重命名。",
+  "password": "密码",
+  "passwordDesc": "更改用于登录的密码。",
+  "currentPassword": "当前密码",
+  "newPassword": "新密码（至少 8 个字符）",
+  "confirmPassword": "确认新密码",
+  "changePassword": "更改密码"
 }

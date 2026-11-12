@@ -57,5 +57,7 @@
     "uploadAndPrompt": "画像をアップロードし、プロンプトを入力してください",
     "noResult": "結果なし"
   },
-  "defaultQuestion": "この画像を詳しく説明してください"
+  "defaultQuestion": "この画像を詳しく説明してください",
+  "uploadPreview": "プレビューをアップロードする",
+  "autoModel": "自動 (推奨)"
 }

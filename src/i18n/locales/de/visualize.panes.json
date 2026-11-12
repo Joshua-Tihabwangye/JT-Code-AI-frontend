@@ -1,0 +1,37 @@
+{
+  "moveUp": "Nach oben",
+  "moveDown": "Nach unten",
+  "views": {
+    "intro": "Eine Ansicht speichert diese Seite mit ihren Datenschnitten, Filtern, der Drilldown-Ebene, Parametern und den ausgeblendeten Visuals (Registerkarte „Auswahl“). Betrachter wählen Ansichten unter „Ansichten ▾“; Schaltflächen und Navigatoren können sie öffnen.",
+    "namePlaceholder": "Name, z. B. Nur online",
+    "add": "Ansicht hinzufügen",
+    "nameAria": "Name der Ansicht",
+    "show": "Diese Ansicht anzeigen",
+    "update": "Mit aktueller Anzeige aktualisieren",
+    "delete": "Löschen"
+  },
+  "mobile": {
+    "phone": "Smartphone-Layout",
+    "empty": "Smartphones zeigen alle Visuals in Lesereihenfolge, bis du ein Layout für diese Seite erstellst.",
+    "auto": "Vom Desktop-Layout ausgehen",
+    "shorter": "Niedriger",
+    "taller": "Höher",
+    "remove": "Aus dem Smartphone-Layout entfernen",
+    "notOnPhones": "Nicht auf Smartphones",
+    "allPlaced": "Alle Visuals sind im Smartphone-Layout.",
+    "clear": "Smartphone-Layout leeren"
+  },
+  "selection": {
+    "group": "Gruppieren",
+    "ungroup": "Gruppierung aufheben",
+    "inGroup": "In einer Gruppe",
+    "layerName": "Ebenenname",
+    "show": "Anzeigen",
+    "hide": "Ausblenden",
+    "lock": "Sperren",
+    "unlock": "Entsperren",
+    "forward": "Eine Ebene nach vorne",
+    "backward": "Eine Ebene nach hinten",
+    "empty": "Noch keine Visuals – verwende „Einfügen“."
+  }
+}

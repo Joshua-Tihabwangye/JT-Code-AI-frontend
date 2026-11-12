@@ -3,19 +3,25 @@
     "eyebrow": "Контакты",
     "title": "Помощь по JT-Code",
     "backToSignIn": "Вернуться ко входу",
-    "createAccount": "Создать аккаунт"
+    "createAccount": "Создать аккаунт",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "Политика конфиденциальности",
     "title": "Конфиденциальность JT-Code",
     "signIn": "Войти",
-    "readTerms": "Читать условия"
+    "readTerms": "Читать условия",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "Условия использования",
     "title": "Условия JT-Code",
     "createAccount": "Создать аккаунт",
-    "contactSupport": "Связаться с поддержкой"
+    "contactSupport": "Связаться с поддержкой",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "Страница не найдена",

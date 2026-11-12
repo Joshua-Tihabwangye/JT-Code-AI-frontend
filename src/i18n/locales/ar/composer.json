@@ -5,5 +5,6 @@
   "currentPlan": "الخطة الحالية",
   "voiceInput": "إدخال صوتي",
   "sendMessage": "إرسال الرسالة",
-  "defaultPlaceholder": "اسأل JT-Code عن أي شيء…"
+  "defaultPlaceholder": "اسأل JT-Code عن أي شيء…",
+  "removeAttachment": "إزالة {{name}}"
 }

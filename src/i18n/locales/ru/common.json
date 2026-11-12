@@ -14,5 +14,15 @@
   "default": "По умолчанию",
   "creditsUnit": "кредитов",
   "messagesCount_one": "{{count}} сообщение",
-  "messagesCount_other": "{{count}} сообщений"
+  "messagesCount_other": "{{count}} сообщений",
+  "dismiss": "Увольнять",
+  "avatar": "Аватар",
+  "hidePassword": "Скрыть пароль",
+  "showPassword": "Показать пароль",
+  "clearSearch": "Очистить поиск",
+  "confirm": "Подтверждать",
+  "notifications": "Уведомления",
+  "dismissNotification": "Закрыть уведомление",
+  "messagesCount_few": "{{count}} сообщений",
+  "messagesCount_many": "{{count}} сообщений"
 }

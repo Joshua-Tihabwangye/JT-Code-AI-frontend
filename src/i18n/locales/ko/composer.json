@@ -5,5 +5,6 @@
   "currentPlan": "현재 플랜",
   "voiceInput": "음성 입력",
   "sendMessage": "메시지 보내기",
-  "defaultPlaceholder": "JT-Code에게 무엇이든 물어보세요…"
+  "defaultPlaceholder": "JT-Code에게 무엇이든 물어보세요…",
+  "removeAttachment": "{{name}} 제거"
 }

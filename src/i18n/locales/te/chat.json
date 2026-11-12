@@ -13,5 +13,12 @@
   "requestFailed": "అభ్యర్థన విఫలమైంది.",
   "statusRunning": "స్థితి: {{status}}…",
   "defaultPlan": "Free",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "మనం ఏమి చేయాలి",
+  "headlineAccent": "ఈరోజు నిర్మించాలా?",
+  "assistant": "JT-కోడ్",
+  "stop": "ఉత్పత్తి చేయడం ఆపివేయండి",
+  "stopped": "ఆగిపోయింది."
 }

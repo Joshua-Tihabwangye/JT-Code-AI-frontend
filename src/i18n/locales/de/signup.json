@@ -14,7 +14,8 @@
     "uppercase": "Ein Großbuchstabe",
     "lowercase": "Ein Kleinbuchstabe",
     "number": "Eine Zahl",
-    "singleRule": "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Buchstaben und eine Zahl enthalten."
+    "singleRule": "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Buchstaben und eine Zahl enthalten.",
+    "special": "Ein Sonderzeichen"
   },
   "matchOk": "Die Passwörter stimmen überein.",
   "matchError": "Die Passwörter stimmen noch nicht überein.",
@@ -48,5 +49,12 @@
   "privacyLink": "Datenschutzerklärung",
   "termsHelp": "Du kannst diese Rechtsseiten prüfen, bevor du die Registrierung abschließt.",
   "submit": "Konto erstellen",
-  "haveAccountQuestion": "Hast du bereits ein Konto?"
+  "haveAccountQuestion": "Hast du bereits ein Konto?",
+  "helpText": "",
+  "section": {
+    "account": "Konto",
+    "profile": "Profil",
+    "region": "Region"
+  },
+  "confirmEmail": "Fast geschafft! Wir haben einen Bestätigungslink an {{email}} gesendet. Öffne ihn und melde dich dann an."
 }

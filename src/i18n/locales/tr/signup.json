@@ -14,7 +14,8 @@
     "uppercase": "Bir büyük harf",
     "lowercase": "Bir küçük harf",
     "number": "Bir rakam",
-    "singleRule": "Şifre en az 8 karakter uzunluğunda olmalı ve en az bir harf ve bir rakam içermelidir."
+    "singleRule": "Şifre en az 8 karakter uzunluğunda olmalı ve en az bir harf ve bir rakam içermelidir.",
+    "special": "Bir özel karakter"
   },
   "matchOk": "Şifreler eşleşiyor.",
   "matchError": "Şifreler henüz eşleşmiyor.",
@@ -48,5 +49,12 @@
   "privacyLink": "Gizlilik Politikası",
   "termsHelp": "Kaydı tamamlamadan önce bu yasal sayfaları inceleyebilirsiniz.",
   "submit": "Hesap oluştur",
-  "haveAccountQuestion": "Zaten hesabınız var mı?"
+  "haveAccountQuestion": "Zaten hesabınız var mı?",
+  "helpText": "",
+  "section": {
+    "account": "Hesap",
+    "profile": "Profil",
+    "region": "Bölge"
+  },
+  "confirmEmail": "Neredeyse orada! {{email}} adresine bir onay bağlantısı gönderdik. Açın ve ardından oturum açın."
 }

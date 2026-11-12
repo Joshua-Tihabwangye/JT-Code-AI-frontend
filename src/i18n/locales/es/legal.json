@@ -3,19 +3,25 @@
     "eyebrow": "Contacto",
     "title": "Obtén ayuda con JT-Code",
     "backToSignIn": "Volver a iniciar sesión",
-    "createAccount": "Crear cuenta"
+    "createAccount": "Crear cuenta",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "Política de Privacidad",
     "title": "Privacidad de JT-Code",
     "signIn": "Iniciar sesión",
-    "readTerms": "Leer los términos"
+    "readTerms": "Leer los términos",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "Términos del Servicio",
     "title": "Términos de JT-Code",
     "createAccount": "Crear cuenta",
-    "contactSupport": "Contactar con soporte"
+    "contactSupport": "Contactar con soporte",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "Página no encontrada",

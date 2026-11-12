@@ -118,6 +118,7 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
           <FloatingPanel
             anchorRef={buttonRef}
             placement={collapsed ? 'side-up' : 'above'}
+            edgeSelector=".sidebar"
             panelRef={menuRef}
             id={menuId}
             role="menu"
@@ -172,6 +173,7 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
         <FloatingPanel
           anchorRef={buttonRef}
           placement={collapsed ? 'side-up' : 'above'}
+            edgeSelector=".sidebar"
           panelRef={menuRef}
           id={menuId}
           role="menu"

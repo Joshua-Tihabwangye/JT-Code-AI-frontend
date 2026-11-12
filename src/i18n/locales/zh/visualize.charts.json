@@ -1,0 +1,1291 @@
+{
+  "categories": {
+    "comparison": {
+      "name": "比较",
+      "description": "跨类别比较数值并进行排名。"
+    },
+    "trend": {
+      "name": "趋势和时间",
+      "description": "显示数值随时间的变化。"
+    },
+    "composition": {
+      "name": "构成",
+      "description": "将总计拆分为各个组成部分。"
+    },
+    "distribution": {
+      "name": "分布",
+      "description": "了解离散程度、形态和离群值。"
+    },
+    "statistical": {
+      "name": "统计",
+      "description": "置信区间、控制限和诊断。"
+    },
+    "relationship": {
+      "name": "关系和相关性",
+      "description": "发现变量之间如何共同变化。"
+    },
+    "flow": {
+      "name": "流程和层次结构",
+      "description": "跟踪数量在各阶段和层级之间的流动。"
+    },
+    "geo": {
+      "name": "地图",
+      "description": "按国家/地区或坐标绘制数值。"
+    },
+    "dimensional": {
+      "name": "多维",
+      "description": "同时降维和探索多个变量。"
+    },
+    "ml": {
+      "name": "模型评估",
+      "description": "评估分类器、回归器和聚类。"
+    }
+  },
+  "types": {
+    "bar": {
+      "name": "条形图",
+      "description": "跨类别比较一个数值。",
+      "howToRead": "每个条形的长度表示该类别的值；比较其高低即可排名。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        }
+      }
+    },
+    "grouped_bar": {
+      "name": "簇状条形图",
+      "description": "为每个子组并排显示条形。",
+      "howToRead": "每个类别内的条形并排排列，便于直接比较各子组。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        },
+        "color": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "stacked_bar": {
+      "name": "堆积条形图",
+      "description": "显示总计及各子组的贡献。",
+      "howToRead": "每个条形代表一个总计；彩色分段显示各子组的贡献量。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        },
+        "color": {
+          "label": "堆积依据"
+        }
+      }
+    },
+    "percent_stacked_bar": {
+      "name": "百分比堆积条形图",
+      "description": "每个类别中各子组所占的份额。",
+      "howToRead": "每个条形合计为 100%，因此分段高度显示每个类别内的构成。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        },
+        "color": {
+          "label": "堆积依据"
+        }
+      }
+    },
+    "lollipop": {
+      "name": "棒棒糖图",
+      "description": "用于排名数值的轻量条形图。",
+      "howToRead": "圆点标记每个类别的值；杆越长，值越大。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        }
+      }
+    },
+    "dot_plot": {
+      "name": "点图",
+      "description": "以圆点比较每个类别的多个度量值。",
+      "howToRead": "每个圆点代表某个类别的一个度量值；越靠右的圆点值越大。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        },
+        "y": {
+          "label": "值"
+        }
+      }
+    },
+    "dumbbell": {
+      "name": "哑铃图",
+      "description": "显示每个类别两个度量值之间的差距。",
+      "howToRead": "两个圆点分别是起始值和结束值；绿色条表示上升，红色表示下降。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        }
+      }
+    },
+    "radar": {
+      "name": "雷达图",
+      "description": "描绘少数几个项目在多个度量值上的概况。",
+      "howToRead": "每条辐射线代表一个度量值；形状越大，表示各度量值越高。",
+      "slots": {
+        "x": {
+          "label": "项目"
+        },
+        "features": {
+          "label": "度量值"
+        }
+      }
+    },
+    "bullet": {
+      "name": "子弹图 / 目标图",
+      "description": "每个类别的实际值与目标值对比。",
+      "howToRead": "深色条是实际值，浅色条和刻度线是目标值；绿色表示已达成目标。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        },
+        "y": {
+          "label": "实际值"
+        }
+      }
+    },
+    "pareto": {
+      "name": "帕累托图",
+      "description": "排序后的条形加累计占比线（80/20）。",
+      "howToRead": "条形按从大到小排序；折线显示累计占比，便于看出哪几项构成了 80%。",
+      "slots": {
+        "x": {
+          "label": "类别"
+        }
+      }
+    },
+    "category_heatmap": {
+      "name": "热力图表格",
+      "description": "按两个类别为数值着色。",
+      "howToRead": "颜色越深的单元格，该行与列组合的值越高。",
+      "slots": {
+        "x": {
+          "label": "列"
+        },
+        "y": {
+          "label": "行"
+        }
+      },
+      "options": {
+        "show_values": "显示值"
+      }
+    },
+    "line": {
+      "name": "折线图",
+      "description": "展示随时间变化的经典视图。",
+      "howToRead": "折线跟随数值随时间变化；斜率表示增长或下降。",
+      "slots": {
+        "y": {
+          "label": "值"
+        }
+      }
+    },
+    "area": {
+      "name": "面积图",
+      "description": "突出趋势的总量。",
+      "howToRead": "填充区域显示数值随时间的变化；其高度即每个日期的数量。"
+    },
+    "stacked_area": {
+      "name": "堆积面积图",
+      "description": "总计的各部分如何随时间变化。",
+      "howToRead": "各层依次堆叠，因此顶部边缘是总计，每个色带代表一个组。",
+      "slots": {
+        "color": {
+          "label": "堆积依据"
+        }
+      },
+      "options": {
+        "normalize": "显示为 100%"
+      }
+    },
+    "step_line": {
+      "name": "阶梯线图",
+      "description": "在离散时刻变化的数值（价格、库存水平）。",
+      "howToRead": "数值在变化前保持不变，适合价格、库存水平及其他离散更新。"
+    },
+    "rolling_average": {
+      "name": "移动平均",
+      "description": "用滚动均值平滑噪声序列。",
+      "howToRead": "浅色线是原始序列；粗线对最近的点取平均以揭示趋势。"
+    },
+    "cumulative": {
+      "name": "累计总计",
+      "description": "随时间的累计总计。",
+      "howToRead": "折线将每个期间累加到之前的总计上，因此其斜率显示总计增长的速度。"
+    },
+    "period_change": {
+      "name": "环比变化",
+      "description": "与上一期间相比的百分比变化。",
+      "howToRead": "条形显示与上一期间相比的百分比变化：绿色为增长，红色为下降。"
+    },
+    "candlestick": {
+      "name": "K 线图",
+      "description": "开盘/最高/最低/收盘走势（金融）。",
+      "howToRead": "每根 K 线覆盖最低–最高范围；实体从开盘价延伸到收盘价（绿涨红跌）。"
+    },
+    "range_band": {
+      "name": "范围带",
+      "description": "带有最小–最大值或不确定性区间的折线。",
+      "howToRead": "折线表示数值；阴影带显示其下限和上限。"
+    },
+    "calendar_heatmap": {
+      "name": "日历热力图",
+      "description": "每日度量值的星期 × 周模式。",
+      "howToRead": "每个方块代表一天；颜色越深值越高，可揭示星期和季节性模式。"
+    },
+    "seasonal_decompose": {
+      "name": "季节性分解",
+      "description": "将序列拆分为趋势、季节性和残差。",
+      "howToRead": "序列被拆分为趋势（方向）、季节性（重复模式）和残差（噪声）。"
+    },
+    "autocorrelation": {
+      "name": "自相关 (ACF / PACF)",
+      "description": "序列与其自身过去值的关系。",
+      "howToRead": "超出红色带的条形表示序列在该滞后期出现重复。"
+    },
+    "pie": {
+      "name": "饼图",
+      "description": "整体的各部分（扇区较少时效果最佳）。",
+      "howToRead": "每个扇区代表整体的一部分；扇区越大，占比越大。",
+      "slots": {
+        "x": {
+          "label": "扇区"
+        }
+      }
+    },
+    "donut": {
+      "name": "环形图",
+      "description": "中心可显示总计的饼图。",
+      "howToRead": "每个分段代表中心所示总计中的一部分。",
+      "slots": {
+        "x": {
+          "label": "扇区"
+        }
+      }
+    },
+    "treemap": {
+      "name": "树状图",
+      "description": "按值确定大小的嵌套矩形。",
+      "howToRead": "矩形面积与值成正比；嵌套矩形将一个组拆分为其组成部分。"
+    },
+    "sunburst": {
+      "name": "旭日图",
+      "description": "以同心环表示层次结构。",
+      "howToRead": "内环是顶级组，外环是其子组；弧长表示值。",
+      "slots": {
+        "path": {
+          "label": "级别（由内到外）"
+        }
+      }
+    },
+    "icicle": {
+      "name": "冰柱图",
+      "description": "以堆叠矩形表示层次结构。",
+      "howToRead": "每一行是层次结构的一个级别；块的宽度表示其占总计的份额。",
+      "slots": {
+        "path": {
+          "label": "级别（由上到下）"
+        }
+      }
+    },
+    "waterfall": {
+      "name": "瀑布图",
+      "description": "正负步骤如何构成总计。",
+      "howToRead": "绿色步骤表示增加，红色步骤表示减少，最后一个条形是最终总计。",
+      "slots": {
+        "x": {
+          "label": "步骤"
+        },
+        "y": {
+          "help": "若要使用计数，请选择“计数”作为聚合方式。"
+        }
+      }
+    },
+    "funnel": {
+      "name": "漏斗图",
+      "description": "按顺序阶段的转化情况。",
+      "howToRead": "每个阶段都比上一阶段窄；阶段之间的落差即流失之处。",
+      "slots": {
+        "x": {
+          "label": "阶段"
+        }
+      }
+    },
+    "marimekko": {
+      "name": "马赛克图 (Marimekko)",
+      "description": "宽度可变的双向构成图。",
+      "howToRead": "列宽表示各列占总计的份额；分段高度表示列内的构成。",
+      "slots": {
+        "x": {
+          "label": "列"
+        },
+        "color": {
+          "label": "分段"
+        }
+      }
+    },
+    "histogram": {
+      "name": "直方图",
+      "description": "数值落入各区间的频率。",
+      "howToRead": "条形统计落入每个区间的值的个数；最高的条形是最常见的值。",
+      "slots": {
+        "x": {
+          "label": "值"
+        }
+      }
+    },
+    "density_kde": {
+      "name": "密度曲线 (KDE)",
+      "description": "对分布的平滑估计。",
+      "howToRead": "平滑曲线估计值的分布情况；峰值是最常见的值。",
+      "slots": {
+        "x": {
+          "label": "值"
+        }
+      }
+    },
+    "box": {
+      "name": "箱线图",
+      "description": "每组的中值、四分位数和离群值。",
+      "howToRead": "箱体包含中间 50% 的值，箱内的线是中值，须线显示典型范围，圆点为离群值。",
+      "slots": {
+        "x": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "violin": {
+      "name": "小提琴图",
+      "description": "箱线图加上完整的分布形态。",
+      "howToRead": "每个水平处的宽度表示该处值的数量；深色条为中间 50%。",
+      "slots": {
+        "x": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "strip": {
+      "name": "带状图 / 抖动图",
+      "description": "每组的每个观测值都显示为一个圆点。",
+      "howToRead": "每个圆点代表一行，横向散开，使重叠的值仍然可见。",
+      "slots": {
+        "x": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "ecdf": {
+      "name": "累积分布 (ECDF)",
+      "description": "低于各水平的值所占的份额。",
+      "howToRead": "对于 x 轴上的任一值，曲线显示小于或等于该值的值所占的份额。",
+      "slots": {
+        "x": {
+          "label": "值"
+        }
+      }
+    },
+    "ridgeline": {
+      "name": "山脊图",
+      "description": "多个组的堆叠分布。",
+      "howToRead": "每条山脊是一个组的分布；比较峰值的位置及其宽度。",
+      "slots": {
+        "x": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "raincloud": {
+      "name": "雨云图",
+      "description": "半小提琴图、箱线图与原始数据点的组合。",
+      "howToRead": "每个组显示其分布（云）、中间 50%（条）以及每个值（雨）。",
+      "slots": {
+        "x": {
+          "label": "分组依据"
+        }
+      }
+    },
+    "mean_ci": {
+      "name": "均值及置信区间",
+      "description": "各组均值及 95% 置信区间。",
+      "howToRead": "条形是组平均值，须线是置信区间；须线重叠意味着差异可能出于偶然。",
+      "slots": {
+        "x": {
+          "label": "组"
+        }
+      }
+    },
+    "qq_plot": {
+      "name": "Q–Q 图",
+      "description": "检查值是否服从某一理论分布。",
+      "howToRead": "如果各点沿红线分布，则数据与所选分布相符。",
+      "slots": {
+        "x": {
+          "label": "值"
+        }
+      }
+    },
+    "distribution_fit": {
+      "name": "分布拟合",
+      "description": "带拟合分布和拟合优度的直方图。",
+      "howToRead": "条形是观测到的分布；曲线是拟合最佳的理论分布。",
+      "slots": {
+        "x": {
+          "label": "值"
+        }
+      }
+    },
+    "control_chart": {
+      "name": "控制图 (SPC)",
+      "description": "带均值和 ±3σ 控制限的过程值。",
+      "howToRead": "虚线控制限之间的点属于正常波动；超出控制限的红点需要关注。",
+      "slots": {
+        "x": {
+          "label": "顺序 / 时间"
+        },
+        "y": {
+          "label": "测量值"
+        }
+      }
+    },
+    "bland_altman": {
+      "name": "Bland–Altman 图",
+      "description": "两种测量方法之间的一致性。",
+      "howToRead": "每个圆点比较同一对象的两次测量；线条显示平均偏差和一致性界限。",
+      "slots": {
+        "x": {
+          "label": "方法 A"
+        },
+        "y": {
+          "label": "方法 B"
+        }
+      }
+    },
+    "missing_values": {
+      "name": "缺失值图",
+      "description": "各列中数据缺失的位置。",
+      "howToRead": "条形显示每列空值的占比；模式图中的红色标记显示空值出现的位置。"
+    },
+    "scatter": {
+      "name": "散点图",
+      "description": "两个度量值之间的关系。",
+      "howToRead": "每个圆点代表一行；点云呈上升趋势表示两个度量值同时增大。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      },
+      "options": {
+        "marginal": "边际图"
+      }
+    },
+    "bubble": {
+      "name": "气泡图",
+      "description": "以第三个度量值作为大小的散点图。",
+      "howToRead": "与散点图类似，但气泡大小表示第三个度量值。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      }
+    },
+    "regression_fit": {
+      "name": "回归拟合",
+      "description": "带拟合线、R² 和方程的散点图。",
+      "howToRead": "曲线是拟合模型，色带是其 95% 置信区间；R² 是被解释的变异所占比例。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      }
+    },
+    "correlation_heatmap": {
+      "name": "相关矩阵",
+      "description": "每对度量值之间的相关性。",
+      "howToRead": "每个单元格是两个度量值之间的相关系数，从 −1（蓝色）到 +1（红色）。",
+      "options": {
+        "show_values": "显示系数"
+      }
+    },
+    "scatter_matrix": {
+      "name": "散点矩阵（配对图）",
+      "description": "一目了然地查看每对度量值。",
+      "howToRead": "每对度量值都有各自的散点图；对角线显示每个度量值的分布。",
+      "slots": {
+        "color": {
+          "label": "着色依据（标签）"
+        }
+      }
+    },
+    "density_heatmap": {
+      "name": "二维密度热力图",
+      "description": "数据点的集中位置（适用于大量行）。",
+      "howToRead": "颜色越深的单元格包含的行越多，从而显示数据点的集中位置。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      }
+    },
+    "density_contour": {
+      "name": "密度等高线图",
+      "description": "数据点密度的等高线。",
+      "howToRead": "环线围出点密度相等的区域；内环包含的行最多。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      }
+    },
+    "joint_plot": {
+      "name": "联合分布图",
+      "description": "带有各轴分布的散点图。",
+      "howToRead": "散点图显示关系；两侧的直方图显示各度量值的分布。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        }
+      }
+    },
+    "parallel_coordinates": {
+      "name": "平行坐标图",
+      "description": "跨行比较多个度量值。",
+      "howToRead": "每条线是一行，穿过每个度量值的轴；成束的线揭示常见的特征模式。",
+      "slots": {
+        "color": {
+          "label": "着色依据（数值）"
+        }
+      }
+    },
+    "parallel_categories": {
+      "name": "平行类别图",
+      "description": "分类列之间的流向。",
+      "howToRead": "色带在类别列之间流动；其粗细表示行数。",
+      "slots": {
+        "path": {
+          "label": "分类列"
+        }
+      }
+    },
+    "crosstab_heatmap": {
+      "name": "列联表",
+      "description": "两个类别的交叉计数及卡方检验。",
+      "howToRead": "单元格统计每对类别的行数；卡方检验判断它们是否相关。",
+      "slots": {
+        "x": {
+          "label": "列"
+        },
+        "y": {
+          "label": "行"
+        }
+      }
+    },
+    "sankey": {
+      "name": "桑基图",
+      "description": "在各阶段之间流动的数量。",
+      "howToRead": "色带从一个阶段流向下一个阶段；其宽度表示两者之间流动的数量。",
+      "slots": {
+        "path": {
+          "label": "阶段（按顺序）"
+        }
+      }
+    },
+    "network": {
+      "name": "网络图",
+      "description": "实体之间的连接。",
+      "howToRead": "节点是实体，线条是连接；节点越大、颜色越深，连接越多。",
+      "slots": {
+        "target": {
+          "label": "目标"
+        },
+        "y": {
+          "label": "权重"
+        }
+      }
+    },
+    "choropleth": {
+      "name": "着色地图",
+      "description": "按数值为国家/地区着色。",
+      "howToRead": "国家/地区按数值着色；颜色越深表示值越高。"
+    },
+    "scatter_geo": {
+      "name": "地图上的点",
+      "description": "绘制纬度/经度点。",
+      "howToRead": "每个点是按纬度和经度绘制的一个位置。"
+    },
+    "scatter_3d": {
+      "name": "三维散点图",
+      "description": "在可旋转的三维视图中探索三个度量值。",
+      "howToRead": "拖动可旋转；每个点是按三个度量值定位的一行。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        },
+        "z": {
+          "label": "Z 轴"
+        }
+      }
+    },
+    "surface_3d": {
+      "name": "三维曲面图",
+      "description": "基于两个度量值的曲面。",
+      "howToRead": "曲面的高度和颜色显示第三个度量值随前两个度量值的变化；拖动可旋转。",
+      "slots": {
+        "x": {
+          "label": "X 轴"
+        },
+        "y": {
+          "label": "Y 轴"
+        },
+        "z": {
+          "label": "高度"
+        }
+      }
+    },
+    "pca_2d": {
+      "name": "PCA 图（二维）",
+      "description": "将多个度量值投影到两个主成分上。",
+      "howToRead": "多个度量值被压缩为两个成分；距离相近的点是相似的行。",
+      "slots": {
+        "color": {
+          "label": "着色依据（标签）"
+        }
+      }
+    },
+    "pca_3d": {
+      "name": "PCA 图（三维）",
+      "description": "三维显示三个主成分。",
+      "howToRead": "以三维显示三个主成分；拖动可旋转并查找聚类。",
+      "slots": {
+        "color": {
+          "label": "着色依据（标签）"
+        }
+      }
+    },
+    "pca_biplot": {
+      "name": "PCA 双标图",
+      "description": "行以及驱动每个成分的度量值。",
+      "howToRead": "点是行，箭头是度量值；指向相同方向的箭头彼此相关。",
+      "slots": {
+        "color": {
+          "label": "着色依据（标签）"
+        }
+      }
+    },
+    "scree_plot": {
+      "name": "碎石图",
+      "description": "每个成分解释的方差。",
+      "howToRead": "条形显示每个成分包含的信息量；折线显示累计总计。"
+    },
+    "tsne_2d": {
+      "name": "t-SNE 图",
+      "description": "使近邻保持靠近的非线性二维图。",
+      "howToRead": "一种使相似行聚在一起的非线性映射；请寻找彼此分离的聚类。",
+      "slots": {
+        "color": {
+          "label": "着色依据（标签）"
+        }
+      }
+    },
+    "lda_2d": {
+      "name": "LDA 投影",
+      "description": "最能区分已标记组的投影。",
+      "howToRead": "所选投影能尽可能地区分已标记的组。",
+      "slots": {
+        "color": {
+          "label": "标签"
+        }
+      }
+    },
+    "kmeans_clusters": {
+      "name": "聚类图 (k-means)",
+      "description": "将相似的行分组并显示在 PCA 图上。",
+      "howToRead": "颜色表示 k-means 找到的聚类；菱形标记每个聚类的中心。"
+    },
+    "confusion_matrix": {
+      "name": "混淆矩阵",
+      "description": "分类器在哪些地方预测正确或错误。",
+      "howToRead": "对角线是正确的预测；其他单元格显示哪些类别被混淆。"
+    },
+    "roc_curve": {
+      "name": "ROC 曲线",
+      "description": "各阈值下的真阳性率与假阳性率，以及 AUC。",
+      "howToRead": "曲线越高于对角线，模型对正例的排序越好；AUC 对此进行概括。"
+    },
+    "pr_curve": {
+      "name": "精确率–召回率曲线",
+      "description": "精确率与召回率的权衡，以及平均精确率。",
+      "howToRead": "显示召回率上升时所保持的精确率；越高、越靠右越好。"
+    },
+    "calibration_curve": {
+      "name": "校准曲线",
+      "description": "预测概率是否与观测比率相符？",
+      "howToRead": "位于虚线上的点表示预测概率与观测比率相符。",
+      "options": {
+        "bins": "分箱"
+      }
+    },
+    "cumulative_gain": {
+      "name": "累积增益和提升",
+      "description": "模型比随机选择好多少。",
+      "howToRead": "显示针对得分最高的一部分行能捕获多少正例，以及相对于随机选择的提升。"
+    },
+    "threshold_metrics": {
+      "name": "阈值浏览器",
+      "description": "各阈值下的精确率、召回率和 F1。",
+      "howToRead": "每个截断点的精确率、召回率和 F1；虚线标记最佳平衡点。"
+    },
+    "predicted_vs_actual": {
+      "name": "预测值与实际值对比",
+      "description": "与完美预测线对比的回归准确度。",
+      "howToRead": "位于虚线对角线上的点是完美预测；离散程度显示误差。"
+    },
+    "residual_plot": {
+      "name": "残差图",
+      "description": "误差与预测值对比，用于发现偏差。",
+      "howToRead": "误差相对于预测值绘制；围绕零的随机点云表示没有系统性偏差。"
+    },
+    "error_distribution": {
+      "name": "误差分布",
+      "description": "预测误差的直方图。",
+      "howToRead": "显示预测误差的大小；在零附近的窄峰最好。"
+    },
+    "feature_importance": {
+      "name": "特征重要性",
+      "description": "哪些输入驱动目标（随机森林 + 置换）。",
+      "howToRead": "条形越长，模型越依赖该输入；须线显示不确定性。",
+      "slots": {
+        "target": {
+          "label": "要解释的目标"
+        }
+      },
+      "options": {
+        "top_n": "显示前"
+      }
+    },
+    "learning_curve": {
+      "name": "学习曲线",
+      "description": "更多数据是否有助于模型？",
+      "howToRead": "随数据增加的训练和验证得分；差距较大表示过拟合。",
+      "options": {
+        "model": "模型"
+      }
+    },
+    "elbow": {
+      "name": "肘部图",
+      "description": "根据惯性选择聚类数量。",
+      "howToRead": "惯性随聚类增加而下降；肘部是继续增加聚类不再有帮助的位置。"
+    },
+    "silhouette": {
+      "name": "轮廓分析",
+      "description": "每个 k 值的聚类质量。",
+      "howToRead": "条形越高表示聚类分离得越好；绿色条是最佳聚类数量。"
+    },
+    "kpi_card": {
+      "name": "KPI 卡片",
+      "description": "一个核心数字，附带其变化和迷你图。",
+      "howToRead": "大数字是最近一期的值；箭头显示与上一期相比的变化，迷你图显示近期趋势。",
+      "slots": {
+        "y": {
+          "label": "度量值"
+        }
+      }
+    },
+    "gauge": {
+      "name": "仪表（目标进度）",
+      "description": "某个度量值距离目标还有多远。",
+      "howToRead": "指针显示度量值相对于目标的位置；绿色表示进展正常，琥珀色表示接近，红色表示落后。",
+      "slots": {
+        "y": {
+          "label": "度量值"
+        },
+        "target": {
+          "label": "目标（可选）"
+        }
+      }
+    },
+    "decomposition_tree": {
+      "name": "分解树",
+      "description": "逐级分解总计，查看其来源。",
+      "howToRead": "从左侧的总计开始，沿分支查看由哪些部分组成；节点越大，贡献越多。",
+      "slots": {
+        "path": {
+          "label": "分解依据（按顺序）"
+        }
+      },
+      "options": {
+        "top_n": "每级分支数"
+      }
+    }
+  },
+  "tasks": {
+    "forecast": {
+      "name": "预测时间序列",
+      "description": "对度量值（销售额、需求、收入）进行带不确定性区间的未来预测。",
+      "models": {
+        "auto": "最佳模型（通过回测选择）",
+        "holt_winters": "Holt–Winters 指数平滑",
+        "arima": "ARIMA / SARIMAX",
+        "linear_trend": "线性趋势 + 季节性"
+      },
+      "outputs": [
+        "带 80%/95% 区间的预测图",
+        "最佳和最差情况",
+        "回测准确度（MAE、MAPE）",
+        "未来值表"
+      ],
+      "slots": {
+        "target": {
+          "label": "要预测的度量值"
+        }
+      }
+    },
+    "trend": {
+      "name": "趋势和季节性分析",
+      "description": "增长率、移动平均、季节性模式、变化点和异常期间。",
+      "models": {
+        "robust": "自动（稳健趋势 + 异常检测）"
+      },
+      "outputs": [
+        "增长：总计、平均、最近和同比",
+        "季节性特征",
+        "变化点和异常"
+      ],
+      "slots": {
+        "target": {
+          "label": "度量值"
+        }
+      },
+      "options": {
+        "window": "移动平均（期数）"
+      }
+    },
+    "drivers": {
+      "name": "关键影响因素（影响结果的因素）",
+      "description": "找出推动结果上升或下降的因素和细分群体 — 流失、销售、满意度。",
+      "models": {
+        "segments": "细分群体比较 + 随机森林重要性"
+      },
+      "outputs": [
+        "主要影响因素及提升度",
+        "特征重要性",
+        "最佳和最差细分群体"
+      ],
+      "slots": {
+        "target": {
+          "label": "要解释的结果"
+        },
+        "features": {
+          "label": "输入列",
+          "help": "留空则使用其他所有列；类别进行独热编码，日期拆分为各部分。"
+        }
+      }
+    },
+    "regression": {
+      "name": "预测数值",
+      "description": "根据其他列估算数值结果（价格、需求、得分）。",
+      "models": {
+        "auto": "最佳模型（交叉验证）",
+        "linear": "线性回归",
+        "ridge": "岭回归",
+        "random_forest": "随机森林",
+        "gradient_boosting": "梯度提升"
+      },
+      "outputs": [
+        "R²、MAE、RMSE",
+        "预测值与实际值对比、残差",
+        "特征重要性"
+      ],
+      "slots": {
+        "target": {
+          "label": "要预测的数值"
+        },
+        "features": {
+          "label": "输入列",
+          "help": "留空则使用其他所有列；类别进行独热编码，日期拆分为各部分。"
+        }
+      }
+    },
+    "classification": {
+      "name": "预测类别",
+      "description": "对行进行分类（流失、审批、细分群体）并评估分类器。",
+      "models": {
+        "auto": "最佳模型（交叉验证）",
+        "logistic": "逻辑回归",
+        "random_forest": "随机森林",
+        "gradient_boosting": "梯度提升"
+      },
+      "outputs": [
+        "准确率、F1、ROC AUC",
+        "混淆矩阵、ROC 和 PR 曲线",
+        "特征重要性"
+      ],
+      "slots": {
+        "target": {
+          "label": "要预测的类别"
+        },
+        "features": {
+          "label": "输入列",
+          "help": "留空则使用其他所有列；类别进行独热编码，日期拆分为各部分。"
+        }
+      }
+    },
+    "clustering": {
+      "name": "发现细分群体",
+      "description": "在无标签的情况下将相似的行（客户、产品）分组。",
+      "models": {
+        "kmeans": "k-means",
+        "gaussian_mixture": "高斯混合",
+        "agglomerative": "层次聚类 (Ward)"
+      },
+      "outputs": [
+        "轮廓系数",
+        "聚类图和特征概况",
+        "每行所属的细分群体"
+      ],
+      "slots": {
+        "features": {
+          "label": "输入列",
+          "help": "留空则使用其他所有列；类别进行独热编码，日期拆分为各部分。"
+        }
+      }
+    },
+    "anomaly": {
+      "name": "检测异常",
+      "description": "标记异常的行（欺诈、故障、数据错误）。",
+      "models": {
+        "isolation_forest": "孤立森林",
+        "zscore": "稳健 z 分数",
+        "lof": "局部离群因子"
+      },
+      "outputs": [
+        "异常数量和占比",
+        "在图中突出显示异常",
+        "每行的得分"
+      ],
+      "slots": {
+        "features": {
+          "label": "输入列",
+          "help": "留空则使用其他所有列；类别进行独热编码，日期拆分为各部分。"
+        }
+      }
+    }
+  },
+  "slots": {
+    "x": {
+      "label": "日期 / 时间"
+    },
+    "y": {
+      "label": "值",
+      "help": "可选：留空时统计行数。"
+    },
+    "color": {
+      "label": "着色依据"
+    },
+    "facet": {
+      "label": "拆分为面板的依据"
+    },
+    "start": {
+      "label": "起始值"
+    },
+    "end": {
+      "label": "结束值"
+    },
+    "features": {
+      "label": "数值列",
+      "help": "留空则使用所有数值列。"
+    },
+    "target": {
+      "label": "目标"
+    },
+    "z": {
+      "label": "值"
+    },
+    "open": {
+      "label": "开盘"
+    },
+    "high": {
+      "label": "最高"
+    },
+    "low": {
+      "label": "最低"
+    },
+    "close": {
+      "label": "收盘"
+    },
+    "lower": {
+      "label": "下限"
+    },
+    "upper": {
+      "label": "上限"
+    },
+    "path": {
+      "label": "级别（由外到内）"
+    },
+    "size": {
+      "label": "气泡大小"
+    },
+    "source": {
+      "label": "来源"
+    },
+    "location": {
+      "label": "国家/地区"
+    },
+    "lat": {
+      "label": "纬度"
+    },
+    "lon": {
+      "label": "经度"
+    },
+    "actual": {
+      "label": "实际值 / 真实标签"
+    },
+    "predicted": {
+      "label": "预测值 / 标签"
+    },
+    "score": {
+      "label": "预测概率 / 得分"
+    },
+    "date": {
+      "label": "日期 / 时间"
+    },
+    "split_by": {
+      "label": "分别预测（可选）",
+      "help": "例如每个地区一个预测"
+    }
+  },
+  "options": {
+    "aggregation": "值的合并方式",
+    "sort": "顺序",
+    "top_n": "仅显示前",
+    "orientation": "方向",
+    "show_values": "在图表上显示值",
+    "log_y": "对数值轴",
+    "time_grain": "日期分组依据",
+    "markers": "显示标记",
+    "normalize": "显示为",
+    "window": "滚动窗口（点数）",
+    "model": "季节性",
+    "lags": "滞后期",
+    "hole": "中心孔",
+    "total": "显示总计条",
+    "bins": "分箱数",
+    "histnorm": "显示为",
+    "marginal": "添加边际图",
+    "bandwidth": "平滑度",
+    "points": "显示数据点",
+    "box": "在内部显示箱体",
+    "confidence": "置信度",
+    "distribution": "分布",
+    "sigma": "控制限 (σ)",
+    "trendline": "趋势线",
+    "opacity": "数据点不透明度",
+    "degree": "多项式次数",
+    "band": "显示 95% 区间",
+    "method": "相关性",
+    "triangle": "仅下三角",
+    "nbins": "分箱",
+    "location_mode": "位置类型",
+    "scope": "地图区域",
+    "contours": "投影等高线",
+    "standardize": "标准化特征",
+    "perplexity": "困惑度",
+    "clusters": "聚类数（0 = 自动选择）",
+    "positive_class": "正类（留空 = 自动）",
+    "max_k": "最多尝试 k 值",
+    "goal": "目标值（0 = 使用目标列）",
+    "horizon": "预测期数",
+    "positive": "要解释的结果值（留空 = 自动）",
+    "test_size": "留出比例",
+    "contamination": "预期异常占比"
+  },
+  "choices": {
+    "aggregation": {
+      "sum": "求和",
+      "mean": "平均值",
+      "median": "中值",
+      "count": "计数",
+      "min": "最小值",
+      "max": "最大值"
+    },
+    "sort": {
+      "none": "与数据中一致",
+      "desc": "从大到小",
+      "asc": "从小到大",
+      "label": "按字母顺序"
+    },
+    "orientation": {
+      "v": "垂直",
+      "h": "水平"
+    },
+    "time_grain": {
+      "auto": "自动",
+      "none": "不分组",
+      "D": "日",
+      "W": "周",
+      "M": "月",
+      "Q": "季度",
+      "Y": "年"
+    },
+    "model": {
+      "additive": "加法",
+      "multiplicative": "乘法",
+      "random_forest": "随机森林",
+      "gradient_boosting": "梯度提升",
+      "linear": "线性 / 逻辑回归"
+    },
+    "histnorm": {
+      "_none": "计数",
+      "percent": "百分比",
+      "probability_density": "密度"
+    },
+    "marginal": {
+      "_none": "无",
+      "box": "箱线图",
+      "histogram": "直方图"
+    },
+    "bandwidth": {
+      "scott": "Scott",
+      "silverman": "Silverman"
+    },
+    "points": {
+      "outliers": "离群值",
+      "all": "全部",
+      "none": "无"
+    },
+    "confidence": {
+      "0_9": "90%",
+      "0_95": "95%",
+      "0_99": "99%"
+    },
+    "distribution": {
+      "norm": "正态",
+      "lognorm": "对数正态",
+      "expon": "指数",
+      "gamma": "伽马",
+      "weibull_min": "威布尔"
+    },
+    "trendline": {
+      "none": "无",
+      "ols": "线性 (OLS)",
+      "lowess": "平滑 (LOWESS)"
+    },
+    "method": {
+      "pearson": "Pearson",
+      "spearman": "Spearman",
+      "kendall": "Kendall"
+    },
+    "normalize": {
+      "none": "计数",
+      "index": "占行的百分比",
+      "columns": "占列的百分比",
+      "all": "占总计的百分比",
+      "true": "占实际值的百分比",
+      "pred": "占预测值的百分比"
+    },
+    "location_mode": {
+      "country_names": "国家/地区名称",
+      "ISO-3": "ISO-3 代码"
+    },
+    "scope": {
+      "world": "世界",
+      "africa": "非洲",
+      "europe": "欧洲",
+      "asia": "亚洲",
+      "north_america": "北美洲",
+      "south_america": "南美洲"
+    },
+    "test_size": {
+      "0_2": "20%",
+      "0_25": "25%",
+      "0_3": "30%"
+    },
+    "contamination": {
+      "0_01": "1%",
+      "0_02": "2%",
+      "0_05": "5%",
+      "0_1": "10%"
+    }
+  },
+  "palettes": {
+    "vivid": "JT 鲜艳",
+    "colorblind": "色盲友好 (Okabe–Ito)",
+    "tableau": "Tableau 10",
+    "ocean": "海洋",
+    "sunset": "日落",
+    "corporate": "商务",
+    "pastel": "柔和",
+    "earth": "大地"
+  },
+  "samples": {
+    "retail_sales": {
+      "name": "零售销售",
+      "description": "按地区、产品和渠道统计的两年订单。",
+      "audience": "小型企业"
+    },
+    "customer_churn": {
+      "name": "客户流失",
+      "description": "订阅者、合同以及流失模型的得分。",
+      "audience": "大型企业"
+    },
+    "website_traffic": {
+      "name": "网站流量",
+      "description": "按流量来源统计的每日会话和转化。",
+      "audience": "营销"
+    },
+    "house_prices": {
+      "name": "房价",
+      "description": "包含面积、位置以及价格模型预测值的房屋数据。",
+      "audience": "分析师"
+    },
+    "stock_prices": {
+      "name": "股票价格",
+      "description": "三只股票的每日开盘/最高/最低/收盘价。",
+      "audience": "金融"
+    },
+    "world_indicators": {
+      "name": "世界指标",
+      "description": "各国家/地区的 GDP、预期寿命和排放量。",
+      "audience": "所有人"
+    }
+  },
+  "importFormats": {
+    "csv": "CSV（逗号分隔）",
+    "tsv": "TSV（制表符分隔）",
+    "txt": "分隔文本（自动检测 ; | ,）",
+    "json": "JSON（记录数组）",
+    "jsonl": "JSON Lines",
+    "xlsx": "Excel 工作簿（第一个工作表）"
+  },
+  "exportFormats": {
+    "csv": "CSV",
+    "xlsx": "Excel（数据、分析和摘要工作表）",
+    "json": "JSON 记录"
+  }
+}

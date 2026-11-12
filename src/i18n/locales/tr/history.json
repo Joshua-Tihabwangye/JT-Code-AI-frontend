@@ -7,5 +7,15 @@
   "emptyTitle": "Henüz geçmiş yok",
   "emptyDesc": "Bir sohbet başlatın; konuşmalarınız burada görünecek.",
   "startChatting": "Sohbete başla",
-  "deleteItemAria": "{{title}} öğesini sil"
+  "deleteItemAria": "{{title}} öğesini sil",
+  "searchPlaceholder": "Konuşmaları arayın",
+  "archived": "Arşivlendi",
+  "openAria": "{{title}}'ı aç",
+  "pinned": "Sabitlendi",
+  "untitled": "Başlıksız görüşme",
+  "pin": "Sabitle",
+  "unpin": "Sabitlemeyi kaldır",
+  "archive": "Arşiv",
+  "unarchive": "Arşivden geri yükle",
+  "export": "Markdown olarak dışa aktar"
 }

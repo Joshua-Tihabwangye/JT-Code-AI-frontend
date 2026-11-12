@@ -29,5 +29,20 @@
   "changePhoto": "Нажмите, чтобы изменить фото",
   "profileUpdated": "Профиль успешно обновлён",
   "updateProfileError": "Не удалось обновить профиль",
-  "uploadAvatarError": "Не удалось загрузить аватар"
+  "uploadAvatarError": "Не удалось загрузить аватар",
+  "eyebrow": "Настройки",
+  "avatarUpdated": "Изображение профиля обновлено.",
+  "removePhoto": "Удалить фото",
+  "passwordChanged": "Ваш пароль был изменен.",
+  "passwordMismatch": "Новые пароли не совпадают.",
+  "workspace": "Рабочая область",
+  "workspaceDesc": "Ваша организация в JT-Code. К нему принадлежат разговоры, файлы и кредиты.",
+  "workspaceName": "Имя рабочей области",
+  "workspaceUpdated": "Рабочая область переименована.",
+  "password": "Пароль",
+  "passwordDesc": "Измените пароль, который вы используете для входа.",
+  "currentPassword": "Текущий пароль",
+  "newPassword": "Новый пароль (8+ символов)",
+  "confirmPassword": "Подтвердите новый пароль",
+  "changePassword": "Изменить пароль"
 }

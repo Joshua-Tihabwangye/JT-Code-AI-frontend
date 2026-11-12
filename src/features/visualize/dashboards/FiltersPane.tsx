@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Check, ChevronDown, ChevronRight, Eye, EyeOff, Lock, Plus, RotateCcw, Search, Trash2, Unlock, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n/config';
-import { formatNumber } from '@/i18n/format';
+import { formatNumber, inlineLabel } from '@/i18n/format';
 import { useRepository, type DashboardFilter, type DashboardPage, type DashboardSpec, type DashboardVisual } from '@/lib/data';
 import { useVisualize } from '../context';
 import { humanize } from '../ui';
@@ -216,7 +216,7 @@ function TopEditor({ filter, datasetId, onChange, readOnly }: { filter: Dashboar
         <option value="*">{t('visualize.dashboards.filters.byRows')}</option>
         {numeric.map((profile) => (
           <option key={profile.name} value={profile.name}>
-            {t('visualize.dashboards.filters.byTotal', { field: humanize(profile.name).toLowerCase() })}
+            {t('visualize.dashboards.filters.byTotal', { field: inlineLabel(humanize(profile.name)) })}
           </option>
         ))}
       </select>

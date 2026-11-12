@@ -1,0 +1,18 @@
+{
+  "title": "Matunzio ya chati",
+  "subtitle": "{{count}} aina za chati - fungua moja katika Gundua na ijaze safu wima zako.",
+  "search": "Tafuta chati, k.m. \"utabiri\", \"shiriki\"",
+  "searchLabel": "Tafuta chati",
+  "level": "Kiwango",
+  "allLevels": "Ngazi zote",
+  "essentialShort": "Muhimu",
+  "advancedShort": "Advanced",
+  "all": "Wote",
+  "recommended": "Imependekezwa kwa {{name}}",
+  "recommendedHint": "Imechaguliwa kutoka kwa safu wima zako - fungua moja ili kuiona na data yako.",
+  "empty": "Hakuna chati inayolingana na utafutaji huo.",
+  "advancedBadge": "Advanced",
+  "useInExplore": "Tumia katika Kuchunguza",
+  "addToDashboard": "Ongeza kwenye dashibodi",
+  "thisDataset": "hifadhidata hii"
+}

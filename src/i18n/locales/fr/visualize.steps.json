@@ -1,0 +1,203 @@
+{
+  "groups": {
+    "clean": "Nettoyer",
+    "rows": "Lignes",
+    "columns": "Colonnes",
+    "text": "Texte",
+    "numbers": "Nombres et dates",
+    "shape": "Structure",
+    "combine": "Combiner"
+  },
+  "kinds": {
+    "removeDuplicates": "Supprimer les lignes en double",
+    "trim": "Supprimer les espaces superflus",
+    "removeBlankRows": "Supprimer les lignes vides",
+    "fillBlanks": "Remplir les vides",
+    "replaceValues": "Remplacer les valeurs",
+    "changeType": "Modifier le type",
+    "outliers": "Traiter les valeurs aberrantes",
+    "filterRows": "Filtrer les lignes",
+    "sort": "Trier les lignes",
+    "keepRows": "Conserver les premières ou dernières lignes",
+    "removeColumns": "Supprimer des colonnes",
+    "keepColumns": "Conserver uniquement ces colonnes",
+    "rename": "Renommer une colonne",
+    "calculatedColumn": "Colonne calculée",
+    "conditionalColumn": "Colonne conditionnelle",
+    "splitColumn": "Fractionner une colonne",
+    "mergeColumns": "Fusionner des colonnes",
+    "textCase": "Modifier la casse",
+    "bins": "Regrouper les nombres en intervalles",
+    "dateParts": "Extraire des parties de date",
+    "dateTable": "Créer une table de dates (calendrier)",
+    "groupBy": "Regrouper par",
+    "pivot": "Pivoter (lignes → colonnes)",
+    "unpivot": "Dépivoter (colonnes → lignes)",
+    "merge": "Fusionner avec un autre jeu de données",
+    "append": "Ajouter un autre jeu de données"
+  },
+  "fields": {
+    "compareColumns": "Comparer uniquement ces colonnes",
+    "trimColumns": "Colonnes (tout le texte si vide)",
+    "blankIn": "Vide dans",
+    "removeWhen": "Supprimer lorsque",
+    "column": "Colonne",
+    "columns": "Colonnes",
+    "with": "Avec",
+    "value": "Valeur",
+    "find": "Rechercher",
+    "replaceWith": "Remplacer par",
+    "match": "Correspondance",
+    "to": "Vers",
+    "action": "Action",
+    "rowsThatMatch": "Lignes correspondantes",
+    "conditions": "Conditions",
+    "sortBy": "Trier par",
+    "keep": "Conserver",
+    "howMany": "Combien",
+    "newName": "Nouveau nom",
+    "newColumn": "Nouvelle colonne",
+    "formula": "Formule",
+    "ifThen": "Si … alors",
+    "otherwise": "Sinon",
+    "at": "À",
+    "intoParts": "En (parties)",
+    "newNames": "Nouveaux noms (facultatif)",
+    "separator": "Séparateur",
+    "case": "Casse",
+    "bins": "Intervalles",
+    "howManyBins": "Nombre d'intervalles",
+    "edges": "Bornes",
+    "dateColumn": "Colonne de date",
+    "parts": "Parties",
+    "fromDatesIn": "À partir des dates de",
+    "fiscalStart": "Mois de début de l'exercice fiscal",
+    "groupBy": "Regrouper par",
+    "calculate": "Calculer",
+    "keepAsRows": "Conserver en lignes",
+    "valuesBecomeColumns": "Valeurs transformées en colonnes",
+    "fillWith": "Remplir avec",
+    "aggregation": "Agrégation",
+    "keepTheseColumns": "Conserver ces colonnes",
+    "nameColumn": "Colonne des noms",
+    "valueColumn": "Colonne des valeurs",
+    "dataset": "Jeu de données",
+    "keyHere": "Clé dans ces données",
+    "keyOther": "Clé dans l'autre"
+  },
+  "options": {
+    "blankHow": {
+      "any": "l'une d'elles est vide",
+      "all": "toutes sont vides"
+    },
+    "fill": {
+      "mean": "Moyenne",
+      "median": "Médiane",
+      "mode": "Valeur la plus fréquente",
+      "zero": "Zéro",
+      "down": "Valeur du dessus (remplir vers le bas)",
+      "up": "Valeur du dessous (remplir vers le haut)",
+      "value": "Ma propre valeur"
+    },
+    "replaceMatch": {
+      "exact": "Valeur entière",
+      "contains": "Partie du texte"
+    },
+    "types": {
+      "number": "Nombre",
+      "date": "Date",
+      "text": "Texte"
+    },
+    "outliers": {
+      "cap": "Plafonner aux limites",
+      "remove": "Supprimer ces lignes",
+      "flag": "Signaler dans une nouvelle colonne"
+    },
+    "filterMode": {
+      "keep": "Conserver",
+      "remove": "Supprimer"
+    },
+    "combine": {
+      "and": "toutes les conditions",
+      "or": "au moins une condition"
+    },
+    "keepRows": {
+      "top": "Premières lignes",
+      "bottom": "Dernières lignes"
+    },
+    "textCase": {
+      "title": "Majuscule En Début De Mot",
+      "upper": "MAJUSCULES",
+      "lower": "minuscules"
+    },
+    "bins": {
+      "equal": "Largeur égale",
+      "edges": "Mes propres bornes"
+    },
+    "mergeHow": {
+      "left": "Toutes les lignes de ces données",
+      "inner": "Seulement les lignes correspondantes",
+      "outer": "Toutes les lignes des deux"
+    },
+    "aggs": {
+      "sum": "Somme",
+      "avg": "Moyenne",
+      "count": "Nombre",
+      "distinct": "Nombre distinct",
+      "min": "Min",
+      "max": "Max",
+      "median": "Médiane"
+    }
+  },
+  "parts": {
+    "year": "Année",
+    "quarter": "Trimestre",
+    "month": "Mois",
+    "monthName": "Nom du mois",
+    "week": "Semaine",
+    "weekday": "Jour de la semaine",
+    "weekdayName": "Nom du jour",
+    "day": "Jour",
+    "hour": "Heure"
+  },
+  "conditionOps": {
+    "eq": "est égal à",
+    "ne": "est différent de",
+    "in": "fait partie de",
+    "notIn": "ne fait pas partie de",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "between": "entre",
+    "contains": "contient",
+    "startsWith": "commence par",
+    "endsWith": "se termine par",
+    "blank": "est vide",
+    "notBlank": "n'est pas vide"
+  },
+  "summary": {
+    "keepConditions": "conserver {{count}} condition(s)",
+    "removeConditions": "supprimer {{count}} condition(s)",
+    "by": "par {{columns}}",
+    "anotherDataset": "un autre jeu de données",
+    "types": {
+      "number": "nombre",
+      "date": "date",
+      "text": "texte"
+    }
+  },
+  "fixes": {
+    "removeDuplicates": "Supprimer les doublons",
+    "keepOnePerId": "Conserver une ligne par ID",
+    "removeMissingId": "Supprimer les lignes sans ID",
+    "fillBlanks": "Remplir les vides",
+    "blankOut": "Vider « {{value}} »",
+    "trimSpaces": "Supprimer les espaces",
+    "toNumber": "Convertir en nombre",
+    "toDate": "Convertir en date",
+    "consistentSpelling": "Uniformiser l'orthographe",
+    "capOutliers": "Plafonner les valeurs aberrantes",
+    "removeColumn": "Supprimer la colonne"
+  }
+}

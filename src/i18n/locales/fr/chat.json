@@ -13,5 +13,12 @@
   "requestFailed": "La requête a échoué.",
   "statusRunning": "Statut : {{status}}…",
   "defaultPlan": "Gratuit",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "headlineLead": "Qu'allons-nous ",
+  "headlineAccent": "créer aujourd'hui ?",
+  "subhead": "",
+  "assistant": "JT-Code",
+  "stop": "Arrêter la génération",
+  "stopped": "Arrêté."
 }

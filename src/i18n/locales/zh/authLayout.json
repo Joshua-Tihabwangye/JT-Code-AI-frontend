@@ -3,5 +3,7 @@
   "switchToDark": "切换到深色主题",
   "light": "浅色",
   "dark": "深色",
-  "tagline": "私密的 AI 工作区"
+  "tagline": "私密的 AI 工作区",
+  "notice": "",
+  "back": "返回"
 }

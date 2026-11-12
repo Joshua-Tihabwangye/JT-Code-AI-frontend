@@ -14,7 +14,8 @@
     "uppercase": "包含一个大写字母",
     "lowercase": "包含一个小写字母",
     "number": "包含一个数字",
-    "singleRule": "密码必须至少包含8个字符，并且至少包含一个字母和一个数字。"
+    "singleRule": "密码必须至少包含8个字符，并且至少包含一个字母和一个数字。",
+    "special": "一个特殊字符"
   },
   "matchOk": "两次输入的密码一致。",
   "matchError": "两次输入的密码还不一致。",
@@ -48,5 +49,12 @@
   "privacyLink": "隐私政策",
   "termsHelp": "完成注册前，您可以先查阅这些法律页面。",
   "submit": "创建账号",
-  "haveAccountQuestion": "已经有账号了？"
+  "haveAccountQuestion": "已经有账号了？",
+  "helpText": "",
+  "section": {
+    "account": "账户",
+    "profile": "个人资料",
+    "region": "地区"
+  },
+  "confirmEmail": "就快完成了！我们已向 {{email}} 发送确认链接。请打开链接，然后登录。"
 }

@@ -3,19 +3,25 @@
     "eyebrow": "联系我们",
     "title": "获取 JT-Code 帮助",
     "backToSignIn": "返回登录",
-    "createAccount": "创建账号"
+    "createAccount": "创建账号",
+    "p1": "",
+    "p2": ""
   },
   "privacy": {
     "eyebrow": "隐私政策",
     "title": "JT-Code 隐私",
     "signIn": "登录",
-    "readTerms": "阅读条款"
+    "readTerms": "阅读条款",
+    "p1": "",
+    "p2": ""
   },
   "terms": {
     "eyebrow": "服务条款",
     "title": "JT-Code 条款",
     "createAccount": "创建账号",
-    "contactSupport": "联系支持团队"
+    "contactSupport": "联系支持团队",
+    "p1": "",
+    "p2": ""
   },
   "notFound": {
     "title": "页面不存在",

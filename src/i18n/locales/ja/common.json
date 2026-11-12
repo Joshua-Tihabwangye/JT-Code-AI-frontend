@@ -14,5 +14,13 @@
   "default": "デフォルト",
   "creditsUnit": "クレジット",
   "messagesCount_one": "{{count}} 件のメッセージ",
-  "messagesCount_other": "{{count}} 件のメッセージ"
+  "messagesCount_other": "{{count}} 件のメッセージ",
+  "dismiss": "却下する",
+  "avatar": "アバター",
+  "hidePassword": "パスワードを隠す",
+  "showPassword": "パスワードを表示",
+  "clearSearch": "検索をクリア",
+  "confirm": "確認する",
+  "notifications": "通知",
+  "dismissNotification": "通知を閉じる"
 }

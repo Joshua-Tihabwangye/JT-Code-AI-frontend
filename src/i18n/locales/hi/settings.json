@@ -29,5 +29,20 @@
   "changePhoto": "तस्वीर बदलने के लिए क्लिक करें",
   "profileUpdated": "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई",
   "updateProfileError": "प्रोफ़ाइल अपडेट करने में विफल",
-  "uploadAvatarError": "अवतार अपलोड करने में विफल"
+  "uploadAvatarError": "अवतार अपलोड करने में विफल",
+  "eyebrow": "सेटिंग्स",
+  "avatarUpdated": "प्रोफ़ाइल चित्र अपडेट किया गया.",
+  "removePhoto": "फ़ोटो हटाएँ",
+  "passwordChanged": "आपका पासवर्ड बदल दिया गया था.",
+  "passwordMismatch": "नये पासवर्ड मेल नहीं खाते.",
+  "workspace": "कार्यस्थान",
+  "workspaceDesc": "जेटी-कोड में आपका संगठन। बातचीत, फ़ाइलें और क्रेडिट इसके अंतर्गत आते हैं।",
+  "workspaceName": "कार्यस्थल का नाम",
+  "workspaceUpdated": "कार्यक्षेत्र का नाम बदला गया.",
+  "password": "पासवर्ड",
+  "passwordDesc": "साइन इन करने के लिए आप जिस पासवर्ड का उपयोग करते हैं उसे बदलें।",
+  "currentPassword": "वर्तमान पासवर्ड",
+  "newPassword": "नया पासवर्ड (8+ अक्षर)",
+  "confirmPassword": "नए पासवर्ड की पुष्टि करें",
+  "changePassword": "पासवर्ड बदलें"
 }

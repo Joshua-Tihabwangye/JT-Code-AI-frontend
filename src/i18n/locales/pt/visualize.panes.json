@@ -1,0 +1,37 @@
+{
+  "moveUp": "Subir",
+  "moveDown": "Mover para baixo",
+  "views": {
+    "intro": "Uma visualização lembra esta página com suas segmentações de dados, filtros, nível de detalhamento, parâmetros e quais elementos visuais estão ocultos (guia Seleção). Os espectadores escolhem as visualizações em “Visualizações ▾”; botões e navegadores podem abri-los.",
+    "namePlaceholder": "Nome, por ex. Somente on-line",
+    "add": "Adicionar visualização",
+    "nameAria": "Ver nome",
+    "show": "Mostrar esta visualização",
+    "update": "Atualize com o que é mostrado agora",
+    "delete": "Excluir"
+  },
+  "mobile": {
+    "phone": "Layout do telefone",
+    "empty": "Os telefones mostram todos os recursos visuais em ordem de leitura até você preparar esta página.",
+    "auto": "Comece pelo layout da área de trabalho",
+    "shorter": "Mais curto",
+    "taller": "Mais alto",
+    "remove": "Remover do layout do telefone",
+    "notOnPhones": "Não em telefones",
+    "allPlaced": "Cada visual está no layout do telefone.",
+    "clear": "Layout claro do telefone"
+  },
+  "selection": {
+    "group": "Grupo",
+    "ungroup": "Desagrupar",
+    "inGroup": "Em um grupo",
+    "layerName": "Nome da camada",
+    "show": "Mostrar",
+    "hide": "Esconder",
+    "lock": "Trancar",
+    "unlock": "Desbloquear",
+    "forward": "Apresentar",
+    "backward": "Enviar para trás",
+    "empty": "Ainda não há recursos visuais – use Inserir."
+  }
+}

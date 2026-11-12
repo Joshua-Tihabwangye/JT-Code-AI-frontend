@@ -13,5 +13,12 @@
   "requestFailed": "요청이 실패했습니다.",
   "statusRunning": "상태: {{status}}…",
   "defaultPlan": "무료",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "우리는 무엇을 해야 합니까?",
+  "headlineAccent": "오늘 지을래?",
+  "assistant": "JT 코드",
+  "stop": "생성 중지",
+  "stopped": "중지되었습니다."
 }

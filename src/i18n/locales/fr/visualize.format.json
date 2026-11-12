@@ -1,0 +1,326 @@
+{
+  "search": "Rechercher des options de format",
+  "resetSection": "Rétablir les valeurs du thème",
+  "automatic": "Automatique",
+  "on": "Activé",
+  "off": "Désactivé",
+  "sections": {
+    "python": "Script Python",
+    "parameter": "Paramètre",
+    "button": "Bouton",
+    "navigator": "Navigateur",
+    "general": "Titre et position",
+    "tile": "Vignette",
+    "colors": "Couleurs",
+    "labels": "Étiquettes de données",
+    "legend": "Légende",
+    "sort": "Tri et N premiers",
+    "bars": "Barres et courbes",
+    "donut": "Secteurs",
+    "kpi": "KPI",
+    "gauge": "Plage de la jauge",
+    "table": "Table",
+    "slicer": "Segment",
+    "tooltip": "Info-bulle",
+    "conditional": "Mise en forme conditionnelle",
+    "analytics": "Analyse (lignes de référence, tendance, prévision)",
+    "map": "Carte géographique"
+  },
+  "general": {
+    "title": "Titre",
+    "showTitle": "Afficher le titre",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "l",
+      "h": "h"
+    },
+    "layoutAria": "Disposition {{axis}}",
+    "altText": "Texte de remplacement",
+    "altPlaceholder": "Pour les lecteurs d'écran"
+  },
+  "tile": {
+    "background": "Arrière-plan",
+    "border": "Bordure",
+    "radius": "Arrondi des angles",
+    "shadow": "Ombre"
+  },
+  "colors": {
+    "seriesAria": "Couleur de la série {{index}}",
+    "custom": "Personnalisée",
+    "fromTheme": "Du thème"
+  },
+  "labels": {
+    "showValues": "Afficher les valeurs"
+  },
+  "legend": {
+    "show": "Afficher la légende",
+    "position": "Position",
+    "positions": {
+      "top": "Haut",
+      "bottom": "Bas",
+      "left": "Gauche",
+      "right": "Droite"
+    }
+  },
+  "sort": {
+    "by": "Trier par",
+    "value": "Valeur",
+    "name": "Nom",
+    "direction": "Ordre",
+    "desc": "Décroissant",
+    "asc": "Croissant",
+    "topN": "N premiers",
+    "showTop": "Afficher les premiers",
+    "others": "Regrouper le reste dans « Autres »"
+  },
+  "bars": {
+    "stacking": "Empilement",
+    "none": "Côte à côte",
+    "stacked": "Empilé",
+    "percent": "Empilé 100%",
+    "smooth": "Courbes lissées"
+  },
+  "donut": {
+    "maxSlices": "Secteurs max. (reste → Autres)"
+  },
+  "kpi": {
+    "compareBy": "Comparer par",
+    "grains": {
+      "day": "Jour",
+      "week": "Semaine",
+      "month": "Mois",
+      "quarter": "Trimestre",
+      "year": "Année"
+    },
+    "upIsGood": "La hausse est positive"
+  },
+  "gauge": {
+    "min": "Min",
+    "max": "Max",
+    "auto": "Auto"
+  },
+  "table": {
+    "dataBars": "Barres de données"
+  },
+  "slicer": {
+    "style": "Style",
+    "styles": {
+      "dropdown": "Liste déroulante",
+      "list": "Liste",
+      "tiles": "Boutons",
+      "between": "Plage de nombres",
+      "dateRange": "Plage de dates",
+      "relative": "Date relative",
+      "input": "Saisir une valeur",
+      "hierarchy": "Hiérarchie (ajoutez d'autres champs)"
+    },
+    "single": "Sélection unique",
+    "sync": "Synchroniser entre les pages",
+    "page": "Page",
+    "syncColumn": "Synchro",
+    "visible": "Visible",
+    "syncTo": "Synchroniser avec {{page}}",
+    "visibleOn": "Visible sur {{page}}"
+  },
+  "tooltip": {
+    "page": "Page d'info-bulle",
+    "default": "Info-bulle par défaut",
+    "noPages": "Définissez d'abord une page comme page d'info-bulle"
+  },
+  "map": {
+    "zoomTo": "Zoomer sur",
+    "scopes": {
+      "world": "Monde",
+      "africa": "Afrique",
+      "europe": "Europe",
+      "asia": "Asie",
+      "northAmerica": "Amérique du Nord",
+      "southAmerica": "Amérique du Sud"
+    }
+  },
+  "page": {
+    "label": "Page",
+    "name": "Nom",
+    "canvasSize": "Taille du canevas",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Lettre (portrait)",
+      "fitWidth": "Ajuster à la largeur (s'agrandit)"
+    },
+    "background": "Arrière-plan",
+    "themeBackground": "Arrière-plan du thème",
+    "type": "Type de page",
+    "types": {
+      "page": "Page",
+      "drillthrough": "Extraction (détail)",
+      "tooltip": "Info-bulle"
+    },
+    "tooltipHint": "Affichée en petit au survol des points des visuels qui la choisissent dans Format → Info-bulle.",
+    "drillthroughHint": "Cliquez avec le bouton droit sur un membre de l'un de ces champs sur une autre page → « Extraire »."
+  },
+  "dashboard": {
+    "label": "Tableau de bord",
+    "slicersApply": "Application des segments",
+    "instant": "Immédiatement",
+    "button": "Avec un bouton Appliquer",
+    "filtersPane": "Volet Filtres pour les lecteurs",
+    "personalize": "Les lecteurs peuvent personnaliser"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Échelle de couleurs",
+      "rules": "Règles",
+      "bars": "Barres de données",
+      "icons": "Icônes ▲●▼"
+    },
+    "ruleType": "Type de règle",
+    "value": "Valeur",
+    "colour": "Couleur",
+    "background": "Arrière-plan",
+    "text": "Texte",
+    "removeRule": "Supprimer la règle",
+    "lowest": "Minimum",
+    "middle": "Milieu",
+    "highest": "Maximum",
+    "lowestColour": "Couleur minimale",
+    "middleColour": "Couleur médiane",
+    "highestColour": "Couleur maximale",
+    "ifValueIs": "Si la valeur est",
+    "between": "entre",
+    "and": "Et",
+    "removeCondition": "Retirer la condition",
+    "addCondition": "Condition (la première correspondance l'emporte)",
+    "barColour": "Couleur des barres",
+    "iconsHint": "▲ tiers supérieur, ● milieu, ▼ tiers inférieur des valeurs.",
+    "addRule": "Ajouter une règle"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Constante (cible)",
+      "average": "Moyenne",
+      "median": "Médiane",
+      "min": "Minimum",
+      "max": "Maximum",
+      "percentile": "Centile",
+      "trend": "Courbe de tendance",
+      "forecast": "Prévision"
+    },
+    "line": "Ligne",
+    "value": "Valeur",
+    "percentile": "Centile",
+    "periods": "Périodes",
+    "colour": "Couleur",
+    "removeLine": "Supprimer la ligne",
+    "labelPlaceholder": "Étiquette (facultatif)",
+    "addLine": "Ajouter une ligne",
+    "forecastHint": "Les prévisions nécessitent un axe de dates (ex. date par mois)."
+  },
+  "python": {
+    "starter": "Partir d'un exemple",
+    "sandbox": "S'exécute dans un bac à sable Python verrouillé : pandas, numpy, scipy, statsmodels et scikit-learn ; aucun accès aux fichiers, au réseau ou au système."
+  },
+  "button": {
+    "text": "Texte",
+    "action": "Action",
+    "actions": {
+      "page": "Aller à la page",
+      "bookmark": "Appliquer une vue (signet)",
+      "back": "Retour",
+      "clearSlicers": "Effacer tous les segments",
+      "applySlicers": "Appliquer les segments",
+      "toggle": "Afficher / masquer un visuel",
+      "url": "Ouvrir un lien web",
+      "askAi": "Demander à l'IA",
+      "reset": "Rétablir les valeurs par défaut"
+    },
+    "page": "Page",
+    "choose": "Choisir…",
+    "view": "Vue",
+    "addViewsFirst": "Ajoutez d'abord des vues (onglet Vues)",
+    "visual": "Visuel",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Lien",
+    "style": "Style",
+    "fills": {
+      "primary": "Plein",
+      "outline": "Contour",
+      "ghost": "Simple"
+    }
+  },
+  "navigator": {
+    "shows": "Affiche",
+    "pages": "Pages",
+    "bookmarks": "Vues (signets)"
+  },
+  "parameter": {
+    "parameter": "Paramètre",
+    "new": "Nouveau paramètre…",
+    "showAs": "Afficher en tant que",
+    "tiles": "Boutons",
+    "dropdown": "Liste déroulante",
+    "delete": "Supprimer ce paramètre"
+  },
+  "theme": {
+    "title": "Personnaliser le thème",
+    "name": "Nom du thème",
+    "close": "Fermer",
+    "dataColours": "Couleurs des données",
+    "colour": "Couleur {{index}}",
+    "removeColour": "Supprimer la couleur {{index}}",
+    "addColour": "Ajouter une couleur",
+    "brandColour": "Couleur de marque",
+    "generate": "Palette à partir de ma couleur de marque",
+    "sentiment": {
+      "good": "Bon",
+      "neutral": "Neutre",
+      "bad": "Mauvais"
+    },
+    "pageAndTiles": "Page et vignettes",
+    "light": "Clair",
+    "dark": "Sombre",
+    "roles": {
+      "canvas": "Canevas",
+      "tile": "Vignettes",
+      "border": "Bordures",
+      "gridline": "Quadrillage",
+      "text": "Texte",
+      "mutedText": "Texte atténué",
+      "accent": "Accent"
+    },
+    "contrast": "Le texte est difficile à lire sur les vignettes ({{ratio}}:1 — visez 4,5:1 ou plus).",
+    "font": "Police",
+    "systemFont": "Système",
+    "corners": "Angles",
+    "shadow": "Ombre",
+    "shadows": {
+      "none": "Aucune",
+      "soft": "Douce",
+      "medium": "Moyenne"
+    },
+    "kpiTiles": "Vignettes KPI",
+    "kpiStyles": {
+      "plain": "Simple",
+      "solid": "Couleur unie",
+      "gradient": "Dégradé",
+      "outlined": "Contour",
+      "icon": "Barre d'accent"
+    },
+    "orgThemes": "Thèmes de mon organisation",
+    "deleteTheme": "Supprimer {{name}}",
+    "importJson": "Importer un JSON",
+    "exportJson": "Exporter en JSON",
+    "saveAs": "Enregistrer comme mon thème",
+    "defaultName": "Mon thème",
+    "importedName": "Thème importé",
+    "imported": "Importé.",
+    "saved": "« {{name}} » enregistré pour votre organisation.",
+    "cancel": "Annuler",
+    "done": "Terminé",
+    "errors": {
+      "notTheme": "Le fichier n'est pas un thème.",
+      "needColours": "Un thème nécessite au moins 3 couleurs de données (dataColors)."
+    }
+  }
+}

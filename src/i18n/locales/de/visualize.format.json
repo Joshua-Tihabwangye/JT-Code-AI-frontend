@@ -1,0 +1,326 @@
+{
+  "search": "Formatoptionen durchsuchen",
+  "resetSection": "Auf Designstandard zurücksetzen",
+  "automatic": "Automatisch",
+  "on": "Ein",
+  "off": "Aus",
+  "sections": {
+    "python": "Python-Skript",
+    "parameter": "Parameter",
+    "button": "Schaltfläche",
+    "navigator": "Navigator",
+    "general": "Titel und Position",
+    "tile": "Kachel",
+    "colors": "Farben",
+    "labels": "Datenbeschriftungen",
+    "legend": "Legende",
+    "sort": "Sortierung und Top N",
+    "bars": "Balken und Linien",
+    "donut": "Segmente",
+    "kpi": "KPI",
+    "gauge": "Messbereich",
+    "table": "Tabelle",
+    "slicer": "Datenschnitt",
+    "tooltip": "QuickInfo",
+    "conditional": "Bedingte Formatierung",
+    "analytics": "Analyse (Referenzlinien, Trend, Prognose)",
+    "map": "Karte"
+  },
+  "general": {
+    "title": "Titel",
+    "showTitle": "Titel anzeigen",
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "b",
+      "h": "h"
+    },
+    "layoutAria": "Layout {{axis}}",
+    "altText": "Alternativtext",
+    "altPlaceholder": "Für Bildschirmleser"
+  },
+  "tile": {
+    "background": "Hintergrund",
+    "border": "Rahmen",
+    "radius": "Eckenradius",
+    "shadow": "Schatten"
+  },
+  "colors": {
+    "seriesAria": "Reihenfarbe {{index}}",
+    "custom": "Benutzerdefiniert",
+    "fromTheme": "Aus dem Design"
+  },
+  "labels": {
+    "showValues": "Werte anzeigen"
+  },
+  "legend": {
+    "show": "Legende anzeigen",
+    "position": "Position",
+    "positions": {
+      "top": "Oben",
+      "bottom": "Unten",
+      "left": "Links",
+      "right": "Rechts"
+    }
+  },
+  "sort": {
+    "by": "Sortieren nach",
+    "value": "Wert",
+    "name": "Name",
+    "direction": "Richtung",
+    "desc": "Absteigend",
+    "asc": "Aufsteigend",
+    "topN": "Top N",
+    "showTop": "Top anzeigen",
+    "others": "Rest als „Sonstige“ gruppieren"
+  },
+  "bars": {
+    "stacking": "Stapelung",
+    "none": "Nebeneinander",
+    "stacked": "Gestapelt",
+    "percent": "100% gestapelt",
+    "smooth": "Geglättete Linien"
+  },
+  "donut": {
+    "maxSlices": "Max. Segmente (Rest → Sonstige)"
+  },
+  "kpi": {
+    "compareBy": "Vergleichen nach",
+    "grains": {
+      "day": "Tag",
+      "week": "Woche",
+      "month": "Monat",
+      "quarter": "Quartal",
+      "year": "Jahr"
+    },
+    "upIsGood": "Anstieg ist gut"
+  },
+  "gauge": {
+    "min": "Min.",
+    "max": "Max.",
+    "auto": "Auto"
+  },
+  "table": {
+    "dataBars": "Datenbalken"
+  },
+  "slicer": {
+    "style": "Stil",
+    "styles": {
+      "dropdown": "Dropdown",
+      "list": "Liste",
+      "tiles": "Schaltflächen",
+      "between": "Zahlenbereich",
+      "dateRange": "Datumsbereich",
+      "relative": "Relatives Datum",
+      "input": "Wert eingeben",
+      "hierarchy": "Hierarchie (weitere Felder hinzufügen)"
+    },
+    "single": "Einfachauswahl",
+    "sync": "Seitenübergreifend synchronisieren",
+    "page": "Seite",
+    "syncColumn": "Synchr.",
+    "visible": "Sichtbar",
+    "syncTo": "Mit {{page}} synchronisieren",
+    "visibleOn": "Sichtbar auf {{page}}"
+  },
+  "tooltip": {
+    "page": "QuickInfo-Seite",
+    "default": "Standard-QuickInfo",
+    "noPages": "Lege zuerst eine Seite als QuickInfo-Seite fest"
+  },
+  "map": {
+    "zoomTo": "Zoomen auf",
+    "scopes": {
+      "world": "Welt",
+      "africa": "Afrika",
+      "europe": "Europa",
+      "asia": "Asien",
+      "northAmerica": "Nordamerika",
+      "southAmerica": "Südamerika"
+    }
+  },
+  "page": {
+    "label": "Seite",
+    "name": "Name",
+    "canvasSize": "Zeichenbereichsgröße",
+    "canvasPresets": {
+      "wide": "16:9 (1280 × 720)",
+      "standard": "4:3 (1280 × 960)",
+      "letter": "Letter (Hochformat)",
+      "fitWidth": "An Breite anpassen (wächst mit)"
+    },
+    "background": "Hintergrund",
+    "themeBackground": "Designhintergrund",
+    "type": "Seitentyp",
+    "types": {
+      "page": "Seite",
+      "drillthrough": "Drillthrough (Detail)",
+      "tooltip": "QuickInfo"
+    },
+    "tooltipHint": "Wird klein angezeigt, wenn du auf Punkte von Visuals zeigst, die sie unter Format → QuickInfo ausgewählt haben.",
+    "drillthroughHint": "Klicke auf einer anderen Seite mit der rechten Maustaste auf ein Element eines dieser Felder → „Drillthrough“."
+  },
+  "dashboard": {
+    "label": "Dashboard",
+    "slicersApply": "Datenschnitte anwenden",
+    "instant": "Sofort",
+    "button": "Mit einer Schaltfläche „Anwenden“",
+    "filtersPane": "Filterbereich für Betrachter",
+    "personalize": "Betrachter dürfen personalisieren"
+  },
+  "conditional": {
+    "kinds": {
+      "scale": "Farbskala",
+      "rules": "Regeln",
+      "bars": "Datenbalken",
+      "icons": "Symbole ▲●▼"
+    },
+    "ruleType": "Regeltyp",
+    "value": "Wert",
+    "colour": "Farbe",
+    "background": "Hintergrund",
+    "text": "Text",
+    "removeRule": "Regel entfernen",
+    "lowest": "Niedrigster",
+    "middle": "Mitte",
+    "highest": "Höchster",
+    "lowestColour": "Farbe für niedrigsten Wert",
+    "middleColour": "Farbe für Mitte",
+    "highestColour": "Farbe für höchsten Wert",
+    "ifValueIs": "Wenn der Wert",
+    "between": "zwischen",
+    "and": "Und",
+    "removeCondition": "Bedingung entfernen",
+    "addCondition": "Bedingung (erste Übereinstimmung gilt)",
+    "barColour": "Balkenfarbe",
+    "iconsHint": "▲ oberes Drittel, ● Mitte, ▼ unteres Drittel der Werte.",
+    "addRule": "Regel hinzufügen"
+  },
+  "analytics": {
+    "kinds": {
+      "constant": "Konstante (Ziel)",
+      "average": "Durchschnitt",
+      "median": "Median",
+      "min": "Minimum",
+      "max": "Maximum",
+      "percentile": "Perzentil",
+      "trend": "Trendlinie",
+      "forecast": "Prognose"
+    },
+    "line": "Linie",
+    "value": "Wert",
+    "percentile": "Perzentil",
+    "periods": "Perioden",
+    "colour": "Farbe",
+    "removeLine": "Linie entfernen",
+    "labelPlaceholder": "Beschriftung (optional)",
+    "addLine": "Linie hinzufügen",
+    "forecastHint": "Prognosen benötigen eine Datumsachse (z. B. Datum nach Monat)."
+  },
+  "python": {
+    "starter": "Mit einem Beispiel beginnen",
+    "sandbox": "Läuft in einer abgeschotteten Python-Sandbox: pandas, numpy, scipy, statsmodels und scikit-learn; kein Zugriff auf Dateien, Netzwerk oder System."
+  },
+  "button": {
+    "text": "Text",
+    "action": "Aktion",
+    "actions": {
+      "page": "Zur Seite wechseln",
+      "bookmark": "Ansicht anwenden (Lesezeichen)",
+      "back": "Zurück",
+      "clearSlicers": "Alle Datenschnitte löschen",
+      "applySlicers": "Datenschnitte anwenden",
+      "toggle": "Visual ein-/ausblenden",
+      "url": "Weblink öffnen",
+      "askAi": "KI fragen",
+      "reset": "Auf Standard zurücksetzen"
+    },
+    "page": "Seite",
+    "choose": "Auswählen…",
+    "view": "Ansicht",
+    "addViewsFirst": "Füge zuerst Ansichten hinzu (Registerkarte „Ansichten“)",
+    "visual": "Visual",
+    "visualFallback": "{{type}} ({{id}})",
+    "link": "Link",
+    "style": "Stil",
+    "fills": {
+      "primary": "Gefüllt",
+      "outline": "Kontur",
+      "ghost": "Schlicht"
+    }
+  },
+  "navigator": {
+    "shows": "Zeigt",
+    "pages": "Seiten",
+    "bookmarks": "Ansichten (Lesezeichen)"
+  },
+  "parameter": {
+    "parameter": "Parameter",
+    "new": "Neuer Parameter…",
+    "showAs": "Anzeigen als",
+    "tiles": "Schaltflächen",
+    "dropdown": "Dropdown",
+    "delete": "Diesen Parameter löschen"
+  },
+  "theme": {
+    "title": "Design anpassen",
+    "name": "Name des Designs",
+    "close": "Schließen",
+    "dataColours": "Datenfarben",
+    "colour": "Farbe {{index}}",
+    "removeColour": "Farbe {{index}} entfernen",
+    "addColour": "Farbe hinzufügen",
+    "brandColour": "Markenfarbe",
+    "generate": "Palette aus meiner Markenfarbe",
+    "sentiment": {
+      "good": "Gut",
+      "neutral": "Neutral",
+      "bad": "Schlecht"
+    },
+    "pageAndTiles": "Seite und Kacheln",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "roles": {
+      "canvas": "Zeichenbereich",
+      "tile": "Kacheln",
+      "border": "Rahmen",
+      "gridline": "Gitternetzlinien",
+      "text": "Text",
+      "mutedText": "Gedämpfter Text",
+      "accent": "Akzent"
+    },
+    "contrast": "Text ist auf Kacheln schwer lesbar ({{ratio}}:1 – Ziel ist 4,5:1 oder mehr).",
+    "font": "Schriftart",
+    "systemFont": "System",
+    "corners": "Ecken",
+    "shadow": "Schatten",
+    "shadows": {
+      "none": "Keiner",
+      "soft": "Weich",
+      "medium": "Mittel"
+    },
+    "kpiTiles": "KPI-Kacheln",
+    "kpiStyles": {
+      "plain": "Schlicht",
+      "solid": "Vollfarbe",
+      "gradient": "Verlauf",
+      "outlined": "Umrandet",
+      "icon": "Akzentleiste"
+    },
+    "orgThemes": "Designs meiner Organisation",
+    "deleteTheme": "{{name}} löschen",
+    "importJson": "JSON importieren",
+    "exportJson": "JSON exportieren",
+    "saveAs": "Als mein Design speichern",
+    "defaultName": "Mein Design",
+    "importedName": "Importiertes Design",
+    "imported": "Importiert.",
+    "saved": "„{{name}}“ für deine Organisation gespeichert.",
+    "cancel": "Abbrechen",
+    "done": "Fertig",
+    "errors": {
+      "notTheme": "Die Datei ist kein Design.",
+      "needColours": "Ein Design benötigt mindestens 3 Datenfarben (dataColors)."
+    }
+  }
+}

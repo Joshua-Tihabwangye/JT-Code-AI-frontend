@@ -23,5 +23,10 @@
     "resetFailed": "Dein Passwort konnte nicht zurückgesetzt werden.",
     "mismatch": "Die Passwörter stimmen nicht überein.",
     "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
-  }
+  },
+  "resetDesc": "Gib deine E-Mail-Adresse ein. Wir senden dir einen Link zum Zurücksetzen, den du direkt hier abschließen kannst.",
+  "checkDesc": "Wir haben eine Nachricht zum Zurücksetzen an <0>{{email}}</0> gesendet. Mit dem Code unten geht es zum nächsten Schritt.",
+  "checkDescPlain": "Wir haben einen Code zum Zurücksetzen an {{email}} gesendet. Gib ihn im nächsten Schritt ein, um ein neues Passwort festzulegen.",
+  "mockResetCode": "Code zum Zurücksetzen",
+  "enterEmailedCode": "Gib den Code aus der E-Mail ein"
 }

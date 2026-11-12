@@ -1,0 +1,41 @@
+{
+  "title": "Laporan",
+  "subtitle": "Ekspor dasbor, atau gunakan kembali visual yang Anda simpan.",
+  "export": "Ekspor dasbor",
+  "noCharts": "Simpan visual dari Jelajahi atau Prediksi untuk menggunakannya kembali di dasbor.",
+  "library": {
+    "title": "Visual saya"
+  },
+  "dashboardToExport": "Dasbor untuk mengekspor",
+  "noDashboards": "Belum ada dasbor",
+  "formats": {
+    "pdf": {
+      "label": "PDF",
+      "hint": "Satu halaman per halaman dashboard, persis seperti di layar"
+    },
+    "png": {
+      "label": "gambar PNG",
+      "hint": "Satu gambar per halaman"
+    },
+    "xlsx": {
+      "label": "Unggul",
+      "hint": "Setiap data visual dengan bagan asli, ditambah data mentah"
+    },
+    "html": {
+      "label": "HTML Interaktif",
+      "hint": "Satu file yang berfungsi offline"
+    },
+    "json": {
+      "label": "JSON",
+      "hint": "Definisi dasbor"
+    }
+  },
+  "preparing": "Mempersiapkan…",
+  "explore": "Mengeksplorasi",
+  "prediction": "Ramalan",
+  "visualOf": "{{type}} visual",
+  "deletedDataset": "kumpulan data yang dihapus",
+  "unshare": "Batalkan pembagian",
+  "share": "Membagikan",
+  "deleteNamed": "Hapus {{name}}"
+}

@@ -1,0 +1,67 @@
+{
+  "tabs": {
+    "dashboards": "Cruscotti",
+    "data": "Dati",
+    "gallery": "Galleria",
+    "predict": "Prevedere",
+    "reports": "Rapporti",
+    "explore": "Esplorare"
+  },
+  "askAi": "Chiedi all'AI",
+  "hero": {
+    "title": "Studio di visualizzazione dei dati"
+  },
+  "assistant": {
+    "title": "Codice JT AI",
+    "cost": "Utilizza i crediti solo quando invii una richiesta. Grafici, approfondimenti e suggerimenti sono gratuiti.",
+    "about": "Chiedi informazioni",
+    "intro": "Descrivi cosa vuoi vedere. Io scelgo il grafico, compilo le colonne e tu lo rivedi prima che venga eseguito qualsiasi cosa.",
+    "thinking": "Pensiero…",
+    "builtIn": "Integrato",
+    "credits": "{{credits}} crediti",
+    "free": "nessun credito utilizzato",
+    "openExplore": "Apri in Esplora",
+    "setUp": "Imposta la previsione",
+    "placeholder": "per esempio. Mostra le entrate mensili per regione",
+    "prompt": "Richiesta",
+    "send": "Inviare",
+    "close": "Vicino"
+  },
+  "dataset": "Set di dati",
+  "noDataset": "Nessun set di dati ancora",
+  "sections": "Sezioni di visualizzazione dei dati",
+  "controls": {
+    "noColumns": {
+      "numeric": "Nessuna colonna numerica",
+      "datetime": "Nessuna colonna data/ora",
+      "categorical": "Nessuna colonna categorica",
+      "dimension": "Nessuna colonna dimensione",
+      "any": "Nessuna colonna"
+    },
+    "chooseColumn": "Scegli una colonna..",
+    "none": "Nessuno",
+    "automatic": "Automatico"
+  },
+  "ui": {
+    "quality": {
+      "excellent": "eccellente",
+      "good": "Bene",
+      "fair": "Giusto",
+      "weak": "Debole",
+      "unknown": "sconosciuto"
+    },
+    "dataset": "Set di dati",
+    "noDatasets": "Nessun set di dati ancora",
+    "rows_one": "{{rows}} riga",
+    "rows_other": "{{rows}} righe",
+    "less": "Meno",
+    "howToRead": "Come leggerlo",
+    "dataOf": "{{title}} dati",
+    "tableSize": "{{rows}} righe × {{columns}} colonne: i dati mostrati in questo grafico",
+    "tableSizeFirst": "{{rows}} righe × {{columns}} colonne (prime righe): i dati mostrati in questo grafico",
+    "close": "Vicino",
+    "expandRibbon": "Espandi il nastro",
+    "collapseRibbon": "Comprimi il nastro",
+    "rows_many": "{{rows}} righe"
+  }
+}

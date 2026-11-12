@@ -29,5 +29,20 @@
   "changePhoto": "Clicca per cambiare foto",
   "profileUpdated": "Profilo aggiornato con successo",
   "updateProfileError": "Impossibile aggiornare il profilo",
-  "uploadAvatarError": "Impossibile caricare l'avatar"
+  "uploadAvatarError": "Impossibile caricare l'avatar",
+  "eyebrow": "Impostazioni",
+  "avatarUpdated": "Immagine del profilo aggiornata.",
+  "removePhoto": "Rimuovi foto",
+  "passwordChanged": "La tua password è stata modificata.",
+  "passwordMismatch": "Le nuove password non corrispondono.",
+  "workspace": "Spazio di lavoro",
+  "workspaceDesc": "La tua organizzazione in JT-Code. Ad esso appartengono conversazioni, file e crediti.",
+  "workspaceName": "Nome dell'area di lavoro",
+  "workspaceUpdated": "Area di lavoro rinominata.",
+  "password": "Password",
+  "passwordDesc": "Cambia la password che usi per accedere.",
+  "currentPassword": "Password attuale",
+  "newPassword": "Nuova password (8+ caratteri)",
+  "confirmPassword": "Conferma la nuova password",
+  "changePassword": "Cambiare la password"
 }

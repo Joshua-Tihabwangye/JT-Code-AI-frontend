@@ -57,5 +57,7 @@
     "uploadAndPrompt": "Veuillez importer une image et saisir un prompt",
     "noResult": "Aucun résultat"
   },
-  "defaultQuestion": "Décris cette image en détail"
+  "defaultQuestion": "Décris cette image en détail",
+  "uploadPreview": "Aperçu de l'import",
+  "autoModel": "Auto (recommandé)"
 }

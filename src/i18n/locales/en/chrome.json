@@ -9,5 +9,8 @@
   "offlineMessage": "You are offline. Changes are saved locally and will sync when you reconnect.",
   "fatalTitle": "Something went wrong",
   "unexpectedError": "An unexpected error occurred.",
-  "reloadApp": "Reload application"
+  "reloadApp": "Reload application",
+  "home": "JT-Code home",
+  "primaryNavigation": "Primary navigation",
+  "fatalError": "JT-Code encountered an error."
 }

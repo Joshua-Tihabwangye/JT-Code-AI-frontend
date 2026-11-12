@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Compass, Pin, Search, Sparkles } from 'lucide-react';
 import { useRepository, type VizCatalog } from '@/lib/data';
+import { useCatalogText } from '../catalogText';
 import { useVisualize } from '../context';
 import { PinDialog, type PinnableVisual } from '../dashboards/PinDialog';
 import { ChartThumb } from '../thumbs';
@@ -18,34 +19,37 @@ function short(text: string): string {
 }
 
 function ChartCard({ chart, color, onOpen, onPin, reason }: { chart: CatalogChart; color: string; onOpen: () => void; onPin?: () => void; reason?: string }) {
+  const { t } = useTranslation();
+  const text = useCatalogText();
+  const description = text.chartDescription(chart);
   return (
     <article className="viz-card viz-gallery-card" style={colorVar(color)}>
-      <button type="button" className="viz-gallery-open" onClick={onOpen} data-testid={`gallery-chart-${chart.id}`} title={chart.description}>
+      <button type="button" className="viz-gallery-open" onClick={onOpen} data-testid={`gallery-chart-${chart.id}`} title={description}>
         <span className="viz-gallery-thumb">
           <ChartThumb id={chart.id} category={chart.category} color={color} />
         </span>
         <span className="flex w-full items-center justify-between gap-1">
-          <span className="truncate font-semibold">{chart.name}</span>
-          {chart.level === 'advanced' && <span className="viz-badge" style={colorVar('#8b5cf6')}>Advanced</span>}
+          <span className="truncate font-semibold">{text.chartName(chart)}</span>
+          {chart.level === 'advanced' && <span className="viz-badge" style={colorVar('#8b5cf6')}>{t('visualize.gallery.advancedBadge')}</span>}
         </span>
-        <span className="text-xs text-muted-foreground">{reason ?? short(chart.description)}</span>
+        <span className="text-xs text-muted-foreground">{reason ?? short(description)}</span>
         <span className="flex flex-wrap gap-1">
           {chart.slots
             .filter((slot) => slot.required)
             .map((slot) => (
               <span key={slot.key} className="viz-field-chip">
-                {slot.label}
+                {text.slotLabel(slot, { kind: 'chart', id: chart.id })}
               </span>
             ))}
         </span>
       </button>
       <span className="viz-gallery-actions">
         <button type="button" className="viz-chip" onClick={onOpen}>
-          <Compass size={12} aria-hidden /> Use in Explore
+          <Compass size={12} aria-hidden /> {t('visualize.gallery.useInExplore')}
         </button>
         {onPin && (
           <button type="button" className="viz-chip" onClick={onPin} data-testid={`gallery-pin-${chart.id}`}>
-            <Pin size={12} aria-hidden /> Add to dashboard
+            <Pin size={12} aria-hidden /> {t('visualize.gallery.addToDashboard')}
           </button>
         )}
       </span>
@@ -58,12 +62,13 @@ export function GalleryPage() {
   const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const { catalog, openStudio, setAssistantContext, datasetId, dataset } = useVisualize();
+  const text = useCatalogText();
   const [pinning, setPinning] = useState<{ visual: PinnableVisual; title: string } | null>(null);
   const recommended = useQuery({ queryKey: ['visualize', 'recommend', datasetId], queryFn: () => visualize.recommend(datasetId), enabled: !!datasetId, staleTime: 300_000 });
   const pin = async (chart: CatalogChart) => {
     // The chart's best field mapping for the active dataset, then the pin dialog.
     const result = await visualize.recommend(datasetId, chart.id);
-    setPinning({ title: chart.name, visual: { type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType: chart.id, fields: result.fields ?? {}, options: {} } } } });
+    setPinning({ title: text.chartName(chart), visual: { type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType: chart.id, fields: result.fields ?? {}, options: {} } } } });
   };
   const [params, setParams] = useSearchParams();
   const [query, setQuery] = useState('');
@@ -80,9 +85,9 @@ export function GalleryPage() {
       (chart) =>
         (category === 'all' || chart.category === category) &&
         (level === 'all' || chart.level === level) &&
-        (!needle || [chart.name, chart.description, ...chart.tags].join(' ').toLowerCase().includes(needle)),
+        (!needle || [chart.name, chart.description, text.chartName(chart), text.chartDescription(chart), ...chart.tags].join(' ').toLowerCase().includes(needle)),
     );
-  }, [catalog, category, level, query]);
+  }, [catalog, category, level, query, text]);
 
   if (!catalog) return <SkeletonBlock height={420} />;
   const byCategory = catalog.categories
@@ -140,7 +145,7 @@ export function GalleryPage() {
                 aria-pressed={category === entry.id}
                 onClick={() => setParams({ category: entry.id })}
               >
-                <Icon size={13} aria-hidden /> {entry.name} <span className="opacity-60">{count}</span>
+                <Icon size={13} aria-hidden /> {text.categoryName(entry)} <span className="opacity-60">{count}</span>
               </button>
             );
           })}
@@ -154,7 +159,7 @@ export function GalleryPage() {
               <Sparkles size={16} aria-hidden />
             </span>
             <div>
-              <h2 className="font-semibold">{t('visualize.gallery.recommended', { name: dataset?.name ?? 'this dataset' })}</h2>
+              <h2 className="font-semibold">{t('visualize.gallery.recommended', { name: dataset?.name ?? t('visualize.gallery.thisDataset') })}</h2>
               <p className="text-xs text-muted-foreground">{t('visualize.gallery.recommendedHint')}</p>
             </div>
           </div>
@@ -168,8 +173,8 @@ export function GalleryPage() {
                   chart={chart}
                   color={catalog.categories.find((entry) => entry.id === chart.category)?.color ?? '#6366f1'}
                   reason={item.reason}
-                  onOpen={() => openStudio({ chartType: chart.id, fields: item.fields, options: item.options, title: item.name })}
-                  onPin={() => setPinning({ title: item.name, visual: { type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType: chart.id, fields: item.fields, options: item.options ?? {} } } } })}
+                  onOpen={() => openStudio({ chartType: chart.id, fields: item.fields, options: item.options, title: text.chartName({ id: item.chartType, name: item.name }) })}
+                  onPin={() => setPinning({ title: text.chartName({ id: item.chartType, name: item.name }), visual: { type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType: chart.id, fields: item.fields, options: item.options ?? {} } } } })}
                 />
               );
             })}
@@ -186,8 +191,8 @@ export function GalleryPage() {
                 <Icon size={16} aria-hidden />
               </span>
               <div>
-                <h2 className="font-semibold">{entry.name}</h2>
-                <p className="text-xs text-muted-foreground">{entry.description}</p>
+                <h2 className="font-semibold">{text.categoryName(entry)}</h2>
+                <p className="text-xs text-muted-foreground">{text.categoryDescription(entry)}</p>
               </div>
             </div>
             <div className="viz-gallery-grid">

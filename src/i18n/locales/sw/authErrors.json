@@ -6,8 +6,6 @@
   "invalidEmail": "Weka barua pepe sahihi.",
   "passwordMinLength": "Nenosiri lazima liwe na angalau herufi 8.",
   "passwordLetter": "Nenosiri lazima liwe na angalau herufi moja.",
-  "passwordUppercase": "Nenosiri lazima liwe na herufi kubwa.",
-  "passwordLowercase": "Nenosiri lazima liwe na herufi ndogo.",
   "passwordNumber": "Nenosiri lazima liwe na nambari.",
   "selectCountry": "Chagua nchi yako.",
   "selectDialCode": "Chagua msimbo wa kupiga.",
@@ -19,5 +17,13 @@
   "passwordRequired": "Weka nenosiri lako.",
   "authenticationFailed": "Uthibitishaji umeshindikana.",
   "finishingSignIn": "Inakamilisha kuingia…",
-  "redirecting": "Inaelekeza upya…"
+  "redirecting": "Inaelekeza upya…",
+  "accountExists": "Akaunti iliyo na barua pepe hii tayari ipo.",
+  "invalidCredentials": "Barua pepe au nenosiri batili.",
+  "noAccount": "Hakuna akaunti iliyopo ya anwani hiyo ya barua pepe.",
+  "invalidResetCode": "Msimbo wa kuweka upya batili au ulioisha muda wake.",
+  "signInToReset": "Ingia ili kuweka upya nenosiri lako.",
+  "providerDisabled": "Kuingia kwa {{provider}} hakuwezeshwa. Tumia barua pepe na nenosiri lako.",
+  "serviceUnreachable": "Haiwezi kufikia huduma ya kuingia. Angalia muunganisho wako na ujaribu tena.",
+  "invalidCountry": "Nchi batili."
 }

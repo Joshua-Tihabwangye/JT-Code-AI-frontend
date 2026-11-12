@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Análisis de datos",
+  "title": "Análisis de datos",
+  "subtitle": "Sube un CSV, explora sus columnas, ejecuta análisis y convierte los resultados en gráficos.",
+  "upload": {
+    "title": "Agregar un conjunto de datos",
+    "name": "Nombre",
+    "namePlaceholder": "p. ej., ventas del T3",
+    "file": "Archivo CSV (hasta 25 MB)",
+    "or": "— o pega un CSV —",
+    "paste": "Texto CSV",
+    "pastePlaceholder": "region,ingresos\nEste,120\nOeste,80",
+    "submit": "Agregar conjunto de datos",
+    "limits": "CSV en UTF-8 con fila de encabezado; hasta 100.000 filas y 200 columnas.",
+    "needData": "Elige un archivo CSV o pega texto CSV."
+  },
+  "datasets": "Conjuntos de datos",
+  "noDatasets": "Aún no hay conjuntos de datos.",
+  "datasetMeta": "{{rows}} filas · {{columns}} columnas",
+  "emptyTitle": "No hay ningún conjunto de datos seleccionado",
+  "emptyDesc": "Agrega un CSV a la izquierda para empezar a analizar.",
+  "deleteDataset": "Eliminar",
+  "deleteConfirm": "¿Eliminar este conjunto de datos con sus análisis y gráficos?",
+  "profilePending": "Las estadísticas de columna aparecen después del primer análisis de un archivo subido.",
+  "profile": {
+    "column": "Columna",
+    "kind": "Tipo",
+    "missing": "Faltantes",
+    "distinct": "Distintos",
+    "summary": "Resumen"
+  },
+  "builder": {
+    "title": "Analizar",
+    "filters": "Filtros",
+    "addFilter": "Agregar filtro",
+    "noFilters": "Sin filtros: se incluyen todas las filas.",
+    "removeFilter": "Quitar filtro",
+    "column": "Columna",
+    "operator": "Operador",
+    "value": "Valor",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Agrupar por",
+    "aggregate": "Agregación",
+    "ofColumn": "De la columna",
+    "allNumeric": "Todas las columnas numéricas",
+    "sortBy": "Ordenar por",
+    "direction": "Dirección",
+    "asc": "Ascendente",
+    "desc": "Descendente",
+    "limit": "Límite de filas",
+    "none": "Ninguno",
+    "run": "Ejecutar análisis",
+    "cost": "Cada análisis usa 10 créditos; los gráficos son gratuitos."
+  },
+  "operators": {
+    "eq": "es igual a",
+    "ne": "no es igual a",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "contiene",
+    "in": "es uno de"
+  },
+  "aggregates": {
+    "count": "Recuento de filas",
+    "sum": "Suma",
+    "mean": "Promedio",
+    "min": "Mínimo",
+    "max": "Máximo"
+  },
+  "status": {
+    "queued": "En cola",
+    "running": "En ejecución",
+    "completed": "Completado",
+    "failed": "Error",
+    "ready": "Listo"
+  },
+  "results": {
+    "title": "Resultados",
+    "rows": "{{count}} filas (se muestran {{shown}})",
+    "download": "Descargar CSV",
+    "retry": "Reintentar",
+    "pickRun": "Ejecución del análisis"
+  },
+  "charts": {
+    "title": "Gráficos",
+    "kind": "Gráfico",
+    "x": "Eje X",
+    "y": "Eje Y (numérico)",
+    "chartTitle": "Título",
+    "create": "Crear gráfico",
+    "delete": "Eliminar gráfico",
+    "noImage": "Los gráficos se representan en el servidor en el modo API."
+  },
+  "chartKinds": {
+    "bar": "Barras",
+    "line": "Líneas",
+    "scatter": "Dispersión",
+    "area": "Área",
+    "histogram": "Histograma",
+    "box": "Cajas",
+    "pie": "Circular"
+  }
+}

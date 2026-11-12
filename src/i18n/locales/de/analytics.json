@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Datenanalyse",
+  "title": "Datenanalyse",
+  "subtitle": "Lade eine CSV-Datei hoch, erkunde ihre Spalten, führe Analysen aus und mache aus den Ergebnissen Diagramme.",
+  "upload": {
+    "title": "Dataset hinzufügen",
+    "name": "Name",
+    "namePlaceholder": "z. B. Umsatz Q3",
+    "file": "CSV-Datei (bis 25 MB)",
+    "or": "— oder CSV einfügen —",
+    "paste": "CSV-Text",
+    "pastePlaceholder": "region,revenue\nEast,120\nWest,80",
+    "submit": "Dataset hinzufügen",
+    "limits": "UTF-8-CSV mit Kopfzeile; bis zu 100.000 Zeilen und 200 Spalten.",
+    "needData": "Wähle eine CSV-Datei aus oder füge CSV-Text ein."
+  },
+  "datasets": "Datasets",
+  "noDatasets": "Noch keine Datasets.",
+  "datasetMeta": "{{rows}} Zeilen · {{columns}} Spalten",
+  "emptyTitle": "Kein Dataset ausgewählt",
+  "emptyDesc": "Füge links eine CSV-Datei hinzu, um mit der Analyse zu beginnen.",
+  "deleteDataset": "Löschen",
+  "deleteConfirm": "Dieses Dataset mit seinen Analysen und Diagrammen löschen?",
+  "profilePending": "Spaltenstatistiken erscheinen nach der ersten Analyse einer hochgeladenen Datei.",
+  "profile": {
+    "column": "Spalte",
+    "kind": "Typ",
+    "missing": "Fehlend",
+    "distinct": "Eindeutig",
+    "summary": "Zusammenfassung"
+  },
+  "builder": {
+    "title": "Analysieren",
+    "filters": "Filter",
+    "addFilter": "Filter hinzufügen",
+    "noFilters": "Keine Filter: Alle Zeilen sind enthalten.",
+    "removeFilter": "Filter entfernen",
+    "column": "Spalte",
+    "operator": "Operator",
+    "value": "Wert",
+    "inPlaceholder": "a, b, c",
+    "groupBy": "Gruppieren nach",
+    "aggregate": "Aggregation",
+    "ofColumn": "Der Spalte",
+    "allNumeric": "Alle numerischen Spalten",
+    "sortBy": "Sortieren nach",
+    "direction": "Richtung",
+    "asc": "Aufsteigend",
+    "desc": "Absteigend",
+    "limit": "Zeilenlimit",
+    "none": "Keine",
+    "run": "Analyse ausführen",
+    "cost": "Jede Analyse verbraucht 10 Credits; Diagramme sind kostenlos."
+  },
+  "operators": {
+    "eq": "gleich",
+    "ne": "ungleich",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "enthält",
+    "in": "ist eines von"
+  },
+  "aggregates": {
+    "count": "Zeilen zählen",
+    "sum": "Summe",
+    "mean": "Durchschnitt",
+    "min": "Minimum",
+    "max": "Maximum"
+  },
+  "status": {
+    "queued": "In der Warteschlange",
+    "running": "Wird ausgeführt",
+    "completed": "Abgeschlossen",
+    "failed": "Fehlgeschlagen",
+    "ready": "Bereit"
+  },
+  "results": {
+    "title": "Ergebnisse",
+    "rows": "{{count}} Zeilen ({{shown}} angezeigt)",
+    "download": "CSV herunterladen",
+    "retry": "Erneut versuchen",
+    "pickRun": "Analyselauf"
+  },
+  "charts": {
+    "title": "Diagramme",
+    "kind": "Diagramm",
+    "x": "X-Achse",
+    "y": "Y-Achse (numerisch)",
+    "chartTitle": "Titel",
+    "create": "Diagramm erstellen",
+    "delete": "Diagramm löschen",
+    "noImage": "Diagramme werden im API-Modus auf dem Server gerendert."
+  },
+  "chartKinds": {
+    "bar": "Balken",
+    "line": "Linie",
+    "scatter": "Punkte",
+    "area": "Fläche",
+    "histogram": "Histogramm",
+    "box": "Box",
+    "pie": "Kreis"
+  }
+}

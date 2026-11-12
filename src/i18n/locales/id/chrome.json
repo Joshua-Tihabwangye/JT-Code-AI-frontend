@@ -9,5 +9,8 @@
   "offlineMessage": "Anda sedang offline. Perubahan disimpan secara lokal dan akan disinkronkan saat Anda tersambung kembali.",
   "fatalTitle": "Terjadi kesalahan",
   "unexpectedError": "Terjadi kesalahan yang tidak terduga.",
-  "reloadApp": "Muat ulang aplikasi"
+  "reloadApp": "Muat ulang aplikasi",
+  "home": "Rumah JT-Code",
+  "primaryNavigation": "Navigasi utama",
+  "fatalError": "JT-Code mengalami kesalahan."
 }

@@ -13,5 +13,12 @@
   "requestFailed": "リクエストに失敗しました。",
   "statusRunning": "ステータス: {{status}}…",
   "defaultPlan": "フリー",
-  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant."
+  "guestEphemeralReply": "Guest chats are temporary. Sign in to save conversations and use the full JT-Code assistant.",
+  "badge": "",
+  "subhead": "",
+  "headlineLead": "どうすればいいですか",
+  "headlineAccent": "今日ビルドしますか？",
+  "assistant": "JTコード",
+  "stop": "生成を停止する",
+  "stopped": "止まった。"
 }

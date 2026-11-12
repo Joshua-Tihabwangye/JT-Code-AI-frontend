@@ -23,5 +23,10 @@
     "resetFailed": "No se pudo restablecer tu contraseña.",
     "mismatch": "Las contraseñas no coinciden.",
     "unexpected": "Se produjo un error inesperado."
-  }
+  },
+  "resetDesc": "Introduce tu dirección de correo electrónico y te enviaremos un enlace de restablecimiento que podrás completar aquí mismo.",
+  "checkDesc": "Hemos enviado un mensaje de restablecimiento a <0>{{email}}</0>. El código de abajo desbloqueará el siguiente paso.",
+  "checkDescPlain": "Hemos enviado un código de restablecimiento a {{email}}. Introdúcelo en el siguiente paso para elegir una nueva contraseña.",
+  "mockResetCode": "Código de restablecimiento",
+  "enterEmailedCode": "Introduce el código del correo electrónico"
 }

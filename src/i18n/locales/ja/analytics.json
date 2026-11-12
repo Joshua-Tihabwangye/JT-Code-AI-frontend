@@ -1,0 +1,105 @@
+{
+  "eyebrow": "データ分析",
+  "title": "データ分析",
+  "subtitle": "CSV をアップロードし、その列を調べて分析を実行し、結果をグラフに変換します。",
+  "upload": {
+    "title": "データセットを追加する",
+    "name": "名前",
+    "namePlaceholder": "例えば第3四半期の売上高",
+    "file": "CSVファイル（25MBまで）",
+    "or": "— または CSV を貼り付け —",
+    "paste": "CSVテキスト",
+    "pastePlaceholder": "地域、収益\n東、120\n西、80",
+    "submit": "データセットの追加",
+    "limits": "ヘッダー行を含む UTF-8 CSV。最大 100,000 行、200 列。",
+    "needData": "CSV ファイルを選択するか、CSV テキストを貼り付けます。"
+  },
+  "datasets": "データセット",
+  "noDatasets": "データセットはまだありません。",
+  "datasetMeta": "{{rows}} 行 · {{columns}} 列",
+  "emptyTitle": "データセットが選択されていません",
+  "emptyDesc": "分析を開始するには、左側に CSV を追加します。",
+  "deleteDataset": "消去",
+  "deleteConfirm": "このデータセットを分析とグラフとともに削除しますか?",
+  "profilePending": "列の統計は、アップロードされたファイルの最初の分析後に表示されます。",
+  "profile": {
+    "column": "カラム",
+    "kind": "タイプ",
+    "missing": "ない",
+    "distinct": "明確な",
+    "summary": "まとめ"
+  },
+  "builder": {
+    "title": "分析する",
+    "filters": "フィルター",
+    "addFilter": "フィルターを追加",
+    "noFilters": "フィルターなし: すべての行が含まれます。",
+    "removeFilter": "フィルターを削除する",
+    "column": "カラム",
+    "operator": "オペレーター",
+    "value": "価値",
+    "inPlaceholder": "a、b、c",
+    "groupBy": "グループ化",
+    "aggregate": "集計",
+    "ofColumn": "列の",
+    "allNumeric": "すべての数値列",
+    "sortBy": "並べ替え",
+    "direction": "方向",
+    "asc": "上昇",
+    "desc": "降順",
+    "limit": "行制限",
+    "none": "なし",
+    "run": "分析の実行",
+    "cost": "各分析には 10 クレジットが使用されます。チャートは無料です。"
+  },
+  "operators": {
+    "eq": "等しい",
+    "ne": "等しくない",
+    "gt": ">",
+    "gte": "≥",
+    "lt": "<",
+    "lte": "≤",
+    "contains": "含まれています",
+    "in": "の 1 つです"
+  },
+  "aggregates": {
+    "count": "行数を数える",
+    "sum": "和",
+    "mean": "平均",
+    "min": "最小",
+    "max": "最大"
+  },
+  "status": {
+    "queued": "キューに入れられました",
+    "running": "ランニング",
+    "completed": "完了",
+    "failed": "失敗した",
+    "ready": "準備ができて"
+  },
+  "results": {
+    "title": "結果",
+    "rows": "{{count}} 行 ({{shown}} を表示)",
+    "download": "CSVをダウンロード",
+    "retry": "リトライ",
+    "pickRun": "分析の実行"
+  },
+  "charts": {
+    "title": "チャート",
+    "kind": "チャート",
+    "x": "X軸",
+    "y": "Y軸（数値）",
+    "chartTitle": "タイトル",
+    "create": "チャートの作成",
+    "delete": "チャートの削除",
+    "noImage": "グラフはサーバー上で API モードでレンダリングされます。"
+  },
+  "chartKinds": {
+    "bar": "バー",
+    "line": "ライン",
+    "scatter": "散布",
+    "area": "エリア",
+    "histogram": "ヒストグラム",
+    "box": "箱",
+    "pie": "パイ"
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 interface SocialButtonsProps {
   onGoogle: () => void | Promise<void>
   onGithub: () => void | Promise<void>
@@ -24,15 +25,16 @@ function GithubIcon() {
 }
 
 export default function SocialButtons({ onGoogle, onGithub, disabled }: SocialButtonsProps) {
+  const { t } = useTranslation()
   return (
     <div className="social-stack">
       <button type="button" className="social-button" onClick={() => void onGoogle()} disabled={disabled}>
         <GoogleIcon />
-        <span>Continue with Google</span>
+        <span>{t('signin.continueWith', { provider: 'Google' })}</span>
       </button>
       <button type="button" className="social-button" onClick={() => void onGithub()} disabled={disabled}>
         <GithubIcon />
-        <span>Continue with GitHub</span>
+        <span>{t('signin.continueWith', { provider: 'GitHub' })}</span>
       </button>
     </div>
   )
