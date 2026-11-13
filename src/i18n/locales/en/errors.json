@@ -29,5 +29,6 @@
   "runNotFound": "Analysis run not found.",
   "datasetNotFound": "Dataset not found.",
   "chartNotFound": "Chart not found.",
-  "visualizeNeedsApi": "Data Visualization runs on the backend. Set VITE_DATA_MODE=api and start the API to use it."
+  "visualizeNeedsApi": "Data Visualization runs on the backend. Set VITE_DATA_MODE=api and start the API to use it.",
+  "paymentsNeedApi": "Card payments run on the backend. Set VITE_DATA_MODE=api and start the API to manage cards."
 }

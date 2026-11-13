@@ -15,5 +15,8 @@
   "signInWithApple": "Masuk dengan Apple",
   "offlineHint": "Mode desain offline: backend tidak digunakan. Masuk dengan email dan kata sandi apa pun (akun lokal dibuat), atau lanjutkan dengan akun demo.",
   "demoAccount": "Lanjutkan dengan akun demo",
-  "continueWith": "Lanjutkan dengan {{provider}}"
+  "continueWith": "Lanjutkan dengan {{provider}}",
+  "emailConfirmed": "Email Anda telah dikonfirmasi. Masuk dengan email dan kata sandi Anda untuk melanjutkan.",
+  "confirmationExpired": "Tautan konfirmasi ini telah kedaluwarsa atau sudah digunakan. Jika Anda sudah mengonfirmasi email Anda, cukup masuk; jika tidak, daftar lagi untuk mendapatkan tautan baru.",
+  "confirmationFailed": "Kami tidak dapat mengonfirmasi email Anda dengan tautan tersebut. Coba masuk, atau daftar lagi untuk mendapatkan tautan baru."
 }

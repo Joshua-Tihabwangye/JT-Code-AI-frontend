@@ -47,6 +47,7 @@ import type {
   KnowledgeRepository,
   Repositories,
   SendMessageOptions,
+  SetupIntent,
   TopupIntent,
 } from '../contracts';
 
@@ -683,6 +684,11 @@ class MockBillingRepository implements BillingRepository {
 
   openBillingPortal(): Promise<string> {
     return Promise.resolve('/app/billing');
+  }
+
+  createSetupIntent(): Promise<SetupIntent> {
+    // Cards are confirmed by Stripe through the backend; there is nothing to simulate offline.
+    return Promise.reject(new Error(i18n.t('errors.paymentsNeedApi')));
   }
 
   async getPaymentMethod(): Promise<PaymentMethod | null> {

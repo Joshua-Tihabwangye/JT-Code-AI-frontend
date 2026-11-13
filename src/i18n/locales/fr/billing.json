@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Moyen de paiement enregistré",
     "none": "Aucun moyen de paiement enregistré",
-    "manage": "Gérer les moyens de paiement"
+    "manage": "Gérer les moyens de paiement",
+    "panel": {
+      "title": "Mode de paiement",
+      "description": "La carte utilisée pour votre forfait, les recharges de crédit et la recharge automatique.",
+      "current": "Carte actuelle",
+      "holder": "Titulaire de la carte",
+      "expires": "Expire",
+      "cardEnding": "Carte se terminant par {{last4}}",
+      "replace": "Remplacer la carte",
+      "add": "Ajouter une carte",
+      "replaceHint": "La nouvelle carte devient votre carte par défaut pour tous les paiements futurs.",
+      "save": "Enregistrer la carte",
+      "saving": "Économie…",
+      "saved": "Carte enregistrée. Cela devient votre valeur par défaut en quelques secondes.",
+      "failed": "La carte n'a pas pu être enregistrée. Vérifiez les détails et réessayez.",
+      "keepCurrent": "Conserver la carte actuelle",
+      "secure": "Les détails de la carte vont directement à Stripe. JT-Code ne voit ni ne stocke jamais votre numéro de carte.",
+      "portal": "Factures et plus dans Stripe",
+      "notConfigured": "Les paiements par carte ne sont pas encore configurés sur ce serveur (les clés Stripe sont manquantes). Demandez à un administrateur de les ajouter."
+    }
   },
   "invoices": {
     "title": "Factures récentes",
@@ -147,7 +166,8 @@
     "freeMonthly": "Les crédits gratuits sont renouvelés chaque mois",
     "reactivate": "Reprendre l'abonnement",
     "cancel": "Résilier l'abonnement",
-    "cancelConfirm": "Résilier votre abonnement à la fin de la période en cours ?"
+    "cancelConfirm": "Résilier votre abonnement à la fin de la période en cours ?",
+    "keep": "Conserver l'abonnement"
   },
   "wallet": {
     "saved": "Paramètres de facturation enregistrés.",

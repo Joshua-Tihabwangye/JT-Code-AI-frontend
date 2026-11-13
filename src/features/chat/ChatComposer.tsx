@@ -24,16 +24,24 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
   const [showAttachMenu, setShowAttachMenu] = useState(false);
   const [showModelMenu, setShowModelMenu] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
-  const [expanded, setExpanded] = useState(false);
   const [model, setModel] = useState(MODELS[0]?.id ?? 'jt-code');
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const mirrorRef = useRef<HTMLTextAreaElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const plusRef = useRef<HTMLButtonElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
   const documentInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  const [fieldHeight, setFieldHeight] = useState(MIN_TEXTAREA_HEIGHT);
-  const [fieldOverflow, setFieldOverflow] = useState<'hidden' | 'auto'>('hidden');
+  // Height, scrolling and layout of the field, measured together and only stored when they change
+  // (separate setters per keystroke chained enough synchronous renders to hit React's update limit).
+  const [layout, setLayout] = useState<{ height: number; overflow: 'hidden' | 'auto'; expanded: boolean }>({
+    height: MIN_TEXTAREA_HEIGHT,
+    overflow: 'hidden',
+    expanded: false,
+  });
+  const { height: fieldHeight, overflow: fieldOverflow, expanded } = layout;
 
   const resolvedPlaceholder = placeholder ?? t('composer.defaultPlaceholder');
 
@@ -48,11 +56,11 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
   const resize = useCallback(() => {
     const source = textareaRef.current;
     const mirror = mirrorRef.current;
-    if (!source || !mirror) return;
+    const form = formRef.current;
+    if (!source || !mirror || !form) return;
 
     const style = window.getComputedStyle(source);
     // Mirror the relevant box/text metrics so wrapping matches exactly.
-    mirror.style.width = `${source.clientWidth}px`;
     mirror.style.font = style.font;
     mirror.style.lineHeight = style.lineHeight;
     mirror.style.padding = style.padding;
@@ -61,25 +69,40 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
     mirror.style.textTransform = style.textTransform;
     mirror.style.whiteSpace = 'pre-wrap';
     mirror.value = source.value;
+    const measureAt = (width: number) => {
+      mirror.style.width = `${Math.max(width, 40)}px`;
+      return mirror.scrollHeight;
+    };
 
-    const measured = mirror.scrollHeight;
-    const next = Math.min(Math.max(measured, MIN_TEXTAREA_HEIGHT), MAX_TEXTAREA_HEIGHT);
-    setFieldHeight(next);
-    setFieldOverflow(measured > MAX_TEXTAREA_HEIGHT ? 'auto' : 'hidden');
+    // Two widths: inline (between the plus and the controls) decides whether the text needs more than one
+    // line; expanded, the field spans the whole composer above the controls. Deciding on the inline width
+    // keeps the layout stable (text that only fits the wide field does not flip back to one line).
+    const formStyle = window.getComputedStyle(form);
+    const gap = parseFloat(formStyle.columnGap) || 0;
+    const fullWidth = form.clientWidth - (parseFloat(formStyle.paddingLeft) || 0) - (parseFloat(formStyle.paddingRight) || 0);
+    const inlineWidth = fullWidth - (plusRef.current?.offsetWidth ?? 0) - (actionsRef.current?.offsetWidth ?? 0) - gap * 2;
 
     const parsedLineHeight = parseFloat(style.lineHeight);
     const lineHeight = Number.isFinite(parsedLineHeight) ? parsedLineHeight : 20;
     const parsedPadding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
     const padding = Number.isFinite(parsedPadding) ? parsedPadding : 0;
-    const contentHeight = Math.max(measured - padding, 0);
-    const visualLines = Math.round(contentHeight / lineHeight);
+    const inlineLines = Math.round(Math.max(measureAt(inlineWidth) - padding, 0) / lineHeight);
+    const nextExpanded = inlineLines > 1;
 
-    setExpanded(visualLines > 1);
+    const measured = nextExpanded ? measureAt(fullWidth) : measureAt(inlineWidth);
+    const next = {
+      height: Math.min(Math.max(measured, MIN_TEXTAREA_HEIGHT), MAX_TEXTAREA_HEIGHT),
+      overflow: measured > MAX_TEXTAREA_HEIGHT ? ('auto' as const) : ('hidden' as const),
+      expanded: nextExpanded,
+    };
+    setLayout((prev) => (prev.height === next.height && prev.overflow === next.overflow && prev.expanded === next.expanded ? prev : next));
   }, []);
 
   // Re-measure whenever the value changes (typing, paste, controlled clear).
+  // Measured on the next frame, outside the keystroke's synchronous update.
   useEffect(() => {
-    resize();
+    const frame = requestAnimationFrame(() => resize());
+    return () => cancelAnimationFrame(frame);
   }, [text, resize]);
 
   // Re-measure on real viewport/container width changes.
@@ -155,11 +178,13 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
 
   return (
     <form
+      ref={formRef}
       className={clsx('composer', expanded && 'composer--expanded')}
       onSubmit={(event) => void submit(event)}
     >
       {/* Plus / attach — always on the left */}
       <button
+        ref={plusRef}
         type="button"
         className="composer__plus icon"
         title={t('composer.attach')}
@@ -196,7 +221,7 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
       />
 
       {/* Right side controls: model → microphone → send */}
-      <div className="composer__actions">
+      <div ref={actionsRef} className="composer__actions">
         <div className="composer__model">
           <button
             type="button"

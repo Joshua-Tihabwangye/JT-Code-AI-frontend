@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import i18n from '@/i18n/config';
 import { apiErrorMessage, http as api } from '@/lib/api/http';
-import { supabase } from '@/lib/supabase';
+import { emailConfirmationRedirect, supabase } from '@/lib/supabase';
 import type { Paginated } from '@/lib/api/types';
 import type {
   Account,
@@ -85,6 +85,7 @@ import type {
   Repositories,
   SendMessageOptions,
   SignUpInput,
+  SetupIntent,
   TopupIntent,
   SaveChartInput,
   VisualizeRepository,
@@ -132,6 +133,7 @@ class ApiAuthRepository implements AuthRepository {
       email: input.email,
       password: input.password,
       options: {
+        emailRedirectTo: emailConfirmationRedirect(),
         data: {
           first_name: input.firstName,
           last_name: input.lastName,
@@ -480,6 +482,10 @@ class ApiBillingRepository implements BillingRepository {
       returnUrl: `${window.location.origin}/app/billing`,
     });
     return data.url;
+  }
+  async createSetupIntent() {
+    const { data } = await api.post<SetupIntent>('/payment-methods/');
+    return data;
   }
   async getPaymentMethod() {
     const { data } = await api.get<PaymentMethod | null>('/payment-methods/me/');

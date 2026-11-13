@@ -15,5 +15,8 @@
   "signInWithApple": "Accedi con Apple",
   "offlineHint": "Modalità di progettazione offline: il backend non viene utilizzato. Accedi con qualsiasi email e password (viene creato un account locale) oppure continua con l'account demo.",
   "demoAccount": "Continua con il conto demo",
-  "continueWith": "Continua con {{provider}}"
+  "continueWith": "Continua con {{provider}}",
+  "emailConfirmed": "La tua email è confermata. Accedi con la tua email e password per continuare.",
+  "confirmationExpired": "Questo collegamento di conferma è scaduto o è già stato utilizzato. Se hai già confermato la tua email, effettua l'accesso; altrimenti registrati nuovamente per ottenere un nuovo collegamento.",
+  "confirmationFailed": "Non è stato possibile confermare la tua email con quel link. Prova ad accedere o registrati di nuovo per ottenere un nuovo collegamento."
 }

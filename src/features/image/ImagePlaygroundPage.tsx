@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { inlineLabel } from '@/i18n/format';
 import { apiErrorMessage } from '@/lib/api/http';
 import { useRepository, type ImageGeneration } from '@/lib/data';
-import { Button, Input, Textarea, Card, CardContent, CardHeader, CardTitle, Alert, Spinner, Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/components';
+import { Button, Input, Textarea, Card, CardContent, CardHeader, CardTitle, Alert, Spinner, Tabs, TabsList, TabsTrigger, TabsContent, useConfirm } from '@/shared/components';
 import { Plus, Download, Upload, X, Image as ImageIcon, Wand2, ScanLine, PenTool, Trash2 } from 'lucide-react';
 
 interface GeneratedImage {
@@ -43,6 +43,7 @@ function toHistoryItem(generation: ImageGeneration): HistoryItem {
 
 export function ImagePlaygroundPage() {
   const { t, i18n } = useTranslation();
+  const { confirm, dialog } = useConfirm();
   const images = useRepository('images');
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<string>('generate');
@@ -112,8 +113,8 @@ export function ImagePlaygroundPage() {
       .catch((err: unknown) => setError(apiErrorMessage(err)));
   }
 
-  function clearHistory() {
-    if (!confirm(t('images.clearHistoryConfirm'))) return;
+  async function clearHistory() {
+    if (!(await confirm({ title: t('history.clearHistory'), description: t('images.clearHistoryConfirm'), confirmLabel: t('history.clearHistory'), destructive: true }))) return;
     Promise.all(history.map((item) => images.deleteGeneration(item.id)))
       .then(refreshHistory)
       .catch((err: unknown) => setError(apiErrorMessage(err)));
@@ -521,7 +522,7 @@ export function ImagePlaygroundPage() {
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-base font-medium text-foreground">{t('nav.history')}</h3>
-            <Button type="button" variant="ghost" size="sm" onClick={clearHistory}>
+            <Button type="button" variant="ghost" size="sm" onClick={() => void clearHistory()}>
               {t('history.clearHistory')}
             </Button>
           </div>
@@ -572,6 +573,7 @@ export function ImagePlaygroundPage() {
           </div>
         </div>
       )}
+      {dialog}
     </section>
   );
 }

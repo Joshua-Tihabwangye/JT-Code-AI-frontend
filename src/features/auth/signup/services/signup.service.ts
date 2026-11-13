@@ -1,5 +1,5 @@
 import type { SignupPayload } from '../types';
-import { authErrorMessage, supabase } from '@/lib/supabase';
+import { authErrorMessage, emailConfirmationRedirect, supabase } from '@/lib/supabase';
 
 export interface SignupResult {
   error?: string;
@@ -12,6 +12,8 @@ export async function signup(payload: SignupPayload): Promise<SignupResult> {
     email: payload.email,
     password: payload.password,
     options: {
+      // The confirmation link returns to the sign-in page; confirming does not sign the user in.
+      emailRedirectTo: emailConfirmationRedirect(),
       data: {
         first_name: payload.firstName,
         last_name: payload.lastName,

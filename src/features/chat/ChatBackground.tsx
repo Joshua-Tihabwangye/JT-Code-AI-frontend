@@ -35,21 +35,21 @@ export function ChatBackground() {
             bg: '#091321',
             // Use the workspace's blue palette in both themes.
             colors: [
-              'rgba(96, 165, 250, 0.16)',
-              'rgba(59, 130, 246, 0.14)',
-              'rgba(37, 99, 235, 0.12)',
-              'rgba(96, 165, 250, 0.1)',
-              'rgba(59, 130, 246, 0.08)',
+              'rgba(96, 165, 250, 0.42)',
+              'rgba(59, 130, 246, 0.38)',
+              'rgba(56, 189, 248, 0.32)',
+              'rgba(96, 165, 250, 0.28)',
+              'rgba(59, 130, 246, 0.24)',
             ],
           }
         : {
             bg: '#f5f8fc',
             colors: [
-              'rgba(37, 99, 235, 0.14)',
-              'rgba(59, 130, 246, 0.12)',
-              'rgba(96, 165, 250, 0.1)',
-              'rgba(37, 99, 235, 0.09)',
-              'rgba(59, 130, 246, 0.07)',
+              'rgba(37, 99, 235, 0.36)',
+              'rgba(59, 130, 246, 0.32)',
+              'rgba(14, 165, 233, 0.28)',
+              'rgba(37, 99, 235, 0.24)',
+              'rgba(59, 130, 246, 0.2)',
             ],
           };
     }
@@ -100,28 +100,24 @@ export function ChatBackground() {
       const palette = getPalette();
       ctx.clearRect(0, 0, width, height);
 
-      // Vertical fade mask: visible near the middle/bottom, transparent at top.
-      // We draw waves into an offscreen-ish region first by using a clip with gradient alpha.
+      // Soft fade only at the very top and bottom edges, so the waves stay visible across the page.
       const fadeGradient = ctx.createLinearGradient(0, 0, 0, height);
-      fadeGradient.addColorStop(0, palette.bg + '00');
-      fadeGradient.addColorStop(0.2, palette.bg + '00');
-      fadeGradient.addColorStop(0.35, palette.bg + '40');
-      fadeGradient.addColorStop(0.55, palette.bg + '90');
-      fadeGradient.addColorStop(0.75, palette.bg + 'c0');
-      fadeGradient.addColorStop(0.92, palette.bg + 'e0');
-      fadeGradient.addColorStop(1, palette.bg + 'f5');
+      fadeGradient.addColorStop(0, palette.bg + 'b0');
+      fadeGradient.addColorStop(0.14, palette.bg + '00');
+      fadeGradient.addColorStop(0.86, palette.bg + '00');
+      fadeGradient.addColorStop(1, palette.bg + '90');
 
       // Composite: draw waves first, then cover with fade gradient.
-      drawRibbon(height * 0.32, height * 0.13, 0.004, 0.35, palette.colors[0], 1, 0, 8);
-      drawRibbon(height * 0.44, height * 0.11, 0.005, 0.45, palette.colors[1], 1, 2.1, 8);
-      drawRibbon(height * 0.56, height * 0.09, 0.006, 0.55, palette.colors[2], 1, 4.2, 8);
+      drawRibbon(height * 0.32, height * 0.13, 0.004, 0.35, palette.colors[0], 1.25, 0, 8);
+      drawRibbon(height * 0.44, height * 0.11, 0.005, 0.45, palette.colors[1], 1.25, 2.1, 8);
+      drawRibbon(height * 0.56, height * 0.09, 0.006, 0.55, palette.colors[2], 1.25, 4.2, 8);
       drawRibbon(height * 0.66, height * 0.07, 0.0075, 0.4, palette.colors[3], 1, 1.3, 8);
       drawRibbon(height * 0.74, height * 0.05, 0.009, 0.3, palette.colors[4], 1, 3.4, 6);
 
       // Soft top glow (very subtle)
       const glow = ctx.createRadialGradient(width * 0.5, height * 0.25, 0, width * 0.5, height * 0.25, width * 0.7);
-      glow.addColorStop(0, palette.colors[1].replace(/[\d.]+\)$/, '0.06)'));
-      glow.addColorStop(0.7, palette.colors[1].replace(/[\d.]+\)$/, '0.02)'));
+      glow.addColorStop(0, palette.colors[1].replace(/[\d.]+\)$/, '0.12)'));
+      glow.addColorStop(0.7, palette.colors[1].replace(/[\d.]+\)$/, '0.04)'));
       glow.addColorStop(1, palette.bg + '00');
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);

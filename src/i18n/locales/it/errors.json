@@ -29,5 +29,6 @@
   "runNotFound": "Esecuzione di analisi non trovata.",
   "datasetNotFound": "Set di dati non trovato.",
   "chartNotFound": "Grafico non trovato.",
-  "visualizeNeedsApi": "La visualizzazione dei dati viene eseguita sul backend. Imposta VITE_DATA_MODE=api e avvia l'API per utilizzarlo."
+  "visualizeNeedsApi": "La visualizzazione dei dati viene eseguita sul backend. Imposta VITE_DATA_MODE=api e avvia l'API per utilizzarlo.",
+  "paymentsNeedApi": "I pagamenti con carta vengono eseguiti sul backend. Imposta VITE_DATA_MODE=api e avvia l'API per gestire le carte."
 }

@@ -15,5 +15,8 @@
   "signInWithApple": "Ingia kwa kutumia Apple",
   "offlineHint": "Hali ya muundo wa nje ya mtandao: mandharinyuma haitumiki. Ingia kwa barua pepe na nenosiri lolote (akaunti ya karibu imeundwa), au endelea na akaunti ya onyesho.",
   "demoAccount": "Endelea na akaunti ya onyesho",
-  "continueWith": "Endelea na {{provider}}"
+  "continueWith": "Endelea na {{provider}}",
+  "emailConfirmed": "Barua pepe yako imethibitishwa. Ingia ukitumia barua pepe na nenosiri lako ili kuendelea.",
+  "confirmationExpired": "Kiungo hiki cha uthibitishaji kimeisha muda wake au kilikuwa kimetumika. Ikiwa tayari umethibitisha barua pepe yako, ingia tu; vinginevyo jisajili tena ili kupata kiungo kipya.",
+  "confirmationFailed": "Hatukuweza kuthibitisha barua pepe yako kwa kiungo hicho. Jaribu kuingia, au jisajili tena ili kupata kiungo kipya."
 }

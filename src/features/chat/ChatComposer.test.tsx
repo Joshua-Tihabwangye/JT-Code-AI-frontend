@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { act, render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { ChatComposer } from './ChatComposer';
 import '../../i18n/config';
 
@@ -14,6 +14,9 @@ function setScrollHeight(field: HTMLElement, value: number) {
     get: () => value,
   });
 }
+
+/** The composer measures on the next animation frame. */
+const nextFrame = () => act(() => new Promise<void>((resolve) => requestAnimationFrame(() => resolve())));
 
 function renderComposer(props: Partial<React.ComponentProps<typeof ChatComposer>> = {}) {
   const onSubmit = props.onSubmit ?? vi.fn();
@@ -42,23 +45,25 @@ describe('ChatComposer', () => {
     expect(form).not.toHaveClass('composer--expanded');
   });
 
-  it('starts compact for a single character', () => {
+  it('starts compact for a single character', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     setScrollHeight(textarea, 24);
     fireEvent.change(textarea, { target: { value: 'a' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).not.toHaveClass('composer--expanded');
   });
 
-  it('stays compact for a normal one-line prompt', () => {
+  it('stays compact for a normal one-line prompt', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     setScrollHeight(textarea, 24);
     fireEvent.change(textarea, { target: { value: 'Build me a React dashboard' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).not.toHaveClass('composer--expanded');
   });
 
-  it('expands when text wraps to multiple visual lines', () => {
+  it('expands when text wraps to multiple visual lines', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     // Simulate a wrapped, multi-line measured height.
@@ -66,48 +71,55 @@ describe('ChatComposer', () => {
     fireEvent.change(textarea, {
       target: { value: 'Build me a React dashboard with authentication, billing and workspace management.' },
     });
+    await nextFrame();
     expect(container.querySelector('form.composer')).toHaveClass('composer--expanded');
   });
 
-  it('expands for explicit newlines (Shift+Enter)', () => {
+  it('expands for explicit newlines (Shift+Enter)', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     setScrollHeight(textarea, 72);
     fireEvent.change(textarea, { target: { value: 'line one\nline two\nline three' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).toHaveClass('composer--expanded');
   });
 
-  it('expands for a very long unbroken string', () => {
+  it('expands for a very long unbroken string', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     setScrollHeight(textarea, 120);
     fireEvent.change(textarea, { target: { value: 'h'.repeat(300) } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).toHaveClass('composer--expanded');
   });
 
-  it('shrinks back to compact after deleting multiline content', () => {
+  it('shrinks back to compact after deleting multiline content', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
 
     setScrollHeight(textarea, 120);
     fireEvent.change(textarea, { target: { value: 'a'.repeat(400) } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).toHaveClass('composer--expanded');
 
     setScrollHeight(textarea, 24);
     fireEvent.change(textarea, { target: { value: 'short' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).not.toHaveClass('composer--expanded');
   });
 
-  it('returns to compact when cleared back to empty', () => {
+  it('returns to compact when cleared back to empty', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
 
     setScrollHeight(textarea, 96);
     fireEvent.change(textarea, { target: { value: 'multiple\nlines\nof\ntext' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).toHaveClass('composer--expanded');
 
     setScrollHeight(textarea, 24);
     fireEvent.change(textarea, { target: { value: '' } });
+    await nextFrame();
     expect(container.querySelector('form.composer')).not.toHaveClass('composer--expanded');
   });
 
@@ -123,40 +135,45 @@ describe('ChatComposer', () => {
     expect(actions.contains(send)).toBe(true);
   });
 
-  it('disables send when empty and enables it with text', () => {
+  it('disables send when empty and enables it with text', async () => {
     const { container } = renderComposer();
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     const send = container.querySelector('button.send') as HTMLButtonElement;
     expect(send).toBeDisabled();
 
     fireEvent.change(textarea, { target: { value: 'hello' } });
+
+    await nextFrame();
     expect(send).not.toBeDisabled();
   });
 
-  it('submits the trimmed text on send click', () => {
+  it('submits the trimmed text on send click', async () => {
     const onSubmit = vi.fn();
     const { container } = renderComposer({ onSubmit });
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     fireEvent.change(textarea, { target: { value: '  say hi  ' } });
+    await nextFrame();
     fireEvent.click(container.querySelector('button.send')!);
     expect(onSubmit).toHaveBeenCalledWith('say hi', []);
   });
 
-  it('clears the input after submitting', () => {
+  it('clears the input after submitting', async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     const { container } = renderComposer({ onSubmit });
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     fireEvent.change(textarea, { target: { value: 'hello world' } });
+    await nextFrame();
     fireEvent.click(container.querySelector('button.send')!);
     // value is cleared synchronously via setState
     expect((textarea as HTMLTextAreaElement).value).toBe('');
   });
 
-  it('submits on Enter but not on Shift+Enter', () => {
+  it('submits on Enter but not on Shift+Enter', async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     const { container } = renderComposer({ onSubmit });
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     fireEvent.change(textarea, { target: { value: 'send me' } });
+    await nextFrame();
 
     // Stub requestSubmit so it routes through the form submit handler in jsdom.
     const form = container.querySelector('form.composer') as HTMLFormElement;
@@ -168,17 +185,22 @@ describe('ChatComposer', () => {
     form.requestSubmit = requestSubmit as unknown as HTMLFormElement["requestSubmit"];
 
     fireEvent.keyDown(textarea, { key: 'Enter', shiftKey: false });
+
+    await nextFrame();
     expect(onSubmit).toHaveBeenCalledTimes(1);
 
     fireEvent.keyDown(textarea, { key: 'Enter', shiftKey: true });
+
+    await nextFrame();
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it('does not submit while IME composition is active', () => {
+  it('does not submit while IME composition is active', async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     const { container } = renderComposer({ onSubmit });
     const textarea = screen.getByPlaceholderText(PLACEHOLDER);
     fireEvent.change(textarea, { target: { value: 'こ' } });
+    await nextFrame();
 
     const form = container.querySelector('form.composer') as HTMLFormElement;
     form.requestSubmit = vi.fn((_ev?: Event) => {
@@ -191,6 +213,8 @@ describe('ChatComposer', () => {
       shiftKey: false,
       isComposing: true,
     });
+
+    await nextFrame();
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
@@ -215,12 +239,13 @@ describe('ChatComposer', () => {
     expect(screen.getByTitle(/voice input/i)).toBeInTheDocument();
   });
 
-  it('does not submit when disabled', () => {
+  it('does not submit when disabled', async () => {
     const onSubmit = vi.fn();
     const { container } = renderComposer({ onSubmit, disabled: true });
     const textarea = screen.getByPlaceholderText(/Message JT-Code/i);
     const send = container.querySelector('button.send') as HTMLButtonElement;
     fireEvent.change(textarea, { target: { value: 'hi' } });
+    await nextFrame();
     expect(send).toBeDisabled();
   });
 });

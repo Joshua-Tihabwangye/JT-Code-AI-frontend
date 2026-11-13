@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Njia ya malipo imehifadhiwa",
     "none": "Hakuna njia ya malipo kwenye faili",
-    "manage": "Dhibiti njia za malipo"
+    "manage": "Dhibiti njia za malipo",
+    "panel": {
+      "title": "Njia ya malipo",
+      "description": "Kadi inayotumika kwa mpango wako, nyongeza za mkopo na urejeshaji kiotomatiki.",
+      "current": "Kadi ya sasa",
+      "holder": "Mwenye kadi",
+      "expires": "Muda wake unaisha",
+      "cardEnding": "Kadi inayoisha kwa {{last4}}",
+      "replace": "Badilisha kadi",
+      "add": "Ongeza kadi",
+      "replaceHint": "Kadi mpya inakuwa chaguomsingi kwako kwa malipo yote yajayo.",
+      "save": "Hifadhi kadi",
+      "saving": "Inahifadhi..",
+      "saved": "Kadi imehifadhiwa. Inakuwa chaguomsingi lako katika sekunde chache.",
+      "failed": "Kadi haikuweza kuhifadhiwa. Angalia maelezo na ujaribu tena.",
+      "keepCurrent": "Weka kadi ya sasa",
+      "secure": "Maelezo ya kadi huenda moja kwa moja kwa Stripe. JT-Code haioni wala kuhifadhi nambari ya kadi yako.",
+      "portal": "Ankara na zaidi katika Stripe",
+      "notConfigured": "Malipo ya kadi bado hayajawekwa kwenye seva hii (Vifunguo vya Stripe havipo). Uliza msimamizi kuziongeza."
+    }
   },
   "invoices": {
     "title": "Ankara za hivi karibuni",
@@ -147,7 +166,8 @@
     "freeMonthly": "Masalio ya bila malipo husasishwa kila mwezi",
     "reactivate": "Endelea na usajili",
     "cancel": "Ghairi usajili",
-    "cancelConfirm": "Ungependa kughairi usajili wako mwishoni mwa kipindi cha sasa?"
+    "cancelConfirm": "Ungependa kughairi usajili wako mwishoni mwa kipindi cha sasa?",
+    "keep": "Endelea kufuatilia"
   },
   "wallet": {
     "saved": "Mipangilio ya malipo imehifadhiwa.",

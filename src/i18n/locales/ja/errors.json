@@ -29,5 +29,6 @@
   "runNotFound": "分析実行が見つかりません。",
   "datasetNotFound": "データセットが見つかりません。",
   "chartNotFound": "チャートが見つかりません。",
-  "visualizeNeedsApi": "データ視覚化はバックエンドで実行されます。 VITE_DATA_MODE=api を設定し、API を起動して使用します。"
+  "visualizeNeedsApi": "データ視覚化はバックエンドで実行されます。 VITE_DATA_MODE=api を設定し、API を起動して使用します。",
+  "paymentsNeedApi": "カード決済はバックエンドで実行されます。 VITE_DATA_MODE=api を設定し、カードを管理するための API を開始します。"
 }

@@ -29,5 +29,6 @@
   "runNotFound": "विश्लेषण रन आढळले नाही.",
   "datasetNotFound": "डेटासेट आढळला नाही.",
   "chartNotFound": "चार्ट सापडला नाही.",
-  "visualizeNeedsApi": "डेटा व्हिज्युअलायझेशन बॅकएंडवर चालते. VITE_DATA_MODE=api सेट करा आणि ते वापरण्यासाठी API सुरू करा."
+  "visualizeNeedsApi": "डेटा व्हिज्युअलायझेशन बॅकएंडवर चालते. VITE_DATA_MODE=api सेट करा आणि ते वापरण्यासाठी API सुरू करा.",
+  "paymentsNeedApi": "कार्ड पेमेंट बॅकएंडवर चालते. VITE_DATA_MODE=api सेट करा आणि कार्ड व्यवस्थापित करण्यासाठी API सुरू करा."
 }

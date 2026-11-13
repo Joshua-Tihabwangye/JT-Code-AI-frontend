@@ -22,5 +22,6 @@
   "clearSearch": "Borrar búsqueda",
   "confirm": "Confirmar",
   "notifications": "Notificaciones",
-  "dismissNotification": "Descartar notificación"
+  "dismissNotification": "Descartar notificación",
+  "messagesCount_many": "{{count}} mensajes"
 }

@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Metode pembayaran tersimpan",
     "none": "Tidak ada metode pembayaran yang tercatat",
-    "manage": "Kelola metode pembayaran"
+    "manage": "Kelola metode pembayaran",
+    "panel": {
+      "title": "Metode pembayaran",
+      "description": "Kartu yang digunakan untuk paket Anda, isi ulang pulsa, dan isi ulang otomatis.",
+      "current": "Kartu saat ini",
+      "holder": "Pemegang kartu",
+      "expires": "Kedaluwarsa",
+      "cardEnding": "Kartu diakhiri dengan {{last4}}",
+      "replace": "Ganti kartu",
+      "add": "Tambahkan kartu",
+      "replaceHint": "Kartu baru menjadi default Anda untuk semua pembayaran di masa depan.",
+      "save": "Simpan kartu",
+      "saving": "Penghematan…",
+      "saved": "Kartu disimpan. Ini menjadi default Anda dalam beberapa detik.",
+      "failed": "Kartu tidak dapat disimpan. Periksa detailnya dan coba lagi.",
+      "keepCurrent": "Simpan kartu saat ini",
+      "secure": "Detail kartu langsung menuju ke Stripe. JT-Code tidak pernah melihat atau menyimpan nomor kartu Anda.",
+      "portal": "Faktur dan lainnya di Stripe",
+      "notConfigured": "Pembayaran kartu belum disiapkan di server ini (Kunci Stripe tidak ada). Minta administrator untuk menambahkannya."
+    }
   },
   "invoices": {
     "title": "Faktur terbaru",
@@ -147,7 +166,8 @@
     "freeMonthly": "Kredit gratis diperbarui setiap bulan",
     "reactivate": "Lanjutkan berlangganan",
     "cancel": "Batalkan langganan",
-    "cancelConfirm": "Batalkan langganan Anda di akhir periode berjalan?"
+    "cancelConfirm": "Batalkan langganan Anda di akhir periode berjalan?",
+    "keep": "Tetap berlangganan"
   },
   "wallet": {
     "saved": "Setelan penagihan disimpan.",

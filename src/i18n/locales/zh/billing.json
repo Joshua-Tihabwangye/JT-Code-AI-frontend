@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "支付方式已保存",
     "none": "未保存付款方式",
-    "manage": "管理付款方式"
+    "manage": "管理付款方式",
+    "panel": {
+      "title": "付款方式",
+      "description": "用于您的计划、信用充值和自动充值的卡。",
+      "current": "当前卡",
+      "holder": "持卡人",
+      "expires": "过期",
+      "cardEnding": "以 {{last4}} 结尾的卡",
+      "replace": "更换卡",
+      "add": "添加卡",
+      "replaceHint": "新卡将成为您未来所有付款的默认卡。",
+      "save": "保存卡",
+      "saving": "保存…",
+      "saved": "卡已保存。几秒钟后它就会成为您的默认值。",
+      "failed": "该卡无法保存。检查详细信息并重试。",
+      "keepCurrent": "保留当前卡",
+      "secure": "卡的详细信息直接发送至 Stripe。 JT-Code 绝不会查看或存储您的卡号。",
+      "portal": "Stripe 中的发票及更多内容",
+      "notConfigured": "Card payments aren't set up on this server yet (Stripe keys are missing).请管理员添加它们。"
+    }
   },
   "invoices": {
     "title": "近期发票",
@@ -147,7 +166,8 @@
     "freeMonthly": "免费积分每月更新",
     "reactivate": "恢复订阅",
     "cancel": "取消订阅",
-    "cancelConfirm": "在当前周期结束时取消订阅？"
+    "cancelConfirm": "在当前周期结束时取消订阅？",
+    "keep": "保持订阅"
   },
   "wallet": {
     "saved": "计费设置已保存。",

@@ -15,5 +15,8 @@
   "signInWithApple": "使用 Apple 登录",
   "offlineHint": "离线设计模式：不使用后端。可使用任意邮箱和密码登录（将创建本地账户），或继续使用演示账户。",
   "demoAccount": "继续使用演示账户",
-  "continueWith": "通过 {{provider}} 继续"
+  "continueWith": "通过 {{provider}} 继续",
+  "emailConfirmed": "您的电子邮件已确认。使用您的电子邮件和密码登录以继续。",
+  "confirmationExpired": "此确认链接已过期或已被使用。如果您已经确认了您的电子邮件，只需登录即可；否则重新注册以获得新链接。",
+  "confirmationFailed": "我们无法通过该链接确认您的电子邮件。尝试登录，或重新注册以获得新链接。"
 }

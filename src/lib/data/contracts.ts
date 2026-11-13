@@ -174,6 +174,8 @@ export interface BillingRepository {
   reactivate(): Promise<Subscription | null>;
   /** Stripe Billing Portal (payment methods, invoices); the browser is sent to the URL. */
   openBillingPortal(): Promise<string>;
+  /** Starts replacing the default card: Stripe confirms it in the browser, the webhook makes it the default. */
+  createSetupIntent(): Promise<SetupIntent>;
   getPaymentMethod(): Promise<PaymentMethod | null>;
   setAutoRecharge(enabled: boolean, threshold: number): Promise<Wallet>;
   setSpendingLimit(limit: number | null): Promise<Wallet>;
@@ -181,6 +183,12 @@ export interface BillingRepository {
   getInvoice(id: string): Promise<Invoice | null>;
   downloadInvoice(id: string): Promise<Blob>;
   consumeCredits(category: CreditCategory, amount: number): Promise<Usage>;
+}
+
+export interface SetupIntent {
+  clientSecret: string;
+  setupIntentId: string;
+  publishableKey: string;
 }
 
 export interface TopupIntent {

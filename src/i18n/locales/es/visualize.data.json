@@ -165,7 +165,9 @@
     "editCell": "Editar {{column}} en la fila {{row}}",
     "range": "Filas {{from}}–{{to}} de {{total}}",
     "previous": "Filas anteriores",
-    "next": "Filas siguientes"
+    "next": "Filas siguientes",
+    "showingIssues_many": "se muestran {{rows}} filas con problemas",
+    "showingType_many": "se muestran {{rows}} filas de tipo {{label}}"
   },
   "transform": {
     "transformedName": "{{name}} (transformado)",

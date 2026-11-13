@@ -218,5 +218,7 @@
     "remove": "Supprimer la relation",
     "suggestion": "Lier {{field}} dans {{from}} et {{to}}",
     "add": "Ajouter une relation"
-  }
+  },
+  "multiSelected_many": "{{count}} visuels sélectionnés — utilisez Organiser, ou choisissez-en un à modifier.",
+  "visualsCount_many": "{{count}} visuels"
 }

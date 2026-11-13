@@ -15,5 +15,8 @@
   "createAccount": "Create account",
   "offlineHint": "Offline design mode: the backend is not used. Sign in with any email and password (a local account is created), or continue with the demo account.",
   "demoAccount": "Continue with the demo account",
-  "continueWith": "Continue with {{provider}}"
+  "continueWith": "Continue with {{provider}}",
+  "emailConfirmed": "Your email is confirmed. Sign in with your email and password to continue.",
+  "confirmationExpired": "This confirmation link has expired or was already used. If you already confirmed your email, just sign in; otherwise sign up again to get a new link.",
+  "confirmationFailed": "We couldn't confirm your email with that link. Try signing in, or sign up again to get a new link."
 }

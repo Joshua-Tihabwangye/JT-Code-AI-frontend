@@ -198,8 +198,14 @@ async function main() {
       // Either signed in at once (auto-confirm) or told to confirm the address first.
       await page.waitForFunction(() => location.pathname === '/app/chat' || /confirmation link/i.test(document.body.innerText), { timeout: 30_000 });
       if (!(await page.evaluate(() => location.pathname === '/app/chat'))) {
-        // The emailed link verifies the address with GoTrue and returns to the app signed in.
-        await page.goto(await confirmationLink(email), { waitUntil: 'networkidle0' });
+        // The emailed link confirms the address and returns to the sign-in page, NOT into the app:
+        // the user signs in with the password next.
+        await page.goto(await confirmationLink(email), { waitUntil: 'domcontentloaded' });
+        await page.waitForSelector('[data-testid="email-confirmed"]', { timeout: 30_000 });
+        if (await page.evaluate(() => location.pathname !== '/sign-in')) throw new Error(`confirmation landed on ${await page.evaluate(() => location.href)}`);
+        await page.type('#email', email);
+        await page.type('#password', password);
+        await page.click('button[type="submit"]');
         await page.waitForFunction(() => location.pathname.startsWith('/app/'), { timeout: 30_000 });
       }
       await grantCredits(email);

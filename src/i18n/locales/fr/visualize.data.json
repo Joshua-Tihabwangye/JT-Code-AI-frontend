@@ -165,7 +165,9 @@
     "editCell": "Modifier {{column}} à la ligne {{row}}",
     "range": "Lignes {{from}}–{{to}} sur {{total}}",
     "previous": "Lignes précédentes",
-    "next": "Lignes suivantes"
+    "next": "Lignes suivantes",
+    "showingIssues_many": "affichage de {{rows}} lignes avec problèmes",
+    "showingType_many": "affichage de {{rows}} lignes de type {{label}}"
   },
   "transform": {
     "transformedName": "{{name}} (transformé)",

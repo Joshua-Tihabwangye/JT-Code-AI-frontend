@@ -34,5 +34,7 @@
   "chooseInStep2": "Elige {{fields}} en el paso 2.",
   "creditsNote": "Usa créditos de análisis; las ejecuciones fallidas son gratuitas.",
   "runNow": "Ejecutar ahora",
-  "datasetWord": "conjunto de datos"
+  "datasetWord": "conjunto de datos",
+  "rowsScored_many": "{{rows}} filas puntuadas",
+  "toChoose_many": "{{count}} por elegir"
 }

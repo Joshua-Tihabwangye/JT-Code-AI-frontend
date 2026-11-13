@@ -218,5 +218,7 @@
     "remove": "Quitar relación",
     "suggestion": "Vincular {{field}} en {{from}} y {{to}}",
     "add": "Agregar relación"
-  }
+  },
+  "multiSelected_many": "{{count}} objetos visuales seleccionados: usa Organizar o elige uno para editarlo.",
+  "visualsCount_many": "{{count}} objetos visuales"
 }

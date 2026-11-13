@@ -34,5 +34,7 @@
   "chooseInStep2": "Choisissez {{fields}} à l'étape 2.",
   "creditsNote": "Consomme des crédits d'analyse ; les exécutions échouées sont gratuites.",
   "runNow": "Exécuter maintenant",
-  "datasetWord": "jeu de données"
+  "datasetWord": "jeu de données",
+  "rowsScored_many": "{{rows}} lignes évaluées",
+  "toChoose_many": "{{count}} à choisir"
 }

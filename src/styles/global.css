@@ -568,9 +568,8 @@ html.dark .sidebar {
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.55;
+  opacity: 1;
 }
-html.dark .chat-background canvas { opacity: 0.75; }
 .chat-scroll { position: relative; z-index: 1; flex: 1; overflow-y: auto; min-height: 0; padding: 1.5rem 2rem; }
 .chat-empty {
   position: relative;
@@ -669,6 +668,13 @@ html.dark .composer { background: rgba(10, 20, 34, .9); box-shadow: 0 0 24px rgb
   overflow-x: hidden;
 }
 .composer__field::placeholder { color: var(--muted-foreground); }
+/* The composer itself shows focus (its border); no second ring around the text. */
+.composer .composer__field:is(:focus, :focus-visible) {
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  background-color: transparent;
+}
 
 /* Hidden mirror used only to measure wrapped content height.
    Kept out of layout flow; metrics are copied from the live field in JS. */
@@ -732,14 +738,14 @@ html.dark .composer { background: rgba(10, 20, 34, .9); box-shadow: 0 0 24px rgb
   transform: translateY(0) scale(0.97);
 }
 
-/* Expanded / multiline state: textarea spans full width on top,
-   toolbar (plus + actions) stays pinned on the bottom row. */
+/* Expanded / multiline state: the text spans the full width on top (over the model and voice
+   controls); the toolbar (plus + actions) stays pinned on the bottom row. */
 .composer--expanded {
   grid-template-rows: 1fr auto;
   align-items: stretch;
   border-radius: 24px;
 }
-.composer--expanded .composer__field { grid-column: 2; grid-row: 1; }
+.composer--expanded .composer__field { grid-column: 1 / -1; grid-row: 1; }
 .composer--expanded .composer__plus { grid-column: 1; grid-row: 2; align-self: center; }
 .composer--expanded .composer__actions { grid-column: 3; grid-row: 2; align-self: center; }
 
@@ -1541,3 +1547,34 @@ html.dark .message.user { background: color-mix(in srgb, var(--primary) 19%, var
 @media (hover: none) {
   .feature-grid article:hover { transform: none; }
 }
+
+/* Billing: the saved card, drawn as a card */
+.payment-card-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.1rem;
+  aspect-ratio: 1.586;
+  max-width: 360px;
+  padding: 1.25rem 1.35rem;
+  border-radius: 16px;
+  color: #fff;
+  background: radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--primary) 92%, #fff) 0%, var(--primary) 38%, var(--azure-2, #0ea5e9) 100%);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--primary) 30%, transparent), inset 0 1px 0 rgba(255, 255, 255, .25);
+  overflow: hidden;
+}
+.payment-card-face::after {
+  content: "";
+  position: absolute;
+  inset: auto -30% -60% auto;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .12);
+  pointer-events: none;
+}
+.payment-card-face__number { font-size: 1.15rem; letter-spacing: .14em; font-variant-numeric: tabular-nums; }
+.payment-card-face__label { font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
+.payment-card-face__brand { font-weight: 700; font-size: .95rem; text-transform: uppercase; letter-spacing: .06em; }
+.payment-card-face__badge { background: rgba(255, 255, 255, .2); color: #fff; border: none; }

@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Zahlungsmethode gespeichert",
     "none": "Keine Zahlungsmethode hinterlegt",
-    "manage": "Zahlungsmethoden verwalten"
+    "manage": "Zahlungsmethoden verwalten",
+    "panel": {
+      "title": "Zahlungsart",
+      "description": "Die Karte, die für Ihren Plan, Guthabenaufladungen und automatische Aufladung verwendet wird.",
+      "current": "Aktuelle Karte",
+      "holder": "Kartenhalter",
+      "expires": "Läuft ab",
+      "cardEnding": "Karte endet mit {{last4}}",
+      "replace": "Karte austauschen",
+      "add": "Fügen Sie eine Karte hinzu",
+      "replaceHint": "Die neue Karte wird Ihre Standardkarte für alle zukünftigen Zahlungen.",
+      "save": "Karte speichern",
+      "saving": "Sparen…",
+      "saved": "Karte gespeichert. Es wird in wenigen Sekunden zu Ihrer Standardeinstellung.",
+      "failed": "Die Karte konnte nicht gespeichert werden. Überprüfen Sie die Details und versuchen Sie es erneut.",
+      "keepCurrent": "Behalten Sie die aktuelle Karte",
+      "secure": "Die Kartendetails gehen direkt an Stripe. JT-Code sieht oder speichert niemals Ihre Kartennummer.",
+      "portal": "Rechnungen und mehr in Stripe",
+      "notConfigured": "Kartenzahlungen sind auf diesem Server noch nicht eingerichtet (Stripe-Schlüssel fehlen). Bitten Sie einen Administrator, sie hinzuzufügen."
+    }
   },
   "invoices": {
     "title": "Aktuelle Rechnungen",
@@ -147,7 +166,8 @@
     "freeMonthly": "Kostenlose Credits werden monatlich erneuert",
     "reactivate": "Abonnement fortsetzen",
     "cancel": "Abonnement kündigen",
-    "cancelConfirm": "Dein Abonnement zum Ende des aktuellen Zeitraums kündigen?"
+    "cancelConfirm": "Dein Abonnement zum Ende des aktuellen Zeitraums kündigen?",
+    "keep": "Abo behalten"
   },
   "wallet": {
     "saved": "Abrechnungseinstellungen gespeichert.",

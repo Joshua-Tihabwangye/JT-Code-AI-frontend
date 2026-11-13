@@ -19,6 +19,11 @@ export interface StripeClient {
     redirect: 'if_required';
     confirmParams?: { return_url?: string };
   }): Promise<{ error?: { message?: string }; paymentIntent?: { status: string } }>;
+  confirmSetup(options: {
+    elements: StripeElements;
+    redirect: 'if_required';
+    confirmParams?: { return_url?: string };
+  }): Promise<{ error?: { message?: string }; setupIntent?: { status: string } }>;
 }
 
 declare global {
