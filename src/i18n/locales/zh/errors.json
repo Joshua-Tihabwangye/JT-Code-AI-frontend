@@ -29,5 +29,6 @@
   "runNotFound": "未找到分析运行记录。",
   "datasetNotFound": "未找到数据集。",
   "chartNotFound": "未找到图表。",
-  "visualizeNeedsApi": "数据可视化在后端运行。请设置 VITE_DATA_MODE=api 并启动 API 后使用。"
+  "visualizeNeedsApi": "数据可视化在后端运行。请设置 VITE_DATA_MODE=api 并启动 API 后使用。",
+  "paymentsNeedApi": "卡支付在后端运行。设置VITE_DATA_MODE=api并启动管理卡的API。"
 }

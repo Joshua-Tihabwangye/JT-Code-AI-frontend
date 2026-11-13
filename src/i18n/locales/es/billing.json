@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Método de pago guardado",
     "none": "No hay ningún método de pago registrado",
-    "manage": "Administrar métodos de pago"
+    "manage": "Administrar métodos de pago",
+    "panel": {
+      "title": "Método de pago",
+      "description": "La tarjeta utilizada para tu plan, recargas de crédito y recarga automática.",
+      "current": "tarjeta actual",
+      "holder": "Titular de la tarjeta",
+      "expires": "Vence",
+      "cardEnding": "Tarjeta que termina en {{last4}}",
+      "replace": "Reemplazar tarjeta",
+      "add": "Añadir una tarjeta",
+      "replaceHint": "La nueva tarjeta se convierte en la predeterminada para todos los pagos futuros.",
+      "save": "guardar tarjeta",
+      "saving": "Ahorro…",
+      "saved": "Tarjeta guardada. Se convierte en su valor predeterminado en unos segundos.",
+      "failed": "No se pudo guardar la tarjeta. Verifique los detalles y vuelva a intentarlo.",
+      "keepCurrent": "Mantener tarjeta actual",
+      "secure": "Los datos de la tarjeta van directamente a Stripe. JT-Code nunca ve ni almacena su número de tarjeta.",
+      "portal": "Facturas y más en Stripe",
+      "notConfigured": "Los pagos con tarjeta aún no están configurados en este servidor (faltan claves Stripe). Pídale a un administrador que los agregue."
+    }
   },
   "invoices": {
     "title": "Facturas recientes",
@@ -147,7 +166,8 @@
     "freeMonthly": "Los créditos gratuitos se renuevan cada mes",
     "reactivate": "Reanudar suscripción",
     "cancel": "Cancelar suscripción",
-    "cancelConfirm": "¿Cancelar tu suscripción al final del período actual?"
+    "cancelConfirm": "¿Cancelar tu suscripción al final del período actual?",
+    "keep": "Mantener suscripción"
   },
   "wallet": {
     "saved": "Configuración de facturación guardada.",

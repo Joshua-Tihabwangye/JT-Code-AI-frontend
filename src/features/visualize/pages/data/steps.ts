@@ -369,6 +369,10 @@ export function fixFor(issue: VizIssue): { label: string; steps: VizPipelineStep
   switch (issue.type) {
     case 'duplicate_row':
       return { label: FIX('removeDuplicates'), steps: [newStep('remove_duplicates')] };
+    case 'near_duplicate_row':
+      return { label: FIX('trimThenRemoveRepeats'), steps: [newStep('trim'), newStep('remove_duplicates')] };
+    case 'mixed_date_format':
+      return column ? { label: FIX('toDate'), steps: [{ ...newStep('change_type', column), type: 'date' }] } : null;
     case 'duplicate_id':
       return column ? { label: FIX('keepOnePerId'), steps: [{ ...newStep('remove_duplicates'), columns: [column] }] } : null;
     case 'missing_id':

@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Forma de pagamento salva",
     "none": "Nenhuma forma de pagamento cadastrada",
-    "manage": "Gerenciar métodos de pagamento"
+    "manage": "Gerenciar métodos de pagamento",
+    "panel": {
+      "title": "Método de pagamento",
+      "description": "O cartão utilizado para o seu plano, recargas de crédito e recarga automática.",
+      "current": "Cartão atual",
+      "holder": "Titular do cartão",
+      "expires": "Expira",
+      "cardEnding": "Cartão terminando em {{last4}}",
+      "replace": "Substituir cartão",
+      "add": "Adicionar um cartão",
+      "replaceHint": "O novo cartão se tornará o padrão para todos os pagamentos futuros.",
+      "save": "Salvar cartão",
+      "saving": "Salvando…",
+      "saved": "Cartão salvo. Torna-se seu padrão em alguns segundos.",
+      "failed": "O cartão não pôde ser salvo. Verifique os detalhes e tente novamente.",
+      "keepCurrent": "Manter cartão atual",
+      "secure": "Os detalhes do cartão vão direto para o Stripe. JT-Code nunca vê ou armazena o número do seu cartão.",
+      "portal": "Faturas e muito mais no Stripe",
+      "notConfigured": "Os pagamentos com cartão ainda não estão configurados neste servidor (as teclas Stripe estão faltando). Peça a um administrador para adicioná-los."
+    }
   },
   "invoices": {
     "title": "Faturas recentes",
@@ -147,7 +166,8 @@
     "freeMonthly": "Créditos gratuitos são renovados mensalmente",
     "reactivate": "Retomar assinatura",
     "cancel": "Cancelar assinatura",
-    "cancelConfirm": "Cancelar sua assinatura no final do período atual?"
+    "cancelConfirm": "Cancelar sua assinatura no final do período atual?",
+    "keep": "Manter assinatura"
   },
   "wallet": {
     "saved": "Configurações de faturamento salvas.",

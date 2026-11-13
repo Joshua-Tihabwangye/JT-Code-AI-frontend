@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "결제 수단이 저장되었습니다",
     "none": "등록된 결제 수단이 없습니다",
-    "manage": "결제 수단 관리"
+    "manage": "결제 수단 관리",
+    "panel": {
+      "title": "결제수단",
+      "description": "요금제, 크레딧 충전, 자동 충전에 사용되는 카드입니다.",
+      "current": "현재 카드",
+      "holder": "카드홀더",
+      "expires": "만료",
+      "cardEnding": "{{last4}}로 끝나는 카드",
+      "replace": "카드 교체",
+      "add": "카드 추가",
+      "replaceHint": "새 카드는 향후 모든 결제에 대한 기본 카드가 됩니다.",
+      "save": "카드 저장",
+      "saving": "절약…",
+      "saved": "카드가 저장되었습니다. 몇 초 안에 기본값이 됩니다.",
+      "failed": "카드를 저장할 수 없습니다. 세부정보를 확인하고 다시 시도하세요.",
+      "keepCurrent": "현재 카드 유지",
+      "secure": "카드 세부정보는 Stripe로 바로 이동됩니다. JT-Code는 귀하의 카드번호를 절대 보거나 저장하지 않습니다.",
+      "portal": "Stripe의 송장 등",
+      "notConfigured": "이 서버에는 아직 카드 결제가 설정되지 않았습니다(스트라이프 키가 누락됨). 관리자에게 추가를 요청하세요."
+    }
   },
   "invoices": {
     "title": "최근 청구서",
@@ -147,7 +166,8 @@
     "freeMonthly": "무료 크레딧은 매달 갱신됩니다",
     "reactivate": "구독 재개",
     "cancel": "구독 취소",
-    "cancelConfirm": "현재 기간이 끝나면 구독을 취소하시겠습니까?"
+    "cancelConfirm": "현재 기간이 끝나면 구독을 취소하시겠습니까?",
+    "keep": "구독 유지"
   },
   "wallet": {
     "saved": "결제 설정이 저장되었습니다.",

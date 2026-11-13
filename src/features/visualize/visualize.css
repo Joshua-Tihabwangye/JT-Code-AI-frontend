@@ -2969,10 +2969,7 @@ textarea.viz-field {
 }
 
 .viz-menu {
-  position: absolute;
-  z-index: 40;
-  top: calc(100% + 4px);
-  inset-inline-start: 0;
+  /* Placed by FloatingPanel (position: fixed, above everything). */
   display: flex;
   min-width: 230px;
   flex-direction: column;
@@ -3635,3 +3632,37 @@ textarea.viz-field {
 .dash-shared.embed {
   padding: 0;
 }
+
+/* Menus render in the floating layer (outside .viz), so they carry the same colour tokens. */
+.viz-menu {
+  --viz-indigo: #6366f1;
+  --viz-violet: #8b5cf6;
+  --viz-cyan: #06b6d4;
+  --viz-pink: #ec4899;
+  --viz-amber: #f59e0b;
+  --viz-emerald: #10b981;
+  --viz-surface: var(--card);
+  --viz-soft: color-mix(in srgb, var(--viz-indigo) 7%, var(--card));
+}
+html.dark .viz-menu {
+  --viz-soft: color-mix(in srgb, var(--viz-indigo) 14%, var(--card));
+}
+
+/* Predict: hideable steps panel, custom predictions, date pickers, "how this was calculated" */
+.predict-layout.steps-hidden { grid-template-columns: minmax(0, 1fr); }
+.predict-wizard[hidden] { display: none; }
+.predict-custom { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+.predict-preset { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 10px; font-size: 13px; background: var(--card); }
+.predict-preset.active { border-color: var(--viz-violet); background: color-mix(in srgb, var(--viz-violet) 10%, var(--card)); }
+.predict-preset > button:first-child { display: flex; align-items: center; min-width: 0; }
+.predict-preset-remove { display: inline-flex; padding: 4px; border-radius: 6px; color: var(--muted-foreground); }
+.predict-preset-remove:hover { color: var(--destructive); background: var(--muted); }
+.predict-dates { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; padding: 8px; border: 1px solid var(--border); border-radius: 10px; }
+.predict-goal { display: flex; align-items: flex-start; gap: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
+.predict-goal.active { border-color: var(--viz-indigo); background: color-mix(in srgb, var(--viz-indigo) 8%, var(--card)); }
+.predict-goal input { margin-top: 3px; }
+.predict-columns { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px 12px; max-height: 180px; overflow-y: auto; padding: 8px; border: 1px solid var(--border); border-radius: 10px; }
+.predict-how { border-top: 1px dashed var(--border); padding-top: 6px; }
+.predict-how summary { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--viz-indigo); }
+.predict-how-small summary { font-size: 11px; }
+.predict-formula { display: block; white-space: pre-wrap; padding: 6px 8px; border-radius: 8px; background: var(--muted); font-size: 12px; line-height: 1.5; color: var(--foreground); }

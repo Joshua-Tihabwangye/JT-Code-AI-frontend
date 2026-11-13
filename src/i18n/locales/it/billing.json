@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Metodo di pagamento salvato",
     "none": "Nessun metodo di pagamento registrato",
-    "manage": "Gestire i metodi di pagamento"
+    "manage": "Gestire i metodi di pagamento",
+    "panel": {
+      "title": "Metodo di pagamento",
+      "description": "La carta utilizzata per il tuo piano, le ricariche di credito e l'autoricarica.",
+      "current": "Carta attuale",
+      "holder": "Titolare della carta",
+      "expires": "Scade",
+      "cardEnding": "Carta che termina con {{last4}}",
+      "replace": "Sostituisci la carta",
+      "add": "Aggiungi una carta",
+      "replaceHint": "La nuova carta diventerà quella predefinita per tutti i pagamenti futuri.",
+      "save": "Salva carta",
+      "saving": "Risparmio…",
+      "saved": "Card saved. It becomes your default in a few seconds.",
+      "failed": "The card could not be saved. Check the details and try again.",
+      "keepCurrent": "Keep current card",
+      "secure": "Card details go straight to Stripe. JT-Code never sees or stores your card number.",
+      "portal": "Fatture e altro in Stripe",
+      "notConfigured": "I pagamenti con carta non sono ancora configurati su questo server (mancano le chiavi Stripe). Chiedi a un amministratore di aggiungerli."
+    }
   },
   "invoices": {
     "title": "Fatture recenti",
@@ -147,7 +166,8 @@
     "freeMonthly": "I crediti gratuiti si rinnovano mensilmente",
     "reactivate": "Riprendere l'abbonamento",
     "cancel": "Annulla l'abbonamento",
-    "cancelConfirm": "Annullare l'abbonamento alla fine del periodo corrente?"
+    "cancelConfirm": "Annullare l'abbonamento alla fine del periodo corrente?",
+    "keep": "Mantieni l'abbonamento"
   },
   "wallet": {
     "saved": "Impostazioni di fatturazione salvate.",

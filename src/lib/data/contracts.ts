@@ -174,6 +174,8 @@ export interface BillingRepository {
   reactivate(): Promise<Subscription | null>;
   /** Stripe Billing Portal (payment methods, invoices); the browser is sent to the URL. */
   openBillingPortal(): Promise<string>;
+  /** Starts replacing the default card: Stripe confirms it in the browser, the webhook makes it the default. */
+  createSetupIntent(): Promise<SetupIntent>;
   getPaymentMethod(): Promise<PaymentMethod | null>;
   setAutoRecharge(enabled: boolean, threshold: number): Promise<Wallet>;
   setSpendingLimit(limit: number | null): Promise<Wallet>;
@@ -181,6 +183,12 @@ export interface BillingRepository {
   getInvoice(id: string): Promise<Invoice | null>;
   downloadInvoice(id: string): Promise<Blob>;
   consumeCredits(category: CreditCategory, amount: number): Promise<Usage>;
+}
+
+export interface SetupIntent {
+  clientSecret: string;
+  setupIntentId: string;
+  publishableKey: string;
 }
 
 export interface TopupIntent {
@@ -349,7 +357,35 @@ export interface VizPredictInput {
   fields: VizFields;
   options?: VizOptions;
   style?: VizStyle;
+  /** Only learn from rows between these dates (inclusive, YYYY-MM-DD) of a date column. */
+  dateRange?: VizDateRange;
+  /** Forecasts: forecast until this date (YYYY-MM-DD); it sets how many periods ahead. */
+  forecastUntil?: string;
 }
+
+export interface VizDateRange {
+  column?: string;
+  from?: string;
+  to?: string;
+}
+
+/** A custom prediction the user defined for their data (private to them). */
+export interface PredictionPreset {
+  id: string;
+  name: string;
+  description: string;
+  task: string;
+  model: string;
+  fields: VizFields;
+  options: VizOptions;
+  dateRange: VizDateRange;
+  datasetId: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type PredictionPresetInput = Pick<PredictionPreset, 'name' | 'task' | 'fields'> &
+  Partial<Pick<PredictionPreset, 'description' | 'model' | 'options' | 'dateRange' | 'datasetId'>>;
 
 /** Cleaning steps plus the shared declarative transform (validated server-side). */
 /** One applied step (``op`` plus its settings), run in order by Python. */
@@ -403,6 +439,9 @@ export interface VisualizeRepository {
   workbook(input: VizWorkbookInput): Promise<Blob>;
   render(input: VizRenderInput): Promise<VizRenderResult>;
   predict(input: VizPredictInput): Promise<VizPrediction>;
+  listPredictionPresets(datasetId?: string): Promise<PredictionPreset[]>;
+  savePredictionPreset(input: PredictionPresetInput): Promise<PredictionPreset>;
+  deletePredictionPreset(id: string): Promise<void>;
   downloadPrediction(resultId: string, type?: 'csv' | 'xlsx', excel?: VizExcelOptions): Promise<Blob>;
   savePrediction(resultId: string, name?: string): Promise<Dataset>;
   ask(input: { prompt: string; datasetId?: string; context?: Record<string, unknown> }): Promise<VizAssistantAnswer>;

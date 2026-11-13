@@ -29,5 +29,6 @@
   "runNotFound": "Analisis yang dijalankan tidak ditemukan.",
   "datasetNotFound": "Kumpulan data tidak ditemukan.",
   "chartNotFound": "Bagan tidak ditemukan.",
-  "visualizeNeedsApi": "Visualisasi Data berjalan di backend. Setel VITE_DATA_MODE=api dan mulai API untuk menggunakannya."
+  "visualizeNeedsApi": "Visualisasi Data berjalan di backend. Setel VITE_DATA_MODE=api dan mulai API untuk menggunakannya.",
+  "paymentsNeedApi": "Pembayaran kartu berjalan di backend. Setel VITE_DATA_MODE=api dan mulai API untuk mengelola kartu."
 }

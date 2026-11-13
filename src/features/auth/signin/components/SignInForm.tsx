@@ -9,7 +9,7 @@ import { SubmitButton } from './SubmitButton';
 import { useSignInForm } from '../hooks/useSignInForm';
 import { signin } from '../services/signin.service';
 import type { SignInPayload } from '../types';
-import { frontendOnlyAuth, signInAsDemo, signInWithProvider } from '@/lib/supabase';
+import { emailConfirmation, frontendOnlyAuth, signInAsDemo, signInWithProvider } from '@/lib/supabase';
 import '../styles/signin.css';
 
 interface Props {
@@ -54,6 +54,18 @@ export function SignInForm({ onSignedIn }: Props) {
   return (
     <section className="signup-card auth-card signin-card">
       <SignInHeader />
+
+      {/* Back from the sign-up confirmation email: confirmed (sign in now) or the link no longer works. */}
+      {emailConfirmation?.status === 'confirmed' && !submitError && (
+        <div className="form-notice form-notice--success" role="status" data-testid="email-confirmed">
+          {t('signin.emailConfirmed')}
+        </div>
+      )}
+      {emailConfirmation?.status === 'failed' && (
+        <div className="form-error" role="alert" data-testid="email-confirmation-failed">
+          {emailConfirmation.code === 'otp_expired' ? t('signin.confirmationExpired') : t('signin.confirmationFailed')}
+        </div>
+      )}
 
       <form
         onSubmit={(event) => { void form.handleSubmit(submit)(event); }}

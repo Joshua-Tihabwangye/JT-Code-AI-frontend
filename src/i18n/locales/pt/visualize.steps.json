@@ -198,6 +198,7 @@
     "toDate": "Converter para a data",
     "consistentSpelling": "Torne a ortografia consistente",
     "capOutliers": "Valores discrepantes",
-    "removeColumn": "Remover coluna"
+    "removeColumn": "Remover coluna",
+    "trimThenRemoveRepeats": "Corte os espaços e remova as repetições"
   }
 }

@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import i18n from '@/i18n/config';
 import { apiErrorMessage, http as api } from '@/lib/api/http';
-import { supabase } from '@/lib/supabase';
+import { emailConfirmationRedirect, supabase } from '@/lib/supabase';
 import type { Paginated } from '@/lib/api/types';
 import type {
   Account,
@@ -85,11 +85,14 @@ import type {
   Repositories,
   SendMessageOptions,
   SignUpInput,
+  SetupIntent,
   TopupIntent,
   SaveChartInput,
   VisualizeRepository,
   VizOrganizeSteps,
   VizPredictInput,
+  PredictionPreset,
+  PredictionPresetInput,
   VizExcelOptions,
   VizRenderInput,
   VizWorkbookInput,
@@ -132,6 +135,7 @@ class ApiAuthRepository implements AuthRepository {
       email: input.email,
       password: input.password,
       options: {
+        emailRedirectTo: emailConfirmationRedirect(),
         data: {
           first_name: input.firstName,
           last_name: input.lastName,
@@ -480,6 +484,10 @@ class ApiBillingRepository implements BillingRepository {
       returnUrl: `${window.location.origin}/app/billing`,
     });
     return data.url;
+  }
+  async createSetupIntent() {
+    const { data } = await api.post<SetupIntent>('/payment-methods/');
+    return data;
   }
   async getPaymentMethod() {
     const { data } = await api.get<PaymentMethod | null>('/payment-methods/me/');
@@ -1000,6 +1008,16 @@ class ApiVisualizeRepository implements VisualizeRepository {
   async predict(input: VizPredictInput) {
     const { data } = await api.post<VizPrediction>('/visualize/predict/', input, SLOW);
     return data;
+  }
+  async listPredictionPresets(datasetId?: string) {
+    return list<PredictionPreset>('/visualize/prediction-presets/', datasetId ? { datasetId } : undefined);
+  }
+  async savePredictionPreset(input: PredictionPresetInput) {
+    const { data } = await api.post<PredictionPreset>('/visualize/prediction-presets/', input);
+    return data;
+  }
+  async deletePredictionPreset(id: string) {
+    await api.delete(`/visualize/prediction-presets/${id}/`);
   }
   async downloadPrediction(resultId: string, type: 'csv' | 'xlsx' = 'csv', excel: VizExcelOptions = {}) {
     return blob(`/visualize/predict/results/${resultId}/`, { type, ...(type === 'xlsx' ? { graphs: excel.graphs === false ? 0 : 1 } : {}) });

@@ -198,6 +198,7 @@
     "toDate": "Konversikan ke tanggal",
     "consistentSpelling": "Jadikan ejaan konsisten",
     "capOutliers": "Batasi outlier",
-    "removeColumn": "Hapus kolom"
+    "removeColumn": "Hapus kolom",
+    "trimThenRemoveRepeats": "Pangkas spasi, lalu hapus pengulangan"
   }
 }

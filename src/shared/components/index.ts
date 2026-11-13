@@ -28,3 +28,4 @@ export { ToastProvider, useToast } from './Toast';
 export type { ToastOptions, ToastVariant } from './Toast';
 export { FloatingPanel } from './FloatingPanel';
 export type { FloatingPlacement } from './FloatingPanel';
+export { useConfirm, type ConfirmOptions } from './useConfirm';

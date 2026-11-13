@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "check": "npm run typecheck && npm run lint && npm run test && npm run build",
     "test:integration": "vitest run --config vitest.integration.config.ts",
-    "test:e2e": "node tests/e2e/app.e2e.mjs"
+    "test:e2e": "node tests/e2e/app.e2e.mjs",
+    "i18n:fill": "node scripts/i18n-fill.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

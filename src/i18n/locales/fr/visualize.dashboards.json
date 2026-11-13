@@ -22,7 +22,12 @@
       "quarter_one": "trimestre",
       "quarter_other": "trimestres",
       "year_one": "année",
-      "year_other": "années"
+      "year_other": "années",
+      "day_many": "jours",
+      "week_many": "semaines",
+      "month_many": "mois",
+      "quarter_many": "trimestres",
+      "year_many": "années"
     },
     "describe": {
       "all": "{{name}} : tout",
@@ -94,7 +99,8 @@
     "none": "Aucun.",
     "fieldToFilter": "Champ à filtrer",
     "chooseField": "Choisir un champ…",
-    "add": "Ajouter un filtre"
+    "add": "Ajouter un filtre",
+    "active_many": "{{count}} filtres actifs"
   },
   "ai": {
     "sourceAiCredits_one": "Créé par le modèle d'IA · {{credits}} crédit",
@@ -165,7 +171,11 @@
       "loading": "Comparaison avec la période précédente…",
       "none": "Aucun membre ne se démarque en particulier.",
       "periods": "{{from}} – {{to}} vs {{previousFrom}} – {{previousTo}} · calculé à partir des données, sans IA"
-    }
+    },
+    "sourceAiCredits_many": "Créé par le modèle d'IA · {{credits}} crédits",
+    "previewLabel_many": "Aperçu de {{name}} : {{count}} visuels",
+    "proposal_many": "<b>{{name}}</b> — ajoute une page avec {{count}} visuels.",
+    "proposalWithCalcs_many": "<b>{{name}}</b> — ajoute une page avec {{count}} visuels et {{calcs}} calcul(s)."
   },
   "views": {
     "yourDefault": "Votre vue par défaut",
@@ -243,7 +253,8 @@
     "noExpiry": "Sans expiration",
     "lastOpened": "dernière ouverture le {{date}}",
     "notOpened": "pas encore ouvert",
-    "revoke": "Révoquer"
+    "revoke": "Révoquer",
+    "links_many": "Liens ({{count}} actifs)"
   },
   "header": {
     "filtersApply_one": "{{count}} filtre s'applique",
@@ -263,7 +274,8 @@
     "copyImage": "Copier en tant qu'image",
     "leaveSpotlight": "Quitter la mise en évidence",
     "spotlight": "Mise en évidence",
-    "closeFocus": "Fermer le mode Focus"
+    "closeFocus": "Fermer le mode Focus",
+    "filtersApply_many": "{{count}} filtres s'appliquent"
   },
   "pointMenu": {
     "drillThrough": "Extraire ▸ {{page}}",
@@ -450,7 +462,8 @@
     "selected_other": "{{count}} sélectionnés",
     "searchPlaceholder": "Rechercher ou coller une liste",
     "search": "Rechercher {{field}}",
-    "selectAll": "Tout sélectionner"
+    "selectAll": "Tout sélectionner",
+    "selected_many": "{{count}} sélectionnés"
   },
   "local": {
     "snapshotEmpty": "Cet instantané ne contient aucun graphique.",
@@ -511,7 +524,9 @@
     "excluding": "Hors {{values}}",
     "only": "Uniquement {{values}}",
     "dashboard": "Tableau de bord",
-    "seconds": "{{value}} s"
+    "seconds": "{{value}} s",
+    "exported_many": "{{count}} pages exportées.",
+    "filtersActive_many": "{{count}} filtres actifs"
   },
   "quick": {
     "ratio": {
@@ -580,7 +595,8 @@
       "viewer": "lecteur"
     },
     "sharedFlag": "partagé",
-    "deleteNamed": "Supprimer {{name}}"
+    "deleteNamed": "Supprimer {{name}}",
+    "pages_many": "{{count}} pages"
   },
   "visual": {
     "target": "Objectif {{value}}",

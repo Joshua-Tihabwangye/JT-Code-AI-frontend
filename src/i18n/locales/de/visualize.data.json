@@ -7,11 +7,11 @@
   "pick": "Füge Daten über die Registerkarte „Start“ hinzu: Lade eine Datei hoch, füge CSV ein oder lade ein Beispiel.",
   "tabs": {
     "home": "Start",
-    "quality": "Qualität prüfen",
     "transform": "Transformieren",
     "transformCount": "Transformieren · {{n}}",
     "profile": "Spaltenprofil",
-    "insights": "Erkenntnisse"
+    "insights": "Erkenntnisse",
+    "quality": "Saubere Daten"
   },
   "kinds": {
     "numeric": "numerisch",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Prüfen",
     "rescan": "Erneut prüfen",
-    "check": "Daten prüfen",
     "legend": "Markierungsfarben (zum Ausblenden klicken)",
     "legendEmpty": "Führe eine Prüfung aus, um die Farblegende zu sehen.",
     "noIssues": "Keine Probleme gefunden 🎉",
@@ -40,9 +39,6 @@
     "examples": "z. B. {{examples}}",
     "rows": "Zeilen",
     "fixTitle": "Fügt unter „Transformieren“ einen Schritt hinzu; nichts ändert sich, bis du speicherst",
-    "title": "Datenqualitätsbericht",
-    "subtitle": "Python-Prüfungen – keine KI, und nichts wird geändert",
-    "intro": "Klicke auf <b>Daten prüfen</b>: Probleme werden in der Tabelle farbig markiert, und für jedes gibt es eine Korrektur mit einem Klick.",
     "score": "Qualitätswert",
     "excellent": "Ausgezeichnet",
     "needsLook": "Bitte prüfen",
@@ -51,7 +47,15 @@
     "rowsAffected": "Betroffene Zeilen",
     "cellsFlagged": "Markierte Zellen",
     "checked": "Geprüfte Zeilen × Spalten",
-    "nothingHere": "Hier ist nichts."
+    "nothingHere": "Hier ist nichts.",
+    "check": "Überprüfen Sie es noch einmal",
+    "title": "Saubere Daten",
+    "subtitle": "Durch Python-Prüfungen gefundene Duplikate, fehlende Werte und andere Inkonsistenzen. Es ändert sich nichts, bis Sie einen Fix anwenden.",
+    "intro": "Die Probleme sind unten aufgeführt und in der Tabelle farblich gekennzeichnet. Jedes wird mit einer Ein-Klick-Lösung geliefert.",
+    "fixAll": "Alle reparieren ({{n}} Schritte)",
+    "fixAllHint": "Wenden Sie alle vorgeschlagenen Korrekturen auf einmal an. Jeder wird zu einem Schritt in Transform, den Sie überprüfen oder rückgängig machen können.",
+    "banner": "Wir haben in diesen Daten {{n}}-Probleme gefunden, die sich auf {{rows}}-Zeilen auswirken: Duplikate, fehlende Werte oder inkonsistente Einträge.",
+    "review": "Überprüfen und bereinigen"
   },
   "profile": {
     "find": "Suchen",

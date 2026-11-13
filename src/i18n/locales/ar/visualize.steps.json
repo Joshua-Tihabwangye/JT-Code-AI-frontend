@@ -198,6 +198,7 @@
     "toDate": "تحويل إلى تاريخ",
     "consistentSpelling": "توحيد الكتابة",
     "capOutliers": "تقييد القيم المتطرفة",
-    "removeColumn": "إزالة العمود"
+    "removeColumn": "إزالة العمود",
+    "trimThenRemoveRepeats": "قم بقص المسافات، ثم قم بإزالة التكرارات"
   }
 }

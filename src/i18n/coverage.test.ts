@@ -155,5 +155,5 @@ describe('components', () => {
       .filter((file) => !SKIP_FILES.some((pattern) => pattern.test(file)))
       .flatMap(hardCoded);
     expect(found).toEqual([]);
-  });
+  }, 30_000); // parses every source file; slow when the whole suite runs in parallel
 });

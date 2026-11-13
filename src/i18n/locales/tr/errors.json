@@ -29,5 +29,6 @@
   "runNotFound": "Analiz çalıştırması bulunamadı.",
   "datasetNotFound": "Veri kümesi bulunamadı.",
   "chartNotFound": "Grafik bulunamadı.",
-  "visualizeNeedsApi": "Veri Görselleştirme arka uçta çalışır. VITE_DATA_MODE=api ayarını yapın ve onu kullanmak için API'yi başlatın."
+  "visualizeNeedsApi": "Veri Görselleştirme arka uçta çalışır. VITE_DATA_MODE=api ayarını yapın ve onu kullanmak için API'yi başlatın.",
+  "paymentsNeedApi": "Kart ödemeleri arka uçta çalışır. VITE_DATA_MODE=api ayarını yapın ve kartları yönetmek için API'yi başlatın."
 }

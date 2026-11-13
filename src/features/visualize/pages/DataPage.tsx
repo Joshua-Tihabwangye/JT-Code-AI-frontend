@@ -220,6 +220,9 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
   const score = report?.summary.score ?? 0;
   const scoreColor = score >= 98 ? '#10b981' : score >= 90 ? '#f59e0b' : '#ef4444';
   const bySeverity = (['error', 'warning', 'info'] as const).map((level) => ({ level, items: report?.issues.filter((issue) => issue.severity === level) ?? [] }));
+  // Every fix at once (each step once): duplicates, blanks, spacing, types, spelling…
+  const allFixes = (report?.issues ?? []).flatMap((issue) => fixFor(issue)?.steps ?? []);
+  const uniqueFixes = allFixes.filter((step, index) => allFixes.findIndex((other) => JSON.stringify(other) === JSON.stringify(step)) === index);
   return (
     <Workspace title={t('visualize.data.quality.title')} subtitle={t('visualize.data.quality.subtitle')} icon={ListChecks} color="#10b981">
       <ErrorNote error={error} />
@@ -251,6 +254,14 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
               </div>
             ))}
           </div>
+          {uniqueFixes.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-[var(--viz-soft)] p-3">
+              <p className="min-w-0 flex-1 text-sm">{t('visualize.data.quality.fixAllHint')}</p>
+              <button type="button" className="viz-chip primary" onClick={() => onFix(uniqueFixes)} data-testid="fix-all">
+                <Wand2 size={13} aria-hidden /> {t('visualize.data.quality.fixAll', { n: formatNumber(uniqueFixes.length) })}
+              </button>
+            </div>
+          )}
           <div className="flex flex-wrap gap-1.5" data-testid="quality-chips">
             {report.types.map((type) => (
               <button key={type.type} type="button" className="viz-chip" style={colorVar(type.color)} aria-pressed={filter === type.type} onClick={() => setFilter(filter === type.type ? '' : type.type)} data-testid={`quality-chip-${type.type}`}>
@@ -617,7 +628,8 @@ export function DataPage() {
   const visualize = useRepository('visualize');
   const { dataset, datasetId, setAssistantContext, refreshDatasets } = useVisualize();
   const [tab, setTab] = useState<RibbonTabId>('home');
-  const [scanned, setScanned] = useState(false);
+  // The cleaning check runs on its own as soon as a dataset is open (results are cached server-side).
+  const [scanned, setScanned] = useState(true);
   const [filter, setFilter] = useState('');
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [search, setSearch] = useState('');
@@ -642,7 +654,6 @@ export function DataPage() {
     setAssistantContext({ page: 'data' });
   }, [setAssistantContext]);
   useEffect(() => {
-    setScanned(false);
     setFilter('');
   }, [datasetId]);
   const firstPreview = useQuery({
@@ -699,6 +710,15 @@ export function DataPage() {
         {tab === 'profile' && <ProfileRibbon search={search} setSearch={setSearch} kind={kind} setKind={setKind} sort={sort} setSort={setSort} />}
         {tab === 'insights' && <InsightsRibbon kinds={insightKinds} kind={insightKind} setKind={setInsightKind} onRefresh={() => void insights.refetch()} loading={insights.isFetching} />}
       </Ribbon>
+      {tab === 'home' && dataset && (quality.data?.summary.issues ?? 0) > 0 && (
+        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-amber-300/60 bg-amber-50 p-4 dark:border-amber-500/40 dark:bg-amber-950/30" role="status" data-testid="clean-banner">
+          <ListChecks size={22} className="text-amber-600" aria-hidden />
+          <p className="min-w-0 flex-1 text-sm">{t('visualize.data.quality.banner', { n: formatNumber(quality.data?.summary.issues ?? 0), rows: formatNumber(quality.data?.summary.affectedRows ?? 0) })}</p>
+          <button type="button" className="viz-chip primary" onClick={() => setTab('quality')} data-testid="open-clean">
+            <Wand2 size={13} aria-hidden /> {t('visualize.data.quality.review')}
+          </button>
+        </div>
+      )}
       {tab === 'quality' && dataset && <QualityWorkspace report={quality.data} loading={quality.isFetching} error={quality.error} filter={filter} setFilter={setFilter} onFix={addSteps} />}
       {tab === 'transform' && dataset && profiles.length > 0 && <TransformWorkspace dataset={dataset} pipeline={pipeline} setPipeline={setPipeline} selected={selectedStep} setSelected={setSelectedStep} />}
       {tab === 'profile' && profiles.length > 0 && <ProfileWorkspace profiles={profiles} search={search} kind={kind} sort={sort} onStep={addSteps} />}

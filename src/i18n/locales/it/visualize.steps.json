@@ -198,6 +198,7 @@
     "toDate": "Converti fino ad oggi",
     "consistentSpelling": "Rendi coerente l'ortografia",
     "capOutliers": "Limitare i valori anomali",
-    "removeColumn": "Rimuovi colonna"
+    "removeColumn": "Rimuovi colonna",
+    "trimThenRemoveRepeats": "Trim spaces, then remove repeats"
   }
 }

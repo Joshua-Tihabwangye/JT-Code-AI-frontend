@@ -15,5 +15,8 @@
   "signInWithApple": "Iniciar sesión con Apple",
   "offlineHint": "Modo de diseño sin conexión: no se usa el backend. Inicia sesión con cualquier correo electrónico y contraseña (se crea una cuenta local) o continúa con la cuenta de demostración.",
   "demoAccount": "Continuar con la cuenta de demostración",
-  "continueWith": "Continuar con {{provider}}"
+  "continueWith": "Continuar con {{provider}}",
+  "emailConfirmed": "Su correo electrónico está confirmado. Inicia sesión con tu correo electrónico y contraseña para continuar.",
+  "confirmationExpired": "Este enlace de confirmación ha caducado o ya se utilizó. Si ya confirmaste tu correo electrónico, simplemente inicia sesión; De lo contrario, regístrese nuevamente para obtener un nuevo enlace.",
+  "confirmationFailed": "No pudimos confirmar su correo electrónico con ese enlace. Intente iniciar sesión o regístrese nuevamente para obtener un nuevo enlace."
 }

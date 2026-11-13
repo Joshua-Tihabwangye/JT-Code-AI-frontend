@@ -446,6 +446,10 @@ export interface ChartExplanation {
   about: string;
   howToRead: string;
   insight: string;
+  /** Predictions: how the chart was computed (method, steps and formula). */
+  method?: string;
+  steps?: string[];
+  formula?: string;
 }
 
 export type VizFields = Record<string, string | string[]>;
@@ -566,6 +570,9 @@ export interface VizMetric {
   format: 'number' | 'integer' | 'percent' | 'percent_value';
   quality?: VizQuality;
   help: string;
+  /** How the number is calculated, and what it means. */
+  formula?: string;
+  meaning?: string;
 }
 
 export interface VizPrediction {
@@ -580,6 +587,8 @@ export interface VizPrediction {
   summary: string[];
   notes: string[];
   comparison: { model: string; name: string; score: number }[];
+  /** How the chosen model works, in plain words. */
+  method?: string;
   resultId: string;
   datasetId: string;
   resultRows: number;

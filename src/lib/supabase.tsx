@@ -15,6 +15,37 @@ const realAuth = config.dataMode === 'api';
 /** True while the app runs without the backend: sign-in is local to this browser. */
 export const frontendOnlyAuth = !realAuth;
 
+/** Where the sign-up confirmation email returns: the sign-in page, never straight into the app. */
+export function emailConfirmationRedirect(): string | undefined {
+  return typeof window === 'undefined' ? undefined : `${window.location.origin}/sign-in?confirmed=1`;
+}
+
+export type EmailConfirmation = { status: 'confirmed' } | { status: 'failed'; code: string };
+
+/**
+ * Confirming the email must not sign the user in: they sign in with their password next. Supabase Auth
+ * returns to /sign-in?confirmed=1 with a one-time code (or an error); the code is removed from the URL
+ * before the auth client starts, so it is never exchanged for a session.
+ */
+function takeEmailConfirmation(): EmailConfirmation | null {
+  if (typeof window === 'undefined') return null;
+  const url = new URL(window.location.href);
+  if (url.pathname !== '/sign-in' || !url.searchParams.has('confirmed')) return null;
+  const fragment = new URLSearchParams(url.hash.slice(1));
+  const read = (key: string) => url.searchParams.get(key) ?? fragment.get(key);
+  const errorCode = read('error_code') ?? read('error');
+  window.history.replaceState(window.history.state, '', '/sign-in');
+  try {
+    for (const key of Object.keys(window.localStorage)) if (key.endsWith('-code-verifier')) window.localStorage.removeItem(key);
+  } catch {
+    // Storage unavailable: nothing was stored either.
+  }
+  return errorCode ? { status: 'failed', code: errorCode } : { status: 'confirmed' };
+}
+
+/** The outcome of the confirmation link this page was opened from, if any (read once, at start-up). */
+export const emailConfirmation: EmailConfirmation | null = realAuth ? takeEmailConfirmation() : null;
+
 /** Supabase errors as the user should read them: a network failure ("Failed to fetch") becomes a
  *  translated "cannot reach the sign-in service"; other messages pass through. */
 export function authErrorMessage(error: { message: string; name?: string; status?: number }): string {

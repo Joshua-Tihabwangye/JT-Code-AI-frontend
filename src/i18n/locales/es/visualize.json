@@ -61,6 +61,7 @@
     "tableSizeFirst": "{{rows}} filas × {{columns}} columnas (primeras filas): los datos que muestra este gráfico",
     "close": "Cerrar",
     "expandRibbon": "Expandir la cinta de opciones",
-    "collapseRibbon": "Contraer la cinta de opciones"
+    "collapseRibbon": "Contraer la cinta de opciones",
+    "rows_many": "{{rows}} filas"
   }
 }

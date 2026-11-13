@@ -8,7 +8,7 @@ import { apiErrorMessage } from '@/lib/api/http';
 import { getOrganization, updateOrganization } from '@/features/settings/api';
 import { useApiClient } from '@/lib/api/client';
 import { config } from '@/lib/config';
-import { Alert, Button, Input, PasswordInput, PhoneNumberInput, Select, Spinner } from '@/shared/components';
+import { Alert, Button, Input, PasswordInput, PhoneNumberInput, Select, Spinner, useConfirm } from '@/shared/components';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -43,6 +43,7 @@ function formFrom(account?: Account): ProfileForm {
 
 export function SettingsPage() {
   const { t } = useTranslation();
+  const { confirm, dialog } = useConfirm();
   const navigate = useNavigate();
   const accounts = useRepository('account');
   const client = useApiClient();
@@ -377,7 +378,7 @@ export function SettingsPage() {
             type="button"
             variant="destructive"
             className="gap-1.5"
-            onClick={() => window.confirm(t('settings.deleteAccountConfirm')) && deleteAccount.mutate()}
+            onClick={() => void confirm({ title: t('settings.deleteAccount'), description: t('settings.deleteAccountConfirm'), confirmLabel: t('settings.deleteAccount'), destructive: true }).then((ok) => ok && deleteAccount.mutate())}
             disabled={deleteAccount.isPending}
           >
             <Trash2 size={16} />
@@ -385,6 +386,7 @@ export function SettingsPage() {
           </Button>
         </section>
       </div>
+      {dialog}
     </section>
   );
 }

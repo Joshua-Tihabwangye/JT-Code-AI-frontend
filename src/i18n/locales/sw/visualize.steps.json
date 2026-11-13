@@ -198,6 +198,7 @@
     "toDate": "Badilisha hadi tarehe",
     "consistentSpelling": "Fanya tahajia ifanane",
     "capOutliers": "Cap outliers",
-    "removeColumn": "Ondoa safu"
+    "removeColumn": "Ondoa safu",
+    "trimThenRemoveRepeats": "Punguza nafasi, kisha uondoe marudio"
   }
 }

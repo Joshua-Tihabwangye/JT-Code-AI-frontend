@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Utabiri wa mfululizo wa saa",
-      "description": "Tengeneza kipimo cha mbele (mauzo, mahitaji, mapato) na bendi za kutokuwa na uhakika.",
       "models": {
         "auto": "Bora zaidi (iliyochaguliwa na backtest)",
         "holt_winters": "Urekebishaji wa kielelezo wa Holt-Winters",
@@ -860,15 +858,21 @@
         "Usahihi wa Backtest (MAE, MAPE)",
         "Jedwali la maadili ya siku zijazo"
       ],
+      "name": "Utabiri wa maadili ya siku zijazo",
+      "description": "Angalia nambari inapoelekea (mauzo, mahitaji, mapato) na uwezekano wa anuwai inayoizunguka.",
       "slots": {
         "target": {
-          "label": "Pima utabiri"
+          "label": "Nambari ya utabiri"
+        },
+        "date": {
+          "label": "Safu ya tarehe"
+        },
+        "split_by": {
+          "label": "Utabiri tofauti kwa kila (si lazima)"
         }
       }
     },
     "trend": {
-      "name": "Uchambuzi wa mwenendo na msimu",
-      "description": "Viwango vya ukuaji, wastani wa kusonga, mifumo ya msimu, pointi za mabadiliko na vipindi visivyo vya kawaida.",
       "models": {
         "robust": "Otomatiki (mwelekeo thabiti + ugunduzi usio wa kawaida)"
       },
@@ -877,18 +881,21 @@
         "Wasifu wa msimu",
         "Badilisha pointi na hitilafu"
       ],
-      "slots": {
-        "target": {
-          "label": "Pima"
-        }
-      },
       "options": {
         "window": "Wastani wa kusonga (vipindi)"
+      },
+      "name": "Mitindo ya doa na misimu",
+      "description": "Je, nambari inapanda au kushuka? Viwango vya ukuaji, kurudia mifumo ya msimu na vipindi visivyo vya kawaida.",
+      "slots": {
+        "target": {
+          "label": "Nambari ya kufuata baada ya muda"
+        },
+        "date": {
+          "label": "Safu ya tarehe"
+        }
       }
     },
     "drivers": {
-      "name": "Viendeshaji muhimu (nini huathiri matokeo)",
-      "description": "Tafuta ni vipengele na sehemu zipi zinazosukuma matokeo juu au chini - churn, mauzo, kuridhika.",
       "models": {
         "segments": "Ulinganisho wa sehemu + umuhimu wa msitu bila mpangilio"
       },
@@ -897,19 +904,19 @@
         "Umuhimu wa kipengele",
         "Sehemu bora na mbaya zaidi"
       ],
+      "name": "Tafuta ni nini kinachoathiri matokeo",
+      "description": "Ambayo safu wima na vikundi husukuma matokeo juu au chini (churn, mauzo, kuridhika).",
       "slots": {
         "target": {
-          "label": "Matokeo ya kuelezea"
+          "label": "Matokeo ya kueleza"
         },
         "features": {
-          "label": "Safu wima za ingizo",
-          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+          "label": "Safu wima za kujifunza kutoka (si lazima)",
+          "help": "Acha tupu ili kutumia kila safu nyingine."
         }
       }
     },
     "regression": {
-      "name": "Bashiri nambari",
-      "description": "Kadiria matokeo ya nambari (bei, mahitaji, alama) kutoka safu wima zingine.",
       "models": {
         "auto": "Bora zaidi (imethibitishwa)",
         "linear": "Urejeshaji wa mstari",
@@ -922,19 +929,19 @@
         "Iliyotabiriwa dhidi ya halisi, mabaki",
         "Umuhimu wa kipengele"
       ],
+      "name": "Kadiria nambari",
+      "description": "Kadiria nambari kama vile bei, mahitaji au alama kutoka kwa safu wima zingine.",
       "slots": {
         "target": {
-          "label": "Nambari ya kutabiri"
+          "label": "Nambari ya kukadiria"
         },
         "features": {
-          "label": "Safu wima za ingizo",
-          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+          "label": "Safu wima za kujifunza kutoka (si lazima)",
+          "help": "Acha tupu ili kutumia kila safu nyingine."
         }
       }
     },
     "classification": {
-      "name": "Bashiri kategoria",
-      "description": "Ainisha safu mlalo (churn, idhini, sehemu) na uhukumu kiainishi.",
       "models": {
         "auto": "Bora zaidi (imethibitishwa)",
         "logistic": "Urejeshaji wa vifaa",
@@ -946,19 +953,19 @@
         "Matrix ya mkanganyiko, ROC na mikondo ya PR",
         "Umuhimu wa kipengele"
       ],
+      "name": "Bashiri ndiyo/hapana au kikundi",
+      "description": "Tabiri kila safu ni ya kundi gani, k.m. mteja ataondoka (ndiyo/hapana) au atachagua mpango gani.",
       "slots": {
         "target": {
-          "label": "Kategoria ya kutabiri"
+          "label": "Ndiyo/hapana au kikundi cha kutabiri"
         },
         "features": {
-          "label": "Safu wima za ingizo",
-          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+          "label": "Safu wima za kujifunza kutoka (si lazima)",
+          "help": "Acha tupu ili kutumia kila safu nyingine."
         }
       }
     },
     "clustering": {
-      "name": "Tafuta sehemu",
-      "description": "Weka safu mlalo sawa (wateja, bidhaa) bila lebo.",
       "models": {
         "kmeans": "k-njia",
         "gaussian_mixture": "Mchanganyiko wa Gaussian",
@@ -969,16 +976,16 @@
         "Ramani ya nguzo na wasifu",
         "Sehemu kwa kila safu"
       ],
+      "name": "Panga safu mlalo zinazofanana",
+      "description": "Pata vikundi asilia katika data, kama vile aina ya wateja au bidhaa, bila lebo.",
       "slots": {
         "features": {
-          "label": "Safu wima za ingizo",
-          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+          "label": "Safu wima za kujifunza kutoka (si lazima)",
+          "help": "Acha tupu ili kutumia kila safu nyingine."
         }
       }
     },
     "anomaly": {
-      "name": "Tambua hitilafu",
-      "description": "Alamisha safu mlalo zisizo za kawaida (udanganyifu, makosa, makosa ya data).",
       "models": {
         "isolation_forest": "Msitu wa kutengwa",
         "zscore": "Alama z imara",
@@ -989,10 +996,12 @@
         "Hitilafu zilizoangaziwa kwenye ramani",
         "Alama kwa kila safu"
       ],
+      "name": "Tafuta maadili yasiyo ya kawaida",
+      "description": "Safu mlalo ambazo hazilingani na muundo wa kawaida: hitilafu za data, ulaghai au ongezeko la ghafla.",
       "slots": {
         "features": {
-          "label": "Safu wima za ingizo",
-          "help": "Tupu hutumia kila safu nyingine; kategoria zimesimbwa kwa moto mmoja na tarehe zimegawanywa katika sehemu."
+          "label": "Safu wima za kujifunza kutoka (si lazima)",
+          "help": "Acha tupu ili kutumia kila safu nyingine."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Maandishi yenye mipaka (gundua kiotomatiki ; | ,)",
     "json": "JSON (safu za rekodi)",
     "jsonl": "Mistari ya JSON",
-    "xlsx": "Kitabu cha kazi cha Excel (karatasi ya kwanza)"
+    "xlsx": "Kitabu cha kazi cha Excel (karatasi ya kwanza)",
+    "pdf": "PDF (meza zake; kurasa zilizochanganuliwa zinasomwa na OCR)",
+    "docx": "Hati ya Neno (meza zake)",
+    "image": "Picha ya meza (iliyosomwa na OCR)"
   },
   "exportFormats": {
     "csv": "CSV",

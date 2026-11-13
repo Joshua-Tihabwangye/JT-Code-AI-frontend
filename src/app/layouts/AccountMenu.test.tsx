@@ -21,7 +21,6 @@ vi.mock('react-i18next', () => ({
         'menu.signIn': 'Sign in',
         'menu.account': 'Account',
         'menu.settings': 'Settings',
-        'menu.keyboardShortcuts': 'Keyboard shortcuts',
         'menu.signOut': 'Sign out',
       };
       return translations[key] ?? key;

@@ -15,5 +15,8 @@
   "signInWithApple": "Se connecter avec Apple",
   "offlineHint": "Mode conception hors ligne : le backend n'est pas utilisé. Connectez-vous avec n'importe quels e-mail et mot de passe (un compte local est créé), ou continuez avec le compte de démonstration.",
   "demoAccount": "Continuer avec le compte de démonstration",
-  "continueWith": "Continuer avec {{provider}}"
+  "continueWith": "Continuer avec {{provider}}",
+  "emailConfirmed": "Votre email est confirmé. Connectez-vous avec votre email et votre mot de passe pour continuer.",
+  "confirmationExpired": "Ce lien de confirmation a expiré ou a déjà été utilisé. Si vous avez déjà confirmé votre adresse e-mail, connectez-vous simplement ; sinon inscrivez-vous à nouveau pour obtenir un nouveau lien.",
+  "confirmationFailed": "Nous n'avons pas pu confirmer votre adresse e-mail avec ce lien. Essayez de vous connecter ou inscrivez-vous à nouveau pour obtenir un nouveau lien."
 }

@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from './languages';
+import { setAppLanguage } from './config';
 
 export function useLanguage() {
   const { i18n } = useTranslation();
@@ -10,9 +11,9 @@ export function useLanguage() {
     (code: string) => {
       // i18next's language detector persists the choice (localStorage "jt-code-lang"); the
       // config's languageChanged handler updates the page's dir and lang.
-      void i18n.changeLanguage(code);
+      void setAppLanguage(code);
     },
-    [i18n],
+    [],
   );
 
   return { currentLanguage, setLanguage, languages: LANGUAGES };

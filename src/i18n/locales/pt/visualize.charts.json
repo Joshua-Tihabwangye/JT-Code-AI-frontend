@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Prever uma série temporal",
-      "description": "Projete uma medida futura (vendas, demanda, receita) com faixas de incerteza.",
       "models": {
         "auto": "O melhor de tudo (escolhido por backtest)",
         "holt_winters": "Suavização exponencial de Holt-Winters",
@@ -860,15 +858,21 @@
         "Precisão do backtest (MAE, MAPE)",
         "Tabela de valores futuros"
       ],
+      "name": "Previsão de valores futuros",
+      "description": "Veja para onde um número está indo (vendas, demanda, receita) e a provável variação em torno dele.",
       "slots": {
         "target": {
-          "label": "Medir para prever"
+          "label": "Número a ser previsto"
+        },
+        "date": {
+          "label": "Coluna de data"
+        },
+        "split_by": {
+          "label": "Uma previsão separada para cada um (opcional)"
         }
       }
     },
     "trend": {
-      "name": "Análise de tendências e sazonalidade",
-      "description": "Taxas de crescimento, médias móveis, padrões sazonais, pontos de mudança e períodos incomuns.",
       "models": {
         "robust": "Automático (tendência robusta + detecção de anomalias)"
       },
@@ -877,18 +881,21 @@
         "Perfil sazonal",
         "Alterar pontos e anomalias"
       ],
-      "slots": {
-        "target": {
-          "label": "Medir"
-        }
-      },
       "options": {
         "window": "Média móvel (períodos)"
+      },
+      "name": "Identifique tendências e estações",
+      "description": "Um número está subindo ou descendo? Taxas de crescimento, repetindo padrões sazonais e períodos incomuns.",
+      "slots": {
+        "target": {
+          "label": "Número a seguir ao longo do tempo"
+        },
+        "date": {
+          "label": "Coluna de data"
+        }
       }
     },
     "drivers": {
-      "name": "Principais motivadores (o que influencia um resultado)",
-      "description": "Descubra quais fatores e segmentos aumentam ou diminuem um resultado – rotatividade, vendas, satisfação.",
       "models": {
         "segments": "Comparação de segmentos + importância aleatória da floresta"
       },
@@ -897,19 +904,19 @@
         "Importância do recurso",
         "Melhores e piores segmentos"
       ],
+      "name": "Descubra o que afeta um resultado",
+      "description": "Quais colunas e grupos aumentam ou diminuem um resultado (rotatividade, vendas, satisfação).",
       "slots": {
         "target": {
           "label": "Resultado para explicar"
         },
         "features": {
-          "label": "Colunas de entrada",
-          "help": "Vazio usa todas as outras colunas; as categorias são codificadas one-hot e as datas divididas em partes."
+          "label": "Colunas para aprender (opcional)",
+          "help": "Deixe em branco para usar todas as outras colunas."
         }
       }
     },
     "regression": {
-      "name": "Preveja um número",
-      "description": "Estime um resultado numérico (preço, demanda, pontuação) de outras colunas.",
       "models": {
         "auto": "O melhor de tudo (validação cruzada)",
         "linear": "Regressão linear",
@@ -922,19 +929,19 @@
         "Previsto versus real, resíduos",
         "Importância do recurso"
       ],
+      "name": "Estime um número",
+      "description": "Estime um número como preço, demanda ou pontuação nas outras colunas.",
       "slots": {
         "target": {
-          "label": "Número para prever"
+          "label": "Número a estimar"
         },
         "features": {
-          "label": "Colunas de entrada",
-          "help": "Vazio usa todas as outras colunas; as categorias são codificadas one-hot e as datas divididas em partes."
+          "label": "Colunas para aprender (opcional)",
+          "help": "Deixe em branco para usar todas as outras colunas."
         }
       }
     },
     "classification": {
-      "name": "Prever uma categoria",
-      "description": "Classifique as linhas (rotatividade, aprovação, segmento) e julgue o classificador.",
       "models": {
         "auto": "O melhor de tudo (validação cruzada)",
         "logistic": "Regressão logística",
@@ -946,19 +953,19 @@
         "Matriz de confusão, curvas ROC e PR",
         "Importância do recurso"
       ],
+      "name": "Preveja um sim/não ou um grupo",
+      "description": "Preveja a qual grupo cada linha pertence, por ex. um cliente sairá (sim/não) ou qual plano ele escolherá.",
       "slots": {
         "target": {
-          "label": "Categoria para prever"
+          "label": "Sim/não ou grupo para prever"
         },
         "features": {
-          "label": "Colunas de entrada",
-          "help": "Vazio usa todas as outras colunas; as categorias são codificadas one-hot e as datas divididas em partes."
+          "label": "Colunas para aprender (opcional)",
+          "help": "Deixe em branco para usar todas as outras colunas."
         }
       }
     },
     "clustering": {
-      "name": "Encontre segmentos",
-      "description": "Agrupe linhas semelhantes (clientes, produtos) sem rótulos.",
       "models": {
         "kmeans": "k-significa",
         "gaussian_mixture": "Mistura gaussiana",
@@ -969,16 +976,16 @@
         "Mapa e perfis de cluster",
         "Segmento para cada linha"
       ],
+      "name": "Agrupar linhas semelhantes",
+      "description": "Encontre grupos naturais nos dados, como tipos de clientes ou produtos, sem rótulos.",
       "slots": {
         "features": {
-          "label": "Colunas de entrada",
-          "help": "Vazio usa todas as outras colunas; as categorias são codificadas one-hot e as datas divididas em partes."
+          "label": "Colunas para aprender (opcional)",
+          "help": "Deixe em branco para usar todas as outras colunas."
         }
       }
     },
     "anomaly": {
-      "name": "Detectar anomalias",
-      "description": "Sinalize linhas incomuns (fraude, falhas, erros de dados).",
       "models": {
         "isolation_forest": "Floresta de isolamento",
         "zscore": "Pontuação z robusta",
@@ -989,10 +996,12 @@
         "Anomalias destacadas em um mapa",
         "Pontuação para cada linha"
       ],
+      "name": "Encontre valores incomuns",
+      "description": "Identifique linhas que não se enquadram no padrão usual: erros de dados, fraudes ou picos repentinos.",
       "slots": {
         "features": {
-          "label": "Colunas de entrada",
-          "help": "Vazio usa todas as outras colunas; as categorias são codificadas one-hot e as datas divididas em partes."
+          "label": "Colunas para aprender (opcional)",
+          "help": "Leave empty to use every other column."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Texto delimitado (detecção automática; |,)",
     "json": "JSON (matriz de registros)",
     "jsonl": "Linhas JSON",
-    "xlsx": "Pasta de trabalho do Excel (primeira planilha)"
+    "xlsx": "Pasta de trabalho do Excel (primeira planilha)",
+    "pdf": "PDF (suas tabelas; páginas digitalizadas são lidas por OCR)",
+    "docx": "Documento Word (suas tabelas)",
+    "image": "Imagem de uma tabela (lida por OCR)"
   },
   "exportFormats": {
     "csv": "CSV",

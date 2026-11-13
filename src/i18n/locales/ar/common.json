@@ -22,5 +22,9 @@
   "clearSearch": "مسح البحث",
   "confirm": "تأكيد",
   "notifications": "الإشعارات",
-  "dismissNotification": "تجاهل الإشعار"
+  "dismissNotification": "تجاهل الإشعار",
+  "messagesCount_few": "{{count}} رسائل",
+  "messagesCount_many": "{{count}} رسائل",
+  "messagesCount_two": "{{count}} رسائل",
+  "messagesCount_zero": "{{count}} رسائل"
 }

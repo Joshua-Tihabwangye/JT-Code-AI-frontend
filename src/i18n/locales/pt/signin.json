@@ -15,5 +15,8 @@
   "signInWithApple": "Faça login com a Apple",
   "offlineHint": "Modo de design offline: o backend não é usado. Faça login com qualquer e-mail e senha (uma conta local é criada) ou continue com a conta demo.",
   "demoAccount": "Continue com a conta demo",
-  "continueWith": "Continue com {{provider}}"
+  "continueWith": "Continue com {{provider}}",
+  "emailConfirmed": "Seu e-mail está confirmado. Faça login com seu e-mail e senha para continuar.",
+  "confirmationExpired": "Este link de confirmação expirou ou já foi usado. Se você já confirmou seu e-mail, basta fazer login; caso contrário, inscreva-se novamente para obter um novo link.",
+  "confirmationFailed": "Não foi possível confirmar seu e-mail com esse link. Tente fazer login ou inscreva-se novamente para obter um novo link."
 }

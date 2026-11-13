@@ -846,8 +846,8 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Forecast a time series",
-      "description": "Project a measure forward (sales, demand, revenue) with uncertainty bands.",
+      "name": "Forecast future values",
+      "description": "See where a number is heading (sales, demand, revenue) and the likely range around it.",
       "models": {
         "auto": "Best of all (chosen by backtest)",
         "holt_winters": "Holt–Winters exponential smoothing",
@@ -862,13 +862,19 @@
       ],
       "slots": {
         "target": {
-          "label": "Measure to forecast"
+          "label": "Number to forecast"
+        },
+        "date": {
+          "label": "Date column"
+        },
+        "split_by": {
+          "label": "A separate forecast for each (optional)"
         }
       }
     },
     "trend": {
-      "name": "Trend & seasonality analysis",
-      "description": "Growth rates, moving averages, seasonal patterns, change points and unusual periods.",
+      "name": "Spot trends and seasons",
+      "description": "Is a number going up or down? Growth rates, repeating seasonal patterns and unusual periods.",
       "models": {
         "robust": "Automatic (robust trend + anomaly detection)"
       },
@@ -879,7 +885,10 @@
       ],
       "slots": {
         "target": {
-          "label": "Measure"
+          "label": "Number to follow over time"
+        },
+        "date": {
+          "label": "Date column"
         }
       },
       "options": {
@@ -887,8 +896,8 @@
       }
     },
     "drivers": {
-      "name": "Key drivers (what influences an outcome)",
-      "description": "Find which factors and segments push an outcome up or down — churn, sales, satisfaction.",
+      "name": "Find what affects a result",
+      "description": "Which columns and groups push a result up or down (churn, sales, satisfaction).",
       "models": {
         "segments": "Segment comparison + random forest importance"
       },
@@ -899,17 +908,17 @@
       ],
       "slots": {
         "target": {
-          "label": "Outcome to explain"
+          "label": "Result to explain"
         },
         "features": {
-          "label": "Input columns",
-          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+          "label": "Columns to learn from (optional)",
+          "help": "Leave empty to use every other column."
         }
       }
     },
     "regression": {
-      "name": "Predict a number",
-      "description": "Estimate a numeric outcome (price, demand, score) from other columns.",
+      "name": "Estimate a number",
+      "description": "Estimate a number such as a price, demand or score from the other columns.",
       "models": {
         "auto": "Best of all (cross-validated)",
         "linear": "Linear regression",
@@ -924,17 +933,17 @@
       ],
       "slots": {
         "target": {
-          "label": "Number to predict"
+          "label": "Number to estimate"
         },
         "features": {
-          "label": "Input columns",
-          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+          "label": "Columns to learn from (optional)",
+          "help": "Leave empty to use every other column."
         }
       }
     },
     "classification": {
-      "name": "Predict a category",
-      "description": "Classify rows (churn, approval, segment) and judge the classifier.",
+      "name": "Predict a yes/no or a group",
+      "description": "Predict which group each row belongs to, e.g. will a customer leave (yes/no) or which plan they pick.",
       "models": {
         "auto": "Best of all (cross-validated)",
         "logistic": "Logistic regression",
@@ -948,17 +957,17 @@
       ],
       "slots": {
         "target": {
-          "label": "Category to predict"
+          "label": "Yes/no or group to predict"
         },
         "features": {
-          "label": "Input columns",
-          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+          "label": "Columns to learn from (optional)",
+          "help": "Leave empty to use every other column."
         }
       }
     },
     "clustering": {
-      "name": "Find segments",
-      "description": "Group similar rows (customers, products) without labels.",
+      "name": "Group similar rows",
+      "description": "Find natural groups in the data, such as types of customers or products, without labels.",
       "models": {
         "kmeans": "k-means",
         "gaussian_mixture": "Gaussian mixture",
@@ -971,14 +980,14 @@
       ],
       "slots": {
         "features": {
-          "label": "Input columns",
-          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+          "label": "Columns to learn from (optional)",
+          "help": "Leave empty to use every other column."
         }
       }
     },
     "anomaly": {
-      "name": "Detect anomalies",
-      "description": "Flag unusual rows (fraud, faults, data errors).",
+      "name": "Find unusual values",
+      "description": "Spot rows that do not fit the usual pattern: data errors, fraud or sudden spikes.",
       "models": {
         "isolation_forest": "Isolation forest",
         "zscore": "Robust z-score",
@@ -991,8 +1000,8 @@
       ],
       "slots": {
         "features": {
-          "label": "Input columns",
-          "help": "Empty uses every other column; categories are one-hot encoded and dates split into parts."
+          "label": "Columns to learn from (optional)",
+          "help": "Leave empty to use every other column."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Delimited text (auto-detect ; | ,)",
     "json": "JSON (array of records)",
     "jsonl": "JSON Lines",
-    "xlsx": "Excel workbook (first sheet)"
+    "xlsx": "Excel workbook (first sheet)",
+    "pdf": "PDF (its tables; scanned pages are read by OCR)",
+    "docx": "Word document (its tables)",
+    "image": "Picture of a table (read by OCR)"
   },
   "exportFormats": {
     "csv": "CSV",

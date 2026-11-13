@@ -7,11 +7,11 @@
   "pick": "Ajoutez des données depuis l'onglet Accueil : importez un fichier, collez un CSV ou chargez un exemple.",
   "tabs": {
     "home": "Accueil",
-    "quality": "Vérifier la qualité",
     "transform": "Transformer",
     "transformCount": "Transformer · {{n}}",
     "profile": "Profil des colonnes",
-    "insights": "Analyses"
+    "insights": "Analyses",
+    "quality": "Nettoyer les données"
   },
   "kinds": {
     "numeric": "numérique",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Analyser",
     "rescan": "Réanalyser",
-    "check": "Vérifier les données",
     "legend": "Couleurs de surlignage (cliquez pour masquer)",
     "legendEmpty": "Lancez une vérification pour voir la légende des couleurs.",
     "noIssues": "Aucun problème détecté 🎉",
@@ -40,9 +39,6 @@
     "examples": "ex. {{examples}}",
     "rows": "Lignes",
     "fixTitle": "Ajoute une étape dans Transformer ; rien ne change tant que vous n'enregistrez pas",
-    "title": "Rapport de qualité des données",
-    "subtitle": "Contrôles Python — sans IA et sans aucune modification",
-    "intro": "Appuyez sur <b>Vérifier les données</b> : les problèmes sont colorés dans la table et chacun propose une correction en un clic.",
     "score": "Score de qualité",
     "excellent": "Excellent",
     "needsLook": "À examiner",
@@ -51,7 +47,15 @@
     "rowsAffected": "Lignes concernées",
     "cellsFlagged": "Cellules signalées",
     "checked": "Lignes × colonnes vérifiées",
-    "nothingHere": "Rien à signaler."
+    "nothingHere": "Rien à signaler.",
+    "check": "Revérifier",
+    "title": "Nettoyer les données",
+    "subtitle": "Doublons, valeurs manquantes et autres incohérences, trouvés par les vérifications Python. Rien ne change jusqu'à ce que vous appliquiez un correctif.",
+    "intro": "Les problèmes sont répertoriés ci-dessous et colorés dans le tableau ; chacun est livré avec un correctif en un clic.",
+    "fixAll": "Réparer tout (étapes {{n}})",
+    "fixAllHint": "Appliquez tous les correctifs suggérés en même temps. Chacune devient une étape de Transformation que vous pouvez revoir ou annuler.",
+    "banner": "Nous avons trouvé {{n}} problèmes dans ces données, affectant {{rows}} lignes : doublons, valeurs manquantes ou entrées incohérentes.",
+    "review": "Réviser et nettoyer"
   },
   "profile": {
     "find": "Rechercher",
@@ -165,7 +169,9 @@
     "editCell": "Modifier {{column}} à la ligne {{row}}",
     "range": "Lignes {{from}}–{{to}} sur {{total}}",
     "previous": "Lignes précédentes",
-    "next": "Lignes suivantes"
+    "next": "Lignes suivantes",
+    "showingIssues_many": "affichage de {{rows}} lignes avec problèmes",
+    "showingType_many": "affichage de {{rows}} lignes de type {{label}}"
   },
   "transform": {
     "transformedName": "{{name}} (transformé)",

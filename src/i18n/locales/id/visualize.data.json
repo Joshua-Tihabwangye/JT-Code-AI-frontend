@@ -7,11 +7,11 @@
   "pick": "Tambahkan data dari tab Beranda: unggah file, tempel CSV, atau muat sampel.",
   "tabs": {
     "home": "Rumah",
-    "quality": "Periksa kualitas",
     "transform": "Mengubah",
     "transformCount": "Transformasi · {{n}}",
     "profile": "Profil kolom",
-    "insights": "Wawasan"
+    "insights": "Wawasan",
+    "quality": "Bersihkan data"
   },
   "kinds": {
     "numeric": "numerik",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Pindai",
     "rescan": "Pindai ulang",
-    "check": "Periksa datanya",
     "legend": "Sorot warna (klik untuk menyembunyikan)",
     "legendEmpty": "Jalankan pemeriksaan untuk melihat tombol warna.",
     "noIssues": "Tidak ada masalah yang ditemukan 🎉",
@@ -40,9 +39,6 @@
     "examples": "misalnya {{examples}}",
     "rows": "Baris",
     "fixTitle": "Menambahkan langkah dalam Transformasi; tidak ada yang berubah sampai Anda menyimpannya",
-    "title": "Laporan kualitas data",
-    "subtitle": "Pemeriksaan Python — tidak ada AI dan tidak ada yang berubah",
-    "intro": "Tekan <b>Periksa data</b>: masalah diwarnai dalam tabel dan masing-masing dilengkapi dengan perbaikan sekali klik.",
     "score": "Skor kualitas",
     "excellent": "Bagus sekali",
     "needsLook": "Perlu dilihat",
@@ -51,7 +47,15 @@
     "rowsAffected": "Baris terpengaruh",
     "cellsFlagged": "Sel ditandai",
     "checked": "Baris × kolom dicentang",
-    "nothingHere": "Tidak ada apa pun di sini."
+    "nothingHere": "Tidak ada apa pun di sini.",
+    "check": "Periksa lagi",
+    "title": "Bersihkan data",
+    "subtitle": "Duplikat, nilai yang hilang, dan ketidakkonsistenan lainnya, ditemukan dengan pemeriksaan Python. Tidak ada yang berubah sampai Anda menerapkan perbaikan.",
+    "intro": "Permasalahan dicantumkan di bawah dan diwarnai dalam tabel; masing-masing dilengkapi dengan perbaikan sekali klik.",
+    "fixAll": "Perbaiki semua ({{n}} langkah)",
+    "fixAllHint": "Terapkan setiap perbaikan yang disarankan sekaligus. Masing-masing menjadi langkah dalam Transformasi yang dapat Anda tinjau atau batalkan.",
+    "banner": "Kami menemukan masalah {{n}} dalam data ini, yang memengaruhi baris {{rows}}: duplikat, nilai hilang, atau entri tidak konsisten.",
+    "review": "Tinjau dan bersihkan"
   },
   "profile": {
     "find": "Menemukan",

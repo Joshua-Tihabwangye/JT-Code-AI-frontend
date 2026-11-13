@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Payment method saved",
     "none": "No payment method on file",
-    "manage": "Manage payment methods"
+    "manage": "Manage payment methods",
+    "panel": {
+      "title": "Payment method",
+      "description": "The card used for your plan, credit top-ups and auto-recharge.",
+      "current": "Current card",
+      "holder": "Card holder",
+      "expires": "Expires",
+      "cardEnding": "Card ending in {{last4}}",
+      "replace": "Replace card",
+      "add": "Add a card",
+      "replaceHint": "The new card becomes your default for all future payments.",
+      "save": "Save card",
+      "saving": "Saving…",
+      "saved": "Card saved. It becomes your default in a few seconds.",
+      "failed": "The card could not be saved. Check the details and try again.",
+      "keepCurrent": "Keep current card",
+      "secure": "Card details go straight to Stripe. JT-Code never sees or stores your card number.",
+      "portal": "Invoices and more in Stripe",
+      "notConfigured": "Card payments aren't set up on this server yet (Stripe keys are missing). Ask an administrator to add them."
+    }
   },
   "invoices": {
     "title": "Recent invoices",
@@ -147,7 +166,8 @@
     "freeMonthly": "Free credits renew monthly",
     "reactivate": "Resume subscription",
     "cancel": "Cancel subscription",
-    "cancelConfirm": "Cancel your subscription at the end of the current period?"
+    "cancelConfirm": "Cancel your subscription at the end of the current period?",
+    "keep": "Keep subscription"
   },
   "wallet": {
     "saved": "Billing settings saved.",

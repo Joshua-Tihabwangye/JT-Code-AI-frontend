@@ -7,11 +7,11 @@
   "pick": "Ana Sayfa sekmesinden veri ekleyin: bir dosya yükleyin, CSV'yi yapıştırın veya bir örnek yükleyin.",
   "tabs": {
     "home": "Ev",
-    "quality": "Kaliteyi kontrol edin",
     "transform": "Dönüştür",
     "transformCount": "Dönüştür · {{n}}",
     "profile": "Sütun profili",
-    "insights": "Analizler"
+    "insights": "Analizler",
+    "quality": "Verileri temizle"
   },
   "kinds": {
     "numeric": "sayısal",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Tara",
     "rescan": "Yeniden tara",
-    "check": "Verileri kontrol edin",
     "legend": "Renkleri vurgulayın (gizlemek için tıklayın)",
     "legendEmpty": "Renk anahtarını görmek için bir kontrol yapın.",
     "noIssues": "Hiçbir sorun bulunamadı 🎉",
@@ -40,9 +39,6 @@
     "examples": "örneğin {{examples}}",
     "rows": "Satırlar",
     "fixTitle": "Transform'a bir adım ekler; siz kaydedene kadar hiçbir şey değişmez",
-    "title": "Veri kalitesi raporu",
-    "subtitle": "Python kontrolleri — AI yok ve hiçbir şey değişmedi",
-    "intro": "<b>Verileri kontrol et</b> tuşuna basın: sorunlar tabloda renklendirilmiştir ve her biri tek tıklamayla düzeltilebilen bir çözümle birlikte gelir.",
     "score": "Kalite puanı",
     "excellent": "Harika",
     "needsLook": "Bir bakışa ihtiyacı var",
@@ -51,7 +47,15 @@
     "rowsAffected": "Etkilenen satırlar",
     "cellsFlagged": "İşaretli hücreler",
     "checked": "Satırlar × sütunlar kontrol edildi",
-    "nothingHere": "Burada hiçbir şey yok."
+    "nothingHere": "Burada hiçbir şey yok.",
+    "check": "Tekrar kontrol et",
+    "title": "Verileri temizle",
+    "subtitle": "Python kontrolleri tarafından bulunan kopyalar, eksik değerler ve diğer tutarsızlıklar. Siz bir düzeltme uygulayana kadar hiçbir şey değişmez.",
+    "intro": "Sorunlar aşağıda listelenmiş ve tabloda renklendirilmiştir; her biri tek tıklamayla düzeltmeyle birlikte gelir.",
+    "fixAll": "Tümünü düzelt ({{n}} adımlar)",
+    "fixAllHint": "Önerilen her düzeltmeyi aynı anda uygulayın. Her biri Dönüştürme'de gözden geçirebileceğiniz veya geri alabileceğiniz bir adım haline gelir.",
+    "banner": "Bu verilerde {{rows}} satırlarını etkileyen {{n}} sorunları bulduk: kopyalar, eksik değerler veya tutarsız girişler.",
+    "review": "İnceleyin ve temizleyin"
   },
   "profile": {
     "find": "Bulmak",

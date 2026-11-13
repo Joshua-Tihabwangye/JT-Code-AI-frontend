@@ -29,5 +29,6 @@
   "runNotFound": "Uendeshaji wa uchambuzi haujapatikana.",
   "datasetNotFound": "Seti ya data haijapatikana.",
   "chartNotFound": "Chati haijapatikana.",
-  "visualizeNeedsApi": "Taswira ya Data inaendeshwa kwenye sehemu ya nyuma. Weka VITE_DATA_MODE=api na uanzishe API ili kuitumia."
+  "visualizeNeedsApi": "Taswira ya Data inaendeshwa kwenye sehemu ya nyuma. Weka VITE_DATA_MODE=api na uanzishe API ili kuitumia.",
+  "paymentsNeedApi": "Malipo ya kadi hutekelezwa kwa nyuma. Weka VITE_DATA_MODE=api na uanzishe API ili kudhibiti kadi."
 }

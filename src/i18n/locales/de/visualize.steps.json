@@ -198,6 +198,7 @@
     "toDate": "In Datum umwandeln",
     "consistentSpelling": "Schreibweise vereinheitlichen",
     "capOutliers": "Ausreißer kappen",
-    "removeColumn": "Spalte entfernen"
+    "removeColumn": "Spalte entfernen",
+    "trimThenRemoveRepeats": "Leerzeichen kürzen und Wiederholungen entfernen"
   }
 }

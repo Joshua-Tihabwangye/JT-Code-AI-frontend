@@ -7,11 +7,11 @@
   "pick": "Ongeza data kutoka kwa kichupo cha Nyumbani: pakia faili, bandika CSV au pakia sampuli.",
   "tabs": {
     "home": "Nyumbani",
-    "quality": "Angalia ubora",
     "transform": "Badilisha",
     "transformCount": "Badilisha · {{n}}",
     "profile": "Wasifu wa safuwima",
-    "insights": "Maarifa"
+    "insights": "Maarifa",
+    "quality": "Safi data"
   },
   "kinds": {
     "numeric": "nambari",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Changanua",
     "rescan": "Changanua upya",
-    "check": "Angalia data",
     "legend": "Angazia rangi (bofya ili kuficha)",
     "legendEmpty": "Tekeleza ukaguzi ili kuona ufunguo wa rangi.",
     "noIssues": "Hakuna matatizo yaliyopatikana 🎉",
@@ -40,9 +39,6 @@
     "examples": "k.m. {{examples}}",
     "rows": "Safu",
     "fixTitle": "Inaongeza hatua katika Kubadilisha; hakuna kinachobadilika hadi uhifadhi",
-    "title": "Ripoti ya ubora wa data",
-    "subtitle": "Python huangalia - hakuna AI na hakuna kinachobadilishwa",
-    "intro": "Bonyeza <b>Angalia data</b>: matatizo yanatiwa rangi kwenye jedwali na kila moja huja na kurekebisha kwa mbofyo mmoja.",
     "score": "Alama ya ubora",
     "excellent": "Bora kabisa",
     "needsLook": "Inahitaji kuangalia",
@@ -51,7 +47,15 @@
     "rowsAffected": "Safu zilizoathiriwa",
     "cellsFlagged": "Visanduku vimealamishwa",
     "checked": "Safu mlalo × safu wima zimechaguliwa",
-    "nothingHere": "Hakuna kitu hapa."
+    "nothingHere": "Hakuna kitu hapa.",
+    "check": "Angalia tena",
+    "title": "Safi data",
+    "subtitle": "Nakala, maadili yanayokosekana na kutokwenda sawa, kupatikana kwa ukaguzi wa Python. Hakuna kinachobadilika hadi utume marekebisho.",
+    "intro": "Matatizo yameorodheshwa hapa chini na rangi katika jedwali; kila moja inakuja na marekebisho ya mbofyo mmoja.",
+    "fixAll": "Rekebisha zote ({{n}} hatua)",
+    "fixAllHint": "Tumia kila marekebisho yaliyopendekezwa mara moja. Kila moja inakuwa hatua ya Kubadilisha ambayo unaweza kukagua au kutendua.",
+    "banner": "Tulipata matatizo {{n}} katika data hii, na kuathiri {{rows}} safu mlalo: nakala, thamani zinazokosekana au maingizo yasiyolingana.",
+    "review": "Kagua na usafishe"
   },
   "profile": {
     "find": "Tafuta",

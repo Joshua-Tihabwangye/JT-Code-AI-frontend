@@ -29,5 +29,6 @@
   "runNotFound": "분석 실행을 찾을 수 없습니다.",
   "datasetNotFound": "데이터 세트를 찾을 수 없습니다.",
   "chartNotFound": "차트를 찾을 수 없습니다.",
-  "visualizeNeedsApi": "데이터 시각화는 백엔드에서 실행됩니다. VITE_DATA_MODE=api를 설정하고 API를 시작하여 사용하세요."
+  "visualizeNeedsApi": "데이터 시각화는 백엔드에서 실행됩니다. VITE_DATA_MODE=api를 설정하고 API를 시작하여 사용하세요.",
+  "paymentsNeedApi": "백엔드에서 카드 결제가 실행됩니다. VITE_DATA_MODE=api를 설정하고 카드 관리 API를 시작합니다."
 }

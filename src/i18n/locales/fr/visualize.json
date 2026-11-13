@@ -61,6 +61,7 @@
     "tableSizeFirst": "{{rows}} lignes × {{columns}} colonnes (premières lignes) — les données affichées par ce graphique",
     "close": "Fermer",
     "expandRibbon": "Développer le ruban",
-    "collapseRibbon": "Réduire le ruban"
+    "collapseRibbon": "Réduire le ruban",
+    "rows_many": "{{rows}} lignes"
   }
 }

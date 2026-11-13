@@ -7,11 +7,11 @@
   "pick": "在“主页”选项卡中添加数据：上传文件、粘贴 CSV 或加载示例。",
   "tabs": {
     "home": "主页",
-    "quality": "检查质量",
     "transform": "转换",
     "transformCount": "转换 · {{n}}",
     "profile": "列分析",
-    "insights": "洞察"
+    "insights": "洞察",
+    "quality": "干净的数据"
   },
   "kinds": {
     "numeric": "数值",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "扫描",
     "rescan": "重新扫描",
-    "check": "检查数据",
     "legend": "高亮颜色（单击可隐藏）",
     "legendEmpty": "运行检查以查看颜色说明。",
     "noIssues": "未发现问题 🎉",
@@ -40,9 +39,6 @@
     "examples": "例如 {{examples}}",
     "rows": "行",
     "fixTitle": "在“转换”中添加一个步骤；保存前不会更改任何内容",
-    "title": "数据质量报告",
-    "subtitle": "Python 检查 — 不使用 AI，也不更改任何内容",
-    "intro": "按 <b>检查数据</b>：问题会在表中以颜色标出，每个问题都附带一键修复。",
     "score": "质量得分",
     "excellent": "优秀",
     "needsLook": "需要查看",
@@ -51,7 +47,15 @@
     "rowsAffected": "受影响的行",
     "cellsFlagged": "标记的单元格",
     "checked": "已检查的行 × 列",
-    "nothingHere": "此处无内容。"
+    "nothingHere": "此处无内容。",
+    "check": "再次检查",
+    "title": "干净的数据",
+    "subtitle": "Python 检查发现的重复、缺失值和其他不一致之处。在应用修复之前，不会发生任何变化。",
+    "intro": "下面列出了问题并在表中用颜色表示；每个都带有一键修复。",
+    "fixAll": "修复所有（{{n}} 步骤）",
+    "fixAllHint": "立即应用所有建议的修复。每个都成为转换中的一个步骤，您可以查看或撤消。",
+    "banner": "我们在此数据中发现 {{n}} 问题，影响 {{rows}} 行：重复、缺失值或不一致的条目。",
+    "review": "检查并清理"
   },
   "profile": {
     "find": "查找",

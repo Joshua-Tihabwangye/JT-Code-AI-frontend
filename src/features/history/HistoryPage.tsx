@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Archive, Clock, Download, MessageSquare, Pin, Search, Trash2 } from 'lucide-react';
-import { Alert, Button, Input } from '@/shared/components';
+import { Alert, Button, Input, useConfirm } from '@/shared/components';
 import { useRepository, type Conversation } from '@/lib/data';
 import { apiErrorMessage } from '@/lib/api/http';
 
@@ -32,6 +32,7 @@ function saveText(name: string, content: string, type: string) {
 
 export function HistoryPage() {
   const { t, i18n } = useTranslation();
+  const { confirm, dialog } = useConfirm();
   const navigate = useNavigate();
   const history = useRepository('history');
   const queryClient = useQueryClient();
@@ -77,7 +78,7 @@ export function HistoryPage() {
         {items.length > 0 && !archivedOnly && (
           <Button
             variant="outline"
-            onClick={() => confirm(t('history.clearConfirm')) && clear.mutate()}
+            onClick={() => void confirm({ title: t('history.clearHistory'), description: t('history.clearConfirm'), confirmLabel: t('history.clearHistory'), destructive: true }).then((ok) => ok && clear.mutate())}
             className="gap-1.5"
             disabled={clear.isPending}
           >
@@ -158,6 +159,7 @@ export function HistoryPage() {
           ))}
         </div>
       )}
+      {dialog}
     </section>
   );
 }

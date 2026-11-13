@@ -29,5 +29,6 @@
   "runNotFound": "বিশ্লেষণ রান পাওয়া যায়নি.",
   "datasetNotFound": "ডেটাসেট পাওয়া যায়নি।",
   "chartNotFound": "চার্ট পাওয়া যায়নি.",
-  "visualizeNeedsApi": "ডেটা ভিজ্যুয়ালাইজেশন ব্যাকএন্ডে চলে। VITE_DATA_MODE=api সেট করুন এবং এটি ব্যবহার করতে API শুরু করুন।"
+  "visualizeNeedsApi": "ডেটা ভিজ্যুয়ালাইজেশন ব্যাকএন্ডে চলে। VITE_DATA_MODE=api সেট করুন এবং এটি ব্যবহার করতে API শুরু করুন।",
+  "paymentsNeedApi": "কার্ডের পেমেন্ট ব্যাকএন্ডে চলে। VITE_DATA_MODE=api সেট করুন এবং কার্ড পরিচালনা করতে API শুরু করুন।"
 }

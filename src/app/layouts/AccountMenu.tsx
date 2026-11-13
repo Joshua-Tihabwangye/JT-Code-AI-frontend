@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Settings, LogOut, Keyboard, User as UserIcon, LogIn, type LucideIcon } from 'lucide-react';
+import { Settings, LogOut, User as UserIcon, LogIn, type LucideIcon } from 'lucide-react';
 import { Avatar, Badge } from '@/shared/components';
 import { FloatingPanel } from '@/shared/components/FloatingPanel';
 import { supabase, useAuth, useUser } from '@/lib/supabase';
@@ -146,11 +146,6 @@ export function AccountMenu({ collapsed }: AccountMenuProps) {
 
   const items: { label: string; icon: LucideIcon; onClick: () => void }[] = [
     { label: t('menu.settings'), icon: Settings, onClick: closeAnd(() => navigate('/app/settings')) },
-    {
-      label: t('menu.keyboardShortcuts'),
-      icon: Keyboard,
-      onClick: closeAnd(() => navigate('/app/settings')),
-    },
   ];
 
   return (

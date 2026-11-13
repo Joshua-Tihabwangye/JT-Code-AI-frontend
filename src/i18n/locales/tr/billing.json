@@ -98,7 +98,26 @@
     "cvcLabel": "CVC",
     "savedToast": "Ödeme yöntemi kaydedildi",
     "none": "Kayıtlı ödeme yöntemi yok",
-    "manage": "Ödeme yöntemlerini yönetin"
+    "manage": "Ödeme yöntemlerini yönetin",
+    "panel": {
+      "title": "Ödeme yöntemi",
+      "description": "Planınız, kredi yüklemeleriniz ve otomatik yüklemeniz için kullanılan kart.",
+      "current": "Mevcut kart",
+      "holder": "Kart sahibi",
+      "expires": "Süresi doluyor",
+      "cardEnding": "{{last4}} ile biten kart",
+      "replace": "Kartı değiştirin",
+      "add": "Kart ekle",
+      "replaceHint": "Yeni kart, gelecekteki tüm ödemeleriniz için varsayılan kartınız olur.",
+      "save": "Kartı kaydet",
+      "saving": "Kaydediliyor…",
+      "saved": "Kart kaydedildi. Birkaç saniye içinde varsayılanınız haline gelir.",
+      "failed": "Kart kaydedilemedi. Ayrıntıları kontrol edip tekrar deneyin.",
+      "keepCurrent": "Mevcut kartı koru",
+      "secure": "Kart ayrıntıları doğrudan Stripe'a gider. JT-Code kart numaranızı asla görmez veya saklamaz.",
+      "portal": "Stripe'ta faturalar ve daha fazlası",
+      "notConfigured": "Bu sunucuda kart ödemeleri henüz ayarlanmadı (Şerit anahtarlar eksik). Bir yöneticiden bunları eklemesini isteyin."
+    }
   },
   "invoices": {
     "title": "Son faturalar",
@@ -147,7 +166,8 @@
     "freeMonthly": "Ücretsiz krediler aylık olarak yenilenir",
     "reactivate": "Aboneliği devam ettir",
     "cancel": "Aboneliği iptal et",
-    "cancelConfirm": "Aboneliğiniz cari dönem sonunda iptal edilsin mi?"
+    "cancelConfirm": "Aboneliğiniz cari dönem sonunda iptal edilsin mi?",
+    "keep": "Aboneliği sürdür"
   },
   "wallet": {
     "saved": "Faturalandırma ayarları kaydedildi.",

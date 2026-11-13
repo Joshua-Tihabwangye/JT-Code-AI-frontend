@@ -7,11 +7,11 @@
   "pick": "Adicione dados da guia Início: carregue um arquivo, cole CSV ou carregue uma amostra.",
   "tabs": {
     "home": "Lar",
-    "quality": "Verifique a qualidade",
     "transform": "Transformar",
     "transformCount": "Transformar · {{n}}",
     "profile": "Perfil da coluna",
-    "insights": "Percepções"
+    "insights": "Percepções",
+    "quality": "Limpar dados"
   },
   "kinds": {
     "numeric": "numérico",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Digitalizar",
     "rescan": "Digitalizar novamente",
-    "check": "Verifique os dados",
     "legend": "Cores de destaque (clique para ocultar)",
     "legendEmpty": "Execute uma verificação para ver a chave de cores.",
     "noIssues": "Nenhum problema encontrado 🎉",
@@ -40,9 +39,6 @@
     "examples": "por exemplo {{examples}}",
     "rows": "Linhas",
     "fixTitle": "Adiciona uma etapa no Transform; nada muda até você salvar",
-    "title": "Relatório de qualidade de dados",
-    "subtitle": "Verificações Python – sem IA e nada é alterado",
-    "intro": "Pressione <b>Verifique os dados</b>: os problemas são coloridos na tabela e cada um vem com uma correção com um clique.",
     "score": "Índice de qualidade",
     "excellent": "Excelente",
     "needsLook": "Precisa de uma olhada",
@@ -51,7 +47,15 @@
     "rowsAffected": "Linhas afetadas",
     "cellsFlagged": "Células sinalizadas",
     "checked": "Linhas × colunas verificadas",
-    "nothingHere": "Nada aqui."
+    "nothingHere": "Nada aqui.",
+    "check": "Verifique novamente",
+    "title": "Limpar dados",
+    "subtitle": "Duplicatas, valores ausentes e outras inconsistências, encontradas pelas verificações do Python. Nada muda até que você aplique uma correção.",
+    "intro": "Os problemas estão listados abaixo e coloridos na tabela; cada um vem com uma correção com um clique.",
+    "fixAll": "Corrigir tudo (etapas {{n}})",
+    "fixAllHint": "Aplique todas as correções sugeridas de uma vez. Cada uma se torna uma etapa no Transform que você pode revisar ou desfazer.",
+    "banner": "Encontramos problemas {{n}} nesses dados, afetando linhas {{rows}}: duplicatas, valores ausentes ou entradas inconsistentes.",
+    "review": "Revise e limpe"
   },
   "profile": {
     "find": "Encontrar",

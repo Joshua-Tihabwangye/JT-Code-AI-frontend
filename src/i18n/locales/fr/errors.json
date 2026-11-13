@@ -29,5 +29,6 @@
   "runNotFound": "Exécution d'analyse introuvable.",
   "datasetNotFound": "Jeu de données introuvable.",
   "chartNotFound": "Graphique introuvable.",
-  "visualizeNeedsApi": "La visualisation de données s'exécute sur le backend. Définissez VITE_DATA_MODE=api et démarrez l'API pour l'utiliser."
+  "visualizeNeedsApi": "La visualisation de données s'exécute sur le backend. Définissez VITE_DATA_MODE=api et démarrez l'API pour l'utiliser.",
+  "paymentsNeedApi": "Les paiements par carte s'exécutent sur le backend. Définissez VITE_DATA_MODE=api et démarrez l'API pour gérer les cartes."
 }

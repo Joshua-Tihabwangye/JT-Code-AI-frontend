@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Bir zaman serisini tahmin etme",
-      "description": "Belirsizlik bantlarıyla ileriye yönelik bir önlem (satışlar, talep, gelir) yansıtın.",
       "models": {
         "auto": "Hepsinden iyisi (geriye dönük testlerle seçilmiş)",
         "holt_winters": "Holt – Winters üstel yumuşatma",
@@ -860,15 +858,21 @@
         "Arka test doğruluğu (MAE, MAPE)",
         "Gelecek değerler tablosu"
       ],
+      "name": "Gelecekteki değerleri tahmin edin",
+      "description": "Bir sayının nereye doğru gittiğini (satışlar, talep, gelir) ve etrafındaki muhtemel aralığı görün.",
       "slots": {
         "target": {
-          "label": "Tahmin etmek için ölçün"
+          "label": "Tahmin edilecek sayı"
+        },
+        "date": {
+          "label": "Tarih sütunu"
+        },
+        "split_by": {
+          "label": "Her biri için ayrı bir tahmin (isteğe bağlı)"
         }
       }
     },
     "trend": {
-      "name": "Trend ve sezonsallık analizi",
-      "description": "Büyüme oranları, hareketli ortalamalar, mevsimsel kalıplar, değişim noktaları ve olağandışı dönemler.",
       "models": {
         "robust": "Otomatik (güçlü trend + anormallik tespiti)"
       },
@@ -877,18 +881,21 @@
         "Sezonluk profil",
         "Değişiklik noktaları ve anormallikler"
       ],
-      "slots": {
-        "target": {
-          "label": "Ölçüm"
-        }
-      },
       "options": {
         "window": "Hareketli ortalama (dönemler)"
+      },
+      "name": "Trendleri ve sezonları tespit edin",
+      "description": "Bir sayı artıyor mu azalıyor mu? Büyüme oranları, tekrarlanan mevsimsel kalıplar ve olağandışı dönemler.",
+      "slots": {
+        "target": {
+          "label": "Zaman içinde takip edilecek sayı"
+        },
+        "date": {
+          "label": "Tarih sütunu"
+        }
       }
     },
     "drivers": {
-      "name": "Anahtar faktörler (sonucu etkileyen şeyler)",
-      "description": "Hangi faktörlerin ve segmentlerin bir sonucu yukarı veya aşağı ittiğini öğrenin (kayıt kaybı, satışlar, memnuniyet).",
       "models": {
         "segments": "Segment karşılaştırması + rastgele ormanın önemi"
       },
@@ -897,19 +904,19 @@
         "Özellik önemi",
         "En iyi ve en kötü bölümler"
       ],
+      "name": "Sonucu neyin etkilediğini bulun",
+      "description": "Hangi sütunların ve grupların bir sonucu yukarı veya aşağı ittiği (kaybetme, satış, memnuniyet).",
       "slots": {
         "target": {
           "label": "Açıklanacak sonuç"
         },
         "features": {
-          "label": "Giriş sütunları",
-          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+          "label": "Öğrenilecek sütunlar (isteğe bağlı)",
+          "help": "Her iki sütunu kullanmak için boş bırakın."
         }
       }
     },
     "regression": {
-      "name": "Bir sayıyı tahmin et",
-      "description": "Diğer sütunlardan sayısal bir sonuç (fiyat, talep, puan) tahmin edin.",
       "models": {
         "auto": "Hepsinden iyisi (çapraz doğrulamalı)",
         "linear": "Doğrusal regresyon",
@@ -922,19 +929,19 @@
         "Tahmin edilen ve gerçek kalanlar karşılaştırması",
         "Özellik önemi"
       ],
+      "name": "Bir sayıyı tahmin edin",
+      "description": "Diğer sütunlardan fiyat, talep veya puan gibi bir sayıyı tahmin edin.",
       "slots": {
         "target": {
           "label": "Tahmin edilecek sayı"
         },
         "features": {
-          "label": "Giriş sütunları",
-          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+          "label": "Öğrenilecek sütunlar (isteğe bağlı)",
+          "help": "Her iki sütunu kullanmak için boş bırakın."
         }
       }
     },
     "classification": {
-      "name": "Bir kategoriyi tahmin edin",
-      "description": "Satırları sınıflandırın (kayıp, onay, segment) ve sınıflandırıcıyı değerlendirin.",
       "models": {
         "auto": "Hepsinden iyisi (çapraz doğrulamalı)",
         "logistic": "Lojistik regresyon",
@@ -946,19 +953,19 @@
         "Karışıklık matrisi, ROC ve PR eğrileri",
         "Özellik önemi"
       ],
+      "name": "Evet/hayır veya bir grup tahmin edin",
+      "description": "Her satırın hangi gruba ait olduğunu tahmin edin; Müşteri ayrılacak mı (evet/hayır) veya hangi planı seçecek?",
       "slots": {
         "target": {
-          "label": "Tahmin edilecek kategori"
+          "label": "Evet/hayır veya tahmin edilecek grup"
         },
         "features": {
-          "label": "Giriş sütunları",
-          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+          "label": "Öğrenilecek sütunlar (isteğe bağlı)",
+          "help": "Her iki sütunu kullanmak için boş bırakın."
         }
       }
     },
     "clustering": {
-      "name": "Segmentleri bul",
-      "description": "Benzer satırları (müşteriler, ürünler) etiket olmadan gruplandırın.",
       "models": {
         "kmeans": "k-anlamına gelir",
         "gaussian_mixture": "Gauss karışımı",
@@ -969,16 +976,16 @@
         "Küme haritası ve profilleri",
         "Her satır için segment"
       ],
+      "name": "Benzer satırları gruplandır",
+      "description": "Verilerdeki müşteri türleri veya ürün türleri gibi doğal grupları etiket olmadan bulun.",
       "slots": {
         "features": {
-          "label": "Giriş sütunları",
-          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+          "label": "Öğrenilecek sütunlar (isteğe bağlı)",
+          "help": "Her iki sütunu kullanmak için boş bırakın."
         }
       }
     },
     "anomaly": {
-      "name": "Anormallikleri tespit edin",
-      "description": "Olağandışı satırları (dolandırıcılık, hatalar, veri hataları) işaretleyin.",
       "models": {
         "isolation_forest": "İzolasyon ormanı",
         "zscore": "Sağlam z puanı",
@@ -989,10 +996,12 @@
         "Haritada vurgulanan anormallikler",
         "Her satır için puan"
       ],
+      "name": "Olağandışı değerleri bulun",
+      "description": "Her zamanki kalıba uymayan satırları tespit edin: veri hataları, sahtekarlık veya ani artışlar.",
       "slots": {
         "features": {
-          "label": "Giriş sütunları",
-          "help": "Boş her iki sütunu da kullanır; kategoriler tek seferde kodlanmıştır ve tarihler parçalara bölünmüştür."
+          "label": "Öğrenilecek sütunlar (isteğe bağlı)",
+          "help": "Her iki sütunu kullanmak için boş bırakın."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Sınırlandırılmış metin (otomatik algılama ; | ,)",
     "json": "JSON (kayıt dizisi)",
     "jsonl": "JSON Hatları",
-    "xlsx": "Excel çalışma kitabı (ilk sayfa)"
+    "xlsx": "Excel çalışma kitabı (ilk sayfa)",
+    "pdf": "PDF (tabloları; taranan sayfalar OCR tarafından okunur)",
+    "docx": "Word belgesi (tabloları)",
+    "image": "Bir tablonun resmi (OCR ile okunur)"
   },
   "exportFormats": {
     "csv": "CSV",

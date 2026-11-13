@@ -61,3 +61,19 @@
 .signin-demo__button:hover:not(:disabled) {
   border-color: var(--primary);
 }
+
+/* Back from the sign-up confirmation email */
+.form-notice {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.form-notice--success {
+  background: color-mix(in srgb, var(--success, #16a34a) 12%, var(--panel, transparent));
+  border: 1px solid color-mix(in srgb, var(--success, #16a34a) 35%, transparent);
+  color: var(--success, #15803d);
+}
+.signin-card > .form-error { margin: 0 0 1rem; }

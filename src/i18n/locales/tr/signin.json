@@ -15,5 +15,8 @@
   "signInWithApple": "Apple'la oturum açın",
   "offlineHint": "Çevrimdışı tasarım modu: arka uç kullanılmaz. Herhangi bir e-posta ve şifreyle oturum açın (yerel bir hesap oluşturulur) veya demo hesabıyla devam edin.",
   "demoAccount": "Demo hesabıyla devam edin",
-  "continueWith": "{{provider}} ile devam et"
+  "continueWith": "{{provider}} ile devam et",
+  "emailConfirmed": "E-postanız onaylandı. Devam etmek için e-postanız ve şifrenizle oturum açın.",
+  "confirmationExpired": "Bu onay bağlantısının süresi dolmuş veya zaten kullanılmış. E-posta adresinizi zaten onayladıysanız oturum açmanız yeterli; aksi takdirde yeni bir bağlantı almak için tekrar kaydolun.",
+  "confirmationFailed": "Bu bağlantıyı içeren e-postanızı doğrulayamadık. Oturum açmayı deneyin veya yeni bir bağlantı almak için tekrar kaydolun."
 }

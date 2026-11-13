@@ -15,5 +15,8 @@
   "signInWithApple": "Mit Apple anmelden",
   "offlineHint": "Offline-Designmodus: Das Backend wird nicht verwendet. Melde dich mit einer beliebigen E-Mail-Adresse und einem beliebigen Passwort an (es wird ein lokales Konto erstellt) oder fahre mit dem Demokonto fort.",
   "demoAccount": "Mit dem Demokonto fortfahren",
-  "continueWith": "Weiter mit {{provider}}"
+  "continueWith": "Weiter mit {{provider}}",
+  "emailConfirmed": "Ihre E-Mail wurde bestätigt. Melden Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort an, um fortzufahren.",
+  "confirmationExpired": "Dieser Bestätigungslink ist abgelaufen oder wurde bereits verwendet. Wenn Sie Ihre E-Mail-Adresse bereits bestätigt haben, melden Sie sich einfach an. Andernfalls melden Sie sich erneut an, um einen neuen Link zu erhalten.",
+  "confirmationFailed": "Wir konnten Ihre E-Mail mit diesem Link nicht bestätigen. Versuchen Sie, sich anzumelden, oder registrieren Sie sich erneut, um einen neuen Link zu erhalten."
 }

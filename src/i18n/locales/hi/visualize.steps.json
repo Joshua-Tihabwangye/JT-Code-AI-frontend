@@ -198,6 +198,7 @@
     "toDate": "दिनांक में कनवर्ट करें",
     "consistentSpelling": "वर्तनी को सुसंगत बनाएं",
     "capOutliers": "कैप आउटलेर्स",
-    "removeColumn": "कॉलम हटाएँ"
+    "removeColumn": "कॉलम हटाएँ",
+    "trimThenRemoveRepeats": "रिक्त स्थान ट्रिम करें, फिर दोहराव हटा दें"
   }
 }

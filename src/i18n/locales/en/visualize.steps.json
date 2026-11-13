@@ -198,6 +198,7 @@
     "toDate": "Convert to date",
     "consistentSpelling": "Make spelling consistent",
     "capOutliers": "Cap outliers",
-    "removeColumn": "Remove column"
+    "removeColumn": "Remove column",
+    "trimThenRemoveRepeats": "Trim spaces, then remove repeats"
   }
 }
