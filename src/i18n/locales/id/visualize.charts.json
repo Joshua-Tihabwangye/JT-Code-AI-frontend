@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Perkiraan rangkaian waktu",
-      "description": "Proyeksikan ukuran ke depan (penjualan, permintaan, pendapatan) dengan rentang ketidakpastian.",
       "models": {
         "auto": "Yang terbaik dari semuanya (dipilih berdasarkan backtest)",
         "holt_winters": "Pemulusan eksponensial Holt – Winters",
@@ -860,15 +858,21 @@
         "Akurasi tes balik (MAE, MAPE)",
         "Tabel nilai masa depan"
       ],
+      "name": "Perkirakan nilai masa depan",
+      "description": "Lihat ke mana arah suatu angka (penjualan, permintaan, pendapatan) dan kemungkinan kisaran di sekitarnya.",
       "slots": {
         "target": {
-          "label": "Ukur untuk memperkirakan"
+          "label": "Angka yang akan diperkirakan"
+        },
+        "date": {
+          "label": "Kolom tanggal"
+        },
+        "split_by": {
+          "label": "Perkiraan terpisah untuk masing-masing (opsional)"
         }
       }
     },
     "trend": {
-      "name": "Analisis tren & musiman",
-      "description": "Tingkat pertumbuhan, rata-rata pergerakan, pola musiman, titik perubahan, dan periode yang tidak biasa.",
       "models": {
         "robust": "Otomatis (tren kuat + deteksi anomali)"
       },
@@ -877,18 +881,21 @@
         "Profil musiman",
         "Perubahan poin dan anomali"
       ],
-      "slots": {
-        "target": {
-          "label": "Ukuran"
-        }
-      },
       "options": {
         "window": "Rata-rata pergerakan (periode)"
+      },
+      "name": "Temukan tren dan musim",
+      "description": "Apakah angkanya naik atau turun? Tingkat pertumbuhan, pola musiman yang berulang dan periode yang tidak biasa.",
+      "slots": {
+        "target": {
+          "label": "Nomor untuk diikuti seiring waktu"
+        },
+        "date": {
+          "label": "Kolom tanggal"
+        }
       }
     },
     "drivers": {
-      "name": "Penggerak utama (apa yang memengaruhi suatu hasil)",
-      "description": "Temukan faktor dan segmen mana yang mendorong naik atau turunnya hasil — churn, penjualan, kepuasan.",
       "models": {
         "segments": "Perbandingan segmen + kepentingan hutan secara acak"
       },
@@ -897,19 +904,19 @@
         "Pentingnya fitur",
         "Segmen terbaik dan terburuk"
       ],
+      "name": "Temukan apa yang memengaruhi hasil",
+      "description": "Kolom dan grup mana yang menaikkan atau menurunkan hasil (churn, penjualan, kepuasan).",
       "slots": {
         "target": {
           "label": "Hasil untuk menjelaskan"
         },
         "features": {
-          "label": "Kolom masukan",
-          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+          "label": "Kolom untuk dipelajari (opsional)",
+          "help": "Biarkan kosong untuk menggunakan kolom lainnya."
         }
       }
     },
     "regression": {
-      "name": "Memprediksi suatu angka",
-      "description": "Perkirakan hasil numerik (harga, permintaan, skor) dari kolom lain.",
       "models": {
         "auto": "Yang terbaik dari semuanya (divalidasi silang)",
         "linear": "Regresi linier",
@@ -922,19 +929,19 @@
         "Residual yang diprediksi vs aktual",
         "Pentingnya fitur"
       ],
+      "name": "Perkirakan sebuah angka",
+      "description": "Perkirakan angka seperti harga, permintaan, atau skor dari kolom lainnya.",
       "slots": {
         "target": {
-          "label": "Angka untuk diprediksi"
+          "label": "Jumlah untuk diperkirakan"
         },
         "features": {
-          "label": "Kolom masukan",
-          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+          "label": "Kolom untuk dipelajari (opsional)",
+          "help": "Biarkan kosong untuk menggunakan kolom lainnya."
         }
       }
     },
     "classification": {
-      "name": "Memprediksi suatu kategori",
-      "description": "Klasifikasikan baris (churn, persetujuan, segmen) dan nilai pengklasifikasinya.",
       "models": {
         "auto": "Yang terbaik dari semuanya (divalidasi silang)",
         "logistic": "Regresi logistik",
@@ -946,19 +953,19 @@
         "Matriks kebingungan, kurva ROC dan PR",
         "Pentingnya fitur"
       ],
+      "name": "Memprediksi ya/tidak atau kelompok",
+      "description": "Prediksikan di grup mana setiap baris berada, mis. akankah pelanggan pergi (ya/tidak) atau paket mana yang mereka pilih.",
       "slots": {
         "target": {
-          "label": "Kategori untuk diprediksi"
+          "label": "Ya/tidak atau kelompok untuk diprediksi"
         },
         "features": {
-          "label": "Kolom masukan",
-          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+          "label": "Kolom untuk dipelajari (opsional)",
+          "help": "Biarkan kosong untuk menggunakan kolom lainnya."
         }
       }
     },
     "clustering": {
-      "name": "Temukan segmen",
-      "description": "Kelompokkan baris serupa (pelanggan, produk) tanpa label.",
       "models": {
         "kmeans": "k-berarti",
         "gaussian_mixture": "Campuran Gaussian",
@@ -969,16 +976,16 @@
         "Peta dan profil cluster",
         "Segmen untuk setiap baris"
       ],
+      "name": "Kelompokkan baris serupa",
+      "description": "Temukan kelompok alami dalam data, seperti jenis pelanggan atau produk, tanpa label.",
       "slots": {
         "features": {
-          "label": "Kolom masukan",
-          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+          "label": "Kolom untuk dipelajari (opsional)",
+          "help": "Biarkan kosong untuk menggunakan kolom lainnya."
         }
       }
     },
     "anomaly": {
-      "name": "Deteksi anomali",
-      "description": "Tandai baris yang tidak biasa (penipuan, kesalahan, kesalahan data).",
       "models": {
         "isolation_forest": "Hutan isolasi",
         "zscore": "Skor-z yang kuat",
@@ -989,10 +996,12 @@
         "Anomali disorot pada peta",
         "Skor untuk setiap baris"
       ],
+      "name": "Temukan nilai yang tidak biasa",
+      "description": "Temukan baris yang tidak sesuai dengan pola biasanya: kesalahan data, penipuan, atau lonjakan tiba-tiba.",
       "slots": {
         "features": {
-          "label": "Kolom masukan",
-          "help": "Kosong menggunakan setiap kolom lainnya; kategori dikodekan secara one-hot dan tanggal dibagi menjadi beberapa bagian."
+          "label": "Kolom untuk dipelajari (opsional)",
+          "help": "Biarkan kosong untuk menggunakan kolom lainnya."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Teks yang dibatasi (deteksi otomatis; | ,)",
     "json": "JSON (array catatan)",
     "jsonl": "Garis JSON",
-    "xlsx": "Buku kerja Excel (lembar pertama)"
+    "xlsx": "Buku kerja Excel (lembar pertama)",
+    "pdf": "PDF (tabelnya; halaman yang dipindai dibaca oleh OCR)",
+    "docx": "Dokumen Word (tabelnya)",
+    "image": "Gambar tabel (dibaca oleh OCR)"
   },
   "exportFormats": {
     "csv": "CSV",

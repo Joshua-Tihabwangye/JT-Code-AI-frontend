@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Zeitreihe prognostizieren",
-      "description": "Ein Measure (Umsatz, Nachfrage, Erlöse) mit Unsicherheitsbändern in die Zukunft fortschreiben.",
       "models": {
         "auto": "Das beste von allen (per Backtest gewählt)",
         "holt_winters": "Holt–Winters exponentielle Glättung",
@@ -860,15 +858,21 @@
         "Backtest-Genauigkeit (MAE, MAPE)",
         "Tabelle der künftigen Werte"
       ],
+      "name": "Prognostizieren Sie zukünftige Werte",
+      "description": "Sehen Sie, wohin sich eine Zahl entwickelt (Umsatz, Nachfrage, Umsatz) und die wahrscheinliche Spanne um sie herum.",
       "slots": {
         "target": {
-          "label": "Zu prognostizierendes Measure"
+          "label": "Zu prognostizierende Zahl"
+        },
+        "date": {
+          "label": "Datumsspalte"
+        },
+        "split_by": {
+          "label": "Für jeden eine separate Prognose (optional)"
         }
       }
     },
     "trend": {
-      "name": "Trend- & Saisonalitätsanalyse",
-      "description": "Wachstumsraten, gleitende Durchschnitte, saisonale Muster, Strukturbrüche und ungewöhnliche Perioden.",
       "models": {
         "robust": "Automatisch (robuster Trend + Anomalieerkennung)"
       },
@@ -877,18 +881,21 @@
         "Saisonales Profil",
         "Strukturbrüche und Anomalien"
       ],
-      "slots": {
-        "target": {
-          "label": "Measure"
-        }
-      },
       "options": {
         "window": "Gleitender Durchschnitt (Perioden)"
+      },
+      "name": "Erkennen Sie Trends und Jahreszeiten",
+      "description": "Steigt oder fällt eine Zahl? Wachstumsraten, sich wiederholende saisonale Muster und ungewöhnliche Zeiträume.",
+      "slots": {
+        "target": {
+          "label": "Nummer, die man im Laufe der Zeit verfolgen sollte"
+        },
+        "date": {
+          "label": "Datumsspalte"
+        }
       }
     },
     "drivers": {
-      "name": "Haupteinflussfaktoren (was ein Ergebnis beeinflusst)",
-      "description": "Herausfinden, welche Faktoren und Segmente ein Ergebnis nach oben oder unten treiben – Abwanderung, Umsatz, Zufriedenheit.",
       "models": {
         "segments": "Segmentvergleich + Random-Forest-Wichtigkeit"
       },
@@ -897,19 +904,19 @@
         "Merkmalswichtigkeit",
         "Beste und schlechteste Segmente"
       ],
+      "name": "Finden Sie heraus, was ein Ergebnis beeinflusst",
+      "description": "Welche Spalten und Gruppen treiben ein Ergebnis nach oben oder unten (Abwanderung, Umsatz, Zufriedenheit).",
       "slots": {
         "target": {
-          "label": "Zu erklärendes Ergebnis"
+          "label": "Ergebnis zur Erklärung"
         },
         "features": {
-          "label": "Eingabespalten",
-          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+          "label": "Spalten zum Lernen (optional)",
+          "help": "Lassen Sie das Feld leer, um jede zweite Spalte zu verwenden."
         }
       }
     },
     "regression": {
-      "name": "Eine Zahl vorhersagen",
-      "description": "Ein numerisches Ergebnis (Preis, Nachfrage, Punktzahl) aus anderen Spalten schätzen.",
       "models": {
         "auto": "Das beste von allen (kreuzvalidiert)",
         "linear": "Lineare Regression",
@@ -922,19 +929,19 @@
         "Vorhersage vs. Ist, Residuen",
         "Merkmalswichtigkeit"
       ],
+      "name": "Schätzen Sie eine Zahl",
+      "description": "Schätzen Sie eine Zahl wie einen Preis, eine Nachfrage oder eine Punktzahl aus den anderen Spalten.",
       "slots": {
         "target": {
-          "label": "Vorherzusagende Zahl"
+          "label": "Zu schätzende Zahl"
         },
         "features": {
-          "label": "Eingabespalten",
-          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+          "label": "Spalten zum Lernen (optional)",
+          "help": "Lassen Sie das Feld leer, um jede zweite Spalte zu verwenden."
         }
       }
     },
     "classification": {
-      "name": "Eine Kategorie vorhersagen",
-      "description": "Zeilen klassifizieren (Abwanderung, Genehmigung, Segment) und den Klassifikator beurteilen.",
       "models": {
         "auto": "Das beste von allen (kreuzvalidiert)",
         "logistic": "Logistische Regression",
@@ -946,19 +953,19 @@
         "Konfusionsmatrix, ROC- und PR-Kurven",
         "Merkmalswichtigkeit"
       ],
+      "name": "Sagen Sie ein Ja/Nein oder eine Gruppe voraus",
+      "description": "Sagen Sie voraus, zu welcher Gruppe jede Zeile gehört, z. B. Wird ein Kunde gehen (ja/nein) oder welchen Plan er wählt?",
       "slots": {
         "target": {
-          "label": "Vorherzusagende Kategorie"
+          "label": "Ja/Nein oder Gruppe zur Vorhersage"
         },
         "features": {
-          "label": "Eingabespalten",
-          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+          "label": "Spalten zum Lernen (optional)",
+          "help": "Lassen Sie das Feld leer, um jede zweite Spalte zu verwenden."
         }
       }
     },
     "clustering": {
-      "name": "Segmente finden",
-      "description": "Ähnliche Zeilen (Kunden, Produkte) ohne Labels gruppieren.",
       "models": {
         "kmeans": "k-Means",
         "gaussian_mixture": "Gaußsches Mischmodell",
@@ -969,16 +976,16 @@
         "Clusterkarte und Profile",
         "Segment für jede Zeile"
       ],
+      "name": "Gruppieren Sie ähnliche Zeilen",
+      "description": "Suchen Sie in den Daten nach natürlichen Gruppen, z. B. Kunden- oder Produkttypen, ohne Beschriftungen.",
       "slots": {
         "features": {
-          "label": "Eingabespalten",
-          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+          "label": "Spalten zum Lernen (optional)",
+          "help": "Lassen Sie das Feld leer, um jede zweite Spalte zu verwenden."
         }
       }
     },
     "anomaly": {
-      "name": "Anomalien erkennen",
-      "description": "Ungewöhnliche Zeilen markieren (Betrug, Störungen, Datenfehler).",
       "models": {
         "isolation_forest": "Isolation Forest",
         "zscore": "Robuster z-Wert",
@@ -989,10 +996,12 @@
         "Anomalien auf einer Karte hervorgehoben",
         "Bewertung für jede Zeile"
       ],
+      "name": "Finden Sie ungewöhnliche Werte",
+      "description": "Erkennen Sie Zeilen, die nicht dem üblichen Muster entsprechen: Datenfehler, Betrug oder plötzliche Spitzen.",
       "slots": {
         "features": {
-          "label": "Eingabespalten",
-          "help": "Leer verwendet alle anderen Spalten; Kategorien werden One-Hot-codiert und Datumswerte in Teile zerlegt."
+          "label": "Spalten zum Lernen (optional)",
+          "help": "Lassen Sie das Feld leer, um jede zweite Spalte zu verwenden."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Text mit Trennzeichen (automatische Erkennung ; | ,)",
     "json": "JSON (Array von Datensätzen)",
     "jsonl": "JSON Lines",
-    "xlsx": "Excel-Arbeitsmappe (erstes Blatt)"
+    "xlsx": "Excel-Arbeitsmappe (erstes Blatt)",
+    "pdf": "PDF (seine Tabellen; gescannte Seiten werden durch OCR gelesen)",
+    "docx": "Word-Dokument (seine Tabellen)",
+    "image": "Bild einer Tabelle (von OCR gelesen)"
   },
   "exportFormats": {
     "csv": "CSV",

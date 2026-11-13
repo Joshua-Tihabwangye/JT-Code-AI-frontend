@@ -7,11 +7,11 @@
   "pick": "Aggiungi dati dalla scheda Home: carica un file, incolla CSV o carica un campione.",
   "tabs": {
     "home": "Casa",
-    "quality": "Controlla la qualità",
     "transform": "Trasformare",
     "transformCount": "Trasforma · {{n}}",
     "profile": "Profilo della colonna",
-    "insights": "Approfondimenti"
+    "insights": "Approfondimenti",
+    "quality": "Dati puliti"
   },
   "kinds": {
     "numeric": "numerico",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Scansione",
     "rescan": "Eseguire nuovamente la scansione",
-    "check": "Controlla i dati",
     "legend": "Evidenzia i colori (clicca per nascondere)",
     "legendEmpty": "Esegui un controllo per vedere la chiave del colore.",
     "noIssues": "Nessun problema trovato 🎉",
@@ -40,9 +39,6 @@
     "examples": "per esempio. {{examples}}",
     "rows": "Righe",
     "fixTitle": "Aggiunge un passaggio in Trasformazione; non cambia nulla finché non salvi",
-    "title": "Rapporto sulla qualità dei dati",
-    "subtitle": "Controlli Python: nessuna intelligenza artificiale e nulla è cambiato",
-    "intro": "Premi <b>Controlla i dati</b>: i problemi sono colorati nella tabella e ciascuno viene fornito con una soluzione con un clic.",
     "score": "Punteggio di qualità",
     "excellent": "Eccellente",
     "needsLook": "Ha bisogno di un'occhiata",
@@ -51,7 +47,15 @@
     "rowsAffected": "Righe interessate",
     "cellsFlagged": "Celle contrassegnate",
     "checked": "Righe × colonne selezionate",
-    "nothingHere": "Niente qui."
+    "nothingHere": "Niente qui.",
+    "check": "Ricontrollare",
+    "title": "Dati puliti",
+    "subtitle": "Duplicati, valori mancanti e altre incoerenze, trovati dai controlli Python. Non cambia nulla finché non applichi una correzione.",
+    "intro": "I problemi sono elencati di seguito e colorati nella tabella; ognuno viene fornito con una correzione con un clic.",
+    "fixAll": "Correggi tutto ({{n}} passaggi)",
+    "fixAllHint": "Applicare tutte le correzioni suggerite contemporaneamente. Ciascuno diventa un passaggio di Trasformazione che puoi rivedere o annullare.",
+    "banner": "Abbiamo riscontrato problemi {{n}} in questi dati, che interessano le righe {{rows}}: duplicati, valori mancanti o voci incoerenti.",
+    "review": "Revisionare e pulire"
   },
   "profile": {
     "find": "Trovare",

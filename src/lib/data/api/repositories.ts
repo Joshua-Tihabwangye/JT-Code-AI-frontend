@@ -91,6 +91,8 @@ import type {
   VisualizeRepository,
   VizOrganizeSteps,
   VizPredictInput,
+  PredictionPreset,
+  PredictionPresetInput,
   VizExcelOptions,
   VizRenderInput,
   VizWorkbookInput,
@@ -1006,6 +1008,16 @@ class ApiVisualizeRepository implements VisualizeRepository {
   async predict(input: VizPredictInput) {
     const { data } = await api.post<VizPrediction>('/visualize/predict/', input, SLOW);
     return data;
+  }
+  async listPredictionPresets(datasetId?: string) {
+    return list<PredictionPreset>('/visualize/prediction-presets/', datasetId ? { datasetId } : undefined);
+  }
+  async savePredictionPreset(input: PredictionPresetInput) {
+    const { data } = await api.post<PredictionPreset>('/visualize/prediction-presets/', input);
+    return data;
+  }
+  async deletePredictionPreset(id: string) {
+    await api.delete(`/visualize/prediction-presets/${id}/`);
   }
   async downloadPrediction(resultId: string, type: 'csv' | 'xlsx' = 'csv', excel: VizExcelOptions = {}) {
     return blob(`/visualize/predict/results/${resultId}/`, { type, ...(type === 'xlsx' ? { graphs: excel.graphs === false ? 0 : 1 } : {}) });

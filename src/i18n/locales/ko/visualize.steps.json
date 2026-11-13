@@ -198,6 +198,7 @@
     "toDate": "날짜로 변환",
     "consistentSpelling": "철자를 일관되게 유지하세요",
     "capOutliers": "상한 이상치",
-    "removeColumn": "열 제거"
+    "removeColumn": "열 제거",
+    "trimThenRemoveRepeats": "공백을 잘라낸 다음 반복을 제거하세요"
   }
 }

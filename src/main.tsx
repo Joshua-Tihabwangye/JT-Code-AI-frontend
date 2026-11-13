@@ -1,4 +1,4 @@
-import i18n from '@/i18n/config';
+import i18n, { i18nReady } from '@/i18n/config';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import * as Sentry from '@sentry/react';
@@ -13,7 +13,8 @@ initializeSentry();
 const root = document.getElementById('root');
 if (!root) throw new Error('Root element not found');
 
-createRoot(root).render(
+// Render once the chosen language's translations are in (no flash of English).
+void i18nReady.then(() => createRoot(root).render(
   <StrictMode>
     <Sentry.ErrorBoundary fallback={<div className="fatal-error">{i18n.t('chrome.fatalError')}</div>}>
       <AppProviders>
@@ -21,4 +22,4 @@ createRoot(root).render(
       </AppProviders>
     </Sentry.ErrorBoundary>
   </StrictMode>,
-);
+));

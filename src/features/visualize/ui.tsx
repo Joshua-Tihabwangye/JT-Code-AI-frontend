@@ -21,6 +21,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { FloatingPanel } from '@/shared/components';
 import { formatNumber } from '@/i18n/format';
 import { apiErrorMessage } from '@/lib/api/http';
 import type { ChartExplanation, ChartTable, Dataset, VizCategory, VizPalette, VizQuality, VizStat } from '@/lib/data';
@@ -290,9 +291,14 @@ export function DataTableModal({ title, table, onClose }: { title: string; table
 export function MenuButton({ label, icon: Icon, children, testId, disabled = false }: { label: string; icon: LucideIcon; children: ReactNode; testId?: string; disabled?: boolean }) {
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const menu = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    const close = (event: MouseEvent) => !box.current?.contains(event.target as Node) && setOpen(false);
+    const close = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (!box.current?.contains(target) && !menu.current?.contains(target)) setOpen(false);
+    };
     const key = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
     document.addEventListener('mousedown', close);
     document.addEventListener('keydown', key);
@@ -303,13 +309,23 @@ export function MenuButton({ label, icon: Icon, children, testId, disabled = fal
   }, [open]);
   return (
     <div ref={box} className="viz-menu-anchor">
-      <button type="button" className="viz-chip" aria-expanded={open} disabled={disabled} onClick={() => setOpen(!open)} data-testid={testId}>
+      <button ref={trigger} type="button" className="viz-chip" aria-expanded={open} disabled={disabled} onClick={() => setOpen(!open)} data-testid={testId}>
         <Icon size={14} aria-hidden /> {label} <ChevronDown size={12} aria-hidden />
       </button>
-      {/* Kept in the page while closed (hidden) so its file inputs and actions stay reachable. */}
-      <div className="viz-menu" role="menu" hidden={!open} onClick={(event) => (event.target as HTMLElement).closest('[data-close]') && setOpen(false)}>
+      {/* On top of the page (never clipped by the card around the toolbar). Kept mounted while closed so
+          its file inputs and actions stay reachable. */}
+      <FloatingPanel
+        anchorRef={trigger}
+        panelRef={menu}
+        placement="below"
+        width={240}
+        hidden={!open}
+        className="viz-menu"
+        role="menu"
+        onClick={(event) => (event.target as HTMLElement).closest('[data-close]') && setOpen(false)}
+      >
         {children}
-      </div>
+      </FloatingPanel>
     </div>
   );
 }

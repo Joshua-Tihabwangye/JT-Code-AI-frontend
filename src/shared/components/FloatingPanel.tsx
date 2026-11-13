@@ -50,6 +50,7 @@ export function FloatingPanel({
   edgeSelector,
   className = '',
   style,
+  hidden = false,
   children,
   ...rest
 }: {
@@ -59,9 +60,12 @@ export function FloatingPanel({
   panelRef?: Ref<HTMLDivElement>;
   /** Side placements: open beside the nearest ancestor matching this selector (e.g. `.sidebar`). */
   edgeSelector?: string;
+  /** Kept mounted but not shown (e.g. a menu holding a file input); placed again when shown. */
+  hidden?: boolean;
 } & HTMLAttributes<HTMLDivElement>) {
   const [box, setBox] = useState<CSSProperties | null>(null);
   useLayoutEffect(() => {
+    if (hidden) return;
     const update = () => {
       const element = anchorRef.current;
       const anchor = element?.getBoundingClientRect();
@@ -76,11 +80,11 @@ export function FloatingPanel({
       window.removeEventListener('resize', update);
       window.removeEventListener('scroll', update, true);
     };
-  }, [anchorRef, placement, width, edgeSelector]);
+  }, [anchorRef, placement, width, edgeSelector, hidden]);
   // Rendered at once (transparent until measured) so the menu can take keyboard focus as it opens.
   const placed = box ?? { left: 0, top: 0, opacity: 0 };
   return createPortal(
-    <div ref={panelRef} className={`floating-panel ${className}`} style={{ ...placed, ...style }} data-placement={placement} {...rest}>
+    <div ref={panelRef} className={`floating-panel ${className}`} style={{ ...placed, ...style }} data-placement={placement} hidden={hidden} {...rest}>
       {children}
     </div>,
     document.body,

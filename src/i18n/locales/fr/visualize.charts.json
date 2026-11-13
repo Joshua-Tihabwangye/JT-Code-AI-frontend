@@ -846,8 +846,6 @@
   },
   "tasks": {
     "forecast": {
-      "name": "Prévoir une série temporelle",
-      "description": "Projetez une mesure dans le futur (ventes, demande, chiffre d'affaires) avec des bandes d'incertitude.",
       "models": {
         "auto": "Le meilleur de tous (choisi par backtest)",
         "holt_winters": "Lissage exponentiel Holt–Winters",
@@ -860,15 +858,21 @@
         "Précision du backtest (MAE, MAPE)",
         "Table des valeurs futures"
       ],
+      "name": "Prévoir les valeurs futures",
+      "description": "Voyez où se dirige un chiffre (ventes, demande, revenus) et la fourchette probable autour de lui.",
       "slots": {
         "target": {
-          "label": "Mesure à prévoir"
+          "label": "Nombre à prévoir"
+        },
+        "date": {
+          "label": "Colonne Date"
+        },
+        "split_by": {
+          "label": "Une prévision distincte pour chacun (facultatif)"
         }
       }
     },
     "trend": {
-      "name": "Analyse de tendance et de saisonnalité",
-      "description": "Taux de croissance, moyennes mobiles, motifs saisonniers, points de rupture et périodes inhabituelles.",
       "models": {
         "robust": "Automatique (tendance robuste + détection d'anomalies)"
       },
@@ -877,18 +881,21 @@
         "Profil saisonnier",
         "Points de rupture et anomalies"
       ],
-      "slots": {
-        "target": {
-          "label": "Mesure"
-        }
-      },
       "options": {
         "window": "Moyenne mobile (périodes)"
+      },
+      "name": "Repérez les tendances et les saisons",
+      "description": "Un chiffre augmente ou diminue ? Taux de croissance, schémas saisonniers répétitifs et périodes inhabituelles.",
+      "slots": {
+        "target": {
+          "label": "Numéro à suivre dans le temps"
+        },
+        "date": {
+          "label": "Colonne Date"
+        }
       }
     },
     "drivers": {
-      "name": "Facteurs clés (ce qui influence un résultat)",
-      "description": "Trouvez quels facteurs et segments font monter ou baisser un résultat — attrition, ventes, satisfaction.",
       "models": {
         "segments": "Comparaison de segments + importance par forêt aléatoire"
       },
@@ -897,19 +904,19 @@
         "Importance des variables",
         "Meilleurs et pires segments"
       ],
+      "name": "Trouver ce qui affecte un résultat",
+      "description": "Quelles colonnes et quels groupes font augmenter ou diminuer un résultat (churn, ventes, satisfaction).",
       "slots": {
         "target": {
           "label": "Résultat à expliquer"
         },
         "features": {
-          "label": "Colonnes d'entrée",
-          "help": "Si vide, toutes les autres colonnes sont utilisées ; les catégories sont encodées en one-hot et les dates décomposées en parties."
+          "label": "Colonnes à partir desquelles apprendre (facultatif)",
+          "help": "Laissez vide pour utiliser une colonne sur deux."
         }
       }
     },
     "regression": {
-      "name": "Prédire un nombre",
-      "description": "Estimez un résultat numérique (prix, demande, score) à partir d'autres colonnes.",
       "models": {
         "auto": "Le meilleur de tous (validation croisée)",
         "linear": "Régression linéaire",
@@ -922,19 +929,19 @@
         "Prédit vs réel, résidus",
         "Importance des variables"
       ],
+      "name": "Estimer un nombre",
+      "description": "Estimez un nombre tel qu'un prix, une demande ou un score à partir des autres colonnes.",
       "slots": {
         "target": {
-          "label": "Nombre à prédire"
+          "label": "Nombre à estimer"
         },
         "features": {
-          "label": "Colonnes d'entrée",
-          "help": "Si vide, toutes les autres colonnes sont utilisées ; les catégories sont encodées en one-hot et les dates décomposées en parties."
+          "label": "Colonnes à partir desquelles apprendre (facultatif)",
+          "help": "Laissez vide pour utiliser une colonne sur deux."
         }
       }
     },
     "classification": {
-      "name": "Prédire une catégorie",
-      "description": "Classez les lignes (attrition, approbation, segment) et évaluez le classifieur.",
       "models": {
         "auto": "Le meilleur de tous (validation croisée)",
         "logistic": "Régression logistique",
@@ -946,19 +953,19 @@
         "Matrice de confusion, courbes ROC et PR",
         "Importance des variables"
       ],
+      "name": "Prédire un oui/non ou un groupe",
+      "description": "Prédisez à quel groupe appartient chaque ligne, par ex. un client partira-t-il (oui/non) ou quel forfait il choisit.",
       "slots": {
         "target": {
-          "label": "Catégorie à prédire"
+          "label": "Oui/non ou groupe à prévoir"
         },
         "features": {
-          "label": "Colonnes d'entrée",
-          "help": "Si vide, toutes les autres colonnes sont utilisées ; les catégories sont encodées en one-hot et les dates décomposées en parties."
+          "label": "Colonnes à partir desquelles apprendre (facultatif)",
+          "help": "Laissez vide pour utiliser une colonne sur deux."
         }
       }
     },
     "clustering": {
-      "name": "Trouver des segments",
-      "description": "Regroupez des lignes similaires (clients, produits) sans étiquettes.",
       "models": {
         "kmeans": "k-means",
         "gaussian_mixture": "Mélange gaussien",
@@ -969,16 +976,16 @@
         "Carte et profils des clusters",
         "Segment de chaque ligne"
       ],
+      "name": "Regrouper les lignes similaires",
+      "description": "Recherchez des groupes naturels dans les données, tels que des types de clients ou de produits, sans étiquettes.",
       "slots": {
         "features": {
-          "label": "Colonnes d'entrée",
-          "help": "Si vide, toutes les autres colonnes sont utilisées ; les catégories sont encodées en one-hot et les dates décomposées en parties."
+          "label": "Colonnes à partir desquelles apprendre (facultatif)",
+          "help": "Laissez vide pour utiliser une colonne sur deux."
         }
       }
     },
     "anomaly": {
-      "name": "Détecter des anomalies",
-      "description": "Signalez les lignes inhabituelles (fraude, pannes, erreurs de données).",
       "models": {
         "isolation_forest": "Forêt d'isolement",
         "zscore": "Score z robuste",
@@ -989,10 +996,12 @@
         "Anomalies mises en évidence sur une carte",
         "Score de chaque ligne"
       ],
+      "name": "Trouver des valeurs inhabituelles",
+      "description": "Repérez les lignes qui ne correspondent pas au modèle habituel : erreurs de données, fraude ou pics soudains.",
       "slots": {
         "features": {
-          "label": "Colonnes d'entrée",
-          "help": "Si vide, toutes les autres colonnes sont utilisées ; les catégories sont encodées en one-hot et les dates décomposées en parties."
+          "label": "Colonnes à partir desquelles apprendre (facultatif)",
+          "help": "Laissez vide pour utiliser une colonne sur deux."
         }
       }
     }
@@ -1281,7 +1290,10 @@
     "txt": "Texte délimité (détection auto ; | ,)",
     "json": "JSON (tableau d'enregistrements)",
     "jsonl": "JSON Lines",
-    "xlsx": "Classeur Excel (première feuille)"
+    "xlsx": "Classeur Excel (première feuille)",
+    "pdf": "PDF (ses tableaux ; les pages numérisées sont lues par OCR)",
+    "docx": "Document Word (ses tableaux)",
+    "image": "Photo d'un tableau (lue par OCR)"
   },
   "exportFormats": {
     "csv": "CSV",

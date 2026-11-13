@@ -8,7 +8,10 @@ type Tree = { [key: string]: string | string[] | Tree };
 
 const isTree = (value: unknown): value is Tree => typeof value === 'object' && value !== null && !Array.isArray(value);
 
-const files = import.meta.glob<Tree>('./locales/*/*.json', { eager: true, import: 'default' });
+// English ships with the app (it is also every language's fallback); the others are separate
+// downloads, fetched only when chosen, so the first load does not carry 20 languages.
+const english = import.meta.glob<Tree>('./locales/en/*.json', { eager: true, import: 'default' });
+const others = import.meta.glob<Tree>(['./locales/*/*.json', '!./locales/en/*.json'], { import: 'default' });
 
 function merge(target: Tree, source: Tree): Tree {
   for (const [key, value] of Object.entries(source)) {
@@ -21,7 +24,7 @@ function merge(target: Tree, source: Tree): Tree {
 }
 
 /** Every language's translations as one tree, from its area files. */
-export function buildResources(entries: Record<string, Tree> = files): Record<string, { translation: Tree }> {
+export function buildResources(entries: Record<string, Tree> = english): Record<string, { translation: Tree }> {
   const resources: Record<string, { translation: Tree }> = {};
   for (const [path, content] of Object.entries(entries).sort(([a], [b]) => a.localeCompare(b))) {
     const match = /locales\/([^/]+)\/([^/]+)\.json$/.exec(path);
@@ -36,3 +39,11 @@ export function buildResources(entries: Record<string, Tree> = files): Record<st
 }
 
 export const resources = buildResources();
+
+/** One language's translations, downloaded on demand (null for English or an unknown language). */
+export async function loadLanguageResources(lang: string): Promise<Tree | null> {
+  const paths = Object.keys(others).filter((path) => path.startsWith(`./locales/${lang}/`));
+  if (!paths.length) return null;
+  const entries = Object.fromEntries(await Promise.all(paths.map(async (path) => [path, await others[path]!()] as const)));
+  return buildResources(entries)[lang]?.translation ?? null;
+}

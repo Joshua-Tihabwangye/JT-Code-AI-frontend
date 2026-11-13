@@ -198,6 +198,7 @@
     "toDate": "تاریخ میں تبدیل کریں۔",
     "consistentSpelling": "ہجے کو ہم آہنگ بنائیں",
     "capOutliers": "ٹوپی باہر کرنے والے",
-    "removeColumn": "کالم کو ہٹا دیں۔"
+    "removeColumn": "کالم کو ہٹا دیں۔",
+    "trimThenRemoveRepeats": "خالی جگہوں کو تراشیں، پھر تکرار کو ہٹا دیں۔"
   }
 }

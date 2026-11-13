@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Activity, AlertTriangle, BrainCircuit, Check, Database, Download, FileSpreadsheet, Layers, LineChart, Pin, Play, RefreshCw, Save, Shapes, Table2, Target, TrendingUp } from 'lucide-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Activity, AlertTriangle, BrainCircuit, Check, Database, Download, FileSpreadsheet, Layers, LineChart, PanelLeftClose, PanelLeftOpen, Pin, Play, Plus, RefreshCw, Save, Shapes, Sparkles, Table2, Target, Trash2, TrendingUp, X } from 'lucide-react';
 import { formatNumber } from '@/i18n/format';
-import { useRepository, type VizFields, type VizOptions, type VizPrediction } from '@/lib/data';
+import { useRepository, type PredictionPreset, type VizDateRange, type VizFields, type VizOptions, type VizPrediction } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
 import { Button } from '@/shared/components';
 import { missingSlots, OptionControl, SlotControl } from '../controls';
@@ -12,7 +12,12 @@ import { useVisualize } from '../context';
 import { EChart } from '../EChart';
 import { saveBlob, safeName } from '../echarts';
 import { PinDialog, type PinnableVisual } from '../dashboards/PinDialog';
-import { colorVar, DataTableModal, ErrorNote, Explanation, formatValue, QualityBadge, SectionTitle } from '../ui';
+import { colorVar, DataTableModal, ErrorNote, formatValue, QualityBadge, SectionTitle } from '../ui';
+import { HowCalculated, MetricFormula } from './predict/HowCalculated';
+import { DateRangePicker, ForecastUntilPicker } from './predict/DateControls';
+import { CustomPredictionDialog } from './predict/CustomPredictionDialog';
+
+const STEPS_HIDDEN_KEY = 'jt-predict-steps-hidden';
 
 const TASK_STYLE: Record<string, { icon: typeof TrendingUp; color: string }> = {
   forecast: { icon: TrendingUp, color: '#0ea5e9' },
@@ -92,6 +97,11 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
           </div>
         </div>
         {result.summary[0] && <p className="text-sm">{result.summary[0]}</p>}
+        {result.method && (
+          <p className="text-xs text-muted-foreground" data-testid="prediction-method">
+            <b>{t('visualize.predict.methodUsed')}</b> {result.method}
+          </p>
+        )}
         <ErrorNote error={download.error ?? saveDataset.error ?? saveChart.error} />
         {notice && <p className="text-sm text-emerald-600 dark:text-emerald-400">{notice}</p>}
       </div>
@@ -105,6 +115,7 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
             </div>
             <p className="viz-gradient-text mt-1 text-2xl font-bold">{formatValue(metric.value, metric.format)}</p>
             {metric.help && <p className="text-[11px] text-muted-foreground">{metric.help}</p>}
+            <MetricFormula metric={metric} />
           </div>
         ))}
       </div>
@@ -127,6 +138,8 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
               </div>
             </div>
             <EChart option={chart.option} height={380} testId={`prediction-chart-${chart.id}`} />
+            {chart.explanation.insight && <p className="text-sm">{chart.explanation.insight}</p>}
+            <HowCalculated explanation={chart.explanation} />
           </div>
         ))}
       </div>
@@ -142,12 +155,6 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
           <p key={note} className="text-xs text-muted-foreground">
             ℹ {note}
           </p>
-        ))}
-        {result.charts.map((chart) => (
-          <div key={chart.id} className="mt-3">
-            <p className="text-sm font-semibold">{chart.title}</p>
-            <Explanation explanation={chart.explanation} compact />
-          </div>
         ))}
         {result.comparison.length > 1 && (
           <div className="mt-3">
@@ -183,6 +190,36 @@ export function PredictPage() {
   const [fields, setFields] = useState<VizFields>(initial.current?.fields ?? {});
   const [options, setOptions] = useState<VizOptions>(initial.current?.options ?? {});
   const [palette, setPalette] = useState('vivid');
+  const [dateRange, setDateRange] = useState<VizDateRange>({});
+  const [forecastUntil, setForecastUntil] = useState('');
+  const [customOpen, setCustomOpen] = useState(false);
+  const [presetId, setPresetId] = useState('');
+  // The steps panel can be hidden so the results get the whole width (remembered per browser).
+  const [stepsHidden, setStepsHidden] = useState(() => {
+    try {
+      return localStorage.getItem(STEPS_HIDDEN_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
+  const toggleSteps = () =>
+    setStepsHidden((hidden) => {
+      try {
+        localStorage.setItem(STEPS_HIDDEN_KEY, hidden ? '0' : '1');
+      } catch {
+        // storage unavailable: the choice lasts for this visit
+      }
+      return !hidden;
+    });
+  const presets = useQuery({
+    queryKey: ['visualize', 'prediction-presets', datasetId],
+    queryFn: () => visualize.listPredictionPresets(datasetId),
+    enabled: !!datasetId,
+  });
+  const deletePreset = useMutation({
+    mutationFn: (id: string) => visualize.deletePredictionPreset(id),
+    onSuccess: () => void queryClient.invalidateQueries({ queryKey: ['visualize', 'prediction-presets'] }),
+  });
   const profiles = useMemo(() => dataset?.profile.columnProfiles ?? [], [dataset]);
   const task = catalog?.predictionTasks.find((entry) => entry.id === taskId);
   const text = useCatalogText();
@@ -201,16 +238,22 @@ export function PredictPage() {
     setAssistantContext({ page: 'predict', fields, options, title: taskName });
   }, [fields, options, taskName, setAssistantContext]);
 
+  type RunInput = { task: string; model: string; fields: VizFields; options: VizOptions; dateRange: VizDateRange; forecastUntil: string };
   const run = useMutation({
-    mutationFn: () =>
-      visualize.predict({
+    mutationFn: (input?: RunInput) => {
+      const chosen = input ?? { task: taskId, model, fields, options, dateRange, forecastUntil };
+      const entry = catalog?.predictionTasks.find((item) => item.id === chosen.task);
+      return visualize.predict({
         datasetId,
-        task: taskId,
-        model: model || task?.models[0]?.[0],
-        fields,
-        options,
+        task: chosen.task,
+        model: chosen.model || entry?.models[0]?.[0],
+        fields: chosen.fields,
+        options: chosen.options,
         style: { palette, theme: resolvedTheme === 'dark' ? 'dark' : 'light' },
-      }),
+        ...(chosen.dateRange.from || chosen.dateRange.to ? { dateRange: chosen.dateRange } : {}),
+        ...(chosen.task === 'forecast' && chosen.forecastUntil ? { forecastUntil: chosen.forecastUntil } : {}),
+      });
+    },
     onSettled: () => void queryClient.invalidateQueries({ queryKey: ['billing'] }),
   });
 
@@ -238,15 +281,39 @@ export function PredictPage() {
     setModel('');
     setFields({});
     setOptions({});
+    setDateRange({});
+    setForecastUntil('');
+    setPresetId('');
     run.reset();
     setTab('data');
   }
 
+  /** A saved custom prediction: fills every step, and runs it when asked. */
+  function applyPreset(preset: PredictionPreset, runNow: boolean, until = '') {
+    const input = { task: preset.task, model: preset.model, fields: preset.fields, options: preset.options ?? {}, dateRange: preset.dateRange ?? {}, forecastUntil: until };
+    setTaskId(input.task);
+    setModel(input.model);
+    setFields(input.fields);
+    setOptions(input.options);
+    setDateRange(input.dateRange);
+    setForecastUntil(until);
+    setPresetId(preset.id);
+    run.reset();
+    if (runNow) run.mutate(input);
+    else setTab('run');
+  }
+  const hasDateSlot = !!task?.slots.some((slot) => slot.kind === 'datetime');
+  const dateProfile = profiles.find((profile) => profile.name === fields.date);
+
   return (
     <div className="space-y-4" data-testid="visualize-predict">
-      <div className="predict-layout">
-        <aside className="predict-wizard" aria-label={t('visualize.predict.steps')} data-testid="predict-ribbon">
+      <div className={`predict-layout${stepsHidden ? ' steps-hidden' : ''}`}>
+        <aside className="predict-wizard" aria-label={t('visualize.predict.steps')} data-testid="predict-ribbon" hidden={stepsHidden}>
+          <button type="button" className="viz-chip self-end" onClick={toggleSteps} data-testid="hide-steps">
+            <PanelLeftClose size={13} aria-hidden /> {t('visualize.predict.hideSteps')}
+          </button>
           <WizardStep number={1} title={t('visualize.predict.taskTab')} summary={taskName} open={tab === 'task'} done={!!task} onOpen={() => setTab('task')} testId="step-task">
+            <p className="viz-label m-0">{t('visualize.predict.suggestions')}</p>
             <div className="grid grid-cols-2 gap-1.5" role="radiogroup" aria-label={t('visualize.predict.task')}>
               {catalog.predictionTasks.map((entry) => {
                 const style = TASK_STYLE[entry.id] ?? { icon: BrainCircuit, color: '#6366f1' };
@@ -268,6 +335,24 @@ export function PredictPage() {
                   </button>
                 );
               })}
+            </div>
+            <div className="predict-custom" data-testid="custom-predictions">
+              <p className="viz-label m-0">{t('visualize.predict.custom.yours')}</p>
+              {(presets.data ?? []).map((preset) => (
+                <div key={preset.id} className={`predict-preset${preset.id === presetId ? ' active' : ''}`}>
+                  <button type="button" className="min-w-0 flex-1 text-left" onClick={() => applyPreset(preset, false)} title={preset.description} data-testid={`preset-${preset.id}`}>
+                    <Sparkles size={13} aria-hidden className="mr-1 inline text-violet-500" />
+                    <span className="truncate">{preset.name}</span>
+                  </button>
+                  <button type="button" className="predict-preset-remove" onClick={() => deletePreset.mutate(preset.id)} aria-label={t('visualize.predict.custom.remove', { name: preset.name })}>
+                    <Trash2 size={12} aria-hidden />
+                  </button>
+                </div>
+              ))}
+              {!presets.data?.length && <p className="text-[11px] text-muted-foreground">{t('visualize.predict.custom.none')}</p>}
+              <button type="button" className="viz-chip primary w-full justify-center" onClick={() => setCustomOpen(true)} disabled={!profiles.length} data-testid="custom-create">
+                <Plus size={13} aria-hidden /> {t('visualize.predict.custom.create')}
+              </button>
             </div>
           </WizardStep>
           <WizardStep number={2} title={t('visualize.predict.dataTab')} summary={missing.length ? t('visualize.predict.toChoose', { count: missing.length }) : dataset?.name} open={tab === 'data'} done={!missing.length} onOpen={() => setTab('data')} testId="step-data">
@@ -300,6 +385,7 @@ export function PredictPage() {
                     }
                   />
                 ))}
+                <DateRangePicker profiles={profiles} column={hasDateSlot && typeof fields.date === 'string' ? fields.date : undefined} value={dateRange} onChange={setDateRange} />
               </div>
             )}
           </WizardStep>
@@ -319,6 +405,7 @@ export function PredictPage() {
                     ))}
                   </select>
                 </label>
+                {task.id === 'forecast' && <ForecastUntilPicker profile={dateProfile} value={forecastUntil} onChange={setForecastUntil} />}
                 {task.options.map((option) => (
                   <OptionControl key={`${task.id}-${option.key}`} option={option} owner={{ kind: 'task', id: task.id }} value={options[option.key]} positiveClasses={positiveChoices} onChange={(value) => setOptions((current) => ({ ...current, [option.key]: value }))} />
                 ))}
@@ -346,7 +433,7 @@ export function PredictPage() {
                   ))}
                 </ul>
                 {missing.length > 0 && <p className="text-xs text-amber-600">{t('visualize.predict.chooseInStep2', { fields: missing.map((slot) => text.slotLabel(slot, { kind: 'task', id: task.id })).join(', ') })}</p>}
-                <Button className="viz-primary w-full gap-1.5" disabled={!datasetId || missing.length > 0 || run.isPending} onClick={() => run.mutate()} data-testid="run-prediction">
+                <Button className="viz-primary w-full gap-1.5" disabled={!datasetId || missing.length > 0 || run.isPending} onClick={() => run.mutate(undefined)} data-testid="run-prediction">
                   {run.isPending ? <RefreshCw size={14} className="animate-spin" aria-hidden /> : <Play size={14} aria-hidden />} {t('visualize.predict.run')}
                 </Button>
                 <p className="text-[11px] text-muted-foreground">{t('visualize.predict.creditsNote')}</p>
@@ -355,6 +442,25 @@ export function PredictPage() {
           </WizardStep>
         </aside>
         <section className="min-w-0 space-y-4">
+          {stepsHidden && (
+            <div className="flex flex-wrap items-center gap-2">
+              <button type="button" className="viz-chip" onClick={toggleSteps} data-testid="show-steps">
+                <PanelLeftOpen size={13} aria-hidden /> {t('visualize.predict.showSteps')}
+              </button>
+              <span className="text-xs text-muted-foreground">
+                {taskName}
+                {dataset ? ` · ${dataset.name}` : ''}
+              </span>
+              {(dateRange.from || dateRange.to) && (
+                <span className="viz-badge">
+                  {dateRange.from ?? '…'} → {dateRange.to ?? '…'}
+                  <button type="button" className="ml-1" onClick={() => setDateRange({})} aria-label={t('visualize.predict.allDates')}>
+                    <X size={10} aria-hidden />
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
           {!run.data && !run.isPending && (
             <div className="viz-card viz-card-pad flex flex-col items-center gap-2 py-12 text-center text-sm text-muted-foreground" data-testid="predict-empty">
               <BrainCircuit size={26} aria-hidden />
@@ -362,7 +468,7 @@ export function PredictPage() {
                 ? t('visualize.predict.empty')
                 : t('visualize.predict.ready', { task: taskName ?? '', name: dataset?.name ?? '' })}
               {!missing.length && (
-                <Button size="sm" className="viz-primary gap-1.5" onClick={() => run.mutate()} disabled={!datasetId} data-testid="run-prediction-inline">
+                <Button size="sm" className="viz-primary gap-1.5" onClick={() => run.mutate(undefined)} disabled={!datasetId} data-testid="run-prediction-inline">
                   <Play size={14} aria-hidden /> {t('visualize.predict.runNow')}
                 </Button>
               )}
@@ -376,6 +482,7 @@ export function PredictPage() {
         </div>
       )}
           {run.data && <Results result={run.data} datasetName={dataset?.name ?? t('visualize.predict.datasetWord')} pinFor={pinFor} />}
+          <CustomPredictionDialog open={customOpen} onClose={() => setCustomOpen(false)} profiles={profiles} datasetId={datasetId} onCreated={(preset, runNow, until) => applyPreset(preset, runNow, until)} />
         </section>
       </div>
     </div>

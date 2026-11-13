@@ -198,6 +198,7 @@
     "toDate": "Tarihe dönüştür",
     "consistentSpelling": "Yazımı tutarlı hale getirin",
     "capOutliers": "Sınır dışı değerler",
-    "removeColumn": "Sütunu kaldır"
+    "removeColumn": "Sütunu kaldır",
+    "trimThenRemoveRepeats": "Boşlukları kesin, ardından tekrarları kaldırın"
   }
 }

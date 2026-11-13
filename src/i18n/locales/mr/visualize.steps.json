@@ -198,6 +198,7 @@
     "toDate": "तारखेत रूपांतरित करा",
     "consistentSpelling": "शुद्धलेखन सुसंगत करा",
     "capOutliers": "कॅप outliers",
-    "removeColumn": "स्तंभ काढा"
+    "removeColumn": "स्तंभ काढा",
+    "trimThenRemoveRepeats": "मोकळी जागा ट्रिम करा, नंतर पुनरावृत्ती काढा"
   }
 }

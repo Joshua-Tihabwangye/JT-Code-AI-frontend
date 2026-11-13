@@ -198,6 +198,7 @@
     "toDate": "转换为日期",
     "consistentSpelling": "统一拼写",
     "capOutliers": "限制离群值",
-    "removeColumn": "删除列"
+    "removeColumn": "删除列",
+    "trimThenRemoveRepeats": "修剪空格，然后删除重复项"
   }
 }

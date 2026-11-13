@@ -7,7 +7,7 @@
   "pick": "Add data from the Home tab: upload a file, paste CSV or load a sample.",
   "tabs": {
     "home": "Home",
-    "quality": "Check quality",
+    "quality": "Clean data",
     "transform": "Transform",
     "transformCount": "Transform · {{n}}",
     "profile": "Column profile",
@@ -28,7 +28,7 @@
   "quality": {
     "scan": "Scan",
     "rescan": "Re-scan",
-    "check": "Check data",
+    "check": "Check again",
     "legend": "Highlight colours (click to hide)",
     "legendEmpty": "Run a check to see the colour key.",
     "noIssues": "No issues found 🎉",
@@ -40,9 +40,9 @@
     "examples": "e.g. {{examples}}",
     "rows": "Rows",
     "fixTitle": "Adds a step in Transform; nothing changes until you save",
-    "title": "Data quality report",
-    "subtitle": "Python checks — no AI and nothing is changed",
-    "intro": "Press <b>Check data</b>: problems are coloured in the table and each comes with a one-click fix.",
+    "title": "Clean data",
+    "subtitle": "Duplicates, missing values and other inconsistencies, found by Python checks. Nothing changes until you apply a fix.",
+    "intro": "Problems are listed below and coloured in the table; each comes with a one-click fix.",
     "score": "Quality score",
     "excellent": "Excellent",
     "needsLook": "Needs a look",
@@ -51,7 +51,11 @@
     "rowsAffected": "Rows affected",
     "cellsFlagged": "Cells flagged",
     "checked": "Rows × columns checked",
-    "nothingHere": "Nothing here."
+    "nothingHere": "Nothing here.",
+    "fixAll": "Fix all ({{n}} steps)",
+    "fixAllHint": "Apply every suggested fix at once. Each becomes a step in Transform that you can review or undo.",
+    "banner": "We found {{n}} problems in this data, affecting {{rows}} rows: duplicates, missing values or inconsistent entries.",
+    "review": "Review and clean"
   },
   "profile": {
     "find": "Find",

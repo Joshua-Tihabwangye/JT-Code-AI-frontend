@@ -7,11 +7,11 @@
   "pick": "Agrega datos desde la pestaña Inicio: sube un archivo, pega un CSV o carga un ejemplo.",
   "tabs": {
     "home": "Inicio",
-    "quality": "Comprobar calidad",
     "transform": "Transformar",
     "transformCount": "Transformar · {{n}}",
     "profile": "Perfil de columna",
-    "insights": "Conclusiones"
+    "insights": "Conclusiones",
+    "quality": "Datos limpios"
   },
   "kinds": {
     "numeric": "numérico",
@@ -28,7 +28,6 @@
   "quality": {
     "scan": "Analizar",
     "rescan": "Volver a analizar",
-    "check": "Comprobar datos",
     "legend": "Colores de resaltado (haz clic para ocultar)",
     "legendEmpty": "Ejecuta una comprobación para ver la clave de colores.",
     "noIssues": "No se encontraron problemas 🎉",
@@ -40,9 +39,6 @@
     "examples": "p. ej., {{examples}}",
     "rows": "Filas",
     "fixTitle": "Agrega un paso en Transformar; no cambia nada hasta que guardes",
-    "title": "Informe de calidad de los datos",
-    "subtitle": "Comprobaciones en Python: sin IA y sin cambiar nada",
-    "intro": "Pulsa <b>Comprobar datos</b>: los problemas se colorean en la tabla y cada uno incluye una corrección con un clic.",
     "score": "Puntuación de calidad",
     "excellent": "Excelente",
     "needsLook": "Requiere revisión",
@@ -51,7 +47,15 @@
     "rowsAffected": "Filas afectadas",
     "cellsFlagged": "Celdas marcadas",
     "checked": "Filas × columnas comprobadas",
-    "nothingHere": "No hay nada aquí."
+    "nothingHere": "No hay nada aquí.",
+    "check": "comprobar de nuevo",
+    "title": "Datos limpios",
+    "subtitle": "Duplicados, valores faltantes y otras inconsistencias encontradas mediante comprobaciones de Python. Nada cambia hasta que aplique una solución.",
+    "intro": "Los problemas se enumeran a continuación y están coloreados en la tabla; cada uno viene con una solución de un solo clic.",
+    "fixAll": "Reparar todo ({{n}} pasos)",
+    "fixAllHint": "Aplique todas las soluciones sugeridas a la vez. Cada uno se convierte en un paso de Transform que puedes revisar o deshacer.",
+    "banner": "Encontramos {{n}} problemas en estos datos, que afectan a {{rows}} filas: duplicados, valores faltantes o entradas inconsistentes.",
+    "review": "Revisar y limpiar"
   },
   "profile": {
     "find": "Buscar",

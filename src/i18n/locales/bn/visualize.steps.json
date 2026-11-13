@@ -198,6 +198,7 @@
     "toDate": "তারিখে রূপান্তর করুন",
     "consistentSpelling": "বানান সামঞ্জস্যপূর্ণ করুন",
     "capOutliers": "ক্যাপ outliers",
-    "removeColumn": "কলাম সরান"
+    "removeColumn": "কলাম সরান",
+    "trimThenRemoveRepeats": "স্পেস ট্রিম করুন, তারপর পুনরাবৃত্তিগুলি সরান"
   }
 }
