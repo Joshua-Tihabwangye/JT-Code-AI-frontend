@@ -1,0 +1,47 @@
+{
+  "title": "Python in questa pagina:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Costruisce i numeri di ogni oggetto visivo: filtri, gruppi e totali.",
+      "numpy": "Matematica veloce sulle colonne.",
+      "statsmodels": "Linee di tendenza e previsione sui grafici.",
+      "openpyxl": "Esportazione in Excel."
+    },
+    "data": {
+      "pandas": "Legge, profila, controlla e trasforma i dati.",
+      "numpy": "Statistiche e controlli dei valori anomali.",
+      "openpyxl": "Legge le cartelle di lavoro di Excel.",
+      "pdfplumber": "Legge le tabelle nei file PDF.",
+      "pypdfium2": "Rende le pagine PDF scansionate per l'OCR.",
+      "python-docx": "Legge le tabelle nei documenti Word.",
+      "rapidocr-onnxruntime": "Legge il testo in immagini di tabelle.",
+      "onnxruntime": "Esegue il modello OCR.",
+      "pillow": "Apre e prepara le immagini."
+    },
+    "explore": {
+      "pandas": "Raggruppa e aggrega i dati per il grafico.",
+      "numpy": "Calcoli dietro ogni grafico.",
+      "scipy": "Statistica: distribuzioni, correlazioni e test.",
+      "scikit-learn": "Cluster, rette di regressione e PCA.",
+      "statsmodels": "Linee di tendenza, smussamento e scomposizione."
+    },
+    "predict": {
+      "scikit-learn": "Addestra, testa e confronta i modelli.",
+      "statsmodels": "Previsioni di serie temporali (Holt–Winters, ARIMA).",
+      "scipy": "Test statistici e intervalli di incertezza.",
+      "pandas": "Legge il set di dati e prepara gli input.",
+      "numpy": "Calcoli e misure di errore."
+    },
+    "reports": {
+      "pandas": "Tabelle per i report.",
+      "openpyxl": "Cartelle di lavoro Excel con grafici nativi."
+    },
+    "gallery": {
+      "pandas": "Raggruppa e aggrega i dati per il grafico.",
+      "numpy": "Calcoli dietro ogni grafico.",
+      "scipy": "Statistica: distribuzioni, correlazioni e test.",
+      "scikit-learn": "Cluster, rette di regressione e PCA.",
+      "statsmodels": "Linee di tendenza, smussamento e scomposizione."
+    }
+  }
+}

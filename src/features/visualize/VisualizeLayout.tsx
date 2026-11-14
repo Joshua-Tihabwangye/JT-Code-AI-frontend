@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BrainCircuit, Compass, Database, FileText, LayoutGrid, Shapes, Sparkles } from 'lucide-react';
 import { apiErrorMessage } from '@/lib/api/http';
 import { AssistantPanel } from './AssistantPanel';
+import { PythonLibraries } from './PythonLibraries';
 import { VisualizeProvider, useVisualize } from './context';
 import './visualize.css';
 
@@ -50,6 +51,7 @@ function Shell() {
           </button>
         </header>
       )}
+      {!inDashboard && <PythonLibraries page={TABS.find((tab) => (tab.match ? tab.match.test(path) : path === tab.to || path.startsWith(`${tab.to}/`)))?.key ?? 'dashboards'} />}
       {catalogError ? (
         <p role="alert" className="viz-card viz-card-pad text-sm text-destructive">
           {apiErrorMessage(catalogError)}

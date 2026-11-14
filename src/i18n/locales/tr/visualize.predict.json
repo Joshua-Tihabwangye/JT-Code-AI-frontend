@@ -86,6 +86,46 @@
     "learnFrom": "Bu sütunlardan bilgi edinin",
     "alsoUse": "Bu sütunları da kullan",
     "save": "Kaydetmek",
-    "saveRun": "Kaydet ve çalıştır"
+    "saveRun": "Kaydet ve çalıştır",
+    "reasons": {
+      "none": "",
+      "constant": "Her satır aynı değere sahip",
+      "identifier": "Kimlik sütunu (satır başına benzersiz)",
+      "mostly_empty": "Çoğunlukla boş",
+      "few_rows": "Öğrenilebilecek çok az satır var",
+      "is_date": "Bir tarih: onu zaman çizelgesi olarak kullanın",
+      "needs_number": "Bir sayı sütununa ihtiyaç var",
+      "needs_dates": "Yeterli döneme sahip bir tarih sütununa ihtiyaç var",
+      "too_many_values": "Çok fazla farklı değer"
+    },
+    "reading": "Veri kümesi okunuyor…",
+    "readBy": "Bu veri kümesinden Python (pandalar) tarafından okunan seçenekler: {{rows}} satırlar, {{columns}} sütunlar.",
+    "distinct_one": "{{n}} değeri",
+    "distinct_other": "{{n}} farklı değerler",
+    "pickColumnFirst": "Önce neyi tahmin edeceğinizi seçin.",
+    "kinds": {
+      "numeric": "sayı",
+      "categorical": "grup",
+      "datetime": "tarih",
+      "boolean": "evet/hayır",
+      "text": "metin"
+    },
+    "dateSpan": "{{first}} ila {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "günler",
+      "week": "haftalar",
+      "month": "aylar",
+      "quarter": "çeyrekler",
+      "year": "yıllar"
+    },
+    "grainsPlural": {
+      "day": "günler",
+      "week": "haftalar",
+      "month": "aylar",
+      "quarter": "çeyrekler",
+      "year": "yıllar"
+    },
+    "untilHint": "{{last}} sonrasındaki bir tarihi seçin veya bir sonraki {{periods}} {{grain}} tahminini yapmak için bu tarihi boş bırakın.",
+    "notRecommended": "tavsiye edilmez"
   }
 }

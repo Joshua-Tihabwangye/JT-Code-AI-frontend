@@ -350,7 +350,7 @@ export function PredictPage() {
                 </div>
               ))}
               {!presets.data?.length && <p className="text-[11px] text-muted-foreground">{t('visualize.predict.custom.none')}</p>}
-              <button type="button" className="viz-chip primary w-full justify-center" onClick={() => setCustomOpen(true)} disabled={!profiles.length} data-testid="custom-create">
+              <button type="button" className="viz-chip primary w-full justify-center" onClick={() => setCustomOpen(true)} disabled={!datasets.length} data-testid="custom-create">
                 <Plus size={13} aria-hidden /> {t('visualize.predict.custom.create')}
               </button>
             </div>
@@ -482,7 +482,7 @@ export function PredictPage() {
         </div>
       )}
           {run.data && <Results result={run.data} datasetName={dataset?.name ?? t('visualize.predict.datasetWord')} pinFor={pinFor} />}
-          <CustomPredictionDialog open={customOpen} onClose={() => setCustomOpen(false)} profiles={profiles} datasetId={datasetId} onCreated={(preset, runNow, until) => applyPreset(preset, runNow, until)} />
+          <CustomPredictionDialog open={customOpen} onClose={() => setCustomOpen(false)} onCreated={(preset, runNow, until) => applyPreset(preset, runNow, until)} />
         </section>
       </div>
     </div>

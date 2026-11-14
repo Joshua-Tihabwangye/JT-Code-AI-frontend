@@ -1,0 +1,47 @@
+{
+  "title": "Python sur cette page :",
+  "roles": {
+    "dashboards": {
+      "pandas": "Construit les nombres de chaque visuel : filtres, groupes et totaux.",
+      "numpy": "Maths rapides sur les colonnes.",
+      "statsmodels": "Lignes de tendance et de prévision sur les graphiques.",
+      "openpyxl": "Exportation Excel."
+    },
+    "data": {
+      "pandas": "Lit, profile, vérifie et transforme les données.",
+      "numpy": "Statistiques et contrôles des valeurs aberrantes.",
+      "openpyxl": "Lit les classeurs Excel.",
+      "pdfplumber": "Lit les tableaux dans les fichiers PDF.",
+      "pypdfium2": "Rend les pages PDF numérisées pour l'OCR.",
+      "python-docx": "Lit les tableaux dans les documents Word.",
+      "rapidocr-onnxruntime": "Lit le texte en images de tableaux.",
+      "onnxruntime": "Exécute le modèle OCR.",
+      "pillow": "Ouvre et prépare les images."
+    },
+    "explore": {
+      "pandas": "Regroupe et agrège les données du graphique.",
+      "numpy": "Calculs derrière chaque graphique.",
+      "scipy": "Statistiques : distributions, corrélations et tests.",
+      "scikit-learn": "Clusters, droites de régression et PCA.",
+      "statsmodels": "Lignes de tendance, lissage et décomposition."
+    },
+    "predict": {
+      "scikit-learn": "Entraîne, teste et compare les modèles.",
+      "statsmodels": "Prévisions de séries chronologiques (Holt-Winters, ARIMA).",
+      "scipy": "Tests statistiques et plages d'incertitude.",
+      "pandas": "Lit l'ensemble de données et prépare les entrées.",
+      "numpy": "Calculs et mesures d'erreurs."
+    },
+    "reports": {
+      "pandas": "Tableaux pour les rapports.",
+      "openpyxl": "Classeurs Excel avec graphiques natifs."
+    },
+    "gallery": {
+      "pandas": "Regroupe et agrège les données du graphique.",
+      "numpy": "Calculs derrière chaque graphique.",
+      "scipy": "Statistiques : distributions, corrélations et tests.",
+      "scikit-learn": "Clusters, droites de régression et PCA.",
+      "statsmodels": "Lignes de tendance, lissage et décomposition."
+    }
+  }
+}

@@ -86,6 +86,46 @@
     "learnFrom": "Jifunze kutoka kwa safu wima hizi",
     "alsoUse": "Pia tumia safu hizi",
     "save": "Hifadhi",
-    "saveRun": "Hifadhi na kukimbia"
+    "saveRun": "Hifadhi na kukimbia",
+    "reasons": {
+      "none": "",
+      "constant": "Kila safu ina thamani sawa",
+      "identifier": "Safu wima ya kitambulisho (ya kipekee kwa kila safu)",
+      "mostly_empty": "Mara nyingi tupu",
+      "few_rows": "Safu mlalo chache sana kujifunza kutoka",
+      "is_date": "Tarehe: itumie kama kalenda ya matukio",
+      "needs_number": "Inahitaji safu wima ya nambari",
+      "needs_dates": "Inahitaji safu ya tarehe yenye vipindi vya kutosha",
+      "too_many_values": "Thamani nyingi tofauti"
+    },
+    "reading": "Inasoma mkusanyiko wa data..",
+    "readBy": "Chaguo zilizosomwa kutoka kwa mkusanyiko huu wa data na Python (pandas): {{rows}} safu, {{columns}} safu wima.",
+    "distinct_one": "{{n}} thamani",
+    "distinct_other": "{{n}} thamani tofauti",
+    "pickColumnFirst": "Chagua cha kutabiri kwanza.",
+    "kinds": {
+      "numeric": "nambari",
+      "categorical": "kikundi",
+      "datetime": "tarehe",
+      "boolean": "ndiyo/hapana",
+      "text": "maandishi"
+    },
+    "dateSpan": "{{first}} hadi {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "siku",
+      "week": "wiki",
+      "month": "miezi",
+      "quarter": "robo",
+      "year": "miaka"
+    },
+    "grainsPlural": {
+      "day": "siku",
+      "week": "wiki",
+      "month": "miezi",
+      "quarter": "robo",
+      "year": "miaka"
+    },
+    "untilHint": "Chagua tarehe baada ya {{last}}, au iache tupu ili kutabiri {{periods}} {{grain}} ijayo.",
+    "notRecommended": "haipendekezwi"
   }
 }

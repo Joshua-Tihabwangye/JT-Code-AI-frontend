@@ -1,0 +1,47 @@
+{
+  "title": "Python nesta página:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Constrói os números de cada visual: filtros, grupos e totais.",
+      "numpy": "Matemática rápida nas colunas.",
+      "statsmodels": "Linhas de tendência e previsão em gráficos.",
+      "openpyxl": "Exportação Excel."
+    },
+    "data": {
+      "pandas": "Lê, cria perfis, verifica e transforma os dados.",
+      "numpy": "Estatísticas e verificações de outliers.",
+      "openpyxl": "Lê pastas de trabalho do Excel.",
+      "pdfplumber": "Lê tabelas em arquivos PDF.",
+      "pypdfium2": "Renderiza páginas PDF digitalizadas para OCR.",
+      "python-docx": "Lê tabelas em documentos do Word.",
+      "rapidocr-onnxruntime": "Lê o texto em imagens de tabelas.",
+      "onnxruntime": "Executa o modelo OCR.",
+      "pillow": "Abre e prepara fotos."
+    },
+    "explore": {
+      "pandas": "Agrupa e agrega os dados do gráfico.",
+      "numpy": "Cálculos por trás de cada gráfico.",
+      "scipy": "Estatística: distribuições, correlações e testes.",
+      "scikit-learn": "Clusters, linhas de regressão e PCA.",
+      "statsmodels": "Linhas de tendência, suavização e decomposição."
+    },
+    "predict": {
+      "scikit-learn": "Treina, testa e compara os modelos.",
+      "statsmodels": "Previsões de séries temporais (Holt – Winters, ARIMA).",
+      "scipy": "Testes estatísticos e intervalos de incerteza.",
+      "pandas": "Lê o conjunto de dados e prepara as entradas.",
+      "numpy": "Cálculos e medidas de erro."
+    },
+    "reports": {
+      "pandas": "Tabelas para os relatórios.",
+      "openpyxl": "Pastas de trabalho do Excel com gráficos nativos."
+    },
+    "gallery": {
+      "pandas": "Agrupa e agrega os dados do gráfico.",
+      "numpy": "Cálculos por trás de cada gráfico.",
+      "scipy": "Estatística: distribuições, correlações e testes.",
+      "scikit-learn": "Clusters, linhas de regressão e PCA.",
+      "statsmodels": "Linhas de tendência, suavização e decomposição."
+    }
+  }
+}

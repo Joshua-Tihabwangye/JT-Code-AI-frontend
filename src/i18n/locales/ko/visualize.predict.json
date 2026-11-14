@@ -86,6 +86,46 @@
     "learnFrom": "이 칼럼에서 배우기",
     "alsoUse": "또한 다음 열을 사용하십시오",
     "save": "구하다",
-    "saveRun": "저장 및 실행"
+    "saveRun": "저장 및 실행",
+    "reasons": {
+      "none": "",
+      "constant": "모든 행은 동일한 값을 갖습니다",
+      "identifier": "ID 열(행당 고유)",
+      "mostly_empty": "대부분 비어 있음",
+      "few_rows": "학습할 행이 너무 적습니다",
+      "is_date": "날짜: 타임라인으로 사용",
+      "needs_number": "숫자 열이 필요합니다",
+      "needs_dates": "기간이 충분한 날짜 열이 필요합니다",
+      "too_many_values": "다른 값이 너무 많습니다"
+    },
+    "reading": "데이터세트를 읽는 중…",
+    "readBy": "Python(pandas)이 이 데이터 세트에서 읽은 선택 항목: {{rows}} 행, {{columns}} 열.",
+    "distinct_one": "{{n}} 값",
+    "distinct_other": "{{n}} 다른 값",
+    "pickColumnFirst": "무엇을 먼저 예측할지 선택하세요.",
+    "kinds": {
+      "numeric": "숫자",
+      "categorical": "그룹",
+      "datetime": "날짜",
+      "boolean": "예/아니요",
+      "text": "텍스트"
+    },
+    "dateSpan": "{{first}} ~ {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "날",
+      "week": "주",
+      "month": "개월",
+      "quarter": "병사",
+      "year": "연령"
+    },
+    "grainsPlural": {
+      "day": "날",
+      "week": "주",
+      "month": "개월",
+      "quarter": "병사",
+      "year": "연령"
+    },
+    "untilHint": "{{last}} 이후의 날짜를 선택하거나 다음 {{periods}} {{grain}}을 예측하려면 비워 두세요.",
+    "notRecommended": "권장하지 않음"
   }
 }

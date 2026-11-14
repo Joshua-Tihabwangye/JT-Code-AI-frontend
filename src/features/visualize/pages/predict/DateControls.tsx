@@ -21,8 +21,9 @@ export function DateRangePicker({ profiles, column, value, onChange }: { profile
   const set = (patch: Partial<VizDateRange>) => onChange({ ...value, column: active, ...patch });
   return (
     <fieldset className="predict-dates" data-testid="date-range">
-      <legend className="viz-label flex items-center gap-1">
-        <CalendarRange size={12} aria-hidden /> {t('visualize.predict.dateRange')}
+      <legend className="viz-label">
+        <CalendarRange size={12} aria-hidden className="mr-1 inline align-[-2px]" />
+        {t('visualize.predict.dateRange')}
       </legend>
       {!column && columns.length > 1 && (
         <select className="viz-field" value={active} onChange={(event) => onChange({ column: event.target.value })} aria-label={t('visualize.predict.dateRangeColumn')}>
@@ -61,8 +62,9 @@ export function ForecastUntilPicker({ profile, value, onChange }: { profile?: Co
   const last = day(profile?.max);
   return (
     <label className="block text-xs" data-testid="forecast-until">
-      <span className="viz-label flex items-center gap-1">
-        <CalendarRange size={12} aria-hidden /> {t('visualize.predict.forecastUntil')}
+      <span className="viz-label">
+        <CalendarRange size={12} aria-hidden className="mr-1 inline align-[-2px]" />
+        {t('visualize.predict.forecastUntil')}
       </span>
       <input type="date" className="viz-field" min={last} value={value} onChange={(event) => onChange(event.target.value)} />
       <span className="text-[11px] text-muted-foreground">{value ? t('visualize.predict.forecastUntilSet') : t('visualize.predict.forecastUntilHint', { last: last ?? '' })}</span>

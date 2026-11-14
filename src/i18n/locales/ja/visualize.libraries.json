@@ -1,0 +1,47 @@
+{
+  "title": "このページの Python:",
+  "roles": {
+    "dashboards": {
+      "pandas": "すべてのビジュアルの数値 (フィルター、グループ、合計) を作成します。",
+      "numpy": "列の高速計算。",
+      "statsmodels": "チャート上のトレンド線と予測線。",
+      "openpyxl": "エクセルエクスポート。"
+    },
+    "data": {
+      "pandas": "データの読み取り、プロファイリング、チェック、変換を行います。",
+      "numpy": "統計と外れ値のチェック。",
+      "openpyxl": "Excel ワークブックを読み取ります。",
+      "pdfplumber": "PDF ファイル内の表を読み取ります。",
+      "pypdfium2": "スキャンした PDF ページを OCR 用にレンダリングします。",
+      "python-docx": "Word 文書内の表を読み取ります。",
+      "rapidocr-onnxruntime": "表の写真内のテキストを読み上げます。",
+      "onnxruntime": "OCR モデルを実行します。",
+      "pillow": "画像を開いて準備します。"
+    },
+    "explore": {
+      "pandas": "グラフのデータをグループ化して集計します。",
+      "numpy": "すべてのチャートの背後にある計算。",
+      "scipy": "統計: 分布、相関関係、検定。",
+      "scikit-learn": "クラスター、回帰直線、および PCA。",
+      "statsmodels": "トレンドライン、平滑化、分解。"
+    },
+    "predict": {
+      "scikit-learn": "モデルをトレーニング、テスト、比較します。",
+      "statsmodels": "時系列予報 (Holt–Winters、ARIMA)。",
+      "scipy": "統計的検定と不確実性の範囲。",
+      "pandas": "データセットを読み取り、入力を準備します。",
+      "numpy": "計算と誤差の対策。"
+    },
+    "reports": {
+      "pandas": "レポートの表。",
+      "openpyxl": "ネイティブ グラフを含む Excel ワークブック。"
+    },
+    "gallery": {
+      "pandas": "グラフのデータをグループ化して集計します。",
+      "numpy": "すべてのチャートの背後にある計算。",
+      "scipy": "統計: 分布、相関関係、検定。",
+      "scikit-learn": "クラスター、回帰直線、および PCA。",
+      "statsmodels": "トレンドライン、平滑化、分解。"
+    }
+  }
+}

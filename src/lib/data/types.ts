@@ -426,6 +426,36 @@ export interface VizCatalog {
   exportFormats: { id: string; name: string }[];
   samples: VizSample[];
   limits: { maxUploadBytes: number; maxRows: number; maxColumns: number; maxChartPoints: number };
+  /** The Python libraries behind each page (dashboards, data, explore, predict, gallery, reports). */
+  libraries?: Record<string, VizLibrary[]>;
+}
+
+export interface VizLibrary {
+  id: string;
+  name: string;
+  version: string;
+  role: string;
+}
+
+/** Why a column cannot be the target of a kind of prediction ('' = it can). */
+export type VizGoalReason = '' | 'constant' | 'identifier' | 'mostly_empty' | 'few_rows' | 'is_date' | 'needs_number' | 'needs_dates' | 'too_many_values';
+
+/** What a dataset can predict, read by Python (pandas) from the data itself. */
+export interface VizPredictionOptions {
+  datasetId: string;
+  rows: number;
+  columns: {
+    name: string;
+    kind: ColumnKind;
+    distinct: number;
+    missing: number;
+    identifier: boolean;
+    constant: boolean;
+    goals: Record<'forecast' | 'estimate' | 'classify' | 'drivers' | 'anomaly' | 'segments', VizGoalReason>;
+    input: boolean;
+    values: string[];
+  }[];
+  dateColumns: { name: string; first: string; last: string; periods: number; grain: 'day' | 'week' | 'month' | 'quarter' | 'year' }[];
 }
 
 /**

@@ -1,0 +1,47 @@
+{
+  "title": "Python auf dieser Seite:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Erstellt die Zahlen jedes Bildes: Filter, Gruppen und Summen.",
+      "numpy": "Schnelle Mathematik auf den Spalten.",
+      "statsmodels": "Trend- und Prognoselinien in Diagrammen.",
+      "openpyxl": "Excel-Export."
+    },
+    "data": {
+      "pandas": "Liest, profiliert, prüft und transformiert die Daten.",
+      "numpy": "Statistiken und Ausreißerprüfungen.",
+      "openpyxl": "Liest Excel-Arbeitsmappen.",
+      "pdfplumber": "Liest Tabellen in PDF-Dateien.",
+      "pypdfium2": "Rendert gescannte PDF-Seiten für OCR.",
+      "python-docx": "Liest Tabellen in Word-Dokumenten.",
+      "rapidocr-onnxruntime": "Liest den Text in Tabellenbildern.",
+      "onnxruntime": "Führt das OCR-Modell aus.",
+      "pillow": "Öffnet und bereitet Bilder vor."
+    },
+    "explore": {
+      "pandas": "Gruppiert und aggregiert die Daten für das Diagramm.",
+      "numpy": "Berechnungen hinter jedem Diagramm.",
+      "scipy": "Statistik: Verteilungen, Korrelationen und Tests.",
+      "scikit-learn": "Cluster, Regressionslinien und PCA.",
+      "statsmodels": "Trendlinien, Glättung und Zerlegung."
+    },
+    "predict": {
+      "scikit-learn": "Trainiert, testet und vergleicht die Modelle.",
+      "statsmodels": "Zeitreihenvorhersagen (Holt–Winters, ARIMA).",
+      "scipy": "Statistische Tests und Unsicherheitsbereiche.",
+      "pandas": "Liest den Datensatz und bereitet die Eingaben vor.",
+      "numpy": "Berechnungen und Fehlermaße."
+    },
+    "reports": {
+      "pandas": "Tabellen für die Berichte.",
+      "openpyxl": "Excel-Arbeitsmappen mit nativen Diagrammen."
+    },
+    "gallery": {
+      "pandas": "Gruppiert und aggregiert die Daten für das Diagramm.",
+      "numpy": "Berechnungen hinter jedem Diagramm.",
+      "scipy": "Statistik: Verteilungen, Korrelationen und Tests.",
+      "scikit-learn": "Cluster, Regressionslinien und PCA.",
+      "statsmodels": "Trendlinien, Glättung und Zerlegung."
+    }
+  }
+}

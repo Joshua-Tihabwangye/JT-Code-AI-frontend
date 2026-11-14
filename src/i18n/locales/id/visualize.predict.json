@@ -86,6 +86,46 @@
     "learnFrom": "Belajarlah dari kolom-kolom ini",
     "alsoUse": "Gunakan juga kolom ini",
     "save": "Menyimpan",
-    "saveRun": "Simpan dan jalankan"
+    "saveRun": "Simpan dan jalankan",
+    "reasons": {
+      "none": "",
+      "constant": "Setiap baris mempunyai nilai yang sama",
+      "identifier": "Kolom ID (unik per baris)",
+      "mostly_empty": "Sebagian besar kosong",
+      "few_rows": "Terlalu sedikit baris untuk dipelajari",
+      "is_date": "Tanggal: gunakan sebagai garis waktu",
+      "needs_number": "Memerlukan kolom angka",
+      "needs_dates": "Membutuhkan kolom tanggal dengan periode yang cukup",
+      "too_many_values": "Terlalu banyak nilai yang berbeda"
+    },
+    "reading": "Membaca kumpulan data…",
+    "readBy": "Pilihan yang dibaca dari kumpulan data ini dengan Python (panda): {{rows}} baris, {{columns}} kolom.",
+    "distinct_one": "nilai {{n}}",
+    "distinct_other": "{{n}} nilai yang berbeda",
+    "pickColumnFirst": "Pilih apa yang akan diprediksi terlebih dahulu.",
+    "kinds": {
+      "numeric": "nomor",
+      "categorical": "kelompok",
+      "datetime": "tanggal",
+      "boolean": "ya / tidak",
+      "text": "teks"
+    },
+    "dateSpan": "{{first}} hingga {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "hari",
+      "week": "minggu",
+      "month": "bulan",
+      "quarter": "perempat",
+      "year": "bertahun-tahun"
+    },
+    "grainsPlural": {
+      "day": "hari",
+      "week": "minggu",
+      "month": "bulan",
+      "quarter": "perempat",
+      "year": "bertahun-tahun"
+    },
+    "untilHint": "Pilih tanggal setelah {{last}}, atau biarkan kosong untuk memperkirakan {{periods}} {{grain}} berikutnya.",
+    "notRecommended": "tidak disarankan"
   }
 }

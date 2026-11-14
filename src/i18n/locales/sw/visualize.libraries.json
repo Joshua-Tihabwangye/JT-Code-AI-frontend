@@ -1,0 +1,47 @@
+{
+  "title": "Python kwenye ukurasa huu:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Huunda nambari za kila taswira: vichungi, vikundi na jumla.",
+      "numpy": "Hesabu za haraka kwenye nguzo.",
+      "statsmodels": "Mistari ya mwenendo na utabiri kwenye chati.",
+      "openpyxl": "Usafirishaji wa Excel."
+    },
+    "data": {
+      "pandas": "Inasoma, wasifu, hukagua na kubadilisha data.",
+      "numpy": "Takwimu na ukaguzi wa nje.",
+      "openpyxl": "Anasoma vitabu vya kazi vya Excel.",
+      "pdfplumber": "Husoma majedwali katika faili za PDF.",
+      "pypdfium2": "Hutoa kurasa za PDF zilizochanganuliwa kwa OCR.",
+      "python-docx": "Husoma majedwali katika hati za Neno.",
+      "rapidocr-onnxruntime": "Husoma maandishi katika picha za majedwali.",
+      "onnxruntime": "Inaendesha muundo wa OCR.",
+      "pillow": "Hufungua na kuandaa picha."
+    },
+    "explore": {
+      "pandas": "Hukusanya na kujumlisha data ya chati.",
+      "numpy": "Mahesabu nyuma ya kila chati.",
+      "scipy": "Takwimu: usambazaji, uwiano na vipimo.",
+      "scikit-learn": "Makundi, mistari ya rejista na PCA.",
+      "statsmodels": "Mistari ya mwenendo, laini na mtengano."
+    },
+    "predict": {
+      "scikit-learn": "Treni, majaribio na kulinganisha mifano.",
+      "statsmodels": "Utabiri wa mfululizo wa wakati (Holt-Winters, ARIMA).",
+      "scipy": "Vipimo vya takwimu na safu za kutokuwa na uhakika.",
+      "pandas": "Husoma mkusanyiko wa data na hutayarisha viingizo.",
+      "numpy": "Mahesabu na hatua za makosa."
+    },
+    "reports": {
+      "pandas": "Majedwali ya ripoti.",
+      "openpyxl": "Vitabu vya kazi vya Excel vilivyo na chati asili."
+    },
+    "gallery": {
+      "pandas": "Hukusanya na kujumlisha data ya chati.",
+      "numpy": "Mahesabu nyuma ya kila chati.",
+      "scipy": "Takwimu: usambazaji, uwiano na vipimo.",
+      "scikit-learn": "Makundi, mistari ya rejista na PCA.",
+      "statsmodels": "Mistari ya mwenendo, laini na mtengano."
+    }
+  }
+}

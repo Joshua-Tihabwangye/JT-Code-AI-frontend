@@ -86,6 +86,46 @@
     "learnFrom": "从这些专栏中学习",
     "alsoUse": "还可以使用这些列",
     "save": "节省",
-    "saveRun": "保存并运行"
+    "saveRun": "保存并运行",
+    "reasons": {
+      "none": "",
+      "constant": "每行都有相同的值",
+      "identifier": "ID 列（每行唯一）",
+      "mostly_empty": "大部分是空的",
+      "few_rows": "可供学习的行数太少",
+      "is_date": "日期：将其用作时间线",
+      "needs_number": "需要一个数字列",
+      "needs_dates": "需要一个有足够时间段的日期列",
+      "too_many_values": "太多不同的值"
+    },
+    "reading": "读取数据集..",
+    "readBy": "Python（pandas）从此数据集中读取的选项：{{rows}} 行，{{columns}} 列。",
+    "distinct_one": "{{n}} 值",
+    "distinct_other": "{{n}} 不同的值",
+    "pickColumnFirst": "选择首先要预测的内容。",
+    "kinds": {
+      "numeric": "数字",
+      "categorical": "团体",
+      "datetime": "日期",
+      "boolean": "是/否",
+      "text": "文本"
+    },
+    "dateSpan": "{{first}} 至 {{last}}、{{periods}} {{grain}}",
+    "grains": {
+      "day": "天",
+      "week": "周",
+      "month": "月",
+      "quarter": "宿舍",
+      "year": "年"
+    },
+    "grainsPlural": {
+      "day": "天",
+      "week": "周",
+      "month": "月",
+      "quarter": "宿舍",
+      "year": "年"
+    },
+    "untilHint": "选择 {{last}} 之后的日期，或将其留空以预测下一个 {{periods}} {{grain}}。",
+    "notRecommended": "不推荐"
   }
 }

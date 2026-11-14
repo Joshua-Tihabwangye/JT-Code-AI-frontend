@@ -94,6 +94,50 @@
     "learnFrom": "تعلم من هذه الأعمدة",
     "alsoUse": "استخدم أيضًا هذه الأعمدة",
     "save": "يحفظ",
-    "saveRun": "حفظ وتشغيل"
+    "saveRun": "حفظ وتشغيل",
+    "reasons": {
+      "none": "",
+      "constant": "كل صف له نفس القيمة",
+      "identifier": "عمود المعرف (فريد لكل صف)",
+      "mostly_empty": "فارغة في الغالب",
+      "few_rows": "عدد قليل جدًا من الصفوف للتعلم منها",
+      "is_date": "التاريخ: استخدمه كجدول زمني",
+      "needs_number": "يحتاج إلى عمود رقم",
+      "needs_dates": "يحتاج إلى عمود تاريخ بفترات كافية",
+      "too_many_values": "الكثير من القيم المختلفة"
+    },
+    "reading": "قراءة مجموعة البيانات..",
+    "readBy": "الاختيارات التي تمت قراءتها من مجموعة البيانات هذه بواسطة Python (pandas): {{rows}} صفوف، {{columns}} أعمدة.",
+    "distinct_one": "{{n}} القيمة",
+    "distinct_other": "{{n}} قيم مختلفة",
+    "pickColumnFirst": "اختر ما تتوقعه أولاً.",
+    "kinds": {
+      "numeric": "رقم",
+      "categorical": "مجموعة",
+      "datetime": "تاريخ",
+      "boolean": "نعم / لا",
+      "text": "نص"
+    },
+    "dateSpan": "{{first}} إلى {{last}}، {{periods}} {{grain}}",
+    "grains": {
+      "day": "أيام",
+      "week": "أسابيع",
+      "month": "شهور",
+      "quarter": "أرباع",
+      "year": "سنين"
+    },
+    "grainsPlural": {
+      "day": "أيام",
+      "week": "أسابيع",
+      "month": "شهور",
+      "quarter": "أرباع",
+      "year": "سنين"
+    },
+    "untilHint": "اختر تاريخًا بعد {{last}}، أو اتركه فارغًا للتنبؤ بـ {{periods}} {{grain}} التالي.",
+    "notRecommended": "غير مستحسن",
+    "distinct_few": "{{n}} قيم مختلفة",
+    "distinct_many": "{{n}} قيم مختلفة",
+    "distinct_two": "{{n}} قيم مختلفة",
+    "distinct_zero": "{{n}} قيم مختلفة"
   }
 }

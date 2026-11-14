@@ -1,0 +1,47 @@
+{
+  "title": "Python di halaman ini:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Membangun angka setiap visual: filter, grup, dan total.",
+      "numpy": "Matematika cepat di kolom.",
+      "statsmodels": "Garis tren dan perkiraan pada grafik.",
+      "openpyxl": "Ekspor Excel."
+    },
+    "data": {
+      "pandas": "Membaca, membuat profil, memeriksa dan mengubah data.",
+      "numpy": "Statistik dan pemeriksaan outlier.",
+      "openpyxl": "Membaca buku kerja Excel.",
+      "pdfplumber": "Membaca tabel dalam file PDF.",
+      "pypdfium2": "Merender halaman PDF yang dipindai untuk OCR.",
+      "python-docx": "Membaca tabel di dokumen Word.",
+      "rapidocr-onnxruntime": "Membaca teks dalam gambar tabel.",
+      "onnxruntime": "Menjalankan model OCR.",
+      "pillow": "Membuka dan menyiapkan gambar."
+    },
+    "explore": {
+      "pandas": "Mengelompokkan dan menggabungkan data untuk bagan.",
+      "numpy": "Perhitungan di balik setiap grafik.",
+      "scipy": "Statistik: distribusi, korelasi dan tes.",
+      "scikit-learn": "Cluster, garis regresi dan PCA.",
+      "statsmodels": "Garis tren, perataan dan dekomposisi."
+    },
+    "predict": {
+      "scikit-learn": "Melatih, menguji, dan membandingkan model.",
+      "statsmodels": "Prakiraan deret waktu (Holt–Winters, ARIMA).",
+      "scipy": "Tes statistik dan rentang ketidakpastian.",
+      "pandas": "Membaca kumpulan data dan menyiapkan masukan.",
+      "numpy": "Perhitungan dan ukuran kesalahan."
+    },
+    "reports": {
+      "pandas": "Tabel untuk laporan.",
+      "openpyxl": "Buku kerja Excel dengan bagan asli."
+    },
+    "gallery": {
+      "pandas": "Mengelompokkan dan menggabungkan data untuk bagan.",
+      "numpy": "Perhitungan di balik setiap grafik.",
+      "scipy": "Statistik: distribusi, korelasi dan tes.",
+      "scikit-learn": "Cluster, garis regresi dan PCA.",
+      "statsmodels": "Garis tren, perataan dan dekomposisi."
+    }
+  }
+}
