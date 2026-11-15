@@ -24,7 +24,8 @@
     "tooltip": "Descrizione comando",
     "conditional": "Formattazione condizionale",
     "analytics": "Analytics (linee di riferimento, trend, previsioni)",
-    "map": "Mappa"
+    "map": "Mappa",
+    "axes": "Assi"
   },
   "general": {
     "title": "Titolo",
@@ -232,8 +233,8 @@
       "applySlicers": "Applicare affettatrici",
       "toggle": "Mostra/nascondi un'immagine",
       "url": "Aprire un collegamento Web",
-      "askAi": "Chiedi all'AI",
-      "reset": "Ripristina le impostazioni predefinite"
+      "reset": "Ripristina le impostazioni predefinite",
+      "askAi": "Chiedi a JT-Code AI"
     },
     "page": "Pagina",
     "choose": "Scegliere…",
@@ -322,5 +323,18 @@
       "notTheme": "Il file non è un tema.",
       "needColours": "Un tema necessita di almeno 3 colori dati (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Asse orizzontale (X)",
+    "vertical": "Asse verticale (Y)",
+    "show": "Mostra asse",
+    "title": "Titolo dell'asse",
+    "titlePlaceholder": "Nessun titolo",
+    "rotate": "Angolo dell'etichetta",
+    "gridlines": "Linee della griglia",
+    "min": "Minimo",
+    "max": "Massimo",
+    "log": "Scala logaritmica",
+    "hint": "Lascia un'impostazione su Automatico per consentire a Python di scegliere. Minimo, massimo e scala logaritmica si applicano all'asse che mostra i numeri."
   }
 }

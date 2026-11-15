@@ -1,0 +1,47 @@
+{
+  "title": "此页面上的 Python：",
+  "roles": {
+    "dashboards": {
+      "pandas": "构建每个视觉效果的数字：过滤器、组和总计。",
+      "numpy": "对列进行快速数学运算。",
+      "statsmodels": "图表上的趋势线和预测线。",
+      "openpyxl": "Excel 导出。"
+    },
+    "data": {
+      "pandas": "读取、分析、检查和转换数据。",
+      "numpy": "统计和异常值检查。",
+      "openpyxl": "读取 Excel 工作簿。",
+      "pdfplumber": "读取 PDF 文件中的表格。",
+      "pypdfium2": "渲染扫描的 PDF 页面以进行 OCR。",
+      "python-docx": "读取 Word 文档中的表格。",
+      "rapidocr-onnxruntime": "阅读表格图片中的文字。",
+      "onnxruntime": "运行 OCR 模型。",
+      "pillow": "打开并准备图片。"
+    },
+    "explore": {
+      "pandas": "对图表的数据进行分组和聚合。",
+      "numpy": "每个图表背后都有计算。",
+      "scipy": "统计：分布、相关性和检验。",
+      "scikit-learn": "聚类、回归线和 PCA。",
+      "statsmodels": "趋势线、平滑和分解。"
+    },
+    "predict": {
+      "scikit-learn": "训练、测试和比较模型。",
+      "statsmodels": "时间序列预测（Holt–Winters、ARIMA）。",
+      "scipy": "统计检验和不确定性范围。",
+      "pandas": "读取数据集并准备输入。",
+      "numpy": "计算和误差测量。"
+    },
+    "reports": {
+      "pandas": "报告表格。",
+      "openpyxl": "带有本机图表的 Excel 工作簿。"
+    },
+    "gallery": {
+      "pandas": "对图表的数据进行分组和聚合。",
+      "numpy": "每个图表背后都有计算。",
+      "scipy": "统计：分布、相关性和检验。",
+      "scikit-learn": "聚类、回归线和 PCA。",
+      "statsmodels": "趋势线、平滑和分解。"
+    }
+  }
+}

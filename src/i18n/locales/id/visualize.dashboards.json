@@ -286,8 +286,8 @@
         "hint": "Tata letak yang sudah jadi: petakan kolom Anda ke sana."
       },
       "ai": {
-        "label": "Tanya AI",
-        "hint": "Jelaskan halamannya; pratinjau sebelum dibuat."
+        "hint": "Jelaskan halamannya; pratinjau sebelum dibuat.",
+        "label": "Tanyakan JT-Code AI"
       }
     },
     "kinds": {
@@ -549,7 +549,6 @@
     "title": "Dasbor",
     "subtitle": "KPI, bagan, dan pemotong dalam satu layar, semuanya terhubung.",
     "noData": "Tambahkan kumpulan data terlebih dahulu",
-    "blank": "Kosong",
     "template": "Templat",
     "building": "Bangunan…",
     "auto": "Bangun dasbor",
@@ -580,7 +579,9 @@
       "viewer": "penonton"
     },
     "sharedFlag": "dibagikan",
-    "deleteNamed": "Hapus {{name}}"
+    "deleteNamed": "Hapus {{name}}",
+    "blank": "Bangun sendiri",
+    "blankHint": "Mulailah dengan halaman kosong dan tambahkan grafik satu per satu"
   },
   "visual": {
     "target": "Sasaran {{value}}",

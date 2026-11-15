@@ -14,5 +14,15 @@
   "advancedBadge": "Advanced",
   "useInExplore": "Tumia katika Kuchunguza",
   "addToDashboard": "Ongeza kwenye dashibodi",
-  "thisDataset": "hifadhidata hii"
+  "thisDataset": "hifadhidata hii",
+  "pick": {
+    "banner": "Chagua chati za “{{name}}”. Weka alama nyingi upendavyo, kisha uziongeze.",
+    "back": "Rudi kwenye dashibodi",
+    "selected_one": "{{count}} chati imechaguliwa",
+    "selected_other": "Chati {{count}} zimechaguliwa",
+    "clear": "Wazi",
+    "add_one": "Ongeza {{count}} chati kwenye dashibodi",
+    "add_other": "Ongeza chati {{count}} kwenye dashibodi",
+    "noSpec": "Dashibodi hii haikuweza kufunguliwa. Rudi nyuma na ujaribu tena."
+  }
 }

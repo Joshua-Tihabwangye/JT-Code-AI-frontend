@@ -286,8 +286,8 @@
         "hint": "Ein fertiges Layout: Ordne deine Spalten zu."
       },
       "ai": {
-        "label": "KI fragen",
-        "hint": "Beschreibe die Seite; sieh dir die Vorschau an, bevor sie erstellt wird."
+        "hint": "Beschreibe die Seite; sieh dir die Vorschau an, bevor sie erstellt wird.",
+        "label": "Fragen Sie JT-Code AI"
       }
     },
     "kinds": {
@@ -549,7 +549,6 @@
     "title": "Dashboards",
     "subtitle": "KPIs, Diagramme und Datenschnitte auf einem Bildschirm, alle miteinander verbunden.",
     "noData": "Füge zuerst ein Dataset hinzu",
-    "blank": "Leer",
     "template": "Vorlage",
     "building": "Wird erstellt…",
     "auto": "Dashboard erstellen",
@@ -580,7 +579,9 @@
       "viewer": "Betrachter"
     },
     "sharedFlag": "freigegeben",
-    "deleteNamed": "{{name}} löschen"
+    "deleteNamed": "{{name}} löschen",
+    "blank": "Bauen Sie es selbst",
+    "blankHint": "Beginnen Sie mit einer leeren Seite und fügen Sie Diagramme nacheinander hinzu"
   },
   "visual": {
     "target": "Ziel {{value}}",

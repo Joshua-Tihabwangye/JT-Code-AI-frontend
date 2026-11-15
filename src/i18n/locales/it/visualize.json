@@ -7,14 +7,12 @@
     "reports": "Rapporti",
     "explore": "Esplorare"
   },
-  "askAi": "Chiedi all'AI",
   "hero": {
     "title": "Studio di visualizzazione dei dati"
   },
   "assistant": {
     "title": "Codice JT AI",
     "cost": "Utilizza i crediti solo quando invii una richiesta. Grafici, approfondimenti e suggerimenti sono gratuiti.",
-    "about": "Chiedi informazioni",
     "intro": "Descrivi cosa vuoi vedere. Io scelgo il grafico, compilo le colonne e tu lo rivedi prima che venga eseguito qualsiasi cosa.",
     "thinking": "Pensiero…",
     "builtIn": "Integrato",
@@ -25,7 +23,27 @@
     "placeholder": "per esempio. Mostra le entrate mensili per regione",
     "prompt": "Richiesta",
     "send": "Inviare",
-    "close": "Vicino"
+    "close": "Vicino",
+    "aboutDataset": "Domande su {{name}}:",
+    "explainChart": "Spiegare il grafico sullo schermo",
+    "grains": {
+      "day": "giorni",
+      "week": "settimane",
+      "month": "mesi",
+      "quarter": "quarti",
+      "year": "anni"
+    },
+    "questions": {
+      "trend": "Come è cambiato {{measure}} nel tempo?",
+      "top": "Quale {{dimension}} ha il {{measure}} più alto?",
+      "forecast": "Previsioni {{measure}} per il prossimo {{grain}}",
+      "drivers": "Cosa influenza maggiormente {{target}}?",
+      "share": "Quale quota di {{measure}} proviene da ciascun {{dimension}}?",
+      "relationship": "{{first}} aumenta quando {{second}} aumenta?",
+      "unusual": "Sono presenti valori insoliti in {{measure}}?",
+      "compare": "Confronta {{measure}} in {{dimension}}",
+      "distribution": "Come è distribuito il {{measure}}?"
+    }
   },
   "dataset": "Set di dati",
   "noDataset": "Nessun set di dati ancora",
@@ -63,5 +81,6 @@
     "expandRibbon": "Espandi il nastro",
     "collapseRibbon": "Comprimi il nastro",
     "rows_many": "{{rows}} righe"
-  }
+  },
+  "askAi": "Chiedi a JT-Code AI"
 }

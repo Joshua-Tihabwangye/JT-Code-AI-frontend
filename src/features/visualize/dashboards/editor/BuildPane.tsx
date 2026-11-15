@@ -133,22 +133,36 @@ export function BuildPane({
           <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t('visualize.editor.build.searchFields')} aria-label={t('visualize.editor.build.searchFields')} />
         </label>
         <ul className="dash-fields" data-testid="field-list">
-          {shown.map((profile) => {
-            const kind = fieldKind(profile);
-            const Icon = KIND_ICON[kind];
+          {(['datetime', 'category', 'numeric'] as const).map((group) => {
+            const items = shown.filter((profile) => fieldKind(profile) === group || (group === 'category' && fieldKind(profile) === 'any'));
+            if (!items.length) return null;
+            const GroupIcon = KIND_ICON[group];
             return (
-              <li key={profile.name}>
-                <button
-                  type="button"
-                  draggable
-                  onDragStart={(event) => event.dataTransfer.setData('text/x-field', profile.name)}
-                  onClick={() => addField(profile.name)}
-                  title={profile.name}
-                  data-testid={`field-${profile.name}`}
-                >
-                  <Icon size={12} aria-hidden className={`dash-kind ${kind}`} />
-                  <span className="truncate">{humanize(profile.name)}</span>
-                </button>
+              <li key={group} className="dash-field-group">
+                <span className="dash-field-group-title">
+                  <GroupIcon size={12} aria-hidden className={`dash-kind ${group}`} /> {t(`visualize.editor.build.groups.${group}`)} · {items.length}
+                </span>
+                <ul>
+                  {items.map((profile) => {
+                    const kind = fieldKind(profile);
+                    const Icon = KIND_ICON[kind];
+                    return (
+                      <li key={profile.name}>
+                        <button
+                          type="button"
+                          draggable
+                          onDragStart={(event) => event.dataTransfer.setData('text/x-field', profile.name)}
+                          onClick={() => addField(profile.name)}
+                          title={profile.name}
+                          data-testid={`field-${profile.name}`}
+                        >
+                          <Icon size={12} aria-hidden className={`dash-kind ${kind}`} />
+                          <span className="truncate">{humanize(profile.name)}</span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
             );
           })}

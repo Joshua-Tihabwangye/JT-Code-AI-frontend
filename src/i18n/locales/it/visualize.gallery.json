@@ -14,5 +14,17 @@
   "advancedBadge": "Avanzato",
   "useInExplore": "Utilizzare in Esplora",
   "addToDashboard": "Aggiungi alla dashboard",
-  "thisDataset": "questo set di dati"
+  "thisDataset": "questo set di dati",
+  "pick": {
+    "banner": "Scegli i grafici per \"{{name}}\". Seleziona quanti ne vuoi, quindi aggiungili.",
+    "back": "Torniamo al cruscotto",
+    "selected_one": "{{count}} grafico selezionato",
+    "selected_other": "{{count}} grafici selezionati",
+    "clear": "Chiaro",
+    "add_one": "Aggiungi il grafico {{count}} alla dashboard",
+    "add_other": "Aggiungi i grafici {{count}} alla dashboard",
+    "noSpec": "Impossibile aprire questa dashboard. Torna indietro e riprova.",
+    "selected_many": "{{count}} grafici selezionati",
+    "add_many": "Aggiungi i grafici {{count}} alla dashboard"
+  }
 }

@@ -14,5 +14,15 @@
   "advancedBadge": "Advanced",
   "useInExplore": "Use in Explore",
   "addToDashboard": "Add to dashboard",
-  "thisDataset": "this dataset"
+  "thisDataset": "this dataset",
+  "pick": {
+    "banner": "Choose charts for “{{name}}”. Tick as many as you like, then add them.",
+    "back": "Back to the dashboard",
+    "selected_one": "{{count}} chart selected",
+    "selected_other": "{{count}} charts selected",
+    "clear": "Clear",
+    "add_one": "Add {{count}} chart to the dashboard",
+    "add_other": "Add {{count}} charts to the dashboard",
+    "noSpec": "This dashboard could not be opened. Go back and try again."
+  }
 }

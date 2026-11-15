@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} by {{groups}} — veritabanında hesaplanır, ardından Python'da çizilir.",
     "total": "{{what}} — veritabanında hesaplanır, ardından Python'da çizilir."
+  },
+  "intro": {
+    "title": "Keşfet: verilerinize bir soru sorun",
+    "body": "Neyi görmek istediğinizi ve hangi sütunları kullanacağınızı seçin; Python cevabı bulur ve bunu hemen bir grafik olarak çizer. İyi olanları saklayın: onları kaydedin veya bir kontrol paneline sabitleyin.",
+    "step1": "Ne görmek istediğinizi seçin",
+    "step2": "Sütunları seçin",
+    "step3": "Kaydedin veya bir kontrol paneline sabitleyin"
+  },
+  "ideas": "Bu verilere ilişkin fikirler (açmak için birine tıklayın)",
+  "newQuestion": "Yeni soru",
+  "simple": "Basit",
+  "allOptions": "Tüm seçenekler",
+  "builtElsewhere": "Bu grafik bir fikirden, galeriden veya tüm seçeneklerden oluşturuldu. Bunu tüm seçeneklerle değiştirin veya yeni bir soru başlatın.",
+  "shows": "Bu grafik şunu gösterir: {{what}}",
+  "ask": {
+    "step1": "1. Ne görmek istiyorsunuz?",
+    "step2": "2. Sütunları seçin",
+    "none": "(hiçbiri)",
+    "rows": "Satır sayısı",
+    "calculate": "Hesaplamak",
+    "notForData": "Bu veri kümesinde bunun için sütun yok",
+    "groupBy": "Her biri için",
+    "measure": "Göstermek",
+    "howMany": "Kaç tane",
+    "dateColumn": "Tarih sütunu",
+    "every": "Her",
+    "grains": {
+      "day": "Gün",
+      "week": "Hafta",
+      "month": "Ay",
+      "quarter": "Çeyrek",
+      "year": "Yıl"
+    },
+    "splitBy": "Her biri için bir satır (isteğe bağlı)",
+    "across": "Alt kısımdaki sayı",
+    "up": "Sayı artıyor",
+    "onePointPer": "Her biri için bir puan (isteğe bağlı)",
+    "number": "Sayı",
+    "rowsPer": "Her biri için bir satır (isteğe bağlı)",
+    "intents": {
+      "compare": {
+        "name": "Grupları karşılaştır",
+        "example": "En çok hangi bölge satıyor?"
+      },
+      "trend": {
+        "name": "Zaman içinde değişim",
+        "example": "Satışlar aylara göre nasıl değişti?"
+      },
+      "share": {
+        "name": "Bir bütünün parçaları",
+        "example": "Her ürünün payı nedir?"
+      },
+      "top": {
+        "name": "Üst veya alt",
+        "example": "Gelire göre en iyi 10 müşteri"
+      },
+      "relation": {
+        "name": "İki sayı bir arada",
+        "example": "Daha yüksek fiyatlar daha az satış anlamına mı geliyor?"
+      },
+      "spread": {
+        "name": "Bir sayının yayılması",
+        "example": "Fiyatlar nasıl dağıtılıyor?"
+      },
+      "total": {
+        "name": "Toplam bir",
+        "example": "Toplam gelir ne kadar?"
+      },
+      "table": {
+        "name": "Özet tablosu",
+        "example": "Tablo olarak her bölge için gelir"
+      }
+    }
   }
 }

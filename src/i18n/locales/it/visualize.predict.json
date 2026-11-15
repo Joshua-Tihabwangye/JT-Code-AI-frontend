@@ -88,6 +88,47 @@
     "learnFrom": "Impara da queste colonne",
     "alsoUse": "Utilizza anche queste colonne",
     "save": "Salva",
-    "saveRun": "Salva ed esegui"
+    "saveRun": "Salva ed esegui",
+    "reasons": {
+      "none": "",
+      "constant": "Ogni riga ha lo stesso valore",
+      "identifier": "Una colonna ID (univoca per riga)",
+      "mostly_empty": "Per lo più vuoto",
+      "few_rows": "Troppe poche righe da cui imparare",
+      "is_date": "Una data: usala come sequenza temporale",
+      "needs_number": "Ha bisogno di una colonna numerica",
+      "needs_dates": "Richiede una colonna di data con un numero sufficiente di punti",
+      "too_many_values": "Troppi valori diversi"
+    },
+    "reading": "Lettura del set di dati…",
+    "readBy": "Scelte lette da questo set di dati da Python (panda): {{rows}} righe, {{columns}} colonne.",
+    "distinct_one": "valore {{n}}",
+    "distinct_other": "{{n}} valori diversi",
+    "pickColumnFirst": "Scegli prima cosa prevedere.",
+    "kinds": {
+      "numeric": "numero",
+      "categorical": "gruppo",
+      "datetime": "data",
+      "boolean": "sì/no",
+      "text": "testo"
+    },
+    "dateSpan": "da {{first}} a {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "giorni",
+      "week": "settimane",
+      "month": "mesi",
+      "quarter": "quarti",
+      "year": "anni"
+    },
+    "grainsPlural": {
+      "day": "giorni",
+      "week": "settimane",
+      "month": "mesi",
+      "quarter": "quarti",
+      "year": "anni"
+    },
+    "untilHint": "Scegli una data successiva al {{last}} o lasciala vuota per prevedere il prossimo {{periods}} {{grain}}.",
+    "notRecommended": "non raccomandato",
+    "distinct_many": "{{n}} valori diversi"
   }
 }

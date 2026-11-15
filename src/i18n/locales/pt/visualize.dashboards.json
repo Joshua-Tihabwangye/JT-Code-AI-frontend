@@ -298,8 +298,8 @@
         "hint": "Um layout pronto: mapeie suas colunas para ele."
       },
       "ai": {
-        "label": "Pergunte à IA",
-        "hint": "Descreva a página; visualize-o antes de ser criado."
+        "hint": "Descreva a página; visualize-o antes de ser criado.",
+        "label": "Pergunte ao JT-Code AI"
       }
     },
     "kinds": {
@@ -564,7 +564,6 @@
     "title": "Painéis",
     "subtitle": "KPIs, gráficos e segmentações de dados em uma tela, todos conectados.",
     "noData": "Adicione um conjunto de dados primeiro",
-    "blank": "Em branco",
     "template": "Modelo",
     "building": "Prédio…",
     "auto": "Construir painel",
@@ -596,7 +595,9 @@
     },
     "sharedFlag": "compartilhado",
     "deleteNamed": "Excluir {{name}}",
-    "pages_many": "{{count}} páginas"
+    "pages_many": "{{count}} páginas",
+    "blank": "Construa você mesmo",
+    "blankHint": "Comece com uma página vazia e adicione gráficos um por um"
   },
   "visual": {
     "target": "Alvo {{value}}",

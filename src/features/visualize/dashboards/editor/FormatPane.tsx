@@ -72,6 +72,73 @@ const MAP_SCOPES: [string, string][] = [
 /** Canvas preset ids (actions.ts) to their label keys. */
 const CANVAS_PRESET_KEYS: Record<string, string> = { '16:9': 'wide', '4:3': 'standard', letter: 'letter', 'fit-width': 'fitWidth' };
 
+const AXIS_TYPES: DashboardVisualType[] = ['bar', 'column', 'line', 'area', 'combo', 'scatter', 'waterfall', 'chart'];
+type AxisKey = 'x' | 'y';
+/** The axes that carry numbers (where a minimum, maximum and log scale make sense). */
+const valueAxes = (type: DashboardVisualType): AxisKey[] => (type === 'bar' ? ['x'] : type === 'scatter' || type === 'chart' ? ['x', 'y'] : ['y']);
+function axisValue<T>(visual: DashboardVisual, axis: AxisKey, key: string, fallback: T): T {
+  const found = (visual.format?.axes?.[axis] as Record<string, unknown> | undefined)?.[key];
+  return (found ?? fallback) as T;
+}
+/** Sets one field of ``format.axes.<axis>``; ``undefined`` goes back to automatic. */
+const setAxis = (update: Update, axis: AxisKey, key: string, merge = false) => (next: unknown) =>
+  update((v) => {
+    const current = { ...((v.format?.axes?.[axis] as Record<string, unknown> | undefined) ?? {}) };
+    if (next === undefined || next === '' || (typeof next === 'number' && Number.isNaN(next))) delete current[key];
+    else current[key] = next;
+    return setFormat(v, 'axes', axis, Object.keys(current).length ? current : undefined);
+  }, merge ? `axes.${axis}.${key}` : undefined);
+
+function AxisFields({ visual, update, axis, t }: { visual: DashboardVisual; update: Update; axis: AxisKey; t: TFunction }) {
+  const shown = axisValue(visual, axis, 'show', true);
+  const numeric = valueAxes(visual.type).includes(axis);
+  const bound = (key: 'min' | 'max') => {
+    const current = axisValue<number | undefined>(visual, axis, key, undefined);
+    return (
+      <Row label={t(`${F}.axes.${key}`)}>
+        <input type="number" className="viz-field" placeholder={t(`${F}.automatic`)} value={current ?? ''} onChange={(event) => setAxis(update, axis, key, true)(event.target.value === '' ? undefined : Number(event.target.value))} data-testid={`axis-${axis}-${key}`} />
+      </Row>
+    );
+  };
+  return (
+    <div className="dash-axis-group" data-testid={`axis-${axis}`}>
+      <p className="dash-axis-heading">{t(`${F}.axes.${axis === 'x' ? 'horizontal' : 'vertical'}`)}</p>
+      <Toggle label={t(`${F}.axes.show`)} checked={shown} onChange={(show) => setAxis(update, axis, 'show')(show ? undefined : false)} />
+      {shown && (
+        <>
+          <Row label={t(`${F}.axes.title`)}>
+            <input className="viz-field" placeholder={t(`${F}.axes.titlePlaceholder`)} value={axisValue(visual, axis, 'title', '')} onChange={(event) => setAxis(update, axis, 'title', true)(event.target.value || undefined)} data-testid={`axis-${axis}-title`} />
+          </Row>
+          <Row label={t(`${F}.axes.rotate`)}>
+            <select className="viz-field" value={String(axisValue(visual, axis, 'rotate', 'auto'))} onChange={(event) => setAxis(update, axis, 'rotate')(event.target.value === 'auto' ? undefined : Number(event.target.value))}>
+              <option value="auto">{t(`${F}.automatic`)}</option>
+              {[0, 30, 45, 60, 90].map((angle) => (
+                <option key={angle} value={angle}>
+                  {angle}°
+                </option>
+              ))}
+            </select>
+          </Row>
+          <Row label={t(`${F}.axes.gridlines`)}>
+            <select className="viz-field" value={String(axisValue(visual, axis, 'gridlines', 'auto'))} onChange={(event) => setAxis(update, axis, 'gridlines')(event.target.value === 'auto' ? undefined : event.target.value === 'true')}>
+              <option value="auto">{t(`${F}.automatic`)}</option>
+              <option value="true">{t(`${F}.on`)}</option>
+              <option value="false">{t(`${F}.off`)}</option>
+            </select>
+          </Row>
+          {numeric && (
+            <>
+              {bound('min')}
+              {bound('max')}
+              <Toggle label={t(`${F}.axes.log`)} checked={axisValue(visual, axis, 'log', false)} onChange={(log) => setAxis(update, axis, 'log')(log || undefined)} />
+            </>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
 const SECTIONS: Section[] = [
   {
     key: 'python',
@@ -195,6 +262,19 @@ const SECTIONS: Section[] = [
           <option value="false">{t(`${F}.off`)}</option>
         </select>
       </Row>
+    ),
+  },
+  {
+    key: 'axes',
+    titleKey: `${F}.sections.axes`,
+    types: AXIS_TYPES,
+    formats: ['axes'],
+    render: (visual, update, _context, t) => (
+      <>
+        <AxisFields visual={visual} update={update} axis="x" t={t} />
+        <AxisFields visual={visual} update={update} axis="y" t={t} />
+        <p className="text-[11px] text-muted-foreground">{t(`${F}.axes.hint`)}</p>
+      </>
     ),
   },
   {
@@ -554,7 +634,7 @@ export function FormatPane({
         <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder={t(`${F}.search`)} aria-label={t(`${F}.search`)} />
       </label>
       {sections.map((section) => (
-        <details key={section.key} className="dash-format-section" open={['general', 'colors', 'labels', 'slicer', 'kpi', 'python', 'parameter', 'button', 'navigator'].includes(section.key) || !!search} data-testid={`section-${section.key}`}>
+        <details key={section.key} className="dash-format-section" open={['general', 'axes', 'colors', 'labels', 'slicer', 'kpi', 'python', 'parameter', 'button', 'navigator'].includes(section.key) || !!search} data-testid={`section-${section.key}`}>
           <summary>
             {t(section.titleKey)}
             {section.formats.some((key) => visual.format?.[key]) && (

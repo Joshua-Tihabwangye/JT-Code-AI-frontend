@@ -7,14 +7,12 @@
     "reports": "Berichte",
     "explore": "Erkunden"
   },
-  "askAi": "KI fragen",
   "hero": {
     "title": "Datenvisualisierungsstudio"
   },
   "assistant": {
     "title": "JT-Code KI",
     "cost": "Verbraucht nur Credits, wenn du einen Prompt sendest. Diagramme, Erkenntnisse und Vorschläge sind kostenlos.",
-    "about": "Frage zu",
     "intro": "Beschreibe, was du sehen möchtest. Ich wähle das Diagramm, fülle die Spalten aus, und du prüfst es, bevor etwas ausgeführt wird.",
     "thinking": "Denkt nach…",
     "builtIn": "Integriert",
@@ -25,7 +23,27 @@
     "placeholder": "z. B. Monatlichen Umsatz nach Region anzeigen",
     "prompt": "Prompt",
     "send": "Senden",
-    "close": "Schließen"
+    "close": "Schließen",
+    "aboutDataset": "Fragen zu {{name}}:",
+    "explainChart": "Erklären Sie das Diagramm auf dem Bildschirm",
+    "grains": {
+      "day": "Tage",
+      "week": "Wochen",
+      "month": "Monate",
+      "quarter": "Viertel",
+      "year": "Jahre"
+    },
+    "questions": {
+      "trend": "Wie hat sich {{measure}} im Laufe der Zeit verändert?",
+      "top": "Welcher {{dimension}} hat den höchsten {{measure}}?",
+      "forecast": "Prognose {{measure}} für das kommende {{grain}}",
+      "drivers": "Was beeinflusst {{target}} am meisten?",
+      "share": "Welcher Anteil von {{measure}} stammt aus jedem {{dimension}}?",
+      "relationship": "Steigt {{first}}, wenn {{second}} steigt?",
+      "unusual": "Gibt es ungewöhnliche Werte in {{measure}}?",
+      "compare": "Vergleichen Sie {{measure}} mit {{dimension}}",
+      "distribution": "Wie verteilt sich {{measure}}?"
+    }
   },
   "dataset": "Dataset",
   "noDataset": "Noch kein Dataset",
@@ -62,5 +80,6 @@
     "close": "Schließen",
     "expandRibbon": "Menüband erweitern",
     "collapseRibbon": "Menüband reduzieren"
-  }
+  },
+  "askAi": "Fragen Sie JT-Code AI"
 }

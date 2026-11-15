@@ -14,5 +14,15 @@
   "advancedBadge": "Canggih",
   "useInExplore": "Gunakan di Jelajahi",
   "addToDashboard": "Tambahkan ke dasbor",
-  "thisDataset": "kumpulan data ini"
+  "thisDataset": "kumpulan data ini",
+  "pick": {
+    "banner": "Pilih grafik untuk “{{name}}”. Centang sebanyak yang Anda suka, lalu tambahkan.",
+    "back": "Kembali ke dasbor",
+    "selected_one": "{{count}} bagan dipilih",
+    "selected_other": "{{count}} grafik dipilih",
+    "clear": "Jernih",
+    "add_one": "Tambahkan bagan {{count}} ke dasbor",
+    "add_other": "Tambahkan grafik {{count}} ke dasbor",
+    "noSpec": "Dasbor ini tidak dapat dibuka. Kembali dan coba lagi."
+  }
 }

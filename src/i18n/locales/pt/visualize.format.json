@@ -24,7 +24,8 @@
     "tooltip": "Dica",
     "conditional": "Formatação condicional",
     "analytics": "Analytics (linhas de referência, tendência, previsão)",
-    "map": "Mapa"
+    "map": "Mapa",
+    "axes": "Eixos"
   },
   "general": {
     "title": "Título",
@@ -232,8 +233,8 @@
       "applySlicers": "Aplicar segmentações de dados",
       "toggle": "Mostrar/ocultar um visual",
       "url": "Abra um link da web",
-      "askAi": "Pergunte à IA",
-      "reset": "Redefinir para o padrão"
+      "reset": "Redefinir para o padrão",
+      "askAi": "Pergunte ao JT-Code AI"
     },
     "page": "Página",
     "choose": "Escolher…",
@@ -322,5 +323,18 @@
       "notTheme": "O arquivo não é um tema.",
       "needColours": "Um tema precisa de pelo menos 3 cores de dados (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Eixo horizontal (X)",
+    "vertical": "Eixo vertical (Y)",
+    "show": "Mostrar eixo",
+    "title": "Título do eixo",
+    "titlePlaceholder": "Sem título",
+    "rotate": "Ângulo da etiqueta",
+    "gridlines": "Linhas de grade",
+    "min": "Mínimo",
+    "max": "Máximo",
+    "log": "Escala logarítmica",
+    "hint": "Deixe uma configuração em Automático para permitir que o Python escolha. O mínimo, o máximo e a escala logarítmica se aplicam ao eixo que mostra os números."
   }
 }

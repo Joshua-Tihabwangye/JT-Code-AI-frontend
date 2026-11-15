@@ -136,7 +136,12 @@
     "addField": "+ Tambahkan bidang",
     "countOfRows": "Jumlah baris",
     "galleryChart": "Bagan galeri",
-    "chooseChart": "Pilih grafik…"
+    "chooseChart": "Pilih grafik…",
+    "groups": {
+      "datetime": "Tanggal",
+      "category": "Kategori",
+      "numeric": "Angka"
+    }
   },
   "calc": {
     "calculations": "Perhitungan",
@@ -218,5 +223,40 @@
     "remove": "Hapus hubungan",
     "suggestion": "Tautan {{field}} di {{from}} dan {{to}}",
     "add": "Tambahkan hubungan"
-  }
+  },
+  "guide": {
+    "title": "Bangun dasbor Anda sendiri",
+    "visuals": {
+      "card": "Kartu nomor",
+      "column": "Bagan kolom",
+      "line": "Bagan garis",
+      "donut": "Bagan donat",
+      "table": "Meja",
+      "slicer": "Menyaring"
+    },
+    "more": "Lebih banyak visual, teks, gambar, dan tombol ada di bawah Sisipkan di bagian atas.",
+    "pick": "Mulailah dengan visual",
+    "hints": {
+      "card": "Satu angka penting, seperti total pendapatan",
+      "column": "Bandingkan kelompok secara berdampingan",
+      "line": "Lihat perubahan seiring berjalannya waktu",
+      "donut": "Tunjukkan bagian dari keseluruhan",
+      "table": "Cantumkan detailnya baris demi baris",
+      "slicer": "Biarkan pemirsa mempersempit datanya"
+    },
+    "step1": "Centang grafik yang Anda inginkan (atau pilih lebih banyak dari galeri)",
+    "step2": "Tambahkan mereka: mereka tiba dalam keadaan kosong, siap untuk kolom Anda",
+    "step3": "Pilih bagan untuk mengatur sumbu X dan Y, legenda, skala, dan warnanya",
+    "subtitle": "Python membaca {{name}} dan menyarankan grafik di bawah ini. Centang yang Anda inginkan dan tambahkan; lalu Anda mengaturnya sendiri.",
+    "basics": "Visual dasar yang sesuai dengan data ini",
+    "forData": "Grafik disarankan untuk {{name}}",
+    "reading": "Membaca kumpulan data…",
+    "fromGallery": "Pilih lebih banyak dari galeri",
+    "emptyNote": "Bagan ditambahkan kosong: Anda memilih setiap kolom, sumbu, dan gaya.",
+    "add_one": "Tambahkan bagan {{count}} ke dasbor saya",
+    "add_other": "Tambahkan grafik {{count}} ke dasbor saya",
+    "pickSome": "Centang diagram untuk ditambahkan"
+  },
+  "fromGallery": "Dari galeri",
+  "fromGalleryHint": "Pilih lebih banyak diagram dari galeri untuk dasbor ini"
 }

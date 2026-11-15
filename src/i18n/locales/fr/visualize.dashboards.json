@@ -298,8 +298,8 @@
         "hint": "Une disposition prête à l'emploi : associez-y vos colonnes."
       },
       "ai": {
-        "label": "Demander à l'IA",
-        "hint": "Décrivez la page ; prévisualisez-la avant sa création."
+        "hint": "Décrivez la page ; prévisualisez-la avant sa création.",
+        "label": "Demandez à JT-Code AI"
       }
     },
     "kinds": {
@@ -564,7 +564,6 @@
     "title": "Tableaux de bord",
     "subtitle": "KPI, graphiques et segments sur un seul écran, tous connectés.",
     "noData": "Ajoutez d'abord un jeu de données",
-    "blank": "Vierge",
     "template": "Modèle",
     "building": "Création…",
     "auto": "Générer le tableau de bord",
@@ -596,7 +595,9 @@
     },
     "sharedFlag": "partagé",
     "deleteNamed": "Supprimer {{name}}",
-    "pages_many": "{{count}} pages"
+    "pages_many": "{{count}} pages",
+    "blank": "Construisez-le vous-même",
+    "blankHint": "Commencez avec une page vide et ajoutez des graphiques un par un"
   },
   "visual": {
     "target": "Objectif {{value}}",

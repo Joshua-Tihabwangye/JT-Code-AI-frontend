@@ -7,14 +7,13 @@
     "reports": "Reports",
     "explore": "Explore"
   },
-  "askAi": "Ask AI",
+  "askAi": "Ask JT-Code AI",
   "hero": {
     "title": "Data Visualization Studio"
   },
   "assistant": {
     "title": "JT-Code AI",
     "cost": "Uses credits only when you send a prompt. Charts, insights and suggestions are free.",
-    "about": "Ask about",
     "intro": "Describe what you want to see. I pick the chart, fill in the columns and you review it before anything runs.",
     "thinking": "Thinking…",
     "builtIn": "Built-in",
@@ -25,7 +24,27 @@
     "placeholder": "e.g. Show monthly revenue by region",
     "prompt": "Prompt",
     "send": "Send",
-    "close": "Close"
+    "close": "Close",
+    "aboutDataset": "Questions about {{name}}:",
+    "explainChart": "Explain the chart on screen",
+    "grains": {
+      "day": "days",
+      "week": "weeks",
+      "month": "months",
+      "quarter": "quarters",
+      "year": "years"
+    },
+    "questions": {
+      "trend": "How has {{measure}} changed over time?",
+      "top": "Which {{dimension}} has the highest {{measure}}?",
+      "forecast": "Forecast {{measure}} for the coming {{grain}}",
+      "drivers": "What affects {{target}} the most?",
+      "share": "What share of {{measure}} comes from each {{dimension}}?",
+      "relationship": "Does {{first}} rise when {{second}} rises?",
+      "unusual": "Are there unusual values in {{measure}}?",
+      "compare": "Compare {{measure}} across {{dimension}}",
+      "distribution": "How is {{measure}} spread out?"
+    }
   },
   "dataset": "Dataset",
   "noDataset": "No dataset yet",

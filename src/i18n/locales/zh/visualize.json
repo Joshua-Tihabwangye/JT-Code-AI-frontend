@@ -7,14 +7,12 @@
     "reports": "报表",
     "explore": "探索"
   },
-  "askAi": "询问 AI",
   "hero": {
     "title": "数据可视化工作室"
   },
   "assistant": {
     "title": "JT-Code AI",
     "cost": "仅在发送提示时消耗积分。图表、洞察和建议均免费。",
-    "about": "询问内容",
     "intro": "描述你想看到的内容。我会选择图表并填入列，在运行任何操作前由你审阅。",
     "thinking": "思考中…",
     "builtIn": "内置",
@@ -25,7 +23,27 @@
     "placeholder": "例如：按地区显示每月收入",
     "prompt": "提示",
     "send": "发送",
-    "close": "关闭"
+    "close": "关闭",
+    "aboutDataset": "关于 {{name}} 的问题：",
+    "explainChart": "解释屏幕上的图表",
+    "grains": {
+      "day": "天",
+      "week": "周",
+      "month": "月",
+      "quarter": "宿舍",
+      "year": "年"
+    },
+    "questions": {
+      "trend": "{{measure}} 随着时间的推移发生了怎样的变化？",
+      "top": "哪个 {{dimension}} 的 {{measure}} 最高？",
+      "forecast": "预测 {{measure}} 对即将到来的 {{grain}}",
+      "drivers": "什么对{{target}}影响最大？",
+      "share": "每个 {{dimension}} 占 {{measure}} 的份额是多少？",
+      "relationship": "当 {{second}} 上升时 {{first}} 上升吗？",
+      "unusual": "{{measure}} 中是否存在异常值？",
+      "compare": "比较 {{measure}} 和 {{dimension}}",
+      "distribution": "{{measure}} 是如何分布的？"
+    }
   },
   "dataset": "数据集",
   "noDataset": "暂无数据集",
@@ -62,5 +80,6 @@
     "close": "关闭",
     "expandRibbon": "展开功能区",
     "collapseRibbon": "折叠功能区"
-  }
+  },
+  "askAi": "询问 JT-Code AI"
 }

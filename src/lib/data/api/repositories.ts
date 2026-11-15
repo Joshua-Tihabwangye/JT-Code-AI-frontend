@@ -63,6 +63,8 @@ import type {
   DashboardFieldRef,
   DashboardFilter,
   DashboardVisual,
+  VizPredictionOptions,
+  VizQuestion,
 } from '../types';
 import type {
   AccountRepository,
@@ -939,6 +941,14 @@ class ApiVisualizeRepository implements VisualizeRepository {
     if (quality.issues) params.issues = 1;
     if (quality.filter) params.filter = quality.filter;
     const { data } = await api.get<VizPreview>(`/visualize/datasets/${datasetId}/preview/`, { params, ...SLOW });
+    return data;
+  }
+  async questions(datasetId: string) {
+    const { data } = await api.get<{ questions: VizQuestion[] }>(`/visualize/datasets/${datasetId}/questions/`);
+    return data.questions;
+  }
+  async predictionOptions(datasetId: string) {
+    const { data } = await api.get<VizPredictionOptions>(`/visualize/datasets/${datasetId}/prediction-options/`, SLOW);
     return data;
   }
   async quality(datasetId: string) {

@@ -136,7 +136,12 @@
     "addField": "+ Ongeza uwanja",
     "countOfRows": "Hesabu ya safu",
     "galleryChart": "Chati ya matunzio",
-    "chooseChart": "Chagua chati.."
+    "chooseChart": "Chagua chati..",
+    "groups": {
+      "datetime": "Tarehe",
+      "category": "Kategoria",
+      "numeric": "Nambari"
+    }
   },
   "calc": {
     "calculations": "Mahesabu",
@@ -218,5 +223,40 @@
     "remove": "Ondoa uhusiano",
     "suggestion": "Unganisha {{field}} katika {{from}} na {{to}}",
     "add": "Ongeza uhusiano"
-  }
+  },
+  "guide": {
+    "title": "Unda dashibodi yako mwenyewe",
+    "visuals": {
+      "card": "Kadi ya nambari",
+      "column": "Chati ya safu wima",
+      "line": "Chati ya mstari",
+      "donut": "Chati ya donut",
+      "table": "Jedwali",
+      "slicer": "Chuja"
+    },
+    "more": "Vielelezo zaidi, maandishi, picha na vitufe viko chini ya Chomeka juu.",
+    "pick": "Anza na taswira",
+    "hints": {
+      "card": "Takwimu moja muhimu, kama jumla ya mapato",
+      "column": "Linganisha vikundi bega kwa bega",
+      "line": "Tazama mabadiliko kwa wakati",
+      "donut": "Onyesha sehemu za jumla",
+      "table": "Orodhesha maelezo safu kwa safu",
+      "slicer": "Ruhusu watazamaji wapunguze data"
+    },
+    "step1": "Weka alama kwenye chati unazotaka (au chagua zaidi kutoka kwenye ghala)",
+    "step2": "Ziongeze: zinafika tupu, tayari kwa safuwima zako",
+    "step3": "Chagua chati ili kuweka shoka zake za X na Y, hekaya, mizani na rangi",
+    "subtitle": "Chatu alisoma {{name}} na kupendekeza chati zilizo hapa chini. Weka alama kwenye unayotaka na uwaongeze; kisha unaweka kila mmoja mwenyewe.",
+    "basics": "Taswira za kimsingi zinazolingana na data hii",
+    "forData": "Chati zinazopendekezwa kwa {{name}}",
+    "reading": "Inasoma mkusanyiko wa data..",
+    "fromGallery": "Chagua zaidi kutoka kwenye ghala",
+    "emptyNote": "Chati huongezwa tupu: unachagua kila safu, mhimili na mtindo.",
+    "add_one": "Ongeza {{count}} chati kwenye dashibodi yangu",
+    "add_other": "Ongeza chati {{count}} kwenye dashibodi yangu",
+    "pickSome": "Weka tiki kwenye chati za kuongeza"
+  },
+  "fromGallery": "Kutoka kwa nyumba ya sanaa",
+  "fromGalleryHint": "Chagua chati zaidi kutoka kwa ghala za dashibodi hii"
 }

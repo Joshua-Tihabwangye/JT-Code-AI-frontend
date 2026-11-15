@@ -136,7 +136,12 @@
     "addField": "+ 添加字段",
     "countOfRows": "行计数",
     "galleryChart": "图库图表",
-    "chooseChart": "选择图表…"
+    "chooseChart": "选择图表…",
+    "groups": {
+      "datetime": "枣子",
+      "category": "类别",
+      "numeric": "数字"
+    }
   },
   "calc": {
     "calculations": "计算",
@@ -218,5 +223,40 @@
     "remove": "移除关系",
     "suggestion": "关联 {{from}} 和 {{to}} 中的 {{field}}",
     "add": "添加关系"
-  }
+  },
+  "guide": {
+    "title": "自己构建您的仪表板",
+    "visuals": {
+      "card": "号码卡",
+      "column": "柱形图",
+      "line": "折线图",
+      "donut": "圆环图",
+      "table": "桌子",
+      "slicer": "筛选"
+    },
+    "more": "更多视觉效果、文本、图像和按钮位于顶部的“插入”下。",
+    "pick": "从视觉开始",
+    "hints": {
+      "card": "一个关键数字，例如总收入",
+      "column": "并排比较组",
+      "line": "查看随时间的变化",
+      "donut": "显示整体的部分",
+      "table": "逐行列出详细信息",
+      "slicer": "让观众缩小数据范围"
+    },
+    "step1": "勾选您想要的图表（或从图库中选择更多图表）",
+    "step2": "添加它们：它们空着到达，为您的专栏做好准备",
+    "step3": "选择图表以设置其 X 轴和 Y 轴、图例、比例和颜色",
+    "subtitle": "Python 读取 {{name}} 并建议使用下面的图表。勾选您想要的并添加；然后你自己设置每一个。",
+    "basics": "适合此数据的基本视觉效果",
+    "forData": "建议使用 {{name}} 的图表",
+    "reading": "读取数据集..",
+    "fromGallery": "从图库中选择更多",
+    "emptyNote": "图表添加为空：您可以选择每个列、轴和样式。",
+    "add_one": "将 {{count}} 图表添加到我的仪表板",
+    "add_other": "将 {{count}} 图表添加到我的仪表板",
+    "pickSome": "勾选要添加的图表"
+  },
+  "fromGallery": "来自画廊",
+  "fromGalleryHint": "从图库中为此仪表板选择更多图表"
 }

@@ -1,0 +1,47 @@
+{
+  "title": "이 페이지의 Python:",
+  "roles": {
+    "dashboards": {
+      "pandas": "필터, 그룹, 합계 등 모든 시각적 개체의 숫자를 작성합니다.",
+      "numpy": "열에 대한 빠른 수학.",
+      "statsmodels": "차트의 추세 및 예측 선입니다.",
+      "openpyxl": "엑셀 내보내기."
+    },
+    "data": {
+      "pandas": "데이터를 읽고, 프로파일링하고, 확인하고, 변환합니다.",
+      "numpy": "통계 및 이상치 검사.",
+      "openpyxl": "Excel 통합 문서를 읽습니다.",
+      "pdfplumber": "PDF 파일의 테이블을 읽습니다.",
+      "pypdfium2": "OCR을 위해 스캔한 PDF 페이지를 렌더링합니다.",
+      "python-docx": "Word 문서의 테이블을 읽습니다.",
+      "rapidocr-onnxruntime": "테이블 그림에 있는 텍스트를 읽습니다.",
+      "onnxruntime": "OCR 모델을 실행합니다.",
+      "pillow": "사진을 열고 준비합니다."
+    },
+    "explore": {
+      "pandas": "차트의 데이터를 그룹화하고 집계합니다.",
+      "numpy": "모든 차트 뒤에 있는 계산.",
+      "scipy": "통계: 분포, 상관 관계 및 테스트.",
+      "scikit-learn": "클러스터, 회귀선 및 PCA.",
+      "statsmodels": "추세선, 평활화 및 분해."
+    },
+    "predict": {
+      "scikit-learn": "모델을 훈련, 테스트 및 비교합니다.",
+      "statsmodels": "시계열 예측(Holt–Winters, ARIMA).",
+      "scipy": "통계 테스트 및 불확실성 범위.",
+      "pandas": "데이터 세트를 읽고 입력을 준비합니다.",
+      "numpy": "계산 및 오류 측정."
+    },
+    "reports": {
+      "pandas": "보고서용 테이블입니다.",
+      "openpyxl": "기본 차트가 포함된 Excel 통합 문서."
+    },
+    "gallery": {
+      "pandas": "차트의 데이터를 그룹화하고 집계합니다.",
+      "numpy": "모든 차트 뒤에 있는 계산.",
+      "scipy": "통계: 분포, 상관 관계 및 테스트.",
+      "scikit-learn": "클러스터, 회귀선 및 PCA.",
+      "statsmodels": "추세선, 평활화 및 분해."
+    }
+  }
+}

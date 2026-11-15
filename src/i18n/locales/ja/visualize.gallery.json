@@ -14,5 +14,15 @@
   "advancedBadge": "高度な",
   "useInExplore": "探索での使用",
   "addToDashboard": "ダッシュボードに追加",
-  "thisDataset": "このデータセット"
+  "thisDataset": "このデータセット",
+  "pick": {
+    "banner": "「{{name}}」のチャートを選択します。好きなだけチェックを入れて追加します。",
+    "back": "ダッシュボードに戻る",
+    "selected_one": "{{count}} チャートが選択されました",
+    "selected_other": "{{count}} チャートが選択されました",
+    "clear": "クリア",
+    "add_one": "{{count}} グラフをダッシュ​​ボードに追加する",
+    "add_other": "{{count}} グラフをダッシュ​​ボードに追加する",
+    "noSpec": "このダッシュボードを開けませんでした。戻ってもう一度試してください。"
+  }
 }

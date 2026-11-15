@@ -24,7 +24,8 @@
     "tooltip": "ツールチップ",
     "conditional": "条件付き書式設定",
     "analytics": "分析（基準線、トレンド、予測）",
-    "map": "地図"
+    "map": "地図",
+    "axes": "軸"
   },
   "general": {
     "title": "タイトル",
@@ -232,8 +233,8 @@
       "applySlicers": "スライサーを適用する",
       "toggle": "ビジュアルの表示/非表示",
       "url": "Web リンクを開く",
-      "askAi": "AIに聞く",
-      "reset": "デフォルトにリセットする"
+      "reset": "デフォルトにリセットする",
+      "askAi": "JT-Code AIに聞く"
     },
     "page": "ページ",
     "choose": "選ぶ…",
@@ -322,5 +323,18 @@
       "notTheme": "ファイルはテーマではありません。",
       "needColours": "テーマには少なくとも 3 つのデータ カラー (dataColors) が必要です。"
     }
+  },
+  "axes": {
+    "horizontal": "横軸(X)",
+    "vertical": "縦軸(Y)",
+    "show": "軸を表示",
+    "title": "軸タイトル",
+    "titlePlaceholder": "タイトルなし",
+    "rotate": "ラベルの角度",
+    "gridlines": "グリッド線",
+    "min": "最小",
+    "max": "最大",
+    "log": "対数スケール",
+    "hint": "Python に選択させるには、設定を [自動] のままにしておきます。数値を表示する軸には、最小値、最大値、対数スケールが適用されます。"
   }
 }

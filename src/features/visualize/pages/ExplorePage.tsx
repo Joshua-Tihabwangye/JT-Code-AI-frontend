@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
-import { ChevronDown, ChevronUp, Download, FileSpreadsheet, Info, Pin, Plus, Save, Trash2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, Compass, Download, FileSpreadsheet, Info, Lightbulb, MessageSquareText, Pin, Plus, Save, SlidersHorizontal, Trash2 } from 'lucide-react';
 import { useRepository, type ChartOption, type DashboardSpec, type DashboardVisual, type DashboardVisualType, type VisualOutput } from '@/lib/data';
 import i18n from '@/i18n/config';
 import { useTheme } from '@/lib/theme';
@@ -20,6 +20,9 @@ import { DataTable, dataCsv } from '../dashboards/visuals';
 import { saveBlob, safeName } from '../echarts';
 import { ChartThumb } from '../thumbs';
 import { ErrorNote, humanize } from '../ui';
+import { defaultQuestion, ExploreQuestion, questionVisual, type Question } from './ExploreQuestion';
+
+const ADVANCED_KEY = 'jt-explore-advanced';
 
 /** The chart types Explore offers first (any of the 85 gallery charts is one “Gallery chart” away). */
 const TYPES: DashboardVisualType[] = ['column', 'bar', 'line', 'area', 'combo', 'donut', 'treemap', 'scatter', 'table', 'matrix', 'card', 'kpi', 'map', 'waterfall', 'funnel', 'chart'];
@@ -32,6 +35,24 @@ function load(datasetId: string): DashboardVisual[] {
     return raw ? (JSON.parse(raw) as DashboardVisual[]) : [];
   } catch {
     return [];
+  }
+}
+
+/** The simple-mode question behind each chart, kept with the charts for the visit. */
+function loadQuestions(datasetId: string): Record<string, Question> {
+  try {
+    const raw = sessionStorage.getItem(`${STORE}questions:${datasetId}`);
+    return raw ? (JSON.parse(raw) as Record<string, Question>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function keepQuestions(datasetId: string, questions: Record<string, Question>) {
+  try {
+    sessionStorage.setItem(`${STORE}questions:${datasetId}`, JSON.stringify(questions));
+  } catch {
+    // Storage may be unavailable; the questions last for this page view.
   }
 }
 
@@ -77,6 +98,25 @@ export function ExplorePage() {
   const [drawer, setDrawer] = useState<'' | 'data' | 'rows' | 'query'>('');
   const [pinning, setPinning] = useState<DashboardVisual | null>(null);
   const [calculations, setCalculations] = useState<DashboardSpec['calculations']>([]);
+  // Simple mode: each chart answers a question (what to see + which columns); "All options" shows the
+  // full Build/Format panes. Charts made elsewhere (gallery, ideas, all options) have no question.
+  const [questions, setQuestions] = useState<Record<string, Question>>({});
+  const [advanced, setAdvanced] = useState(() => {
+    try {
+      return localStorage.getItem(ADVANCED_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
+  const toggleAdvanced = () =>
+    setAdvanced((value) => {
+      try {
+        localStorage.setItem(ADVANCED_KEY, value ? '0' : '1');
+      } catch {
+        // storage unavailable: the choice lasts for this visit
+      }
+      return !value;
+    });
   const mode: 'light' | 'dark' = resolvedTheme === 'dark' ? 'dark' : 'light';
   const theme = themes.data?.themes.find((item) => item.id === themes.data?.default) ?? themes.data?.themes[0];
 
@@ -85,13 +125,24 @@ export function ExplorePage() {
   useEffect(() => {
     if (!datasetId || !profiles.length) return;
     const saved = load(datasetId);
-    const initial = saved.length ? saved : [starter(datasetId, profiles)];
-    setVisuals(initial);
-    setSelected(initial[0]!.id);
+    if (saved.length) {
+      setQuestions(loadQuestions(datasetId));
+      setVisuals(saved);
+      setSelected(saved[0]!.id);
+      return;
+    }
+    const question = defaultQuestion(profiles);
+    const first = questionVisual(question, starter(datasetId, profiles));
+    setQuestions({ [first.id]: question });
+    setVisuals([first]);
+    setSelected(first.id);
   }, [datasetId, profiles]);
   useEffect(() => {
     if (datasetId && visuals.length) keep(datasetId, visuals);
   }, [datasetId, visuals]);
+  useEffect(() => {
+    if (datasetId && Object.keys(questions).length) keepQuestions(datasetId, questions);
+  }, [datasetId, questions]);
   // A chart handed over by the gallery, insights or the assistant (``openStudio``).
   useEffect(() => {
     if (!studioDraft || !datasetId || !profiles.length) return;
@@ -174,9 +225,21 @@ export function ExplorePage() {
   const update = (mutate: (visual: DashboardVisual) => DashboardVisual) => setVisuals((list) => list.map((visual) => (visual.id === selected ? mutate(visual) : visual)));
   const add = (visual?: DashboardVisual) => {
     if (!datasetId || visuals.length >= MAX_CHARTS) return;
-    const next = visual ? { ...visual, id: newId('explore') } : starter(datasetId, profiles);
+    let next: DashboardVisual;
+    if (visual) next = { ...visual, id: newId('explore') };
+    else {
+      const question = defaultQuestion(profiles);
+      next = questionVisual(question, starter(datasetId, profiles));
+      setQuestions((all) => ({ ...all, [next.id]: question }));
+    }
     setVisuals((list) => [...list, next]);
     setSelected(next.id);
+  };
+  const question = current ? questions[current.id] : undefined;
+  const ask = (next: Question) => {
+    if (!current) return;
+    setQuestions((all) => ({ ...all, [current.id]: next }));
+    update((visual) => questionVisual(next, visual));
   };
   const exportPng = () => {
     const canvas = document.querySelector<HTMLCanvasElement>(`[data-testid="tile-${selected}"] canvas`);
@@ -191,6 +254,19 @@ export function ExplorePage() {
   }
   return (
     <div className="explore" data-testid="explore">
+      <header className="explore-intro" data-testid="explore-intro">
+        <Compass size={22} aria-hidden className="shrink-0 text-indigo-500" />
+        <div className="min-w-0">
+          <h1 className="text-lg font-semibold">{t('visualize.explore.intro.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('visualize.explore.intro.body')}</p>
+          <ol className="explore-intro-steps">
+            <li>{t('visualize.explore.intro.step1')}</li>
+            <li>{t('visualize.explore.intro.step2')}</li>
+            <li>{t('visualize.explore.intro.step3')}</li>
+          </ol>
+        </div>
+      </header>
+      {advanced && (
       <div className="explore-types" role="toolbar" aria-label={t('visualize.explore.chartType')}>
         {TYPES.map((type) => (
           <button
@@ -206,11 +282,14 @@ export function ExplorePage() {
           </button>
         ))}
         <span className="flex-1" />
-        <button type="button" className="viz-chip" disabled={visuals.length >= MAX_CHARTS} onClick={() => add()} data-testid="explore-add">
-          <Plus size={13} aria-hidden /> {t('visualize.explore.add')}
-        </button>
       </div>
+      )}
 
+      {suggestions.length > 0 && (
+        <p className="explore-section-title">
+          <Lightbulb size={14} aria-hidden /> {t('visualize.explore.ideas')}
+        </p>
+      )}
       {suggestions.length > 0 && (
         <div className="explore-suggestions" aria-label={t('visualize.explore.suggestions')} data-testid="explore-suggestions">
           {suggestions.map((suggestion, index) => {
@@ -249,6 +328,11 @@ export function ExplorePage() {
             >
               <span className="explore-card-number">#{index + 1}</span>
               <Tile visual={visual} output={outputs[visual.id]} theme={theme} kpiIndex={kpis[visual.id] ?? -1} style={{ position: 'relative', height: '100%' }} onSelect={() => undefined} />
+              {visual.id === selected && (
+                <p className="explore-answer" data-testid="explore-answer">
+                  <MessageSquareText size={12} aria-hidden /> {t('visualize.explore.shows', { what: describeQuery(visual) })}
+                </p>
+              )}
               {visual.id === selected && outputs[visual.id]?.insight && (
                 <p className="explore-insight" data-testid="explore-insight">
                   <Info size={12} aria-hidden /> {outputs[visual.id]!.insight}
@@ -259,6 +343,30 @@ export function ExplorePage() {
         </section>
 
         <aside className="dash-pane explore-pane" aria-label={t('visualize.explore.buildAndFormat')}>
+          <div className="explore-pane-head">
+            <button type="button" className="viz-chip" disabled={visuals.length >= MAX_CHARTS} onClick={() => add()} data-testid="explore-add">
+              <Plus size={13} aria-hidden /> {t('visualize.explore.newQuestion')}
+            </button>
+            <button type="button" className="viz-chip" aria-pressed={advanced} onClick={toggleAdvanced} data-testid="explore-advanced">
+              <SlidersHorizontal size={13} aria-hidden /> {advanced ? t('visualize.explore.simple') : t('visualize.explore.allOptions')}
+            </button>
+          </div>
+          {!advanced && current && (
+            <div className="dash-pane-body">
+              {question ? (
+                <ExploreQuestion question={question} profiles={profiles} onChange={ask} />
+              ) : (
+                <div className="space-y-2 text-sm">
+                  <p className="text-muted-foreground">{t('visualize.explore.builtElsewhere')}</p>
+                  <button type="button" className="viz-chip" onClick={toggleAdvanced}>
+                    <SlidersHorizontal size={13} aria-hidden /> {t('visualize.explore.allOptions')}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          {advanced && (
+          <>
           <div className="dash-pane-tabs" role="tablist">
             {(['build', 'format'] as const).map((tab) => (
               <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`explore-pane-${tab}`}>
@@ -280,6 +388,8 @@ export function ExplorePage() {
               <FormatPane visual={current} update={update} page={spec.pages[0]} updatePage={() => undefined} context={{ spec, pageId: 'explore', onSpec: () => undefined, output, profiles }} fields={profiles.map((p) => p.name)} />
             )}
           </div>
+          </>
+          )}
         </aside>
       </div>
 

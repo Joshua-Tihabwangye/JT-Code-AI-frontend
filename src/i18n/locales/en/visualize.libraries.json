@@ -1,0 +1,47 @@
+{
+  "title": "Python on this page:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Builds every visual's numbers: filters, groups and totals.",
+      "numpy": "Fast maths on the columns.",
+      "statsmodels": "Trend and forecast lines on charts.",
+      "openpyxl": "Excel export."
+    },
+    "data": {
+      "pandas": "Reads, profiles, checks and transforms the data.",
+      "numpy": "Statistics and outlier checks.",
+      "openpyxl": "Reads Excel workbooks.",
+      "pdfplumber": "Reads tables in PDF files.",
+      "pypdfium2": "Renders scanned PDF pages for OCR.",
+      "python-docx": "Reads tables in Word documents.",
+      "rapidocr-onnxruntime": "Reads the text in pictures of tables.",
+      "onnxruntime": "Runs the OCR model.",
+      "pillow": "Opens and prepares pictures."
+    },
+    "explore": {
+      "pandas": "Groups and aggregates the data for the chart.",
+      "numpy": "Calculations behind every chart.",
+      "scipy": "Statistics: distributions, correlations and tests.",
+      "scikit-learn": "Clusters, regression lines and PCA.",
+      "statsmodels": "Trend lines, smoothing and decomposition."
+    },
+    "predict": {
+      "scikit-learn": "Trains, tests and compares the models.",
+      "statsmodels": "Time-series forecasts (Holt–Winters, ARIMA).",
+      "scipy": "Statistical tests and uncertainty ranges.",
+      "pandas": "Reads the dataset and prepares the inputs.",
+      "numpy": "Calculations and error measures."
+    },
+    "reports": {
+      "pandas": "Tables for the reports.",
+      "openpyxl": "Excel workbooks with native charts."
+    },
+    "gallery": {
+      "pandas": "Groups and aggregates the data for the chart.",
+      "numpy": "Calculations behind every chart.",
+      "scipy": "Statistics: distributions, correlations and tests.",
+      "scikit-learn": "Clusters, regression lines and PCA.",
+      "statsmodels": "Trend lines, smoothing and decomposition."
+    }
+  }
+}

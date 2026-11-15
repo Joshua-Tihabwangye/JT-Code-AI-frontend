@@ -86,6 +86,46 @@
     "learnFrom": "これらのコラムから学ぶ",
     "alsoUse": "これらの列も使用してください",
     "save": "保存",
-    "saveRun": "保存して実行"
+    "saveRun": "保存して実行",
+    "reasons": {
+      "none": "",
+      "constant": "すべての行に同じ値が含まれます",
+      "identifier": "ID 列 (行ごとに一意)",
+      "mostly_empty": "ほとんど空いています",
+      "few_rows": "行が少なすぎて学ぶことができません",
+      "is_date": "日付: タイムラインとして使用します",
+      "needs_number": "数値列が必要です",
+      "needs_dates": "十分な期間を含む日付列が必要です",
+      "too_many_values": "価値観が違いすぎる"
+    },
+    "reading": "データセットを読み取っています…",
+    "readBy": "Python (pandas) によってこのデータセットから読み取られる選択肢: {{rows}} 行、{{columns}} 列。",
+    "distinct_one": "{{n}} 値",
+    "distinct_other": "{{n}} 異なる値",
+    "pickColumnFirst": "最初に何を予測するかを選択します。",
+    "kinds": {
+      "numeric": "番号",
+      "categorical": "グループ",
+      "datetime": "日付",
+      "boolean": "はい/いいえ",
+      "text": "文章"
+    },
+    "dateSpan": "{{first}} ～ {{last}}、{{periods}} {{grain}}",
+    "grains": {
+      "day": "日",
+      "week": "週",
+      "month": "月",
+      "quarter": "四半期",
+      "year": "年"
+    },
+    "grainsPlural": {
+      "day": "日",
+      "week": "週",
+      "month": "月",
+      "quarter": "四半期",
+      "year": "年"
+    },
+    "untilHint": "{{last}} 以降の日付を選択するか、次の {{periods}} {{grain}} を予測するには空のままにしてください。",
+    "notRecommended": "推奨されません"
   }
 }

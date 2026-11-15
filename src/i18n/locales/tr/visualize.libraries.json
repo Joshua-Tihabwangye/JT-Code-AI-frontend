@@ -1,0 +1,47 @@
+{
+  "title": "Bu sayfada Python:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Her görselin sayısını oluşturur: filtreler, gruplar ve toplamlar.",
+      "numpy": "Sütunlarda hızlı matematik.",
+      "statsmodels": "Grafiklerdeki eğilim ve tahmin çizgileri.",
+      "openpyxl": "Excel'e dışa aktarma."
+    },
+    "data": {
+      "pandas": "Verileri okur, profiller, kontrol eder ve dönüştürür.",
+      "numpy": "İstatistikler ve aykırı değer kontrolleri.",
+      "openpyxl": "Excel çalışma kitaplarını okur.",
+      "pdfplumber": "PDF dosyalarındaki tabloları okur.",
+      "pypdfium2": "Taranan PDF sayfalarını OCR için işler.",
+      "python-docx": "Word belgelerindeki tabloları okur.",
+      "rapidocr-onnxruntime": "Tablo resimlerindeki metni okur.",
+      "onnxruntime": "OCR modelini çalıştırır.",
+      "pillow": "Resimleri açar ve hazırlar."
+    },
+    "explore": {
+      "pandas": "Grafiğe ilişkin verileri gruplandırır ve birleştirir.",
+      "numpy": "Her grafiğin arkasında hesaplamalar var.",
+      "scipy": "İstatistikler: dağılımlar, korelasyonlar ve testler.",
+      "scikit-learn": "Kümeler, regresyon çizgileri ve PCA.",
+      "statsmodels": "Trend çizgileri, yumuşatma ve ayrıştırma."
+    },
+    "predict": {
+      "scikit-learn": "Modelleri eğitir, test eder ve karşılaştırır.",
+      "statsmodels": "Zaman serisi tahminleri (Holt–Winters, ARIMA).",
+      "scipy": "İstatistiksel testler ve belirsizlik aralıkları.",
+      "pandas": "Veri kümesini okur ve girdileri hazırlar.",
+      "numpy": "Hesaplamalar ve hata önlemleri."
+    },
+    "reports": {
+      "pandas": "Raporlar için tablolar.",
+      "openpyxl": "Yerel grafikler içeren Excel çalışma kitapları."
+    },
+    "gallery": {
+      "pandas": "Grafiğe ilişkin verileri gruplandırır ve birleştirir.",
+      "numpy": "Her grafiğin arkasında hesaplamalar var.",
+      "scipy": "İstatistikler: dağılımlar, korelasyonlar ve testler.",
+      "scikit-learn": "Kümeler, regresyon çizgileri ve PCA.",
+      "statsmodels": "Trend çizgileri, yumuşatma ve ayrıştırma."
+    }
+  }
+}

@@ -24,7 +24,8 @@
     "tooltip": "QuickInfo",
     "conditional": "Bedingte Formatierung",
     "analytics": "Analyse (Referenzlinien, Trend, Prognose)",
-    "map": "Karte"
+    "map": "Karte",
+    "axes": "Äxte"
   },
   "general": {
     "title": "Titel",
@@ -232,8 +233,8 @@
       "applySlicers": "Datenschnitte anwenden",
       "toggle": "Visual ein-/ausblenden",
       "url": "Weblink öffnen",
-      "askAi": "KI fragen",
-      "reset": "Auf Standard zurücksetzen"
+      "reset": "Auf Standard zurücksetzen",
+      "askAi": "Fragen Sie JT-Code AI"
     },
     "page": "Seite",
     "choose": "Auswählen…",
@@ -322,5 +323,18 @@
       "notTheme": "Die Datei ist kein Design.",
       "needColours": "Ein Design benötigt mindestens 3 Datenfarben (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Horizontale Achse (X)",
+    "vertical": "Vertikale Achse (Y)",
+    "show": "Achse anzeigen",
+    "title": "Achsentitel",
+    "titlePlaceholder": "Kein Titel",
+    "rotate": "Etikettenwinkel",
+    "gridlines": "Gitterlinien",
+    "min": "Minimum",
+    "max": "Maximal",
+    "log": "Logarithmische Skala",
+    "hint": "Behalten Sie die Einstellung „Automatisch“ bei, damit Python auswählen kann. Minimum, Maximum und die logarithmische Skala gelten für die Achse, auf der die Zahlen angezeigt werden."
   }
 }

@@ -1,0 +1,12 @@
+{
+  "manage": "Veri kümeleri",
+  "title": "Veri kümeleriniz",
+  "description": "Yüklediğiniz veya yüklediğiniz her şey. Artık ihtiyacınız olmayanları silin.",
+  "none": "Henüz veri kümesi yok.",
+  "open": "Şimdi aç",
+  "meta": "{{rows}} satırlar · eklendi {{date}}",
+  "confirm": "Tamamen silinsin mi?",
+  "delete": "Silmek",
+  "deleteNamed": "{{name}}'yi sil",
+  "note": "Silme, verileri kaldırır. Üzerinde oluşturulan kontrol panelleri ve grafikler, siz başka bir veri kümesi seçinceye kadar hiçbir veri göstermez."
+}

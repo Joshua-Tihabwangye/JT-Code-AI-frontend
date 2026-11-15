@@ -7,14 +7,12 @@
     "reports": "Laporan",
     "explore": "Mengeksplorasi"
   },
-  "askAi": "Tanya AI",
   "hero": {
     "title": "Studio Visualisasi Data"
   },
   "assistant": {
     "title": "JT-Kode AI",
     "cost": "Menggunakan kredit hanya ketika Anda mengirim perintah. Bagan, wawasan, dan saran gratis.",
-    "about": "Tanyakan tentang",
     "intro": "Jelaskan apa yang ingin Anda lihat. Saya memilih bagan, mengisi kolom dan Anda meninjaunya sebelum semuanya berjalan.",
     "thinking": "Pemikiran…",
     "builtIn": "Bawaan",
@@ -25,7 +23,27 @@
     "placeholder": "misalnya Tampilkan pendapatan bulanan berdasarkan wilayah",
     "prompt": "Mengingatkan",
     "send": "Mengirim",
-    "close": "Menutup"
+    "close": "Menutup",
+    "aboutDataset": "Pertanyaan tentang {{name}}:",
+    "explainChart": "Jelaskan grafik di layar",
+    "grains": {
+      "day": "hari",
+      "week": "minggu",
+      "month": "bulan",
+      "quarter": "perempat",
+      "year": "bertahun-tahun"
+    },
+    "questions": {
+      "trend": "Bagaimana {{measure}} berubah seiring waktu?",
+      "top": "{{dimension}} manakah yang memiliki {{measure}} tertinggi?",
+      "forecast": "Prakiraan {{measure}} untuk {{grain}} mendatang",
+      "drivers": "Apa yang paling mempengaruhi {{target}}?",
+      "share": "Berapa bagian {{measure}} yang berasal dari setiap {{dimension}}?",
+      "relationship": "Apakah {{first}} naik ketika {{second}} naik?",
+      "unusual": "Apakah ada nilai yang tidak biasa di {{measure}}?",
+      "compare": "Bandingkan {{measure}} dengan {{dimension}}",
+      "distribution": "Bagaimana {{measure}} tersebar?"
+    }
   },
   "dataset": "Kumpulan data",
   "noDataset": "Belum ada kumpulan data",
@@ -62,5 +80,6 @@
     "close": "Menutup",
     "expandRibbon": "Perluas pita",
     "collapseRibbon": "Ciutkan pita"
-  }
+  },
+  "askAi": "Tanyakan JT-Code AI"
 }

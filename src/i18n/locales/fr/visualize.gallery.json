@@ -14,5 +14,17 @@
   "advancedBadge": "Avancé",
   "useInExplore": "Utiliser dans Explorer",
   "addToDashboard": "Ajouter au tableau de bord",
-  "thisDataset": "ce jeu de données"
+  "thisDataset": "ce jeu de données",
+  "pick": {
+    "banner": "Choisissez les graphiques pour « {{name}} ». Cochez-en autant que vous le souhaitez, puis ajoutez-les.",
+    "back": "Retour au tableau de bord",
+    "selected_one": "Graphique {{count}} sélectionné",
+    "selected_other": "Cartes {{count}} sélectionnées",
+    "clear": "Clair",
+    "add_one": "Ajouter le graphique {{count}} au tableau de bord",
+    "add_other": "Ajouter des graphiques {{count}} au tableau de bord",
+    "noSpec": "Ce tableau de bord n'a pas pu être ouvert. Revenez en arrière et réessayez.",
+    "selected_many": "Cartes {{count}} sélectionnées",
+    "add_many": "Ajouter des graphiques {{count}} au tableau de bord"
+  }
 }

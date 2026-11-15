@@ -1,0 +1,47 @@
+{
+  "title": "Python en esta página:",
+  "roles": {
+    "dashboards": {
+      "pandas": "Construye los números de cada objeto visual: filtros, grupos y totales.",
+      "numpy": "Matemáticas rápidas en las columnas.",
+      "statsmodels": "Líneas de tendencia y pronóstico en gráficos.",
+      "openpyxl": "Exportación de Excel."
+    },
+    "data": {
+      "pandas": "Lee, perfila, comprueba y transforma los datos.",
+      "numpy": "Estadísticas y comprobaciones de valores atípicos.",
+      "openpyxl": "Lee libros de Excel.",
+      "pdfplumber": "Lee tablas en archivos PDF.",
+      "pypdfium2": "Representa páginas PDF escaneadas para OCR.",
+      "python-docx": "Lee tablas en documentos de Word.",
+      "rapidocr-onnxruntime": "Lee el texto en imágenes de tablas.",
+      "onnxruntime": "Ejecuta el modelo OCR.",
+      "pillow": "Abre y prepara fotografías."
+    },
+    "explore": {
+      "pandas": "Agrupa y agrega los datos del gráfico.",
+      "numpy": "Cálculos detrás de cada gráfico.",
+      "scipy": "Estadísticas: distribuciones, correlaciones y pruebas.",
+      "scikit-learn": "Clústeres, líneas de regresión y PCA.",
+      "statsmodels": "Líneas de tendencia, suavizado y descomposición."
+    },
+    "predict": {
+      "scikit-learn": "Entrena, prueba y compara los modelos.",
+      "statsmodels": "Pronósticos de series temporales (Holt-Winters, ARIMA).",
+      "scipy": "Pruebas estadísticas y rangos de incertidumbre.",
+      "pandas": "Lee el conjunto de datos y prepara las entradas.",
+      "numpy": "Cálculos y medidas de error."
+    },
+    "reports": {
+      "pandas": "Tablas para los informes.",
+      "openpyxl": "Libros de Excel con gráficos nativos."
+    },
+    "gallery": {
+      "pandas": "Agrupa y agrega los datos del gráfico.",
+      "numpy": "Cálculos detrás de cada gráfico.",
+      "scipy": "Estadísticas: distribuciones, correlaciones y pruebas.",
+      "scikit-learn": "Clústeres, líneas de regresión y PCA.",
+      "statsmodels": "Líneas de tendencia, suavizado y descomposición."
+    }
+  }
+}

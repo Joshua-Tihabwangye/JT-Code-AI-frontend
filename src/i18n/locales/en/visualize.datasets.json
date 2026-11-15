@@ -1,0 +1,12 @@
+{
+  "manage": "Datasets",
+  "title": "Your datasets",
+  "description": "Everything you have uploaded or loaded. Delete the ones you no longer need.",
+  "none": "No datasets yet.",
+  "open": "Open now",
+  "meta": "{{rows}} rows · added {{date}}",
+  "confirm": "Delete for good?",
+  "delete": "Delete",
+  "deleteNamed": "Delete {{name}}",
+  "note": "Deleting removes the data. Dashboards and charts built on it show no data until you choose another dataset."
+}

@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { BrainCircuit, Compass, Database, FileText, LayoutGrid, Shapes, Sparkles } from 'lucide-react';
+import { BrainCircuit, Compass, Database, FileText, FolderCog, LayoutGrid, Shapes, Sparkles } from 'lucide-react';
 import { apiErrorMessage } from '@/lib/api/http';
 import { AssistantPanel } from './AssistantPanel';
+import { PythonLibraries } from './PythonLibraries';
+import { DatasetsDialog } from './DatasetsDialog';
 import { VisualizeProvider, useVisualize } from './context';
 import './visualize.css';
 
@@ -19,6 +22,7 @@ const TABS = [
 function Shell() {
   const { t } = useTranslation();
   const { catalogError, assistantOpen, setAssistantOpen, datasets, datasetId, setDatasetId } = useVisualize();
+  const [managing, setManaging] = useState(false);
   const location = useLocation();
   const path = location.pathname.replace(/\/+$/, '');
   // An open dashboard (view or edit) gets the whole screen and its own header.
@@ -38,6 +42,9 @@ function Shell() {
               ))}
             </select>
           </label>
+          <button type="button" className="viz-chip" onClick={() => setManaging(true)} disabled={!datasets.length} title={t('visualize.datasets.title')} data-testid="manage-datasets">
+            <FolderCog size={14} aria-hidden /> {t('visualize.datasets.manage')}
+          </button>
           <nav className="viz-nav" aria-label={t('visualize.sections')}>
             {TABS.map((tab) => (
               <NavLink key={tab.key} to={tab.to} end={!tab.match} className={({ isActive }) => ((tab.match ? tab.match.test(path) : isActive) ? 'active' : '')} data-testid={`tab-${tab.key}`}>
@@ -50,12 +57,14 @@ function Shell() {
           </button>
         </header>
       )}
+      {!inDashboard && <PythonLibraries page={TABS.find((tab) => (tab.match ? tab.match.test(path) : path === tab.to || path.startsWith(`${tab.to}/`)))?.key ?? 'dashboards'} />}
       {catalogError ? (
         <p role="alert" className="viz-card viz-card-pad text-sm text-destructive">
           {apiErrorMessage(catalogError)}
         </p>
       ) : null}
       <Outlet />
+      <DatasetsDialog open={managing} onClose={() => setManaging(false)} />
       {assistantOpen && (
         <>
           <div className="viz-drawer-backdrop" onClick={() => setAssistantOpen(false)} aria-hidden />

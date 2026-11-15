@@ -7,14 +7,12 @@
     "reports": "Ripoti",
     "explore": "Chunguza"
   },
-  "askAi": "Uliza AI",
   "hero": {
     "title": "Studio ya Kutazama Data"
   },
   "assistant": {
     "title": "JT-Code AI",
     "cost": "Hutumia mikopo tu unapotuma kidokezo. Chati, maarifa na mapendekezo ni bure.",
-    "about": "Uliza kuhusu",
     "intro": "Eleza unachotaka kuona. Ninachagua chati, jaza safu wima na uikague kabla ya kitu chochote kuanza.",
     "thinking": "Kufikiri..",
     "builtIn": "Imejengwa ndani",
@@ -25,7 +23,27 @@
     "placeholder": "k.m. Onyesha mapato ya kila mwezi kwa eneo",
     "prompt": "Haraka",
     "send": "Tuma",
-    "close": "Funga"
+    "close": "Funga",
+    "aboutDataset": "Maswali kuhusu {{name}}:",
+    "explainChart": "Eleza chati kwenye skrini",
+    "grains": {
+      "day": "siku",
+      "week": "wiki",
+      "month": "miezi",
+      "quarter": "robo",
+      "year": "miaka"
+    },
+    "questions": {
+      "trend": "{{measure}} imebadilika vipi baada ya muda?",
+      "top": "Ni {{dimension}} ipi iliyo na {{measure}} ya juu zaidi?",
+      "forecast": "Utabiri {{measure}} wa ujao {{grain}}",
+      "drivers": "Ni nini kinachoathiri {{target}} zaidi?",
+      "share": "Je! ni mgao gani wa {{measure}} unatoka kwa kila {{dimension}}?",
+      "relationship": "Je, {{first}} hupanda {{second}} inapoinuka?",
+      "unusual": "Je, kuna maadili yasiyo ya kawaida katika {{measure}}?",
+      "compare": "Linganisha {{measure}} kote {{dimension}}",
+      "distribution": "{{measure}} inaenezwa vipi?"
+    }
   },
   "dataset": "Seti ya data",
   "noDataset": "Bado hakuna mkusanyiko wa data",
@@ -62,5 +80,6 @@
     "close": "Funga",
     "expandRibbon": "Panua Ribbon",
     "collapseRibbon": "Kunja utepe"
-  }
+  },
+  "askAi": "Uliza JT-Code AI"
 }

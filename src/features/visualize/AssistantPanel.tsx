@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Bot, BrainCircuit, Send, Sparkles, Wand2, X } from 'lucide-react';
-import { useRepository, type VizAssistantAnswer } from '@/lib/data';
+import { useRepository, type VizAssistantAnswer, type VizQuestion } from '@/lib/data';
 import { Button } from '@/shared/components';
 import { useVisualize } from './context';
-import { DatasetPicker, ErrorNote } from './ui';
+import { ErrorNote, humanize } from './ui';
 
 interface Turn {
   id: string;
@@ -14,14 +14,6 @@ interface Turn {
   error?: unknown;
 }
 
-const QUICK_PROMPTS = [
-  'Which chart best shows my sales trend?',
-  'Compare revenue across regions',
-  'What drives the biggest differences in this data?',
-  'Forecast the next 6 months',
-  'Find unusual rows',
-  'Explain the chart on screen',
-];
 
 function fieldSummary(fields: Record<string, string | string[]>): string {
   return Object.entries(fields)
@@ -34,7 +26,18 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
-  const { datasetId, catalog, assistantContext, openStudio, openPredict } = useVisualize();
+  const { datasetId, dataset, catalog, assistantContext, openStudio, openPredict } = useVisualize();
+  // Questions about the selected dataset, chosen by Python from its columns and worded here.
+  const questions = useQuery({
+    queryKey: ['visualize', 'questions', datasetId],
+    queryFn: () => visualize.questions(datasetId),
+    enabled: !!datasetId,
+  });
+  const word = (question: VizQuestion) => {
+    const columns = Object.fromEntries(Object.entries(question.columns).map(([key, value]) => [key, key === 'grain' ? t(`visualize.assistant.grains.${value}`) : humanize(value)]));
+    return t(`visualize.assistant.questions.${question.kind}`, columns);
+  };
+  const suggestions = [...(questions.data ?? []).map(word), ...(assistantContext.page === 'explore' ? [t('visualize.assistant.explainChart')] : [])];
   const [prompt, setPrompt] = useState('');
   const [turns, setTurns] = useState<Turn[]>([]);
   const end = useRef<HTMLDivElement>(null);
@@ -95,18 +98,15 @@ export function AssistantPanel({ onClose }: { onClose: () => void }) {
         </button>
       </header>
 
-      <div className="border-b border-border p-4">
-        <DatasetPicker label={t('visualize.assistant.about')} />
-      </div>
-
       <div className="flex-1 space-y-4 overflow-y-auto p-4">
         {!turns.length && (
           <div className="space-y-3">
             <p className="text-sm text-muted-foreground">
               {t('visualize.assistant.intro')}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {QUICK_PROMPTS.map((quick) => (
+            {dataset && <p className="text-xs text-muted-foreground">{t('visualize.assistant.aboutDataset', { name: dataset.name })}</p>}
+            <div className="flex flex-wrap gap-2" data-testid="assistant-questions">
+              {suggestions.map((quick) => (
                 <button key={quick} type="button" className="viz-chip" onClick={() => send(quick)}>
                   {quick}
                 </button>

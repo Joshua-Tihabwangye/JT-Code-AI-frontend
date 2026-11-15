@@ -34,5 +34,78 @@
     },
     "grouped": "按 {{groups}} 分组的{{what}} — 在数据库中计算，然后用 Python 绘制。",
     "total": "{{what}} — 在数据库中计算，然后用 Python 绘制。"
+  },
+  "intro": {
+    "title": "探索：向您的数据提出问题",
+    "body": "选择您想要查看的内容以及要使用的列； Python 计算出答案并立即将其绘制为图表。保留好的内容：保存它们，或将它们固定到仪表板上。",
+    "step1": "选择您想看的内容",
+    "step2": "选择列",
+    "step3": "保存或将其固定到仪表板"
+  },
+  "ideas": "关于此数据的想法（单击其中一个将其打开）",
+  "newQuestion": "新问题",
+  "simple": "简单的",
+  "allOptions": "所有选项",
+  "builtElsewhere": "该图表是根据一个想法、图库或所有选项制作的。使用所有选项更改它，或开始一个新问题。",
+  "shows": "该图表显示：{{what}}",
+  "ask": {
+    "step1": "1.你想看什么？",
+    "step2": "2. 选择列",
+    "none": "（没有任何）",
+    "rows": "行数",
+    "calculate": "计算",
+    "notForData": "该数据集没有对应的列",
+    "groupBy": "对于每个",
+    "measure": "展示",
+    "howMany": "多少",
+    "dateColumn": "日期栏",
+    "every": "每一个",
+    "grains": {
+      "day": "天",
+      "week": "星期",
+      "month": "月",
+      "quarter": "四分之一",
+      "year": "年"
+    },
+    "splitBy": "每行一行（可选）",
+    "across": "底部的数字",
+    "up": "数字上升",
+    "onePointPer": "每项一分（可选）",
+    "number": "数字",
+    "rowsPer": "每行一行（可选）",
+    "intents": {
+      "compare": {
+        "name": "比较组",
+        "example": "哪个地区卖得最多？"
+      },
+      "trend": {
+        "name": "随着时间的推移而变化",
+        "example": "销售额按月变化如何？"
+      },
+      "share": {
+        "name": "整体的部分",
+        "example": "每种产品的份额是多少？"
+      },
+      "top": {
+        "name": "顶部或底部",
+        "example": "按收入排名的 10 名最佳客户"
+      },
+      "relation": {
+        "name": "两个数字在一起",
+        "example": "更高的价格意味着更少的销量吗？"
+      },
+      "spread": {
+        "name": "数的分布",
+        "example": "价格如何分配？"
+      },
+      "total": {
+        "name": "共1个",
+        "example": "总收入是多少？"
+      },
+      "table": {
+        "name": "汇总表",
+        "example": "每个地区的收入，以表格形式表示"
+      }
+    }
   }
 }

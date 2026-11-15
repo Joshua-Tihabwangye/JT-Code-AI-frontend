@@ -286,8 +286,8 @@
         "hint": "Hazır bir düzen: Sütunlarınızı buna eşleyin."
       },
       "ai": {
-        "label": "Yapay zekaya sor",
-        "hint": "Sayfayı tanımlayın; oluşturulmadan önce önizleyin."
+        "hint": "Sayfayı tanımlayın; oluşturulmadan önce önizleyin.",
+        "label": "JT-Code AI'ye sorun"
       }
     },
     "kinds": {
@@ -549,7 +549,6 @@
     "title": "Gösterge tabloları",
     "subtitle": "KPI'lar, grafikler ve dilimleyiciler tek ekranda birbirine bağlı.",
     "noData": "Önce bir veri kümesi ekleyin",
-    "blank": "Boşluk",
     "template": "Şablon",
     "building": "Bina…",
     "auto": "Kontrol paneli oluştur",
@@ -580,7 +579,9 @@
       "viewer": "izleyici"
     },
     "sharedFlag": "Paylaşıldı",
-    "deleteNamed": "{{name}}'yi sil"
+    "deleteNamed": "{{name}}'yi sil",
+    "blank": "Kendin inşa et",
+    "blankHint": "Boş bir sayfayla başlayın ve grafikleri birer birer ekleyin"
   },
   "visual": {
     "target": "Hedef {{value}}",

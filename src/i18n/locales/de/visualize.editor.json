@@ -136,7 +136,12 @@
     "addField": "+ Feld hinzufügen",
     "countOfRows": "Anzahl der Zeilen",
     "galleryChart": "Galeriediagramm",
-    "chooseChart": "Diagramm auswählen…"
+    "chooseChart": "Diagramm auswählen…",
+    "groups": {
+      "datetime": "Termine",
+      "category": "Kategorien",
+      "numeric": "Zahlen"
+    }
   },
   "calc": {
     "calculations": "Berechnungen",
@@ -218,5 +223,40 @@
     "remove": "Beziehung entfernen",
     "suggestion": "{{field}} in {{from}} und {{to}} verknüpfen",
     "add": "Beziehung hinzufügen"
-  }
+  },
+  "guide": {
+    "title": "Erstellen Sie Ihr Dashboard selbst",
+    "visuals": {
+      "card": "Zahlenkarte",
+      "column": "Säulendiagramm",
+      "line": "Liniendiagramm",
+      "donut": "Donut-Diagramm",
+      "table": "Tisch",
+      "slicer": "Filter"
+    },
+    "more": "Weitere visuelle Elemente, Texte, Bilder und Schaltflächen finden Sie oben unter „Einfügen“.",
+    "pick": "Beginnen Sie mit einer visuellen Darstellung",
+    "hints": {
+      "card": "Eine Kennzahl, etwa der Gesamtumsatz",
+      "column": "Vergleichen Sie Gruppen nebeneinander",
+      "line": "Sehen Sie Veränderungen im Laufe der Zeit",
+      "donut": "Teile eines Ganzen zeigen",
+      "table": "Listen Sie die Details Zeile für Zeile auf",
+      "slicer": "Lassen Sie die Zuschauer die Daten eingrenzen"
+    },
+    "step1": "Markieren Sie die gewünschten Diagramme (oder wählen Sie weitere aus der Galerie aus)",
+    "step2": "Fügen Sie sie hinzu: Sie kommen leer an und sind bereit für Ihre Kolumnen",
+    "step3": "Wählen Sie ein Diagramm aus, um dessen X- und Y-Achse, Legende, Maßstab und Farben festzulegen",
+    "subtitle": "Python liest {{name}} und schlägt die folgenden Diagramme vor. Kreuzen Sie die gewünschten an und fügen Sie sie hinzu. Dann richten Sie jedes einzelne selbst ein.",
+    "basics": "Grundlegende visuelle Elemente, die zu diesen Daten passen",
+    "forData": "Empfohlene Diagramme für {{name}}",
+    "reading": "Den Datensatz lesen…",
+    "fromGallery": "Wählen Sie mehr aus der Galerie",
+    "emptyNote": "Diagramme werden leer hinzugefügt: Sie wählen jede Spalte, Achse und jeden Stil aus.",
+    "add_one": "{{count}}-Diagramm zu meinem Dashboard hinzufügen",
+    "add_other": "{{count}}-Diagramme zu meinem Dashboard hinzufügen",
+    "pickSome": "Markieren Sie die hinzuzufügenden Diagramme"
+  },
+  "fromGallery": "Aus der Galerie",
+  "fromGalleryHint": "Wählen Sie für dieses Dashboard weitere Diagramme aus der Galerie aus"
 }

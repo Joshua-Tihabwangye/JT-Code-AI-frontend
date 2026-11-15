@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} nach {{groups}} – in der Datenbank berechnet, dann in Python gezeichnet.",
     "total": "{{what}} – in der Datenbank berechnet, dann in Python gezeichnet."
+  },
+  "intro": {
+    "title": "Entdecken: Stellen Sie Ihren Daten eine Frage",
+    "body": "Wählen Sie aus, was Sie sehen möchten und welche Spalten Sie verwenden möchten. Python erarbeitet die Antwort und zeichnet sie sofort als Diagramm. Behalten Sie die guten: Speichern Sie sie oder heften Sie sie an ein Dashboard.",
+    "step1": "Wählen Sie aus, was Sie sehen möchten",
+    "step2": "Wählen Sie die Spalten aus",
+    "step3": "Speichern Sie es oder heften Sie es an ein Dashboard"
+  },
+  "ideas": "Ideen für diese Daten (klicken Sie auf eine, um sie zu öffnen)",
+  "newQuestion": "Neue Frage",
+  "simple": "Einfach",
+  "allOptions": "Alle Optionen",
+  "builtElsewhere": "Dieses Diagramm wurde aus einer Idee, der Galerie oder mit allen Optionen erstellt. Ändern Sie alle Optionen oder starten Sie eine neue Frage.",
+  "shows": "Dieses Diagramm zeigt: {{what}}",
+  "ask": {
+    "step1": "1. Was möchten Sie sehen?",
+    "step2": "2. Wählen Sie die Spalten aus",
+    "none": "(keiner)",
+    "rows": "Anzahl der Zeilen",
+    "calculate": "Berechnen",
+    "notForData": "Dieser Datensatz enthält hierfür keine Spalten",
+    "groupBy": "Für jeden",
+    "measure": "Zeigen",
+    "howMany": "Wie viele",
+    "dateColumn": "Datumsspalte",
+    "every": "Jeder",
+    "grains": {
+      "day": "Tag",
+      "week": "Woche",
+      "month": "Monat",
+      "quarter": "Quartal",
+      "year": "Jahr"
+    },
+    "splitBy": "Jeweils eine Zeile (optional)",
+    "across": "Nummer unten",
+    "up": "Zahl steigt",
+    "onePointPer": "Für jeden einen Punkt (optional)",
+    "number": "Nummer",
+    "rowsPer": "Jeweils eine Zeile (optional)",
+    "intents": {
+      "compare": {
+        "name": "Gruppen vergleichen",
+        "example": "Welche Region verkauft am meisten?"
+      },
+      "trend": {
+        "name": "Veränderung im Laufe der Zeit",
+        "example": "Wie haben sich die Verkäufe von Monat zu Monat verändert?"
+      },
+      "share": {
+        "name": "Teile eines Ganzen",
+        "example": "Welchen Anteil hat jedes Produkt?"
+      },
+      "top": {
+        "name": "Oben oder unten",
+        "example": "Die 10 umsatzstärksten Kunden"
+      },
+      "relation": {
+        "name": "Zwei Zahlen zusammen",
+        "example": "Bedeuten höhere Preise weniger Verkäufe?"
+      },
+      "spread": {
+        "name": "Verbreitung einer Zahl",
+        "example": "Wie verteilen sich die Preise?"
+      },
+      "total": {
+        "name": "Insgesamt eine",
+        "example": "Wie hoch ist der Gesamtumsatz?"
+      },
+      "table": {
+        "name": "Übersichtstabelle",
+        "example": "Umsatz für jede Region, als Tabelle"
+      }
+    }
   }
 }

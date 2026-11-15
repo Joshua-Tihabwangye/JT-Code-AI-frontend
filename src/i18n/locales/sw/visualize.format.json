@@ -24,7 +24,8 @@
     "tooltip": "Kidokezo cha zana",
     "conditional": "Uumbizaji wa masharti",
     "analytics": "Uchanganuzi (mistari ya marejeleo, mwelekeo, utabiri)",
-    "map": "Ramani"
+    "map": "Ramani",
+    "axes": "Shoka"
   },
   "general": {
     "title": "Kichwa",
@@ -232,8 +233,8 @@
       "applySlicers": "Weka vipande vya kukata",
       "toggle": "Onyesha / ficha taswira",
       "url": "Fungua kiungo cha wavuti",
-      "askAi": "Uliza AI",
-      "reset": "Weka upya kwa chaguomsingi"
+      "reset": "Weka upya kwa chaguomsingi",
+      "askAi": "Uliza JT-Code AI"
     },
     "page": "Ukurasa",
     "choose": "Chagua..",
@@ -322,5 +323,18 @@
       "notTheme": "Faili si mandhari.",
       "needColours": "Mandhari yanahitaji angalau rangi 3 za data (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Mhimili mlalo (X)",
+    "vertical": "Mhimili wima (Y)",
+    "show": "Onyesha mhimili",
+    "title": "Kichwa cha mhimili",
+    "titlePlaceholder": "Hakuna kichwa",
+    "rotate": "Pembe ya lebo",
+    "gridlines": "Mistari ya gridi",
+    "min": "Kiwango cha chini",
+    "max": "Upeo wa juu",
+    "log": "Kiwango cha logarithmic",
+    "hint": "Acha mpangilio kwenye Moja kwa moja ili kuruhusu Python kuchagua. Kiwango cha chini, cha juu zaidi na kipimo cha logi kinatumika kwa mhimili unaoonyesha nambari."
   }
 }

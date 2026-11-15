@@ -24,7 +24,8 @@
     "tooltip": "Información sobre herramientas",
     "conditional": "Formato condicional",
     "analytics": "Análisis (líneas de referencia, tendencia, previsión)",
-    "map": "Mapa"
+    "map": "Mapa",
+    "axes": "ejes"
   },
   "general": {
     "title": "Título",
@@ -232,8 +233,8 @@
       "applySlicers": "Aplicar segmentaciones",
       "toggle": "Mostrar / ocultar un objeto visual",
       "url": "Abrir un vínculo web",
-      "askAi": "Preguntar a la IA",
-      "reset": "Restablecer valores predeterminados"
+      "reset": "Restablecer valores predeterminados",
+      "askAi": "Pregúntele a JT-Code AI"
     },
     "page": "Página",
     "choose": "Elegir…",
@@ -322,5 +323,18 @@
       "notTheme": "El archivo no es un tema.",
       "needColours": "Un tema necesita al menos 3 colores de datos (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Eje horizontal (X)",
+    "vertical": "Eje vertical (Y)",
+    "show": "Mostrar eje",
+    "title": "Título del eje",
+    "titlePlaceholder": "Sin título",
+    "rotate": "Ángulo de etiqueta",
+    "gridlines": "Líneas de cuadrícula",
+    "min": "Mínimo",
+    "max": "Máximo",
+    "log": "Escala logarítmica",
+    "hint": "Deje una configuración en Automático para permitir que Python elija. El mínimo, el máximo y la escala logarítmica se aplican al eje que muestra los números."
   }
 }

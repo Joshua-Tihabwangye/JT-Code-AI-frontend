@@ -78,7 +78,7 @@ export function DashboardsHome() {
           ))}
         </select>
         </div>
-        <button type="button" className="viz-chip h-9" disabled={blank.isPending} onClick={() => blank.mutate()} data-testid="blank-dashboard">
+        <button type="button" className="viz-chip h-9" disabled={blank.isPending} onClick={() => blank.mutate()} title={t('visualize.dashboards.home.blankHint')} data-testid="blank-dashboard">
           <Plus size={14} aria-hidden /> {t('visualize.dashboards.home.blank')}
         </button>
         <button type="button" className="viz-chip h-9" disabled={!datasets.length} onClick={() => setStarting('template')} data-testid="template-dashboard">

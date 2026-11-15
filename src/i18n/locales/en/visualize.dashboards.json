@@ -286,7 +286,7 @@
         "hint": "A ready-made layout: map your columns to it."
       },
       "ai": {
-        "label": "Ask AI",
+        "label": "Ask JT-Code AI",
         "hint": "Describe the page; preview it before it is created."
       }
     },
@@ -549,7 +549,7 @@
     "title": "Dashboards",
     "subtitle": "KPIs, charts and slicers on one screen, all connected.",
     "noData": "Add a dataset first",
-    "blank": "Blank",
+    "blank": "Build it yourself",
     "template": "Template",
     "building": "Building…",
     "auto": "Build dashboard",
@@ -580,7 +580,8 @@
       "viewer": "viewer"
     },
     "sharedFlag": "shared",
-    "deleteNamed": "Delete {{name}}"
+    "deleteNamed": "Delete {{name}}",
+    "blankHint": "Start with an empty page and add charts one by one"
   },
   "visual": {
     "target": "Target {{value}}",

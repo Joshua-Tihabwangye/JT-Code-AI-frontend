@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} na {{groups}} - imekokotwa katika hifadhidata, kisha ikachorwa katika Chatu.",
     "total": "{{what}} - imekokotwa kwenye hifadhidata, kisha ikachorwa kwa Python."
+  },
+  "intro": {
+    "title": "Gundua: uliza data yako swali",
+    "body": "Chagua unachotaka kuona na safu wima zipi utumie; Python hujibu jibu na kuichora kama chati mara moja. Weka nzuri: zihifadhi, au zibandike kwenye dashibodi.",
+    "step1": "Chagua unachotaka kuona",
+    "step2": "Chagua safuwima",
+    "step3": "Ihifadhi au ibandike kwenye dashibodi"
+  },
+  "ideas": "Mawazo ya data hii (bofya moja ili kuifungua)",
+  "newQuestion": "Swali jipya",
+  "simple": "Rahisi",
+  "allOptions": "Chaguzi zote",
+  "builtElsewhere": "Chati hii iliundwa kutoka kwa wazo, ghala au chaguzi zote. Ibadilishe na chaguo zote, au anza swali jipya.",
+  "shows": "Chati hii inaonyesha: {{what}}",
+  "ask": {
+    "step1": "1. Unataka kuona nini?",
+    "step2": "2. Chagua nguzo",
+    "none": "(hakuna)",
+    "rows": "Idadi ya safu",
+    "calculate": "Kokotoa",
+    "notForData": "Seti hii ya data haina safu wima za hii",
+    "groupBy": "Kwa kila mmoja",
+    "measure": "Onyesha",
+    "howMany": "Ngapi",
+    "dateColumn": "Safu ya tarehe",
+    "every": "Kila",
+    "grains": {
+      "day": "Siku",
+      "week": "Wiki",
+      "month": "Mwezi",
+      "quarter": "Robo",
+      "year": "Mwaka"
+    },
+    "splitBy": "Mstari mmoja kwa kila (si lazima)",
+    "across": "Nambari kando ya chini",
+    "up": "Nambari kwenda juu",
+    "onePointPer": "Pointi moja kwa kila (si lazima)",
+    "number": "Nambari",
+    "rowsPer": "Safu mlalo moja kwa kila (si lazima)",
+    "intents": {
+      "compare": {
+        "name": "Linganisha vikundi",
+        "example": "Mkoa gani unauza zaidi?"
+      },
+      "trend": {
+        "name": "Badilisha kwa wakati",
+        "example": "Mauzo yalibadilikaje kwa mwezi?"
+      },
+      "share": {
+        "name": "Sehemu za jumla",
+        "example": "Je, kila bidhaa ina hisa gani?"
+      },
+      "top": {
+        "name": "Juu au chini",
+        "example": "Wateja 10 bora kwa mapato"
+      },
+      "relation": {
+        "name": "Nambari mbili pamoja",
+        "example": "Je, bei ya juu inamaanisha mauzo machache?"
+      },
+      "spread": {
+        "name": "Kuenea kwa nambari",
+        "example": "Je, bei zinagawanywaje?"
+      },
+      "total": {
+        "name": "Jumla moja",
+        "example": "Jumla ya mapato ni nini?"
+      },
+      "table": {
+        "name": "Jedwali la muhtasari",
+        "example": "Mapato kwa kila mkoa, kama jedwali"
+      }
+    }
   }
 }

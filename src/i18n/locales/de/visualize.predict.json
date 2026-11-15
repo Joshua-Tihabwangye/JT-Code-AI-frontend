@@ -86,6 +86,46 @@
     "learnFrom": "Lernen Sie aus diesen Kolumnen",
     "alsoUse": "Nutzen Sie auch diese Spalten",
     "save": "Speichern",
-    "saveRun": "Speichern und ausführen"
+    "saveRun": "Speichern und ausführen",
+    "reasons": {
+      "none": "",
+      "constant": "Jede Zeile hat den gleichen Wert",
+      "identifier": "Eine ID-Spalte (eindeutig pro Zeile)",
+      "mostly_empty": "Größtenteils leer",
+      "few_rows": "Zu wenige Zeilen, aus denen man lernen kann",
+      "is_date": "Ein Datum: Verwenden Sie es als Zeitleiste",
+      "needs_number": "Benötigt eine Zahlenspalte",
+      "needs_dates": "Benötigt eine Datumsspalte mit genügend Punkten",
+      "too_many_values": "Zu viele verschiedene Werte"
+    },
+    "reading": "Den Datensatz lesen…",
+    "readBy": "Von Python (Pandas) aus diesem Datensatz gelesene Auswahlmöglichkeiten: {{rows}} Zeilen, {{columns}} Spalten.",
+    "distinct_one": "{{n}}-Wert",
+    "distinct_other": "{{n}} verschiedene Werte",
+    "pickColumnFirst": "Wählen Sie zuerst aus, was Sie vorhersagen möchten.",
+    "kinds": {
+      "numeric": "Nummer",
+      "categorical": "Gruppe",
+      "datetime": "Datum",
+      "boolean": "ja/nein",
+      "text": "Text"
+    },
+    "dateSpan": "{{first}} bis {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "Tage",
+      "week": "Wochen",
+      "month": "Monate",
+      "quarter": "Viertel",
+      "year": "Jahre"
+    },
+    "grainsPlural": {
+      "day": "Tage",
+      "week": "Wochen",
+      "month": "Monate",
+      "quarter": "Viertel",
+      "year": "Jahre"
+    },
+    "untilHint": "Wählen Sie ein Datum nach {{last}} oder lassen Sie es leer, um das nächste {{periods}} {{grain}} vorherzusagen.",
+    "notRecommended": "nicht empfohlen"
   }
 }

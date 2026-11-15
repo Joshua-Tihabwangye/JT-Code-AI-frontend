@@ -24,7 +24,8 @@
     "tooltip": "İpucu",
     "conditional": "Koşullu biçimlendirme",
     "analytics": "Analitik (referans çizgileri, trend, tahmin)",
-    "map": "Harita"
+    "map": "Harita",
+    "axes": "Eksenler"
   },
   "general": {
     "title": "Başlık",
@@ -232,8 +233,8 @@
       "applySlicers": "Dilimleyicileri uygula",
       "toggle": "Bir görseli göster / gizle",
       "url": "Bir web bağlantısını açın",
-      "askAi": "Yapay zekaya sor",
-      "reset": "Varsayılana sıfırla"
+      "reset": "Varsayılana sıfırla",
+      "askAi": "JT-Code AI'ye sorun"
     },
     "page": "Sayfa",
     "choose": "Seçmek…",
@@ -322,5 +323,18 @@
       "notTheme": "Dosya bir tema değil.",
       "needColours": "Bir temanın en az 3 veri rengine (dataColors) ihtiyacı vardır."
     }
+  },
+  "axes": {
+    "horizontal": "Yatay eksen (X)",
+    "vertical": "Dikey eksen (Y)",
+    "show": "Ekseni göster",
+    "title": "Eksen başlığı",
+    "titlePlaceholder": "Başlık yok",
+    "rotate": "Etiket açısı",
+    "gridlines": "Kılavuz çizgileri",
+    "min": "Asgari",
+    "max": "Maksimum",
+    "log": "Logaritmik ölçek",
+    "hint": "Python'un seçmesine izin vermek için Otomatik'te bir ayar bırakın. Minimum, maksimum ve log ölçeği sayıları gösteren eksene uygulanır."
   }
 }

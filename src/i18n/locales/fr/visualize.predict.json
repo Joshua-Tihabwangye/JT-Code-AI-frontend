@@ -88,6 +88,47 @@
     "learnFrom": "Apprenez de ces colonnes",
     "alsoUse": "Utilisez également ces colonnes",
     "save": "Sauvegarder",
-    "saveRun": "Enregistrer et exécuter"
+    "saveRun": "Enregistrer et exécuter",
+    "reasons": {
+      "none": "",
+      "constant": "Chaque ligne a la même valeur",
+      "identifier": "Une colonne ID (unique par ligne)",
+      "mostly_empty": "Presque vide",
+      "few_rows": "Trop peu de lignes pour en tirer des leçons",
+      "is_date": "Une date : utilisez-la comme chronologie",
+      "needs_number": "Nécessite une colonne numérique",
+      "needs_dates": "Nécessite une colonne de date avec suffisamment de périodes",
+      "too_many_values": "Trop de valeurs différentes"
+    },
+    "reading": "Lecture de l'ensemble de données…",
+    "readBy": "Choix lus à partir de cet ensemble de données par Python (pandas) : lignes {{rows}}, colonnes {{columns}}.",
+    "distinct_one": "Valeur {{n}}",
+    "distinct_other": "{{n}} valeurs différentes",
+    "pickColumnFirst": "Choisissez ce que vous souhaitez prédire en premier.",
+    "kinds": {
+      "numeric": "nombre",
+      "categorical": "groupe",
+      "datetime": "date",
+      "boolean": "oui/non",
+      "text": "texte"
+    },
+    "dateSpan": "{{first}} à {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "jours",
+      "week": "semaines",
+      "month": "mois",
+      "quarter": "quarts",
+      "year": "années"
+    },
+    "grainsPlural": {
+      "day": "jours",
+      "week": "semaines",
+      "month": "mois",
+      "quarter": "quarts",
+      "year": "années"
+    },
+    "untilHint": "Choisissez une date après le {{last}} ou laissez-la vide pour prévoir le prochain {{periods}} {{grain}}.",
+    "notRecommended": "non recommandé",
+    "distinct_many": "{{n}} valeurs différentes"
   }
 }

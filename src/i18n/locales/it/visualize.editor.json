@@ -136,7 +136,12 @@
     "addField": "+ Aggiungi campo",
     "countOfRows": "Conteggio delle righe",
     "galleryChart": "Grafico della galleria",
-    "chooseChart": "Scegli un grafico.."
+    "chooseChart": "Scegli un grafico..",
+    "groups": {
+      "datetime": "Date",
+      "category": "Categorie",
+      "numeric": "Numeri"
+    }
   },
   "calc": {
     "calculations": "Calcoli",
@@ -220,5 +225,41 @@
     "add": "Aggiungi relazione"
   },
   "multiSelected_many": "{{count}} elementi visivi selezionati: utilizza Disponi o scegline uno da modificare.",
-  "visualsCount_many": "{{count}} immagini"
+  "visualsCount_many": "{{count}} immagini",
+  "guide": {
+    "title": "Costruisci tu stesso la tua dashboard",
+    "visuals": {
+      "card": "Carta numerica",
+      "column": "Grafico a colonne",
+      "line": "Grafico a linee",
+      "donut": "Grafico a ciambella",
+      "table": "Tavolo",
+      "slicer": "Filtro"
+    },
+    "more": "Altri elementi visivi, testo, immagini e pulsanti si trovano sotto Inserisci in alto.",
+    "pick": "Inizia con un aspetto visivo",
+    "hints": {
+      "card": "Una cifra chiave, come le entrate totali",
+      "column": "Confronta i gruppi fianco a fianco",
+      "line": "Vedi il cambiamento nel tempo",
+      "donut": "Mostra parti di un tutto",
+      "table": "Elenca i dettagli riga per riga",
+      "slicer": "Consenti agli spettatori di restringere i dati"
+    },
+    "step1": "Seleziona le classifiche che desideri (o scegline altre dalla gallery)",
+    "step2": "Aggiungili: arrivano vuoti, pronti per le tue rubriche",
+    "step3": "Seleziona un grafico per impostarne gli assi X e Y, la legenda, la scala e i colori",
+    "subtitle": "Python legge {{name}} e suggerisce i grafici seguenti. Spunta quelli che desideri e aggiungili; poi li configuri tu stesso.",
+    "basics": "Elementi visivi di base che si adattano a questi dati",
+    "forData": "Grafici suggeriti per {{name}}",
+    "reading": "Lettura del set di dati…",
+    "fromGallery": "Scegli altro dalla galleria",
+    "emptyNote": "I grafici vengono aggiunti vuoti: scegli tu ogni colonna, asse e stile.",
+    "add_one": "Aggiungi il grafico {{count}} alla mia dashboard",
+    "add_other": "Aggiungi i grafici {{count}} alla mia dashboard",
+    "pickSome": "Grafici di spunta da aggiungere",
+    "add_many": "Aggiungi i grafici {{count}} alla mia dashboard"
+  },
+  "fromGallery": "Dalla galleria",
+  "fromGalleryHint": "Scegli più grafici dalla galleria per questa dashboard"
 }

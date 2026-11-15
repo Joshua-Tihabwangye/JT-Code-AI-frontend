@@ -14,5 +14,17 @@
   "advancedBadge": "Avançado",
   "useInExplore": "Usar em Explorar",
   "addToDashboard": "Adicionar ao painel",
-  "thisDataset": "este conjunto de dados"
+  "thisDataset": "este conjunto de dados",
+  "pick": {
+    "banner": "Escolha gráficos para “{{name}}”. Marque quantos desejar e adicione-os.",
+    "back": "Voltar ao painel",
+    "selected_one": "{{count}} gráfico selecionado",
+    "selected_other": "{{count}} gráficos selecionados",
+    "clear": "Claro",
+    "add_one": "Adicione o gráfico {{count}} ao painel",
+    "add_other": "Adicione gráficos {{count}} ao painel",
+    "noSpec": "Este painel não pôde ser aberto. Volte e tente novamente.",
+    "selected_many": "{{count}} gráficos selecionados",
+    "add_many": "Adicione gráficos {{count}} ao painel"
+  }
 }

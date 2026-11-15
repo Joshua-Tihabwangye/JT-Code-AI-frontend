@@ -86,6 +86,46 @@
     "learnFrom": "Learn from these columns",
     "alsoUse": "Also use these columns",
     "save": "Save",
-    "saveRun": "Save and run"
+    "saveRun": "Save and run",
+    "reading": "Reading the dataset…",
+    "readBy": "Choices read from this dataset by Python (pandas): {{rows}} rows, {{columns}} columns.",
+    "distinct_one": "{{n}} value",
+    "distinct_other": "{{n}} different values",
+    "pickColumnFirst": "Choose what to predict first.",
+    "reasons": {
+      "none": "",
+      "constant": "Every row has the same value",
+      "identifier": "An ID column (unique per row)",
+      "mostly_empty": "Mostly empty",
+      "few_rows": "Too few rows to learn from",
+      "is_date": "A date: use it as the timeline",
+      "needs_number": "Needs a number column",
+      "needs_dates": "Needs a date column with enough periods",
+      "too_many_values": "Too many different values"
+    },
+    "kinds": {
+      "numeric": "number",
+      "categorical": "group",
+      "datetime": "date",
+      "boolean": "yes/no",
+      "text": "text"
+    },
+    "dateSpan": "{{first}} to {{last}}, {{periods}} {{grain}}",
+    "grains": {
+      "day": "days",
+      "week": "weeks",
+      "month": "months",
+      "quarter": "quarters",
+      "year": "years"
+    },
+    "grainsPlural": {
+      "day": "days",
+      "week": "weeks",
+      "month": "months",
+      "quarter": "quarters",
+      "year": "years"
+    },
+    "untilHint": "Pick a date after {{last}}, or leave it empty to forecast the next {{periods}} {{grain}}.",
+    "notRecommended": "not recommended"
   }
 }
