@@ -14,7 +14,6 @@
   "assistant": {
     "title": "JT-코드 AI",
     "cost": "메시지를 보낼 때만 크레딧을 사용합니다. 차트, 통찰력, 제안은 무료입니다.",
-    "about": "대해 물어보세요",
     "intro": "보고 싶은 것을 설명하세요. 차트를 선택하고 열을 채우면 실행되기 전에 검토합니다.",
     "thinking": "생각…",
     "builtIn": "내장",
@@ -25,7 +24,27 @@
     "placeholder": "예를 들어 지역별 월별 수익 표시",
     "prompt": "즉각적인",
     "send": "보내다",
-    "close": "닫다"
+    "close": "닫다",
+    "aboutDataset": "{{name}}에 관한 질문:",
+    "explainChart": "화면의 차트를 설명하세요",
+    "grains": {
+      "day": "날",
+      "week": "주",
+      "month": "개월",
+      "quarter": "병사",
+      "year": "연령"
+    },
+    "questions": {
+      "trend": "시간이 지남에 따라 {{measure}}은 어떻게 변했습니까?",
+      "top": "{{measure}}이 가장 높은 {{dimension}}은 무엇입니까?",
+      "forecast": "다가오는 {{grain}}에 대한 예측 {{measure}}",
+      "drivers": "{{target}}에 가장 큰 영향을 미치는 것은 무엇입니까?",
+      "share": "각 {{dimension}}에서 {{measure}}의 몇 몫이 나오나요?",
+      "relationship": "{{second}}이 상승하면 {{first}}도 상승합니까?",
+      "unusual": "{{measure}}에 특이한 값이 있습니까?",
+      "compare": "{{dimension}} 전체에서 {{measure}}을 비교합니다",
+      "distribution": "{{measure}}은 어떻게 퍼져 있나요?"
+    }
   },
   "dataset": "데이터세트",
   "noDataset": "아직 데이터 세트가 없습니다",

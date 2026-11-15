@@ -1,0 +1,12 @@
+{
+  "manage": "Seti za data",
+  "title": "Seti zako za data",
+  "description": "Kila kitu ambacho umepakia au kupakia. Futa zile ambazo huhitaji tena.",
+  "none": "Bado hakuna seti za data.",
+  "open": "Fungua sasa",
+  "meta": "{{rows}} safu mlalo · imeongezwa {{date}}",
+  "confirm": "Ungependa kufuta kwa manufaa?",
+  "delete": "Futa",
+  "deleteNamed": "Futa {{name}}",
+  "note": "Kufuta huondoa data. Dashibodi na chati zilizojengwa juu yake hazionyeshi data hadi uchague mkusanyiko mwingine wa data."
+}

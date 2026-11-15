@@ -14,7 +14,6 @@
   "assistant": {
     "title": "JT Kodu AI",
     "cost": "Kredileri yalnızca bir istem gönderdiğinizde kullanır. Grafikler, analizler ve öneriler ücretsizdir.",
-    "about": "Hakkında bilgi isteyin",
     "intro": "Ne görmek istediğinizi açıklayın. Ben grafiği seçerim, sütunları doldururum ve sen herhangi bir şey çalıştırılmadan önce onu incelersin.",
     "thinking": "Düşünüyorum…",
     "builtIn": "Yerleşik",
@@ -25,7 +24,27 @@
     "placeholder": "örneğin Aylık geliri bölgeye göre göster",
     "prompt": "Çabuk",
     "send": "Göndermek",
-    "close": "Kapalı"
+    "close": "Kapalı",
+    "aboutDataset": "{{name}} ile ilgili sorular:",
+    "explainChart": "Ekrandaki grafiği açıklayın",
+    "grains": {
+      "day": "günler",
+      "week": "haftalar",
+      "month": "aylar",
+      "quarter": "çeyrekler",
+      "year": "yıllar"
+    },
+    "questions": {
+      "trend": "{{measure}} zaman içinde nasıl değişti?",
+      "top": "Hangi {{dimension}} en yüksek {{measure}} değerine sahiptir?",
+      "forecast": "Önümüzdeki {{grain}} için {{measure}} tahmini",
+      "drivers": "{{target}}'yi en çok ne etkiler?",
+      "share": "Her bir {{dimension}}'den {{measure}}'nin hangi payı geliyor?",
+      "relationship": "{{second}} yükseldiğinde {{first}} yükselir mi?",
+      "unusual": "{{measure}}'da olağandışı değerler var mı?",
+      "compare": "{{measure}} ile {{dimension}}'yi karşılaştırın",
+      "distribution": "{{measure}} nasıl yayılır?"
+    }
   },
   "dataset": "Veri kümesi",
   "noDataset": "Henüz veri kümesi yok",

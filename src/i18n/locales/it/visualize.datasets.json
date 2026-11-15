@@ -1,0 +1,12 @@
+{
+  "manage": "Set di dati",
+  "title": "I tuoi set di dati",
+  "description": "Tutto ciò che hai caricato o caricato. Elimina quelli che non ti servono più.",
+  "none": "Nessun set di dati ancora.",
+  "open": "Apri ora",
+  "meta": "{{rows}} righe · aggiunto {{date}}",
+  "confirm": "Eliminare definitivamente?",
+  "delete": "Eliminare",
+  "deleteNamed": "Elimina {{name}}",
+  "note": "L'eliminazione rimuove i dati. Le dashboard e i grafici basati su di esso non mostrano dati finché non scegli un altro set di dati."
+}

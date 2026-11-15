@@ -218,5 +218,20 @@
     "remove": "Beziehung entfernen",
     "suggestion": "{{field}} in {{from}} und {{to}} verknüpfen",
     "add": "Beziehung hinzufügen"
+  },
+  "guide": {
+    "title": "Erstellen Sie Ihr Dashboard",
+    "step1": "Fügen Sie ein Bild hinzu: Klicken Sie unten auf eines oder verwenden Sie oben „Einfügen“.",
+    "step2": "Wählen Sie die Spalten im Build-Bereich auf der rechten Seite aus.",
+    "step3": "Ziehen Sie, um es zu verschieben, und ziehen Sie an einer Ecke, um die Größe zu ändern. Änderungen werden von selbst gespeichert.",
+    "visuals": {
+      "card": "Zahlenkarte",
+      "column": "Säulendiagramm",
+      "line": "Liniendiagramm",
+      "donut": "Krapfen",
+      "table": "Tisch",
+      "slicer": "Filter (Slicer)"
+    },
+    "more": "Weitere visuelle Elemente, Texte, Bilder und Schaltflächen finden Sie unter Einfügen."
   }
 }

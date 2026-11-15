@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} oleh {{groups}} — dihitung dalam database, kemudian digambar dengan Python.",
     "total": "{{what}} — dihitung dalam database, lalu digambar dengan Python."
+  },
+  "intro": {
+    "title": "Jelajahi: ajukan pertanyaan pada data Anda",
+    "body": "Pilih apa yang ingin Anda lihat dan kolom mana yang akan digunakan; Python mencari jawabannya dan langsung menggambarnya sebagai bagan. Simpan yang bagus: simpan, atau sematkan ke dasbor.",
+    "step1": "Pilih apa yang ingin Anda lihat",
+    "step2": "Pilih kolom",
+    "step3": "Simpan atau sematkan ke dasbor"
+  },
+  "ideas": "Ide untuk data ini (klik salah satu untuk membukanya)",
+  "newQuestion": "Pertanyaan baru",
+  "simple": "Sederhana",
+  "allOptions": "Semua pilihan",
+  "builtElsewhere": "Bagan ini dibuat dari sebuah ide, galeri atau dengan semua pilihan. Ubah dengan semua opsi, atau mulai pertanyaan baru.",
+  "shows": "Bagan ini menunjukkan: {{what}}",
+  "ask": {
+    "step1": "1. Apa yang ingin kamu lihat?",
+    "step2": "2. Pilih kolom",
+    "none": "(tidak ada)",
+    "rows": "Jumlah baris",
+    "calculate": "Menghitung",
+    "notForData": "Kumpulan data ini tidak memiliki kolom untuk ini",
+    "groupBy": "Untuk masing-masing",
+    "measure": "Menunjukkan",
+    "howMany": "Berapa banyak",
+    "dateColumn": "Kolom tanggal",
+    "every": "Setiap",
+    "grains": {
+      "day": "Hari",
+      "week": "Pekan",
+      "month": "Bulan",
+      "quarter": "Seperempat",
+      "year": "Tahun"
+    },
+    "splitBy": "Satu baris untuk masing-masing (opsional)",
+    "across": "Nomor di bagian bawah",
+    "up": "Jumlahnya naik",
+    "onePointPer": "Satu poin untuk masing-masing (opsional)",
+    "number": "Nomor",
+    "rowsPer": "Satu baris untuk masing-masing (opsional)",
+    "intents": {
+      "compare": {
+        "name": "Bandingkan kelompok",
+        "example": "Wilayah mana yang paling banyak menjual?"
+      },
+      "trend": {
+        "name": "Berubah seiring waktu",
+        "example": "Bagaimana penjualan berubah berdasarkan bulan?"
+      },
+      "share": {
+        "name": "Bagian dari keseluruhan",
+        "example": "Berapa pangsa yang dimiliki setiap produk?"
+      },
+      "top": {
+        "name": "Atas atau bawah",
+        "example": "10 pelanggan terbaik berdasarkan pendapatan"
+      },
+      "relation": {
+        "name": "Dua angka bersamaan",
+        "example": "Apakah harga yang lebih tinggi berarti penjualan yang lebih sedikit?"
+      },
+      "spread": {
+        "name": "Penyebaran sejumlah",
+        "example": "Bagaimana harga didistribusikan?"
+      },
+      "total": {
+        "name": "Satu total",
+        "example": "Berapa total pendapatannya?"
+      },
+      "table": {
+        "name": "Tabel ringkasan",
+        "example": "Pendapatan tiap daerah, dalam bentuk tabel"
+      }
+    }
   }
 }

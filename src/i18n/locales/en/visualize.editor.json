@@ -218,5 +218,20 @@
     "remove": "Remove relationship",
     "suggestion": "Link {{field}} in {{from}} and {{to}}",
     "add": "Add relationship"
+  },
+  "guide": {
+    "title": "Build your dashboard",
+    "step1": "Add a visual: click one below, or use Insert at the top.",
+    "step2": "Choose its columns in the Build pane on the right.",
+    "step3": "Drag to move it, pull a corner to resize. Changes save on their own.",
+    "visuals": {
+      "card": "Number card",
+      "column": "Column chart",
+      "line": "Line chart",
+      "donut": "Donut",
+      "table": "Table",
+      "slicer": "Filter (slicer)"
+    },
+    "more": "More visuals, text, images and buttons are under Insert."
   }
 }

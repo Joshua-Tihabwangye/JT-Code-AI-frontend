@@ -549,7 +549,6 @@
     "title": "대시보드",
     "subtitle": "KPI, 차트, 슬라이서를 한 화면에 모두 연결합니다.",
     "noData": "먼저 데이터세트를 추가하세요",
-    "blank": "공백",
     "template": "주형",
     "building": "건물…",
     "auto": "대시보드 구축",
@@ -580,7 +579,9 @@
       "viewer": "뷰어"
     },
     "sharedFlag": "공유됨",
-    "deleteNamed": "{{name}} 삭제"
+    "deleteNamed": "{{name}} 삭제",
+    "blank": "직접 만들어 보세요",
+    "blankHint": "빈 페이지에서 시작하여 차트를 하나씩 추가하세요"
   },
   "visual": {
     "target": "타겟 {{value}}",

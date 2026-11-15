@@ -437,6 +437,12 @@ export interface VizLibrary {
   role: string;
 }
 
+/** A question worth asking about a dataset: chosen by Python from its columns, worded by the client. */
+export interface VizQuestion {
+  kind: 'trend' | 'top' | 'forecast' | 'drivers' | 'share' | 'relationship' | 'unusual' | 'compare' | 'distribution';
+  columns: Record<string, string>;
+}
+
 /** Why a column cannot be the target of a kind of prediction ('' = it can). */
 export type VizGoalReason = '' | 'constant' | 'identifier' | 'mostly_empty' | 'few_rows' | 'is_date' | 'needs_number' | 'needs_dates' | 'too_many_values';
 

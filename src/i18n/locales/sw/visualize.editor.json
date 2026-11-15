@@ -218,5 +218,20 @@
     "remove": "Ondoa uhusiano",
     "suggestion": "Unganisha {{field}} katika {{from}} na {{to}}",
     "add": "Ongeza uhusiano"
+  },
+  "guide": {
+    "title": "Unda dashibodi yako",
+    "step1": "Ongeza taswira: bofya moja hapa chini, au tumia Chomeka juu.",
+    "step2": "Chagua safu wima zake kwenye kidirisha cha Kujenga upande wa kulia.",
+    "step3": "Buruta ili kuisogeza, vuta kona ili kubadilisha ukubwa. Mabadiliko huokoa peke yao.",
+    "visuals": {
+      "card": "Kadi ya nambari",
+      "column": "Chati ya safu wima",
+      "line": "Chati ya mstari",
+      "donut": "Donati",
+      "table": "Jedwali",
+      "slicer": "Kichujio (kipande)"
+    },
+    "more": "Vielelezo zaidi, maandishi, picha na vitufe viko chini ya Ingiza."
   }
 }

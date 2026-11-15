@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} par {{groups}} — calculé dans la base de données, puis dessiné en Python.",
     "total": "{{what}} — calculé dans la base de données, puis dessiné en Python."
+  },
+  "intro": {
+    "title": "Explorer : posez une question à vos données",
+    "body": "Choisissez ce que vous voulez voir et quelles colonnes utiliser ; Python élabore la réponse et la dessine immédiatement sous forme de graphique. Conservez les bons : enregistrez-les ou épinglez-les sur un tableau de bord.",
+    "step1": "Choisissez ce que vous voulez voir",
+    "step2": "Choisissez les colonnes",
+    "step3": "Enregistrez-le ou épinglez-le sur un tableau de bord"
+  },
+  "ideas": "Idées pour ces données (cliquez sur une pour l'ouvrir)",
+  "newQuestion": "Nouvelle question",
+  "simple": "Simple",
+  "allOptions": "Toutes les options",
+  "builtElsewhere": "Ce tableau a été réalisé à partir d'une idée, de la galerie ou avec toutes les options. Modifiez-le avec toutes les options ou créez une nouvelle question.",
+  "shows": "Ce graphique montre : {{what}}",
+  "ask": {
+    "step1": "1. Que veux-tu voir ?",
+    "step2": "2. Choisissez les colonnes",
+    "none": "(aucun)",
+    "rows": "Nombre de lignes",
+    "calculate": "Calculer",
+    "notForData": "Cet ensemble de données ne comporte aucune colonne pour cela",
+    "groupBy": "Pour chacun",
+    "measure": "Montrer",
+    "howMany": "Combien",
+    "dateColumn": "Colonne Date",
+    "every": "Chaque",
+    "grains": {
+      "day": "Jour",
+      "week": "Semaine",
+      "month": "Mois",
+      "quarter": "Quart",
+      "year": "Année"
+    },
+    "splitBy": "Une ligne pour chacun (facultatif)",
+    "across": "Numéro en bas",
+    "up": "Nombre en hausse",
+    "onePointPer": "Un point pour chacun (facultatif)",
+    "number": "Nombre",
+    "rowsPer": "Une ligne pour chacun (facultatif)",
+    "intents": {
+      "compare": {
+        "name": "Comparer les groupes",
+        "example": "Quelle région vend le plus ?"
+      },
+      "trend": {
+        "name": "Changer au fil du temps",
+        "example": "Comment les ventes ont-elles évolué chaque mois ?"
+      },
+      "share": {
+        "name": "Parties d'un tout",
+        "example": "Quelle est la part de chaque produit ?"
+      },
+      "top": {
+        "name": "Haut ou bas",
+        "example": "Les 10 meilleurs clients par chiffre d'affaires"
+      },
+      "relation": {
+        "name": "Deux nombres ensemble",
+        "example": "Des prix plus élevés signifient-ils moins de ventes ?"
+      },
+      "spread": {
+        "name": "Propagation d'un numéro",
+        "example": "Comment sont répartis les prix ?"
+      },
+      "total": {
+        "name": "Un total",
+        "example": "Quel est le revenu total ?"
+      },
+      "table": {
+        "name": "Tableau récapitulatif",
+        "example": "Revenus pour chaque région, sous forme de tableau"
+      }
+    }
   }
 }

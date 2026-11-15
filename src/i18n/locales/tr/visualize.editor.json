@@ -218,5 +218,20 @@
     "remove": "İlişkiyi kaldır",
     "suggestion": "{{field}}'yi {{from}} ve {{to}}'ye bağlayın",
     "add": "İlişki ekle"
+  },
+  "guide": {
+    "title": "Kontrol panelinizi oluşturun",
+    "step1": "Bir görsel ekleyin: Aşağıdakilerden birine tıklayın veya üstteki Ekle'yi kullanın.",
+    "step2": "Sağdaki Oluştur bölmesinde sütunlarını seçin.",
+    "step3": "Taşımak için sürükleyin, yeniden boyutlandırmak için bir köşeden çekin. Değişiklikler kendiliğinden kaydedilir.",
+    "visuals": {
+      "card": "Numara kartı",
+      "column": "Sütun grafiği",
+      "line": "Çizgi grafiği",
+      "donut": "çörek",
+      "table": "Masa",
+      "slicer": "Filtre (dilimleyici)"
+    },
+    "more": "Daha fazla görsel, metin, resim ve düğme Ekle'nin altındadır."
   }
 }

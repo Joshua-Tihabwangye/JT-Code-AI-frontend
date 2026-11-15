@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} por {{groups}} — calculado no banco de dados e depois desenhado em Python.",
     "total": "{{what}} — calculado no banco de dados e depois desenhado em Python."
+  },
+  "intro": {
+    "title": "Explorar: faça uma pergunta aos seus dados",
+    "body": "Escolha o que deseja ver e quais colunas usar; Python calcula a resposta e desenha-a imediatamente como um gráfico. Mantenha os bons: salve-os ou fixe-os em um painel.",
+    "step1": "Escolha o que você quer ver",
+    "step2": "Escolha as colunas",
+    "step3": "Salve-o ou fixe-o em um painel"
+  },
+  "ideas": "Ideias para esses dados (clique em um para abri-lo)",
+  "newQuestion": "Nova pergunta",
+  "simple": "Simples",
+  "allOptions": "Todas as opções",
+  "builtElsewhere": "Esse gráfico foi feito a partir de uma ideia, da galeria ou com todas as opções. Altere-o com todas as opções ou inicie uma nova pergunta.",
+  "shows": "Este gráfico mostra: {{what}}",
+  "ask": {
+    "step1": "1. O que você quer ver?",
+    "step2": "2. Escolha as colunas",
+    "none": "(nenhum)",
+    "rows": "Número de linhas",
+    "calculate": "Calcular",
+    "notForData": "Este conjunto de dados não tem colunas para isso",
+    "groupBy": "Para cada",
+    "measure": "Mostrar",
+    "howMany": "Quantos",
+    "dateColumn": "Coluna de data",
+    "every": "Todo",
+    "grains": {
+      "day": "Dia",
+      "week": "Semana",
+      "month": "Mês",
+      "quarter": "Trimestre",
+      "year": "Ano"
+    },
+    "splitBy": "Uma linha para cada (opcional)",
+    "across": "Número na parte inferior",
+    "up": "Número subindo",
+    "onePointPer": "Um ponto para cada (opcional)",
+    "number": "Número",
+    "rowsPer": "Uma linha para cada (opcional)",
+    "intents": {
+      "compare": {
+        "name": "Comparar grupos",
+        "example": "Qual região vende mais?"
+      },
+      "trend": {
+        "name": "Mudar ao longo do tempo",
+        "example": "Como as vendas mudaram por mês?"
+      },
+      "share": {
+        "name": "Partes de um todo",
+        "example": "Que participação cada produto tem?"
+      },
+      "top": {
+        "name": "Superior ou inferior",
+        "example": "Os 10 melhores clientes por receita"
+      },
+      "relation": {
+        "name": "Dois números juntos",
+        "example": "Preços mais altos significam menos vendas?"
+      },
+      "spread": {
+        "name": "Propagação de um número",
+        "example": "Como os preços são distribuídos?"
+      },
+      "total": {
+        "name": "Um total",
+        "example": "Qual é a receita total?"
+      },
+      "table": {
+        "name": "Tabela de resumo",
+        "example": "Receita para cada região, em forma de tabela"
+      }
+    }
   }
 }

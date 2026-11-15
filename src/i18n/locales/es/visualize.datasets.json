@@ -1,0 +1,12 @@
+{
+  "manage": "Conjuntos de datos",
+  "title": "Tus conjuntos de datos",
+  "description": "Todo lo que has subido o cargado. Elimina los que ya no necesites.",
+  "none": "Aún no hay conjuntos de datos.",
+  "open": "Abierto ahora",
+  "meta": "{{rows}} filas · agregado {{date}}",
+  "confirm": "¿Eliminar definitivamente?",
+  "delete": "Borrar",
+  "deleteNamed": "Eliminar {{name}}",
+  "note": "Al eliminar se eliminan los datos. Los paneles y gráficos creados en él no muestran datos hasta que elija otro conjunto de datos."
+}

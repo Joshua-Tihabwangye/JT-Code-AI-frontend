@@ -14,7 +14,6 @@
   "assistant": {
     "title": "Código JT AI",
     "cost": "Usa créditos apenas quando você envia um prompt. Gráficos, insights e sugestões são gratuitos.",
-    "about": "Pergunte sobre",
     "intro": "Descreva o que você deseja ver. Eu escolho o gráfico, preencho as colunas e você revisa antes de executar qualquer coisa.",
     "thinking": "Pensamento…",
     "builtIn": "Integrado",
@@ -25,7 +24,27 @@
     "placeholder": "por exemplo Mostrar receita mensal por região",
     "prompt": "Incitar",
     "send": "Enviar",
-    "close": "Fechar"
+    "close": "Fechar",
+    "aboutDataset": "Perguntas sobre {{name}}:",
+    "explainChart": "Explique o gráfico na tela",
+    "grains": {
+      "day": "dias",
+      "week": "semanas",
+      "month": "meses",
+      "quarter": "trimestres",
+      "year": "anos"
+    },
+    "questions": {
+      "trend": "Como {{measure}} mudou ao longo do tempo?",
+      "top": "Qual {{dimension}} tem o {{measure}} mais alto?",
+      "forecast": "Previsão {{measure}} para o próximo {{grain}}",
+      "drivers": "O que mais afeta {{target}}?",
+      "share": "Que parcela de {{measure}} vem de cada {{dimension}}?",
+      "relationship": "{{first}} aumenta quando {{second}} aumenta?",
+      "unusual": "Existem valores incomuns em {{measure}}?",
+      "compare": "Compare {{measure}} com {{dimension}}",
+      "distribution": "Como {{measure}} está espalhado?"
+    }
   },
   "dataset": "Conjunto de dados",
   "noDataset": "Nenhum conjunto de dados ainda",

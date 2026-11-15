@@ -14,7 +14,6 @@
   "assistant": {
     "title": "JT-Code IA",
     "cost": "Consomme des crédits uniquement lorsque vous envoyez une requête. Les graphiques, analyses et suggestions sont gratuits.",
-    "about": "Question sur",
     "intro": "Décrivez ce que vous voulez voir. Je choisis le graphique, je renseigne les colonnes, et vous vérifiez le tout avant toute exécution.",
     "thinking": "Réflexion…",
     "builtIn": "Intégré",
@@ -25,7 +24,27 @@
     "placeholder": "ex. Afficher le chiffre d'affaires mensuel par région",
     "prompt": "Requête",
     "send": "Envoyer",
-    "close": "Fermer"
+    "close": "Fermer",
+    "aboutDataset": "Questions sur {{name}} :",
+    "explainChart": "Expliquer le graphique à l'écran",
+    "grains": {
+      "day": "jours",
+      "week": "semaines",
+      "month": "mois",
+      "quarter": "quarts",
+      "year": "années"
+    },
+    "questions": {
+      "trend": "Comment {{measure}} a-t-il évolué au fil du temps ?",
+      "top": "Quel {{dimension}} a le {{measure}} le plus élevé ?",
+      "forecast": "Prévisions {{measure}} pour le {{grain}} à venir",
+      "drivers": "Qu’est-ce qui affecte le plus {{target}} ?",
+      "share": "Quelle part de {{measure}} provient de chaque {{dimension}} ?",
+      "relationship": "Est-ce que {{first}} augmente lorsque {{second}} augmente ?",
+      "unusual": "Y a-t-il des valeurs inhabituelles dans {{measure}} ?",
+      "compare": "Comparez {{measure}} avec {{dimension}}",
+      "distribution": "Comment {{measure}} s’étale-t-il ?"
+    }
   },
   "dataset": "Jeu de données",
   "noDataset": "Aucun jeu de données pour le moment",

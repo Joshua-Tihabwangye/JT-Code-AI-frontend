@@ -549,7 +549,6 @@
     "title": "仪表板",
     "subtitle": "KPI、图表和切片器集中在一个屏幕上，彼此联动。",
     "noData": "请先添加数据集",
-    "blank": "空白",
     "template": "模板",
     "building": "生成中…",
     "auto": "生成仪表板",
@@ -580,7 +579,9 @@
       "viewer": "查看者"
     },
     "sharedFlag": "已共享",
-    "deleteNamed": "删除 {{name}}"
+    "deleteNamed": "删除 {{name}}",
+    "blank": "自己构建",
+    "blankHint": "从空白页面开始，一张一张地添加图表"
   },
   "visual": {
     "target": "目标 {{value}}",

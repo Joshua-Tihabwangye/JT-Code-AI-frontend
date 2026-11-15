@@ -218,5 +218,20 @@
     "remove": "Hapus hubungan",
     "suggestion": "Tautan {{field}} di {{from}} dan {{to}}",
     "add": "Tambahkan hubungan"
+  },
+  "guide": {
+    "title": "Bangun dasbor Anda",
+    "step1": "Tambahkan visual: klik salah satu di bawah, atau gunakan Sisipkan di atas.",
+    "step2": "Pilih kolomnya di panel Build di sebelah kanan.",
+    "step3": "Seret untuk memindahkannya, tarik salah satu sudut untuk mengubah ukurannya. Perubahan akan tersimpan dengan sendirinya.",
+    "visuals": {
+      "card": "Kartu nomor",
+      "column": "Bagan kolom",
+      "line": "Bagan garis",
+      "donut": "Donat",
+      "table": "Meja",
+      "slicer": "Penyaring (pemotong)"
+    },
+    "more": "Lebih banyak visual, teks, gambar, dan tombol ada di bawah Sisipkan."
   }
 }

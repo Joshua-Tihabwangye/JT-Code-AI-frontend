@@ -564,7 +564,6 @@
     "title": "Cruscotti",
     "subtitle": "KPI, grafici e filtri dei dati su un unico schermo, tutti connessi.",
     "noData": "Aggiungi prima un set di dati",
-    "blank": "Vuoto",
     "template": "Modello",
     "building": "Edificio…",
     "auto": "Costruisci dashboard",
@@ -596,7 +595,9 @@
     },
     "sharedFlag": "condiviso",
     "deleteNamed": "Elimina {{name}}",
-    "pages_many": "{{count}} pagine"
+    "pages_many": "{{count}} pagine",
+    "blank": "Costruiscilo tu stesso",
+    "blankHint": "Inizia con una pagina vuota e aggiungi i grafici uno per uno"
   },
   "visual": {
     "target": "Obiettivo {{value}}",

@@ -14,7 +14,6 @@
   "assistant": {
     "title": "JT-Code AI",
     "cost": "يستهلك أرصدة فقط عند إرسال طلب. المخططات والرؤى والاقتراحات مجانية.",
-    "about": "اسأل عن",
     "intro": "صِف ما تريد رؤيته. سأختار المخطط وأملأ الأعمدة، وتراجعه أنت قبل تشغيل أي شيء.",
     "thinking": "جارٍ التفكير…",
     "builtIn": "مُضمَّن",
@@ -25,7 +24,27 @@
     "placeholder": "مثال: اعرض الإيرادات الشهرية حسب المنطقة",
     "prompt": "الطلب",
     "send": "إرسال",
-    "close": "إغلاق"
+    "close": "إغلاق",
+    "aboutDataset": "أسئلة حول {{name}}:",
+    "explainChart": "شرح الرسم البياني على الشاشة",
+    "grains": {
+      "day": "أيام",
+      "week": "أسابيع",
+      "month": "شهور",
+      "quarter": "أرباع",
+      "year": "سنين"
+    },
+    "questions": {
+      "trend": "كيف تغير {{measure}} بمرور الوقت؟",
+      "top": "أي {{dimension}} لديه أعلى {{measure}}؟",
+      "forecast": "توقعات {{measure}} للقادم {{grain}}",
+      "drivers": "ما الذي يؤثر على {{target}} أكثر؟",
+      "share": "ما حصة {{measure}} التي تأتي من كل {{dimension}}؟",
+      "relationship": "هل يرتفع {{first}} عندما يرتفع {{second}}؟",
+      "unusual": "هل هناك قيم غير عادية في {{measure}}؟",
+      "compare": "قارن {{measure}} عبر {{dimension}}",
+      "distribution": "كيف يتم انتشار {{measure}}؟"
+    }
   },
   "dataset": "مجموعة البيانات",
   "noDataset": "لا توجد مجموعة بيانات بعد",

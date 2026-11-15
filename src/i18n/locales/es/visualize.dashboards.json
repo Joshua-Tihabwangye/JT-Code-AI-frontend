@@ -564,7 +564,6 @@
     "title": "Paneles",
     "subtitle": "KPI, gráficos y segmentaciones en una sola pantalla, todos conectados.",
     "noData": "Primero agrega un conjunto de datos",
-    "blank": "En blanco",
     "template": "Plantilla",
     "building": "Generando…",
     "auto": "Generar panel",
@@ -596,7 +595,9 @@
     },
     "sharedFlag": "compartido",
     "deleteNamed": "Eliminar {{name}}",
-    "pages_many": "{{count}} páginas"
+    "pages_many": "{{count}} páginas",
+    "blank": "Constrúyelo tú mismo",
+    "blankHint": "Comience con una página vacía y agregue gráficos uno por uno"
   },
   "visual": {
     "target": "Objetivo {{value}}",

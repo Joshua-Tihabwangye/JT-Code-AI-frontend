@@ -34,5 +34,78 @@
     },
     "grouped": "{{what}} by {{groups}} — computed in the database, then drawn in Python.",
     "total": "{{what}} — computed in the database, then drawn in Python."
+  },
+  "intro": {
+    "title": "Explore: ask your data a question",
+    "body": "Pick what you want to see and which columns to use; Python works out the answer and draws it as a chart straight away. Keep the good ones: save them, or pin them to a dashboard.",
+    "step1": "Choose what you want to see",
+    "step2": "Choose the columns",
+    "step3": "Save it or pin it to a dashboard"
+  },
+  "ideas": "Ideas for this data (click one to open it)",
+  "newQuestion": "New question",
+  "simple": "Simple",
+  "allOptions": "All options",
+  "builtElsewhere": "This chart was made from an idea, the gallery or with all options. Change it with all options, or start a new question.",
+  "shows": "This chart shows: {{what}}",
+  "ask": {
+    "step1": "1. What do you want to see?",
+    "step2": "2. Choose the columns",
+    "none": "(none)",
+    "rows": "Number of rows",
+    "calculate": "Calculate",
+    "notForData": "This dataset has no columns for this",
+    "groupBy": "For each",
+    "measure": "Show",
+    "howMany": "How many",
+    "dateColumn": "Date column",
+    "every": "Every",
+    "grains": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "year": "Year"
+    },
+    "splitBy": "One line for each (optional)",
+    "across": "Number along the bottom",
+    "up": "Number going up",
+    "onePointPer": "One point for each (optional)",
+    "number": "Number",
+    "rowsPer": "One row for each (optional)",
+    "intents": {
+      "compare": {
+        "name": "Compare groups",
+        "example": "Which region sells the most?"
+      },
+      "trend": {
+        "name": "Change over time",
+        "example": "How did sales change by month?"
+      },
+      "share": {
+        "name": "Parts of a whole",
+        "example": "What share does each product have?"
+      },
+      "top": {
+        "name": "Top or bottom",
+        "example": "The 10 best customers by revenue"
+      },
+      "relation": {
+        "name": "Two numbers together",
+        "example": "Do higher prices mean fewer sales?"
+      },
+      "spread": {
+        "name": "Spread of a number",
+        "example": "How are prices distributed?"
+      },
+      "total": {
+        "name": "One total",
+        "example": "What is the total revenue?"
+      },
+      "table": {
+        "name": "Summary table",
+        "example": "Revenue for each region, as a table"
+      }
+    }
   }
 }

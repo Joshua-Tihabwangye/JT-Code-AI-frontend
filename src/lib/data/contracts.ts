@@ -44,6 +44,7 @@ import type {
   VizPreview,
   VizQualityReport,
   VizPredictionOptions,
+  VizQuestion,
   VizRecommendation,
   VizRenderResult,
   VizStyle,
@@ -427,6 +428,7 @@ export interface VisualizeRepository {
   preview(datasetId: string, offset?: number, rows?: number, quality?: { issues?: boolean; filter?: string }): Promise<VizPreview>;
   quality(datasetId: string): Promise<VizQualityReport>;
   predictionOptions(datasetId: string): Promise<VizPredictionOptions>;
+  questions(datasetId: string): Promise<VizQuestion[]>;
   editDataset(datasetId: string, edits: VizCellEdit[], deleteRows?: number[]): Promise<Dataset>;
   replaceDataset(datasetId: string, file: File): Promise<Dataset>;
   updateDataset(datasetId: string, patch: { name?: string; isShared?: boolean }): Promise<Dataset>;

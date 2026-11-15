@@ -220,5 +220,20 @@
     "add": "Adicionar relacionamento"
   },
   "multiSelected_many": "{{count}} visuais selecionados — use Organizar ou escolha um para editar.",
-  "visualsCount_many": "{{count}} visuais"
+  "visualsCount_many": "{{count}} visuais",
+  "guide": {
+    "title": "Construa seu painel",
+    "step1": "Adicione um visual: clique em um abaixo ou use Inserir na parte superior.",
+    "step2": "Escolha suas colunas no painel Build à direita.",
+    "step3": "Arraste para movê-lo, puxe um canto para redimensionar. As alterações são salvas por conta própria.",
+    "visuals": {
+      "card": "Cartão numérico",
+      "column": "Gráfico de colunas",
+      "line": "Gráfico de linhas",
+      "donut": "Rosquinha",
+      "table": "Mesa",
+      "slicer": "Filtro (fatiador)"
+    },
+    "more": "Mais recursos visuais, textos, imagens e botões estão em Inserir."
+  }
 }

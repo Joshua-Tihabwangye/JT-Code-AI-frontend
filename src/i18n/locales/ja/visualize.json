@@ -14,7 +14,6 @@
   "assistant": {
     "title": "JTコードAI",
     "cost": "プロンプトを送信する場合にのみクレジットを使用します。チャート、洞察、提案は無料です。",
-    "about": "について尋ねる",
     "intro": "見たいものを説明してください。私がグラフを選択し、列に記入すると、何かを実行する前にそれを確認します。",
     "thinking": "考え…",
     "builtIn": "内蔵",
@@ -25,7 +24,27 @@
     "placeholder": "例えば地域ごとの月次収益を表示する",
     "prompt": "プロンプト",
     "send": "送信",
-    "close": "近い"
+    "close": "近い",
+    "aboutDataset": "{{name}} に関する質問:",
+    "explainChart": "画面上のチャートの説明",
+    "grains": {
+      "day": "日",
+      "week": "週",
+      "month": "月",
+      "quarter": "四半期",
+      "year": "年"
+    },
+    "questions": {
+      "trend": "{{measure}} は時間の経過とともにどのように変化しましたか?",
+      "top": "どの {{dimension}} が最も高い {{measure}} を持っていますか?",
+      "forecast": "今後の {{grain}} の {{measure}} を予測します",
+      "drivers": "{{target}} に最も影響を与えるものは何ですか?",
+      "share": "{{measure}} のどの部分が各 {{dimension}} から得られますか?",
+      "relationship": "{{second}} が上昇すると {{first}} も上昇しますか?",
+      "unusual": "{{measure}} に異常な値はありますか?",
+      "compare": "{{measure}} と {{dimension}} を比較する",
+      "distribution": "{{measure}} はどのように広がっていますか?"
+    }
   },
   "dataset": "データセット",
   "noDataset": "まだデータセットがありません",

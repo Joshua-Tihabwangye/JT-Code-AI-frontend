@@ -220,5 +220,20 @@
     "add": "Ajouter une relation"
   },
   "multiSelected_many": "{{count}} visuels sélectionnés — utilisez Organiser, ou choisissez-en un à modifier.",
-  "visualsCount_many": "{{count}} visuels"
+  "visualsCount_many": "{{count}} visuels",
+  "guide": {
+    "title": "Construisez votre tableau de bord",
+    "step1": "Ajoutez un visuel : cliquez sur celui-ci ci-dessous ou utilisez Insérer en haut.",
+    "step2": "Choisissez ses colonnes dans le volet Créer à droite.",
+    "step3": "Faites glisser pour le déplacer, tirez un coin pour le redimensionner. Les modifications sont enregistrées d'elles-mêmes.",
+    "visuals": {
+      "card": "Carte numérotée",
+      "column": "Diagramme à colonnes",
+      "line": "Graphique linéaire",
+      "donut": "Donut",
+      "table": "Tableau",
+      "slicer": "Filtre (trancheur)"
+    },
+    "more": "Plus de visuels, de textes, d'images et de boutons se trouvent sous Insérer."
+  }
 }

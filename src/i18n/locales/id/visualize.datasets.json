@@ -1,0 +1,12 @@
+{
+  "manage": "Kumpulan data",
+  "title": "Kumpulan data Anda",
+  "description": "Segala sesuatu yang telah Anda unggah atau muat. Hapus yang tidak lagi Anda perlukan.",
+  "none": "Belum ada kumpulan data.",
+  "open": "Buka sekarang",
+  "meta": "{{rows}} baris · menambahkan {{date}}",
+  "confirm": "Hapus untuk selamanya?",
+  "delete": "Menghapus",
+  "deleteNamed": "Hapus {{name}}",
+  "note": "Menghapus akan menghapus data. Dasbor dan bagan yang dibuat di dalamnya tidak menampilkan data sampai Anda memilih kumpulan data lain."
+}

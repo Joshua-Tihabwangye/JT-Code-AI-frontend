@@ -1,0 +1,12 @@
+{
+  "manage": "Datensätze",
+  "title": "Ihre Datensätze",
+  "description": "Alles, was Sie hochgeladen oder geladen haben. Löschen Sie diejenigen, die Sie nicht mehr benötigen.",
+  "none": "Noch keine Datensätze.",
+  "open": "Jetzt geöffnet",
+  "meta": "{{rows}} Zeilen · hinzugefügt {{date}}",
+  "confirm": "Endgültig löschen?",
+  "delete": "Löschen",
+  "deleteNamed": "{{name}} löschen",
+  "note": "Beim Löschen werden die Daten entfernt. Darauf aufbauende Dashboards und Diagramme zeigen keine Daten an, bis Sie einen anderen Datensatz auswählen."
+}

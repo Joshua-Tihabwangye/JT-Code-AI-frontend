@@ -1,0 +1,12 @@
+{
+  "manage": "Conjuntos de dados",
+  "title": "Seus conjuntos de dados",
+  "description": "Tudo o que você carregou ou carregou. Exclua aqueles que você não precisa mais.",
+  "none": "Ainda não há conjuntos de dados.",
+  "open": "Abra agora",
+  "meta": "{{rows}} linhas · adicionado {{date}}",
+  "confirm": "Excluir para sempre?",
+  "delete": "Excluir",
+  "deleteNamed": "Excluir {{name}}",
+  "note": "A exclusão remove os dados. Os painéis e gráficos criados nele não mostram dados até que você escolha outro conjunto de dados."
+}

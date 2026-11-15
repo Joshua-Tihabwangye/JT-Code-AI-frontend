@@ -72,6 +72,7 @@ import {
 } from './actions';
 import { BuildPane } from './BuildPane';
 import { EditorCanvas } from './Canvas';
+import { EmptyPageGuide } from './EmptyPageGuide';
 import { fieldKind, newId, suggestType, VISUAL_BY_TYPE, VISUAL_GROUPS, VISUALS, wellFor, wellItem } from './catalog';
 import { FiltersPane } from '../FiltersPane';
 import { PYTHON_STARTER } from './FormatExtras';
@@ -734,6 +735,7 @@ export function DashboardEditor() {
                 painting={!!painter}
               />
             )}
+            {layout !== 'phone' && !page.visuals.length && <EmptyPageGuide onInsert={(type) => insert(type)} />}
           </div>
         </div>
         <aside className={`dash-pane${paneOpen ? '' : ' closed'}`} aria-label={t('visualize.editor.pane.label')}>

@@ -549,7 +549,6 @@
     "title": "Dashibodi",
     "subtitle": "KPI, chati na vikata vipande kwenye skrini moja, vyote vimeunganishwa.",
     "noData": "Ongeza mkusanyiko wa data kwanza",
-    "blank": "Tupu",
     "template": "Kiolezo",
     "building": "Ujenzi..",
     "auto": "Jenga dashibodi",
@@ -580,7 +579,9 @@
       "viewer": "mtazamaji"
     },
     "sharedFlag": "pamoja",
-    "deleteNamed": "Futa {{name}}"
+    "deleteNamed": "Futa {{name}}",
+    "blank": "Jenga mwenyewe",
+    "blankHint": "Anza na ukurasa usio na kitu na uongeze chati moja baada ya nyingine"
   },
   "visual": {
     "target": "Lengo {{value}}",
