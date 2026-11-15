@@ -7,7 +7,6 @@
     "reports": "报表",
     "explore": "探索"
   },
-  "askAi": "询问 AI",
   "hero": {
     "title": "数据可视化工作室"
   },
@@ -81,5 +80,6 @@
     "close": "关闭",
     "expandRibbon": "展开功能区",
     "collapseRibbon": "折叠功能区"
-  }
+  },
+  "askAi": "询问 JT-Code AI"
 }

@@ -24,7 +24,8 @@
     "tooltip": "工具提示",
     "conditional": "条件格式",
     "analytics": "分析（参考线、趋势、预测）",
-    "map": "地图"
+    "map": "地图",
+    "axes": "轴"
   },
   "general": {
     "title": "标题",
@@ -232,8 +233,8 @@
       "applySlicers": "应用切片器",
       "toggle": "显示 / 隐藏视觉对象",
       "url": "打开网页链接",
-      "askAi": "询问 AI",
-      "reset": "重置为默认值"
+      "reset": "重置为默认值",
+      "askAi": "询问 JT-Code AI"
     },
     "page": "页面",
     "choose": "选择…",
@@ -322,5 +323,18 @@
       "notTheme": "该文件不是主题。",
       "needColours": "主题至少需要 3 种数据颜色 (dataColors)。"
     }
+  },
+  "axes": {
+    "horizontal": "水平轴 (X)",
+    "vertical": "垂直轴（Y）",
+    "show": "显示轴",
+    "title": "轴标题",
+    "titlePlaceholder": "无标题",
+    "rotate": "标签角度",
+    "gridlines": "网格线",
+    "min": "最低限度",
+    "max": "最大限度",
+    "log": "对数刻度",
+    "hint": "将设置保留为“自动”以让 Python 选择。最小值、最大值和对数刻度适用于显示数字的轴。"
   }
 }

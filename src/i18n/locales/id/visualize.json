@@ -7,7 +7,6 @@
     "reports": "Laporan",
     "explore": "Mengeksplorasi"
   },
-  "askAi": "Tanya AI",
   "hero": {
     "title": "Studio Visualisasi Data"
   },
@@ -81,5 +80,6 @@
     "close": "Menutup",
     "expandRibbon": "Perluas pita",
     "collapseRibbon": "Ciutkan pita"
-  }
+  },
+  "askAi": "Tanyakan JT-Code AI"
 }

@@ -7,7 +7,6 @@
     "reports": "レポート",
     "explore": "探検する"
   },
-  "askAi": "AIに聞く",
   "hero": {
     "title": "データ視覚化スタジオ"
   },
@@ -81,5 +80,6 @@
     "close": "近い",
     "expandRibbon": "リボンを展開する",
     "collapseRibbon": "リボンを折りたたむ"
-  }
+  },
+  "askAi": "JT-Code AIに聞く"
 }

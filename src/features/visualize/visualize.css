@@ -1638,7 +1638,7 @@ textarea.viz-field {
 .dash-pane {
   position: relative;
   display: flex;
-  width: 300px;
+  width: 320px;
   flex: none;
   flex-direction: column;
   border: 1px solid var(--border);
@@ -1647,10 +1647,10 @@ textarea.viz-field {
 }
 
 .dash-pane.closed {
-  width: 18px;
+  width: 46px;
 }
 
-.dash-pane-toggle {
+.dash-pane-toggle-unused {
   position: absolute;
   top: 8px;
   left: -10px;
@@ -1667,24 +1667,50 @@ textarea.viz-field {
 }
 
 .dash-pane-tabs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 2px;
-  padding: 6px 8px 0 14px;
+  padding: 4px 6px;
   border-bottom: 1px solid var(--border);
 }
 
 .dash-pane-tabs button {
-  padding: 6px 10px;
-  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 6px 2px;
+  border-radius: 8px;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--muted-foreground);
-  border-bottom: 2px solid transparent;
 }
+.dash-pane-tabs button span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dash-pane-tabs button:hover { background: var(--muted); color: var(--foreground); }
 
 .dash-pane-tabs button[aria-selected='true'] {
   color: var(--viz-indigo);
-  border-bottom-color: var(--viz-indigo);
+  background: color-mix(in srgb, var(--viz-indigo) 10%, var(--card));
 }
+
+/* Pane header: what is shown, and a clearly visible way to hide the pane */
+.dash-pane-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 10px 6px 14px; }
+.dash-pane-title { font-size: 14px; font-weight: 700; color: var(--foreground); }
+.dash-pane-hide { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); font-size: 12px; font-weight: 600; color: var(--foreground); }
+.dash-pane-hide:hover { border-color: var(--viz-indigo); color: var(--viz-indigo); }
+.dash-pane-show { display: flex; flex: 1; flex-direction: column; align-items: center; gap: 10px; padding: 14px 0; border-radius: 14px; color: var(--viz-indigo); font-size: 12px; font-weight: 700; }
+.dash-pane-show span { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .04em; }
+.dash-pane-show:hover { background: color-mix(in srgb, var(--viz-indigo) 8%, var(--card)); }
+
+/* Calculations: three equal buttons under the label */
+.dash-calc-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.dash-calc-actions .viz-chip { justify-content: center; min-width: 0; padding-inline: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Fields grouped by kind */
+.dash-field-group { list-style: none; margin-bottom: 8px; }
+.dash-field-group > ul { margin: 2px 0 0; padding: 0; list-style: none; }
+.dash-field-group-title { display: flex; align-items: center; gap: 5px; margin: 4px 0 2px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-foreground); }
 
 .dash-pane-body {
   flex: 1;
@@ -3716,3 +3742,48 @@ html.dark .viz-menu {
 .explore-intent[aria-pressed='true'] { border-color: var(--c); background: color-mix(in srgb, var(--c) 10%, var(--card)); }
 .explore-intent:disabled { opacity: .45; cursor: not-allowed; }
 .explore-answer { display: flex; align-items: center; gap: 5px; margin: 6px 4px 0; font-size: 12.5px; font-weight: 600; color: var(--foreground); }
+
+/* Start screen: tick charts, then add them together */
+.dash-start-visual { position: relative; }
+.dash-start-visual.picked { border-color: var(--c); box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 35%, transparent); }
+.dash-start-check { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 20px; height: 20px; border: 1.5px solid var(--border); border-radius: 6px; background: var(--card); color: #fff; }
+.dash-start-visual.picked .dash-start-check { border-color: var(--c); background: var(--c); }
+.dash-start-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.dash-start-add { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; }
+.dash-start-add:disabled { opacity: .55; cursor: not-allowed; }
+.dash-start { max-height: calc(100% - 60px); overflow-y: auto; }
+.dash-start-label { margin-top: 14px; }
+
+/* Gallery picking mode (choosing charts for a dashboard being built) */
+.viz-pick-banner { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid color-mix(in srgb, var(--viz-indigo) 35%, var(--border)); border-radius: 14px; background: color-mix(in srgb, var(--viz-indigo) 8%, var(--card)); color: var(--viz-indigo); }
+.viz-pick-banner p { color: var(--foreground); }
+.viz-pick-bar { position: sticky; bottom: 12px; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); box-shadow: 0 14px 34px -14px rgb(15 23 42 / .35); }
+.viz-gallery-card.picked { outline: 2px solid var(--c, var(--viz-indigo)); outline-offset: -2px; }
+.viz-gallery-check { position: absolute; top: 10px; right: 10px; z-index: 1; display: grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid var(--border); border-radius: 7px; background: var(--card); color: #fff; }
+.viz-gallery-card.picked .viz-gallery-check { border-color: var(--c, var(--viz-indigo)); background: var(--c, var(--viz-indigo)); }
+.viz-gallery-open { position: relative; }
+
+/* Format ▸ Axes: one card per axis. */
+.dash-axis-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+.dash-axis-group + .dash-axis-group {
+  margin-top: 6px;
+}
+.dash-axis-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--foreground);
+}
+.dash-axis-group .dash-format-row > :last-child {
+  min-width: 0;
+  flex: 0 1 60%;
+}

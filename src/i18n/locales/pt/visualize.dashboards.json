@@ -298,8 +298,8 @@
         "hint": "Um layout pronto: mapeie suas colunas para ele."
       },
       "ai": {
-        "label": "Pergunte à IA",
-        "hint": "Descreva a página; visualize-o antes de ser criado."
+        "hint": "Descreva a página; visualize-o antes de ser criado.",
+        "label": "Pergunte ao JT-Code AI"
       }
     },
     "kinds": {

@@ -286,7 +286,7 @@
         "hint": "A ready-made layout: map your columns to it."
       },
       "ai": {
-        "label": "Ask AI",
+        "label": "Ask JT-Code AI",
         "hint": "Describe the page; preview it before it is created."
       }
     },

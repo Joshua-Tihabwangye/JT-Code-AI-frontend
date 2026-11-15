@@ -14,5 +14,15 @@
   "advancedBadge": "고급의",
   "useInExplore": "탐색에 사용",
   "addToDashboard": "대시보드에 추가",
-  "thisDataset": "이 데이터 세트"
+  "thisDataset": "이 데이터 세트",
+  "pick": {
+    "banner": "“{{name}}”에 대한 차트를 선택하세요. 원하는 만큼 선택한 다음 추가하세요.",
+    "back": "대시보드로 돌아가기",
+    "selected_one": "{{count}} 차트가 선택됨",
+    "selected_other": "{{count}} 차트가 선택됨",
+    "clear": "분명한",
+    "add_one": "대시보드에 {{count}} 차트 추가",
+    "add_other": "대시보드에 {{count}} 차트 추가",
+    "noSpec": "이 대시보드를 열 수 없습니다. 돌아가서 다시 시도해 보세요."
+  }
 }

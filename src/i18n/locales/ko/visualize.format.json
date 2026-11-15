@@ -24,7 +24,8 @@
     "tooltip": "툴팁",
     "conditional": "조건부 서식",
     "analytics": "분석(참조선, 추세, 예측)",
-    "map": "지도"
+    "map": "지도",
+    "axes": "축"
   },
   "general": {
     "title": "제목",
@@ -232,8 +233,8 @@
       "applySlicers": "슬라이서 적용",
       "toggle": "시각적 개체 표시/숨기기",
       "url": "웹 링크 열기",
-      "askAi": "AI에게 물어보세요",
-      "reset": "기본값으로 재설정"
+      "reset": "기본값으로 재설정",
+      "askAi": "JT-Code AI에게 물어보세요"
     },
     "page": "페이지",
     "choose": "선택하다…",
@@ -322,5 +323,18 @@
       "notTheme": "파일이 테마가 아닙니다.",
       "needColours": "테마에는 최소한 3가지 데이터 색상(dataColors)이 필요합니다."
     }
+  },
+  "axes": {
+    "horizontal": "가로축(X)",
+    "vertical": "세로축(Y)",
+    "show": "축 표시",
+    "title": "축 제목",
+    "titlePlaceholder": "제목 없음",
+    "rotate": "라벨 각도",
+    "gridlines": "격자선",
+    "min": "최저한의",
+    "max": "최고",
+    "log": "로그 스케일",
+    "hint": "Python이 선택할 수 있도록 자동 설정을 그대로 둡니다. 숫자를 표시하는 축에는 최소값, 최대값, 로그 스케일이 적용됩니다."
   }
 }

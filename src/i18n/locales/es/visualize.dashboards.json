@@ -298,8 +298,8 @@
         "hint": "Un diseño ya preparado: asigna tus columnas."
       },
       "ai": {
-        "label": "Preguntar a la IA",
-        "hint": "Describe la página y previsualízala antes de crearla."
+        "hint": "Describe la página y previsualízala antes de crearla.",
+        "label": "Pregúntele a JT-Code AI"
       }
     },
     "kinds": {

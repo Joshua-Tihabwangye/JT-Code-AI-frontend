@@ -47,9 +47,8 @@ export function CalculationsSection({
   };
   return (
     <div className="space-y-1" data-testid="calculations">
-      <div className="flex items-center justify-between">
-        <span className="viz-label m-0">{t('visualize.editor.calc.calculations')}</span>
-        <span className="flex gap-1">
+      <span className="viz-label m-0">{t('visualize.editor.calc.calculations')}</span>
+      <div className="dash-calc-actions">
           <button type="button" className="viz-chip" aria-pressed={library} onClick={() => setLibrary(!library)} data-testid="measures-library" title={t('visualize.editor.calc.libraryHint')}>
             <Library size={12} aria-hidden /> {t('visualize.editor.calc.library')}
           </button>
@@ -59,8 +58,7 @@ export function CalculationsSection({
           <button type="button" className="viz-chip" onClick={() => (setEditing({ id: newId('calc'), name: '', expression: '', format: 'number', datasetId }), setQuick(false))} data-testid="new-calculation">
             <Plus size={12} aria-hidden /> {t('visualize.editor.calc.new')}
           </button>
-        </span>
-      </div>
+        </div>
       {quick && (
         <QuickMeasure
           profiles={profiles}

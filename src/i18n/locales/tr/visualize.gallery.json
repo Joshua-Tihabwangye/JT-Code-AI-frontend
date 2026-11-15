@@ -14,5 +14,15 @@
   "advancedBadge": "Gelişmiş",
   "useInExplore": "Keşfet'te kullan",
   "addToDashboard": "Kontrol paneline ekle",
-  "thisDataset": "bu veri kümesi"
+  "thisDataset": "bu veri kümesi",
+  "pick": {
+    "banner": "“{{name}}” için grafikleri seçin. İstediğiniz kadarını işaretleyin ve ardından ekleyin.",
+    "back": "Kontrol paneline geri dön",
+    "selected_one": "{{count}} grafiği seçildi",
+    "selected_other": "{{count}} grafikleri seçildi",
+    "clear": "Temizlemek",
+    "add_one": "Kontrol paneline {{count}} grafiğini ekleyin",
+    "add_other": "Kontrol paneline {{count}} grafiklerini ekleyin",
+    "noSpec": "Bu kontrol paneli açılamadı. Geri dönüp tekrar deneyin."
+  }
 }

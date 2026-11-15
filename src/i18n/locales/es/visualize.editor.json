@@ -136,7 +136,12 @@
     "addField": "+ Agregar campo",
     "countOfRows": "Recuento de filas",
     "galleryChart": "Gráfico de la galería",
-    "chooseChart": "Elige un gráfico…"
+    "chooseChart": "Elige un gráfico…",
+    "groups": {
+      "datetime": "Fechas",
+      "category": "Categorías",
+      "numeric": "Números"
+    }
   },
   "calc": {
     "calculations": "Cálculos",
@@ -223,9 +228,6 @@
   "visualsCount_many": "{{count}} objetos visuales",
   "guide": {
     "title": "Construya su tablero usted mismo",
-    "step1": "Elija una imagen a continuación (o use Insertar en la parte superior)",
-    "step2": "Elija sus columnas en el panel Construir a la derecha",
-    "step3": "Arrastra para mover, tira de una esquina para cambiar el tamaño: se guarda solo",
     "visuals": {
       "card": "tarjeta numérica",
       "column": "gráfico de columnas",
@@ -235,7 +237,6 @@
       "slicer": "Filtrar"
     },
     "more": "Más elementos visuales, texto, imágenes y botones se encuentran en Insertar en la parte superior.",
-    "subtitle": "Agregue imágenes una a la vez. Python extrae cada uno de sus datos.",
     "pick": "Comience con una imagen",
     "hints": {
       "card": "Una cifra clave, como los ingresos totales",
@@ -244,6 +245,21 @@
       "donut": "Mostrar partes de un todo",
       "table": "Enumere los detalles fila por fila",
       "slicer": "Permita que los espectadores limiten los datos"
-    }
-  }
+    },
+    "step1": "Marque los gráficos que desee (o elija más de la galería)",
+    "step2": "Agrégalos: llegan vacíos, listos para tus columnas",
+    "step3": "Seleccione un gráfico para configurar sus ejes X e Y, leyenda, escala y colores",
+    "subtitle": "Python lee {{name}} y sugiere los siguientes cuadros. Marca las que quieras y agrégalas; luego configura cada uno usted mismo.",
+    "basics": "Imágenes básicas que se ajustan a estos datos",
+    "forData": "Cartas sugeridas para {{name}}",
+    "reading": "Leyendo el conjunto de datos..",
+    "fromGallery": "Elige más de la galería",
+    "emptyNote": "Los gráficos se agregan vacíos: tú eliges cada columna, eje y estilo.",
+    "add_one": "Agregar el gráfico {{count}} a mi panel",
+    "add_other": "Agregar gráficos {{count}} a mi panel",
+    "pickSome": "Marque los gráficos para agregar",
+    "add_many": "Agregar gráficos {{count}} a mi panel"
+  },
+  "fromGallery": "De la galería",
+  "fromGalleryHint": "Elija más gráficos de la galería para este panel"
 }

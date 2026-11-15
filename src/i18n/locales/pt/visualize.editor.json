@@ -136,7 +136,12 @@
     "addField": "+ Adicionar campo",
     "countOfRows": "Contagem de linhas",
     "galleryChart": "Gráfico da galeria",
-    "chooseChart": "Escolha um gráfico…"
+    "chooseChart": "Escolha um gráfico…",
+    "groups": {
+      "datetime": "Datas",
+      "category": "Categorias",
+      "numeric": "Números"
+    }
   },
   "calc": {
     "calculations": "Cálculos",
@@ -223,9 +228,6 @@
   "visualsCount_many": "{{count}} visuais",
   "guide": {
     "title": "Crie você mesmo seu painel",
-    "step1": "Escolha um visual abaixo (ou use Inserir na parte superior)",
-    "step2": "Escolha suas colunas no painel Build à direita",
-    "step3": "Arraste para mover, puxe um canto para redimensionar: ele salva sozinho",
     "visuals": {
       "card": "Cartão numérico",
       "column": "Gráfico de colunas",
@@ -235,7 +237,6 @@
       "slicer": "Filtro"
     },
     "more": "Mais recursos visuais, textos, imagens e botões estão em Inserir, na parte superior.",
-    "subtitle": "Adicione recursos visuais, um de cada vez. Python extrai cada um deles de seus dados.",
     "pick": "Comece com um visual",
     "hints": {
       "card": "Um número-chave, como receita total",
@@ -244,6 +245,21 @@
       "donut": "Mostrar partes de um todo",
       "table": "Liste os detalhes linha por linha",
       "slicer": "Deixe os espectadores restringirem os dados"
-    }
-  }
+    },
+    "step1": "Marque os gráficos desejados (ou escolha mais na galeria)",
+    "step2": "Adicione-os: eles chegam vazios, prontos para suas colunas",
+    "step3": "Selecione um gráfico para definir seus eixos X e Y, legenda, escala e cores",
+    "subtitle": "Python lê {{name}} e sugere os gráficos abaixo. Marque os que deseja e adicione-os; então você mesmo configura cada um.",
+    "basics": "Visuais básicos que se ajustam a esses dados",
+    "forData": "Gráficos sugeridos para {{name}}",
+    "reading": "Lendo o conjunto de dados…",
+    "fromGallery": "Escolha mais na galeria",
+    "emptyNote": "Os gráficos são adicionados vazios: você escolhe cada coluna, eixo e estilo.",
+    "add_one": "Adicionar gráfico {{count}} ao meu painel",
+    "add_other": "Adicionar gráficos {{count}} ao meu painel",
+    "pickSome": "Marque gráficos para adicionar",
+    "add_many": "Adicionar gráficos {{count}} ao meu painel"
+  },
+  "fromGallery": "Da galeria",
+  "fromGalleryHint": "Escolha mais gráficos da galeria para este painel"
 }

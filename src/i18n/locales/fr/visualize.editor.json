@@ -136,7 +136,12 @@
     "addField": "+ Ajouter un champ",
     "countOfRows": "Nombre de lignes",
     "galleryChart": "Graphique de la galerie",
-    "chooseChart": "Choisir un graphique…"
+    "chooseChart": "Choisir un graphique…",
+    "groups": {
+      "datetime": "Dates",
+      "category": "Catégories",
+      "numeric": "Nombres"
+    }
   },
   "calc": {
     "calculations": "Calculs",
@@ -223,9 +228,6 @@
   "visualsCount_many": "{{count}} visuels",
   "guide": {
     "title": "Construisez vous-même votre tableau de bord",
-    "step1": "Choisissez un visuel ci-dessous (ou utilisez Insérer en haut)",
-    "step2": "Choisissez ses colonnes dans le volet Construire à droite",
-    "step3": "Faites glisser pour déplacer, tirez un coin pour redimensionner : cela s'enregistre tout seul",
     "visuals": {
       "card": "Carte numérotée",
       "column": "Diagramme à colonnes",
@@ -235,7 +237,6 @@
       "slicer": "Filtre"
     },
     "more": "Plus de visuels, de textes, d'images et de boutons se trouvent sous Insérer en haut.",
-    "subtitle": "Ajoutez des visuels un par un. Python tire chacun de vos données.",
     "pick": "Commencez par un visuel",
     "hints": {
       "card": "Un chiffre clé, comme le chiffre d'affaires total",
@@ -244,6 +245,21 @@
       "donut": "Afficher des parties d'un tout",
       "table": "Lister les détails ligne par ligne",
       "slicer": "Laissez les spectateurs affiner les données"
-    }
-  }
+    },
+    "step1": "Cochez les graphiques que vous souhaitez (ou choisissez-en d'autres dans la galerie)",
+    "step2": "Ajoutez-les : ils arrivent vides, prêts pour vos colonnes",
+    "step3": "Sélectionnez un graphique pour définir ses axes X et Y, sa légende, son échelle et ses couleurs",
+    "subtitle": "Python lit {{name}} et suggère les graphiques ci-dessous. Cochez ceux que vous souhaitez et ajoutez-les ; puis vous configurez chacun d'entre eux vous-même.",
+    "basics": "Visuels de base qui correspondent à ces données",
+    "forData": "Graphiques suggérés pour {{name}}",
+    "reading": "Lecture de l'ensemble de données…",
+    "fromGallery": "Choisissez plus dans la galerie",
+    "emptyNote": "Les graphiques sont ajoutés vides : vous choisissez chaque colonne, axe et style.",
+    "add_one": "Ajouter le graphique {{count}} à mon tableau de bord",
+    "add_other": "Ajouter des graphiques {{count}} à mon tableau de bord",
+    "pickSome": "Cochez les graphiques à ajouter",
+    "add_many": "Ajouter des graphiques {{count}} à mon tableau de bord"
+  },
+  "fromGallery": "De la galerie",
+  "fromGalleryHint": "Choisissez d'autres graphiques dans la galerie pour ce tableau de bord"
 }

@@ -37,6 +37,13 @@ import {
   StretchVertical,
   Trash2,
   Undo2,
+  PanelRightClose,
+  Shapes,
+  PanelRightOpen,
+  Hammer,
+  Filter as FilterIcon,
+  Layers as LayersIcon,
+  Bookmark as BookmarkIcon,
 } from 'lucide-react';
 import { apiErrorMessage, apiErrorStatus } from '@/lib/api/http';
 import { useAppStore } from '@/lib/appStore';
@@ -374,6 +381,9 @@ export function DashboardEditor() {
             <Redo2 size={15} />
           </button>
         </div>
+        <button type="button" className="dash-menu-button" onClick={() => void navigate(`/app/visualize/gallery?pickFor=${dashboardId}&page=${page.id}`)} title={t('visualize.editor.fromGalleryHint')} data-testid="from-gallery">
+          <Shapes size={14} aria-hidden /> {t('visualize.editor.fromGallery')}
+        </button>
         <div className="dash-menu-anchor">
           <button type="button" className="dash-menu-button primary" onClick={() => setMenu(menu === 'insert' ? null : 'insert')} aria-expanded={menu === 'insert'} data-testid="insert-menu">
             <Plus size={14} aria-hidden /> {t('visualize.editor.insert')}
@@ -735,19 +745,46 @@ export function DashboardEditor() {
                 painting={!!painter}
               />
             )}
-            {layout !== 'phone' && !page.visuals.length && <EmptyPageGuide onInsert={(type) => insert(type)} />}
+            {layout !== 'phone' && !page.visuals.length && (
+              <EmptyPageGuide
+                datasetId={mostUsedDataset(page) || activeDataset}
+                onAdd={(choices) => {
+                  // Added empty: the user chooses each chart's columns, axes and formatting.
+                  for (const choice of choices) insert(choice.type, choice.chartType ? { format: { chart: { chartType: choice.chartType, fields: {}, options: {} } } } : {});
+                }}
+                onGallery={() => void navigate(`/app/visualize/gallery?pickFor=${dashboardId}&page=${page.id}`)}
+              />
+            )}
           </div>
         </div>
         <aside className={`dash-pane${paneOpen ? '' : ' closed'}`} aria-label={t('visualize.editor.pane.label')}>
-          <button type="button" className="dash-pane-toggle" onClick={() => setPaneOpen(!paneOpen)} aria-label={paneOpen ? t('visualize.editor.pane.hide') : t('visualize.editor.pane.show')}>
-            {paneOpen ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
-          </button>
+          {!paneOpen && (
+            <button type="button" className="dash-pane-show" onClick={() => setPaneOpen(true)} data-testid="pane-show">
+              <PanelRightOpen size={18} aria-hidden />
+              <span>{t('visualize.editor.pane.show')}</span>
+            </button>
+          )}
           {paneOpen && (
             <>
+              <div className="dash-pane-head">
+                <span className="dash-pane-title">{t(`visualize.editor.pane.${pane}`)}</span>
+                <button type="button" className="dash-pane-hide" onClick={() => setPaneOpen(false)} data-testid="pane-hide">
+                  <PanelRightClose size={15} aria-hidden /> {t('visualize.editor.pane.hide')}
+                </button>
+              </div>
               <div className="dash-pane-tabs" role="tablist">
-                {(['build', 'format', 'filters', 'selection', 'views'] as const).map((tab) => (
+                {(
+                  [
+                    ['build', Hammer],
+                    ['format', Paintbrush],
+                    ['filters', FilterIcon],
+                    ['selection', LayersIcon],
+                    ['views', BookmarkIcon],
+                  ] as const
+                ).map(([tab, Icon]) => (
                   <button key={tab} type="button" role="tab" aria-selected={pane === tab} onClick={() => setPane(tab)} data-testid={`pane-${tab}`}>
-                    {t(`visualize.editor.pane.${tab}`)}
+                    <Icon size={15} aria-hidden />
+                    <span>{t(`visualize.editor.pane.${tab}`)}</span>
                   </button>
                 ))}
               </div>

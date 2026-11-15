@@ -136,7 +136,12 @@
     "addField": "+ Add field",
     "countOfRows": "Count of rows",
     "galleryChart": "Gallery chart",
-    "chooseChart": "Choose a chart…"
+    "chooseChart": "Choose a chart…",
+    "groups": {
+      "datetime": "Dates",
+      "category": "Categories",
+      "numeric": "Numbers"
+    }
   },
   "calc": {
     "calculations": "Calculations",
@@ -221,9 +226,9 @@
   },
   "guide": {
     "title": "Build your dashboard yourself",
-    "step1": "Pick a visual below (or use Insert at the top)",
-    "step2": "Choose its columns in the Build pane on the right",
-    "step3": "Drag to move, pull a corner to resize: it saves by itself",
+    "step1": "Tick the charts you want (or pick more from the gallery)",
+    "step2": "Add them: they arrive empty, ready for your columns",
+    "step3": "Select a chart to set its X and Y axes, legend, scale and colours",
     "visuals": {
       "card": "Number card",
       "column": "Column chart",
@@ -233,7 +238,7 @@
       "slicer": "Filter"
     },
     "more": "More visuals, text, images and buttons are under Insert at the top.",
-    "subtitle": "Add visuals one at a time. Python draws each one from your data.",
+    "subtitle": "Python read {{name}} and suggests the charts below. Tick the ones you want and add them; then you set up each one yourself.",
     "pick": "Start with a visual",
     "hints": {
       "card": "One key figure, like total revenue",
@@ -242,6 +247,16 @@
       "donut": "Show parts of a whole",
       "table": "List the details row by row",
       "slicer": "Let viewers narrow the data"
-    }
-  }
+    },
+    "basics": "Basic visuals that fit this data",
+    "forData": "Charts suggested for {{name}}",
+    "reading": "Reading the dataset…",
+    "fromGallery": "Choose more from the gallery",
+    "emptyNote": "Charts are added empty: you choose every column, axis and style.",
+    "add_one": "Add {{count}} chart to my dashboard",
+    "add_other": "Add {{count}} charts to my dashboard",
+    "pickSome": "Tick charts to add"
+  },
+  "fromGallery": "From gallery",
+  "fromGalleryHint": "Pick more charts from the gallery for this dashboard"
 }

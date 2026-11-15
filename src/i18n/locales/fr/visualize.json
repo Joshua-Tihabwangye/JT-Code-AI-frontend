@@ -7,7 +7,6 @@
     "reports": "Rapports",
     "explore": "Explorer"
   },
-  "askAi": "Demander à l'IA",
   "hero": {
     "title": "Studio de visualisation de données"
   },
@@ -82,5 +81,6 @@
     "expandRibbon": "Développer le ruban",
     "collapseRibbon": "Réduire le ruban",
     "rows_many": "{{rows}} lignes"
-  }
+  },
+  "askAi": "Demandez à JT-Code AI"
 }

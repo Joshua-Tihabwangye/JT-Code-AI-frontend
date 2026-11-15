@@ -7,7 +7,6 @@
     "reports": "Ripoti",
     "explore": "Chunguza"
   },
-  "askAi": "Uliza AI",
   "hero": {
     "title": "Studio ya Kutazama Data"
   },
@@ -81,5 +80,6 @@
     "close": "Funga",
     "expandRibbon": "Panua Ribbon",
     "collapseRibbon": "Kunja utepe"
-  }
+  },
+  "askAi": "Uliza JT-Code AI"
 }

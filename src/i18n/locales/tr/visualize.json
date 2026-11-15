@@ -7,7 +7,6 @@
     "reports": "Raporlar",
     "explore": "Keşfetmek"
   },
-  "askAi": "Yapay zekaya sor",
   "hero": {
     "title": "Veri Görselleştirme Stüdyosu"
   },
@@ -81,5 +80,6 @@
     "close": "Kapalı",
     "expandRibbon": "Şeridi genişlet",
     "collapseRibbon": "Şeridi daralt"
-  }
+  },
+  "askAi": "JT-Code AI'ye sorun"
 }

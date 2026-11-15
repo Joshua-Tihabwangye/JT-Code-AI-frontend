@@ -286,8 +286,8 @@
         "hint": "Ein fertiges Layout: Ordne deine Spalten zu."
       },
       "ai": {
-        "label": "KI fragen",
-        "hint": "Beschreibe die Seite; sieh dir die Vorschau an, bevor sie erstellt wird."
+        "hint": "Beschreibe die Seite; sieh dir die Vorschau an, bevor sie erstellt wird.",
+        "label": "Fragen Sie JT-Code AI"
       }
     },
     "kinds": {

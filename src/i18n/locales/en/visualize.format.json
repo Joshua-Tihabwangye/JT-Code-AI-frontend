@@ -24,12 +24,18 @@
     "tooltip": "Tooltip",
     "conditional": "Conditional formatting",
     "analytics": "Analytics (reference lines, trend, forecast)",
-    "map": "Map"
+    "map": "Map",
+    "axes": "Axes"
   },
   "general": {
     "title": "Title",
     "showTitle": "Show title",
-    "axes": { "x": "x", "y": "y", "w": "w", "h": "h" },
+    "axes": {
+      "x": "x",
+      "y": "y",
+      "w": "w",
+      "h": "h"
+    },
     "layoutAria": "Layout {{axis}}",
     "altText": "Alt text",
     "altPlaceholder": "For screen readers"
@@ -51,7 +57,12 @@
   "legend": {
     "show": "Show legend",
     "position": "Position",
-    "positions": { "top": "Top", "bottom": "Bottom", "left": "Left", "right": "Right" }
+    "positions": {
+      "top": "Top",
+      "bottom": "Bottom",
+      "left": "Left",
+      "right": "Right"
+    }
   },
   "sort": {
     "by": "Sort by",
@@ -76,7 +87,13 @@
   },
   "kpi": {
     "compareBy": "Compare by",
-    "grains": { "day": "Day", "week": "Week", "month": "Month", "quarter": "Quarter", "year": "Year" },
+    "grains": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "year": "Year"
+    },
     "upIsGood": "Up is good"
   },
   "gauge": {
@@ -216,7 +233,7 @@
       "applySlicers": "Apply slicers",
       "toggle": "Show / hide a visual",
       "url": "Open a web link",
-      "askAi": "Ask AI",
+      "askAi": "Ask JT-Code AI",
       "reset": "Reset to default"
     },
     "page": "Page",
@@ -256,7 +273,11 @@
     "addColour": "Add a colour",
     "brandColour": "Brand colour",
     "generate": "Palette from my brand colour",
-    "sentiment": { "good": "Good", "neutral": "Neutral", "bad": "Bad" },
+    "sentiment": {
+      "good": "Good",
+      "neutral": "Neutral",
+      "bad": "Bad"
+    },
     "pageAndTiles": "Page and tiles",
     "light": "Light",
     "dark": "Dark",
@@ -274,7 +295,11 @@
     "systemFont": "System",
     "corners": "Corners",
     "shadow": "Shadow",
-    "shadows": { "none": "None", "soft": "Soft", "medium": "Medium" },
+    "shadows": {
+      "none": "None",
+      "soft": "Soft",
+      "medium": "Medium"
+    },
     "kpiTiles": "KPI tiles",
     "kpiStyles": {
       "plain": "Plain",
@@ -298,5 +323,18 @@
       "notTheme": "The file is not a theme.",
       "needColours": "A theme needs at least 3 data colours (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Horizontal axis (X)",
+    "vertical": "Vertical axis (Y)",
+    "show": "Show axis",
+    "title": "Axis title",
+    "titlePlaceholder": "No title",
+    "rotate": "Label angle",
+    "gridlines": "Gridlines",
+    "min": "Minimum",
+    "max": "Maximum",
+    "log": "Logarithmic scale",
+    "hint": "Leave a setting on Automatic to let Python choose. Minimum, maximum and the log scale apply to the axis that shows numbers."
   }
 }

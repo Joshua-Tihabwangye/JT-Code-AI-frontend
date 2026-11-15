@@ -136,7 +136,12 @@
     "addField": "+ Alan ekle",
     "countOfRows": "Satır sayısı",
     "galleryChart": "Galeri grafiği",
-    "chooseChart": "Bir grafik seçin…"
+    "chooseChart": "Bir grafik seçin…",
+    "groups": {
+      "datetime": "Tarihler",
+      "category": "Kategoriler",
+      "numeric": "Sayılar"
+    }
   },
   "calc": {
     "calculations": "Hesaplamalar",
@@ -221,9 +226,6 @@
   },
   "guide": {
     "title": "Kontrol panelinizi kendiniz oluşturun",
-    "step1": "Aşağıdan bir görsel seçin (veya üstteki Ekle'yi kullanın)",
-    "step2": "Sağdaki Yapı bölmesinde sütunlarını seçin",
-    "step3": "Taşımak için sürükleyin, yeniden boyutlandırmak için bir köşeden çekin: kendiliğinden kaydeder",
     "visuals": {
       "card": "Numara kartı",
       "column": "Sütun grafiği",
@@ -233,7 +235,6 @@
       "slicer": "Filtre"
     },
     "more": "Daha fazla görsel, metin, resim ve düğme üstteki Ekle'nin altındadır.",
-    "subtitle": "Görselleri birer birer ekleyin. Python her birini verilerinizden alır.",
     "pick": "Bir görselle başlayın",
     "hints": {
       "card": "Toplam gelir gibi önemli bir rakam",
@@ -242,6 +243,20 @@
       "donut": "Bir bütünün parçalarını göster",
       "table": "Ayrıntıları satır satır listeleyin",
       "slicer": "İzleyicilerin verileri daraltmasına izin verin"
-    }
-  }
+    },
+    "step1": "İstediğiniz grafikleri işaretleyin (veya galeriden daha fazlasını seçin)",
+    "step2": "Bunları ekleyin: Sütunlarınız için boş olarak gelirler",
+    "step3": "X ve Y eksenlerini, açıklamasını, ölçeğini ve renklerini ayarlamak için bir grafik seçin",
+    "subtitle": "Python {{name}} okur ve aşağıdaki çizelgeleri önerir. İstediklerinizi işaretleyin ve ekleyin; daha sonra her birini kendiniz ayarlarsınız.",
+    "basics": "Bu verilere uyan temel görseller",
+    "forData": "{{name}} için önerilen grafikler",
+    "reading": "Veri kümesi okunuyor…",
+    "fromGallery": "Galeriden daha fazlasını seçin",
+    "emptyNote": "Grafikler boş eklenir: her sütunu, ekseni ve stili seçersiniz.",
+    "add_one": "{{count}} grafiğini kontrol panelime ekle",
+    "add_other": "Kontrol panelime {{count}} grafiklerini ekle",
+    "pickSome": "Eklenecek onay grafikleri"
+  },
+  "fromGallery": "Galeriden",
+  "fromGalleryHint": "Bu kontrol paneli için galeriden daha fazla grafik seçin"
 }

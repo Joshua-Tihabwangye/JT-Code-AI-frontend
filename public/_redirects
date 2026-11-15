@@ -1,0 +1,2 @@
+# Netlify-style hosts: every path loads the app, which opens the right page (single-page app).
+/*    /index.html   200

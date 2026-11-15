@@ -286,8 +286,8 @@
         "hint": "Tata letak yang sudah jadi: petakan kolom Anda ke sana."
       },
       "ai": {
-        "label": "Tanya AI",
-        "hint": "Jelaskan halamannya; pratinjau sebelum dibuat."
+        "hint": "Jelaskan halamannya; pratinjau sebelum dibuat.",
+        "label": "Tanyakan JT-Code AI"
       }
     },
     "kinds": {

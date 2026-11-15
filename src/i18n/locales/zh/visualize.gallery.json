@@ -14,5 +14,15 @@
   "advancedBadge": "高级",
   "useInExplore": "在“探索”中使用",
   "addToDashboard": "添加到仪表板",
-  "thisDataset": "此数据集"
+  "thisDataset": "此数据集",
+  "pick": {
+    "banner": "选择“{{name}}”的图表。勾选您喜欢的多个，然后添加它们。",
+    "back": "返回仪表板",
+    "selected_one": "已选择 {{count}} 图表",
+    "selected_other": "已选择 {{count}} 图表",
+    "clear": "清除",
+    "add_one": "将 {{count}} 图表添加到仪表板",
+    "add_other": "将 {{count}} 图表添加到仪表板",
+    "noSpec": "无法打开该仪表板。返回并再试一次。"
+  }
 }

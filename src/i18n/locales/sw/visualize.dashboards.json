@@ -286,8 +286,8 @@
         "hint": "Mpangilio uliotengenezwa tayari: panga safu wima zako kwake."
       },
       "ai": {
-        "label": "Uliza AI",
-        "hint": "Eleza ukurasa; ihakiki kabla haijaundwa."
+        "hint": "Eleza ukurasa; ihakiki kabla haijaundwa.",
+        "label": "Uliza JT-Code AI"
       }
     },
     "kinds": {

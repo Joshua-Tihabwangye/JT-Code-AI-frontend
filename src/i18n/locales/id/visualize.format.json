@@ -24,7 +24,8 @@
     "tooltip": "Keterangan alat",
     "conditional": "Pemformatan bersyarat",
     "analytics": "Analisis (garis referensi, tren, perkiraan)",
-    "map": "Peta"
+    "map": "Peta",
+    "axes": "sumbu"
   },
   "general": {
     "title": "Judul",
@@ -232,8 +233,8 @@
       "applySlicers": "Terapkan alat pengiris",
       "toggle": "Menampilkan/menyembunyikan visual",
       "url": "Buka tautan web",
-      "askAi": "Tanya AI",
-      "reset": "Atur ulang ke default"
+      "reset": "Atur ulang ke default",
+      "askAi": "Tanyakan JT-Code AI"
     },
     "page": "Halaman",
     "choose": "Memilih…",
@@ -322,5 +323,18 @@
       "notTheme": "File tersebut bukan tema.",
       "needColours": "Sebuah tema memerlukan setidaknya 3 warna data (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Sumbu horizontal (X)",
+    "vertical": "Sumbu vertikal (Y)",
+    "show": "Tampilkan sumbu",
+    "title": "Judul sumbu",
+    "titlePlaceholder": "Tidak ada judul",
+    "rotate": "Sudut label",
+    "gridlines": "Garis kisi",
+    "min": "Minimum",
+    "max": "Maksimum",
+    "log": "Skala logaritmik",
+    "hint": "Biarkan pengaturan pada Otomatis agar Python dapat memilih. Minimum, maksimum dan skala log berlaku pada sumbu yang menunjukkan angka."
   }
 }

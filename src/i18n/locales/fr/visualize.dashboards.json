@@ -298,8 +298,8 @@
         "hint": "Une disposition prête à l'emploi : associez-y vos colonnes."
       },
       "ai": {
-        "label": "Demander à l'IA",
-        "hint": "Décrivez la page ; prévisualisez-la avant sa création."
+        "hint": "Décrivez la page ; prévisualisez-la avant sa création.",
+        "label": "Demandez à JT-Code AI"
       }
     },
     "kinds": {

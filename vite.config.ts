@@ -1,10 +1,27 @@
+import { copyFileSync, existsSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vitest/config';
 
+/**
+ * Reloading a deep link (/app/visualize/explore…) on a plain static host would answer "page not found":
+ * the file does not exist. Most hosts and static servers serve 404.html for missing paths, so the app
+ * is also written there; it loads, reads the address and opens the same page.
+ */
+function spaFallback() {
+  return {
+    name: 'jt-spa-fallback',
+    apply: 'build' as const,
+    closeBundle() {
+      const index = fileURLToPath(new URL('./dist/index.html', import.meta.url));
+      if (existsSync(index)) copyFileSync(index, fileURLToPath(new URL('./dist/404.html', import.meta.url)));
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), spaFallback()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

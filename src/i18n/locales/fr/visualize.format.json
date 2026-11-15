@@ -24,7 +24,8 @@
     "tooltip": "Info-bulle",
     "conditional": "Mise en forme conditionnelle",
     "analytics": "Analyse (lignes de référence, tendance, prévision)",
-    "map": "Carte géographique"
+    "map": "Carte géographique",
+    "axes": "Haches"
   },
   "general": {
     "title": "Titre",
@@ -232,8 +233,8 @@
       "applySlicers": "Appliquer les segments",
       "toggle": "Afficher / masquer un visuel",
       "url": "Ouvrir un lien web",
-      "askAi": "Demander à l'IA",
-      "reset": "Rétablir les valeurs par défaut"
+      "reset": "Rétablir les valeurs par défaut",
+      "askAi": "Demandez à JT-Code AI"
     },
     "page": "Page",
     "choose": "Choisir…",
@@ -322,5 +323,18 @@
       "notTheme": "Le fichier n'est pas un thème.",
       "needColours": "Un thème nécessite au moins 3 couleurs de données (dataColors)."
     }
+  },
+  "axes": {
+    "horizontal": "Axe horizontal (X)",
+    "vertical": "Axe vertical (Y)",
+    "show": "Afficher l'axe",
+    "title": "Titre de l'axe",
+    "titlePlaceholder": "Pas de titre",
+    "rotate": "Angle de l'étiquette",
+    "gridlines": "Quadrillage",
+    "min": "Minimum",
+    "max": "Maximum",
+    "log": "Échelle logarithmique",
+    "hint": "Laissez un paramètre sur Automatique pour laisser Python choisir. Le minimum, le maximum et l'échelle logarithmique s'appliquent à l'axe qui affiche les nombres."
   }
 }

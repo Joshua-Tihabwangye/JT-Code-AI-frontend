@@ -7,7 +7,6 @@
     "reports": "보고서",
     "explore": "탐구하다"
   },
-  "askAi": "AI에게 물어보세요",
   "hero": {
     "title": "데이터 시각화 스튜디오"
   },
@@ -81,5 +80,6 @@
     "close": "닫다",
     "expandRibbon": "리본 확장",
     "collapseRibbon": "리본 접기"
-  }
+  },
+  "askAi": "JT-Code AI에게 물어보세요"
 }

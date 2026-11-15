@@ -286,8 +286,8 @@
         "hint": "Hazır bir düzen: Sütunlarınızı buna eşleyin."
       },
       "ai": {
-        "label": "Yapay zekaya sor",
-        "hint": "Sayfayı tanımlayın; oluşturulmadan önce önizleyin."
+        "hint": "Sayfayı tanımlayın; oluşturulmadan önce önizleyin.",
+        "label": "JT-Code AI'ye sorun"
       }
     },
     "kinds": {
