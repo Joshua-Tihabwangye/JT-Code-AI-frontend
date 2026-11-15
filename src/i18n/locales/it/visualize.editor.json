@@ -222,18 +222,28 @@
   "multiSelected_many": "{{count}} elementi visivi selezionati: utilizza Disponi o scegline uno da modificare.",
   "visualsCount_many": "{{count}} immagini",
   "guide": {
-    "title": "Costruisci la tua dashboard",
-    "step1": "Aggiungi un elemento visivo: fai clic su uno qui sotto o utilizza Inserisci in alto.",
-    "step2": "Scegli le sue colonne nel riquadro Compila a destra.",
-    "step3": "Trascina per spostarlo, tira un angolo per ridimensionarlo. Le modifiche si salvano da sole.",
+    "title": "Costruisci tu stesso la tua dashboard",
+    "step1": "Scegli un'immagine qui sotto (o usa Inserisci in alto)",
+    "step2": "Scegli le sue colonne nel riquadro Compila a destra",
+    "step3": "Trascina per spostare, tira un angolo per ridimensionare: si salva da solo",
     "visuals": {
       "card": "Carta numerica",
       "column": "Grafico a colonne",
       "line": "Grafico a linee",
-      "donut": "Ciambella",
+      "donut": "Grafico a ciambella",
       "table": "Tavolo",
-      "slicer": "Filtro (affettatrice)"
+      "slicer": "Filtro"
     },
-    "more": "Ulteriori elementi visivi, testo, immagini e pulsanti si trovano in Inserisci."
+    "more": "Altri elementi visivi, testo, immagini e pulsanti si trovano sotto Inserisci in alto.",
+    "subtitle": "Aggiungi elementi visivi uno alla volta. Python trae ognuno di essi dai tuoi dati.",
+    "pick": "Inizia con un aspetto visivo",
+    "hints": {
+      "card": "Una cifra chiave, come le entrate totali",
+      "column": "Confronta i gruppi fianco a fianco",
+      "line": "Vedi il cambiamento nel tempo",
+      "donut": "Mostra parti di un tutto",
+      "table": "Elenca i dettagli riga per riga",
+      "slicer": "Consenti agli spettatori di restringere i dati"
+    }
   }
 }

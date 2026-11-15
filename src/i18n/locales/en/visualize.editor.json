@@ -220,18 +220,28 @@
     "add": "Add relationship"
   },
   "guide": {
-    "title": "Build your dashboard",
-    "step1": "Add a visual: click one below, or use Insert at the top.",
-    "step2": "Choose its columns in the Build pane on the right.",
-    "step3": "Drag to move it, pull a corner to resize. Changes save on their own.",
+    "title": "Build your dashboard yourself",
+    "step1": "Pick a visual below (or use Insert at the top)",
+    "step2": "Choose its columns in the Build pane on the right",
+    "step3": "Drag to move, pull a corner to resize: it saves by itself",
     "visuals": {
       "card": "Number card",
       "column": "Column chart",
       "line": "Line chart",
-      "donut": "Donut",
+      "donut": "Donut chart",
       "table": "Table",
-      "slicer": "Filter (slicer)"
+      "slicer": "Filter"
     },
-    "more": "More visuals, text, images and buttons are under Insert."
+    "more": "More visuals, text, images and buttons are under Insert at the top.",
+    "subtitle": "Add visuals one at a time. Python draws each one from your data.",
+    "pick": "Start with a visual",
+    "hints": {
+      "card": "One key figure, like total revenue",
+      "column": "Compare groups side by side",
+      "line": "See change over time",
+      "donut": "Show parts of a whole",
+      "table": "List the details row by row",
+      "slicer": "Let viewers narrow the data"
+    }
   }
 }

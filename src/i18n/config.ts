@@ -65,3 +65,14 @@ export const i18nReady: Promise<void> = ensureLanguage(i18n.language || 'en')
   .catch(() => undefined);
 
 export default i18n;
+
+// Development: new or edited English texts show up without reloading the page (i18next only reads its
+// resources once, so the hot-updated files are added to it here).
+if (import.meta.hot) {
+  import.meta.hot.accept('./resources', (module) => {
+    const tree = (module as { resources?: Record<string, { translation: object }> } | undefined)?.resources?.en?.translation;
+    if (!tree) return;
+    i18n.addResourceBundle('en', 'translation', tree, true, true);
+    void i18n.changeLanguage(i18n.language);
+  });
+}

@@ -222,18 +222,28 @@
   "multiSelected_many": "{{count}} visuais selecionados — use Organizar ou escolha um para editar.",
   "visualsCount_many": "{{count}} visuais",
   "guide": {
-    "title": "Construa seu painel",
-    "step1": "Adicione um visual: clique em um abaixo ou use Inserir na parte superior.",
-    "step2": "Escolha suas colunas no painel Build à direita.",
-    "step3": "Arraste para movê-lo, puxe um canto para redimensionar. As alterações são salvas por conta própria.",
+    "title": "Crie você mesmo seu painel",
+    "step1": "Escolha um visual abaixo (ou use Inserir na parte superior)",
+    "step2": "Escolha suas colunas no painel Build à direita",
+    "step3": "Arraste para mover, puxe um canto para redimensionar: ele salva sozinho",
     "visuals": {
       "card": "Cartão numérico",
       "column": "Gráfico de colunas",
       "line": "Gráfico de linhas",
-      "donut": "Rosquinha",
+      "donut": "Gráfico de rosca",
       "table": "Mesa",
-      "slicer": "Filtro (fatiador)"
+      "slicer": "Filtro"
     },
-    "more": "Mais recursos visuais, textos, imagens e botões estão em Inserir."
+    "more": "Mais recursos visuais, textos, imagens e botões estão em Inserir, na parte superior.",
+    "subtitle": "Adicione recursos visuais, um de cada vez. Python extrai cada um deles de seus dados.",
+    "pick": "Comece com um visual",
+    "hints": {
+      "card": "Um número-chave, como receita total",
+      "column": "Compare grupos lado a lado",
+      "line": "Veja a mudança ao longo do tempo",
+      "donut": "Mostrar partes de um todo",
+      "table": "Liste os detalhes linha por linha",
+      "slicer": "Deixe os espectadores restringirem os dados"
+    }
   }
 }

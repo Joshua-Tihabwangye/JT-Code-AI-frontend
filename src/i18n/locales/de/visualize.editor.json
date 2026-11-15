@@ -220,18 +220,28 @@
     "add": "Beziehung hinzufügen"
   },
   "guide": {
-    "title": "Erstellen Sie Ihr Dashboard",
-    "step1": "Fügen Sie ein Bild hinzu: Klicken Sie unten auf eines oder verwenden Sie oben „Einfügen“.",
-    "step2": "Wählen Sie die Spalten im Build-Bereich auf der rechten Seite aus.",
-    "step3": "Ziehen Sie, um es zu verschieben, und ziehen Sie an einer Ecke, um die Größe zu ändern. Änderungen werden von selbst gespeichert.",
+    "title": "Erstellen Sie Ihr Dashboard selbst",
+    "step1": "Wählen Sie unten ein Bild aus (oder verwenden Sie oben „Einfügen“)",
+    "step2": "Wählen Sie die Spalten im Build-Bereich auf der rechten Seite aus",
+    "step3": "Ziehen Sie zum Verschieben, ziehen Sie an einer Ecke, um die Größe zu ändern: Die Speicherung erfolgt automatisch",
     "visuals": {
       "card": "Zahlenkarte",
       "column": "Säulendiagramm",
       "line": "Liniendiagramm",
-      "donut": "Krapfen",
+      "donut": "Donut-Diagramm",
       "table": "Tisch",
-      "slicer": "Filter (Slicer)"
+      "slicer": "Filter"
     },
-    "more": "Weitere visuelle Elemente, Texte, Bilder und Schaltflächen finden Sie unter Einfügen."
+    "more": "Weitere visuelle Elemente, Texte, Bilder und Schaltflächen finden Sie oben unter „Einfügen“.",
+    "subtitle": "Fügen Sie Bildmaterial nacheinander hinzu. Python zieht jeden einzelnen aus Ihren Daten.",
+    "pick": "Beginnen Sie mit einer visuellen Darstellung",
+    "hints": {
+      "card": "Eine Kennzahl, etwa der Gesamtumsatz",
+      "column": "Vergleichen Sie Gruppen nebeneinander",
+      "line": "Sehen Sie Veränderungen im Laufe der Zeit",
+      "donut": "Teile eines Ganzen zeigen",
+      "table": "Listen Sie die Details Zeile für Zeile auf",
+      "slicer": "Lassen Sie die Zuschauer die Daten eingrenzen"
+    }
   }
 }

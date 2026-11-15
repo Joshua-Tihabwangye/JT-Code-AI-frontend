@@ -222,18 +222,28 @@
   "multiSelected_many": "{{count}} visuels sélectionnés — utilisez Organiser, ou choisissez-en un à modifier.",
   "visualsCount_many": "{{count}} visuels",
   "guide": {
-    "title": "Construisez votre tableau de bord",
-    "step1": "Ajoutez un visuel : cliquez sur celui-ci ci-dessous ou utilisez Insérer en haut.",
-    "step2": "Choisissez ses colonnes dans le volet Créer à droite.",
-    "step3": "Faites glisser pour le déplacer, tirez un coin pour le redimensionner. Les modifications sont enregistrées d'elles-mêmes.",
+    "title": "Construisez vous-même votre tableau de bord",
+    "step1": "Choisissez un visuel ci-dessous (ou utilisez Insérer en haut)",
+    "step2": "Choisissez ses colonnes dans le volet Construire à droite",
+    "step3": "Faites glisser pour déplacer, tirez un coin pour redimensionner : cela s'enregistre tout seul",
     "visuals": {
       "card": "Carte numérotée",
       "column": "Diagramme à colonnes",
       "line": "Graphique linéaire",
-      "donut": "Donut",
+      "donut": "Graphique en beignet",
       "table": "Tableau",
-      "slicer": "Filtre (trancheur)"
+      "slicer": "Filtre"
     },
-    "more": "Plus de visuels, de textes, d'images et de boutons se trouvent sous Insérer."
+    "more": "Plus de visuels, de textes, d'images et de boutons se trouvent sous Insérer en haut.",
+    "subtitle": "Ajoutez des visuels un par un. Python tire chacun de vos données.",
+    "pick": "Commencez par un visuel",
+    "hints": {
+      "card": "Un chiffre clé, comme le chiffre d'affaires total",
+      "column": "Comparez les groupes côte à côte",
+      "line": "Voir l'évolution au fil du temps",
+      "donut": "Afficher des parties d'un tout",
+      "table": "Lister les détails ligne par ligne",
+      "slicer": "Laissez les spectateurs affiner les données"
+    }
   }
 }

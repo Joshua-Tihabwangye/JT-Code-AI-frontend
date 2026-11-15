@@ -220,18 +220,28 @@
     "add": "Ongeza uhusiano"
   },
   "guide": {
-    "title": "Unda dashibodi yako",
-    "step1": "Ongeza taswira: bofya moja hapa chini, au tumia Chomeka juu.",
-    "step2": "Chagua safu wima zake kwenye kidirisha cha Kujenga upande wa kulia.",
-    "step3": "Buruta ili kuisogeza, vuta kona ili kubadilisha ukubwa. Mabadiliko huokoa peke yao.",
+    "title": "Unda dashibodi yako mwenyewe",
+    "step1": "Chagua taswira hapa chini (au tumia Chomeka juu)",
+    "step2": "Chagua safu wima zake kwenye kidirisha cha Kujenga upande wa kulia",
+    "step3": "Buruta ili kusonga, vuta kona ili kubadilisha ukubwa: inajiokoa yenyewe",
     "visuals": {
       "card": "Kadi ya nambari",
       "column": "Chati ya safu wima",
       "line": "Chati ya mstari",
-      "donut": "Donati",
+      "donut": "Chati ya donut",
       "table": "Jedwali",
-      "slicer": "Kichujio (kipande)"
+      "slicer": "Chuja"
     },
-    "more": "Vielelezo zaidi, maandishi, picha na vitufe viko chini ya Ingiza."
+    "more": "Vielelezo zaidi, maandishi, picha na vitufe viko chini ya Chomeka juu.",
+    "subtitle": "Ongeza taswira moja baada ya nyingine. Python huchota kila moja kutoka kwa data yako.",
+    "pick": "Anza na taswira",
+    "hints": {
+      "card": "Takwimu moja muhimu, kama jumla ya mapato",
+      "column": "Linganisha vikundi bega kwa bega",
+      "line": "Tazama mabadiliko kwa wakati",
+      "donut": "Onyesha sehemu za jumla",
+      "table": "Orodhesha maelezo safu kwa safu",
+      "slicer": "Ruhusu watazamaji wapunguze data"
+    }
   }
 }

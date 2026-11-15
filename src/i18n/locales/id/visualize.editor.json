@@ -220,18 +220,28 @@
     "add": "Tambahkan hubungan"
   },
   "guide": {
-    "title": "Bangun dasbor Anda",
-    "step1": "Tambahkan visual: klik salah satu di bawah, atau gunakan Sisipkan di atas.",
-    "step2": "Pilih kolomnya di panel Build di sebelah kanan.",
-    "step3": "Seret untuk memindahkannya, tarik salah satu sudut untuk mengubah ukurannya. Perubahan akan tersimpan dengan sendirinya.",
+    "title": "Bangun dasbor Anda sendiri",
+    "step1": "Pilih visual di bawah (atau gunakan Sisipkan di atas)",
+    "step2": "Pilih kolomnya di panel Build di sebelah kanan",
+    "step3": "Seret untuk memindahkan, tarik sudut untuk mengubah ukuran: itu akan disimpan dengan sendirinya",
     "visuals": {
       "card": "Kartu nomor",
       "column": "Bagan kolom",
       "line": "Bagan garis",
-      "donut": "Donat",
+      "donut": "Bagan donat",
       "table": "Meja",
-      "slicer": "Penyaring (pemotong)"
+      "slicer": "Menyaring"
     },
-    "more": "Lebih banyak visual, teks, gambar, dan tombol ada di bawah Sisipkan."
+    "more": "Lebih banyak visual, teks, gambar, dan tombol ada di bawah Sisipkan di bagian atas.",
+    "subtitle": "Tambahkan visual satu per satu. Python mengambil masing-masing dari data Anda.",
+    "pick": "Mulailah dengan visual",
+    "hints": {
+      "card": "Satu angka penting, seperti total pendapatan",
+      "column": "Bandingkan kelompok secara berdampingan",
+      "line": "Lihat perubahan seiring berjalannya waktu",
+      "donut": "Tunjukkan bagian dari keseluruhan",
+      "table": "Cantumkan detailnya baris demi baris",
+      "slicer": "Biarkan pemirsa mempersempit datanya"
+    }
   }
 }

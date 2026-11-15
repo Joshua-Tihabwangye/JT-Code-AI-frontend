@@ -238,13 +238,14 @@ export function PredictPage() {
     setAssistantContext({ page: 'predict', fields, options, title: taskName });
   }, [fields, options, taskName, setAssistantContext]);
 
-  type RunInput = { task: string; model: string; fields: VizFields; options: VizOptions; dateRange: VizDateRange; forecastUntil: string };
+  // A saved custom prediction runs on its own dataset (even before the page switches to it).
+  type RunInput = { task: string; model: string; fields: VizFields; options: VizOptions; dateRange: VizDateRange; forecastUntil: string; datasetId?: string };
   const run = useMutation({
     mutationFn: (input?: RunInput) => {
       const chosen = input ?? { task: taskId, model, fields, options, dateRange, forecastUntil };
       const entry = catalog?.predictionTasks.find((item) => item.id === chosen.task);
       return visualize.predict({
-        datasetId,
+        datasetId: chosen.datasetId || datasetId,
         task: chosen.task,
         model: chosen.model || entry?.models[0]?.[0],
         fields: chosen.fields,
@@ -290,7 +291,8 @@ export function PredictPage() {
 
   /** A saved custom prediction: fills every step, and runs it when asked. */
   function applyPreset(preset: PredictionPreset, runNow: boolean, until = '') {
-    const input = { task: preset.task, model: preset.model, fields: preset.fields, options: preset.options ?? {}, dateRange: preset.dateRange ?? {}, forecastUntil: until };
+    const input = { task: preset.task, model: preset.model, fields: preset.fields, options: preset.options ?? {}, dateRange: preset.dateRange ?? {}, forecastUntil: until, datasetId: preset.datasetId ?? undefined };
+    if (preset.datasetId && preset.datasetId !== datasetId) setDatasetId(preset.datasetId);
     setTaskId(input.task);
     setModel(input.model);
     setFields(input.fields);

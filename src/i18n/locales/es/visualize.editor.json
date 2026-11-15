@@ -222,18 +222,28 @@
   "multiSelected_many": "{{count}} objetos visuales seleccionados: usa Organizar o elige uno para editarlo.",
   "visualsCount_many": "{{count}} objetos visuales",
   "guide": {
-    "title": "Construye tu panel",
-    "step1": "Agregue un objeto visual: haga clic en uno a continuación o use Insertar en la parte superior.",
-    "step2": "Elija sus columnas en el panel Construir a la derecha.",
-    "step3": "Arrastra para moverlo, tira de una esquina para cambiar su tamaño. Los cambios se guardan por sí solos.",
+    "title": "Construya su tablero usted mismo",
+    "step1": "Elija una imagen a continuación (o use Insertar en la parte superior)",
+    "step2": "Elija sus columnas en el panel Construir a la derecha",
+    "step3": "Arrastra para mover, tira de una esquina para cambiar el tamaño: se guarda solo",
     "visuals": {
       "card": "tarjeta numérica",
       "column": "gráfico de columnas",
       "line": "gráfico de líneas",
-      "donut": "Rosquilla",
+      "donut": "gráfico de anillos",
       "table": "Mesa",
-      "slicer": "Filtro (rebanador)"
+      "slicer": "Filtrar"
     },
-    "more": "Más elementos visuales, texto, imágenes y botones se encuentran en Insertar."
+    "more": "Más elementos visuales, texto, imágenes y botones se encuentran en Insertar en la parte superior.",
+    "subtitle": "Agregue imágenes una a la vez. Python extrae cada uno de sus datos.",
+    "pick": "Comience con una imagen",
+    "hints": {
+      "card": "Una cifra clave, como los ingresos totales",
+      "column": "Comparar grupos uno al lado del otro",
+      "line": "Ver cambios a lo largo del tiempo",
+      "donut": "Mostrar partes de un todo",
+      "table": "Enumere los detalles fila por fila",
+      "slicer": "Permita que los espectadores limiten los datos"
+    }
   }
 }

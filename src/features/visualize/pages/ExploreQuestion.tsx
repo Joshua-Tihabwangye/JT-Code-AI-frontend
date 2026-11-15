@@ -31,6 +31,18 @@ export const INTENTS: { id: Intent; icon: LucideIcon; color: string }[] = [
 ];
 const GRAINS: Grain[] = ['day', 'week', 'month', 'quarter', 'year'];
 
+// Levels and rates are averaged (adding up prices or scores means nothing), as Build dashboard does.
+const LEVEL_WORDS = new Set(['open', 'high', 'low', 'close', 'price', 'rate', 'ratio', 'score', 'rating', 'percent', 'pct', 'avg', 'average', 'mean', 'median', 'age', 'temperature', 'balance', 'margin', 'discount', 'satisfaction', 'level', 'index', 'yield']);
+const FLOW_WORDS = new Set(['sales', 'revenue', 'amount', 'qty', 'quantity', 'units', 'orders', 'count', 'cost', 'profit', 'volume', 'clicks', 'visits', 'sessions', 'spend', 'income', 'total']);
+
+/** The natural calculation for a number column: average for levels, total for flows. */
+export function naturalAgg(column: string): string {
+  if (column === '*') return 'count';
+  const words = column.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().split(/[^a-z0-9]+/);
+  if (words.some((word) => FLOW_WORDS.has(word))) return 'sum';
+  return words.some((word) => LEVEL_WORDS.has(word)) ? 'avg' : 'sum';
+}
+
 const groups = (profiles: ColumnProfile[]) => profiles.filter((p) => p.kind !== 'numeric' && p.kind !== 'datetime');
 const dates = (profiles: ColumnProfile[]) => profiles.filter((p) => p.kind === 'datetime');
 const numbers = (profiles: ColumnProfile[]) => profiles.filter((p) => p.kind === 'numeric');
@@ -39,10 +51,13 @@ const numbers = (profiles: ColumnProfile[]) => profiles.filter((p) => p.kind ===
 export function defaultQuestion(profiles: ColumnProfile[], intent?: Intent): Question {
   const group = groups(profiles)[0]?.name ?? '';
   const date = dates(profiles)[0]?.name ?? '';
-  const measure = numbers(profiles)[0]?.name ?? '*';
+  // Price data leads with the closing price, like the dashboards Build dashboard makes.
+  // Business data leads with revenue or sales; price data with the closing price.
+  const named = (pattern: RegExp) => numbers(profiles).find((p) => pattern.test(p.name.replace(/_/g, ' ')));
+  const measure = (named(/\b(revenue|sales|amount|profit|total)\b/i) ?? named(/\b(close|price)\b/i) ?? numbers(profiles)[0])?.name ?? '*';
   const measure2 = numbers(profiles)[1]?.name ?? measure;
   const chosen: Intent = intent ?? (date ? 'trend' : group ? 'compare' : 'spread');
-  return { intent: chosen, group, date, grain: 'month', split: '', measure, measure2, agg: measure === '*' ? 'count' : 'sum', n: 10 };
+  return { intent: chosen, group, date, grain: 'month', split: '', measure, measure2, agg: naturalAgg(measure), n: 10 };
 }
 
 /** The question as a dashboard visual (the same visuals dashboards use, drawn by Python). */
@@ -171,7 +186,7 @@ export function ExploreQuestion({ question, profiles, onChange }: { question: Qu
         {(question.intent === 'compare' || question.intent === 'share' || question.intent === 'top') && (
           <>
             {columnSelect(t('visualize.explore.ask.groupBy'), question.group, groupColumns, (group) => set({ group }), false, 'ask-group')}
-            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: measure === '*' ? 'count' : question.agg === 'count' ? 'sum' : question.agg }), true, 'ask-measure')}
+            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: naturalAgg(measure) }), true, 'ask-measure')}
             {aggSelect}
             {question.intent === 'top' && (
               <label className="block text-xs">
@@ -194,7 +209,7 @@ export function ExploreQuestion({ question, profiles, onChange }: { question: Qu
                 ))}
               </select>
             </label>
-            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: measure === '*' ? 'count' : question.agg === 'count' ? 'sum' : question.agg }), true, 'ask-measure')}
+            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: naturalAgg(measure) }), true, 'ask-measure')}
             {aggSelect}
             {columnSelect(t('visualize.explore.ask.splitBy'), question.split, groupColumns, (split) => set({ split }), true, 'ask-split')}
           </>
@@ -209,14 +224,14 @@ export function ExploreQuestion({ question, profiles, onChange }: { question: Qu
         {question.intent === 'spread' && measureSelect(t('visualize.explore.ask.number'), question.measure, (measure) => set({ measure }), false, 'ask-measure')}
         {question.intent === 'total' && (
           <>
-            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: measure === '*' ? 'count' : question.agg === 'count' ? 'sum' : question.agg }), true, 'ask-measure')}
+            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: naturalAgg(measure) }), true, 'ask-measure')}
             {aggSelect}
           </>
         )}
         {question.intent === 'table' && (
           <>
             {columnSelect(t('visualize.explore.ask.rowsPer'), question.group, groupColumns, (group) => set({ group }), true, 'ask-group')}
-            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: measure === '*' ? 'count' : question.agg === 'count' ? 'sum' : question.agg }), true, 'ask-measure')}
+            {measureSelect(t('visualize.explore.ask.measure'), question.measure, (measure) => set({ measure, agg: naturalAgg(measure) }), true, 'ask-measure')}
             {aggSelect}
           </>
         )}

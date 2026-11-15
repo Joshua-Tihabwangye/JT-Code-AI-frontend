@@ -38,6 +38,24 @@ function load(datasetId: string): DashboardVisual[] {
   }
 }
 
+/** The simple-mode question behind each chart, kept with the charts for the visit. */
+function loadQuestions(datasetId: string): Record<string, Question> {
+  try {
+    const raw = sessionStorage.getItem(`${STORE}questions:${datasetId}`);
+    return raw ? (JSON.parse(raw) as Record<string, Question>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function keepQuestions(datasetId: string, questions: Record<string, Question>) {
+  try {
+    sessionStorage.setItem(`${STORE}questions:${datasetId}`, JSON.stringify(questions));
+  } catch {
+    // Storage may be unavailable; the questions last for this page view.
+  }
+}
+
 function keep(datasetId: string, visuals: DashboardVisual[]) {
   try {
     sessionStorage.setItem(STORE + datasetId, JSON.stringify(visuals));
@@ -108,6 +126,7 @@ export function ExplorePage() {
     if (!datasetId || !profiles.length) return;
     const saved = load(datasetId);
     if (saved.length) {
+      setQuestions(loadQuestions(datasetId));
       setVisuals(saved);
       setSelected(saved[0]!.id);
       return;
@@ -121,6 +140,9 @@ export function ExplorePage() {
   useEffect(() => {
     if (datasetId && visuals.length) keep(datasetId, visuals);
   }, [datasetId, visuals]);
+  useEffect(() => {
+    if (datasetId && Object.keys(questions).length) keepQuestions(datasetId, questions);
+  }, [datasetId, questions]);
   // A chart handed over by the gallery, insights or the assistant (``openStudio``).
   useEffect(() => {
     if (!studioDraft || !datasetId || !profiles.length) return;
