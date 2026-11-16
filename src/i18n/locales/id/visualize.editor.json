@@ -258,5 +258,14 @@
     "pickSome": "Centang diagram untuk ditambahkan"
   },
   "fromGallery": "Dari galeri",
-  "fromGalleryHint": "Pilih lebih banyak diagram dari galeri untuk dasbor ini"
+  "fromGalleryHint": "Pilih lebih banyak diagram dari galeri untuk dasbor ini",
+  "save": "Menyimpan",
+  "saveShortcut": "Simpan perubahan Anda (Ctrl+S)",
+  "leave": {
+    "title": "Simpan perubahan Anda?",
+    "text": "Dasbor ini memiliki perubahan yang belum disimpan. Mereka hanya disimpan jika Anda menyimpannya.",
+    "save": "Simpan dan pergi",
+    "discard": "Pergi tanpa menyimpan",
+    "stay": "Lanjutkan mengedit"
+  }
 }

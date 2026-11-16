@@ -23,7 +23,6 @@
     "clear": "Claro",
     "add_one": "Agregue el gráfico {{count}} al panel",
     "add_other": "Agregue gráficos {{count}} al panel",
-    "noSpec": "Este panel no se pudo abrir. Vuelve e inténtalo de nuevo.",
     "selected_many": "{{count}} gráficos seleccionados",
     "add_many": "Agregue gráficos {{count}} al panel"
   }

@@ -26,7 +26,6 @@
   "updateProfilePicture": "Mettre à jour la photo de profil",
   "profilePicture": "Photo de profil",
   "yourProfile": "Votre profil",
-  "changePhoto": "Cliquez pour changer de photo",
   "profileUpdated": "Profil mis à jour avec succès",
   "updateProfileError": "Échec de la mise à jour du profil",
   "uploadAvatarError": "Échec de l'importation de l'avatar",
@@ -44,5 +43,7 @@
   "currentPassword": "Mot de passe actuel",
   "newPassword": "Nouveau mot de passe (8 caractères min.)",
   "confirmPassword": "Confirmer le nouveau mot de passe",
-  "changePassword": "Changer le mot de passe"
+  "changePassword": "Changer le mot de passe",
+  "changePhoto": "Changer de photo",
+  "viewPhoto": "Voir la photo"
 }

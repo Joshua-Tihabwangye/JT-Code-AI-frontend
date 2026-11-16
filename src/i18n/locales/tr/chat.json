@@ -20,5 +20,6 @@
   "headlineAccent": "bugün inşa edilsin mi?",
   "assistant": "JT Kodu",
   "stop": "Oluşturmayı durdur",
-  "stopped": "Durdu."
+  "stopped": "Durdu.",
+  "newChatHint": "Bu sohbetten ayrılın ve yeni bir sohbet başlatın (bu sohbet Geçmiş'te kalır)"
 }

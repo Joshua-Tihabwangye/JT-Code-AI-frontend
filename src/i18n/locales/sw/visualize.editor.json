@@ -258,5 +258,14 @@
     "pickSome": "Weka tiki kwenye chati za kuongeza"
   },
   "fromGallery": "Kutoka kwa nyumba ya sanaa",
-  "fromGalleryHint": "Chagua chati zaidi kutoka kwa ghala za dashibodi hii"
+  "fromGalleryHint": "Chagua chati zaidi kutoka kwa ghala za dashibodi hii",
+  "save": "Hifadhi",
+  "saveShortcut": "Hifadhi mabadiliko yako (Ctrl+S)",
+  "leave": {
+    "title": "Ungependa kuhifadhi mabadiliko yako?",
+    "text": "Dashibodi hii ina mabadiliko ambayo bado hayajahifadhiwa. Zinahifadhiwa tu ikiwa utaziokoa.",
+    "save": "Hifadhi na uondoke",
+    "discard": "Ondoka bila kuhifadhi",
+    "stay": "Endelea kuhariri"
+  }
 }

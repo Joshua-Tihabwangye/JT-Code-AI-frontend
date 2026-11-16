@@ -22,7 +22,6 @@
     "selected_other": "已选择 {{count}} 图表",
     "clear": "清除",
     "add_one": "将 {{count}} 图表添加到仪表板",
-    "add_other": "将 {{count}} 图表添加到仪表板",
-    "noSpec": "无法打开该仪表板。返回并再试一次。"
+    "add_other": "将 {{count}} 图表添加到仪表板"
   }
 }

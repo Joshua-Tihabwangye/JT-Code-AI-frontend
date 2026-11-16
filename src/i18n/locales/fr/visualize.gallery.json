@@ -23,7 +23,6 @@
     "clear": "Clair",
     "add_one": "Ajouter le graphique {{count}} au tableau de bord",
     "add_other": "Ajouter des graphiques {{count}} au tableau de bord",
-    "noSpec": "Ce tableau de bord n'a pas pu être ouvert. Revenez en arrière et réessayez.",
     "selected_many": "Cartes {{count}} sélectionnées",
     "add_many": "Ajouter des graphiques {{count}} au tableau de bord"
   }

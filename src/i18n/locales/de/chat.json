@@ -20,5 +20,6 @@
   "subhead": "",
   "assistant": "JT-Code",
   "stop": "Generierung stoppen",
-  "stopped": "Gestoppt."
+  "stopped": "Gestoppt.",
+  "newChatHint": "Verlassen Sie diesen Chat und starten Sie einen neuen (dieser Chat bleibt im Verlauf)"
 }

@@ -1412,6 +1412,83 @@ textarea.viz-field {
   color: var(--destructive);
 }
 
+.dash-save.dirty {
+  color: #d97706;
+  font-weight: 600;
+}
+
+/* Save: the only way changes reach the server (also Ctrl+S). Bold while there is something to save. */
+.dash-save-button,
+.dash-done-button {
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter 0.15s, background 0.15s, color 0.15s;
+}
+
+.dash-save-button {
+  border: 0;
+  background: linear-gradient(120deg, var(--viz-indigo), var(--viz-violet));
+  color: #fff;
+  box-shadow: 0 6px 16px -8px var(--viz-violet);
+}
+
+.dash-save-button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.dash-save-button:disabled {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted-foreground);
+  box-shadow: none;
+  cursor: default;
+}
+
+.dash-save-button.saving:disabled {
+  color: var(--foreground);
+}
+
+.dash-done-button {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.dash-done-button:hover {
+  background: var(--muted);
+}
+
+.dash-leave-dialog {
+  width: min(420px, 100%);
+  gap: 8px;
+  padding: 18px;
+}
+
+.dash-leave-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.viz-chip.danger {
+  color: var(--destructive);
+  border-color: color-mix(in srgb, var(--destructive) 40%, var(--border));
+}
+
+.viz-chip.danger:hover {
+  background: color-mix(in srgb, var(--destructive) 10%, var(--card));
+}
+
 .dash-conflict {
   display: flex;
   flex-wrap: wrap;

@@ -26,7 +26,6 @@
   "updateProfilePicture": "프로필 사진 업데이트",
   "profilePicture": "프로필 사진",
   "yourProfile": "내 프로필",
-  "changePhoto": "클릭하여 사진 변경",
   "profileUpdated": "프로필이 성공적으로 업데이트되었습니다",
   "updateProfileError": "프로필 업데이트 실패",
   "uploadAvatarError": "아바타 업로드 실패",
@@ -44,5 +43,7 @@
   "currentPassword": "현재 비밀번호",
   "newPassword": "새 비밀번호(8자 이상)",
   "confirmPassword": "새 비밀번호 확인",
-  "changePassword": "비밀번호 변경"
+  "changePassword": "비밀번호 변경",
+  "changePhoto": "사진 변경",
+  "viewPhoto": "사진 보기"
 }

@@ -26,7 +26,6 @@
   "updateProfilePicture": "प्रोफ़ाइल तस्वीर अपडेट करें",
   "profilePicture": "प्रोफ़ाइल तस्वीर",
   "yourProfile": "आपकी प्रोफ़ाइल",
-  "changePhoto": "तस्वीर बदलने के लिए क्लिक करें",
   "profileUpdated": "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई",
   "updateProfileError": "प्रोफ़ाइल अपडेट करने में विफल",
   "uploadAvatarError": "अवतार अपलोड करने में विफल",
@@ -44,5 +43,7 @@
   "currentPassword": "वर्तमान पासवर्ड",
   "newPassword": "नया पासवर्ड (8+ अक्षर)",
   "confirmPassword": "नए पासवर्ड की पुष्टि करें",
-  "changePassword": "पासवर्ड बदलें"
+  "changePassword": "पासवर्ड बदलें",
+  "changePhoto": "छवि बदलो",
+  "viewPhoto": "फ़ोटो देखें"
 }

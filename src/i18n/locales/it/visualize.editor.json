@@ -261,5 +261,14 @@
     "add_many": "Aggiungi i grafici {{count}} alla mia dashboard"
   },
   "fromGallery": "Dalla galleria",
-  "fromGalleryHint": "Scegli più grafici dalla galleria per questa dashboard"
+  "fromGalleryHint": "Scegli più grafici dalla galleria per questa dashboard",
+  "save": "Salva",
+  "saveShortcut": "Salva le modifiche (Ctrl+S)",
+  "leave": {
+    "title": "Vuoi salvare le modifiche?",
+    "text": "Questa dashboard presenta modifiche che non sono ancora state salvate. Vengono conservati solo se li salvi.",
+    "save": "Salva e parti",
+    "discard": "Esci senza salvare",
+    "stay": "Continua a modificare"
+  }
 }

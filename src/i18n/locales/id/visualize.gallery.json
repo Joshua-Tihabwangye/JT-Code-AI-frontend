@@ -22,7 +22,6 @@
     "selected_other": "{{count}} grafik dipilih",
     "clear": "Jernih",
     "add_one": "Tambahkan bagan {{count}} ke dasbor",
-    "add_other": "Tambahkan grafik {{count}} ke dasbor",
-    "noSpec": "Dasbor ini tidak dapat dibuka. Kembali dan coba lagi."
+    "add_other": "Tambahkan grafik {{count}} ke dasbor"
   }
 }

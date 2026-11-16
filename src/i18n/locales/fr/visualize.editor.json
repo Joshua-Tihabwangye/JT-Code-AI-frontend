@@ -261,5 +261,14 @@
     "add_many": "Ajouter des graphiques {{count}} à mon tableau de bord"
   },
   "fromGallery": "De la galerie",
-  "fromGalleryHint": "Choisissez d'autres graphiques dans la galerie pour ce tableau de bord"
+  "fromGalleryHint": "Choisissez d'autres graphiques dans la galerie pour ce tableau de bord",
+  "save": "Sauvegarder",
+  "saveShortcut": "Enregistrez vos modifications (Ctrl+S)",
+  "leave": {
+    "title": "Enregistrer vos modifications ?",
+    "text": "Ce tableau de bord comporte des modifications qui ne sont pas encore enregistrées. Ils ne sont conservés que si vous les sauvegardez.",
+    "save": "Enregistrer et partir",
+    "discard": "Partir sans économiser",
+    "stay": "Continuer à éditer"
+  }
 }

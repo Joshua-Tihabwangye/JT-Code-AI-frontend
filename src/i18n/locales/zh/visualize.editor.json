@@ -258,5 +258,14 @@
     "pickSome": "勾选要添加的图表"
   },
   "fromGallery": "来自画廊",
-  "fromGalleryHint": "从图库中为此仪表板选择更多图表"
+  "fromGalleryHint": "从图库中为此仪表板选择更多图表",
+  "save": "节省",
+  "saveShortcut": "保存更改（Ctrl+S）",
+  "leave": {
+    "title": "保存您的更改吗？",
+    "text": "此仪表板有尚未保存的更改。仅当您保存它们时，它们才会被保留。",
+    "save": "保存并离开",
+    "discard": "离开而不保存",
+    "stay": "继续编辑"
+  }
 }

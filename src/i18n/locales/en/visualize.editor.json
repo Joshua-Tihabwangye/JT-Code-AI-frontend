@@ -2,6 +2,8 @@
   "saved": "Saved",
   "unsaved": "Unsaved changes",
   "saving": "Saving…",
+  "save": "Save",
+  "saveShortcut": "Save your changes (Ctrl+S)",
   "conflict": "Changed elsewhere",
   "failed": "Not saved",
   "close": "Back to view",
@@ -15,6 +17,13 @@
   "interactionsHint": "Choose how clicking the selected visual affects each other visual",
   "versions": "Versions",
   "done": "Done",
+  "leave": {
+    "title": "Save your changes?",
+    "text": "This dashboard has changes that are not saved yet. They are only kept if you save them.",
+    "save": "Save and leave",
+    "discard": "Leave without saving",
+    "stay": "Keep editing"
+  },
   "conflictText": "Someone saved this dashboard while you were editing.",
   "reload": "Load their version",
   "overwrite": "Keep mine",

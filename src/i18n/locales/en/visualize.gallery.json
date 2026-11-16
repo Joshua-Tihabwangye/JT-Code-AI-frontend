@@ -22,7 +22,6 @@
     "selected_other": "{{count}} charts selected",
     "clear": "Clear",
     "add_one": "Add {{count}} chart to the dashboard",
-    "add_other": "Add {{count}} charts to the dashboard",
-    "noSpec": "This dashboard could not be opened. Go back and try again."
+    "add_other": "Add {{count}} charts to the dashboard"
   }
 }

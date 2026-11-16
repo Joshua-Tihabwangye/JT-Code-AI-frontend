@@ -20,5 +20,6 @@
   "headlineAccent": "construir hoje?",
   "assistant": "Código JT",
   "stop": "Pare de gerar",
-  "stopped": "Parou."
+  "stopped": "Parou.",
+  "newChatHint": "Saia deste chat e inicie um novo (este chat fica no Histórico)"
 }

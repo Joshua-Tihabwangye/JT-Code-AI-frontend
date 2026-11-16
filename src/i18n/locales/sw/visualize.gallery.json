@@ -22,7 +22,6 @@
     "selected_other": "Chati {{count}} zimechaguliwa",
     "clear": "Wazi",
     "add_one": "Ongeza {{count}} chati kwenye dashibodi",
-    "add_other": "Ongeza chati {{count}} kwenye dashibodi",
-    "noSpec": "Dashibodi hii haikuweza kufunguliwa. Rudi nyuma na ujaribu tena."
+    "add_other": "Ongeza chati {{count}} kwenye dashibodi"
   }
 }

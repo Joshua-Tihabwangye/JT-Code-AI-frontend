@@ -26,7 +26,6 @@
   "updateProfilePicture": "更新头像",
   "profilePicture": "头像",
   "yourProfile": "您的资料",
-  "changePhoto": "点击更换照片",
   "profileUpdated": "个人资料更新成功",
   "updateProfileError": "更新个人资料失败",
   "uploadAvatarError": "头像上传失败",
@@ -44,5 +43,7 @@
   "currentPassword": "当前密码",
   "newPassword": "新密码（至少 8 个字符）",
   "confirmPassword": "确认新密码",
-  "changePassword": "更改密码"
+  "changePassword": "更改密码",
+  "changePhoto": "更改照片",
+  "viewPhoto": "查看照片"
 }

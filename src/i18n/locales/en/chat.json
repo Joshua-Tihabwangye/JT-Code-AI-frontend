@@ -9,6 +9,7 @@
   "composerPlaceholderBusy": "Processing...",
   "conversation": "Conversation",
   "newChat": "New chat",
+  "newChatHint": "Leave this chat and start a new one (this chat stays in History)",
   "startNewChatTitle": "Start New Chat?",
   "startNewChatDesc": "Your current conversation will be saved. You can continue it later from the history.",
   "you": "You",

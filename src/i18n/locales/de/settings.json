@@ -26,7 +26,6 @@
   "updateProfilePicture": "Profilbild aktualisieren",
   "profilePicture": "Profilbild",
   "yourProfile": "Dein Profil",
-  "changePhoto": "Klicken, um das Foto zu ändern",
   "profileUpdated": "Profil erfolgreich aktualisiert",
   "updateProfileError": "Profil konnte nicht aktualisiert werden",
   "uploadAvatarError": "Avatar konnte nicht hochgeladen werden",
@@ -44,5 +43,7 @@
   "currentPassword": "Aktuelles Passwort",
   "newPassword": "Neues Passwort (mind. 8 Zeichen)",
   "confirmPassword": "Neues Passwort bestätigen",
-  "changePassword": "Passwort ändern"
+  "changePassword": "Passwort ändern",
+  "changePhoto": "Foto ändern",
+  "viewPhoto": "Foto ansehen"
 }

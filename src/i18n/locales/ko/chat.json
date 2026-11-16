@@ -20,5 +20,6 @@
   "headlineAccent": "오늘 지을래?",
   "assistant": "JT 코드",
   "stop": "생성 중지",
-  "stopped": "중지되었습니다."
+  "stopped": "중지되었습니다.",
+  "newChatHint": "이 채팅을 종료하고 새 채팅을 시작하세요(이 채팅은 기록에 유지됩니다)"
 }

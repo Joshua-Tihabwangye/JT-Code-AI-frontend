@@ -26,7 +26,6 @@
   "updateProfilePicture": "تحديث صورة الملف الشخصي",
   "profilePicture": "صورة الملف الشخصي",
   "yourProfile": "ملفك الشخصي",
-  "changePhoto": "انقر لتغيير الصورة",
   "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
   "updateProfileError": "فشل تحديث الملف الشخصي",
   "uploadAvatarError": "فشل رفع الصورة الشخصية",
@@ -44,5 +43,7 @@
   "currentPassword": "كلمة المرور الحالية",
   "newPassword": "كلمة المرور الجديدة (8 أحرف أو أكثر)",
   "confirmPassword": "تأكيد كلمة المرور الجديدة",
-  "changePassword": "تغيير كلمة المرور"
+  "changePassword": "تغيير كلمة المرور",
+  "changePhoto": "تغيير الصورة",
+  "viewPhoto": "عرض الصورة"
 }

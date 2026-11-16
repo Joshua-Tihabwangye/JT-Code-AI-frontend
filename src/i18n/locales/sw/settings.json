@@ -26,7 +26,6 @@
   "updateProfilePicture": "Sasisha picha ya wasifu",
   "profilePicture": "Picha ya wasifu",
   "yourProfile": "Wasifu wako",
-  "changePhoto": "Bonyeza kubadilisha picha",
   "profileUpdated": "Wasifu umesasishwa kwa mafanikio",
   "updateProfileError": "Imeshindikana kusasisha wasifu",
   "uploadAvatarError": "Imeshindikana kupakia picha ya mtumiaji",
@@ -44,5 +43,7 @@
   "currentPassword": "Nenosiri la sasa",
   "newPassword": "Nenosiri jipya (herufi 8+)",
   "confirmPassword": "Thibitisha nenosiri jipya",
-  "changePassword": "Badilisha nenosiri"
+  "changePassword": "Badilisha nenosiri",
+  "changePhoto": "Badilisha picha",
+  "viewPhoto": "Tazama picha"
 }

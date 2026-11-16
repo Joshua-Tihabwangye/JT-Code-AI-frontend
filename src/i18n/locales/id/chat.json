@@ -20,5 +20,6 @@
   "headlineAccent": "membangun hari ini?",
   "assistant": "Kode JT",
   "stop": "Berhenti menghasilkan",
-  "stopped": "Berhenti."
+  "stopped": "Berhenti.",
+  "newChatHint": "Tinggalkan obrolan ini dan mulai obrolan baru (obrolan ini tetap ada di Riwayat)"
 }

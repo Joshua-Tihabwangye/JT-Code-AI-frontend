@@ -1,22 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { Paperclip, Plus, Square } from 'lucide-react';
+import { Paperclip, SquarePen, Square } from 'lucide-react';
 import { ChatComposer } from '@/features/chat/ChatComposer';
 import { ChatBackground } from '@/features/chat/ChatBackground';
 import { useAuth } from '@/lib/supabase';
 import { useRepository } from '@/lib/data';
-import { apiErrorMessage } from '@/lib/api/http';
 import { Button } from '@/shared/components';
-
-interface ThreadMessage {
-  id: string;
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-  status: 'complete' | 'streaming' | 'error' | 'canceled';
-  attachments?: string[];
-}
+import { claimSession, newChat, openConversation, rememberedConversation, sendMessage, useChatSession } from '@/features/chat/session';
 
 /**
  * Types out a sequence of text segments one after another, so a headline
@@ -65,115 +57,70 @@ const titleFrom = (text: string) => text.replace(/\s+/g, ' ').trim().slice(0, 60
 
 export function ChatPage() {
   const { t } = useTranslation();
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, user, loading } = useAuth();
   const chat = useRepository('chat');
   const files = useRepository('files');
   const queryClient = useQueryClient();
   const [searchParams, setSearchParams] = useSearchParams();
   const openedId = searchParams.get('c');
-
-  const [conversationId, setConversationId] = useState<string | null>(openedId);
-  const [messages, setMessages] = useState<ThreadMessage[]>([]);
-  const [busy, setBusy] = useState(false);
-  const [status, setStatus] = useState('');
-  const [loadError, setLoadError] = useState('');
+  const owner = user?.id ?? 'guest';
+  // The thread lives in a session store: leaving this page never loses it (see ./session).
+  const { conversationId, messages, busy, status, loadError } = useChatSession();
   const endRef = useRef<HTMLDivElement>(null);
   const headline = useTypingSequence([t('chat.headlineLead'), t('chat.headlineAccent')], 160);
   const persistenceMode = isSignedIn ? 'persistent' : 'ephemeral';
 
-  // Open a conversation from History (/app/chat?c=<id>), or start fresh.
   useEffect(() => {
-    if (!isSignedIn) return;
-    if (!openedId) {
-      setConversationId(null);
-      setMessages([]);
+    if (!loading) claimSession(owner);
+  }, [loading, owner]);
+
+  // The address drives the thread, and only when the address itself changes: /app/chat?c=<id> opens
+  // that conversation (from History); arriving with no ?c carries on with the chat the user was in
+  // (also after a reload). "New chat" clears the chat first, so nothing here can bring the old one back.
+  const handledId = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (!isSignedIn || openedId === handledId.current) return;
+    handledId.current = openedId;
+    if (openedId) {
+      void openConversation(chat, openedId, () => setSearchParams({}, { replace: true }));
       return;
     }
-    let active = true;
-    setLoadError('');
-    setConversationId(openedId);
-    chat
-      .getMessages(openedId)
-      .then((loaded) => {
-        if (!active) return;
-        setMessages(
-          loaded
-            .filter((m) => m.role !== 'system')
-            .map((m) => ({ id: m.id, role: m.role, content: m.content, status: m.status === 'streaming' ? 'complete' : m.status })),
-        );
-      })
-      .catch((error: unknown) => active && setLoadError(apiErrorMessage(error)));
-    return () => {
-      active = false;
-    };
-  }, [openedId, isSignedIn, chat]);
+    const resume = useChatSession.getState().conversationId ?? rememberedConversation(owner);
+    if (resume) setSearchParams({ c: resume }, { replace: true });
+  }, [openedId, isSignedIn, chat, owner, setSearchParams]);
+  // A new chat's conversation is created with its first message: show its id in the address.
+  useEffect(() => {
+    if (isSignedIn && conversationId && !openedId) setSearchParams({ c: conversationId }, { replace: true });
+  }, [conversationId, openedId, isSignedIn, setSearchParams]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages]);
 
-  const updateAssistant = useCallback((id: string, patch: (message: ThreadMessage) => ThreadMessage) => {
-    setMessages((current) => current.map((message) => (message.id === id ? patch(message) : message)));
-  }, []);
-
-  async function send(text: string, attachments: File[] = []) {
-    const assistantId = crypto.randomUUID();
-    setMessages((current) => [
-      ...current,
-      { id: crypto.randomUUID(), role: 'user', content: text, status: 'complete', attachments: attachments.map((f) => f.name) },
-      { id: assistantId, role: 'assistant', content: '', status: 'streaming' },
-    ]);
-
-    if (!isSignedIn) {
-      // Guests can try the composer; answers need an account (and its credits).
-      updateAssistant(assistantId, (m) => ({ ...m, content: t('chat.guestEphemeralReply'), status: 'complete' }));
-      return;
-    }
-
-    setBusy(true);
-    setStatus('queued');
-    try {
-      let id = conversationId;
-      if (!id) {
-        const conversation = await chat.createConversation(titleFrom(text));
-        id = conversation.id;
-        setConversationId(id);
-        setSearchParams({ c: id }, { replace: true });
-      }
-      for (const file of attachments) {
-        const uploaded = await files.upload({ file });
-        await files.attachToChat(uploaded.id, id);
-      }
-      const reply = await chat.sendMessage({
-        conversationId: id,
-        content: text,
-        model: 'auto',
-        onStatus: setStatus,
-        onToken: (token) => updateAssistant(assistantId, (m) => ({ ...m, content: m.content + token })),
-      });
-      updateAssistant(assistantId, (m) => ({
-        ...m,
-        content: reply.content || m.content,
-        status: reply.status === 'streaming' ? 'complete' : reply.status,
-      }));
-    } catch (error) {
-      updateAssistant(assistantId, (m) => ({ ...m, content: apiErrorMessage(error), status: 'error' }));
-    } finally {
-      setBusy(false);
-      setStatus('');
-      void queryClient.invalidateQueries({ queryKey: ['conversations'] });
-      void queryClient.invalidateQueries({ queryKey: ['billing'] });
-    }
+  function send(text: string, attachments: File[] = []) {
+    return sendMessage({
+      chat,
+      files,
+      text,
+      attachments,
+      signedIn: isSignedIn,
+      guestReply: t('chat.guestEphemeralReply'),
+      titleFrom,
+      onSettled: () => {
+        void queryClient.invalidateQueries({ queryKey: ['conversations'] });
+        void queryClient.invalidateQueries({ queryKey: ['billing'] });
+      },
+    });
   }
 
   function stop() {
     if (conversationId) chat.cancelGeneration(conversationId);
   }
 
-  function newChat() {
-    setSearchParams({});
-    setConversationId(null);
-    setMessages([]);
+  function startNewChat() {
+    // A clean slate: the old chat is only reachable from History from now on.
+    newChat();
+    setSearchParams({}, { replace: true });
   }
 
   const hasThread = messages.length > 0 || !!loadError;
@@ -183,12 +130,19 @@ export function ChatPage() {
 
       {hasThread ? (
         <>
+          {/* Only here, in the chat area: leave this chat and start another one. */}
+          <div className="chat-toolbar">
+            <button type="button" className="chat-new-button" onClick={startNewChat} title={t('chat.newChatHint')} data-testid="new-chat">
+              <SquarePen size={16} aria-hidden="true" /> {t('chat.newChat')}
+            </button>
+          </div>
           <div className="chat-scroll" aria-live="polite">
             <div className="message-list">
               {loadError && <div className="message error">{loadError}</div>}
               {messages.map((message) => (
                 <article key={message.id} className={`message ${message.role} ${message.status}`} data-testid={`message-${message.role}`}>
-                  <span className="message-role">{message.role === 'user' ? t('chat.you') : t('chat.assistant')}</span>
+                  {/* No visible names (like ChatGPT/Gemini): the layout shows who is speaking; screen readers still hear it. */}
+                  <span className="sr-only">{message.role === 'user' ? t('chat.you') : t('chat.assistant')}: </span>
                   {message.content ? (
                     <p className="whitespace-pre-wrap">{message.content}</p>
                   ) : (
@@ -208,17 +162,13 @@ export function ChatPage() {
             </div>
           </div>
           <div className="relative z-[1] pb-4">
-            <div className="mb-2 flex justify-center gap-2">
-              {busy ? (
+            {busy && (
+              <div className="mb-2 flex justify-center">
                 <Button variant="outline" size="sm" onClick={stop} className="gap-1.5">
                   <Square size={14} /> {t('chat.stop')}
                 </Button>
-              ) : (
-                <Button variant="ghost" size="sm" onClick={newChat} className="gap-1.5" data-testid="new-chat">
-                  <Plus size={16} /> {t('chat.newChat')}
-                </Button>
-              )}
-            </div>
+              </div>
+            )}
             <ChatComposer disabled={busy} onSubmit={send} placeholder={t('chat.composerPlaceholder')} />
           </div>
         </>
