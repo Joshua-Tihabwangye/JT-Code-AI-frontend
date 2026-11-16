@@ -261,5 +261,14 @@
     "add_many": "Agregar gráficos {{count}} a mi panel"
   },
   "fromGallery": "De la galería",
-  "fromGalleryHint": "Elija más gráficos de la galería para este panel"
+  "fromGalleryHint": "Elija más gráficos de la galería para este panel",
+  "save": "Ahorrar",
+  "saveShortcut": "Guarde sus cambios (Ctrl+S)",
+  "leave": {
+    "title": "¿Guardar tus cambios?",
+    "text": "Este panel tiene cambios que aún no se han guardado. Sólo se conservan si los guardas.",
+    "save": "guardar y salir",
+    "discard": "Salir sin guardar",
+    "stay": "Sigue editando"
+  }
 }

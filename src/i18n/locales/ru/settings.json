@@ -26,7 +26,6 @@
   "updateProfilePicture": "Обновить фото профиля",
   "profilePicture": "Фото профиля",
   "yourProfile": "Ваш профиль",
-  "changePhoto": "Нажмите, чтобы изменить фото",
   "profileUpdated": "Профиль успешно обновлён",
   "updateProfileError": "Не удалось обновить профиль",
   "uploadAvatarError": "Не удалось загрузить аватар",
@@ -44,5 +43,7 @@
   "currentPassword": "Текущий пароль",
   "newPassword": "Новый пароль (8+ символов)",
   "confirmPassword": "Подтвердите новый пароль",
-  "changePassword": "Изменить пароль"
+  "changePassword": "Изменить пароль",
+  "changePhoto": "Изменить фотографию",
+  "viewPhoto": "Посмотреть фото"
 }

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -44,6 +44,8 @@ import {
   Filter as FilterIcon,
   Layers as LayersIcon,
   Bookmark as BookmarkIcon,
+  CircleDot,
+  Save as SaveIcon,
 } from 'lucide-react';
 import { apiErrorMessage, apiErrorStatus } from '@/lib/api/http';
 import { useAppStore } from '@/lib/appStore';
@@ -100,11 +102,13 @@ function isTyping(target: EventTarget | null): boolean {
 }
 
 /** The dashboard editor: canvas, Insert/Arrange/Theme menus, Build/Format/Selection panes, pages,
- *  autosave with conflict detection, versions and undo/redo. Python still builds every visual. */
+ *  saving on demand (Save button or Ctrl+S) with conflict detection, versions and undo/redo. Nothing is
+ *  saved until the user asks; leaving with unsaved changes asks first. Python still builds every visual. */
 export function DashboardEditor() {
   const { t } = useTranslation();
   const { dashboardId = '' } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const visualize = useRepository('visualize');
   const queryClient = useQueryClient();
   const { resolvedTheme } = useTheme();
@@ -127,6 +131,8 @@ export function DashboardEditor() {
   const [themeBefore, setThemeBefore] = useState<DashboardSpec['theme'] | null>(null);
   const [layout, setLayout] = useState<'desktop' | 'phone'>('desktop');
   const [aiDialog, setAiDialog] = useState<'page' | 'format' | null>(null);
+  /** Where the user wants to go while the dashboard has unsaved changes (asks first). */
+  const [leaving, setLeaving] = useState<string | null>(null);
   const [area, areaWidth] = useWidth<HTMLDivElement>();
   const lastThumbnail = useRef(0);
   const theme = resolveTheme(spec?.theme, themes.data?.themes);
@@ -157,12 +163,13 @@ export function DashboardEditor() {
     return () => useAppStore.getState().setSidebarCollapsed(before);
   }, []);
 
-  // --- Autosave ----------------------------------------------------------------------------------
+  // --- Saving (only when the user asks) -------------------------------------------------------------
   const save = useCallback(
     async (force = false) => {
       const state = useEditor.getState();
       if (!state.spec || !state.record) return;
       state.markSaving();
+      const sent = state.spec;
       let thumbnail: string | undefined;
       const grid = document.querySelector<HTMLElement>('[data-testid="editor-canvas"]');
       if (grid && Date.now() - lastThumbnail.current > THUMBNAIL_EVERY_MS && state.pageId === state.spec.pages[0]?.id) {
@@ -172,23 +179,49 @@ export function DashboardEditor() {
       try {
         const saved = await visualize.updateDashboard(
           dashboardId,
-          { spec: state.spec, name: state.record.name, version: state.version, ...(thumbnail ? { thumbnail } : {}) },
+          { spec: sent, name: state.record.name, version: state.version, ...(thumbnail ? { thumbnail } : {}) },
           { force },
         );
         useEditor.getState().markSaved(saved);
-        queryClient.setQueryData(['visualize', 'dashboard', dashboardId], { ...saved, spec: useEditor.getState().spec ?? saved.spec });
+        // The cached copy is what was saved (edits made while saving stay unsaved in the editor).
+        queryClient.setQueryData(['visualize', 'dashboard', dashboardId], { ...saved, spec: sent });
         void queryClient.invalidateQueries({ queryKey: ['visualize', 'dashboards'] });
+        return true;
       } catch (error) {
         useEditor.getState().markFailed(apiErrorStatus(error) === 409 ? 'conflict' : 'error', apiErrorMessage(error));
+        return false;
       }
     },
     [dashboardId, queryClient, visualize],
   );
+  /** Leave the editor: straight away when everything is saved, otherwise ask first. */
+  const leave = (to: string) => {
+    if (useEditor.getState().saveState === 'saved') void navigate(to);
+    else setLeaving(to);
+  };
+  // Charts picked in the gallery come back here as unsaved additions (the user saves them).
+  const picks = (location.state as { addCharts?: { pageId?: string; chartTypes: string[]; datasetId?: string } } | null)?.addCharts;
+  const appliedPicks = useRef('');
   useEffect(() => {
-    if (saveState !== 'dirty') return;
-    const timer = setTimeout(() => void save(), 800);
-    return () => clearTimeout(timer);
-  }, [spec, saveState, save]);
+    if (!picks?.chartTypes.length || !spec || editor.record?.id !== dashboardId || appliedPicks.current === location.key) return;
+    appliedPicks.current = location.key;
+    const target = spec.pages.find((item) => item.id === picks.pageId) ?? spec.pages[0];
+    if (target) {
+      const datasetId = mostUsedDataset(target) || picks.datasetId || activeDataset;
+      const ids: string[] = [];
+      useEditor.getState().setPage(target.id);
+      change((current) =>
+        picks.chartTypes.reduce((next, chartType) => {
+          // Added empty: the user chooses the columns, axes and formatting.
+          const result = addVisual(next, target.id, { id: newId('chart'), type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType, fields: {}, options: {} } } }, VISUAL_BY_TYPE.chart?.size ?? { w: 8, h: 8 });
+          ids.push(result.id);
+          return result.spec;
+        }, current),
+      );
+      select(ids);
+    }
+    void navigate(location.pathname, { replace: true, state: null });
+  }, [picks, spec, editor.record?.id, dashboardId, location.key, location.pathname, activeDataset, change, select, navigate]);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => {
       if (['dirty', 'saving'].includes(useEditor.getState().saveState)) event.preventDefault();
@@ -258,6 +291,11 @@ export function DashboardEditor() {
   // --- Keyboard shortcuts --------------------------------------------------------------------------
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+        event.preventDefault();
+        if (['dirty', 'error'].includes(useEditor.getState().saveState)) void save();
+        return;
+      }
       if (isTyping(event.target)) return;
       const state = useEditor.getState();
       const current = currentPage(state);
@@ -318,7 +356,7 @@ export function DashboardEditor() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [save]);
 
   /** Which dataset (and kind) a field belongs to on this page — for filter cards. */
   function datasetFor(field: string) {
@@ -354,7 +392,7 @@ export function DashboardEditor() {
   const updatePage = (patch: Partial<DashboardPage>) => change((current) => mapPage(current, page.id, (p) => ({ ...p, ...patch })), { merge: `page.${Object.keys(patch).join(',')}` });
   const status = {
     saved: { icon: Check, text: t('visualize.editor.saved') },
-    dirty: { icon: Loader2, text: t('visualize.editor.unsaved') },
+    dirty: { icon: CircleDot, text: t('visualize.editor.unsaved') },
     saving: { icon: Loader2, text: t('visualize.editor.saving') },
     conflict: { icon: CloudOff, text: t('visualize.editor.conflict') },
     error: { icon: CloudOff, text: t('visualize.editor.failed') },
@@ -363,9 +401,9 @@ export function DashboardEditor() {
   return (
     <div className="dash-editor" data-testid="dashboard-editor" onPointerDown={() => menu && setMenu(null)}>
       <header className="dash-editor-bar" onPointerDown={(event) => event.stopPropagation()}>
-        <Link to={`/app/visualize/dashboards/${dashboardId}`} className="viz-icon-button" aria-label={t('visualize.editor.close')}>
+        <button type="button" onClick={() => leave(`/app/visualize/dashboards/${dashboardId}`)} className="viz-icon-button" aria-label={t('visualize.editor.close')} title={t('visualize.editor.close')} data-testid="editor-back">
           <ArrowLeft size={16} aria-hidden />
-        </Link>
+        </button>
         <input
           className="dash-name-input"
           value={editor.record?.name ?? ''}
@@ -650,18 +688,74 @@ export function DashboardEditor() {
             </div>
           )}
         </div>
-        <span className={`dash-save ${saveState}`} title={saveError || status.text} data-testid="save-state" data-state={saveState}>
-          <status.icon size={13} className={saveState === 'saving' ? 'animate-spin' : ''} aria-hidden /> {status.text}
+        <span className={`dash-save ${saveState}`} title={saveError || status.text} data-testid="save-state" data-state={saveState} aria-live="polite">
+          {!['saved', 'saving'].includes(saveState) && (
+            <>
+              <status.icon size={13} aria-hidden /> {status.text}
+            </>
+          )}
         </span>
-        <button type="button" className="viz-primary ml-1 inline-flex h-8 items-center rounded-lg px-3 text-xs font-semibold text-white" onClick={() =>
-          void (async () => {
-            if (useEditor.getState().saveState !== 'saved') await save();
-            void navigate(`/app/visualize/dashboards/${dashboardId}`);
-          })()
-        } data-testid="done-editing">
+        <button
+          type="button"
+          className={`dash-save-button ${saveState}`}
+          onClick={() => void save()}
+          disabled={saveState === 'saved' || saveState === 'saving'}
+          title={t('visualize.editor.saveShortcut')}
+          data-testid="save-dashboard"
+        >
+          {saveState === 'saving' ? <Loader2 size={14} className="animate-spin" aria-hidden /> : saveState === 'saved' ? <Check size={14} aria-hidden /> : <SaveIcon size={14} aria-hidden />}
+          {saveState === 'saving' ? t('visualize.editor.saving') : saveState === 'saved' ? t('visualize.editor.saved') : t('visualize.editor.save')}
+        </button>
+        <button type="button" className="dash-done-button" onClick={() => leave(`/app/visualize/dashboards/${dashboardId}`)} data-testid="done-editing">
           {t('visualize.editor.done')}
         </button>
       </header>
+
+      {leaving && (
+        <div className="dash-dialog-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && setLeaving(null)}>
+          <div className="dash-dialog dash-leave-dialog" role="alertdialog" aria-labelledby="dash-leave-title" data-testid="leave-dialog">
+            <h2 id="dash-leave-title" className="text-sm font-semibold">{t('visualize.editor.leave.title')}</h2>
+            <p className="text-xs text-muted-foreground">{t('visualize.editor.leave.text')}</p>
+            <div className="dash-leave-actions">
+              <button type="button" className="viz-chip" onClick={() => setLeaving(null)} data-testid="leave-stay">
+                {t('visualize.editor.leave.stay')}
+              </button>
+              <button
+                type="button"
+                className="viz-chip danger"
+                onClick={() => {
+                  // Throw the changes away: the editor goes back to the last saved dashboard.
+                  if (record.data) useEditor.getState().load(record.data);
+                  const to = leaving;
+                  setLeaving(null);
+                  void navigate(to);
+                }}
+                data-testid="leave-discard"
+              >
+                {t('visualize.editor.leave.discard')}
+              </button>
+              <button
+                type="button"
+                className="viz-primary inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold text-white"
+                disabled={saveState === 'saving'}
+                onClick={() =>
+                  void (async () => {
+                    const to = leaving;
+                    if (await save()) {
+                      setLeaving(null);
+                      void navigate(to);
+                    }
+                  })()
+                }
+                data-testid="leave-save"
+              >
+                <SaveIcon size={13} aria-hidden /> {t('visualize.editor.leave.save')}
+              </button>
+            </div>
+            {saveState === 'error' && <p className="text-xs text-destructive">{saveError}</p>}
+          </div>
+        </div>
+      )}
 
       {saveState === 'conflict' && (
         <div className="dash-conflict" role="alert">

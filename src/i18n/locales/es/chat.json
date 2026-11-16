@@ -20,5 +20,6 @@
   "subhead": "",
   "assistant": "JT-Code",
   "stop": "Detener la generación",
-  "stopped": "Detenido."
+  "stopped": "Detenido.",
+  "newChatHint": "Sal de este chat y comienza uno nuevo (este chat permanece en el Historial)"
 }

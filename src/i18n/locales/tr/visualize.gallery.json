@@ -22,7 +22,6 @@
     "selected_other": "{{count}} grafikleri seçildi",
     "clear": "Temizlemek",
     "add_one": "Kontrol paneline {{count}} grafiğini ekleyin",
-    "add_other": "Kontrol paneline {{count}} grafiklerini ekleyin",
-    "noSpec": "Bu kontrol paneli açılamadı. Geri dönüp tekrar deneyin."
+    "add_other": "Kontrol paneline {{count}} grafiklerini ekleyin"
   }
 }

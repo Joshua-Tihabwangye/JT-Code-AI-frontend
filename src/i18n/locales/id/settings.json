@@ -26,7 +26,6 @@
   "updateProfilePicture": "Perbarui foto profil",
   "profilePicture": "Foto profil",
   "yourProfile": "Profil Anda",
-  "changePhoto": "Klik untuk mengubah foto",
   "profileUpdated": "Profil berhasil diperbarui",
   "updateProfileError": "Gagal memperbarui profil",
   "uploadAvatarError": "Gagal mengunggah avatar",
@@ -44,5 +43,7 @@
   "currentPassword": "Kata sandi saat ini",
   "newPassword": "Kata sandi baru (8+ karakter)",
   "confirmPassword": "Konfirmasikan kata sandi baru",
-  "changePassword": "Ubah kata sandi"
+  "changePassword": "Ubah kata sandi",
+  "changePhoto": "Ganti foto",
+  "viewPhoto": "Lihat foto"
 }

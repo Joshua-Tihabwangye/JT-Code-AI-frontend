@@ -106,6 +106,13 @@ async function setInput(page, selector, value) {
 }
 
 /** Clicks through the DOM (for links scrolled out of view inside the app's scroll container). */
+/** Nothing is saved automatically: press Save (when there is something to save) and wait for it. */
+async function saveDashboard(page) {
+  await page.waitForSelector('[data-testid="save-dashboard"]');
+  if (await page.$eval('[data-testid="save-dashboard"]', (button) => !button.disabled)) await domClick(page, '[data-testid="save-dashboard"]');
+  await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+}
+
 async function domClick(page, selector) {
   await page.waitForSelector(selector);
   await page.$eval(selector, (el) => el.click());
@@ -235,6 +242,21 @@ async function main() {
       await clickText(page, '[data-testid="history-list"] button', /Hello from the browser e2e test/);
       await page.waitForFunction(() => location.pathname === '/app/chat' && new URL(location.href).searchParams.get('c'));
       await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/);
+    });
+
+    await step(page, 'chat picks up where the user stopped; only New chat starts a fresh one', async () => {
+      await page.click('a[href="/app/history"]');
+      await page.waitForSelector('[data-testid="history-list"]');
+      await page.click('a[href="/app/chat"]');
+      await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/);
+      await page.reload();
+      await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/, 30_000);
+      await domClick(page, '[data-testid="new-chat"]');
+      await page.waitForFunction(() => !new URL(location.href).searchParams.get('c') && !document.querySelector('[data-testid="message-user"]'));
+      await page.click('a[href="/app/history"]');
+      await page.waitForSelector('[data-testid="history-list"]');
+      await page.click('a[href="/app/chat"]');
+      await page.waitForSelector('.chat-landing');
     });
 
     await step(page, 'visualize: the sidebar door opens the dashboards home with one module bar', async () => {
@@ -496,7 +518,12 @@ async function main() {
       await domClick(page, '[data-testid="add-page"]');
       await page.waitForSelector('[data-testid="page-2"]');
       await domClick(page, '[data-testid="page-0"]');
-      await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+      await page.waitForSelector('[data-testid="save-state"][data-state="dirty"]');
+      await domClick(page, '[data-testid="done-editing"]');
+      await page.waitForSelector('[data-testid="leave-dialog"]');
+      await domClick(page, '[data-testid="leave-stay"]');
+      await page.waitForSelector('[data-testid="leave-dialog"]', { hidden: true });
+      await saveDashboard(page);
       await fitsOnScreen(page, 'editor');
       await domClick(page, '[data-testid="done-editing"]');
       await page.waitForSelector('[data-testid="dashboard-canvas"]');
@@ -577,7 +604,7 @@ async function main() {
       await page.select('[data-testid="format-page-type"]', 'drillthrough');
       await clickText(page, '[data-testid="drillthrough-fields"] button', new RegExp(`^${rowField.replace(/[^\w ]/g, '.')}$`, 'i'));
       await page.waitForSelector('[data-testid="drillthrough-fields"] button[aria-pressed="true"]');
-      await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+      await saveDashboard(page);
       await domClick(page, '[data-testid="done-editing"]');
       await page.waitForSelector('[data-testid="tile-matrix"][data-status="ok"]', { timeout: 60_000 });
       // The matrix no longer filters the first KPI, but still filters the second.
@@ -684,7 +711,7 @@ async function main() {
       await page.waitForSelector('[data-testid^="mobile-item-"]');
       await page.screenshot({ path: `${SHOTS}/editor-phone.png` });
       await domClick(page, '[data-testid="layout-desktop"]');
-      await page.waitForSelector('[data-testid="save-state"][data-state="saved"]', { timeout: 30_000 });
+      await saveDashboard(page);
       await fitsOnScreen(page, 'editor-customized');
       await domClick(page, '[data-testid="done-editing"]');
       await page.waitForSelector(`[data-testid="tile-${projectedCard}"][data-status="ok"]`, { timeout: 60_000 });

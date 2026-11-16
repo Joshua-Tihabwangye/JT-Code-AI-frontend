@@ -258,5 +258,14 @@
     "pickSome": "Markieren Sie die hinzuzufügenden Diagramme"
   },
   "fromGallery": "Aus der Galerie",
-  "fromGalleryHint": "Wählen Sie für dieses Dashboard weitere Diagramme aus der Galerie aus"
+  "fromGalleryHint": "Wählen Sie für dieses Dashboard weitere Diagramme aus der Galerie aus",
+  "save": "Speichern",
+  "saveShortcut": "Speichern Sie Ihre Änderungen (Strg+S)",
+  "leave": {
+    "title": "Änderungen speichern?",
+    "text": "Dieses Dashboard enthält Änderungen, die noch nicht gespeichert sind. Sie bleiben nur erhalten, wenn Sie sie speichern.",
+    "save": "Speichern und gehen",
+    "discard": "Gehen Sie, ohne zu speichern",
+    "stay": "Bearbeiten Sie weiter"
+  }
 }

@@ -22,7 +22,6 @@
     "selected_other": "{{count}} Diagramme ausgewählt",
     "clear": "Klar",
     "add_one": "Fügen Sie dem Dashboard das Diagramm {{count}} hinzu",
-    "add_other": "Fügen Sie {{count}}-Diagramme zum Dashboard hinzu",
-    "noSpec": "Dieses Dashboard konnte nicht geöffnet werden. Gehen Sie zurück und versuchen Sie es erneut."
+    "add_other": "Fügen Sie {{count}}-Diagramme zum Dashboard hinzu"
   }
 }

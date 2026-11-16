@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Archive, Clock, Download, MessageSquare, Pin, Search, Trash2 } from 'lucide-react';
+import { Archive, Clock, MessageSquare, Pin, Search, Trash2 } from 'lucide-react';
 import { Alert, Button, Input, useConfirm } from '@/shared/components';
 import { useRepository, type Conversation } from '@/lib/data';
 import { apiErrorMessage } from '@/lib/api/http';
@@ -19,15 +19,6 @@ function formatRelativeTime(iso: string, locale: string) {
   const diffDays = Math.floor(diffMs / 86400000);
   if (diffDays < 7) return rtf.format(-diffDays, 'day');
   return date.toLocaleDateString(locale);
-}
-
-function saveText(name: string, content: string, type: string) {
-  const url = URL.createObjectURL(new Blob([content], { type }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = name;
-  link.click();
-  URL.revokeObjectURL(url);
 }
 
 export function HistoryPage() {
@@ -60,11 +51,6 @@ export function HistoryPage() {
     onError,
   });
   const clear = useMutation({ mutationFn: () => history.clearAll(), onSuccess: refresh, onError });
-  const exportOne = useMutation({
-    mutationFn: async (c: Conversation) => saveText(`${c.title || 'conversation'}.md`, await history.export(c.id, 'markdown'), 'text/markdown'),
-    onError,
-  });
-
   const items = conversations.data ?? [];
 
   return (
@@ -148,9 +134,6 @@ export function HistoryPage() {
               </Button>
               <Button variant="ghost" size="sm" onClick={() => archive.mutate(item)} aria-label={item.archived ? t('history.unarchive') : t('history.archive')}>
                 <Archive size={16} />
-              </Button>
-              <Button variant="ghost" size="sm" onClick={() => exportOne.mutate(item)} aria-label={t('history.export')}>
-                <Download size={16} />
               </Button>
               <Button variant="ghost" size="sm" onClick={() => remove.mutate(item.id)} aria-label={t('history.deleteItemAria', { title: item.title })}>
                 <Trash2 size={16} />

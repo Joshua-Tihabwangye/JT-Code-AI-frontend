@@ -258,5 +258,14 @@
     "pickSome": "Eklenecek onay grafikleri"
   },
   "fromGallery": "Galeriden",
-  "fromGalleryHint": "Bu kontrol paneli için galeriden daha fazla grafik seçin"
+  "fromGalleryHint": "Bu kontrol paneli için galeriden daha fazla grafik seçin",
+  "save": "Kaydetmek",
+  "saveShortcut": "Değişikliklerinizi kaydedin (Ctrl+S)",
+  "leave": {
+    "title": "Değişiklikleriniz kaydedilsin mi?",
+    "text": "Bu kontrol panelinde henüz kaydedilmemiş değişiklikler var. Yalnızca onları kaydetmeniz durumunda tutulurlar.",
+    "save": "Kaydet ve ayrıl",
+    "discard": "Kaydetmeden ayrıl",
+    "stay": "Düzenlemeye devam et"
+  }
 }

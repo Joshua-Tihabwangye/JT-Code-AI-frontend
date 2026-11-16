@@ -556,6 +556,16 @@ html.dark .sidebar {
 
 /* Chat */
 .chat-workspace { position: relative; display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.chat-toolbar { position: relative; z-index: 1; display: flex; justify-content: flex-end; padding: .75rem 1rem 0; }
+.chat-new-button {
+  display: inline-flex; height: 2.4rem; align-items: center; gap: .5rem; padding: 0 1rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border)); border-radius: 999px;
+  background: var(--card); color: var(--foreground); font-size: .875rem; font-weight: 600; white-space: nowrap;
+  box-shadow: 0 6px 18px -10px color-mix(in srgb, var(--primary) 60%, transparent); cursor: pointer;
+  transition: border-color .15s, color .15s, transform .15s;
+}
+.chat-new-button:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+.chat-new-button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .chat-background {
   position: absolute;
   inset: 0;
@@ -598,27 +608,21 @@ html.dark .sidebar {
 }
 @keyframes blink { 50% { opacity: 0; } }
 .message-list { display: flex; flex-direction: column; gap: 1.25rem; max-width: 900px; margin: 0 auto; padding-bottom: 2rem; }
-.message {
-  max-width: 82%;
-  padding: 1rem 1.25rem;
-  border-radius: 1.25rem;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--foreground);
-  line-height: 1.6;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .03), 0 2px 8px rgba(0, 0, 0, .04);
-  transition: box-shadow .2s ease;
+.message { max-width: 100%; color: var(--foreground); line-height: 1.7; font-size: .975rem; }
+/* The assistant's reply is plain text across the column; the user's message is a soft bubble on the right. */
+.message.assistant { align-self: stretch; padding: .25rem .25rem; }
+.message.user {
+  align-self: flex-end;
+  max-width: min(75%, 36rem);
+  padding: .7rem 1.1rem;
+  border-radius: 1.4rem;
+  background: color-mix(in srgb, var(--primary) 9%, var(--card));
+  overflow-wrap: anywhere;
 }
-.message.user { align-self: flex-end; background: var(--accent); color: var(--accent-foreground); border-color: transparent; }
-html.dark .message {
-  background: color-mix(in srgb, var(--card) 92%, var(--primary) 8%);
-  box-shadow: 0 0 20px rgba(56, 189, 248, .06);
-}
-html.dark .message.user { background: linear-gradient(135deg, #0ea5e9, #6366f1); color: #fff; box-shadow: 0 0 24px rgba(14, 165, 233, 0.25); }
-.message-role { display: block; margin-bottom: .35rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 800; color: var(--primary); }
+html.dark .message.user { background: color-mix(in srgb, var(--primary) 20%, var(--card)); }
 .message p { margin: 0; }
 .message.streaming { opacity: .9; }
-.message.error { border-color: var(--destructive); }
+.message.error { padding: .75rem 1rem; border: 1px solid var(--destructive); border-radius: 1rem; background: var(--card); }
 
 /* Composer — adaptive ChatGPT-like input.
    One component, two visual states:
@@ -1196,7 +1200,7 @@ html.dark .tooltip { box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 8px 20px 
 
   .main-content { height: calc(100dvh - 3.25rem); }
 
-  .message { max-width: 92%; }
+  .message.user { max-width: 85%; }
   .chat-scroll { padding: 1rem; }
   .workspace { padding: 1.25rem; padding-top: 2.5rem; }
 
@@ -1354,10 +1358,7 @@ html.dark .mobile-topbar { background: color-mix(in srgb, var(--card) 92%, trans
 .button.primary:hover { filter: brightness(1.06); }
 .chat-workspace { background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--primary) 5%, transparent), transparent 48%); }
 .chat-headline { letter-spacing: -.035em; font-weight: 750; }
-.message-list { gap: 1.5rem; }
-.message { border-radius: var(--radius-xl); box-shadow: var(--surface-shadow); }
-.message.user { background: color-mix(in srgb, var(--primary) 10%, var(--card)); color: var(--foreground); border-color: color-mix(in srgb, var(--primary) 17%, var(--border)); }
-html.dark .message.user { background: color-mix(in srgb, var(--primary) 19%, var(--card)); color: var(--foreground); box-shadow: 0 4px 18px rgba(59, 130, 246, .12); }
+.message-list { gap: 1.75rem; }
 .composer { border-radius: var(--radius-xl); border-color: color-mix(in srgb, var(--primary) 20%, var(--border)); box-shadow: var(--surface-shadow-raised); }
 .composer--expanded { border-radius: var(--radius-xl); }
 .composer:focus-within { border-color: color-mix(in srgb, var(--primary) 58%, var(--border)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent), var(--surface-shadow-raised); }
@@ -1457,9 +1458,31 @@ html.dark .message.user { background: color-mix(in srgb, var(--primary) 19%, var
   border-radius: 50%;
   background: var(--secondary);
 }
-.settings-avatar-button { padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
-.settings-avatar-button:hover .settings-avatar-frame { border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent); }
+.settings-avatar-button { padding: 0; border: 0; border-radius: 50%; background: transparent; }
+.settings-avatar-button .settings-avatar-frame:not(:disabled):hover { border-color: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent); }
 .settings-avatar-button:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+/* Hover: a camera over the photo. Always: a camera badge on its edge, so it is clear the photo can change. */
+.settings-avatar-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgb(15 23 42 / 0.5); color: #fff; opacity: 0; transition: opacity .15s; }
+.settings-avatar-frame:not(:disabled) { cursor: zoom-in; }
+.settings-avatar-button .settings-avatar-frame:disabled { cursor: default; opacity: 1; }
+.settings-avatar-frame:hover .settings-avatar-overlay, .settings-avatar-frame:focus-visible .settings-avatar-overlay, .settings-avatar-overlay.busy { opacity: 1; }
+.settings-avatar-badge { cursor: pointer; }
+.settings-avatar-badge:focus-within, .settings-photo-action:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
+.settings-avatar-badge.disabled, .settings-photo-action.disabled { pointer-events: none; opacity: .6; }
+.settings-photo-viewer { display: flex; justify-content: center; }
+.settings-photo-viewer img { max-width: 100%; max-height: min(70vh, 640px); border-radius: var(--radius-lg, 12px); object-fit: contain; }
+.settings-avatar-frame { position: relative; }
+.settings-avatar-badge { position: absolute; right: 2px; bottom: 2px; display: flex; width: 30px; height: 30px; align-items: center; justify-content: center; border: 2px solid var(--card); border-radius: 50%; background: var(--primary); color: var(--primary-foreground); box-shadow: 0 4px 10px -4px rgb(15 23 42 / 0.45); transition: transform .15s; }
+.settings-avatar-badge:hover { transform: scale(1.1); }
+.settings-photo-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.settings-photo-action { display: inline-flex; height: 30px; align-items: center; gap: 6px; padding: 0 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--background); color: var(--foreground); font-size: .78rem; font-weight: 500; white-space: nowrap; cursor: pointer; transition: border-color .15s, background .15s, color .15s; }
+.settings-photo-action:hover { border-color: var(--primary); color: var(--primary); }
+.settings-photo-action.danger { color: var(--destructive); }
+.settings-photo-action.danger:hover { border-color: var(--destructive); background: color-mix(in srgb, var(--destructive) 8%, transparent); color: var(--destructive); }
+/* A field with its Save button beside it (stacked on phones). The button never wraps its text. */
+.settings-inline-form { display: flex; max-width: 36rem; flex-wrap: wrap; align-items: flex-end; gap: 12px; }
+.settings-save-button { height: 2.5rem; flex-shrink: 0; gap: 8px; padding-inline: 1.25rem; white-space: nowrap; font-weight: 600; }
+@media (max-width: 480px) { .settings-inline-form > .settings-save-button { width: 100%; } }
 .settings-profile-summary > div:last-child { min-width: 0; overflow-wrap: anywhere; }
 .settings-panel, .settings-danger-panel { border-radius: var(--radius-xl); }
 .settings-panel > div:first-child { padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
@@ -1476,7 +1499,7 @@ html.dark .message.user { background: color-mix(in srgb, var(--primary) 19%, var
   .workspace { padding: 1.15rem; padding-top: 1.6rem; }
   .workspace-header { align-items: flex-start; margin-bottom: 1.35rem; }
   .workspace-header h1 { font-size: clamp(1.55rem, 7vw, 1.9rem); }
-  .message { max-width: 96%; }
+  .message.user { max-width: 90%; }
   .image-preview-area { min-height: 14rem; }
   .image-upload-zone { min-height: 11.5rem; }
   .image-playground > [role="tablist"] { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1578,3 +1601,4 @@ html.dark .message.user { background: color-mix(in srgb, var(--primary) 19%, var
 .payment-card-face__label { font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; opacity: .75; }
 .payment-card-face__brand { font-weight: 700; font-size: .95rem; text-transform: uppercase; letter-spacing: .06em; }
 .payment-card-face__badge { background: rgba(255, 255, 255, .2); color: #fff; border: none; }
+@media (max-width: 640px) { .settings-avatar-badge { width: 24px; height: 24px; right: 0; bottom: 0; } .settings-avatar-badge svg { width: 12px; height: 12px; } }

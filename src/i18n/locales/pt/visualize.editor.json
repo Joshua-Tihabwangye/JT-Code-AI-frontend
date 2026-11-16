@@ -261,5 +261,14 @@
     "add_many": "Adicionar gráficos {{count}} ao meu painel"
   },
   "fromGallery": "Da galeria",
-  "fromGalleryHint": "Escolha mais gráficos da galeria para este painel"
+  "fromGalleryHint": "Escolha mais gráficos da galeria para este painel",
+  "save": "Salvar",
+  "saveShortcut": "Salve suas alterações (Ctrl+S)",
+  "leave": {
+    "title": "Salvar suas alterações?",
+    "text": "Este painel possui alterações que ainda não foram salvas. Eles só serão mantidos se você os salvar.",
+    "save": "Salve e saia",
+    "discard": "Sair sem salvar",
+    "stay": "Continue editando"
+  }
 }

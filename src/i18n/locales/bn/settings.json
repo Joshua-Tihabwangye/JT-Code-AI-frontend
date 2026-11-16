@@ -26,7 +26,6 @@
   "updateProfilePicture": "প্রোফাইল ছবি আপডেট করুন",
   "profilePicture": "প্রোফাইল ছবি",
   "yourProfile": "আপনার প্রোফাইল",
-  "changePhoto": "ছবি পরিবর্তন করতে ক্লিক করুন",
   "profileUpdated": "প্রোফাইল সফলভাবে আপডেট হয়েছে",
   "updateProfileError": "প্রোফাইল আপডেট করা ব্যর্থ হয়েছে",
   "uploadAvatarError": "অ্যাভাটার আপলোড করা ব্যর্থ হয়েছে",
@@ -44,5 +43,7 @@
   "currentPassword": "বর্তমান পাসওয়ার্ড",
   "newPassword": "নতুন পাসওয়ার্ড (8+ অক্ষর)",
   "confirmPassword": "নতুন পাসওয়ার্ড নিশ্চিত করুন",
-  "changePassword": "পাসওয়ার্ড পরিবর্তন করুন"
+  "changePassword": "পাসওয়ার্ড পরিবর্তন করুন",
+  "changePhoto": "ছবি পরিবর্তন করুন",
+  "viewPhoto": "ছবি দেখুন"
 }

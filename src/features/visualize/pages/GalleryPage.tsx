@@ -1,15 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { ArrowLeft, Check, Compass, MousePointerClick, Pin, Plus, Search, Sparkles } from 'lucide-react';
 import { useRepository, type VizCatalog } from '@/lib/data';
 import { useCatalogText } from '../catalogText';
 import { useVisualize } from '../context';
 import { ChartThumb } from '../thumbs';
-import { categoryIcon, colorVar, ErrorNote, SkeletonBlock } from '../ui';
-import { addVisual } from '../dashboards/editor/actions';
-import { newId, VISUAL_BY_TYPE } from '../dashboards/editor/catalog';
+import { categoryIcon, colorVar, SkeletonBlock } from '../ui';
 
 type CatalogChart = VizCatalog['charts'][number];
 
@@ -78,26 +76,11 @@ export function GalleryPage() {
   const pickPage = params.get('page') ?? '';
   const [picked, setPicked] = useState<string[]>([]);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const target = useQuery({ queryKey: ['visualize', 'dashboard', pickFor], queryFn: () => visualize.getDashboard(pickFor), enabled: !!pickFor });
   const togglePick = (id: string) => setPicked((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
-  const addPicked = useMutation({
-    mutationFn: async () => {
-      const record = await visualize.getDashboard(pickFor);
-      if (!record.spec) throw new Error(t('visualize.gallery.pick.noSpec'));
-      let spec = record.spec;
-      const pageId = spec.pages.some((page) => page.id === pickPage) ? pickPage : spec.pages[0]!.id;
-      for (const chartType of picked) {
-        // Added empty: the user chooses the columns, axes and formatting in the editor.
-        spec = addVisual(spec, pageId, { id: newId('chart'), type: 'chart', data: { datasetId, wells: {} }, format: { chart: { chartType, fields: {}, options: {} } } }, VISUAL_BY_TYPE.chart?.size ?? { w: 8, h: 8 }).spec;
-      }
-      await visualize.updateDashboard(pickFor, { spec, version: record.version });
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['visualize', 'dashboard', pickFor] });
-      void navigate(`/app/visualize/dashboards/${pickFor}/edit`);
-    },
-  });
+  /** Back to the editor with the picked charts: they arrive empty and unsaved, and the user saves. */
+  const addPicked = () =>
+    void navigate(`/app/visualize/dashboards/${pickFor}/edit`, { state: { addCharts: { pageId: pickPage, chartTypes: picked, datasetId } } });
   const [query, setQuery] = useState('');
   const [level, setLevel] = useState<'all' | 'essential' | 'advanced'>('all');
   const category = params.get('category') ?? 'all';
@@ -242,12 +225,11 @@ export function GalleryPage() {
       {pickFor && (
         <div className="viz-pick-bar" data-testid="gallery-pick-bar">
           <span className="text-sm font-semibold">{t('visualize.gallery.pick.selected', { count: picked.length })}</span>
-          <ErrorNote error={addPicked.error} />
           <span className="flex-1" />
           <button type="button" className="viz-chip" disabled={!picked.length} onClick={() => setPicked([])}>
             {t('visualize.gallery.pick.clear')}
           </button>
-          <button type="button" className="viz-primary inline-flex h-9 items-center gap-1.5 rounded-lg px-4 text-sm font-semibold text-white" disabled={!picked.length || addPicked.isPending} onClick={() => addPicked.mutate()} data-testid="gallery-pick-add">
+          <button type="button" className="viz-primary inline-flex h-9 items-center gap-1.5 rounded-lg px-4 text-sm font-semibold text-white" disabled={!picked.length} onClick={addPicked} data-testid="gallery-pick-add">
             <Plus size={15} aria-hidden /> {t('visualize.gallery.pick.add', { count: picked.length })}
           </button>
         </div>

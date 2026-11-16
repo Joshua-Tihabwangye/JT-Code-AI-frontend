@@ -26,7 +26,6 @@
   "updateProfilePicture": "Profil fotoğrafını güncelle",
   "profilePicture": "Profil fotoğrafı",
   "yourProfile": "Profiliniz",
-  "changePhoto": "Fotoğrafı değiştirmek için tıklayın",
   "profileUpdated": "Profil başarıyla güncellendi",
   "updateProfileError": "Profil güncellenemedi",
   "uploadAvatarError": "Avatar yüklenemedi",
@@ -44,5 +43,7 @@
   "currentPassword": "Mevcut Şifre",
   "newPassword": "Yeni şifre (8+ karakter)",
   "confirmPassword": "Yeni şifreyi onayla",
-  "changePassword": "Şifre değiştir"
+  "changePassword": "Şifre değiştir",
+  "changePhoto": "Fotoğrafı değiştir",
+  "viewPhoto": "Fotoğrafı görüntüle"
 }

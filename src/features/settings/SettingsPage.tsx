@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Pencil, Trash2, User } from 'lucide-react';
+import { Camera, Pencil, Save, Trash2, User, ZoomIn, type LucideIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useRepository, type Account } from '@/lib/data';
@@ -8,7 +8,7 @@ import { apiErrorMessage } from '@/lib/api/http';
 import { getOrganization, updateOrganization } from '@/features/settings/api';
 import { useApiClient } from '@/lib/api/client';
 import { config } from '@/lib/config';
-import { Alert, Button, Input, PasswordInput, PhoneNumberInput, Select, Spinner, useConfirm } from '@/shared/components';
+import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, Spinner, useConfirm } from '@/shared/components';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -41,6 +41,28 @@ function formFrom(account?: Account): ProfileForm {
   };
 }
 
+/** A button that opens the file picker for a new profile photo (the only way to change it). */
+function PhotoPicker({ className, icon: Icon, label, disabled, onPick, testId, iconOnly }: { className: string; icon: LucideIcon; label: string; disabled?: boolean; onPick: (file: File) => void; testId: string; iconOnly?: boolean }) {
+  return (
+    <label className={`${className}${disabled ? ' disabled' : ''}`} title={label} aria-label={iconOnly ? label : undefined}>
+      <Icon size={iconOnly ? 14 : 13} aria-hidden="true" />
+      {!iconOnly && label}
+      <input
+        type="file"
+        accept="image/png,image/jpeg,image/webp,image/gif"
+        className="sr-only"
+        data-testid={testId}
+        disabled={disabled}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) onPick(file);
+          e.target.value = '';
+        }}
+      />
+    </label>
+  );
+}
+
 export function SettingsPage() {
   const { t } = useTranslation();
   const { confirm, dialog } = useConfirm();
@@ -51,6 +73,7 @@ export function SettingsPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [editing, setEditing] = useState(false);
+  const [viewingPhoto, setViewingPhoto] = useState(false);
   const [form, setForm] = useState<ProfileForm>(formFrom());
   const [passwords, setPasswords] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
   const [workspaceName, setWorkspaceName] = useState('');
@@ -199,45 +222,42 @@ export function SettingsPage() {
           </div>
         )}
         <div className="settings-profile-summary flex items-center gap-4">
-          <label
-            className={`settings-avatar-button relative ${editing ? 'cursor-pointer group' : 'cursor-default'}`}
-            title={editing ? t('settings.changePhoto') : undefined}
-            aria-label={editing ? t('settings.changePhoto') : undefined}
-          >
-            <div className="settings-avatar-frame w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition group-hover:opacity-80">
+          {/* Clicking the photo shows it; only the camera badge / "Change photo" picks a new one. */}
+          <div className="settings-avatar-button relative">
+            <button
+              type="button"
+              className="settings-avatar-frame w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition"
+              onClick={() => avatarUrl && setViewingPhoto(true)}
+              disabled={!avatarUrl}
+              title={avatarUrl ? t('settings.viewPhoto') : undefined}
+              aria-label={avatarUrl ? t('settings.viewPhoto') : t('settings.profilePicture')}
+              data-testid="avatar-view"
+            >
               {avatarUrl ? (
                 <img src={avatarUrl} alt={t('settings.profilePicture')} className="w-full h-full object-cover" />
               ) : (
                 <User size={36} className="text-muted-foreground" aria-hidden="true" />
               )}
-            </div>
-            {editing && (
-              <input
-                type="file"
-                accept="image/png,image/jpeg,image/webp,image/gif"
-                className="hidden"
-                data-testid="avatar-input"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) uploadAvatar.mutate(file);
-                  e.target.value = '';
-                }}
-              />
-            )}
-          </label>
+              {(avatarUrl || uploadAvatar.isPending) && (
+                <span className={`settings-avatar-overlay${uploadAvatar.isPending ? ' busy' : ''}`} aria-hidden="true">
+                  {uploadAvatar.isPending ? <Spinner size="sm" /> : <ZoomIn size={22} />}
+                </span>
+              )}
+            </button>
+            <PhotoPicker className="settings-avatar-badge" icon={Camera} label={t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-input" iconOnly />
+          </div>
           <div>
             <div className="text-base font-semibold text-foreground">{displayName}</div>
             <div className="text-sm text-muted-foreground">{account.data?.email}</div>
-            {editing && (
-              <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
-                <span>{uploadAvatar.isPending ? t('common.loading') : t('settings.changePhoto')}</span>
-                {avatarUrl && (
-                  <button type="button" className="underline" onClick={() => removeAvatar.mutate()}>
-                    {t('settings.removePhoto')}
-                  </button>
-                )}
-              </div>
-            )}
+            <div className="settings-photo-actions">
+              <PhotoPicker className="settings-photo-action" icon={Camera} label={uploadAvatar.isPending ? t('common.loading') : t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-change" />
+              {avatarUrl && (
+                <button type="button" className="settings-photo-action danger" onClick={() => removeAvatar.mutate()} disabled={removeAvatar.isPending}>
+                  <Trash2 size={13} aria-hidden="true" />
+                  {t('settings.removePhoto')}
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
@@ -300,7 +320,8 @@ export function SettingsPage() {
             </div>
             {editing && (
               <div className="flex items-center gap-3 pt-2">
-                <Button type="submit" disabled={saveProfile.isPending}>
+                <Button type="submit" className="settings-save-button" disabled={saveProfile.isPending}>
+                  {saveProfile.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
                   {saveProfile.isPending ? t('common.loading') : t('common.saveChanges')}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => { setForm(formFrom(account.data)); setEditing(false); }}>
@@ -318,15 +339,18 @@ export function SettingsPage() {
               <p className="text-sm text-muted-foreground">{t('settings.workspaceDesc')}</p>
             </div>
             <form
-              className="flex max-w-xl items-end gap-3"
+              className="settings-inline-form"
               onSubmit={(e) => {
                 e.preventDefault();
                 renameWorkspace.mutate();
               }}
             >
-              <Input label={t('settings.workspaceName')} value={workspaceName} onChange={(e) => setWorkspaceName(e.target.value)} />
-              <Button type="submit" variant="outline" disabled={renameWorkspace.isPending || !workspaceName.trim() || workspaceName === organization.data.name}>
-                {t('common.saveChanges')}
+              <div className="min-w-0 flex-1">
+                <Input label={t('settings.workspaceName')} value={workspaceName} onChange={(e) => setWorkspaceName(e.target.value)} />
+              </div>
+              <Button type="submit" className="settings-save-button" disabled={renameWorkspace.isPending || !workspaceName.trim() || workspaceName === organization.data.name}>
+                {renameWorkspace.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
+                {renameWorkspace.isPending ? t('common.loading') : t('common.saveChanges')}
               </Button>
             </form>
           </section>
@@ -387,6 +411,11 @@ export function SettingsPage() {
         </section>
       </div>
       {dialog}
+      <Modal isOpen={viewingPhoto && !!avatarUrl} onClose={() => setViewingPhoto(false)} title={t('settings.profilePicture')} size="lg">
+        <div className="settings-photo-viewer" data-testid="avatar-viewer">
+          {avatarUrl && <img src={avatarUrl} alt={t('settings.profilePicture')} />}
+        </div>
+      </Modal>
     </section>
   );
 }

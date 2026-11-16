@@ -26,7 +26,6 @@
   "updateProfilePicture": "プロフィール写真を更新",
   "profilePicture": "プロフィール写真",
   "yourProfile": "あなたのプロフィール",
-  "changePhoto": "クリックして写真を変更",
   "profileUpdated": "プロフィールを更新しました",
   "updateProfileError": "プロフィールの更新に失敗しました",
   "uploadAvatarError": "アバターのアップロードに失敗しました",
@@ -44,5 +43,7 @@
   "currentPassword": "現在のパスワード",
   "newPassword": "新しいパスワード (8 文字以上)",
   "confirmPassword": "新しいパスワードを確認します",
-  "changePassword": "パスワードを変更する"
+  "changePassword": "パスワードを変更する",
+  "changePhoto": "写真を変更する",
+  "viewPhoto": "写真を見る"
 }

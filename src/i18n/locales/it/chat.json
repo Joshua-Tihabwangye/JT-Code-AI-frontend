@@ -20,5 +20,6 @@
   "headlineAccent": "costruire oggi?",
   "assistant": "Codice JT",
   "stop": "Smetti di generare",
-  "stopped": "Fermato."
+  "stopped": "Fermato.",
+  "newChatHint": "Lascia questa chat e iniziane una nuova (questa chat rimane nella Cronologia)"
 }

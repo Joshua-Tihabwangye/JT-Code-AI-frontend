@@ -23,7 +23,6 @@
     "clear": "Chiaro",
     "add_one": "Aggiungi il grafico {{count}} alla dashboard",
     "add_other": "Aggiungi i grafici {{count}} alla dashboard",
-    "noSpec": "Impossibile aprire questa dashboard. Torna indietro e riprova.",
     "selected_many": "{{count}} grafici selezionati",
     "add_many": "Aggiungi i grafici {{count}} alla dashboard"
   }
