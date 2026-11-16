@@ -1,4 +1,5 @@
 import type { AxiosResponse } from 'axios';
+import { CONSENT_VERSION } from '@/shared/constants/consent';
 import i18n from '@/i18n/config';
 import { apiErrorMessage, http as api } from '@/lib/api/http';
 import { emailConfirmationRedirect, supabase } from '@/lib/supabase';
@@ -146,6 +147,9 @@ class ApiAuthRepository implements AuthRepository {
           countryName: input.countryName,
           dialCode: input.dialCode,
           timezone: input.timezone,
+          terms_accepted: input.acceptedTerms ?? false,
+          privacy_accepted: input.acceptedTerms ?? false,
+          consent_version: CONSENT_VERSION,
         },
       },
     });

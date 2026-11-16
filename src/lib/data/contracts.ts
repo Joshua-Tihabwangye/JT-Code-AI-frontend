@@ -94,6 +94,8 @@ export interface SignUpInput {
   countryName: string;
   dialCode: string;
   timezone: string;
+  /** The terms + privacy checkbox; recorded server-side as consents. */
+  acceptedTerms?: boolean;
 }
 
 export interface AuthRepository {
