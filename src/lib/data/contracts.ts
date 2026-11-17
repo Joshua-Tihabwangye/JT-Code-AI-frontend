@@ -5,10 +5,12 @@
 import type {
   Account,
   AccountUpdate,
+  AcceptedInvite,
   CreatedTeamInvite,
   TeamMember,
   TeamOverview,
   TeamRole,
+  Workspace,
   Attachment,
   ChatMessage,
   Conversation,
@@ -131,7 +133,9 @@ export interface TeamRepository {
   removeMember(userId: string): Promise<void>;
   revokeInvite(inviteId: string): Promise<void>;
   /** Join a workspace with the link an admin shared (`/invite/:id?token=`). */
-  acceptInvite(inviteId: string, token: string): Promise<TeamMember>;
+  acceptInvite(inviteId: string, token: string): Promise<AcceptedInvite>;
+  /** Every workspace the signed-in user belongs to. */
+  listWorkspaces(): Promise<Workspace[]>;
 }
 
 export interface SendMessageOptions {

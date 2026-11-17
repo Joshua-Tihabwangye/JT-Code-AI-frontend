@@ -1,7 +1,11 @@
-import axios, { type AxiosInstance } from 'axios';
+import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 import { config } from '@/lib/config';
 import { getAccessToken } from '@/lib/supabase';
+import { getActiveWorkspaceId, isStaleWorkspaceError, setActiveWorkspaceId } from '@/lib/workspace';
 import type { ApiErrorBody } from '@/lib/api/types';
+
+const WORKSPACE_HEADER = 'X-Organization-ID';
+type RetriableRequest = InternalAxiosRequestConfig & { _workspaceRetried?: boolean };
 
 /**
  * The one HTTP client for the Django API. Each request carries the current
@@ -17,7 +21,23 @@ export function createHttpClient(): AxiosInstance {
     const token = await getAccessToken();
     if (token) request.headers.Authorization = `Bearer ${token}`;
     request.headers['X-JT-Code-Client'] = `web/${config.appVersion}`;
+    const workspaceId = getActiveWorkspaceId();
+    if (workspaceId) request.headers[WORKSPACE_HEADER] = workspaceId;
     return request;
+  });
+  // A remembered workspace the user no longer belongs to (removed, or deleted): forget it and retry
+  // once against the server's default workspace instead of failing every request.
+  instance.interceptors.response.use(undefined, async (error: unknown) => {
+    if (axios.isAxiosError(error) && error.config) {
+      const request = error.config as RetriableRequest;
+      if (!request._workspaceRetried && request.headers?.[WORKSPACE_HEADER] && isStaleWorkspaceError(error.response?.status, error.response?.data)) {
+        setActiveWorkspaceId(null);
+        request._workspaceRetried = true;
+        delete request.headers[WORKSPACE_HEADER];
+        return instance.request(request);
+      }
+    }
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
   });
   return instance;
 }

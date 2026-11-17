@@ -1,9 +1,10 @@
+import i18n from '@/i18n/config';
 import { getCurrentUser } from '@/lib/localAuth';
 import { KEYS } from './keys';
 import { simulate } from './latency';
 import { readValue, writeValue } from '../storage/store';
 import type { TeamRepository } from '../contracts';
-import type { CreatedTeamInvite, TeamInvite, TeamMember, TeamOverview, TeamRole } from '../types';
+import type { AcceptedInvite, CreatedTeamInvite, TeamInvite, TeamMember, TeamOverview, TeamRole, Workspace } from '../types';
 
 interface StoredTeam {
   members: TeamMember[];
@@ -46,7 +47,7 @@ export class MockTeamRepository implements TeamRepository {
     const team = await this.load();
     const address = email.trim().toLowerCase();
     if (team.members.some((member) => member.email.toLowerCase() === address)) {
-      throw new Error('This user is already an organization member.');
+      throw new Error(i18n.t('team.errors.alreadyMember'));
     }
     const invite: TeamInvite = {
       id: crypto.randomUUID(),
@@ -61,8 +62,8 @@ export class MockTeamRepository implements TeamRepository {
   async changeRole(userId: string, role: TeamRole): Promise<TeamMember> {
     const team = await this.load();
     const member = team.members.find((candidate) => candidate.userId === userId);
-    if (!member) throw new Error('Member not found.');
-    if (member.isOwner) throw new Error('The organization owner role cannot be changed here.');
+    if (!member) throw new Error(i18n.t('team.errors.memberNotFound'));
+    if (member.isOwner) throw new Error(i18n.t('team.errors.ownerRole'));
     const updated = { ...member, role };
     await writeValue(KEYS.team, { ...team, members: team.members.map((m) => (m.userId === userId ? updated : m)) });
     return simulate('team.changeRole', () => updated);
@@ -71,7 +72,7 @@ export class MockTeamRepository implements TeamRepository {
   async removeMember(userId: string): Promise<void> {
     const team = await this.load();
     if (team.members.find((member) => member.userId === userId)?.isOwner) {
-      throw new Error('The organization owner cannot be removed.');
+      throw new Error(i18n.t('team.errors.ownerRemove'));
     }
     await writeValue(KEYS.team, { ...team, members: team.members.filter((member) => member.userId !== userId) });
     await simulate('team.removeMember', () => undefined);
@@ -83,8 +84,15 @@ export class MockTeamRepository implements TeamRepository {
     await simulate('team.revokeInvite', () => undefined);
   }
 
-  async acceptInvite(): Promise<TeamMember> {
+  async acceptInvite(): Promise<AcceptedInvite> {
     // One browser holds one workspace in frontend-only mode, so there is nothing to join.
-    throw new Error('Invitations need the JT-Code backend (VITE_DATA_MODE=api).');
+    throw new Error(i18n.t('team.errors.needsBackend'));
+  }
+
+  async listWorkspaces(): Promise<Workspace[]> {
+    // One browser, one local workspace.
+    const user = getCurrentUser();
+    const name = user?.firstName ? i18n.t('team.localWorkspaceOf', { name: user.firstName }) : i18n.t('team.localWorkspace');
+    return simulate('team.listWorkspaces', () => [{ id: 'local-workspace', name, role: 'admin', isOwner: true, isDefault: true }]);
   }
 }
