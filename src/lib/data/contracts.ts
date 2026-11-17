@@ -5,6 +5,10 @@
 import type {
   Account,
   AccountUpdate,
+  CreatedTeamInvite,
+  TeamMember,
+  TeamOverview,
+  TeamRole,
   Attachment,
   ChatMessage,
   Conversation,
@@ -94,6 +98,8 @@ export interface SignUpInput {
   countryName: string;
   dialCode: string;
   timezone: string;
+  /** The terms + privacy checkbox; recorded server-side as consents. */
+  acceptedTerms?: boolean;
 }
 
 export interface AuthRepository {
@@ -115,6 +121,17 @@ export interface AccountRepository {
   uploadAvatar(file: File): Promise<Account>;
   removeAvatar(): Promise<Account>;
   deleteAccount(): Promise<void>;
+}
+
+/** The selected workspace's team (organization members and pending invites). Admin only. */
+export interface TeamRepository {
+  getTeam(): Promise<TeamOverview>;
+  invite(email: string, role: TeamRole): Promise<CreatedTeamInvite>;
+  changeRole(userId: string, role: TeamRole): Promise<TeamMember>;
+  removeMember(userId: string): Promise<void>;
+  revokeInvite(inviteId: string): Promise<void>;
+  /** Join a workspace with the link an admin shared (`/invite/:id?token=`). */
+  acceptInvite(inviteId: string, token: string): Promise<TeamMember>;
 }
 
 export interface SendMessageOptions {
@@ -510,6 +527,7 @@ export interface RenderVisualsInput {
 export interface Repositories {
   auth: AuthRepository;
   account: AccountRepository;
+  team: TeamRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

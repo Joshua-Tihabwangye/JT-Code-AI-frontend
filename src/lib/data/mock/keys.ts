@@ -17,5 +17,6 @@ export const KEYS = {
   conversations: 'jtcode:conversations',
   messages: 'jtcode:messages',
   images: 'jtcode:image-generations',
+  team: 'jtcode:team',
   seeded: 'jtcode:seeded',
 } as const;

@@ -1,5 +1,9 @@
 node_modules
 dist
 .git
-.env
 coverage
+test-results
+# Local env files must never reach the image: Vite would read .env.local during the build.
+.env
+.env.*
+!.env.example

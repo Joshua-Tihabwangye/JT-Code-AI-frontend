@@ -120,8 +120,8 @@ npm run format       # Format with Prettier
 npm run check        # Run typecheck + lint + test + build (CI check)
 
 # Docker
-docker build -t jt-code-web .
-docker run -p 8080:80 jt-code-web
+docker build --build-arg VITE_SUPABASE_URL=... --build-arg VITE_SUPABASE_ANON_KEY=... -t jt-code-web .
+docker run -p 8080:8080 jt-code-web
 ```
 
 ## Environment Variables
@@ -167,17 +167,21 @@ Run `npm run check` before committing to ensure all checks pass.
 
 ## Docker Production Build
 
+The image always builds in API mode and fails if the Supabase settings are missing. In production the
+backend's `compose.yaml` builds it as the `web` service from `.env.production` (`make compose-up-prod`),
+so a manual build is only needed for a standalone test:
+
 ```bash
-# Build with build-time environment variables
 docker build \
-  --build-arg VITE_SUPABASE_URL=https://<project-ref>.supabase.co \
-  --build-arg VITE_SUPABASE_ANON_KEY=sb_publishable_... \
-  --build-arg VITE_API_BASE_URL=https://api.example.com/api/v1 \
+  --build-arg VITE_SUPABASE_URL=https://supabase.example.com \
+  --build-arg VITE_SUPABASE_ANON_KEY=<anon key> \
   -t jt-code-web .
 
-# Run with Nginx
-docker run -p 8080:80 jt-code-web
+# nginx (unprivileged) listens on 8080; JT_SUPABASE_ORIGIN feeds the Content-Security-Policy.
+docker run -p 8080:8080 -e JT_SUPABASE_ORIGIN=https://supabase.example.com jt-code-web
 ```
+
+The API is expected on the same origin under `/api` (the backend's edge proxy routes it).
 
 ## Architecture
 

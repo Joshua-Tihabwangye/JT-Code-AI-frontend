@@ -25,6 +25,34 @@ export interface Account {
   plan: PlanSlug;
 }
 
+/** Organization roles (Django RBAC): admins manage the team, editors change content, viewers read. */
+export type TeamRole = 'admin' | 'editor' | 'viewer';
+
+export interface TeamMember {
+  userId: string;
+  email: string;
+  name: string;
+  role: TeamRole;
+  isOwner: boolean;
+}
+
+export interface TeamInvite {
+  id: string;
+  email: string;
+  role: TeamRole;
+  expiresAt: string | null;
+}
+
+/** A new invite: the token is shown once (the server stores only its digest). */
+export interface CreatedTeamInvite extends TeamInvite {
+  token: string;
+}
+
+export interface TeamOverview {
+  members: TeamMember[];
+  invites: TeamInvite[];
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

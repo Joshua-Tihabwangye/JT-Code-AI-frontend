@@ -1,5 +1,6 @@
 import type { SignupPayload } from '../types';
 import { authErrorMessage, emailConfirmationRedirect, supabase } from '@/lib/supabase';
+import { CONSENT_VERSION } from '@/shared/constants/consent';
 
 export interface SignupResult {
   error?: string;
@@ -22,6 +23,10 @@ export async function signup(payload: SignupPayload): Promise<SignupResult> {
         countryName: payload.countryName,
         dialCode: payload.dialCode,
         timezone: payload.timezone,
+        // The sign-up checkbox accepts both documents; the backend records them as consents.
+        terms_accepted: payload.acceptedTerms,
+        privacy_accepted: payload.acceptedTerms,
+        consent_version: CONSENT_VERSION,
       },
     },
   });
