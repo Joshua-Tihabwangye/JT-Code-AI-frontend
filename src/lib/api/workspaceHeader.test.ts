@@ -16,7 +16,7 @@ function forbidden(config: InternalAxiosRequestConfig, detail: string) {
   return Promise.reject(new AxiosError('Forbidden', 'ERR_BAD_REQUEST', config, undefined, response));
 }
 
-function seen(adapter: ReturnType<typeof vi.fn>, call: number): AxiosHeaders {
+function seen(adapter: { mock: { calls: unknown[][] } }, call: number): AxiosHeaders {
   return (adapter.mock.calls[call]![0] as InternalAxiosRequestConfig).headers;
 }
 

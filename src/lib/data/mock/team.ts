@@ -84,15 +84,15 @@ export class MockTeamRepository implements TeamRepository {
     await simulate('team.revokeInvite', () => undefined);
   }
 
-  async acceptInvite(): Promise<AcceptedInvite> {
+  acceptInvite(): Promise<AcceptedInvite> {
     // One browser holds one workspace in frontend-only mode, so there is nothing to join.
-    throw new Error(i18n.t('team.errors.needsBackend'));
+    return Promise.reject(new Error(i18n.t('team.errors.needsBackend')));
   }
 
-  async listWorkspaces(): Promise<Workspace[]> {
+  listWorkspaces(): Promise<Workspace[]> {
     // One browser, one local workspace.
     const user = getCurrentUser();
     const name = user?.firstName ? i18n.t('team.localWorkspaceOf', { name: user.firstName }) : i18n.t('team.localWorkspace');
-    return simulate('team.listWorkspaces', () => [{ id: 'local-workspace', name, role: 'admin', isOwner: true, isDefault: true }]);
+    return simulate<Workspace[]>('team.listWorkspaces', () => [{ id: 'local-workspace', name, role: 'admin', isOwner: true, isDefault: true }]);
   }
 }

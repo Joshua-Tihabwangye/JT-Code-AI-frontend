@@ -27,7 +27,7 @@ export function createHttpClient(): AxiosInstance {
   });
   // A remembered workspace the user no longer belongs to (removed, or deleted): forget it and retry
   // once against the server's default workspace instead of failing every request.
-  instance.interceptors.response.use(undefined, async (error: unknown) => {
+  instance.interceptors.response.use(undefined, (error: unknown) => {
     if (axios.isAxiosError(error) && error.config) {
       const request = error.config as RetriableRequest;
       if (!request._workspaceRetried && request.headers?.[WORKSPACE_HEADER] && isStaleWorkspaceError(error.response?.status, error.response?.data)) {
