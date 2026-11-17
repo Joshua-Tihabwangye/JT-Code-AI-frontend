@@ -4,6 +4,7 @@ import { KEYS } from './keys';
 import { simulate } from './latency';
 import { MockAnalyticsRepository } from './analytics';
 import { createMockVisualizeRepository } from './visualize';
+import { MockTeamRepository } from './team';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -1229,6 +1230,7 @@ export function createMockRepositories(): Repositories {
   return {
     auth: new MockAuthRepository(),
     account: new MockAccountRepository(),
+    team: new MockTeamRepository(),
     chat: new MockChatRepository(),
     history: new MockHistoryRepository(),
     billing: new MockBillingRepository(),

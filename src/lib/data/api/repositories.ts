@@ -8,6 +8,9 @@ import type {
   Account,
   AccountUpdate,
   AnalysisRun,
+  TeamInvite,
+  TeamMember,
+  TeamRole,
   AnalysisTransform,
   AppDocument,
   ChatMessage,
@@ -68,6 +71,7 @@ import type {
   VizQuestion,
 } from '../types';
 import type {
+  TeamRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -198,6 +202,57 @@ class ApiAuthRepository implements AuthRepository {
       listener(session ? toAuthSession(session) : null);
     });
     return () => data.subscription.unsubscribe();
+  }
+}
+
+// --- Team (organization members and invites) ---------------------------------------------------
+
+interface ApiMember {
+  user_id: string;
+  email: string;
+  name?: string;
+  role: TeamRole;
+  is_owner?: boolean;
+}
+
+interface ApiInvite {
+  id: string;
+  email: string;
+  role: TeamRole;
+  expires_at: string | null;
+  token?: string;
+}
+
+function toMember(member: ApiMember): TeamMember {
+  return { userId: member.user_id, email: member.email, name: member.name ?? '', role: member.role, isOwner: Boolean(member.is_owner) };
+}
+
+function toInvite(invite: ApiInvite): TeamInvite {
+  return { id: invite.id, email: invite.email, role: invite.role, expiresAt: invite.expires_at };
+}
+
+class ApiTeamRepository implements TeamRepository {
+  async getTeam() {
+    const { data } = await api.get<{ members: ApiMember[]; invites?: ApiInvite[] }>('/organizations/members/');
+    return { members: data.members.map(toMember), invites: (data.invites ?? []).map(toInvite) };
+  }
+  async invite(email: string, role: TeamRole) {
+    const { data } = await api.post<ApiInvite>('/organizations/members/', { email, role });
+    return { ...toInvite(data), token: data.token ?? '' };
+  }
+  async changeRole(userId: string, role: TeamRole) {
+    const { data } = await api.patch<ApiMember>(`/organizations/members/${encodeURIComponent(userId)}/`, { role });
+    return toMember(data);
+  }
+  async removeMember(userId: string) {
+    await api.delete(`/organizations/members/${encodeURIComponent(userId)}/`);
+  }
+  async revokeInvite(inviteId: string) {
+    await api.delete(`/organizations/invites/${encodeURIComponent(inviteId)}/`);
+  }
+  async acceptInvite(inviteId: string, token: string) {
+    const { data } = await api.post<ApiMember>(`/organizations/invites/${encodeURIComponent(inviteId)}/accept/`, { token });
+    return toMember(data);
   }
 }
 
@@ -1211,6 +1266,7 @@ export function createApiRepositories(): Repositories {
   return {
     auth: new ApiAuthRepository(),
     account: new ApiAccountRepository(),
+    team: new ApiTeamRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),
