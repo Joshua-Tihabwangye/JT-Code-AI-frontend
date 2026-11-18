@@ -33,7 +33,11 @@ function renderAt(url: string) {
   );
 }
 
-beforeEach(() => acceptInvite.mockReset());
+beforeEach(() => {
+  acceptInvite.mockReset();
+  // The workspace mock is shared by every test; a join in one test must not leak into the next.
+  vi.mocked(setActiveWorkspaceId).mockClear();
+});
 
 describe('AcceptInvitePage', () => {
   it('explains an incomplete link instead of offering to join', () => {
