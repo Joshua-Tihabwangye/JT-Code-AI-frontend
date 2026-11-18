@@ -28,6 +28,7 @@ const ReportsPage = lazy(() => import('@/features/visualize/pages/ReportsPage').
 const DashboardPage = lazy(() => import('@/features/visualize/dashboards/DashboardPage').then((module) => ({ default: module.DashboardPage })));
 const DashboardsHome = lazy(() => import('@/features/visualize/dashboards/DashboardsHome').then((module) => ({ default: module.DashboardsHome })));
 const DashboardEditor = lazy(() => import('@/features/visualize/dashboards/editor/DashboardEditor').then((module) => ({ default: module.DashboardEditor })));
+const AcceptInvitePage = lazy(() => import('@/pages/AcceptInvitePage'));
 const SharedDashboardPage = lazy(() => import('@/features/visualize/dashboards/SharedDashboardPage').then((module) => ({ default: module.SharedDashboardPage })));
 
 /** A page that downloads on first visit; the surrounding shell stays on screen meanwhile. */
@@ -86,6 +87,9 @@ export function App() {
         <Route path="billing" element={<RequireAuth><Page><BillingPage /></Page></RequireAuth>} />
         <Route path="settings" element={<RequireAuth><Page><SettingsPage /></Page></RequireAuth>} />
       </Route>
+
+      {/* Invite link from Settings → Team (signed-out visitors sign in first, then return here). */}
+      <Route path="/invite/:inviteId" element={<RequireAuth><Page><AcceptInvitePage /></Page></RequireAuth>} />
 
       {/* Public, read-only dashboards from a share link or an embed (no sign-in). */}
       <Route path="/share/:token" element={<Page><SharedDashboardPage /></Page>} />

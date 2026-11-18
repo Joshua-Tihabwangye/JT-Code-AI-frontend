@@ -53,6 +53,22 @@ export interface TeamOverview {
   invites: TeamInvite[];
 }
 
+/** The result of opening an invite link: the new membership and the workspace it belongs to. */
+export interface AcceptedInvite {
+  member: TeamMember;
+  workspace: { id: string; name: string };
+}
+
+/** A workspace the signed-in user belongs to (the workspace switcher; sent as `X-Organization-ID`). */
+export interface Workspace {
+  id: string;
+  name: string;
+  role: TeamRole;
+  isOwner: boolean;
+  /** The workspace the server uses when no workspace is selected (the user's first membership). */
+  isDefault: boolean;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

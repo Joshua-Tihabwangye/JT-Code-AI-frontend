@@ -2,13 +2,14 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Camera, Pencil, Save, Trash2, User, ZoomIn, type LucideIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRepository, type Account } from '@/lib/data';
 import { apiErrorMessage } from '@/lib/api/http';
 import { getOrganization, updateOrganization } from '@/features/settings/api';
 import { useApiClient } from '@/lib/api/client';
 import { config } from '@/lib/config';
-import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, Spinner, useConfirm } from '@/shared/components';
+import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, Spinner, Tabs, TabsContent, TabsList, TabsTrigger, useConfirm } from '@/shared/components';
+import { TeamTab } from '@/features/settings/TeamTab';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -67,6 +68,8 @@ export function SettingsPage() {
   const { t } = useTranslation();
   const { confirm, dialog } = useConfirm();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = searchParams.get('tab') === 'team' ? 'team' : 'profile';
   const accounts = useRepository('account');
   const client = useApiClient();
   const queryClient = useQueryClient();
@@ -194,7 +197,7 @@ export function SettingsPage() {
           <h1>{t('settings.title')}</h1>
           <p className="text-sm text-muted-foreground mt-1">{t('settings.subtitle')}</p>
         </div>
-        {!editing && !account.isPending && (
+        {tab === 'profile' && !editing && !account.isPending && (
           <Button type="button" variant="outline" size="sm" onClick={() => setEditing(true)} aria-label={t('settings.editProfile')}>
             <Pencil size={16} aria-hidden />
             <span>{t('settings.edit')}</span>
@@ -202,214 +205,225 @@ export function SettingsPage() {
         )}
       </header>
 
-      {error && (
-        <Alert variant="destructive" className="mb-4" onClose={() => setError('')}>
-          {error}
-        </Alert>
-      )}
-      {success && (
-        <Alert variant="success" className="mb-4" onClose={() => setSuccess('')}>
-          {success}
-        </Alert>
-      )}
-      {account.isError && <Alert variant="destructive" className="mb-4">{apiErrorMessage(account.error)}</Alert>}
+      <Tabs value={tab} onValueChange={(next) => setSearchParams(next === 'team' ? { tab: 'team' } : {}, { replace: true })}>
+        <TabsList className="mb-6" aria-label={t('settings.title')}>
+          <TabsTrigger value="profile">{t('team.tabProfile')}</TabsTrigger>
+          <TabsTrigger value="team">{t('team.tabTeam')}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="team" className="max-w-4xl mx-auto">
+          <TeamTab />
+        </TabsContent>
+        <TabsContent value="profile">
+          {error && (
+            <Alert variant="destructive" className="mb-4" onClose={() => setError('')}>
+              {error}
+            </Alert>
+          )}
+          {success && (
+            <Alert variant="success" className="mb-4" onClose={() => setSuccess('')}>
+              {success}
+            </Alert>
+          )}
+          {account.isError && <Alert variant="destructive" className="mb-4">{apiErrorMessage(account.error)}</Alert>}
 
-      <div className="settings-layout space-y-10 max-w-4xl mx-auto">
-        {account.isPending && (
-          <div className="settings-loading" role="status" aria-live="polite">
-            <Spinner size="sm" />
-            <span>{t('common.loading')}</span>
-          </div>
-        )}
-        <div className="settings-profile-summary flex items-center gap-4">
-          {/* Clicking the photo shows it; only the camera badge / "Change photo" picks a new one. */}
-          <div className="settings-avatar-button relative">
-            <button
-              type="button"
-              className="settings-avatar-frame w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition"
-              onClick={() => avatarUrl && setViewingPhoto(true)}
-              disabled={!avatarUrl}
-              title={avatarUrl ? t('settings.viewPhoto') : undefined}
-              aria-label={avatarUrl ? t('settings.viewPhoto') : t('settings.profilePicture')}
-              data-testid="avatar-view"
-            >
-              {avatarUrl ? (
-                <img src={avatarUrl} alt={t('settings.profilePicture')} className="w-full h-full object-cover" />
-              ) : (
-                <User size={36} className="text-muted-foreground" aria-hidden="true" />
-              )}
-              {(avatarUrl || uploadAvatar.isPending) && (
-                <span className={`settings-avatar-overlay${uploadAvatar.isPending ? ' busy' : ''}`} aria-hidden="true">
-                  {uploadAvatar.isPending ? <Spinner size="sm" /> : <ZoomIn size={22} />}
-                </span>
-              )}
-            </button>
-            <PhotoPicker className="settings-avatar-badge" icon={Camera} label={t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-input" iconOnly />
-          </div>
-          <div>
-            <div className="text-base font-semibold text-foreground">{displayName}</div>
-            <div className="text-sm text-muted-foreground">{account.data?.email}</div>
-            <div className="settings-photo-actions">
-              <PhotoPicker className="settings-photo-action" icon={Camera} label={uploadAvatar.isPending ? t('common.loading') : t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-change" />
-              {avatarUrl && (
-                <button type="button" className="settings-photo-action danger" onClick={() => removeAvatar.mutate()} disabled={removeAvatar.isPending}>
-                  <Trash2 size={13} aria-hidden="true" />
-                  {t('settings.removePhoto')}
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <section className="settings-panel">
-          <div className="mb-5">
-            <h2 className="text-lg font-semibold text-foreground">{t('settings.profileInformation')}</h2>
-            <p className="text-sm text-muted-foreground">{t('settings.profileInformationDesc')}</p>
-          </div>
-          <form onSubmit={submitProfile} className="space-y-5 max-w-4xl mx-auto">
-            <div className="grid gap-4 md:grid-cols-2">
-              <Input label={t('settings.firstName')} value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} disabled={!editing} />
-              <Input label={t('settings.lastName')} value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} disabled={!editing} />
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <Input label={t('settings.email')} type="email" value={account.data?.email ?? ''} readOnly aria-readonly="true" />
-              <div className="w-full">
-                <label htmlFor="country" className="block text-sm font-medium text-foreground mb-1.5">
-                  {t('settings.country')}
-                </label>
-                <Select
-                  id="country"
-                  options={countryOptions}
-                  value={form.countryCode}
-                  disabled={!editing}
-                  onChange={(e) => changeCountry(e.target.value)}
-                />
-                <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.countryHelp')}</p>
-              </div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="w-full">
-                <PhoneNumberInput
-                  id="contact"
-                  label={t('settings.contact')}
-                  dialCode={selectedCountry?.dialCode}
-                  value={form.contact}
-                  placeholder={selectedCountry?.phonePlaceholder ?? t('settings.contact')}
-                  onChange={(e) => setForm({ ...form, contact: e.target.value })}
-                  onBlur={(e) => formatContact(e.target.value)}
-                  disabled={!editing}
-                />
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {t('settings.contactHelp', { country: selectedCountry?.name ?? t('settings.yourCountry') })}
-                </p>
-              </div>
-              <div className="w-full">
-                <label htmlFor="timezone" className="block text-sm font-medium text-foreground mb-1.5">
-                  {t('settings.timezone')}
-                </label>
-                <Select
-                  id="timezone"
-                  options={timezoneOptions}
-                  placeholder={timezoneOptions.length ? undefined : t('settings.noTimezone')}
-                  value={form.timezone}
-                  disabled={!editing || !timezoneOptions.length}
-                  onChange={(e) => setForm({ ...form, timezone: e.target.value })}
-                />
-                <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.timezoneHelp')}</p>
-              </div>
-            </div>
-            {editing && (
-              <div className="flex items-center gap-3 pt-2">
-                <Button type="submit" className="settings-save-button" disabled={saveProfile.isPending}>
-                  {saveProfile.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
-                  {saveProfile.isPending ? t('common.loading') : t('common.saveChanges')}
-                </Button>
-                <Button type="button" variant="outline" onClick={() => { setForm(formFrom(account.data)); setEditing(false); }}>
-                  {t('common.cancel')}
-                </Button>
+          <div className="settings-layout space-y-10 max-w-4xl mx-auto">
+            {account.isPending && (
+              <div className="settings-loading" role="status" aria-live="polite">
+                <Spinner size="sm" />
+                <span>{t('common.loading')}</span>
               </div>
             )}
-          </form>
-        </section>
-
-        {config.dataMode === 'api' && organization.data && (
-          <section>
-            <div className="mb-4">
-              <h2 className="text-lg font-semibold text-foreground">{t('settings.workspace')}</h2>
-              <p className="text-sm text-muted-foreground">{t('settings.workspaceDesc')}</p>
-            </div>
-            <form
-              className="settings-inline-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                renameWorkspace.mutate();
-              }}
-            >
-              <div className="min-w-0 flex-1">
-                <Input label={t('settings.workspaceName')} value={workspaceName} onChange={(e) => setWorkspaceName(e.target.value)} />
+            <div className="settings-profile-summary flex items-center gap-4">
+              {/* Clicking the photo shows it; only the camera badge / "Change photo" picks a new one. */}
+              <div className="settings-avatar-button relative">
+                <button
+                  type="button"
+                  className="settings-avatar-frame w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden border-2 border-border transition"
+                  onClick={() => avatarUrl && setViewingPhoto(true)}
+                  disabled={!avatarUrl}
+                  title={avatarUrl ? t('settings.viewPhoto') : undefined}
+                  aria-label={avatarUrl ? t('settings.viewPhoto') : t('settings.profilePicture')}
+                  data-testid="avatar-view"
+                >
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt={t('settings.profilePicture')} className="w-full h-full object-cover" />
+                  ) : (
+                    <User size={36} className="text-muted-foreground" aria-hidden="true" />
+                  )}
+                  {(avatarUrl || uploadAvatar.isPending) && (
+                    <span className={`settings-avatar-overlay${uploadAvatar.isPending ? ' busy' : ''}`} aria-hidden="true">
+                      {uploadAvatar.isPending ? <Spinner size="sm" /> : <ZoomIn size={22} />}
+                    </span>
+                  )}
+                </button>
+                <PhotoPicker className="settings-avatar-badge" icon={Camera} label={t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-input" iconOnly />
               </div>
-              <Button type="submit" className="settings-save-button" disabled={renameWorkspace.isPending || !workspaceName.trim() || workspaceName === organization.data.name}>
-                {renameWorkspace.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
-                {renameWorkspace.isPending ? t('common.loading') : t('common.saveChanges')}
-              </Button>
-            </form>
-          </section>
-        )}
-
-        <section>
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold text-foreground">{t('settings.password')}</h2>
-            <p className="text-sm text-muted-foreground">{t('settings.passwordDesc')}</p>
-          </div>
-          <form onSubmit={submitPassword} className="grid max-w-xl gap-4">
-            <label className="block text-sm font-medium text-foreground">
-              <span className="mb-1.5 block">{t('settings.currentPassword')}</span>
-              <PasswordInput
-              value={passwords.currentPassword}
-              autoComplete="current-password"
-              onChange={(e) => setPasswords({ ...passwords, currentPassword: e.target.value })}/>
-            </label>
-            <label className="block text-sm font-medium text-foreground">
-              <span className="mb-1.5 block">{t('settings.newPassword')}</span>
-              <PasswordInput
-              value={passwords.newPassword}
-              autoComplete="new-password"
-              onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}/>
-            </label>
-            <label className="block text-sm font-medium text-foreground">
-              <span className="mb-1.5 block">{t('settings.confirmPassword')}</span>
-              <PasswordInput
-              value={passwords.confirmPassword}
-              autoComplete="new-password"
-              onChange={(e) => setPasswords({ ...passwords, confirmPassword: e.target.value })}/>
-            </label>
-            <div>
-              <Button
-                type="submit"
-                variant="outline"
-                disabled={changePassword.isPending || !passwords.currentPassword || passwords.newPassword.length < 8}
-              >
-                {changePassword.isPending ? t('common.loading') : t('settings.changePassword')}
-              </Button>
+              <div>
+                <div className="text-base font-semibold text-foreground">{displayName}</div>
+                <div className="text-sm text-muted-foreground">{account.data?.email}</div>
+                <div className="settings-photo-actions">
+                  <PhotoPicker className="settings-photo-action" icon={Camera} label={uploadAvatar.isPending ? t('common.loading') : t('settings.changePhoto')} disabled={uploadAvatar.isPending} onPick={(file) => uploadAvatar.mutate(file)} testId="avatar-change" />
+                  {avatarUrl && (
+                    <button type="button" className="settings-photo-action danger" onClick={() => removeAvatar.mutate()} disabled={removeAvatar.isPending}>
+                      <Trash2 size={13} aria-hidden="true" />
+                      {t('settings.removePhoto')}
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          </form>
-        </section>
 
-        <section className="settings-danger-panel">
-          <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>
-          <p className="text-sm text-muted-foreground mb-4">{t('settings.deleteAccountDesc')}</p>
-          <Button
-            type="button"
-            variant="destructive"
-            className="gap-1.5"
-            onClick={() => void confirm({ title: t('settings.deleteAccount'), description: t('settings.deleteAccountConfirm'), confirmLabel: t('settings.deleteAccount'), destructive: true }).then((ok) => ok && deleteAccount.mutate())}
-            disabled={deleteAccount.isPending}
-          >
-            <Trash2 size={16} />
-            {deleteAccount.isPending ? t('common.loading') : t('settings.deleteAccount')}
-          </Button>
-        </section>
-      </div>
+            <section className="settings-panel">
+              <div className="mb-5">
+                <h2 className="text-lg font-semibold text-foreground">{t('settings.profileInformation')}</h2>
+                <p className="text-sm text-muted-foreground">{t('settings.profileInformationDesc')}</p>
+              </div>
+              <form onSubmit={submitProfile} className="space-y-5 max-w-4xl mx-auto">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Input label={t('settings.firstName')} value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} disabled={!editing} />
+                  <Input label={t('settings.lastName')} value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} disabled={!editing} />
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Input label={t('settings.email')} type="email" value={account.data?.email ?? ''} readOnly aria-readonly="true" />
+                  <div className="w-full">
+                    <label htmlFor="country" className="block text-sm font-medium text-foreground mb-1.5">
+                      {t('settings.country')}
+                    </label>
+                    <Select
+                      id="country"
+                      options={countryOptions}
+                      value={form.countryCode}
+                      disabled={!editing}
+                      onChange={(e) => changeCountry(e.target.value)}
+                    />
+                    <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.countryHelp')}</p>
+                  </div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="w-full">
+                    <PhoneNumberInput
+                      id="contact"
+                      label={t('settings.contact')}
+                      dialCode={selectedCountry?.dialCode}
+                      value={form.contact}
+                      placeholder={selectedCountry?.phonePlaceholder ?? t('settings.contact')}
+                      onChange={(e) => setForm({ ...form, contact: e.target.value })}
+                      onBlur={(e) => formatContact(e.target.value)}
+                      disabled={!editing}
+                    />
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      {t('settings.contactHelp', { country: selectedCountry?.name ?? t('settings.yourCountry') })}
+                    </p>
+                  </div>
+                  <div className="w-full">
+                    <label htmlFor="timezone" className="block text-sm font-medium text-foreground mb-1.5">
+                      {t('settings.timezone')}
+                    </label>
+                    <Select
+                      id="timezone"
+                      options={timezoneOptions}
+                      placeholder={timezoneOptions.length ? undefined : t('settings.noTimezone')}
+                      value={form.timezone}
+                      disabled={!editing || !timezoneOptions.length}
+                      onChange={(e) => setForm({ ...form, timezone: e.target.value })}
+                    />
+                    <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.timezoneHelp')}</p>
+                  </div>
+                </div>
+                {editing && (
+                  <div className="flex items-center gap-3 pt-2">
+                    <Button type="submit" className="settings-save-button" disabled={saveProfile.isPending}>
+                      {saveProfile.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
+                      {saveProfile.isPending ? t('common.loading') : t('common.saveChanges')}
+                    </Button>
+                    <Button type="button" variant="outline" onClick={() => { setForm(formFrom(account.data)); setEditing(false); }}>
+                      {t('common.cancel')}
+                    </Button>
+                  </div>
+                )}
+              </form>
+            </section>
+
+            {config.dataMode === 'api' && organization.data && (
+              <section>
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold text-foreground">{t('settings.workspace')}</h2>
+                  <p className="text-sm text-muted-foreground">{t('settings.workspaceDesc')}</p>
+                </div>
+                <form
+                  className="settings-inline-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    renameWorkspace.mutate();
+                  }}
+                >
+                  <div className="min-w-0 flex-1">
+                    <Input label={t('settings.workspaceName')} value={workspaceName} onChange={(e) => setWorkspaceName(e.target.value)} />
+                  </div>
+                  <Button type="submit" className="settings-save-button" disabled={renameWorkspace.isPending || !workspaceName.trim() || workspaceName === organization.data.name}>
+                    {renameWorkspace.isPending ? <Spinner size="sm" /> : <Save size={16} aria-hidden="true" />}
+                    {renameWorkspace.isPending ? t('common.loading') : t('common.saveChanges')}
+                  </Button>
+                </form>
+              </section>
+            )}
+
+            <section>
+              <div className="mb-4">
+                <h2 className="text-lg font-semibold text-foreground">{t('settings.password')}</h2>
+                <p className="text-sm text-muted-foreground">{t('settings.passwordDesc')}</p>
+              </div>
+              <form onSubmit={submitPassword} className="grid max-w-xl gap-4">
+                <label className="block text-sm font-medium text-foreground">
+                  <span className="mb-1.5 block">{t('settings.currentPassword')}</span>
+                  <PasswordInput
+                  value={passwords.currentPassword}
+                  autoComplete="current-password"
+                  onChange={(e) => setPasswords({ ...passwords, currentPassword: e.target.value })}/>
+                </label>
+                <label className="block text-sm font-medium text-foreground">
+                  <span className="mb-1.5 block">{t('settings.newPassword')}</span>
+                  <PasswordInput
+                  value={passwords.newPassword}
+                  autoComplete="new-password"
+                  onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}/>
+                </label>
+                <label className="block text-sm font-medium text-foreground">
+                  <span className="mb-1.5 block">{t('settings.confirmPassword')}</span>
+                  <PasswordInput
+                  value={passwords.confirmPassword}
+                  autoComplete="new-password"
+                  onChange={(e) => setPasswords({ ...passwords, confirmPassword: e.target.value })}/>
+                </label>
+                <div>
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    disabled={changePassword.isPending || !passwords.currentPassword || passwords.newPassword.length < 8}
+                  >
+                    {changePassword.isPending ? t('common.loading') : t('settings.changePassword')}
+                  </Button>
+                </div>
+              </form>
+            </section>
+
+            <section className="settings-danger-panel">
+              <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>
+              <p className="text-sm text-muted-foreground mb-4">{t('settings.deleteAccountDesc')}</p>
+              <Button
+                type="button"
+                variant="destructive"
+                className="gap-1.5"
+                onClick={() => void confirm({ title: t('settings.deleteAccount'), description: t('settings.deleteAccountConfirm'), confirmLabel: t('settings.deleteAccount'), destructive: true }).then((ok) => ok && deleteAccount.mutate())}
+                disabled={deleteAccount.isPending}
+              >
+                <Trash2 size={16} />
+                {deleteAccount.isPending ? t('common.loading') : t('settings.deleteAccount')}
+              </Button>
+            </section>
+          </div>
+        </TabsContent>
+      </Tabs>
       {dialog}
       <Modal isOpen={viewingPhoto && !!avatarUrl} onClose={() => setViewingPhoto(false)} title={t('settings.profilePicture')} size="lg">
         <div className="settings-photo-viewer" data-testid="avatar-viewer">
