@@ -11,6 +11,7 @@ import type {
   TeamInvite,
   TeamMember,
   TeamRole,
+  Workspace,
   AnalysisTransform,
   AppDocument,
   ChatMessage,
@@ -227,6 +228,18 @@ function toMember(member: ApiMember): TeamMember {
   return { userId: member.user_id, email: member.email, name: member.name ?? '', role: member.role, isOwner: Boolean(member.is_owner) };
 }
 
+interface ApiWorkspace {
+  id: string;
+  name: string;
+  role: TeamRole;
+  is_owner: boolean;
+  is_default: boolean;
+}
+
+function toWorkspace(workspace: ApiWorkspace): Workspace {
+  return { id: workspace.id, name: workspace.name, role: workspace.role, isOwner: workspace.is_owner, isDefault: workspace.is_default };
+}
+
 function toInvite(invite: ApiInvite): TeamInvite {
   return { id: invite.id, email: invite.email, role: invite.role, expiresAt: invite.expires_at };
 }
@@ -251,8 +264,15 @@ class ApiTeamRepository implements TeamRepository {
     await api.delete(`/organizations/invites/${encodeURIComponent(inviteId)}/`);
   }
   async acceptInvite(inviteId: string, token: string) {
-    const { data } = await api.post<ApiMember>(`/organizations/invites/${encodeURIComponent(inviteId)}/accept/`, { token });
-    return toMember(data);
+    const { data } = await api.post<ApiMember & { organization: { id: string; name: string } }>(
+      `/organizations/invites/${encodeURIComponent(inviteId)}/accept/`,
+      { token },
+    );
+    return { member: toMember(data), workspace: data.organization };
+  }
+  async listWorkspaces() {
+    const { data } = await api.get<{ organizations: ApiWorkspace[] }>('/organizations/');
+    return data.organizations.map(toWorkspace);
   }
 }
 
