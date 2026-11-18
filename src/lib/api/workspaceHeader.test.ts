@@ -1,4 +1,4 @@
-import { AxiosError, AxiosHeaders, type InternalAxiosRequestConfig } from 'axios';
+import { AxiosError, type AxiosHeaders, type InternalAxiosRequestConfig } from 'axios';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createHttpClient } from '@/lib/api/http';
 import { getActiveWorkspaceId, setActiveWorkspaceId } from '@/lib/workspace';
