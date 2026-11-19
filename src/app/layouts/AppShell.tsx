@@ -19,6 +19,7 @@ import { useAuth } from '@/lib/supabase';
 import { useTranslation } from 'react-i18next';
 import { LanguageMenu } from '@/i18n/LanguageMenu';
 import { AccountMenu } from '@/app/layouts/AccountMenu';
+import { MEDIA, useMediaQuery } from '@/lib/useMediaQuery';
 
 const publicNav = [
   { nameKey: 'chat', href: '/app/chat', icon: MessageSquare },
@@ -52,8 +53,16 @@ function NavItems({ items, collapsed, onNavigate }: { items: NavItem[]; collapse
 
 export function AppShell() {
   const { t } = useTranslation();
-  const collapsed = useAppStore((s) => s.sidebarCollapsed);
-  const toggleSidebar = useAppStore((s) => s.toggleSidebar);
+  const savedCollapsed = useAppStore((s) => s.sidebarCollapsed);
+  const toggleSavedSidebar = useAppStore((s) => s.toggleSidebar);
+  // Tablets and small laptops start with the icon rail so pages keep their width; expanding it there
+  // lasts for this visit and leaves the saved desktop preference alone.
+  // Phones open the sidebar as a drawer, which always shows its labels.
+  const phone = useMediaQuery(MEDIA.phone);
+  const tablet = useMediaQuery(MEDIA.tablet);
+  const [tabletExpanded, setTabletExpanded] = useState(false);
+  const collapsed = phone ? false : tablet ? !tabletExpanded : savedCollapsed;
+  const toggleSidebar = tablet ? () => setTabletExpanded((value) => !value) : toggleSavedSidebar;
   const { resolvedTheme, toggleTheme } = useTheme();
   const { isSignedIn } = useAuth();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);

@@ -175,7 +175,7 @@ export function ChatPage() {
       ) : (
         <div className="chat-landing pointer-events-auto">
           <section className="chat-landing-content">
-            <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 w-[520px] h-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_70%)] opacity-[0.08] dark:opacity-[0.18] blur-3xl" />
+            <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 w-[min(520px,100%)] h-[360px] rounded-full bg-[radial-gradient(ellipse_at_center,var(--primary)_0%,transparent_70%)] opacity-[0.08] dark:opacity-[0.18] blur-3xl" />
             <h1 className="chat-headline relative text-center my-4">
               {headline.displayed[0]}
               <span className="chat-headline-accent">{headline.displayed[1]}</span>

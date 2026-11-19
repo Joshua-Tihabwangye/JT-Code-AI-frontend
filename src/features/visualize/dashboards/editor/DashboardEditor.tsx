@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { MEDIA, useMediaQuery } from '@/lib/useMediaQuery';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   AlignCenterHorizontal,
@@ -122,7 +123,9 @@ export function DashboardEditor() {
   const page = currentPage(editor);
   const [menu, setMenu] = useState<Menu>(null);
   const [pane, setPane] = useState<PaneTab>('build');
-  const [paneOpen, setPaneOpen] = useState(true);
+  // Below 1100 px the pane opens over the canvas, so it starts closed and the canvas gets the width.
+  const narrow = useMediaQuery(MEDIA.narrow);
+  const [paneOpen, setPaneOpen] = useState(() => typeof window === 'undefined' || !window.matchMedia?.(MEDIA.narrow).matches);
   const [renamingPage, setRenamingPage] = useState('');
   const [interactions, setInteractions] = useState(false);
   /** Format painter: the visual whose formatting the next clicked visual takes. */
@@ -140,6 +143,13 @@ export function DashboardEditor() {
   const runtime = useDashboardRuntime({ spec: spec ?? undefined, page, mode, dashboardId, interactive: false });
   const single = selected.length === 1 ? page?.visuals.find((visual) => visual.id === selected[0]) : undefined;
   const canvasWidth = zoom === 'fit' ? Math.max(areaWidth - 32, 320) : 1280 * zoom;
+  // Narrow screens open at true size: "Fit" there shrinks the 1280 px page until chart text overlaps.
+  // The canvas pans inside its own scroller; Fit stays one click away in the zoom menu.
+  useEffect(() => {
+    if (window.matchMedia?.(MEDIA.narrow).matches && useEditor.getState().zoom === 'fit') setOption({ zoom: 1 });
+    // Once, when the editor opens.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (record.data && useEditor.getState().record?.id !== record.data.id) useEditor.getState().load(record.data);
@@ -810,7 +820,7 @@ export function DashboardEditor() {
         />
       )}
 
-      <div className="dash-editor-body">
+      <div className={`dash-editor-body${narrow ? ' narrow' : ''}`}>
         <div ref={area} className="dash-editor-canvas" onPointerDown={(event) => event.target === event.currentTarget && select([])}>
           <div className={`dash-canvas ${mode}`} style={{ width: layout === 'phone' ? undefined : canvasWidth, ...themeStyle(theme, mode, spec.density), ...(page.canvas?.background ? { background: page.canvas.background } : {}) }} data-mode={mode}>
             {layout === 'phone' ? (

@@ -119,7 +119,7 @@ export function DashboardsHome() {
           {t('visualize.dashboards.home.empty')}
         </div>
       )}
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" data-testid="dashboard-list">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3" data-testid="dashboard-list">
         {dashboards.data
           ?.filter((dashboard) => filter === 'all' || (filter === 'mine' ? dashboard.role === 'owner' : dashboard.role !== 'owner'))
           .map((dashboard) => (

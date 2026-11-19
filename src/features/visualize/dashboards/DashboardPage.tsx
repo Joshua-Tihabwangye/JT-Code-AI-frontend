@@ -11,7 +11,7 @@ import { ErrorNote, SkeletonBlock } from '../ui';
 import { saveBlob, safeName } from '../echarts';
 import { AskBox, ExplainCard, type ExplainRequest } from './ai';
 import { capturePage, whenDrawn } from './capture';
-import { LOCAL_TYPES, mobileVisuals, pruneOverrides } from './customize';
+import { LOCAL_TYPES, dashboardLayoutMode, flowVisuals, mobileVisuals, pruneOverrides } from './customize';
 import { newId } from './editor/catalog';
 import { describeFilter, FiltersPane } from './FiltersPane';
 import { safeUrl, type ButtonAction, type LocalContext } from './local';
@@ -290,7 +290,10 @@ export function DashboardPage() {
     });
   };
   const rowHeight = Math.max((width / PAGE_WIDTH) * ROW_PX, 1);
-  const stacked = width > 0 && width < 640;
+  // Phones stack the visuals, tablets flow them on a 6-column grid, wider screens draw the authored grid.
+  const layoutMode = dashboardLayoutMode(width);
+  const stacked = width > 0 && layoutMode === 'stack';
+  const flowing = width > 0 && layoutMode === 'flow';
   const height = Math.max(...visuals.map((visual) => visual.layout.y + visual.layout.h), pageRows(page)) * rowHeight;
   const kpis = kpiIndexes(visuals);
   const canEdit = record.data?.role === 'owner' || record.data?.role === 'editor';
@@ -543,12 +546,15 @@ export function DashboardPage() {
             setHover(null);
           }}
         >
-          <div ref={canvas} className={stacked ? 'dash-stack' : 'dash-grid'} style={stacked ? undefined : { height }}>
+          <div ref={canvas} className={stacked ? 'dash-stack' : flowing ? 'dash-flow' : 'dash-grid'} style={stacked || flowing ? undefined : { height }}>
             {width > 0 &&
               (stacked
                 ? // Phones: the page's mobile layout (or reading order), one visual per row.
                   mobileVisuals(page, visuals).map(({ visual, h }) => tile(visual, { height: Math.max(h * 24, 56) }))
-                : visuals.map((visual) => tile(visual, tileStyle(visual, rowHeight))))}
+                : flowing
+                  ? // Tablets: the same order on a 6-column grid at natural sizes.
+                    flowVisuals(page, visuals).map(({ visual, span, height: px }) => tile(visual, { gridColumn: `span ${span}`, height: px }))
+                  : visuals.map((visual) => tile(visual, tileStyle(visual, rowHeight))))}
           </div>
         </div>
         {showPane && paneOpen && !presenting && (

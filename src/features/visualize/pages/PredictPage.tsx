@@ -106,7 +106,7 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
         {notice && <p className="text-sm text-emerald-600 dark:text-emerald-400">{notice}</p>}
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" data-testid="prediction-metrics">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3" data-testid="prediction-metrics">
         {result.metrics.map((metric) => (
           <div key={metric.key} className="viz-card viz-card-pad" title={metric.help}>
             <div className="flex items-center justify-between gap-2">
@@ -120,7 +120,7 @@ function Results({ result, datasetName, pinFor }: { result: VizPrediction; datas
         ))}
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         {result.charts.map((chart, index) => (
           <div key={chart.id} className="viz-card viz-card-pad space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2">

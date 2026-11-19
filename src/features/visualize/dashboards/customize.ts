@@ -88,6 +88,39 @@ export function mobileVisuals(page: DashboardPage, visuals: DashboardVisual[]): 
   return [...visuals].sort((a, b) => a.layout.y - b.layout.y || a.layout.x - b.layout.x).map((visual) => ({ visual, h: visual.layout.h }));
 }
 
+/** How a dashboard page is drawn at a given canvas width (px).
+ *
+ * * ``stack`` (phones, < 640): one visual per row, the page's phone layout;
+ * * ``flow`` (tablets, < 900): the same reading order on a 6-column grid at natural sizes. The authored
+ *   24-column grid scaled this far down shrinks tiles but not chart text, so labels and slicers overlap;
+ * * ``grid`` (≥ 900): the page exactly as authored, scaled to the width.
+ */
+export type DashboardLayoutMode = 'stack' | 'flow' | 'grid';
+export const STACK_BELOW = 640;
+export const FLOW_BELOW = 900;
+
+export function dashboardLayoutMode(width: number): DashboardLayoutMode {
+  if (width < STACK_BELOW) return 'stack';
+  return width < FLOW_BELOW ? 'flow' : 'grid';
+}
+
+/** Small visuals that read like a number or a control: three per row in the flow layout. */
+const COMPACT_TYPES = new Set<DashboardVisual['type']>(['kpi', 'card', 'slicer', 'parameter', 'button', 'navigator']);
+const ROW_HEIGHT_PX = 24;
+const clamp = (value: number, low: number, high: number) => Math.min(Math.max(value, low), high);
+
+/** The tablet layout: reading order, a span on a 6-column grid and a height in px for each visual. */
+export function flowVisuals(page: DashboardPage, visuals: DashboardVisual[]): { visual: DashboardVisual; span: 2 | 3 | 6; height: number }[] {
+  return mobileVisuals(page, visuals).map(({ visual }) => {
+    const { w, h } = visual.layout;
+    const compact = COMPACT_TYPES.has(visual.type);
+    // Of 24 authored columns: a quarter or less → a third of the row; up to half → half; wider → full.
+    const span: 2 | 3 | 6 = compact || w <= 6 ? 2 : w <= 12 ? 3 : 6;
+    const height = compact ? clamp(h * ROW_HEIGHT_PX, 72, 160) : clamp(h * ROW_HEIGHT_PX, 240, 420);
+    return { visual, span, height };
+  });
+}
+
 /** A starting phone layout: every visible visual stacked in reading order (KPIs shorter). */
 export function autoMobileLayout(page: DashboardPage): NonNullable<DashboardPage['mobileLayout']> {
   return [...page.visuals]

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { DashboardPage, DashboardSpec, DashboardTheme, DashboardVisual } from '@/lib/data';
-import { autoMobileLayout, contrast, mobileVisuals, paintFormat, paletteFrom, parameterValue, pruneOverrides, renderContext, resolveVisual } from './customize';
+import { autoMobileLayout, contrast, dashboardLayoutMode, flowVisuals, mobileVisuals, paintFormat, paletteFrom, parameterValue, pruneOverrides, renderContext, resolveVisual } from './customize';
 import { retype } from './editor/catalog';
 import { themeFromJson } from './editor/ThemeDialog';
 import { safeUrl } from './local';
@@ -68,6 +68,26 @@ describe('layout and formatting', () => {
     ]);
     const custom = { ...page, mobileLayout: [{ visualId: 'chart', y: 0, h: 12 }] };
     expect(mobileVisuals(custom, page.visuals)).toEqual([{ visual: page.visuals[0], h: 12 }]);
+  });
+
+  it('picks the phone stack, the tablet flow or the authored grid by canvas width', () => {
+    expect([0, 390, 639, 640, 768, 899, 900, 1280].map(dashboardLayoutMode)).toEqual(['stack', 'stack', 'stack', 'flow', 'flow', 'flow', 'grid', 'grid']);
+  });
+
+  it('flows visuals for tablets: reading order, a third / half / full row, readable heights', () => {
+    const wide = visual('wide', { layout: { x: 0, y: 20, w: 24, h: 12 } });
+    const slicer = visual('slicer', { type: 'slicer', layout: { x: 4, y: 0, w: 8, h: 2 } });
+    const flow = flowVisuals({ ...page, visuals: [...page.visuals, wide, slicer] }, [...page.visuals, wide, slicer]);
+    expect(flow.map(({ visual: item, span, height }) => [item.id, span, height])).toEqual([
+      ['kpi', 2, 120],
+      ['hidden', 2, 240],
+      ['slicer', 2, 72],
+      ['chart', 3, 240],
+      ['wide', 6, 288],
+    ]);
+    // The author's phone order applies to the flow too.
+    const custom = { ...page, mobileLayout: [{ visualId: 'chart', y: 0, h: 12 }, { visualId: 'kpi', y: 1, h: 4 }] };
+    expect(flowVisuals(custom, page.visuals).map((item) => item.visual.id)).toEqual(['chart', 'kpi']);
   });
 
   it('format painter copies the look, not the data bindings or the title text', () => {

@@ -188,7 +188,7 @@ export function BillingPage() {
       {success && <Alert variant="success" className="mb-4" onClose={() => setSuccess('')}>{success}</Alert>}
       {loadError && <Alert variant="destructive" className="mb-4">{apiErrorMessage(loadError)}</Alert>}
 
-      <div className="grid gap-4 md:grid-cols-3 mb-8">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 mb-8">
         {summaryCards.map((card) => (
           <Card key={card.label} className="rounded-xl border-border/60">
             <CardContent className="p-5">
@@ -213,7 +213,7 @@ export function BillingPage() {
 
       <div id="billing-plans" className="mb-8">
         <div className="flex items-center justify-between mb-5"><h2 className="text-lg font-semibold text-foreground">{t('billing.plans.title')}</h2><div className="text-xs text-muted-foreground hidden sm:flex items-center gap-1"><ShieldCheck size={12} />{t('billing.plans.allInclude')}</div></div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-testid="plan-grid">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4" data-testid="plan-grid">
           {(plans.data ?? []).map((plan) => {
             const isCurrent = plan.slug === currentSlug;
             const text = planText(plan);
@@ -228,11 +228,11 @@ export function BillingPage() {
         {sub?.isActive && <div className="mt-4 flex gap-3">{sub.cancelAtPeriodEnd ? <Button variant="outline" onClick={() => reactivate.mutate()} disabled={reactivate.isPending}>{t('billing.subscription.reactivate')}</Button> : <Button variant="outline" onClick={() => void confirm({ title: t('billing.subscription.cancel'), description: t('billing.subscription.cancelConfirm'), confirmLabel: t('billing.subscription.cancel'), cancelLabel: t('billing.subscription.keep'), destructive: true }).then((ok) => ok && cancel.mutate())} disabled={cancel.isPending}>{t('billing.subscription.cancel')}</Button>}</div>}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2 mb-8">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-8">
         <Card className="rounded-xl border-border/60"><CardHeader className="pb-3"><CardTitle className="text-base font-semibold text-foreground">{t('billing.payment.title')}</CardTitle></CardHeader><CardContent className="space-y-4">
           <div className="flex items-center gap-4 p-3 rounded-xl border border-border bg-card"><div className="p-2.5 rounded-lg bg-accent text-primary"><CreditCard size={22} /></div><div className="flex-1 min-w-0"><div className="font-medium text-foreground">{paymentMethod.data?.last4 ? `${paymentMethod.data.brand ?? ''} •••• ${paymentMethod.data.last4}` : t('billing.payment.none')}</div>{paymentMethod.data?.last4 && <div className="text-sm text-muted-foreground">{paymentMethod.data.name}</div>}</div>{paymentMethod.data?.last4 && <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{t('common.default')}</Badge>}</div>
           <Button variant="outline" size="sm" className="rounded-md gap-1.5" onClick={() => setShowPayment(true)} data-testid="manage-payment-methods"><CreditCard size={14} aria-hidden />{t('billing.payment.manage')}</Button>
-          <div className="border-t border-border pt-4 space-y-3"><div className="flex items-center justify-between gap-3"><div><div className="text-sm font-medium text-foreground">{t('billing.wallet.autoRecharge')}</div><div className="text-xs text-muted-foreground">{t('billing.wallet.autoRechargeDesc')}</div></div><Switch checked={!!wallet.data?.autoTopupEnabled} onCheckedChange={(enabled: boolean) => autoRecharge.mutate(enabled)} aria-label={t('billing.wallet.autoRecharge')} /></div><div className="grid gap-3 sm:grid-cols-2"><Input label={t('billing.wallet.threshold')} type="number" min={0} value={threshold} onChange={(event) => setThreshold(event.target.value)} /><Input label={t('billing.wallet.spendingLimit')} type="number" min={0} value={limit} placeholder={t('billing.wallet.noLimit')} onChange={(event) => setLimit(event.target.value)} /></div><div className="flex justify-end"><Button size="sm" className="min-w-[8.5rem] whitespace-nowrap px-4" onClick={() => spending.mutate()} disabled={spending.isPending}>{spending.isPending ? t('common.loading') : t('common.saveChanges')}</Button></div></div>
+          <div className="border-t border-border pt-4 space-y-3"><div className="flex items-center justify-between gap-3"><div><div className="text-sm font-medium text-foreground">{t('billing.wallet.autoRecharge')}</div><div className="text-xs text-muted-foreground">{t('billing.wallet.autoRechargeDesc')}</div></div><Switch checked={!!wallet.data?.autoTopupEnabled} onCheckedChange={(enabled: boolean) => autoRecharge.mutate(enabled)} aria-label={t('billing.wallet.autoRecharge')} /></div><div className="grid grid-cols-1 gap-3 sm:grid-cols-2"><Input label={t('billing.wallet.threshold')} type="number" min={0} value={threshold} onChange={(event) => setThreshold(event.target.value)} /><Input label={t('billing.wallet.spendingLimit')} type="number" min={0} value={limit} placeholder={t('billing.wallet.noLimit')} onChange={(event) => setLimit(event.target.value)} /></div><div className="flex justify-end"><Button size="sm" className="min-w-[8.5rem] whitespace-nowrap px-4" onClick={() => spending.mutate()} disabled={spending.isPending}>{spending.isPending ? t('common.loading') : t('common.saveChanges')}</Button></div></div>
         </CardContent></Card>
 
         <Card className="rounded-xl border-border/60"><CardHeader className="flex flex-row items-center justify-between pb-3"><CardTitle className="text-base font-semibold text-foreground">{t('billing.invoices.title')}</CardTitle><button type="button" className="inline-flex items-center gap-1 rounded-sm text-sm font-semibold text-primary transition-opacity hover:opacity-75" onClick={() => setShowInvoices(true)}>{t('billing.invoices.viewAll')} <span>→</span></button></CardHeader><CardContent>
