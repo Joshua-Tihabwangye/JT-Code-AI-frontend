@@ -17,6 +17,8 @@
     "check": "npm run typecheck && npm run lint && npm run test && npm run build",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:e2e": "node tests/e2e/app.e2e.mjs",
+    "test:responsive": "node tests/e2e/responsive.e2e.mjs",
+    "test:refresh": "node tests/e2e/refresh.e2e.mjs",
     "i18n:fill": "node scripts/i18n-fill.mjs",
     "serve": "vite preview --port 4173 --strictPort"
   },

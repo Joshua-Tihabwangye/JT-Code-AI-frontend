@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, type FormEvent, type KeyboardEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { Plus, Send, Paperclip, Image as ImageIcon, FileText, X, ChevronDown, Mic } from 'lucide-react';
+import { Plus, Send, Paperclip, Image as ImageIcon, FileText, X, ChevronDown, Mic, Sparkles } from 'lucide-react';
 
 interface Props {
   disabled?: boolean;
@@ -227,12 +227,15 @@ export function ChatComposer({ disabled = false, onSubmit, placeholder }: Props)
             type="button"
             className="composer__model-trigger"
             title={activeModel}
+            aria-label={activeModel}
             onClick={() => {
               setShowAttachMenu(false);
               setShowModelMenu((v) => !v);
             }}
           >
-            <span>{activeModel}</span>
+            {/* Small phones show the icon instead of the name, so the message keeps its room. */}
+            <Sparkles size={14} className="composer__model-icon" aria-hidden />
+            <span className="composer__model-name">{activeModel}</span>
             <ChevronDown size={14} className={clsx('transition-transform duration-150', showModelMenu && 'rotate-180')} />
           </button>
           {showModelMenu && (

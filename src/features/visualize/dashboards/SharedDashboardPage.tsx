@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Eraser, FilterX, Lock } from 'lucide-react';
 import { useRepository, type DashboardPage, type DashboardSpec, type RenderVisualsInput, type SharedVisualRequest } from '@/lib/data';
 import { useTheme } from '@/lib/theme';
-import { resolveVisual, type ParameterValues } from './customize';
+import { dashboardLayoutMode, flowVisuals, mobileVisuals, resolveVisual, type ParameterValues } from './customize';
 import { hierarchyOf, kpiIndexes, pageRows, PAGE_WIDTH, ROW_PX, Tile, useDashboardRuntime, useWidth } from './runtime';
 import { resolveMode, themeStyle } from './theme';
 import { tileStyle } from './visuals';
@@ -66,7 +66,12 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
   }
   const { visuals, outputs, selection, setSelection, onSelect } = runtime;
   const rowHeight = Math.max((width / PAGE_WIDTH) * ROW_PX, 1);
-  const stacked = width > 0 && width < 640;
+  const layoutMode = dashboardLayoutMode(width);
+  const stacked = width > 0 && layoutMode === 'stack';
+  const flowing = width > 0 && layoutMode === 'flow';
+  const flowSizes = new Map(flowing ? flowVisuals(page, visuals).map((item) => [item.visual.id, item]) : []);
+  // Tablets keep the page's reading order (phones use it too).
+  const ordered = stacked || flowing ? mobileVisuals(page, visuals).map((item) => item.visual) : visuals;
   const height = Math.max(...visuals.map((visual) => visual.layout.y + visual.layout.h), pageRows(page)) * rowHeight;
   const kpis = kpiIndexes(visuals);
   const local = { spec: { ...spec, bookmarks: [] }, pageId: page.id, parameters: runtime.parameters, setParameter: runtime.setParameter, bookmarks: [], onAction: () => undefined };
@@ -105,9 +110,9 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
         </header>
       )}
       <div className={`dash-canvas ${mode}`} style={themeStyle(theme, mode, spec.density)} data-testid="dashboard-canvas" data-mode={mode} data-page={page.id}>
-        <div ref={canvas} className={stacked ? 'dash-stack' : 'dash-grid'} style={stacked ? undefined : { height }}>
+        <div ref={canvas} className={stacked ? 'dash-stack' : flowing ? 'dash-flow' : 'dash-grid'} style={stacked || flowing ? undefined : { height }}>
           {width > 0 &&
-            visuals.map((visual) => (
+            ordered.map((visual) => (
               <Tile
                 key={visual.id}
                 visual={visual}
@@ -115,7 +120,13 @@ export function SharedDashboardPage({ embed = false }: { embed?: boolean }) {
                 theme={theme}
                 kpiIndex={kpis[visual.id] ?? -1}
                 className={selection?.source === visual.id ? 'selected' : ''}
-                style={stacked ? { height: Math.max(visual.layout.h * 24, 56) } : tileStyle(visual, rowHeight)}
+                style={
+                  stacked
+                    ? { height: Math.max(visual.layout.h * 24, 56) }
+                    : flowing
+                      ? { gridColumn: `span ${flowSizes.get(visual.id)?.span ?? 6}`, height: flowSizes.get(visual.id)?.height ?? 240 }
+                      : tileStyle(visual, rowHeight)
+                }
                 onSelect={onSelect(visual.id)}
                 slicerValue={runtime.slicerValue(visual)}
                 onSlicerChange={(value) => runtime.setSlicer(visual, value)}

@@ -147,7 +147,7 @@ export function CustomPredictionDialog({ open, onClose, onCreated }: { open: boo
 
             <fieldset className="space-y-1.5">
               <legend className="viz-label">{t('visualize.predict.custom.goal')}</legend>
-              <div className="grid gap-1.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                 {GOALS.map((entry) => {
                   const available = !!column && possible(entry);
                   return (
@@ -166,7 +166,7 @@ export function CustomPredictionDialog({ open, onClose, onCreated }: { open: boo
             </fieldset>
 
             {chosenGoal === 'forecast' && (
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <label className="block text-sm">
                   <span className="viz-label">{t('visualize.predict.custom.dateColumn')}</span>
                   <select className="viz-field" value={date} onChange={(event) => setDateColumn(event.target.value)} data-testid="custom-date-column">

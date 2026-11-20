@@ -91,7 +91,7 @@ export function ShareDialog({ dashboardId, name, workspace, onClose }: { dashboa
           )}
           {toggleWorkspace.error && <p className="text-xs text-destructive">{apiErrorMessage(toggleWorkspace.error)}</p>}
           <p className="text-xs text-muted-foreground">{t('visualize.dashboards.share.publicNote')}</p>
-          <div className="grid gap-2 sm:grid-cols-[auto_1fr_auto]">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-[auto_1fr_auto]">
             <div className="viz-segment" role="group" aria-label={t('visualize.dashboards.share.kind')}>
               <button type="button" aria-pressed={kind === 'link'} onClick={() => setKind('link')} data-testid="share-kind-link">
                 <Link2 size={12} aria-hidden /> {t('visualize.dashboards.share.link')}

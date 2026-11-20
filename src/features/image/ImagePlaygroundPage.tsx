@@ -327,11 +327,11 @@ export function ImagePlaygroundPage() {
         </TabsList>
 
         <TabsContent value="generate">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
             <div className="space-y-4">
               <Textarea label={t('images.promptLabel')} placeholder={t('images.promptPlaceholder')} value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={4} />
               <Textarea label={t('images.negativePromptLabel')} placeholder={t('images.negativePromptPlaceholder')} value={negativePrompt} onChange={(e) => setNegativePrompt(e.target.value)} rows={2} />
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
                   <label className="block text-sm font-medium mb-1.5 text-foreground">{t('images.sizeLabel')}</label>
                   <select value={size} onChange={(e) => setSize(e.target.value)} className={selectClass}>
@@ -369,7 +369,7 @@ export function ImagePlaygroundPage() {
         </TabsContent>
 
         <TabsContent value="edit">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
             <div className="space-y-4">
               {!inputImagePreview ? (
                 <div
@@ -439,7 +439,7 @@ export function ImagePlaygroundPage() {
         </TabsContent>
 
         <TabsContent value="understand">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
             <div className="space-y-4">
               {!inputImagePreview ? (
                 <div

@@ -279,11 +279,11 @@ export function SettingsPage() {
                 <p className="text-sm text-muted-foreground">{t('settings.profileInformationDesc')}</p>
               </div>
               <form onSubmit={submitProfile} className="space-y-5 max-w-4xl mx-auto">
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <Input label={t('settings.firstName')} value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} disabled={!editing} />
                   <Input label={t('settings.lastName')} value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} disabled={!editing} />
                 </div>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <Input label={t('settings.email')} type="email" value={account.data?.email ?? ''} readOnly aria-readonly="true" />
                   <div className="w-full">
                     <label htmlFor="country" className="block text-sm font-medium text-foreground mb-1.5">
@@ -299,7 +299,7 @@ export function SettingsPage() {
                     <p className="mt-1.5 text-sm text-muted-foreground">{t('settings.countryHelp')}</p>
                   </div>
                 </div>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="w-full">
                     <PhoneNumberInput
                       id="contact"

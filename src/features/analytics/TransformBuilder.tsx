@@ -120,7 +120,7 @@ export function TransformBuilder({
         ))}
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-foreground">{t('analytics.builder.groupBy')}</label>
           <Select aria-label={t('analytics.builder.groupBy')} options={optional} value={groupBy} onChange={(e) => { setGroupBy(e.target.value); setSortColumn(''); }} />
@@ -147,7 +147,7 @@ export function TransformBuilder({
         </div>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-foreground">{t('analytics.builder.sortBy')}</label>
           <Select aria-label={t('analytics.builder.sortBy')} options={sortOptions} value={sortColumn} onChange={(e) => setSortColumn(e.target.value)} />

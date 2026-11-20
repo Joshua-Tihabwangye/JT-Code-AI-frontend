@@ -260,7 +260,8 @@ textarea.viz-field {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 60;
+  /* Above the mobile top bar (z 70) and the sidebar drawer (z 80): its header and close button stay visible. */
+  z-index: 86;
   width: min(440px, 100vw);
   display: flex;
   flex-direction: column;
@@ -527,7 +528,7 @@ textarea.viz-field {
 .viz-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: 88;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -549,7 +550,7 @@ textarea.viz-field {
 .viz-drawer-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 59;
+  z-index: 85;
   background: rgb(15 23 42 / 0.25);
 }
 
@@ -3863,4 +3864,224 @@ html.dark .viz-menu {
 .dash-axis-group .dash-format-row > :last-child {
   min-width: 0;
   flex: 0 1 60%;
+}
+
+/* === Responsive: tablets and phones (backlog Phase 10) ====================================== */
+/* The header's Ask AI sits in the header row (the floating .viz-fab is for pages without a header). */
+.viz-header-ask {
+  position: static;
+  box-shadow: 0 8px 20px -12px rgb(219 39 119 / 0.7);
+}
+
+/* Tablets and phones: one row of controls, then the sections as one row that scrolls sideways. */
+@media (max-width: 768px) {
+  .viz {
+    gap: 0.9rem;
+    padding: 0.9rem 0.9rem 2rem;
+  }
+  /* Two header rows would cover a third of a phone screen if they stayed pinned. */
+  .viz-header {
+    position: static;
+    gap: 0.45rem;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+  }
+  .viz-dataset-pick {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .viz-dataset-pick select {
+    min-width: 0;
+    max-width: 42vw;
+  }
+  .viz-header-ask {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.82rem;
+  }
+  .viz-nav {
+    order: 3;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border-radius: 14px;
+    scroll-snap-type: x proximity;
+  }
+  .viz-nav::-webkit-scrollbar,
+  .viz-libraries::-webkit-scrollbar,
+  .viz-ribbon-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .viz-nav a {
+    flex: none;
+    padding: 0.4rem 0.8rem;
+    scroll-snap-align: start;
+  }
+  /* The Python libraries: one line that scrolls, not a block of chips above the page. */
+  .viz-libraries {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+  .viz-libraries > * {
+    flex: none;
+  }
+  /* Scroll strips are the containing block of what they hold: the chips' screen-reader text
+     (.sr-only, position: absolute) would otherwise escape the strip and widen the whole page. */
+  .viz-nav,
+  .viz-libraries,
+  .viz-ribbon-tabs {
+    position: relative;
+  }
+  /* Ribbons: the tabs scroll instead of wrapping; the header above is no longer sticky. */
+  .viz-ribbon {
+    top: 0;
+  }
+  .viz-ribbon-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .viz-ribbon-tab {
+    flex: none;
+  }
+  /* The AI drawer takes the whole phone screen. */
+  .viz-panel {
+    width: 100vw;
+    border-left: 0;
+  }
+  .viz-modal-backdrop {
+    padding: 0.75rem;
+  }
+  .viz-modal {
+    max-height: calc(100dvh - 1.5rem);
+  }
+}
+
+/* Phones: the ribbon is not pinned (it would cover the data), and the pinned “Next” group scrolls with
+   the other groups instead of covering most of a phone-width ribbon. */
+@media (max-width: 640px) {
+  .viz-ribbon {
+    position: relative;
+  }
+  .viz-ribbon-group.pinned {
+    position: static;
+    margin-left: 0;
+    border-left: 0;
+    box-shadow: none;
+  }
+}
+
+/* Small phones: Ask AI shows its icon only (its name stays as the accessible label). */
+@media (max-width: 420px) {
+  .viz-header-ask-label {
+    display: none;
+  }
+  .viz-header-ask {
+    padding: 0.55rem;
+  }
+}
+
+/* Dashboards on tablets (canvas 640–900 px): reading order on a 6-column grid at natural sizes
+   (customize.ts flowVisuals). The authored grid scaled this far down made chart text overlap. */
+.dash-flow {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  gap: var(--dash-gap);
+}
+
+.dash-flow > .dash-tile {
+  position: relative;
+  min-width: 0;
+}
+
+/* KPI comparison text (“vs prev. month”) shortens instead of leaving the tile on narrow tiles. */
+.dash-kpi-compare {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-kpi-meta {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.dash-kpi-meta > .dash-delta {
+  flex: none;
+}
+
+/* Dashboard editor below 1100 px: the pane opens over the canvas (the canvas keeps the full width);
+   closed, it is the slim “Show pane” rail. */
+.dash-editor-body.narrow {
+  position: relative;
+}
+
+.dash-editor-body.narrow > .dash-pane:not(.closed) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* Above the canvas frames, handles and guides (z-index 900). */
+  z-index: 950;
+  width: min(360px, calc(100% - 12px));
+  box-shadow: -24px 0 50px -24px rgb(15 23 42 / 0.45);
+}
+
+/* Phones: the editor toolbar is one row that scrolls sideways instead of four wrapped rows. */
+@media (max-width: 640px) {
+  .dash-editor-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .dash-editor-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .dash-editor-bar > * {
+    flex: none;
+  }
+  .dash-name-input {
+    flex: 0 0 160px;
+  }
+  .dash-pane.closed {
+    width: 38px;
+  }
+  /* The toolbar's menus (Insert, Theme, …) open as sheets under the top bar: absolutely positioned
+     they would be clipped by the scrolling toolbar, and the 430 px Insert menu is wider than a phone. */
+  .dash-editor-bar .dash-menu {
+    position: fixed;
+    top: 7.25rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: calc(100dvh - 8.5rem);
+    z-index: 960;
+  }
+}
+
+/* Calculation rows: the name takes the row; the three icon buttons keep their own size
+   (.dash-fields button gives every button the full width, which squeezed the name to nothing). */
+.dash-fields .dash-calc-item > .viz-icon-button {
+  width: auto;
+  flex: none;
+  padding: 0 0.45rem;
+}
+
+/* Sideways scrollers contain their absolutely positioned children (e.g. the screen-reader labels of the
+   Python libraries): without a positioned scroller those children escape and widen the whole page. */
+.viz-nav,
+.viz-libraries,
+.viz-ribbon-tabs,
+.viz-ribbon-body,
+.dash-editor-bar {
+  position: relative;
 }

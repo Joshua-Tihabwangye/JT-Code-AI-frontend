@@ -52,8 +52,8 @@ function Shell() {
               </NavLink>
             ))}
           </nav>
-          <button type="button" className="viz-fab ml-auto" style={{ position: 'static' }} onClick={() => setAssistantOpen(true)} aria-expanded={assistantOpen} data-testid="open-assistant">
-            <Sparkles size={16} aria-hidden /> {t('visualize.askAi')}
+          <button type="button" className="viz-fab viz-header-ask ml-auto" onClick={() => setAssistantOpen(true)} aria-expanded={assistantOpen} aria-label={t('visualize.askAi')} data-testid="open-assistant">
+            <Sparkles size={16} aria-hidden /> <span className="viz-header-ask-label">{t('visualize.askAi')}</span>
           </button>
         </header>
       )}

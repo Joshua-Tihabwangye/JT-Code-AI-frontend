@@ -75,8 +75,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       full: 'max-w-[90vw]',
     };
 
+    // z-[90]: above the mobile top bar (z 70) and the sidebar drawer (z 80).
     return (
-      <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div className="fixed inset-0 z-[90] overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm backdrop-in"

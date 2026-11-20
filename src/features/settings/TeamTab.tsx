@@ -170,7 +170,7 @@ export function TeamTab() {
               <h2 className="text-lg font-semibold text-foreground">{t('team.inviteTitle')}</h2>
               <p className="text-sm text-muted-foreground">{t('team.inviteDesc')}</p>
             </div>
-            <form className="grid gap-4 md:grid-cols-[1fr_12rem_auto] md:items-end" onSubmit={submitInvite}>
+            <form className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_12rem_auto] md:items-end" onSubmit={submitInvite}>
               <Input label={t('team.inviteEmail')} type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               <div>
                 <label htmlFor="invite-role" className="block text-sm font-medium text-foreground mb-1.5">

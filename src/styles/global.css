@@ -772,6 +772,11 @@ html.dark .composer { background: rgba(10, 20, 34, .9); box-shadow: 0 0 24px rgb
   transition: background .15s ease, color .15s ease;
 }
 .composer__model-trigger:hover { background: var(--muted); color: var(--foreground); }
+.composer__model-icon { display: none; }
+@media (max-width: 420px) {
+  .composer__model-icon { display: inline-block; }
+  .composer__model-name { display: none; }
+}
 .composer__model-menu {
   position: absolute;
   bottom: calc(100% + .4rem);

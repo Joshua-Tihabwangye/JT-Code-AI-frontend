@@ -5,10 +5,13 @@ import * as Sentry from '@sentry/react';
 import { App } from '@/app/App';
 import { AppProviders } from '@/app/providers/AppProviders';
 import { initializeSentry } from '@/lib/sentry';
+import { installChunkReloadInBrowser } from '@/lib/chunkReload';
 import '@/styles/global.css';
 import '@/auth/auth.css';
 
 initializeSentry();
+// After a new deployment, a page download from the old build reloads the app instead of crashing.
+installChunkReloadInBrowser();
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Root element not found');

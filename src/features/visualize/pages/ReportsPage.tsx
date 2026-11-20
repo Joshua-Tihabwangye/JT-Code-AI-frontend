@@ -99,7 +99,7 @@ export function ReportsPage() {
       <section>
         {charts.isLoading && <SkeletonBlock height={140} />}
         <ErrorNote error={removeChart.error ?? shareChart.error ?? exportChart.error} />
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3" data-testid="saved-charts">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3" data-testid="saved-charts">
           {charts.data?.map((chart) => {
             const type = catalog?.charts.find((entry) => entry.id === chart.chartType);
             const category = catalog?.categories.find((entry) => entry.id === type?.category);

@@ -228,7 +228,7 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
       <ErrorNote error={error} />
       {report && (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5" data-testid="quality-score">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5" data-testid="quality-score">
             <div className="viz-tile flex items-center gap-3" style={colorVar(scoreColor)}>
               <div className="relative h-14 w-14 flex-shrink-0 rounded-full" style={{ background: `conic-gradient(${scoreColor} ${score * 3.6}deg, var(--muted) 0deg)` }}>
                 <div className="absolute inset-1.5 flex items-center justify-center rounded-full bg-[var(--card)] text-sm font-bold">{Math.round(score)}</div>
@@ -269,7 +269,7 @@ function QualityWorkspace({ report, loading, error, filter, setFilter, onFix }: 
               </button>
             ))}
           </div>
-          <div className="grid gap-4 lg:grid-cols-3" data-testid="issue-list">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3" data-testid="issue-list">
             {bySeverity.map(({ level, items }) => {
               const meta = SEVERITY[level]!;
               return (
@@ -399,7 +399,7 @@ function ProfileWorkspace({ profiles, search, kind, sort, onStep }: { profiles: 
     .sort((a, b) => (sort === 'name' ? a.name.localeCompare(b.name) : sort === 'missing' ? b.nullRatio - a.nullRatio : sort === 'distinct' ? b.distinct - a.distinct : 0));
   return (
     <Workspace title={t('visualize.data.profile.title')} subtitle={t('visualize.data.profile.subtitle', { shown: formatNumber(shown.length), total: formatNumber(profiles.length) })} icon={Table2} color="#6366f1">
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" data-testid="profile-cards">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" data-testid="profile-cards">
         {shown.map((profile) => {
           const style = KIND_STYLE[profile.kind] ?? KIND_STYLE.text!;
           const filled = 1 - profile.nullRatio;
@@ -544,7 +544,7 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
   return (
     <Workspace title={t('visualize.data.insights.title')} subtitle={t('visualize.data.insights.subtitle')} icon={Lightbulb} color="#f59e0b">
       <ErrorNote error={error} />
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-testid="insights-panel">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-testid="insights-panel">
         {shown.map((insight) => {
           const style = INSIGHT_STYLE[insight.kind] ?? INSIGHT_STYLE.overview!;
           const chart = insight.chart;
@@ -603,7 +603,7 @@ function InsightsWorkspace({ insights, recommendations, kind, loading, error }: 
       {recommendations.length > 0 && (
         <div>
           <h3 className="mb-2 text-sm font-semibold">{t('visualize.data.insights.suggested')}</h3>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4" data-testid="recommendations">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4" data-testid="recommendations">
             {recommendations.map((item) => {
               const category = catalog?.categories.find((entry) => entry.id === item.category);
               return (
