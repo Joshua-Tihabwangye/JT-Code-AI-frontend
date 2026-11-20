@@ -1,7 +1,23 @@
 import { useEffect, useRef } from 'react';
 
-export function ChatBackground() {
+/** Matches the opacity transition in global.css (.chat-background--dimmed). */
+const DIM_FADE_MS = 800;
+
+/**
+ * The animated waves behind the chat. ``dimmed`` (a conversation is on screen) fades them to a faint trace so
+ * questions and replies read clearly, then pauses the animation: no motion behind the text, no CPU spent.
+ */
+export function ChatBackground({ dimmed = false }: { dimmed?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  /** When the animation should stop (the fade has finished); 0 while the waves are shown in full. */
+  const pauseAtRef = useRef(0);
+  /** Restarts a stopped animation loop (provided by the drawing effect). */
+  const resumeRef = useRef<() => void>(() => undefined);
+
+  useEffect(() => {
+    pauseAtRef.current = dimmed ? performance.now() + DIM_FADE_MS : 0;
+    if (!dimmed) resumeRef.current();
+  }, [dimmed]);
 
   useEffect(() => {
     const canvasEl = canvasRef.current;
@@ -12,6 +28,7 @@ export function ChatBackground() {
     const ctx = ctxEl;
 
     let animationId: number;
+    let running = false;
     let width = 0;
     let height = 0;
     let time = 0;
@@ -128,9 +145,20 @@ export function ChatBackground() {
 
       if (!reduceMotion) {
         time += 0.008;
+        // Dimmed behind a conversation: stop once the fade is over, on its faint last frame.
+        const pauseAt = pauseAtRef.current;
+        if (pauseAt && performance.now() >= pauseAt) {
+          running = false;
+          return;
+        }
+        running = true;
         animationId = requestAnimationFrame(draw);
       }
     }
+
+    resumeRef.current = () => {
+      if (!running && !reduceMotion) draw();
+    };
 
     function handleMotionPreferenceChange(event: MediaQueryListEvent) {
       reduceMotion = event.matches;
@@ -144,12 +172,14 @@ export function ChatBackground() {
 
     window.addEventListener('resize', resize);
     motionPreference.addEventListener('change', handleMotionPreferenceChange);
+    // A theme change redraws a still frame (reduced motion, or paused behind a conversation) in the new colours.
     const observer = new MutationObserver(() => {
-      if (reduceMotion) draw();
+      if (reduceMotion || !running) draw();
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     return () => {
+      resumeRef.current = () => undefined;
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
       motionPreference.removeEventListener('change', handleMotionPreferenceChange);
@@ -158,7 +188,7 @@ export function ChatBackground() {
   }, []);
 
   return (
-    <div className="chat-background">
+    <div className={`chat-background${dimmed ? ' chat-background--dimmed' : ''}`} data-testid="chat-background" data-dimmed={dimmed || undefined}>
       <canvas ref={canvasRef} />
     </div>
   );
