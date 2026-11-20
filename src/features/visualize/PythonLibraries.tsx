@@ -1,15 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import { Cpu } from 'lucide-react';
 import { useVisualize } from './context';
+import { useScrollHint } from '@/lib/useScrollHint';
 
 /** The Python libraries that do the work on this page, with their versions (from the server). */
 export function PythonLibraries({ page }: { page: string }) {
   const { t } = useTranslation();
   const { catalog } = useVisualize();
+  const hint = useScrollHint<HTMLDivElement>();
   const libraries = catalog?.libraries?.[page] ?? [];
   if (!libraries.length) return null;
   return (
-    <div className="viz-libraries" data-testid={`python-libraries-${page}`}>
+    <div ref={hint} className="viz-libraries" data-testid={`python-libraries-${page}`}>
       <span className="viz-libraries-title">
         <Cpu size={13} aria-hidden /> {t('visualize.libraries.title')}
       </span>

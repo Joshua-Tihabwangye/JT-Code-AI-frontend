@@ -4085,3 +4085,31 @@ html.dark .viz-menu {
 .dash-editor-bar {
   position: relative;
 }
+
+/* Sideways scrollers show that they scroll (useScrollHint): the side with hidden content fades out.
+   Phones hide these rows' scrollbars, so without the fade nothing said there was more to see. */
+.viz-nav,
+.viz-libraries,
+.viz-ribbon-tabs,
+.viz-ribbon-body,
+.dash-editor-bar,
+.dash-pages {
+  --scroll-fade: 2.75rem;
+}
+:is(.viz-nav, .viz-libraries, .viz-ribbon-tabs, .viz-ribbon-body, .dash-editor-bar, .dash-pages)[data-more-right] {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--scroll-fade)), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--scroll-fade)), transparent);
+}
+:is(.viz-nav, .viz-libraries, .viz-ribbon-tabs, .viz-ribbon-body, .dash-editor-bar, .dash-pages)[data-more-left] {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - var(--scroll-fade)), transparent);
+  mask-image: linear-gradient(to left, #000 calc(100% - var(--scroll-fade)), transparent);
+}
+:is(.viz-nav, .viz-libraries, .viz-ribbon-tabs, .viz-ribbon-body, .dash-editor-bar, .dash-pages)[data-more-left][data-more-right] {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--scroll-fade), #000 calc(100% - var(--scroll-fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--scroll-fade), #000 calc(100% - var(--scroll-fade)), transparent);
+}
+/* A menu sheet opened from the editor toolbar is painted inside the toolbar: the fade would cover it. */
+.dash-editor-bar:has(.dash-menu) {
+  -webkit-mask-image: none;
+  mask-image: none;
+}

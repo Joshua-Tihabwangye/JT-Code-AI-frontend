@@ -126,7 +126,8 @@ export function ChatPage() {
   const hasThread = messages.length > 0 || !!loadError;
   return (
     <section className="chat-workspace" data-persistence-mode={persistenceMode}>
-      <ChatBackground />
+      {/* A conversation on screen fades the waves so the messages read clearly. */}
+      <ChatBackground dimmed={hasThread} />
 
       {hasThread ? (
         <>

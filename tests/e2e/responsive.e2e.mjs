@@ -268,10 +268,30 @@ function findOverflow() {
       }
     }
   }
+  // Sideways scrollers in Visualize hide their scrollbar on phones: one that overflows must show a hint.
+  const hintless = [];
+  for (const el of document.querySelectorAll('.viz-nav, .viz-libraries, .viz-ribbon-tabs, .viz-ribbon-body, .dash-editor-bar, .dash-pages')) {
+    if (el.scrollWidth <= el.clientWidth + 1 || getComputedStyle(el).display === 'none') continue;
+    if (!el.hasAttribute('data-more-left') && !el.hasAttribute('data-more-right')) hintless.push(describe(el));
+  }
+  // The open phone drawer: its last control must end clear of a browser toolbar drawn over the bottom
+  // (Safari's floating bar), or be reachable by scrolling the drawer.
+  let drawer = null;
+  const sidebar = document.querySelector('.app-shell.drawer-open .sidebar');
+  if (sidebar) {
+    const controls = [...sidebar.querySelectorAll('.sidebar-footer button, .sidebar-footer a')].filter((el) => el.getBoundingClientRect().height > 0);
+    const last = controls[controls.length - 1];
+    const bottom = last ? Math.round(last.getBoundingClientRect().bottom) : 0;
+    const clear = window.innerHeight - 96;
+    const scrolls = sidebar.scrollHeight > sidebar.clientHeight + 1;
+    if (!last || (bottom > clear && !scrolls)) drawer = `last drawer control ends at ${bottom}px, toolbar zone starts at ${clear}px`;
+  }
   return {
     pageScroll,
     scrollWidth: document.documentElement.scrollWidth,
     offenders: offenders.slice(0, 12),
+    hintless,
+    drawer,
   };
 }
 
@@ -328,6 +348,8 @@ async function main() {
           const problems = [
             ...(result.pageScroll ? [`page scrolls sideways (scrollWidth ${result.scrollWidth})`] : []),
             ...result.offenders.map((o) => `${o.element} → right ${o.right}px (width ${o.width})`),
+            ...result.hintless.map((h) => `${h} scrolls sideways without a hint`),
+            ...(result.drawer ? [result.drawer] : []),
             ...errors.map((e) => `page error: ${e}`),
           ];
           if (problems.length) {

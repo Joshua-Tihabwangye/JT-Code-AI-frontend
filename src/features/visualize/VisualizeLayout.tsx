@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BrainCircuit, Compass, Database, FileText, FolderCog, LayoutGrid, Shapes, Sparkles } from 'lucide-react';
 import { apiErrorMessage } from '@/lib/api/http';
+import { useScrollHint } from '@/lib/useScrollHint';
 import { AssistantPanel } from './AssistantPanel';
 import { PythonLibraries } from './PythonLibraries';
 import { DatasetsDialog } from './DatasetsDialog';
@@ -23,6 +24,7 @@ function Shell() {
   const { t } = useTranslation();
   const { catalogError, assistantOpen, setAssistantOpen, datasets, datasetId, setDatasetId } = useVisualize();
   const [managing, setManaging] = useState(false);
+  const navHint = useScrollHint<HTMLElement>('viz-nav');
   const location = useLocation();
   const path = location.pathname.replace(/\/+$/, '');
   // An open dashboard (view or edit) gets the whole screen and its own header.
@@ -45,7 +47,7 @@ function Shell() {
           <button type="button" className="viz-chip" onClick={() => setManaging(true)} disabled={!datasets.length} title={t('visualize.datasets.title')} data-testid="manage-datasets">
             <FolderCog size={14} aria-hidden /> {t('visualize.datasets.manage')}
           </button>
-          <nav className="viz-nav" aria-label={t('visualize.sections')}>
+          <nav ref={navHint} className="viz-nav" aria-label={t('visualize.sections')}>
             {TABS.map((tab) => (
               <NavLink key={tab.key} to={tab.to} end={!tab.match} className={({ isActive }) => ((tab.match ? tab.match.test(path) : isActive) ? 'active' : '')} data-testid={`tab-${tab.key}`}>
                 <tab.icon size={15} aria-hidden /> {t(`visualize.tabs.${tab.key}`)}

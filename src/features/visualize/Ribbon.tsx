@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, type LucideIcon } from 'lucide-react';
+import { useScrollHint } from '@/lib/useScrollHint';
 
 export interface RibbonTab {
   id: string;
@@ -26,9 +27,11 @@ export function Ribbon({
 }) {
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
+  const tabsHint = useScrollHint<HTMLDivElement>('viz-ribbon-tabs');
+  const bodyHint = useScrollHint<HTMLDivElement>('viz-ribbon-body');
   return (
     <div className="viz-ribbon" data-testid={testId}>
-      <div className="viz-ribbon-tabs" role="tablist">
+      <div ref={tabsHint} className="viz-ribbon-tabs" role="tablist">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -58,7 +61,7 @@ export function Ribbon({
           </button>
         </div>
       </div>
-      {!collapsed && <div className="viz-ribbon-body">{children}</div>}
+      {!collapsed && <div ref={bodyHint} className="viz-ribbon-body">{children}</div>}
     </div>
   );
 }
