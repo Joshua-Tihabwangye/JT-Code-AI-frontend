@@ -1199,6 +1199,15 @@ html.dark .tooltip { box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 8px 20px 
     z-index: 80;
   }
   .app-shell.drawer-open .sidebar { transform: translateX(0); }
+  /* The footer follows the navigation instead of sitting at the bottom of a full-height drawer: Safari's
+     floating toolbar covers the bottom of the screen, and the content still fit, so nothing scrolled. */
+  .sidebar {
+    overscroll-behavior: contain;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  .sidebar-footer { margin-top: 1rem; }
+  /* The drawer always shows its labels, so Collapse does nothing here. */
+  .sidebar-collapse-toggle { display: none !important; }
 
   .sidebar-backdrop {
     display: block;

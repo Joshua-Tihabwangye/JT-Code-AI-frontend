@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MEDIA, useMediaQuery } from '@/lib/useMediaQuery';
+import { useScrollHint } from '@/lib/useScrollHint';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   AlignCenterHorizontal,
@@ -125,6 +126,8 @@ export function DashboardEditor() {
   const [pane, setPane] = useState<PaneTab>('build');
   // Below 1100 px the pane opens over the canvas, so it starts closed and the canvas gets the width.
   const narrow = useMediaQuery(MEDIA.narrow);
+  const toolbarHint = useScrollHint<HTMLElement>('dash-editor-bar');
+  const pagesHint = useScrollHint<HTMLElement>();
   const [paneOpen, setPaneOpen] = useState(() => typeof window === 'undefined' || !window.matchMedia?.(MEDIA.narrow).matches);
   const [renamingPage, setRenamingPage] = useState('');
   const [interactions, setInteractions] = useState(false);
@@ -410,7 +413,7 @@ export function DashboardEditor() {
 
   return (
     <div className="dash-editor" data-testid="dashboard-editor" onPointerDown={() => menu && setMenu(null)}>
-      <header className="dash-editor-bar" onPointerDown={(event) => event.stopPropagation()}>
+      <header ref={toolbarHint} className="dash-editor-bar" onPointerDown={(event) => event.stopPropagation()}>
         <button type="button" onClick={() => leave(`/app/visualize/dashboards/${dashboardId}`)} className="viz-icon-button" aria-label={t('visualize.editor.close')} title={t('visualize.editor.close')} data-testid="editor-back">
           <ArrowLeft size={16} aria-hidden />
         </button>
@@ -940,7 +943,7 @@ export function DashboardEditor() {
         </aside>
       </div>
 
-      <footer className="dash-pages" data-testid="page-tabs">
+      <footer ref={pagesHint} className="dash-pages" data-testid="page-tabs">
         {spec.pages.map((item, index) => (
           <div key={item.id} className={`dash-page-tab${item.id === page.id ? ' active' : ''}`}>
             {renamingPage === item.id ? (

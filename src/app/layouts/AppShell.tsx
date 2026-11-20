@@ -161,7 +161,7 @@ export function AppShell() {
 
           <AccountMenu collapsed={collapsed} />
 
-          <button type="button" onClick={toggleSidebar} title={collapsed ? t('chrome.expandSidebar') : t('chrome.collapseSidebar')} aria-label={collapsed ? t('chrome.expandSidebar') : t('chrome.collapseSidebar')}>
+          <button type="button" className="sidebar-collapse-toggle" onClick={toggleSidebar} title={collapsed ? t('chrome.expandSidebar') : t('chrome.collapseSidebar')} aria-label={collapsed ? t('chrome.expandSidebar') : t('chrome.collapseSidebar')}>
             {collapsed ? <PanelLeft size={18} aria-hidden /> : <PanelLeftClose size={18} aria-hidden />}
             {!collapsed && <span className="footer-label">{t('chrome.collapse')}</span>}
           </button>
