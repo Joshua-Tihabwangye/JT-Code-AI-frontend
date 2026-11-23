@@ -5,6 +5,9 @@
 import type {
   Account,
   AccountUpdate,
+  ApiKey,
+  CreatedApiKey,
+  NewApiKey,
   AcceptedInvite,
   CreatedTeamInvite,
   TeamMember,
@@ -136,6 +139,13 @@ export interface TeamRepository {
   acceptInvite(inviteId: string, token: string): Promise<AcceptedInvite>;
   /** Every workspace the signed-in user belongs to. */
   listWorkspaces(): Promise<Workspace[]>;
+}
+
+export interface ApiKeyRepository {
+  /** Admins see every key of the workspace; other members only their own. */
+  list(): Promise<ApiKey[]>;
+  create(input: NewApiKey): Promise<CreatedApiKey>;
+  revoke(id: string): Promise<ApiKey>;
 }
 
 export interface SendMessageOptions {
@@ -532,6 +542,7 @@ export interface Repositories {
   auth: AuthRepository;
   account: AccountRepository;
   team: TeamRepository;
+  apiKeys: ApiKeyRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

@@ -108,9 +108,9 @@ export function EmptyPageGuide({ datasetId, onAdd, onGallery }: { datasetId: str
 
       <p className="dash-start-label">{t('visualize.editor.guide.forData', { name: dataset?.name ?? '' })}</p>
       {insights.isLoading ? (
-        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Spinner size="sm" /> {t('visualize.editor.guide.reading')}
-        </p>
+        </div>
       ) : (
         <div className="dash-start-visuals">
           {recommended.map((item, index) => tile(`chart-${item.chartType}`, text.chartName({ id: item.chartType, name: item.name }), item.reason, item.chartType, COLORS[(index + 3) % COLORS.length]!))}

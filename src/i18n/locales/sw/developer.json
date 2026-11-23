@@ -1,0 +1,50 @@
+{
+  "tab": "Msanidi",
+  "mockNote": "Hali ya onyesho: funguo huwekwa kwenye kivinjari hiki pekee na hazifanyi kazi dhidi ya seva.",
+  "createTitle": "Vifunguo vya API",
+  "createDesc": "Ruhusu seva zako mwenyewe ziite API ya JT-Code ya nafasi hii ya kazi. Ufunguo hutenda kama wewe, ndani ya nafasi hii ya kazi pekee, na huwezi kamwe kudhibiti funguo, akaunti yako au wanachama.",
+  "name": "Jina muhimu",
+  "namePlaceholder": "k.m. Seva ya kuripoti",
+  "expiresLabel": "Muda wake unaisha",
+  "expiry": {
+    "30": "Katika siku 30",
+    "90": "Katika siku 90",
+    "365": "Katika mwaka 1",
+    "never": "Kamwe"
+  },
+  "create": "Unda ufunguo",
+  "writeScope": "Ruhusu mabadiliko (andika)",
+  "scopeHelp": "Bila hii ufunguo unaweza kusoma tu. Toa ufikiaji wa maandishi kwa seva zinazohitaji kuunda au kubadilisha data pekee.",
+  "shownOnce": "Ufunguo wako mpya \"{{name}}\". Nakili sasa: inaonyeshwa mara moja tu na haiwezi kurejeshwa.",
+  "keyLabel": "Kitufe cha API",
+  "copy": "Kitufe cha kunakili",
+  "copied": "Imenakiliwa",
+  "usage": "Itume kwa kichwa cha X-API-Key, kwa mfano:",
+  "listTitle": "Funguo",
+  "listDesc": "Wasimamizi wanaona kila ufunguo wa nafasi hii ya kazi; wanachama wengine wanaona vyao.",
+  "none": "Bado hakuna funguo za API.",
+  "status": {
+    "active": "Inayotumika",
+    "revoked": "Imebatilishwa",
+    "expired": "Muda wake umeisha"
+  },
+  "scopes": {
+    "read": "Soma",
+    "write": "Andika"
+  },
+  "createdOn": "Imeundwa {{date}}",
+  "lastUsed": "Ilitumika mwisho {{date}}",
+  "neverUsed": "Haijawahi kutumika",
+  "expiresOn": "Inaisha {{date}}",
+  "noExpiry": "Muda wake hauisha",
+  "revoke": "Batilisha",
+  "revokeFor": "Batilisha {{name}}",
+  "revokeTitle": "Batilisha ufunguo wa API",
+  "revokeConfirm": "“{{name}}” huacha kufanya kazi mara moja. Seva zinazoitumia zitakataliwa.",
+  "revoked": "Kitufe cha API kimebatilishwa.",
+  "errors": {
+    "notFound": "Ufunguo huu wa API haupo tena.",
+    "nameRequired": "Ipe ufunguo jina.",
+    "scopeRequired": "Chagua angalau upeo mmoja."
+  }
+}

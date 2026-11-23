@@ -118,9 +118,9 @@ export function CustomPredictionDialog({ open, onClose, onCreated }: { open: boo
         </label>
 
         {options.isLoading && (
-          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Spinner size="sm" /> {t('visualize.predict.custom.reading')}
-          </p>
+          </div>
         )}
         {options.error && <Alert variant="destructive">{apiErrorMessage(options.error)}</Alert>}
 

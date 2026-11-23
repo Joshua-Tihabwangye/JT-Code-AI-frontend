@@ -1,0 +1,50 @@
+{
+  "tab": "Desenvolvedor",
+  "mockNote": "Modo de demonstração: as chaves são mantidas apenas neste navegador e não funcionam em um servidor.",
+  "createTitle": "Chaves de API",
+  "createDesc": "Deixe seus próprios servidores chamarem a API JT-Code para este espaço de trabalho. Uma chave atua como você, apenas dentro deste espaço de trabalho, e nunca pode gerenciar chaves, sua conta ou membros.",
+  "name": "Nome da chave",
+  "namePlaceholder": "por exemplo Servidor de relatórios",
+  "expiresLabel": "Expira",
+  "expiry": {
+    "30": "Em 30 dias",
+    "90": "Em 90 dias",
+    "365": "Em 1 ano",
+    "never": "Nunca"
+  },
+  "create": "Criar chave",
+  "writeScope": "Permitir alterações (gravar)",
+  "scopeHelp": "Sem isso a chave só pode ler. Conceda acesso de gravação apenas a servidores que precisam criar ou alterar dados.",
+  "shownOnce": "Sua nova chave “{{name}}”. Copie agora: ele é mostrado apenas uma vez e não pode ser recuperado.",
+  "keyLabel": "Chave de API",
+  "copy": "Copiar chave",
+  "copied": "Copiado",
+  "usage": "Envie-o no cabeçalho X-API-Key, por exemplo:",
+  "listTitle": "Chaves",
+  "listDesc": "Os administradores veem todas as chaves deste espaço de trabalho; outros membros veem os seus próprios.",
+  "none": "Ainda não há chaves de API.",
+  "status": {
+    "active": "Ativo",
+    "revoked": "Revogado",
+    "expired": "Expirado"
+  },
+  "scopes": {
+    "read": "Ler",
+    "write": "Escrever"
+  },
+  "createdOn": "Criado {{date}}",
+  "lastUsed": "Última utilização {{date}}",
+  "neverUsed": "Nunca usado",
+  "expiresOn": "Expira em {{date}}",
+  "noExpiry": "Não expira",
+  "revoke": "Revogar",
+  "revokeFor": "Revogar {{name}}",
+  "revokeTitle": "Revogar chave de API",
+  "revokeConfirm": "“{{name}}” para de funcionar imediatamente. Os servidores que o utilizam serão recusados.",
+  "revoked": "Chave de API revogada.",
+  "errors": {
+    "notFound": "Esta chave de API não existe mais.",
+    "nameRequired": "Dê um nome à chave.",
+    "scopeRequired": "Escolha pelo menos um escopo."
+  }
+}

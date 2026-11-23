@@ -18,5 +18,6 @@ export const KEYS = {
   messages: 'jtcode:messages',
   images: 'jtcode:image-generations',
   team: 'jtcode:team',
+  apiKeys: 'jtcode:api-keys',
   seeded: 'jtcode:seeded',
 } as const;

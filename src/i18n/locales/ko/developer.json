@@ -1,0 +1,50 @@
+{
+  "tab": "개발자",
+  "mockNote": "데모 모드: 키는 이 브라우저에만 보관되며 서버에서는 작동하지 않습니다.",
+  "createTitle": "API 키",
+  "createDesc": "자신의 서버가 이 작업공간에 대한 JT-Code API를 호출하도록 하십시오. 키는 이 작업 공간 내에서만 귀하의 역할을 하며 키, 귀하의 계정 또는 멤버를 관리할 수 없습니다.",
+  "name": "키 이름",
+  "namePlaceholder": "예를 들어 보고 서버",
+  "expiresLabel": "만료",
+  "expiry": {
+    "30": "30일 후",
+    "90": "90일 후",
+    "365": "1년 후",
+    "never": "절대"
+  },
+  "create": "키 생성",
+  "writeScope": "변경 허용(쓰기)",
+  "scopeHelp": "이것이 없으면 키는 읽기만 가능합니다. 데이터를 생성하거나 변경해야 하는 서버에만 쓰기 액세스 권한을 부여하세요.",
+  "shownOnce": "새 키 “{{name}}”. 지금 복사하세요. 한 번만 표시되며 복구할 수 없습니다.",
+  "keyLabel": "API 키",
+  "copy": "키 복사",
+  "copied": "복사됨",
+  "usage": "X-API-Key 헤더로 보내세요. 예를 들면 다음과 같습니다",
+  "listTitle": "열쇠",
+  "listDesc": "관리자는 이 작업공간의 모든 키를 볼 수 있습니다. 다른 회원들은 자신의 회원을 봅니다.",
+  "none": "아직 API 키가 없습니다.",
+  "status": {
+    "active": "활동적인",
+    "revoked": "취소됨",
+    "expired": "만료됨"
+  },
+  "scopes": {
+    "read": "읽다",
+    "write": "쓰다"
+  },
+  "createdOn": "{{date}}을(를) 생성했습니다",
+  "lastUsed": "마지막으로 사용된 날짜: {{date}}",
+  "neverUsed": "한번도 사용하지 않음",
+  "expiresOn": "{{date}} 만료",
+  "noExpiry": "만료되지 않음",
+  "revoke": "취소",
+  "revokeFor": "{{name}} 취소",
+  "revokeTitle": "API 키 취소",
+  "revokeConfirm": "“{{name}}”이(가) 즉시 작동을 멈춥니다. 이를 사용하는 서버는 거부됩니다.",
+  "revoked": "API 키가 취소되었습니다.",
+  "errors": {
+    "notFound": "이 API 키는 더 이상 존재하지 않습니다.",
+    "nameRequired": "키에 이름을 지정합니다.",
+    "scopeRequired": "범위를 하나 이상 선택하세요."
+  }
+}

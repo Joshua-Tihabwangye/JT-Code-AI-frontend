@@ -1,0 +1,50 @@
+{
+  "tab": "Geliştirici",
+  "mockNote": "Demo modu: Anahtarlar yalnızca bu tarayıcıda tutulur ve bir sunucuda çalışmaz.",
+  "createTitle": "API anahtarları",
+  "createDesc": "Kendi sunucularınızın bu çalışma alanı için JT-Code API'sini çağırmasına izin verin. Bir anahtar, bu çalışma alanında yalnızca sizin gibi hareket eder ve hiçbir zaman anahtarları, hesabınızı veya üyelerinizi yönetemez.",
+  "name": "Anahtar adı",
+  "namePlaceholder": "örneğin Raporlama sunucusu",
+  "expiresLabel": "Süresi doluyor",
+  "expiry": {
+    "30": "30 gün içinde",
+    "90": "90 gün içinde",
+    "365": "1 yıl içinde",
+    "never": "Asla"
+  },
+  "create": "Anahtar oluştur",
+  "writeScope": "Değişikliklere izin ver (yaz)",
+  "scopeHelp": "Bu olmadan anahtar yalnızca okuyabilir. Yalnızca veri oluşturması veya değiştirmesi gereken sunuculara yazma erişimi verin.",
+  "shownOnce": "Yeni anahtarınız “{{name}}”. Şimdi kopyalayın: yalnızca bir kez gösterilir ve kurtarılamaz.",
+  "keyLabel": "API anahtarı",
+  "copy": "Anahtarı kopyala",
+  "copied": "Kopyalandı",
+  "usage": "Bunu X-API-Key başlığına gönderin, örneğin:",
+  "listTitle": "Anahtarlar",
+  "listDesc": "Yöneticiler bu çalışma alanının her anahtarını görür; diğer üyeler kendilerininkini görürler.",
+  "none": "Henüz API anahtarı yok.",
+  "status": {
+    "active": "Aktif",
+    "revoked": "İptal edildi",
+    "expired": "Günü geçmiş"
+  },
+  "scopes": {
+    "read": "Okumak",
+    "write": "Yazmak"
+  },
+  "createdOn": "{{date}} oluşturuldu",
+  "lastUsed": "Son kullanılan {{date}}",
+  "neverUsed": "Hiç kullanılmadı",
+  "expiresOn": "Süresi {{date}} tarihinde doluyor",
+  "noExpiry": "Süresi dolmaz",
+  "revoke": "Geri çekmek",
+  "revokeFor": "{{name}}'yi iptal et",
+  "revokeTitle": "API anahtarını iptal et",
+  "revokeConfirm": "“{{name}}” çalışmayı hemen durdurur. Bunu kullanan sunucular reddedilecektir.",
+  "revoked": "API anahtarı iptal edildi.",
+  "errors": {
+    "notFound": "Bu API anahtarı artık mevcut değil.",
+    "nameRequired": "Anahtara bir isim verin.",
+    "scopeRequired": "En az bir kapsam seçin."
+  }
+}
