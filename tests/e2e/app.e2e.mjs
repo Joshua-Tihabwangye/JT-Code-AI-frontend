@@ -237,7 +237,7 @@ async function main() {
     });
 
     await step(page, 'history lists and reopens the conversation', async () => {
-      await page.click('a[href="/app/history"]');
+      await page.click('nav.nav-links a[href="/app/history"]');
       await waitForText(page, '[data-testid="history-list"]', /Hello from the browser e2e test/);
       await clickText(page, '[data-testid="history-list"] button', /Hello from the browser e2e test/);
       await page.waitForFunction(() => location.pathname === '/app/chat' && new URL(location.href).searchParams.get('c'));
@@ -245,22 +245,22 @@ async function main() {
     });
 
     await step(page, 'chat picks up where the user stopped; only New chat starts a fresh one', async () => {
-      await page.click('a[href="/app/history"]');
+      await page.click('nav.nav-links a[href="/app/history"]');
       await page.waitForSelector('[data-testid="history-list"]');
-      await page.click('a[href="/app/chat"]');
+      await page.click('nav.nav-links a[href="/app/chat"]');
       await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/);
       await page.reload();
       await waitForText(page, '[data-testid="message-assistant"]', /Hello from the browser e2e test/, 30_000);
       await domClick(page, '[data-testid="new-chat"]');
       await page.waitForFunction(() => !new URL(location.href).searchParams.get('c') && !document.querySelector('[data-testid="message-user"]'));
-      await page.click('a[href="/app/history"]');
+      await page.click('nav.nav-links a[href="/app/history"]');
       await page.waitForSelector('[data-testid="history-list"]');
-      await page.click('a[href="/app/chat"]');
+      await page.click('nav.nav-links a[href="/app/chat"]');
       await page.waitForSelector('.chat-landing');
     });
 
     await step(page, 'visualize: the sidebar door opens the dashboards home with one module bar', async () => {
-      await page.click('a[href="/app/visualize"]');
+      await page.click('nav.nav-links a[href="/app/visualize"]');
       await page.waitForSelector('[data-testid="dashboards-home"]');
       await page.waitForSelector('[data-testid="viz-header"] [data-testid="module-dataset"]');
       const tabs = await page.$$eval('[data-testid="viz-header"] nav a', (links) => links.map((link) => link.textContent?.trim()));
@@ -334,8 +334,20 @@ async function main() {
       await page.waitForSelector('[data-testid="gallery-recommended"] [data-testid^="gallery-chart-"]', { timeout: 60_000 });
       const pictures = await page.$$eval('[data-testid^="gallery-chart-"] svg[data-thumb]', (svgs) => new Set(svgs.map((svg) => svg.getAttribute('data-thumb'))).size);
       if (pictures < 20) throw new Error(`only ${pictures} different chart pictures`);
-      const toolbar = await page.$eval('[data-testid="gallery-toolbar"]', (el) => el.getBoundingClientRect().height);
-      if (toolbar > 80) throw new Error(`the gallery toolbar wraps onto several lines (${toolbar}px)`);
+      // Design (2026-11-15): the category chips wrap so every category stays visible, instead of a hidden
+      // sideways scroll. Check that: no chip is clipped or scrolled away, and the toolbar stays compact.
+      const layout = await page.$eval('[data-testid="gallery-toolbar"]', (toolbar) => {
+        const box = toolbar.getBoundingClientRect();
+        const chips = [...toolbar.querySelectorAll('[data-testid="gallery-categories"] > *')];
+        const outside = chips.filter((chip) => {
+          const rect = chip.getBoundingClientRect();
+          return rect.width === 0 || rect.left < box.left - 1 || rect.right > box.right + 1;
+        }).length;
+        const scroller = toolbar.querySelector('[data-testid="gallery-categories"]');
+        return { height: box.height, chips: chips.length, outside, scrolls: scroller.scrollWidth > scroller.clientWidth + 1 };
+      });
+      if (layout.chips < 2 || layout.outside || layout.scrolls) throw new Error(`gallery categories hidden: ${JSON.stringify(layout)}`);
+      if (layout.height > 220) throw new Error(`the gallery toolbar is too tall (${layout.height}px)`);
       await fitsOnScreen(page, 'gallery');
       await page.type('[data-testid="gallery-search"]', 'violin');
       await domClick(page, '[data-testid="gallery-chart-violin"]');
@@ -347,6 +359,10 @@ async function main() {
       await domClick(page, '[data-testid="explore-add"]');
       const card = await page.$$eval('[data-testid^="explore-card-"]', (cards) => cards.length - 1);
       await page.waitForSelector(`[data-testid="explore-card-${card}"].selected .dash-tile[data-status="ok"]`, { timeout: 60_000 });
+      // The chart types and the Build/Format tabs are under "All options" (simple mode asks a question).
+      if ((await page.$eval('[data-testid="explore-advanced"]', (el) => el.getAttribute('aria-pressed'))) !== 'true') {
+        await domClick(page, '[data-testid="explore-advanced"]');
+      }
       // A bar with a category and no value draws counts (the old Studio bug).
       await domClick(page, '[data-testid="explore-type-bar"]');
       await domClick(page, '[data-testid="explore-pane-build"]');
@@ -387,7 +403,11 @@ async function main() {
       await page.waitForSelector('[data-testid="prediction-chart-forecast"][data-ready="true"]', { timeout: 60_000 });
       if (await page.$('[data-testid="prediction-results"] table.viz-table')) throw new Error('the raw results table is still shown');
       await domClick(page, '[data-testid="prediction-how"] summary');
-      await waitForText(page, '[data-testid="prediction-how"]', /How to read it/);
+      // The panel ("How this was calculated") opens and explains the method in at least one line.
+      await page.waitForFunction(() => {
+        const panel = document.querySelector('[data-testid="prediction-how"]');
+        return panel?.open && panel.querySelectorAll('li').length > 0;
+      });
       await fitsOnScreen(page, 'predict-results');
       const [excel] = await Promise.all([
         page.waitForResponse((response) => response.url().includes('/predict/results/') && response.url().includes('type=xlsx'), { timeout: 120_000 }),
@@ -674,8 +694,20 @@ async function main() {
       await page.click('[data-testid="frame-matrix"] .dash-tile-title');
       await domClick(page, '[data-testid="pane-format"]');
       await domClick(page, '[data-testid="section-conditional"] summary');
+      // Since the theme defaults (2026-11-11) the colours come from the theme, so check that the new rule
+      // repaints the cells rather than one fixed colour.
+      const cellStyles = () =>
+        page.$$eval('[data-testid="frame-matrix"] td.num', (cells) => cells.map((td) => td.getAttribute('style') ?? '').join('|'));
+      const before = await cellStyles();
       await domClick(page, '[data-testid="add-conditional"]');
-      await page.waitForFunction(() => [...document.querySelectorAll('[data-testid="frame-matrix"] td.num')].some((td) => /rgb\(254, 226, 226\)/.test(td.getAttribute('style') ?? '')), { timeout: 60_000 });
+      await page.waitForFunction(
+        (previous) => {
+          const now = [...document.querySelectorAll('[data-testid="frame-matrix"] td.num')].map((td) => td.getAttribute('style') ?? '').join('|');
+          return now !== previous && /background/.test(now);
+        },
+        { timeout: 60_000 },
+        before,
+      );
       // Analytics: an average line on the trend.
       await page.click('[data-testid="frame-trend"] .dash-tile-title');
       await domClick(page, '[data-testid="section-analytics"] summary');
@@ -720,6 +752,8 @@ async function main() {
 
     await step(page, 'dashboards: viewer — what-if slider, personalize a visual, personal views', async () => {
       const projected = `[data-testid="tile-${globalThis.projectedCard}"] .dash-kpi-value`;
+      // The viewer redraws the tiles after leaving the editor: wait for the card's value first.
+      await page.waitForSelector(projected, { timeout: 60_000 });
       const before = await textOf(page, projected);
       await setInput(page, '[data-testid^="param-slider-"]', '0.3');
       await page.waitForFunction((sel, was) => document.querySelector(sel)?.textContent !== was, { timeout: 60_000 }, projected, before);
@@ -895,7 +929,9 @@ async function main() {
     await step(page, 'dashboards: a colleague (viewer) personalizes a visual, keeps it after a reload, then resets', async () => {
       const viewerEmail = `e2e-viewer-${run}@jt-code.local`;
       const viewerPassword = `${password}-v`;
-      await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), ['manage.py', 'join_local_organization', viewerEmail, '--owner', email, '--create'], {
+      // The stack under test, as in grantCredits: the Docker stack's database by default.
+      const manage = process.env.JT_CODE_STACK === 'native' ? ['manage.py'] : ['scripts/local_manage.py', 'docker'];
+      await promisify(execFile)(resolve(BACKEND_DIR, '.venv/bin/python'), [...manage, 'join_local_organization', viewerEmail, '--owner', email, '--create'], {
         cwd: BACKEND_DIR,
         env: { ...process.env, JOIN_PASSWORD: viewerPassword },
       });
