@@ -985,6 +985,29 @@ async function main() {
       await waitForText(page, '[data-testid="export-status"]', /Exported \d+ page/, 60_000);
     });
 
+    await step(page, 'settings: create an API key, call the API with it, then revoke it', async () => {
+      await page.goto(`${BASE}/app/settings?tab=developer`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="developer-tab"]');
+      await setInput(page, '[data-testid="developer-tab"] input:not([type="checkbox"])', `e2e key ${run}`);
+      await domClick(page, '[data-testid="create-api-key"]');
+      await page.waitForSelector('[data-testid="api-key-secret"]');
+      const key = await page.$eval('[data-testid="api-key-secret"]', (input) => input.value);
+      if (!/^jtk_(test|live)_/.test(key)) throw new Error(`unexpected key ${key.slice(0, 12)}…`);
+      // The key works from a server (no browser session): read allowed, write refused (read-only by default).
+      const api = await page.evaluate(() => new URL(document.querySelector('pre code')?.textContent?.match(/(https?:\/\/\S+)\/conversations\//)?.[1] ?? '', location.href).href);
+      const read = await fetch(`${api}/conversations/`, { headers: { 'X-API-Key': key } });
+      if (read.status !== 200) throw new Error(`reading with the key answered ${read.status}`);
+      const write = await fetch(`${api}/conversations/`, { method: 'POST', headers: { 'X-API-Key': key, 'Content-Type': 'application/json' }, body: '{"title":"x"}' });
+      if (write.status !== 403) throw new Error(`writing with a read key answered ${write.status}`);
+      await page.waitForFunction((name) => document.querySelector('[data-testid="api-keys"]')?.textContent?.includes(name), {}, `e2e key ${run}`);
+      await domClick(page, '[data-testid="api-keys"] li button');
+      await page.waitForSelector('[role="alertdialog"]');
+      await page.$$eval('[role="alertdialog"] button', (buttons) => buttons.at(-1).click());
+      await page.waitForFunction(() => !document.querySelector('[data-testid="api-keys"] li button'), { timeout: 30_000 });
+      const after = await fetch(`${api}/conversations/`, { headers: { 'X-API-Key': key } });
+      if (after.status !== 401) throw new Error(`a revoked key answered ${after.status}`);
+    });
+
     await step(page, 'settings: edit and save the profile', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle0' });
       await waitForText(page, 'body', new RegExp(email.replace(/[.@]/g, '\\$&')));

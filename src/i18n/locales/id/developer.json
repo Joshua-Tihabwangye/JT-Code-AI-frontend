@@ -1,0 +1,50 @@
+{
+  "tab": "Pengembang",
+  "mockNote": "Mode demo: kunci hanya disimpan di browser ini dan tidak berfungsi pada server.",
+  "createTitle": "Kunci API",
+  "createDesc": "Biarkan server Anda memanggil JT-Code API untuk ruang kerja ini. Kunci bertindak sebagai Anda, hanya di dalam ruang kerja ini, dan tidak pernah dapat mengelola kunci, akun, atau anggota Anda.",
+  "name": "Nama kunci",
+  "namePlaceholder": "misalnya Server pelaporan",
+  "expiresLabel": "Kedaluwarsa",
+  "expiry": {
+    "30": "Dalam 30 hari",
+    "90": "Dalam 90 hari",
+    "365": "Dalam 1 tahun",
+    "never": "Tidak pernah"
+  },
+  "create": "Buat kunci",
+  "writeScope": "Izinkan perubahan (tulis)",
+  "scopeHelp": "Tanpa ini kuncinya hanya bisa membaca. Berikan akses tulis hanya ke server yang perlu membuat atau mengubah data.",
+  "shownOnce": "Kunci baru Anda “{{name}}”. Salin sekarang: hanya ditampilkan sekali dan tidak dapat dipulihkan.",
+  "keyLabel": "Kunci API",
+  "copy": "Salin kunci",
+  "copied": "Disalin",
+  "usage": "Kirimkan di header X-API-Key, misalnya:",
+  "listTitle": "Kunci",
+  "listDesc": "Admin melihat setiap kunci ruang kerja ini; anggota lain melihat milik mereka sendiri.",
+  "none": "Belum ada kunci API.",
+  "status": {
+    "active": "Aktif",
+    "revoked": "Dicabut",
+    "expired": "Kedaluwarsa"
+  },
+  "scopes": {
+    "read": "Membaca",
+    "write": "Menulis"
+  },
+  "createdOn": "Dibuat {{date}}",
+  "lastUsed": "Terakhir digunakan {{date}}",
+  "neverUsed": "Tidak pernah digunakan",
+  "expiresOn": "Kedaluwarsa {{date}}",
+  "noExpiry": "Tidak kedaluwarsa",
+  "revoke": "Menarik kembali",
+  "revokeFor": "Cabut {{name}}",
+  "revokeTitle": "Cabut kunci API",
+  "revokeConfirm": "“{{name}}” langsung berhenti bekerja. Server yang menggunakannya akan ditolak.",
+  "revoked": "Kunci API dicabut.",
+  "errors": {
+    "notFound": "Kunci API ini sudah tidak ada lagi.",
+    "nameRequired": "Beri nama kuncinya.",
+    "scopeRequired": "Pilih setidaknya satu cakupan."
+  }
+}

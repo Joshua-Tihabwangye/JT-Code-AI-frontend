@@ -1,0 +1,50 @@
+{
+  "tab": "Entwickler",
+  "mockNote": "Demomodus: Schlüssel werden nur in diesem Browser gespeichert und funktionieren nicht gegen einen Server.",
+  "createTitle": "API-Schlüssel",
+  "createDesc": "Lassen Sie Ihre eigenen Server die JT-Code-API für diesen Arbeitsbereich aufrufen. Ein Schlüssel fungiert nur innerhalb dieses Arbeitsbereichs als Sie und kann niemals Schlüssel, Ihr Konto oder Mitglieder verwalten.",
+  "name": "Schlüsselname",
+  "namePlaceholder": "z.B. Berichtsserver",
+  "expiresLabel": "Läuft ab",
+  "expiry": {
+    "30": "In 30 Tagen",
+    "90": "In 90 Tagen",
+    "365": "In 1 Jahr",
+    "never": "Niemals"
+  },
+  "create": "Schlüssel erstellen",
+  "writeScope": "Änderungen zulassen (schreiben)",
+  "scopeHelp": "Ohne diese kann der Schlüssel nur lesen. Gewähren Sie Schreibzugriff nur den Servern, die Daten erstellen oder ändern müssen.",
+  "shownOnce": "Ihr neuer Schlüssel „{{name}}“. Kopieren Sie es jetzt: Es wird nur einmal angezeigt und kann nicht wiederhergestellt werden.",
+  "keyLabel": "API-Schlüssel",
+  "copy": "Schlüssel kopieren",
+  "copied": "Kopiert",
+  "usage": "Senden Sie es im X-API-Key-Header, zum Beispiel:",
+  "listTitle": "Schlüssel",
+  "listDesc": "Administratoren sehen jeden Schlüssel dieses Arbeitsbereichs; Andere Mitglieder sehen ihre eigenen.",
+  "none": "Noch keine API-Schlüssel.",
+  "status": {
+    "active": "Aktiv",
+    "revoked": "Widerrufen",
+    "expired": "Abgelaufen"
+  },
+  "scopes": {
+    "read": "Lesen",
+    "write": "Schreiben"
+  },
+  "createdOn": "Erstellt {{date}}",
+  "lastUsed": "Zuletzt verwendet {{date}}",
+  "neverUsed": "Nie benutzt",
+  "expiresOn": "Läuft ab {{date}}",
+  "noExpiry": "Läuft nicht ab",
+  "revoke": "Widerrufen",
+  "revokeFor": "{{name}} widerrufen",
+  "revokeTitle": "API-Schlüssel widerrufen",
+  "revokeConfirm": "„{{name}}“ funktioniert sofort nicht mehr. Server, die es nutzen, werden abgelehnt.",
+  "revoked": "API-Schlüssel widerrufen.",
+  "errors": {
+    "notFound": "Dieser API-Schlüssel existiert nicht mehr.",
+    "nameRequired": "Geben Sie dem Schlüssel einen Namen.",
+    "scopeRequired": "Wählen Sie mindestens einen Bereich aus."
+  }
+}

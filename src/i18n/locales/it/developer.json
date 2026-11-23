@@ -1,0 +1,50 @@
+{
+  "tab": "Sviluppatore",
+  "mockNote": "Modalità demo: le chiavi vengono conservate solo in questo browser e non funzionano contro un server.",
+  "createTitle": "Chiavi API",
+  "createDesc": "Consenti ai tuoi server di chiamare l'API JT-Code per questo spazio di lavoro. Una chiave agisce come te, solo all'interno di quest'area di lavoro e non può mai gestire le chiavi, il tuo account o i membri.",
+  "name": "Nome chiave",
+  "namePlaceholder": "per esempio. Server di segnalazione",
+  "expiresLabel": "Scade",
+  "expiry": {
+    "30": "Tra 30 giorni",
+    "90": "Tra 90 giorni",
+    "365": "Tra 1 anno",
+    "never": "Mai"
+  },
+  "create": "Crea chiave",
+  "writeScope": "Consenti modifiche (scrivi)",
+  "scopeHelp": "Senza questo la chiave può solo leggere. Concedere l'accesso in scrittura solo ai server che necessitano di creare o modificare dati.",
+  "shownOnce": "La tua nuova chiave \"{{name}}\". Copialo adesso: viene mostrato una sola volta e non può essere recuperato.",
+  "keyLabel": "Chiave API",
+  "copy": "Copia chiave",
+  "copied": "Copiato",
+  "usage": "Invialo nell'intestazione X-API-Key, ad esempio:",
+  "listTitle": "Chiavi",
+  "listDesc": "Gli amministratori vedono ogni chiave di questo spazio di lavoro; gli altri membri vedono i propri.",
+  "none": "Nessuna chiave API ancora.",
+  "status": {
+    "active": "Attivo",
+    "revoked": "Revocato",
+    "expired": "Scaduto"
+  },
+  "scopes": {
+    "read": "Leggere",
+    "write": "Scrivere"
+  },
+  "createdOn": "Creato {{date}}",
+  "lastUsed": "Ultimo utilizzo {{date}}",
+  "neverUsed": "Mai usato",
+  "expiresOn": "Scadenza {{date}}",
+  "noExpiry": "Non ha scadenza",
+  "revoke": "Revocare",
+  "revokeFor": "Revoca {{name}}",
+  "revokeTitle": "Revoca la chiave API",
+  "revokeConfirm": "“{{name}}” smette di funzionare immediatamente. I server che lo utilizzano verranno rifiutati.",
+  "revoked": "Chiave API revocata.",
+  "errors": {
+    "notFound": "Questa chiave API non esiste più.",
+    "nameRequired": "Dai un nome alla chiave.",
+    "scopeRequired": "Scegli almeno un ambito."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "tab": "Développeur",
+  "mockNote": "Mode démo : les clés sont conservées dans ce navigateur uniquement et ne fonctionnent pas sur un serveur.",
+  "createTitle": "Clés API",
+  "createDesc": "Laissez vos propres serveurs appeler l'API JT-Code pour cet espace de travail. Une clé agit comme vous, au sein de cet espace de travail uniquement, et ne peut jamais gérer les clés, votre compte ou vos membres.",
+  "name": "Nom de la clé",
+  "namePlaceholder": "par ex. Serveur de rapports",
+  "expiresLabel": "Expire",
+  "expiry": {
+    "30": "Dans 30 jours",
+    "90": "Dans 90 jours",
+    "365": "Dans 1 an",
+    "never": "Jamais"
+  },
+  "create": "Créer une clé",
+  "writeScope": "Autoriser les modifications (écrire)",
+  "scopeHelp": "Sans cela, la clé ne peut que lire. Accordez un accès en écriture uniquement aux serveurs qui doivent créer ou modifier des données.",
+  "shownOnce": "Votre nouvelle clé « {{name}} ». Copiez-le maintenant : il n'est affiché qu'une seule fois et ne peut pas être récupéré.",
+  "keyLabel": "Clé API",
+  "copy": "Copier la clé",
+  "copied": "Copié",
+  "usage": "Envoyez-le dans l'en-tête X-API-Key, par exemple :",
+  "listTitle": "Clés",
+  "listDesc": "Les administrateurs voient chaque clé de cet espace de travail ; les autres membres voient le leur.",
+  "none": "Aucune clé API pour l'instant.",
+  "status": {
+    "active": "Actif",
+    "revoked": "Révoqué",
+    "expired": "Expiré"
+  },
+  "scopes": {
+    "read": "Lire",
+    "write": "Écrire"
+  },
+  "createdOn": "Créé {{date}}",
+  "lastUsed": "Dernière utilisation {{date}}",
+  "neverUsed": "Jamais utilisé",
+  "expiresOn": "Expire le {{date}}",
+  "noExpiry": "N'expire pas",
+  "revoke": "Révoquer",
+  "revokeFor": "Révoquer {{name}}",
+  "revokeTitle": "Révoquer la clé API",
+  "revokeConfirm": "« {{name}} » cesse de fonctionner immédiatement. Les serveurs qui l'utilisent seront refusés.",
+  "revoked": "Clé API révoquée.",
+  "errors": {
+    "notFound": "Cette clé API n'existe plus.",
+    "nameRequired": "Donnez un nom à la clé.",
+    "scopeRequired": "Choisissez au moins une étendue."
+  }
+}

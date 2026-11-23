@@ -1,0 +1,50 @@
+{
+  "tab": "Desarrollador",
+  "mockNote": "Modo de demostración: las claves se guardan únicamente en este navegador y no funcionan en un servidor.",
+  "createTitle": "Claves API",
+  "createDesc": "Deje que sus propios servidores llamen a la API JT-Code para este espacio de trabajo. Una clave actúa como usted, solo dentro de este espacio de trabajo, y nunca puede administrar claves, su cuenta o sus miembros.",
+  "name": "Nombre clave",
+  "namePlaceholder": "p.ej. Servidor de informes",
+  "expiresLabel": "Vence",
+  "expiry": {
+    "30": "en 30 dias",
+    "90": "en 90 dias",
+    "365": "en 1 año",
+    "never": "Nunca"
+  },
+  "create": "Crear clave",
+  "writeScope": "Permitir cambios (escribir)",
+  "scopeHelp": "Sin esto la clave sólo puede leer. Otorgue acceso de escritura solo a los servidores que necesiten crear o cambiar datos.",
+  "shownOnce": "Su nueva clave “{{name}}”. Cópialo ahora: se muestra sólo una vez y no se puede recuperar.",
+  "keyLabel": "clave API",
+  "copy": "Copiar clave",
+  "copied": "Copiado",
+  "usage": "Envíelo en el encabezado X-API-Key, por ejemplo:",
+  "listTitle": "Llaves",
+  "listDesc": "Los administradores ven todas las claves de este espacio de trabajo; otros miembros ven los suyos.",
+  "none": "Aún no hay claves API.",
+  "status": {
+    "active": "Activo",
+    "revoked": "Revocado",
+    "expired": "Venció"
+  },
+  "scopes": {
+    "read": "Leer",
+    "write": "Escribir"
+  },
+  "createdOn": "Creado {{date}}",
+  "lastUsed": "Usado por última vez {{date}}",
+  "neverUsed": "Nunca usado",
+  "expiresOn": "Vence {{date}}",
+  "noExpiry": "no caduca",
+  "revoke": "Revocar",
+  "revokeFor": "Revocar {{name}}",
+  "revokeTitle": "Revocar clave API",
+  "revokeConfirm": "“{{name}}” deja de funcionar inmediatamente. Los servidores que lo utilicen serán rechazados.",
+  "revoked": "Clave API revocada.",
+  "errors": {
+    "notFound": "Esta clave API ya no existe.",
+    "nameRequired": "Dale un nombre a la clave.",
+    "scopeRequired": "Elija al menos un alcance."
+  }
+}

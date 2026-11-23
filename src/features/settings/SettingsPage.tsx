@@ -10,6 +10,7 @@ import { useApiClient } from '@/lib/api/client';
 import { config } from '@/lib/config';
 import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, Spinner, Tabs, TabsContent, TabsList, TabsTrigger, useConfirm } from '@/shared/components';
 import { TeamTab } from '@/features/settings/TeamTab';
+import { DeveloperTab } from '@/features/settings/DeveloperTab';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -69,7 +70,8 @@ export function SettingsPage() {
   const { confirm, dialog } = useConfirm();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const tab = searchParams.get('tab') === 'team' ? 'team' : 'profile';
+  const requestedTab = searchParams.get('tab');
+  const tab = requestedTab === 'team' || requestedTab === 'developer' ? requestedTab : 'profile';
   const accounts = useRepository('account');
   const client = useApiClient();
   const queryClient = useQueryClient();
@@ -205,13 +207,17 @@ export function SettingsPage() {
         )}
       </header>
 
-      <Tabs value={tab} onValueChange={(next) => setSearchParams(next === 'team' ? { tab: 'team' } : {}, { replace: true })}>
+      <Tabs value={tab} onValueChange={(next) => setSearchParams(next === 'profile' ? {} : { tab: next }, { replace: true })}>
         <TabsList className="mb-6" aria-label={t('settings.title')}>
           <TabsTrigger value="profile">{t('team.tabProfile')}</TabsTrigger>
           <TabsTrigger value="team">{t('team.tabTeam')}</TabsTrigger>
+          <TabsTrigger value="developer">{t('developer.tab')}</TabsTrigger>
         </TabsList>
         <TabsContent value="team" className="max-w-4xl mx-auto">
           <TeamTab />
+        </TabsContent>
+        <TabsContent value="developer" className="max-w-4xl mx-auto">
+          <DeveloperTab />
         </TabsContent>
         <TabsContent value="profile">
           {error && (

@@ -7,6 +7,9 @@ import type { Paginated } from '@/lib/api/types';
 import type {
   Account,
   AccountUpdate,
+  ApiKey,
+  ApiKeyScope,
+  NewApiKey,
   AnalysisRun,
   TeamInvite,
   TeamMember,
@@ -73,6 +76,7 @@ import type {
 } from '../types';
 import type {
   TeamRepository,
+  ApiKeyRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -242,6 +246,55 @@ function toWorkspace(workspace: ApiWorkspace): Workspace {
 
 function toInvite(invite: ApiInvite): TeamInvite {
   return { id: invite.id, email: invite.email, role: invite.role, expiresAt: invite.expires_at };
+}
+
+// --- API keys (X-API-Key for server-to-server calls) ---------------------------------------------
+
+interface ApiApiKey {
+  id: string;
+  name: string;
+  prefix: string;
+  status: ApiKey['status'];
+  scopes: ApiKeyScope[];
+  rate_limit: number;
+  last_used_at: string | null;
+  expires_at: string | null;
+  created_at: string;
+  user_email?: string;
+  key?: string;
+}
+
+function toApiKey(key: ApiApiKey): ApiKey {
+  return {
+    id: key.id,
+    name: key.name,
+    prefix: key.prefix,
+    status: key.status,
+    scopes: key.scopes ?? [],
+    rateLimit: key.rate_limit,
+    lastUsedAt: key.last_used_at,
+    expiresAt: key.expires_at,
+    createdAt: key.created_at,
+    ownerEmail: key.user_email ?? '',
+  };
+}
+
+class ApiApiKeyRepository implements ApiKeyRepository {
+  async list() {
+    return (await list<ApiApiKey>('/api-keys/')).map(toApiKey);
+  }
+  async create(input: NewApiKey) {
+    const { data } = await api.post<ApiApiKey>('/api-keys/', {
+      name: input.name,
+      scopes: input.scopes,
+      ...(input.expiresAt ? { expires_at: input.expiresAt } : {}),
+    });
+    return { ...toApiKey(data), key: data.key ?? '' };
+  }
+  async revoke(id: string) {
+    const { data } = await api.post<ApiApiKey>(`/api-keys/${encodeURIComponent(id)}/revoke/`);
+    return toApiKey(data);
+  }
 }
 
 class ApiTeamRepository implements TeamRepository {
@@ -1287,6 +1340,7 @@ export function createApiRepositories(): Repositories {
     auth: new ApiAuthRepository(),
     account: new ApiAccountRepository(),
     team: new ApiTeamRepository(),
+    apiKeys: new ApiApiKeyRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

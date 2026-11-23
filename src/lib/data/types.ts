@@ -69,6 +69,36 @@ export interface Workspace {
   isDefault: boolean;
 }
 
+/** Organization API keys (`X-API-Key`) for server-to-server calls. */
+export type ApiKeyScope = 'read' | 'write';
+
+export interface ApiKey {
+  id: string;
+  name: string;
+  /** The visible start of the key (`jtk_live`), to tell keys apart. */
+  prefix: string;
+  status: 'active' | 'revoked' | 'expired';
+  scopes: ApiKeyScope[];
+  /** Requests per hour. */
+  rateLimit: number;
+  lastUsedAt: string | null;
+  expiresAt: string | null;
+  createdAt: string;
+  ownerEmail: string;
+}
+
+/** A new key: the secret is shown once (the server stores only its digest). */
+export interface CreatedApiKey extends ApiKey {
+  key: string;
+}
+
+export interface NewApiKey {
+  name: string;
+  scopes: ApiKeyScope[];
+  /** ISO date-time, or null for a key that does not expire. */
+  expiresAt: string | null;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

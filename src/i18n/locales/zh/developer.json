@@ -1,0 +1,50 @@
+{
+  "tab": "开发者",
+  "mockNote": "演示模式：密钥仅保存在该浏览器中，不适用于服务器。",
+  "createTitle": "API 密钥",
+  "createDesc": "让您自己的服务器调用此工作区的 JT-Code API。密钥仅在该工作空间内充当您的角色，并且永远无法管理密钥、您的帐户或成员。",
+  "name": "按键名称",
+  "namePlaceholder": "例如报告服务器",
+  "expiresLabel": "过期",
+  "expiry": {
+    "30": "30天内",
+    "90": "90天内",
+    "365": "1年内",
+    "never": "绝不"
+  },
+  "create": "创建密钥",
+  "writeScope": "允许更改（写入）",
+  "scopeHelp": "如果没有这个密钥只能读取。仅向需要创建或更改数据的服务器授予写访问权限。",
+  "shownOnce": "您的新密钥“{{name}}”。立即复制：仅显示一次且无法恢复。",
+  "keyLabel": "API密钥",
+  "copy": "复制键",
+  "copied": "已复制",
+  "usage": "在 X-API-Key 标头中发送，例如：",
+  "listTitle": "按键",
+  "listDesc": "Admins see every key of this workspace;其他成员看到自己的。",
+  "none": "还没有 API 密钥。",
+  "status": {
+    "active": "积极的",
+    "revoked": "已撤销",
+    "expired": "已到期"
+  },
+  "scopes": {
+    "read": "读",
+    "write": "写"
+  },
+  "createdOn": "创建 {{date}}",
+  "lastUsed": "最后使用 {{date}}",
+  "neverUsed": "从未使用过",
+  "expiresOn": "到期 {{date}}",
+  "noExpiry": "不会过期",
+  "revoke": "撤销",
+  "revokeFor": "撤销 {{name}}",
+  "revokeTitle": "撤销 API 密钥",
+  "revokeConfirm": "“{{name}}”立即停止工作。使用它的服务器将被拒绝。",
+  "revoked": "API 密钥已撤销。",
+  "errors": {
+    "notFound": "此 API 密钥不再存在。",
+    "nameRequired": "为密钥命名。",
+    "scopeRequired": "至少选择一个范围。"
+  }
+}
