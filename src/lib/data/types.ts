@@ -99,6 +99,64 @@ export interface NewApiKey {
   expiresAt: string | null;
 }
 
+/** Events an outbound webhook can receive (the server's published catalogue). */
+export const WEBHOOK_EVENTS = [
+  'chat.request.completed',
+  'chat.request.failed',
+  'jobs.job.completed',
+  'jobs.job.failed',
+  'document.render.completed',
+  'document.render.failed',
+  'conversion.job.completed',
+  'conversion.job.failed',
+  'knowledge.document.indexed',
+  'knowledge.document.index_failed',
+  'images.generated',
+  'agents.run.completed',
+  'agents.run.failed',
+] as const;
+export type WebhookEvent = (typeof WEBHOOK_EVENTS)[number];
+
+export interface Webhook {
+  id: string;
+  name: string;
+  url: string;
+  /** `disabled`: the platform stopped it after repeated failures (resume it to try again). */
+  status: 'active' | 'paused' | 'disabled' | 'error';
+  /** Empty: every event in the catalogue. */
+  events: WebhookEvent[];
+  isVerified: boolean;
+  lastSuccessAt: string | null;
+  lastFailureAt: string | null;
+  failureCount: number;
+  createdAt: string;
+}
+
+/** A new endpoint (or a rotated secret): the signing secret is shown once. */
+export interface CreatedWebhook extends Webhook {
+  secret: string;
+}
+
+export interface NewWebhook {
+  name: string;
+  url: string;
+  /** Empty: every event. */
+  events: WebhookEvent[];
+}
+
+export interface WebhookDelivery {
+  id: string;
+  eventType: string;
+  status: 'pending' | 'delivered' | 'retrying' | 'failed';
+  attempt: number;
+  maxAttempts: number;
+  responseStatus: number | null;
+  errorMessage: string;
+  createdAt: string;
+  deliveredAt: string | null;
+  nextRetryAt: string | null;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

@@ -1008,6 +1008,28 @@ async function main() {
       if (after.status !== 401) throw new Error(`a revoked key answered ${after.status}`);
     });
 
+    await step(page, 'settings: add a webhook, send a test, see its delivery, delete it', async () => {
+      await page.goto(`${BASE}/app/settings?tab=developer`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="webhooks-section"]');
+      const fields = await page.$$('[data-testid="webhooks-section"] form input:not([type="checkbox"])');
+      await fields[0].type(`e2e hook ${run}`);
+      // example.com is the IANA documentation domain: it refuses the POST, which is the answer we record.
+      await fields[1].type('https://example.com/jt-code-e2e');
+      await domClick(page, '[data-testid="create-webhook"]');
+      const secretField = await page.waitForSelector('[data-testid="webhook-secret"]');
+      const secret = await secretField.evaluate((input) => input.value);
+      if (!secret.startsWith('whsec_')) throw new Error('no signing secret shown');
+      await domClick(page, '[data-testid="webhooks"] [data-testid^="webhook-test-"]');
+      await page.waitForFunction(
+        () => /HTTP [0-9]{3}/.test(document.querySelector('[data-testid^="webhook-deliveries-"]')?.textContent ?? ''),
+        { timeout: 90_000 },
+      );
+      await page.$$eval('[data-testid="webhooks"] li button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForSelector('[role="alertdialog"]');
+      await page.$$eval('[role="alertdialog"] button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
+    });
+
     await step(page, 'settings: edit and save the profile', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle0' });
       await waitForText(page, 'body', new RegExp(email.replace(/[.@]/g, '\\$&')));

@@ -10,6 +10,10 @@ import type {
   ApiKey,
   ApiKeyScope,
   NewApiKey,
+  NewWebhook,
+  Webhook,
+  WebhookDelivery,
+  WebhookEvent,
   AnalysisRun,
   TeamInvite,
   TeamMember,
@@ -77,6 +81,7 @@ import type {
 import type {
   TeamRepository,
   ApiKeyRepository,
+  WebhookRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -294,6 +299,99 @@ class ApiApiKeyRepository implements ApiKeyRepository {
   async revoke(id: string) {
     const { data } = await api.post<ApiApiKey>(`/api-keys/${encodeURIComponent(id)}/revoke/`);
     return toApiKey(data);
+  }
+}
+
+// --- Outbound webhooks -------------------------------------------------------------------------------
+
+interface ApiWebhook {
+  id: string;
+  name: string;
+  url: string;
+  status: Webhook['status'];
+  event_filter: 'all' | 'custom';
+  events: WebhookEvent[];
+  is_verified: boolean;
+  last_success_at: string | null;
+  last_failure_at: string | null;
+  failure_count: number;
+  created_at: string;
+  secret?: string;
+}
+
+interface ApiWebhookDelivery {
+  id: string;
+  event_type: string;
+  status: WebhookDelivery['status'];
+  attempt: number;
+  max_attempts: number;
+  response_status: number | null;
+  error_message: string;
+  created_at: string;
+  delivered_at: string | null;
+  next_retry_at: string | null;
+}
+
+function toWebhook(hook: ApiWebhook): Webhook {
+  return {
+    id: hook.id,
+    name: hook.name,
+    url: hook.url,
+    status: hook.status,
+    events: hook.event_filter === 'all' ? [] : (hook.events ?? []),
+    isVerified: hook.is_verified,
+    lastSuccessAt: hook.last_success_at,
+    lastFailureAt: hook.last_failure_at,
+    failureCount: hook.failure_count,
+    createdAt: hook.created_at,
+  };
+}
+
+function toDelivery(delivery: ApiWebhookDelivery): WebhookDelivery {
+  return {
+    id: delivery.id,
+    eventType: delivery.event_type,
+    status: delivery.status,
+    attempt: delivery.attempt,
+    maxAttempts: delivery.max_attempts,
+    responseStatus: delivery.response_status,
+    errorMessage: delivery.error_message ?? '',
+    createdAt: delivery.created_at,
+    deliveredAt: delivery.delivered_at,
+    nextRetryAt: delivery.next_retry_at,
+  };
+}
+
+class ApiWebhookRepository implements WebhookRepository {
+  async list() {
+    return (await list<ApiWebhook>('/webhooks/')).map(toWebhook);
+  }
+  async create(input: NewWebhook) {
+    const { data } = await api.post<ApiWebhook>('/webhooks/', {
+      name: input.name,
+      url: input.url,
+      event_filter: input.events.length ? 'custom' : 'all',
+      events: input.events,
+    });
+    return { ...toWebhook(data), secret: data.secret ?? '' };
+  }
+  async setStatus(id: string, status: 'active' | 'paused') {
+    const { data } = await api.patch<ApiWebhook>(`/webhooks/${encodeURIComponent(id)}/`, { status });
+    return toWebhook(data);
+  }
+  async remove(id: string) {
+    await api.delete(`/webhooks/${encodeURIComponent(id)}/`);
+  }
+  async sendTest(id: string) {
+    const { data } = await api.post<ApiWebhookDelivery>(`/webhooks/${encodeURIComponent(id)}/test/`);
+    return toDelivery(data);
+  }
+  async rotateSecret(id: string) {
+    const { data } = await api.post<ApiWebhook>(`/webhooks/${encodeURIComponent(id)}/rotate-secret/`);
+    return { ...toWebhook(data), secret: data.secret ?? '' };
+  }
+  async deliveries(id: string) {
+    return (await list<ApiWebhookDelivery>(`/webhooks/${encodeURIComponent(id)}/deliveries/`)).map(toDelivery);
   }
 }
 
@@ -1341,6 +1439,7 @@ export function createApiRepositories(): Repositories {
     account: new ApiAccountRepository(),
     team: new ApiTeamRepository(),
     apiKeys: new ApiApiKeyRepository(),
+    webhooks: new ApiWebhookRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

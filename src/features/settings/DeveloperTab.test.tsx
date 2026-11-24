@@ -12,6 +12,8 @@ vi.mock('react-i18next', () => ({
 vi.mock('@/lib/api/http', () => ({ apiErrorMessage: (error: unknown) => (error instanceof Error ? error.message : 'error') }));
 vi.mock('@/lib/data', () => ({ useRepository: () => repo }));
 vi.mock('@/i18n/format', () => ({ formatDate: (value: string) => value }));
+// Tested on its own (WebhooksSection.test.tsx); here only the API keys part matters.
+vi.mock('@/features/settings/WebhooksSection', () => ({ WebhooksSection: () => null }));
 
 const active: ApiKey = {
   id: 'k1',

@@ -8,6 +8,10 @@ import type {
   ApiKey,
   CreatedApiKey,
   NewApiKey,
+  Webhook,
+  CreatedWebhook,
+  NewWebhook,
+  WebhookDelivery,
   AcceptedInvite,
   CreatedTeamInvite,
   TeamMember,
@@ -146,6 +150,18 @@ export interface ApiKeyRepository {
   list(): Promise<ApiKey[]>;
   create(input: NewApiKey): Promise<CreatedApiKey>;
   revoke(id: string): Promise<ApiKey>;
+}
+
+/** Outbound webhooks (organization admins only). */
+export interface WebhookRepository {
+  list(): Promise<Webhook[]>;
+  create(input: NewWebhook): Promise<CreatedWebhook>;
+  setStatus(id: string, status: 'active' | 'paused'): Promise<Webhook>;
+  remove(id: string): Promise<void>;
+  /** Sends a signed `webhook.test` event now; its result appears in `deliveries`. */
+  sendTest(id: string): Promise<WebhookDelivery>;
+  rotateSecret(id: string): Promise<CreatedWebhook>;
+  deliveries(id: string): Promise<WebhookDelivery[]>;
 }
 
 export interface SendMessageOptions {
@@ -543,6 +559,7 @@ export interface Repositories {
   account: AccountRepository;
   team: TeamRepository;
   apiKeys: ApiKeyRepository;
+  webhooks: WebhookRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;
