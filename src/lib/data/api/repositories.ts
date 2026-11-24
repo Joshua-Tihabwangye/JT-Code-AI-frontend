@@ -15,6 +15,8 @@ import type {
   WebhookDelivery,
   WebhookEvent,
   NewSupportCase,
+  AuditEvent,
+  AuditFilter,
   SupportCase,
   SupportMessage,
   AnalysisRun,
@@ -86,6 +88,7 @@ import type {
   ApiKeyRepository,
   WebhookRepository,
   SupportRepository,
+  AuditRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -460,6 +463,52 @@ class ApiSupportRepository implements SupportRepository {
   async close(caseId: string) {
     const { data } = await api.post<ApiSupportCase>(`/support-cases/${encodeURIComponent(caseId)}/close/`);
     return toSupportCase(data);
+  }
+}
+
+// --- Audit log ----------------------------------------------------------------------------------------
+
+interface ApiAuditEvent {
+  id: string;
+  created_at: string;
+  actor_email?: string | null;
+  category: AuditEvent['category'];
+  action: string;
+  severity: string;
+  outcome?: string;
+  description: string;
+  ip_address?: string | null;
+}
+
+function auditParams(filter: AuditFilter): Record<string, string> {
+  const params: Record<string, string> = {};
+  if (filter.category) params.category = filter.category;
+  if (filter.startDate) params.start_date = filter.startDate;
+  if (filter.endDate) params.end_date = filter.endDate;
+  return params;
+}
+
+class ApiAuditRepository implements AuditRepository {
+  async list(filter: AuditFilter, page: number) {
+    const { data } = await api.get<Paginated<ApiAuditEvent>>('/audit-events/', { params: { ...auditParams(filter), page } });
+    return {
+      events: items(data).map((event) => ({
+        id: event.id,
+        createdAt: event.created_at,
+        actorEmail: event.actor_email ?? '',
+        category: event.category,
+        action: event.action,
+        severity: event.severity,
+        outcome: event.outcome ?? '',
+        description: event.description,
+        ipAddress: event.ip_address ?? '',
+      })),
+      hasMore: Boolean((data as { next?: string | null }).next),
+    };
+  }
+  async exportCsv(filter: AuditFilter) {
+    const { data } = await api.get<Blob>('/audit-events/export/', { params: auditParams(filter), responseType: 'blob' });
+    return data;
   }
 }
 
@@ -1509,6 +1558,7 @@ export function createApiRepositories(): Repositories {
     apiKeys: new ApiApiKeyRepository(),
     webhooks: new ApiWebhookRepository(),
     support: new ApiSupportRepository(),
+    audit: new ApiAuditRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

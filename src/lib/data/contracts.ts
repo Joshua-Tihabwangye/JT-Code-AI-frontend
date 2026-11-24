@@ -13,6 +13,8 @@ import type {
   NewWebhook,
   WebhookDelivery,
   NewSupportCase,
+  AuditFilter,
+  AuditPage,
   SupportCase,
   SupportMessage,
   AcceptedInvite,
@@ -174,6 +176,14 @@ export interface SupportRepository {
   messages(caseId: string): Promise<SupportMessage[]>;
   reply(caseId: string, body: string): Promise<SupportMessage>;
   close(caseId: string): Promise<SupportCase>;
+}
+
+/** The workspace audit trail (organization admins only). */
+export interface AuditRepository {
+  /** Newest first; `page` starts at 1. */
+  list(filter: AuditFilter, page: number): Promise<AuditPage>;
+  /** The filtered trail as CSV (formula-safe). */
+  exportCsv(filter: AuditFilter): Promise<Blob>;
 }
 
 export interface SendMessageOptions {
@@ -573,6 +583,7 @@ export interface Repositories {
   apiKeys: ApiKeyRepository;
   webhooks: WebhookRepository;
   support: SupportRepository;
+  audit: AuditRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

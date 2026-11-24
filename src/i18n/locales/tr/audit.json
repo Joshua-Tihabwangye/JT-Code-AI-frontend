@@ -1,0 +1,38 @@
+{
+  "tab": "Denetim günlüğü",
+  "title": "Denetim günlüğü",
+  "desc": "Bu çalışma alanında kim neyi, ne zaman değiştirdi? Girişler düzenlenemez veya silinemez.",
+  "adminOnly": "Denetim günlüğünü yalnızca çalışma alanı yöneticileri görebilir.",
+  "mockNote": "Demo modunun sunucusu yoktur, dolayısıyla buraya hiçbir şey kaydedilmez.",
+  "category": "Alan",
+  "allCategories": "Tüm alanlar",
+  "from": "İtibaren",
+  "to": "İle",
+  "badRange": "Başlangıç ​​tarihi bitiş tarihinden sonradır.",
+  "export": "CSV'yi indirin",
+  "none": "Bu filtreler için giriş yok.",
+  "when": "Ne zaman",
+  "who": "DSÖ",
+  "what": "Ne",
+  "result": "Sonuç",
+  "ip": "IP adresi",
+  "system": "Sistem",
+  "more": "Daha fazlasını göster",
+  "categories": {
+    "auth": "Oturum aç",
+    "authorization": "Erişim",
+    "data_access": "Veri okuma",
+    "data_modification": "Veri değişikliği",
+    "configuration": "Ayarlar",
+    "billing": "Faturalandırma",
+    "security": "Güvenlik",
+    "admin": "Yönetim",
+    "ai_usage": "Yapay zeka kullanımı",
+    "file_operation": "Dosyalar"
+  },
+  "outcomes": {
+    "success": "Tamamlamak",
+    "denied": "Reddedildi",
+    "failure": "Arızalı"
+  }
+}

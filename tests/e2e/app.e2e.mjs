@@ -1030,6 +1030,18 @@ async function main() {
       await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
     });
 
+    await step(page, 'settings: the audit log shows the key and webhook changes and downloads as CSV', async () => {
+      await page.goto(`${BASE}/app/settings?tab=audit`, { waitUntil: 'networkidle2' });
+      await waitForText(page, '[data-testid="audit-events"]', /api-key/, 30_000);
+      const [csv] = await Promise.all([
+        page.waitForResponse((response) => response.url().includes('/audit-events/export/'), { timeout: 30_000 }),
+        domClick(page, '[data-testid="audit-export"]'),
+      ]);
+      if (csv.status() !== 200 || !(csv.headers()['content-type'] ?? '').startsWith('text/csv')) {
+        throw new Error(`audit export answered ${csv.status()} ${csv.headers()['content-type']}`);
+      }
+    });
+
     await step(page, 'settings: open a support case, reply, and close it', async () => {
       await page.goto(`${BASE}/app/settings?tab=support`, { waitUntil: 'networkidle2' });
       await page.waitForSelector('[data-testid="support-tab"]');

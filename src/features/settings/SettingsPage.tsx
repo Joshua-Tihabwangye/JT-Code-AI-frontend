@@ -12,6 +12,7 @@ import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, S
 import { TeamTab } from '@/features/settings/TeamTab';
 import { DeveloperTab } from '@/features/settings/DeveloperTab';
 import { SupportTab } from '@/features/settings/SupportTab';
+import { AuditTab } from '@/features/settings/AuditTab';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -72,7 +73,7 @@ export function SettingsPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedTab = searchParams.get('tab');
-  const tab = requestedTab === 'team' || requestedTab === 'developer' || requestedTab === 'support' ? requestedTab : 'profile';
+  const tab = (['team', 'developer', 'audit', 'support'] as const).find((name) => name === requestedTab) ?? 'profile';
   const accounts = useRepository('account');
   const client = useApiClient();
   const queryClient = useQueryClient();
@@ -213,6 +214,7 @@ export function SettingsPage() {
           <TabsTrigger value="profile">{t('team.tabProfile')}</TabsTrigger>
           <TabsTrigger value="team">{t('team.tabTeam')}</TabsTrigger>
           <TabsTrigger value="developer">{t('developer.tab')}</TabsTrigger>
+          <TabsTrigger value="audit">{t('audit.tab')}</TabsTrigger>
           <TabsTrigger value="support">{t('support.tab')}</TabsTrigger>
         </TabsList>
         <TabsContent value="team" className="max-w-4xl mx-auto">
@@ -220,6 +222,9 @@ export function SettingsPage() {
         </TabsContent>
         <TabsContent value="developer" className="max-w-4xl mx-auto">
           <DeveloperTab />
+        </TabsContent>
+        <TabsContent value="audit" className="max-w-5xl mx-auto">
+          <AuditTab />
         </TabsContent>
         <TabsContent value="support" className="max-w-4xl mx-auto">
           <SupportTab />

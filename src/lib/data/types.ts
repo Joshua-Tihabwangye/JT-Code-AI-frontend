@@ -190,6 +190,45 @@ export interface NewSupportCase {
   priority: SupportPriority;
 }
 
+export const AUDIT_CATEGORIES = [
+  'auth',
+  'authorization',
+  'data_access',
+  'data_modification',
+  'configuration',
+  'billing',
+  'security',
+  'admin',
+  'ai_usage',
+  'file_operation',
+] as const;
+export type AuditCategory = (typeof AUDIT_CATEGORIES)[number];
+
+export interface AuditEvent {
+  id: string;
+  createdAt: string;
+  actorEmail: string;
+  category: AuditCategory;
+  action: string;
+  severity: string;
+  outcome: string;
+  description: string;
+  ipAddress: string;
+}
+
+export interface AuditFilter {
+  category?: AuditCategory | '';
+  /** YYYY-MM-DD, inclusive. */
+  startDate?: string;
+  /** YYYY-MM-DD, inclusive (the whole day). */
+  endDate?: string;
+}
+
+export interface AuditPage {
+  events: AuditEvent[];
+  hasMore: boolean;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

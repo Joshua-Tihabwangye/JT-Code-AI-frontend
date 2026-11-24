@@ -1,0 +1,38 @@
+{
+  "tab": "Audit-Protokoll",
+  "title": "Audit-Protokoll",
+  "desc": "Wer hat was in diesem Arbeitsbereich wann geändert? Einträge können nicht bearbeitet oder gelöscht werden.",
+  "adminOnly": "Nur Workspace-Administratoren können das Audit-Protokoll sehen.",
+  "mockNote": "Im Demomodus gibt es keinen Server, daher wird hier nichts aufgezeichnet.",
+  "category": "Bereich",
+  "allCategories": "Alle Bereiche",
+  "from": "Aus",
+  "to": "Zu",
+  "badRange": "Das Startdatum liegt nach dem Enddatum.",
+  "export": "CSV herunterladen",
+  "none": "Keine Einträge für diese Filter.",
+  "when": "Wann",
+  "who": "WHO",
+  "what": "Was",
+  "result": "Ergebnis",
+  "ip": "IP-Adresse",
+  "system": "System",
+  "more": "Mehr anzeigen",
+  "categories": {
+    "auth": "Anmelden",
+    "authorization": "Zugang",
+    "data_access": "Daten gelesen",
+    "data_modification": "Datenänderung",
+    "configuration": "Einstellungen",
+    "billing": "Abrechnung",
+    "security": "Sicherheit",
+    "admin": "Verwaltung",
+    "ai_usage": "KI-Nutzung",
+    "file_operation": "Dateien"
+  },
+  "outcomes": {
+    "success": "Erledigt",
+    "denied": "Bestritten",
+    "failure": "Fehlgeschlagen"
+  }
+}

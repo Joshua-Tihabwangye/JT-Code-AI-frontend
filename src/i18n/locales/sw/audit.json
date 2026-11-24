@@ -1,0 +1,38 @@
+{
+  "tab": "Kumbukumbu ya ukaguzi",
+  "title": "Kumbukumbu ya ukaguzi",
+  "desc": "Nani alibadilisha nini katika nafasi hii ya kazi, na lini. Maingizo hayawezi kuhaririwa au kufutwa.",
+  "adminOnly": "Wasimamizi wa nafasi ya kazi pekee ndio wanaoweza kuona kumbukumbu ya ukaguzi.",
+  "mockNote": "Hali ya onyesho haina seva, kwa hivyo hakuna kitu kinachorekodiwa hapa.",
+  "category": "Eneo",
+  "allCategories": "Maeneo yote",
+  "from": "Kutoka",
+  "to": "Kwa",
+  "badRange": "Tarehe ya kuanza ni baada ya tarehe ya mwisho.",
+  "export": "Pakua CSV",
+  "none": "Hakuna maingizo ya vichujio hivi.",
+  "when": "Wakati",
+  "who": "WHO",
+  "what": "Nini",
+  "result": "Matokeo",
+  "ip": "Anwani ya IP",
+  "system": "Mfumo",
+  "more": "Onyesha zaidi",
+  "categories": {
+    "auth": "Ingia",
+    "authorization": "Ufikiaji",
+    "data_access": "Data imesomwa",
+    "data_modification": "Mabadiliko ya data",
+    "configuration": "Mipangilio",
+    "billing": "Bili",
+    "security": "Usalama",
+    "admin": "Utawala",
+    "ai_usage": "kutumia AI",
+    "file_operation": "Faili"
+  },
+  "outcomes": {
+    "success": "Imekamilika",
+    "denied": "Imekataliwa",
+    "failure": "Imeshindwa"
+  }
+}

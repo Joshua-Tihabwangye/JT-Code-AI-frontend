@@ -1,0 +1,38 @@
+{
+  "tab": "감사 로그",
+  "title": "감사 로그",
+  "desc": "이 작업공간에서 누가, 언제 무엇을 변경했는지. 항목을 편집하거나 삭제할 수 없습니다.",
+  "adminOnly": "워크스페이스 관리자만 감사 로그를 볼 수 있습니다.",
+  "mockNote": "데모 모드에는 서버가 없으므로 여기에는 아무것도 기록되지 않습니다.",
+  "category": "영역",
+  "allCategories": "모든 지역",
+  "from": "에서",
+  "to": "에게",
+  "badRange": "시작일이 종료일 이후입니다.",
+  "export": "CSV 다운로드",
+  "none": "해당 필터에 대한 항목이 없습니다.",
+  "when": "언제",
+  "who": "WHO",
+  "what": "무엇",
+  "result": "결과",
+  "ip": "IP 주소",
+  "system": "체계",
+  "more": "더 보기",
+  "categories": {
+    "auth": "로그인",
+    "authorization": "입장",
+    "data_access": "데이터 읽기",
+    "data_modification": "데이터 변경",
+    "configuration": "설정",
+    "billing": "청구",
+    "security": "보안",
+    "admin": "관리",
+    "ai_usage": "AI 활용",
+    "file_operation": "파일"
+  },
+  "outcomes": {
+    "success": "완료",
+    "denied": "거부됨",
+    "failure": "실패한"
+  }
+}

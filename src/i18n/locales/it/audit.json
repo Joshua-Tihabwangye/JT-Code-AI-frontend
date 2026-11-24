@@ -1,0 +1,38 @@
+{
+  "tab": "Registro di controllo",
+  "title": "Registro di controllo",
+  "desc": "Chi ha cambiato cosa in questo spazio di lavoro e quando. Le voci non possono essere modificate o cancellate.",
+  "adminOnly": "Solo gli amministratori dell'area di lavoro possono visualizzare il log di controllo.",
+  "mockNote": "La modalità demo non ha server, quindi qui non viene registrato nulla.",
+  "category": "Zona",
+  "allCategories": "Tutte le aree",
+  "from": "Da",
+  "to": "A",
+  "badRange": "La data di inizio è successiva alla data di fine.",
+  "export": "Scarica CSV",
+  "none": "Nessuna voce per questi filtri.",
+  "when": "Quando",
+  "who": "Chi",
+  "what": "Che cosa",
+  "result": "Risultato",
+  "ip": "Indirizzo IP",
+  "system": "Sistema",
+  "more": "Mostra di più",
+  "categories": {
+    "auth": "Registrazione",
+    "authorization": "Accesso",
+    "data_access": "Dati letti",
+    "data_modification": "Modifica dei dati",
+    "configuration": "Impostazioni",
+    "billing": "Fatturazione",
+    "security": "Sicurezza",
+    "admin": "Amministrazione",
+    "ai_usage": "Utilizzo dell'intelligenza artificiale",
+    "file_operation": "File"
+  },
+  "outcomes": {
+    "success": "Fatto",
+    "denied": "Negato",
+    "failure": "Fallito"
+  }
+}
