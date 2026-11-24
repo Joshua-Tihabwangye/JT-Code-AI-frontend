@@ -20,5 +20,6 @@ export const KEYS = {
   team: 'jtcode:team',
   apiKeys: 'jtcode:api-keys',
   webhooks: 'jtcode:webhooks',
+  support: 'jtcode:support-cases',
   seeded: 'jtcode:seeded',
 } as const;

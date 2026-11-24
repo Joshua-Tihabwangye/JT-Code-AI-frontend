@@ -1,0 +1,51 @@
+{
+  "tab": "Mendukung",
+  "mockNote": "Mode demo: kasus tetap berada di browser ini dan tidak ada yang menjawabnya.",
+  "newTitle": "Hubungi dukungan",
+  "subject": "Subjek",
+  "category": "Topik",
+  "priority": "Urgensi",
+  "description": "Apa yang telah terjadi? Sertakan apa yang Anda harapkan dan langkah-langkah untuk melihat masalahnya.",
+  "open": "Kirim ke dukungan",
+  "opened": "Kasus Anda telah dikirim. Anda akan mendapatkan email ketika dukungan menjawab.",
+  "listTitle": "Kasus Anda",
+  "listDesc": "Anggota melihat kasus yang mereka buka; admin melihat setiap kasus ruang kerja ini.",
+  "none": "Belum ada kasus.",
+  "categories": {
+    "technical": "Masalah teknis",
+    "bug": "Ada yang rusak",
+    "billing": "Penagihan",
+    "account": "Akses akun",
+    "feature": "Ide fitur",
+    "security": "Masalah keamanan",
+    "compliance": "Kepatuhan",
+    "other": "Sesuatu yang lain"
+  },
+  "priorities": {
+    "low": "Rendah",
+    "medium": "Normal",
+    "high": "Tinggi",
+    "urgent": "Mendesak: pekerjaan diblokir"
+  },
+  "status": {
+    "open": "Membuka",
+    "in_progress": "Sedang berlangsung",
+    "waiting_user": "Menunggumu",
+    "waiting_third_party": "Menunggu pasangan",
+    "resolved": "Terselesaikan",
+    "closed": "Tertutup"
+  },
+  "reply": "Balasan Anda",
+  "send": "Kirim balasan",
+  "close": "Tutup kasusnya",
+  "closeTitle": "Tutup kasus ini",
+  "closeConfirm": "Tutup “{{subject}}”? Anda dapat membuka kasus baru kapan saja.",
+  "closedHelp": "Kasus ini sudah ditutup. Buka kasus baru jika Anda memerlukan bantuan lebih lanjut.",
+  "closedNotice": "Kasus ditutup.",
+  "errors": {
+    "notFound": "Kasus ini sudah tidak ada lagi.",
+    "closed": "Kasus ini sudah ditutup. Buka yang baru."
+  },
+  "newDesc": "Beritahu kami apa yang terjadi. Tim dukungan {{brand}} menjawab di sini dan melalui email.",
+  "fromSupport": "{{brand}} dukungan"
+}

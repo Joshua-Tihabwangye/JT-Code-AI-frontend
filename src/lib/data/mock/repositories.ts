@@ -7,6 +7,7 @@ import { createMockVisualizeRepository } from './visualize';
 import { MockTeamRepository } from './team';
 import { MockApiKeyRepository } from './apiKeys';
 import { MockWebhookRepository } from './webhooks';
+import { MockSupportRepository } from './support';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -1235,6 +1236,7 @@ export function createMockRepositories(): Repositories {
     team: new MockTeamRepository(),
     apiKeys: new MockApiKeyRepository(),
     webhooks: new MockWebhookRepository(),
+    support: new MockSupportRepository(),
     chat: new MockChatRepository(),
     history: new MockHistoryRepository(),
     billing: new MockBillingRepository(),

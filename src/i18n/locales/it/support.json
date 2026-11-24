@@ -1,0 +1,51 @@
+{
+  "tab": "Assistenza",
+  "mockNote": "Modalità demo: i casi rimangono in questo browser e nessuno risponde.",
+  "newTitle": "Contatta l'assistenza",
+  "subject": "Soggetto",
+  "category": "Argomento",
+  "priority": "Urgenza",
+  "description": "Quello che è successo? Includi ciò che ti aspettavi e i passaggi per visualizzare il problema.",
+  "open": "Invia al supporto",
+  "opened": "Il tuo caso è stato inviato. Riceverai un'e-mail quando il supporto risponde.",
+  "listTitle": "I tuoi casi",
+  "listDesc": "I membri vedono i casi che hanno aperto; gli amministratori vedono ogni caso di questo spazio di lavoro.",
+  "none": "Nessun caso ancora.",
+  "categories": {
+    "technical": "Problema tecnico",
+    "bug": "Qualcosa è rotto",
+    "billing": "Fatturazione",
+    "account": "Accesso all'account",
+    "feature": "Idea caratteristica",
+    "security": "Preoccupazione per la sicurezza",
+    "compliance": "Conformità",
+    "other": "Qualcos'altro"
+  },
+  "priorities": {
+    "low": "Basso",
+    "medium": "Normale",
+    "high": "Alto",
+    "urgent": "Urgente: il lavoro è bloccato"
+  },
+  "status": {
+    "open": "Aprire",
+    "in_progress": "In corso",
+    "waiting_user": "Ti aspetto",
+    "waiting_third_party": "In attesa di un partner",
+    "resolved": "Risolto",
+    "closed": "Chiuso"
+  },
+  "reply": "La tua risposta",
+  "send": "Invia risposta",
+  "close": "Chiudi il caso",
+  "closeTitle": "Chiudi questo caso",
+  "closeConfirm": "Chiudere “{{subject}}”? Puoi aprire un nuovo caso in qualsiasi momento.",
+  "closedHelp": "Questo caso è chiuso. Apri un nuovo caso se hai bisogno di ulteriore aiuto.",
+  "closedNotice": "Caso chiuso.",
+  "errors": {
+    "notFound": "Questo caso non esiste più.",
+    "closed": "Questo caso è chiuso. Aprine uno nuovo."
+  },
+  "newDesc": "Raccontaci cosa è successo. Il team di supporto {{brand}} risponde qui e via e-mail.",
+  "fromSupport": "{{brand}} supporto"
+}

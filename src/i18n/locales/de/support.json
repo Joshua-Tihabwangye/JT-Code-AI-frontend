@@ -1,0 +1,51 @@
+{
+  "tab": "Support",
+  "mockNote": "Demo-Modus: Fälle bleiben in diesem Browser und niemand beantwortet sie.",
+  "newTitle": "Kontaktieren Sie den Support",
+  "subject": "Thema",
+  "category": "Thema",
+  "priority": "Dringlichkeit",
+  "description": "Was ist passiert? Geben Sie an, was Sie erwartet haben und welche Schritte Sie unternehmen müssen, um das Problem zu erkennen.",
+  "open": "An den Support senden",
+  "opened": "Ihr Fall wurde gesendet. Sie erhalten eine E-Mail, wenn der Support antwortet.",
+  "listTitle": "Ihre Fälle",
+  "listDesc": "Mitglieder sehen die von ihnen eröffneten Fälle; Administratoren sehen jeden Fall dieses Arbeitsbereichs.",
+  "none": "Noch keine Fälle.",
+  "categories": {
+    "technical": "Technisches Problem",
+    "bug": "Etwas ist kaputt",
+    "billing": "Abrechnung",
+    "account": "Kontozugriff",
+    "feature": "Feature-Idee",
+    "security": "Sicherheitsbedenken",
+    "compliance": "Einhaltung",
+    "other": "Etwas anderes"
+  },
+  "priorities": {
+    "low": "Niedrig",
+    "medium": "Normal",
+    "high": "Hoch",
+    "urgent": "Dringend: Arbeit ist blockiert"
+  },
+  "status": {
+    "open": "Offen",
+    "in_progress": "Im Gange",
+    "waiting_user": "Warten auf Sie",
+    "waiting_third_party": "Warten auf einen Partner",
+    "resolved": "Gelöst",
+    "closed": "Geschlossen"
+  },
+  "reply": "Ihre Antwort",
+  "send": "Antwort senden",
+  "close": "Fall schließen",
+  "closeTitle": "Schließen Sie diesen Fall",
+  "closeConfirm": "„{{subject}}“ schließen? Sie können jederzeit einen neuen Fall eröffnen.",
+  "closedHelp": "Dieser Fall ist abgeschlossen. Öffnen Sie einen neuen Fall, wenn Sie weitere Hilfe benötigen.",
+  "closedNotice": "Fall abgeschlossen.",
+  "errors": {
+    "notFound": "Dieser Fall existiert nicht mehr.",
+    "closed": "Dieser Fall ist abgeschlossen. Öffnen Sie ein neues."
+  },
+  "newDesc": "Erzählen Sie uns, was passiert ist. Das {{brand}}-Supportteam antwortet hier und per E-Mail.",
+  "fromSupport": "{{brand}}-Support"
+}

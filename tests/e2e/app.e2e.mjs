@@ -1030,6 +1030,23 @@ async function main() {
       await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
     });
 
+    await step(page, 'settings: open a support case, reply, and close it', async () => {
+      await page.goto(`${BASE}/app/settings?tab=support`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="support-tab"]');
+      await setInput(page, '[data-testid="support-tab"] form input', `e2e case ${run}`);
+      await setInput(page, '[data-testid="support-tab"] form textarea', 'Opened by the browser end-to-end test.');
+      await domClick(page, '[data-testid="support-open-case"]');
+      await page.waitForSelector('[data-testid="support-thread"]', { timeout: 30_000 });
+      await setInput(page, '[data-testid="support-thread"] textarea', 'A follow-up from the test.');
+      await domClick(page, '[data-testid="support-send-reply"]');
+      await waitForText(page, '[data-testid="support-message-customer"]', /A follow-up from the test/);
+      // Close: the outline button next to Send, then confirm.
+      await page.$$eval('[data-testid="support-thread"] form button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForSelector('[role="alertdialog"]');
+      await page.$$eval('[role="alertdialog"] button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForFunction(() => !document.querySelector('[data-testid="support-send-reply"]'), { timeout: 30_000 });
+    });
+
     await step(page, 'settings: edit and save the profile', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle0' });
       await waitForText(page, 'body', new RegExp(email.replace(/[.@]/g, '\\$&')));

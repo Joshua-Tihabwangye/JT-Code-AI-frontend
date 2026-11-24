@@ -1,0 +1,51 @@
+{
+  "tab": "客服",
+  "mockNote": "演示模式：案例保留在该浏览器中，没有人回答。",
+  "newTitle": "联系支持人员",
+  "subject": "主题",
+  "category": "话题",
+  "priority": "紧迫性",
+  "description": "发生了什么？包括您的预期以及查看问题的步骤。",
+  "open": "发送给支持人员",
+  "opened": "您的案件已发送。当支持答复时，您将收到一封电子邮件。",
+  "listTitle": "您的案例",
+  "listDesc": "成员查看他们立案的案件；管理员可以查看此工作区的每个案例。",
+  "none": "还没有案例。",
+  "categories": {
+    "technical": "技术问题",
+    "bug": "有东西坏了",
+    "billing": "计费",
+    "account": "账户访问",
+    "feature": "特色理念",
+    "security": "安全问题",
+    "compliance": "遵守",
+    "other": "其他的东西"
+  },
+  "priorities": {
+    "low": "低的",
+    "medium": "普通的",
+    "high": "高的",
+    "urgent": "紧急：工作受阻"
+  },
+  "status": {
+    "open": "打开",
+    "in_progress": "进行中",
+    "waiting_user": "等着你",
+    "waiting_third_party": "等待伙伴",
+    "resolved": "已解决",
+    "closed": "关闭"
+  },
+  "reply": "您的回复",
+  "send": "发送回复",
+  "close": "关闭案例",
+  "closeTitle": "关闭此案例",
+  "closeConfirm": "关闭“{{subject}}”？您可以随时打开新案例。",
+  "closedHelp": "此案已经结案。如果您需要更多帮助，请打开一个新案例。",
+  "closedNotice": "案件结案。",
+  "errors": {
+    "notFound": "此案已不复存在。",
+    "closed": "此案已经结案。打开一个新的。"
+  },
+  "newDesc": "告诉我们发生了什么事。 {{brand}} 支持团队在此处和通过电子邮件进行答复。",
+  "fromSupport": "{{brand}} 客服"
+}

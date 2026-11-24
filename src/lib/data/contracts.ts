@@ -12,6 +12,9 @@ import type {
   CreatedWebhook,
   NewWebhook,
   WebhookDelivery,
+  NewSupportCase,
+  SupportCase,
+  SupportMessage,
   AcceptedInvite,
   CreatedTeamInvite,
   TeamMember,
@@ -162,6 +165,15 @@ export interface WebhookRepository {
   sendTest(id: string): Promise<WebhookDelivery>;
   rotateSecret(id: string): Promise<CreatedWebhook>;
   deliveries(id: string): Promise<WebhookDelivery[]>;
+}
+
+/** Support cases: members see their own, admins every case of the workspace. */
+export interface SupportRepository {
+  list(): Promise<SupportCase[]>;
+  open(input: NewSupportCase): Promise<SupportCase>;
+  messages(caseId: string): Promise<SupportMessage[]>;
+  reply(caseId: string, body: string): Promise<SupportMessage>;
+  close(caseId: string): Promise<SupportCase>;
 }
 
 export interface SendMessageOptions {
@@ -560,6 +572,7 @@ export interface Repositories {
   team: TeamRepository;
   apiKeys: ApiKeyRepository;
   webhooks: WebhookRepository;
+  support: SupportRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

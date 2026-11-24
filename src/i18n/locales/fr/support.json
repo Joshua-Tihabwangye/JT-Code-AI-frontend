@@ -1,0 +1,51 @@
+{
+  "tab": "Assistance",
+  "mockNote": "Mode démo : les cas restent dans ce navigateur et personne n'y répond.",
+  "newTitle": "Contacter l'assistance",
+  "subject": "Sujet",
+  "category": "Sujet",
+  "priority": "Urgence",
+  "description": "Ce qui s'est passé? Incluez ce à quoi vous vous attendiez et les étapes pour voir le problème.",
+  "open": "Envoyer au support",
+  "opened": "Votre dossier a été envoyé. Vous recevrez un e-mail lorsque le support répondra.",
+  "listTitle": "Vos cas",
+  "listDesc": "Les membres voient les dossiers qu'ils ont ouverts ; les administrateurs voient tous les cas de cet espace de travail.",
+  "none": "Aucun cas pour l'instant.",
+  "categories": {
+    "technical": "Problème technique",
+    "bug": "Quelque chose est cassé",
+    "billing": "Facturation",
+    "account": "Accès au compte",
+    "feature": "Idée de fonctionnalité",
+    "security": "Problème de sécurité",
+    "compliance": "Conformité",
+    "other": "Quelque chose d'autre"
+  },
+  "priorities": {
+    "low": "Faible",
+    "medium": "Normale",
+    "high": "Haut",
+    "urgent": "Urgent : les travaux sont bloqués"
+  },
+  "status": {
+    "open": "Ouvrir",
+    "in_progress": "En cours",
+    "waiting_user": "Dans votre attente",
+    "waiting_third_party": "En attente d'un partenaire",
+    "resolved": "Résolu",
+    "closed": "Fermé"
+  },
+  "reply": "Votre réponse",
+  "send": "Envoyer la réponse",
+  "close": "Fermer le dossier",
+  "closeTitle": "Fermer cette affaire",
+  "closeConfirm": "Fermer « {{subject}} » ? Vous pouvez ouvrir un nouveau dossier à tout moment.",
+  "closedHelp": "Cette affaire est close. Ouvrez un nouveau dossier si vous avez besoin de plus d'aide.",
+  "closedNotice": "Affaire close.",
+  "errors": {
+    "notFound": "Cette affaire n'existe plus.",
+    "closed": "Cette affaire est close. Ouvrez-en un nouveau."
+  },
+  "newDesc": "Racontez-nous ce qui s'est passé. L'équipe support {{brand}} répond ici et par e-mail.",
+  "fromSupport": "Assistance {{brand}}"
+}

@@ -14,6 +14,9 @@ import type {
   Webhook,
   WebhookDelivery,
   WebhookEvent,
+  NewSupportCase,
+  SupportCase,
+  SupportMessage,
   AnalysisRun,
   TeamInvite,
   TeamMember,
@@ -82,6 +85,7 @@ import type {
   TeamRepository,
   ApiKeyRepository,
   WebhookRepository,
+  SupportRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -392,6 +396,70 @@ class ApiWebhookRepository implements WebhookRepository {
   }
   async deliveries(id: string) {
     return (await list<ApiWebhookDelivery>(`/webhooks/${encodeURIComponent(id)}/deliveries/`)).map(toDelivery);
+  }
+}
+
+// --- Support cases ------------------------------------------------------------------------------------
+
+interface ApiSupportCase {
+  id: string;
+  subject: string;
+  description: string;
+  category: SupportCase['category'];
+  priority: SupportCase['priority'];
+  status: SupportCase['status'];
+  user_email: string;
+  message_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ApiSupportMessage {
+  id: string;
+  author_role: SupportMessage['author'];
+  author_name: string;
+  body: string;
+  created_at: string;
+}
+
+function toSupportCase(item: ApiSupportCase): SupportCase {
+  return {
+    id: item.id,
+    subject: item.subject,
+    description: item.description,
+    category: item.category,
+    priority: item.priority,
+    status: item.status,
+    userEmail: item.user_email,
+    messageCount: item.message_count,
+    createdAt: item.created_at,
+    updatedAt: item.updated_at,
+  };
+}
+
+function toSupportMessage(item: ApiSupportMessage): SupportMessage {
+  return { id: item.id, author: item.author_role, authorName: item.author_name, body: item.body, createdAt: item.created_at };
+}
+
+class ApiSupportRepository implements SupportRepository {
+  async list() {
+    return (await list<ApiSupportCase>('/support-cases/')).map(toSupportCase);
+  }
+  async open(input: NewSupportCase) {
+    const { data } = await api.post<ApiSupportCase>('/support-cases/', input);
+    return toSupportCase(data);
+  }
+  async messages(caseId: string) {
+    const { data } = await api.get<ApiSupportMessage[]>(`/support-cases/${encodeURIComponent(caseId)}/messages/`);
+    return data.map(toSupportMessage);
+  }
+  async reply(caseId: string, body: string) {
+    const { data } = await api.post<ApiSupportMessage>(`/support-cases/${encodeURIComponent(caseId)}/messages/`, { body });
+    return toSupportMessage(data);
+  }
+  async close(caseId: string) {
+    const { data } = await api.post<ApiSupportCase>(`/support-cases/${encodeURIComponent(caseId)}/close/`);
+    return toSupportCase(data);
   }
 }
 
@@ -1440,6 +1508,7 @@ export function createApiRepositories(): Repositories {
     team: new ApiTeamRepository(),
     apiKeys: new ApiApiKeyRepository(),
     webhooks: new ApiWebhookRepository(),
+    support: new ApiSupportRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

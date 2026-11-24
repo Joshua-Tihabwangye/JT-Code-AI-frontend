@@ -157,6 +157,39 @@ export interface WebhookDelivery {
   nextRetryAt: string | null;
 }
 
+export const SUPPORT_CATEGORIES = ['technical', 'bug', 'billing', 'account', 'feature', 'security', 'compliance', 'other'] as const;
+export type SupportCategory = (typeof SUPPORT_CATEGORIES)[number];
+export const SUPPORT_PRIORITIES = ['low', 'medium', 'high', 'urgent'] as const;
+export type SupportPriority = (typeof SUPPORT_PRIORITIES)[number];
+
+export interface SupportCase {
+  id: string;
+  subject: string;
+  description: string;
+  category: SupportCategory;
+  priority: SupportPriority;
+  status: 'open' | 'in_progress' | 'waiting_user' | 'waiting_third_party' | 'resolved' | 'closed';
+  userEmail: string;
+  messageCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SupportMessage {
+  id: string;
+  author: 'customer' | 'support';
+  authorName: string;
+  body: string;
+  createdAt: string;
+}
+
+export interface NewSupportCase {
+  subject: string;
+  description: string;
+  category: SupportCategory;
+  priority: SupportPriority;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;
