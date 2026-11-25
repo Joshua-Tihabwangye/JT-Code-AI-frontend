@@ -1,0 +1,22 @@
+{
+  "title": "Tus acuerdos",
+  "desc": "Qué aceptó, qué versión y cuándo. Este es el registro que mantenemos.",
+  "none": "No se registran acuerdos para esta cuenta.",
+  "version": "Versión {{version}}",
+  "withdrawnOn": "retirado {{date}}",
+  "endHelp": "Los términos y la política de privacidad se aplican mientras tenga una cuenta. Para finalizarlos, elimine su cuenta a continuación.",
+  "types": {
+    "terms": "Términos de servicio",
+    "privacy": "Política de privacidad",
+    "data_processing": "Acuerdo de procesamiento de datos",
+    "marketing": "correos electrónicos de marketing",
+    "analytics": "Análisis de uso",
+    "ai_training": "Uso de mis datos para el entrenamiento de IA",
+    "third_party": "Compartir con terceros"
+  },
+  "status": {
+    "granted": "Aceptado",
+    "denied": "Rechazado",
+    "withdrawn": "Retirado"
+  }
+}

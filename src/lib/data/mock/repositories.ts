@@ -8,7 +8,7 @@ import { MockTeamRepository } from './team';
 import { MockApiKeyRepository } from './apiKeys';
 import { MockWebhookRepository } from './webhooks';
 import { MockSupportRepository } from './support';
-import { MockAuditRepository } from './audit';
+import { MockAuditRepository, MockConsentRepository } from './audit';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -1239,6 +1239,7 @@ export function createMockRepositories(): Repositories {
     webhooks: new MockWebhookRepository(),
     support: new MockSupportRepository(),
     audit: new MockAuditRepository(),
+    consents: new MockConsentRepository(),
     chat: new MockChatRepository(),
     history: new MockHistoryRepository(),
     billing: new MockBillingRepository(),

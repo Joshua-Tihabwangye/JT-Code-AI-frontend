@@ -229,6 +229,17 @@ export interface AuditPage {
   hasMore: boolean;
 }
 
+/** A consent the user gave (terms and privacy at sign-up; optional ones later). */
+export interface ConsentEntry {
+  id: string;
+  type: string;
+  status: 'granted' | 'denied' | 'withdrawn';
+  version: string;
+  grantedAt: string | null;
+  withdrawnAt: string | null;
+  createdAt: string;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

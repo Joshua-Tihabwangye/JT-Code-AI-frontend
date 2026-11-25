@@ -1,0 +1,22 @@
+{
+  "title": "Your agreements",
+  "desc": "What you agreed to, which version, and when. This is the record we keep.",
+  "none": "No agreements are recorded for this account.",
+  "version": "Version {{version}}",
+  "withdrawnOn": "withdrawn {{date}}",
+  "endHelp": "The terms and privacy policy apply while you have an account. To end them, delete your account below.",
+  "types": {
+    "terms": "Terms of service",
+    "privacy": "Privacy policy",
+    "data_processing": "Data processing agreement",
+    "marketing": "Marketing e-mails",
+    "analytics": "Usage analytics",
+    "ai_training": "Use of my data for AI training",
+    "third_party": "Sharing with third parties"
+  },
+  "status": {
+    "granted": "Accepted",
+    "denied": "Declined",
+    "withdrawn": "Withdrawn"
+  }
+}

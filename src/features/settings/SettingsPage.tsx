@@ -13,6 +13,7 @@ import { TeamTab } from '@/features/settings/TeamTab';
 import { DeveloperTab } from '@/features/settings/DeveloperTab';
 import { SupportTab } from '@/features/settings/SupportTab';
 import { AuditTab } from '@/features/settings/AuditTab';
+import { AgreementsSection } from '@/features/settings/AgreementsSection';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -422,6 +423,8 @@ export function SettingsPage() {
                 </div>
               </form>
             </section>
+
+            <AgreementsSection />
 
             <section className="settings-danger-panel">
               <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>

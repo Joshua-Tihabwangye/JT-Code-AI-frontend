@@ -17,6 +17,7 @@ import type {
   NewSupportCase,
   AuditEvent,
   AuditFilter,
+  ConsentEntry,
   SupportCase,
   SupportMessage,
   AnalysisRun,
@@ -89,6 +90,7 @@ import type {
   WebhookRepository,
   SupportRepository,
   AuditRepository,
+  ConsentRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -509,6 +511,32 @@ class ApiAuditRepository implements AuditRepository {
   async exportCsv(filter: AuditFilter) {
     const { data } = await api.get<Blob>('/audit-events/export/', { params: auditParams(filter), responseType: 'blob' });
     return data;
+  }
+}
+
+// --- Consents ----------------------------------------------------------------------------------------
+
+interface ApiConsent {
+  id: string;
+  consent_type: string;
+  status: ConsentEntry['status'];
+  version: string;
+  granted_at: string | null;
+  withdrawn_at: string | null;
+  created_at: string;
+}
+
+class ApiConsentRepository implements ConsentRepository {
+  async list() {
+    return (await list<ApiConsent>('/consents/')).map((item) => ({
+      id: item.id,
+      type: item.consent_type,
+      status: item.status,
+      version: item.version,
+      grantedAt: item.granted_at,
+      withdrawnAt: item.withdrawn_at,
+      createdAt: item.created_at,
+    }));
   }
 }
 
@@ -1559,6 +1587,7 @@ export function createApiRepositories(): Repositories {
     webhooks: new ApiWebhookRepository(),
     support: new ApiSupportRepository(),
     audit: new ApiAuditRepository(),
+    consents: new ApiConsentRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

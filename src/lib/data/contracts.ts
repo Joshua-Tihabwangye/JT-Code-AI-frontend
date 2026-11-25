@@ -14,6 +14,7 @@ import type {
   WebhookDelivery,
   NewSupportCase,
   AuditFilter,
+  ConsentEntry,
   AuditPage,
   SupportCase,
   SupportMessage,
@@ -184,6 +185,11 @@ export interface AuditRepository {
   list(filter: AuditFilter, page: number): Promise<AuditPage>;
   /** The filtered trail as CSV (formula-safe). */
   exportCsv(filter: AuditFilter): Promise<Blob>;
+}
+
+/** The signed-in user's own consent records (read-only here). */
+export interface ConsentRepository {
+  list(): Promise<ConsentEntry[]>;
 }
 
 export interface SendMessageOptions {
@@ -584,6 +590,7 @@ export interface Repositories {
   webhooks: WebhookRepository;
   support: SupportRepository;
   audit: AuditRepository;
+  consents: ConsentRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

@@ -1030,6 +1030,15 @@ async function main() {
       await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
     });
 
+    await step(page, 'settings: your agreements show the terms and privacy policy accepted at sign-up', async () => {
+      await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="agreements"] li', { timeout: 30_000 });
+      const text = await page.$eval('[data-testid="agreements"]', (section) => section.textContent ?? '');
+      if (!/Terms of service/.test(text) || !/Privacy policy/.test(text) || !/Accepted/.test(text)) {
+        throw new Error(`agreements: ${text.slice(0, 200)}`);
+      }
+    });
+
     await step(page, 'settings: the audit log shows the key and webhook changes and downloads as CSV', async () => {
       await page.goto(`${BASE}/app/settings?tab=audit`, { waitUntil: 'networkidle2' });
       await waitForText(page, '[data-testid="audit-events"]', /api-key/, 30_000);
