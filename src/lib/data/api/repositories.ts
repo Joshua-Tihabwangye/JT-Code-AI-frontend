@@ -18,6 +18,12 @@ import type {
   AuditEvent,
   AuditFilter,
   ConsentEntry,
+  Agent,
+  AgentRun,
+  AgentStep,
+  NewAgent,
+  Automation,
+  NewAutomation,
   SupportCase,
   SupportMessage,
   AnalysisRun,
@@ -91,6 +97,8 @@ import type {
   SupportRepository,
   AuditRepository,
   ConsentRepository,
+  AgentRepository,
+  AutomationRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -537,6 +545,83 @@ class ApiConsentRepository implements ConsentRepository {
       withdrawnAt: item.withdrawn_at,
       createdAt: item.created_at,
     }));
+  }
+}
+
+// --- Agents and automations ---------------------------------------------------------------------------
+
+function toAgentRun(run: AgentRun & Record<string, unknown>): AgentRun {
+  return {
+    id: run.id,
+    agentId: run.agentId ?? null,
+    status: run.status,
+    graph: run.graph,
+    inputText: run.inputText ?? '',
+    finalOutput: run.finalOutput ?? '',
+    errorMessage: run.errorMessage ?? '',
+    modelCalls: run.modelCalls ?? 0,
+    toolCalls: run.toolCalls ?? 0,
+    costUsd: String(run.costUsd ?? '0'),
+    createdAt: run.createdAt,
+    completedAt: run.completedAt ?? null,
+  };
+}
+
+class ApiAgentRepository implements AgentRepository {
+  async list() {
+    return list<Agent>('/agents/');
+  }
+  async create(input: NewAgent) {
+    const { data } = await api.post<Agent>('/agents/', input);
+    return data;
+  }
+  async setActive(id: string, isActive: boolean) {
+    const { data } = await api.patch<Agent>(`/agents/${encodeURIComponent(id)}/`, { isActive });
+    return data;
+  }
+  async remove(id: string) {
+    await api.delete(`/agents/${encodeURIComponent(id)}/`);
+  }
+  async run(agentId: string | null, input: string) {
+    const path = agentId ? `/agents/${encodeURIComponent(agentId)}/runs/` : '/agent-runs/';
+    const { data } = await api.post<AgentRun & Record<string, unknown>>(path, { input }, { headers: { 'Idempotency-Key': crypto.randomUUID() } });
+    return toAgentRun(data);
+  }
+  async getRun(id: string) {
+    const { data } = await api.get<AgentRun & Record<string, unknown>>(`/agent-runs/${encodeURIComponent(id)}/`);
+    return toAgentRun(data);
+  }
+  async steps(runId: string) {
+    const { data } = await api.get<AgentStep[]>(`/agent-runs/${encodeURIComponent(runId)}/steps/`);
+    return data;
+  }
+  async cancel(runId: string) {
+    const { data } = await api.post<AgentRun & Record<string, unknown>>(`/agent-runs/${encodeURIComponent(runId)}/cancel/`);
+    return toAgentRun(data);
+  }
+  async runs() {
+    return (await list<AgentRun & Record<string, unknown>>('/agent-runs/')).map(toAgentRun);
+  }
+}
+
+class ApiAutomationRepository implements AutomationRepository {
+  async list() {
+    return list<Automation>('/automations/');
+  }
+  async create(input: NewAutomation) {
+    const { data } = await api.post<Automation>('/automations/', input);
+    return data;
+  }
+  async setActive(id: string, isActive: boolean) {
+    const { data } = await api.patch<Automation>(`/automations/${encodeURIComponent(id)}/`, { isActive });
+    return data;
+  }
+  async remove(id: string) {
+    await api.delete(`/automations/${encodeURIComponent(id)}/`);
+  }
+  async runNow(id: string) {
+    const { data } = await api.post<{ jobId: string; status: string }>(`/automations/${encodeURIComponent(id)}/run/`);
+    return data;
   }
 }
 
@@ -1588,6 +1673,8 @@ export function createApiRepositories(): Repositories {
     support: new ApiSupportRepository(),
     audit: new ApiAuditRepository(),
     consents: new ApiConsentRepository(),
+    agents: new ApiAgentRepository(),
+    automations: new ApiAutomationRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

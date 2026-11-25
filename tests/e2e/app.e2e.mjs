@@ -1030,6 +1030,25 @@ async function main() {
       await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
     });
 
+    await step(page, 'agents: run a task to completion, then create an agent', async () => {
+      await page.click('nav.nav-links a[href="/app/agents"]');
+      await page.waitForSelector('[data-testid="agents-tab"]');
+      await setInput(page, '[data-testid="agents-tab"] form textarea', 'Say hello to the end-to-end test.');
+      await domClick(page, '[data-testid="agent-run-start"]');
+      await page.waitForSelector('[data-testid="agent-run"]', { timeout: 30_000 });
+      await page.waitForFunction(
+        () => /completed|failed|cancelled|Done|Failed|Cancelled/.test(document.querySelector('[data-testid="agent-run-status"]')?.textContent ?? ''),
+        { timeout: 120_000 },
+      );
+      const outcome = await page.$eval('[data-testid="agent-run"]', (panel) => panel.textContent ?? '');
+      if (!/Done/.test(outcome)) throw new Error(`agent run did not complete: ${outcome.slice(0, 300)}`);
+      await page.waitForSelector('[data-testid="agent-run-output"]');
+      await domClick(page, '[data-testid="agent-new"]');
+      await setInput(page, '[data-testid="agent-form"] input', `E2E agent ${run}`);
+      await domClick(page, '[data-testid="agent-create"]');
+      await waitForText(page, '[data-testid="agents"]', new RegExp(`E2E agent ${run}`));
+    });
+
     await step(page, 'settings: your agreements show the terms and privacy policy accepted at sign-up', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle2' });
       await page.waitForSelector('[data-testid="agreements"] li', { timeout: 30_000 });

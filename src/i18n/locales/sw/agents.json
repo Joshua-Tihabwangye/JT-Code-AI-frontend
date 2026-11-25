@@ -1,0 +1,52 @@
+{
+  "eyebrow": "Otomatiki",
+  "title": "Mawakala",
+  "subtitle": "Wape mawakala wa AI kazi, fuata kila hatua, na uratibishe kazi inayojiendesha yenyewe.",
+  "tabAgents": "Mawakala",
+  "tabAutomations": "Imepangwa",
+  "editorsOnly": "Mawakala ni wa wahariri na wasimamizi wa nafasi hii ya kazi: kila kukimbia hutumia mikopo.",
+  "runTitle": "Endesha jukumu",
+  "runDesc": "Eleza unachohitaji. Wakala hufanya kazi hatua kwa hatua; unaweza kuitazama na kuighairi.",
+  "agent": "Wakala",
+  "defaultAssistant": "Mratibu chaguo-msingi (huchagua mbinu sahihi)",
+  "input": "Kazi",
+  "usage": "{{models}} simu za muundo · {{tools}} simu za zana",
+  "cancel": "Ghairi",
+  "steps_one": "{{count}} hatua",
+  "steps_other": "{{count}} hatua",
+  "status": {
+    "queued": "Imewekwa kwenye foleni",
+    "running": "Kukimbia",
+    "waiting_approval": "Inasubiri idhini",
+    "completed": "Imekamilika",
+    "failed": "Imeshindwa",
+    "cancelled": "Imeghairiwa"
+  },
+  "listTitle": "Mawakala wako",
+  "listDesc": "Wakala zinazoweza kutumika tena na maagizo yao wenyewe.",
+  "new": "Wakala mpya",
+  "name": "Jina",
+  "graph": "Jinsi inavyofanya kazi",
+  "graphs": {
+    "direct_answer": "Majibu moja kwa moja",
+    "tool_agent": "Inatumia zana",
+    "research": "Hutafiti kwa kutumia zana za kusoma pekee"
+  },
+  "description": "Maelezo",
+  "instructions": "Maagizo (nini wakala anapaswa kufanya kila wakati)",
+  "create": "Unda wakala",
+  "none": "Bado hakuna mawakala. Mratibu chaguo-msingi hupatikana kila wakati.",
+  "inactive": "Isiyotumika",
+  "activate": "Washa",
+  "deactivate": "Zima",
+  "delete": "Futa",
+  "deleteFor": "Futa {{name}}",
+  "deleteTitle": "Futa wakala",
+  "deleteConfirm": "\"{{name}}\" imefutwa. Uendeshaji wake wa zamani unabaki kwenye historia.",
+  "recentTitle": "Mikimbio ya hivi majuzi",
+  "noRuns": "Hakuna kukimbia bado.",
+  "errors": {
+    "demo": "Hali ya onyesho: mawakala na otomatiki huendeshwa kwenye seva, kwa hivyo hakuna kitu kinachofanya kazi hapa."
+  },
+  "run": "Anza"
+}

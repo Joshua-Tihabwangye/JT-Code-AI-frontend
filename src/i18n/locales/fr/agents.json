@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Automation",
+  "title": "Agents",
+  "subtitle": "Donnez une tâche aux agents IA, suivez chaque étape et planifiez un travail qui s'exécute de manière autonome.",
+  "tabAgents": "Agents",
+  "tabAutomations": "Programmé",
+  "editorsOnly": "Les agents sont destinés aux éditeurs et aux administrateurs de cet espace de travail : chaque exécution utilise des crédits.",
+  "runTitle": "Exécuter une tâche",
+  "runDesc": "Décrivez ce dont vous avez besoin. L'agent travaille étape par étape ; vous pouvez le regarder et l'annuler.",
+  "agent": "Agent",
+  "defaultAssistant": "Assistant par défaut (choisit la bonne approche)",
+  "input": "Tâche",
+  "usage": "{{models}} appels de modèle · {{tools}} appels d'outils",
+  "cancel": "Annuler",
+  "steps_one": "{{count}} étape",
+  "steps_other": "{{count}} étapes",
+  "status": {
+    "queued": "En file d'attente",
+    "running": "En cours d'exécution",
+    "waiting_approval": "En attente d'approbation",
+    "completed": "Fait",
+    "failed": "Échoué",
+    "cancelled": "Annulé"
+  },
+  "listTitle": "Vos agents",
+  "listDesc": "Agents réutilisables avec leurs propres instructions.",
+  "new": "Nouvel agent",
+  "name": "Nom",
+  "graph": "Comment ça marche",
+  "graphs": {
+    "direct_answer": "Répond directement",
+    "tool_agent": "Utilise des outils",
+    "research": "Recherches avec des outils en lecture seule"
+  },
+  "description": "Description",
+  "instructions": "Instructions (ce que l'agent doit toujours faire)",
+  "create": "Créer un agent",
+  "none": "Aucun agent pour l'instant. L'assistant par défaut est toujours disponible.",
+  "inactive": "Inactif",
+  "activate": "Activer",
+  "deactivate": "Désactiver",
+  "delete": "Supprimer",
+  "deleteFor": "Supprimer {{name}}",
+  "deleteTitle": "Supprimer un agent",
+  "deleteConfirm": "« {{name}} » est supprimé. Ses courses passées restent dans l'histoire.",
+  "recentTitle": "Courses récentes",
+  "noRuns": "Aucune course pour l'instant.",
+  "errors": {
+    "demo": "Mode démo : les agents et les automatisations s'exécutent sur le serveur, donc rien ne s'exécute ici."
+  },
+  "steps_many": "{{count}} étapes",
+  "run": "Commencer"
+}

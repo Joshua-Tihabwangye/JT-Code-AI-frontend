@@ -10,5 +10,6 @@
   "settings": "设置",
   "integrations": "集成",
   "analytics": "数据分析",
-  "visualize": "数据可视化"
+  "visualize": "数据可视化",
+  "agents": "智能体"
 }

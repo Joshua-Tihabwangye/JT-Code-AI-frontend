@@ -15,6 +15,12 @@ import type {
   NewSupportCase,
   AuditFilter,
   ConsentEntry,
+  Agent,
+  AgentRun,
+  AgentStep,
+  NewAgent,
+  Automation,
+  NewAutomation,
   AuditPage,
   SupportCase,
   SupportMessage,
@@ -190,6 +196,29 @@ export interface AuditRepository {
 /** The signed-in user's own consent records (read-only here). */
 export interface ConsentRepository {
   list(): Promise<ConsentEntry[]>;
+}
+
+/** Agents and their runs (editors and admins; runs use credits). */
+export interface AgentRepository {
+  list(): Promise<Agent[]>;
+  create(input: NewAgent): Promise<Agent>;
+  setActive(id: string, isActive: boolean): Promise<Agent>;
+  remove(id: string): Promise<void>;
+  /** Starts a run (idempotent per call); `agentId` null runs the default assistant. */
+  run(agentId: string | null, input: string): Promise<AgentRun>;
+  getRun(id: string): Promise<AgentRun>;
+  steps(runId: string): Promise<AgentStep[]>;
+  cancel(runId: string): Promise<AgentRun>;
+  runs(): Promise<AgentRun[]>;
+}
+
+/** Scheduled automations (need the n8n "scheduled-automation" workflow on the server). */
+export interface AutomationRepository {
+  list(): Promise<Automation[]>;
+  create(input: NewAutomation): Promise<Automation>;
+  setActive(id: string, isActive: boolean): Promise<Automation>;
+  remove(id: string): Promise<void>;
+  runNow(id: string): Promise<{ jobId: string; status: string }>;
 }
 
 export interface SendMessageOptions {
@@ -591,6 +620,8 @@ export interface Repositories {
   support: SupportRepository;
   audit: AuditRepository;
   consents: ConsentRepository;
+  agents: AgentRepository;
+  automations: AutomationRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

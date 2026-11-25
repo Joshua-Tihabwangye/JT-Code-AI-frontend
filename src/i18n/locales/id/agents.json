@@ -1,0 +1,52 @@
+{
+  "eyebrow": "Otomatisasi",
+  "title": "Agen",
+  "subtitle": "Berikan tugas kepada agen AI, ikuti setiap langkah, dan jadwalkan pekerjaan yang berjalan sendiri.",
+  "tabAgents": "Agen",
+  "tabAutomations": "Dijadwalkan",
+  "editorsOnly": "Agen diperuntukkan bagi editor dan admin ruang kerja ini: setiap proses menggunakan kredit.",
+  "runTitle": "Jalankan tugas",
+  "runDesc": "Jelaskan apa yang Anda butuhkan. Agen bekerja selangkah demi selangkah; Anda dapat menonton dan membatalkannya.",
+  "agent": "Agen",
+  "defaultAssistant": "Asisten default (memilih pendekatan yang tepat)",
+  "input": "Tugas",
+  "usage": "{{models}} panggilan model · {{tools}} panggilan alat",
+  "cancel": "Membatalkan",
+  "steps_one": "{{count}} langkah",
+  "steps_other": "{{count}} langkah",
+  "status": {
+    "queued": "Mengantri",
+    "running": "Berlari",
+    "waiting_approval": "Menunggu persetujuan",
+    "completed": "Selesai",
+    "failed": "Gagal",
+    "cancelled": "Dibatalkan"
+  },
+  "listTitle": "Agen Anda",
+  "listDesc": "Agen yang dapat digunakan kembali dengan instruksinya sendiri.",
+  "new": "Agen baru",
+  "name": "Nama",
+  "graph": "Bagaimana cara kerjanya",
+  "graphs": {
+    "direct_answer": "Jawaban secara langsung",
+    "tool_agent": "Menggunakan alat",
+    "research": "Penelitian dengan alat read-only"
+  },
+  "description": "Keterangan",
+  "instructions": "Instruksi (apa yang harus selalu dilakukan agen)",
+  "create": "Buat agen",
+  "none": "Belum ada agen. Asisten default selalu tersedia.",
+  "inactive": "Tidak aktif",
+  "activate": "Mengaktifkan",
+  "deactivate": "Menonaktifkan",
+  "delete": "Menghapus",
+  "deleteFor": "Hapus {{name}}",
+  "deleteTitle": "Hapus agen",
+  "deleteConfirm": "“{{name}}” dihapus. Masa lalunya tetap tinggal dalam sejarah.",
+  "recentTitle": "Berjalan baru-baru ini",
+  "noRuns": "Belum ada yang berjalan.",
+  "errors": {
+    "demo": "Mode demo: agen dan otomatisasi berjalan di server, jadi tidak ada yang berjalan di sini."
+  },
+  "run": "Awal"
+}

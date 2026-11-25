@@ -240,6 +240,78 @@ export interface ConsentEntry {
   createdAt: string;
 }
 
+/** How an agent works: one model turn, a tool-using loop, or a read-only research loop. */
+export const AGENT_GRAPHS = ['direct_answer', 'tool_agent', 'research'] as const;
+export type AgentGraph = (typeof AGENT_GRAPHS)[number];
+
+export interface Agent {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  graph: AgentGraph;
+  systemPrompt: string;
+  maxSteps: number;
+  isActive: boolean;
+  updatedAt: string;
+}
+
+export interface NewAgent {
+  name: string;
+  slug: string;
+  description: string;
+  graph: AgentGraph;
+  systemPrompt: string;
+}
+
+export type AgentRunStatus = 'queued' | 'running' | 'waiting_approval' | 'completed' | 'failed' | 'cancelled';
+
+export interface AgentRun {
+  id: string;
+  agentId: string | null;
+  status: AgentRunStatus;
+  graph: string;
+  inputText: string;
+  finalOutput: string;
+  errorMessage: string;
+  modelCalls: number;
+  toolCalls: number;
+  costUsd: string;
+  createdAt: string;
+  completedAt: string | null;
+}
+
+export interface AgentStep {
+  sequence: number;
+  node: string;
+  kind: string;
+  outcome: string;
+  summary: string;
+  createdAt: string;
+}
+
+export const AUTOMATION_ACTIONS = ['email', 'webhook', 'slack_message'] as const;
+export type AutomationAction = (typeof AUTOMATION_ACTIONS)[number];
+
+export interface Automation {
+  id: string;
+  name: string;
+  description: string;
+  schedule: string;
+  input: Record<string, unknown> & { action: AutomationAction };
+  isActive: boolean;
+  nextRunAt: string | null;
+  lastRunAt: string | null;
+  lastError: string;
+  runCount: number;
+}
+
+export interface NewAutomation {
+  name: string;
+  schedule: string;
+  input: Record<string, unknown> & { action: AutomationAction };
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

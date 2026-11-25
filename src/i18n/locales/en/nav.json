@@ -10,5 +10,6 @@
   "settings": "Settings",
   "integrations": "Integrations",
   "analytics": "Data Analytics",
-  "visualize": "Data Visualization"
+  "visualize": "Data Visualization",
+  "agents": "Agents"
 }
