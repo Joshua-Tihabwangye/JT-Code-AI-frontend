@@ -1049,6 +1049,18 @@ async function main() {
       await waitForText(page, '[data-testid="agents"]', new RegExp(`E2E agent ${run}`));
     });
 
+    await step(page, 'agents: the tools tab lists tools and stores a credential without showing its secret', async () => {
+      await page.goto(`${BASE}/app/agents?tab=tools`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="tool-catalog"]', { timeout: 30_000 });
+      const secret = `e2e-secret-${run}`;
+      await setInput(page, 'input[type="password"]', secret);
+      const nameField = await page.$$('[data-testid="tools-tab"] form input:not([type="password"]):not([type="url"])');
+      await nameField[nameField.length - 1].type(`E2E credential ${run}`);
+      await domClick(page, '[data-testid="credential-add"]');
+      await waitForText(page, '[data-testid="tool-credentials"]', new RegExp(`e2e-credential-${run}`));
+      if ((await page.content()).includes(secret)) throw new Error('the credential secret is visible after saving');
+    });
+
     await step(page, 'settings: your agreements show the terms and privacy policy accepted at sign-up', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle2' });
       await page.waitForSelector('[data-testid="agreements"] li', { timeout: 30_000 });

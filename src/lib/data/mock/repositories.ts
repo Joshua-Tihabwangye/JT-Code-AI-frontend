@@ -9,7 +9,7 @@ import { MockApiKeyRepository } from './apiKeys';
 import { MockWebhookRepository } from './webhooks';
 import { MockSupportRepository } from './support';
 import { MockAuditRepository, MockConsentRepository } from './audit';
-import { MockAgentRepository, MockAutomationRepository } from './agents';
+import { MockAgentRepository, MockAutomationRepository, MockToolsRepository } from './agents';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -1243,6 +1243,7 @@ export function createMockRepositories(): Repositories {
     consents: new MockConsentRepository(),
     agents: new MockAgentRepository(),
     automations: new MockAutomationRepository(),
+    tools: new MockToolsRepository(),
     chat: new MockChatRepository(),
     history: new MockHistoryRepository(),
     billing: new MockBillingRepository(),

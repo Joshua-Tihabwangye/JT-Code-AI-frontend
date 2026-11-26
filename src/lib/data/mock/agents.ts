@@ -1,6 +1,6 @@
 import i18n from '@/i18n/config';
 import { simulate } from './latency';
-import type { AgentRepository, AutomationRepository } from '../contracts';
+import type { AgentRepository, AutomationRepository, ToolsRepository } from '../contracts';
 
 const demo = () => new Error(i18n.t('agents.errors.demo'));
 
@@ -50,5 +50,41 @@ export class MockAutomationRepository implements AutomationRepository {
   }
   runNow() {
     return simulate('automations.run', () => Promise.reject(demo()));
+  }
+}
+
+export class MockToolsRepository implements ToolsRepository {
+  catalog() {
+    return simulate('tools.catalog', () => []);
+  }
+  approvals() {
+    return simulate('tools.approvals', () => []);
+  }
+  decide() {
+    return simulate('tools.decide', () => Promise.reject(demo()));
+  }
+  mcpServers() {
+    return simulate('tools.mcp', () => []);
+  }
+  addMcpServer() {
+    return simulate('tools.mcpAdd', () => Promise.reject(demo()));
+  }
+  discover() {
+    return simulate('tools.discover', () => Promise.reject(demo()));
+  }
+  setAllowedTools() {
+    return simulate('tools.allow', () => Promise.reject(demo()));
+  }
+  removeMcpServer() {
+    return simulate('tools.mcpRemove', () => Promise.reject(demo()));
+  }
+  credentials() {
+    return simulate('tools.credentials', () => []);
+  }
+  addCredential() {
+    return simulate('tools.credentialAdd', () => Promise.reject(demo()));
+  }
+  removeCredential() {
+    return simulate('tools.credentialRemove', () => Promise.reject(demo()));
   }
 }

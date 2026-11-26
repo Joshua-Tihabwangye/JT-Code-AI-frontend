@@ -48,5 +48,6 @@
   "errors": {
     "demo": "Demo modu: aracılar ve otomasyonlar sunucuda çalışır, dolayısıyla burada hiçbir şey çalışmaz."
   },
-  "run": "Başlangıç"
+  "run": "Başlangıç",
+  "tabTools": "Aletler"
 }

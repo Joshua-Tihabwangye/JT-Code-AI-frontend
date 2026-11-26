@@ -48,5 +48,6 @@
   "errors": {
     "demo": "Demomodus: Agenten und Automatisierungen laufen auf dem Server, daher läuft hier nichts."
   },
-  "run": "Start"
+  "run": "Start",
+  "tabTools": "Werkzeuge"
 }

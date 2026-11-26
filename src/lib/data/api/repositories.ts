@@ -24,6 +24,10 @@ import type {
   NewAgent,
   Automation,
   NewAutomation,
+  McpServer,
+  ToolApproval,
+  ToolCredential,
+  ToolInfo,
   SupportCase,
   SupportMessage,
   AnalysisRun,
@@ -99,6 +103,7 @@ import type {
   ConsentRepository,
   AgentRepository,
   AutomationRepository,
+  ToolsRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -622,6 +627,51 @@ class ApiAutomationRepository implements AutomationRepository {
   async runNow(id: string) {
     const { data } = await api.post<{ jobId: string; status: string }>(`/automations/${encodeURIComponent(id)}/run/`);
     return data;
+  }
+}
+
+// --- Agent tools ------------------------------------------------------------------------------------
+
+class ApiToolsRepository implements ToolsRepository {
+  async catalog() {
+    return list<ToolInfo>('/tools/');
+  }
+  async approvals(status?: ToolApproval['status']) {
+    return list<ToolApproval>('/tool-approvals/', status ? { status } : undefined);
+  }
+  async decide(id: string, approve: boolean, note: string) {
+    // Two literal paths keep the call checkable by the API contract test.
+    const path = approve ? `/tool-approvals/${encodeURIComponent(id)}/approve/` : `/tool-approvals/${encodeURIComponent(id)}/reject/`;
+    const { data } = await api.post<{ approval: ToolApproval }>(path, { note });
+    return data.approval;
+  }
+  async mcpServers() {
+    return list<McpServer>('/mcp/servers/');
+  }
+  async addMcpServer(input: { name: string; slug: string; url: string; credentialId: string | null }) {
+    const { data } = await api.post<McpServer>('/mcp/servers/', input);
+    return data;
+  }
+  async discover(id: string) {
+    const { data } = await api.post<McpServer>(`/mcp/servers/${encodeURIComponent(id)}/discover/`);
+    return data;
+  }
+  async setAllowedTools(id: string, allowedTools: string[]) {
+    const { data } = await api.patch<McpServer>(`/mcp/servers/${encodeURIComponent(id)}/`, { allowedTools });
+    return data;
+  }
+  async removeMcpServer(id: string) {
+    await api.delete(`/mcp/servers/${encodeURIComponent(id)}/`);
+  }
+  async credentials() {
+    return list<ToolCredential>('/tool-credentials/');
+  }
+  async addCredential(input: { provider: ToolCredential['provider']; name: string; secret: string }) {
+    const { data } = await api.post<ToolCredential>('/tool-credentials/', input);
+    return data;
+  }
+  async removeCredential(id: string) {
+    await api.delete(`/tool-credentials/${encodeURIComponent(id)}/`);
   }
 }
 
@@ -1675,6 +1725,7 @@ export function createApiRepositories(): Repositories {
     consents: new ApiConsentRepository(),
     agents: new ApiAgentRepository(),
     automations: new ApiAutomationRepository(),
+    tools: new ApiToolsRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

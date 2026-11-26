@@ -21,6 +21,10 @@ import type {
   NewAgent,
   Automation,
   NewAutomation,
+  McpServer,
+  ToolApproval,
+  ToolCredential,
+  ToolInfo,
   AuditPage,
   SupportCase,
   SupportMessage,
@@ -219,6 +223,22 @@ export interface AutomationRepository {
   setActive(id: string, isActive: boolean): Promise<Automation>;
   remove(id: string): Promise<void>;
   runNow(id: string): Promise<{ jobId: string; status: string }>;
+}
+
+/** Agent tools: the catalogue, approvals (editors), MCP servers and credentials (admins). */
+export interface ToolsRepository {
+  catalog(): Promise<ToolInfo[]>;
+  approvals(status?: ToolApproval['status']): Promise<ToolApproval[]>;
+  decide(id: string, approve: boolean, note: string): Promise<ToolApproval>;
+  mcpServers(): Promise<McpServer[]>;
+  addMcpServer(input: { name: string; slug: string; url: string; credentialId: string | null }): Promise<McpServer>;
+  discover(id: string): Promise<McpServer>;
+  setAllowedTools(id: string, allowedTools: string[]): Promise<McpServer>;
+  removeMcpServer(id: string): Promise<void>;
+  credentials(): Promise<ToolCredential[]>;
+  /** The secret is sent once and never returned (the server stores it encrypted). */
+  addCredential(input: { provider: ToolCredential['provider']; name: string; secret: string }): Promise<ToolCredential>;
+  removeCredential(id: string): Promise<void>;
 }
 
 export interface SendMessageOptions {
@@ -622,6 +642,7 @@ export interface Repositories {
   consents: ConsentRepository;
   agents: AgentRepository;
   automations: AutomationRepository;
+  tools: ToolsRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

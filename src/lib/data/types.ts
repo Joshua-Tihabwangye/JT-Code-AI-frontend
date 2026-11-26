@@ -312,6 +312,50 @@ export interface NewAutomation {
   input: Record<string, unknown> & { action: AutomationAction };
 }
 
+export interface ToolInfo {
+  name: string;
+  description: string;
+  /** true, false, or 'conditional' (depends on the arguments). */
+  requiresApproval: boolean | 'conditional';
+  minRole: string;
+  /** Whether the signed-in user's role may call it. */
+  available: boolean;
+}
+
+export interface ToolApproval {
+  id: string;
+  toolName: string;
+  summary: string;
+  arguments: Record<string, unknown>;
+  status: 'pending' | 'approved' | 'rejected' | 'expired' | 'executed';
+  agentRunId: string | null;
+  decisionNote: string;
+  expiresAt: string | null;
+  createdAt: string;
+}
+
+export interface McpServer {
+  id: string;
+  slug: string;
+  name: string;
+  url: string;
+  credentialId: string | null;
+  status: 'active' | 'disabled' | 'error';
+  discoveredTools: { name: string; description?: string }[];
+  allowedTools: string[];
+  lastDiscoveredAt: string | null;
+  lastError: string;
+}
+
+export interface ToolCredential {
+  id: string;
+  provider: 'github' | 'slack' | 'http' | 'mcp';
+  name: string;
+  hasSecret: boolean;
+  isActive: boolean;
+  createdAt: string;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

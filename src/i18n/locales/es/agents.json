@@ -49,5 +49,6 @@
     "demo": "Modo de demostración: los agentes y las automatizaciones se ejecutan en el servidor, por lo que aquí no se ejecuta nada."
   },
   "steps_many": "{{count}} pasos",
-  "run": "Comenzar"
+  "run": "Comenzar",
+  "tabTools": "Herramientas"
 }

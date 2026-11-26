@@ -48,5 +48,6 @@
   "noRuns": "No runs yet.",
   "errors": {
     "demo": "Demo mode: agents and automations run on the server, so nothing runs here."
-  }
+  },
+  "tabTools": "Tools"
 }

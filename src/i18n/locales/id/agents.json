@@ -48,5 +48,6 @@
   "errors": {
     "demo": "Mode demo: agen dan otomatisasi berjalan di server, jadi tidak ada yang berjalan di sini."
   },
-  "run": "Awal"
+  "run": "Awal",
+  "tabTools": "Peralatan"
 }

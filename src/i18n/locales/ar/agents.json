@@ -52,5 +52,6 @@
   "steps_many": "{{count}} الخطوات",
   "steps_two": "{{count}} الخطوات",
   "steps_zero": "{{count}} الخطوات",
-  "run": "يبدأ"
+  "run": "يبدأ",
+  "tabTools": "أدوات"
 }

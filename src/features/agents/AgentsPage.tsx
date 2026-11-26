@@ -4,12 +4,13 @@ import { config } from '@/lib/config';
 import { Alert, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components';
 import { AgentsTab } from '@/features/agents/AgentsTab';
 import { AutomationsTab } from '@/features/agents/AutomationsTab';
+import { ToolsTab } from '@/features/agents/ToolsTab';
 
 /** /app/agents: agents (define, run, follow) and scheduled automations. */
 export function AgentsPage() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const tab = searchParams.get('tab') === 'automations' ? 'automations' : 'agents';
+  const tab = (['automations', 'tools'] as const).find((name) => name === searchParams.get('tab')) ?? 'agents';
   return (
     <section className="workspace">
       <header className="workspace-header">
@@ -24,12 +25,16 @@ export function AgentsPage() {
         <TabsList className="mb-6" aria-label={t('agents.title')}>
           <TabsTrigger value="agents">{t('agents.tabAgents')}</TabsTrigger>
           <TabsTrigger value="automations">{t('agents.tabAutomations')}</TabsTrigger>
+          <TabsTrigger value="tools">{t('agents.tabTools')}</TabsTrigger>
         </TabsList>
         <TabsContent value="agents" className="max-w-5xl mx-auto">
           <AgentsTab />
         </TabsContent>
         <TabsContent value="automations" className="max-w-5xl mx-auto">
           <AutomationsTab />
+        </TabsContent>
+        <TabsContent value="tools" className="max-w-5xl mx-auto">
+          <ToolsTab />
         </TabsContent>
       </Tabs>
     </section>
