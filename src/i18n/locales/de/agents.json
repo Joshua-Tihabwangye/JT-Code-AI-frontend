@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Automatisierung",
+  "title": "Agenten",
+  "subtitle": "Geben Sie KI-Agenten eine Aufgabe, befolgen Sie jeden Schritt und planen Sie Arbeiten, die von selbst ausgeführt werden.",
+  "tabAgents": "Agenten",
+  "tabAutomations": "Geplant",
+  "editorsOnly": "Agenten sind für Redakteure und Administratoren dieses Arbeitsbereichs bestimmt: Für jede Ausführung werden Credits benötigt.",
+  "runTitle": "Führen Sie eine Aufgabe aus",
+  "runDesc": "Beschreiben Sie, was Sie brauchen. Der Agent arbeitet Schritt für Schritt; Sie können es ansehen und abbrechen.",
+  "agent": "Agent",
+  "defaultAssistant": "Standardassistent (wählt den richtigen Ansatz)",
+  "input": "Aufgabe",
+  "usage": "{{models}} Modellaufrufe · {{tools}} Toolaufrufe",
+  "cancel": "Stornieren",
+  "steps_one": "{{count}} Schritt",
+  "steps_other": "{{count}} Schritte",
+  "status": {
+    "queued": "In der Warteschlange",
+    "running": "Läuft",
+    "waiting_approval": "Warten auf Genehmigung",
+    "completed": "Erledigt",
+    "failed": "Fehlgeschlagen",
+    "cancelled": "Abgesagt"
+  },
+  "listTitle": "Ihre Agenten",
+  "listDesc": "Wiederverwendbare Mittel mit eigener Anleitung.",
+  "new": "Neuer Agent",
+  "name": "Name",
+  "graph": "Wie es funktioniert",
+  "graphs": {
+    "direct_answer": "Antworten direkt",
+    "tool_agent": "Verwendet Werkzeuge",
+    "research": "Recherchiert mit schreibgeschützten Tools"
+  },
+  "description": "Beschreibung",
+  "instructions": "Anweisungen (was der Agent immer tun sollte)",
+  "create": "Agent erstellen",
+  "none": "Noch keine Agenten. Der Standardassistent ist immer verfügbar.",
+  "inactive": "Inaktiv",
+  "activate": "Aktivieren",
+  "deactivate": "Deaktivieren",
+  "delete": "Löschen",
+  "deleteFor": "{{name}} löschen",
+  "deleteTitle": "Agent löschen",
+  "deleteConfirm": "„{{name}}“ wird gelöscht. Seine vergangenen Läufe bleiben in der Geschichte.",
+  "recentTitle": "Aktuelle Läufe",
+  "noRuns": "Noch keine Läufe.",
+  "errors": {
+    "demo": "Demomodus: Agenten und Automatisierungen laufen auf dem Server, daher läuft hier nichts."
+  },
+  "run": "Start",
+  "tabTools": "Werkzeuge"
+}

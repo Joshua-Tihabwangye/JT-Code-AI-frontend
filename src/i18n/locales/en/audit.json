@@ -1,0 +1,38 @@
+{
+  "tab": "Audit log",
+  "title": "Audit log",
+  "desc": "Who changed what in this workspace, and when. Entries cannot be edited or deleted.",
+  "adminOnly": "Only workspace admins can see the audit log.",
+  "mockNote": "Demo mode has no server, so nothing is recorded here.",
+  "category": "Area",
+  "allCategories": "All areas",
+  "from": "From",
+  "to": "To",
+  "badRange": "The start date is after the end date.",
+  "export": "Download CSV",
+  "none": "No entries for these filters.",
+  "when": "When",
+  "who": "Who",
+  "what": "What",
+  "result": "Result",
+  "ip": "IP address",
+  "system": "System",
+  "more": "Show more",
+  "categories": {
+    "auth": "Sign-in",
+    "authorization": "Access",
+    "data_access": "Data read",
+    "data_modification": "Data change",
+    "configuration": "Settings",
+    "billing": "Billing",
+    "security": "Security",
+    "admin": "Administration",
+    "ai_usage": "AI use",
+    "file_operation": "Files"
+  },
+  "outcomes": {
+    "success": "Done",
+    "denied": "Denied",
+    "failure": "Failed"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Otomasyon",
+  "title": "Temsilciler",
+  "subtitle": "Yapay zeka temsilcilerine bir görev verin, her adımı takip edin ve kendi kendine çalışacak işleri planlayın.",
+  "tabAgents": "Temsilciler",
+  "tabAutomations": "planlanmış",
+  "editorsOnly": "Aracılar bu çalışma alanının editörleri ve yöneticileri içindir: her çalıştırma kredi kullanır.",
+  "runTitle": "Bir görevi çalıştır",
+  "runDesc": "Neye ihtiyacınız olduğunu açıklayın. Temsilci adım adım çalışır; izleyip iptal edebilirsiniz.",
+  "agent": "Ajan",
+  "defaultAssistant": "Varsayılan asistan (doğru yaklaşımı seçer)",
+  "input": "Görev",
+  "usage": "{{models}} model çağrıları · {{tools}} takım çağrıları",
+  "cancel": "İptal etmek",
+  "steps_one": "{{count}} adım",
+  "steps_other": "{{count}} adımlar",
+  "status": {
+    "queued": "Sıraya alındı",
+    "running": "Koşma",
+    "waiting_approval": "Onay bekleniyor",
+    "completed": "Tamamlamak",
+    "failed": "Arızalı",
+    "cancelled": "İptal edildi"
+  },
+  "listTitle": "Temsilcileriniz",
+  "listDesc": "Kendi talimatlarına sahip yeniden kullanılabilir ajanlar.",
+  "new": "Yeni temsilci",
+  "name": "İsim",
+  "graph": "Nasıl çalışır?",
+  "graphs": {
+    "direct_answer": "Doğrudan yanıtlar",
+    "tool_agent": "Araçları kullanır",
+    "research": "Salt okunur araçlarla yapılan araştırmalar"
+  },
+  "description": "Tanım",
+  "instructions": "Talimatlar (temsilcinin her zaman yapması gerekenler)",
+  "create": "Temsilci oluştur",
+  "none": "Henüz ajan yok. Varsayılan yardımcı her zaman kullanılabilir.",
+  "inactive": "Etkin değil",
+  "activate": "Etkinleştir",
+  "deactivate": "Devre dışı bırak",
+  "delete": "Silmek",
+  "deleteFor": "{{name}} sil",
+  "deleteTitle": "Temsilciyi sil",
+  "deleteConfirm": "“{{name}}” silinir. Geçmiş koşuları tarihte kalır.",
+  "recentTitle": "Son çalıştırmalar",
+  "noRuns": "Henüz koşu yok.",
+  "errors": {
+    "demo": "Demo modu: aracılar ve otomasyonlar sunucuda çalışır, dolayısıyla burada hiçbir şey çalışmaz."
+  },
+  "run": "Başlangıç",
+  "tabTools": "Aletler"
+}

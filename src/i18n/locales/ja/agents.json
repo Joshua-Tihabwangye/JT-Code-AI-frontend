@@ -1,0 +1,53 @@
+{
+  "eyebrow": "オートメーション",
+  "title": "エージェント",
+  "subtitle": "AI エージェントにタスクを与え、すべてのステップに従い、自動的に実行される作業をスケジュールします。",
+  "tabAgents": "エージェント",
+  "tabAutomations": "予定されている",
+  "editorsOnly": "エージェントはこのワークスペースの編集者と管理者用です。各実行にはクレジットが使用されます。",
+  "runTitle": "タスクを実行する",
+  "runDesc": "必要なものを説明してください。エージェントは段階的に動作します。視聴もキャンセルも可能です。",
+  "agent": "エージェント",
+  "defaultAssistant": "デフォルトのアシスタント (適切なアプローチを選択)",
+  "input": "タスク",
+  "usage": "{{models}} モデル呼び出し · {{tools}} ツール呼び出し",
+  "cancel": "キャンセル",
+  "steps_one": "{{count}} ステップ",
+  "steps_other": "{{count}} ステップ",
+  "status": {
+    "queued": "キューに入れられました",
+    "running": "ランニング",
+    "waiting_approval": "承認待ち",
+    "completed": "終わり",
+    "failed": "失敗した",
+    "cancelled": "キャンセル"
+  },
+  "listTitle": "あなたのエージェント",
+  "listDesc": "再利用可能なエージェントと独自の指示。",
+  "new": "新しいエージェント",
+  "name": "名前",
+  "graph": "仕組み",
+  "graphs": {
+    "direct_answer": "直接答える",
+    "tool_agent": "ツールを使用する",
+    "research": "読み取り専用ツールを使用した調査"
+  },
+  "description": "説明",
+  "instructions": "指示（エージェントが必ず行うべきこと）",
+  "create": "エージェントの作成",
+  "none": "まだエージェントはいません。デフォルトのアシスタントはいつでも使用できます。",
+  "inactive": "非アクティブ",
+  "activate": "活性化",
+  "deactivate": "非アクティブ化",
+  "delete": "消去",
+  "deleteFor": "{{name}} を削除",
+  "deleteTitle": "エージェントの削除",
+  "deleteConfirm": "「{{name}}」が削除されます。過去の走行は歴史に残ります。",
+  "recentTitle": "最近のランニング",
+  "noRuns": "まだ実行はありません。",
+  "errors": {
+    "demo": "デモ モード: エージェントとオートメーションはサーバー上で実行されるため、ここでは何も実行されません。"
+  },
+  "run": "始める",
+  "tabTools": "ツール"
+}

@@ -1,0 +1,38 @@
+{
+  "tab": "Registro de auditoría",
+  "title": "Registro de auditoría",
+  "desc": "Quién cambió qué en este espacio de trabajo y cuándo. Las entradas no se pueden editar ni eliminar.",
+  "adminOnly": "Solo los administradores del espacio de trabajo pueden ver el registro de auditoría.",
+  "mockNote": "El modo de demostración no tiene servidor, por lo que aquí no se registra nada.",
+  "category": "Área",
+  "allCategories": "Todas las áreas",
+  "from": "De",
+  "to": "A",
+  "badRange": "La fecha de inicio es posterior a la fecha de finalización.",
+  "export": "Descargar CSV",
+  "none": "No hay entradas para estos filtros.",
+  "when": "Cuando",
+  "who": "OMS",
+  "what": "Qué",
+  "result": "Resultado",
+  "ip": "dirección IP",
+  "system": "Sistema",
+  "more": "Mostrar más",
+  "categories": {
+    "auth": "Iniciar sesión",
+    "authorization": "Acceso",
+    "data_access": "Lectura de datos",
+    "data_modification": "cambio de datos",
+    "configuration": "Ajustes",
+    "billing": "Facturación",
+    "security": "Seguridad",
+    "admin": "Administración",
+    "ai_usage": "uso de IA",
+    "file_operation": "Archivos"
+  },
+  "outcomes": {
+    "success": "Hecho",
+    "denied": "Denegado",
+    "failure": "Fallido"
+  }
+}

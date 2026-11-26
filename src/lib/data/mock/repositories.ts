@@ -6,6 +6,10 @@ import { MockAnalyticsRepository } from './analytics';
 import { createMockVisualizeRepository } from './visualize';
 import { MockTeamRepository } from './team';
 import { MockApiKeyRepository } from './apiKeys';
+import { MockWebhookRepository } from './webhooks';
+import { MockSupportRepository } from './support';
+import { MockAuditRepository, MockConsentRepository } from './audit';
+import { MockAgentRepository, MockAutomationRepository, MockToolsRepository } from './agents';
 import { JsonCollection, readValue, writeValue, getBlob, putBlob, deleteBlob, blobKey } from '../storage/store';
 import type {
   Account,
@@ -756,7 +760,7 @@ class MockImageRepository implements ImageRepository {
       { id: 'auto', label: i18n.t('images.autoModel') },
       { id: 'dall-e-3', label: 'DALL·E 3' },
       { id: 'stable-diffusion', label: 'Stable Diffusion' },
-      { id: 'imagen', label: 'Imagen' },
+      { id: 'imagen', label: 'Gemini' },
     ]);
   }
 
@@ -1233,6 +1237,13 @@ export function createMockRepositories(): Repositories {
     account: new MockAccountRepository(),
     team: new MockTeamRepository(),
     apiKeys: new MockApiKeyRepository(),
+    webhooks: new MockWebhookRepository(),
+    support: new MockSupportRepository(),
+    audit: new MockAuditRepository(),
+    consents: new MockConsentRepository(),
+    agents: new MockAgentRepository(),
+    automations: new MockAutomationRepository(),
+    tools: new MockToolsRepository(),
     chat: new MockChatRepository(),
     history: new MockHistoryRepository(),
     billing: new MockBillingRepository(),

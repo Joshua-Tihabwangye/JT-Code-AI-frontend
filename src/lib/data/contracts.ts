@@ -8,6 +8,26 @@ import type {
   ApiKey,
   CreatedApiKey,
   NewApiKey,
+  Webhook,
+  CreatedWebhook,
+  NewWebhook,
+  WebhookDelivery,
+  NewSupportCase,
+  AuditFilter,
+  ConsentEntry,
+  Agent,
+  AgentRun,
+  AgentStep,
+  NewAgent,
+  Automation,
+  NewAutomation,
+  McpServer,
+  ToolApproval,
+  ToolCredential,
+  ToolInfo,
+  AuditPage,
+  SupportCase,
+  SupportMessage,
   AcceptedInvite,
   CreatedTeamInvite,
   TeamMember,
@@ -146,6 +166,79 @@ export interface ApiKeyRepository {
   list(): Promise<ApiKey[]>;
   create(input: NewApiKey): Promise<CreatedApiKey>;
   revoke(id: string): Promise<ApiKey>;
+}
+
+/** Outbound webhooks (organization admins only). */
+export interface WebhookRepository {
+  list(): Promise<Webhook[]>;
+  create(input: NewWebhook): Promise<CreatedWebhook>;
+  setStatus(id: string, status: 'active' | 'paused'): Promise<Webhook>;
+  remove(id: string): Promise<void>;
+  /** Sends a signed `webhook.test` event now; its result appears in `deliveries`. */
+  sendTest(id: string): Promise<WebhookDelivery>;
+  rotateSecret(id: string): Promise<CreatedWebhook>;
+  deliveries(id: string): Promise<WebhookDelivery[]>;
+}
+
+/** Support cases: members see their own, admins every case of the workspace. */
+export interface SupportRepository {
+  list(): Promise<SupportCase[]>;
+  open(input: NewSupportCase): Promise<SupportCase>;
+  messages(caseId: string): Promise<SupportMessage[]>;
+  reply(caseId: string, body: string): Promise<SupportMessage>;
+  close(caseId: string): Promise<SupportCase>;
+}
+
+/** The workspace audit trail (organization admins only). */
+export interface AuditRepository {
+  /** Newest first; `page` starts at 1. */
+  list(filter: AuditFilter, page: number): Promise<AuditPage>;
+  /** The filtered trail as CSV (formula-safe). */
+  exportCsv(filter: AuditFilter): Promise<Blob>;
+}
+
+/** The signed-in user's own consent records (read-only here). */
+export interface ConsentRepository {
+  list(): Promise<ConsentEntry[]>;
+}
+
+/** Agents and their runs (editors and admins; runs use credits). */
+export interface AgentRepository {
+  list(): Promise<Agent[]>;
+  create(input: NewAgent): Promise<Agent>;
+  setActive(id: string, isActive: boolean): Promise<Agent>;
+  remove(id: string): Promise<void>;
+  /** Starts a run (idempotent per call); `agentId` null runs the default assistant. */
+  run(agentId: string | null, input: string): Promise<AgentRun>;
+  getRun(id: string): Promise<AgentRun>;
+  steps(runId: string): Promise<AgentStep[]>;
+  cancel(runId: string): Promise<AgentRun>;
+  runs(): Promise<AgentRun[]>;
+}
+
+/** Scheduled automations (need the n8n "scheduled-automation" workflow on the server). */
+export interface AutomationRepository {
+  list(): Promise<Automation[]>;
+  create(input: NewAutomation): Promise<Automation>;
+  setActive(id: string, isActive: boolean): Promise<Automation>;
+  remove(id: string): Promise<void>;
+  runNow(id: string): Promise<{ jobId: string; status: string }>;
+}
+
+/** Agent tools: the catalogue, approvals (editors), MCP servers and credentials (admins). */
+export interface ToolsRepository {
+  catalog(): Promise<ToolInfo[]>;
+  approvals(status?: ToolApproval['status']): Promise<ToolApproval[]>;
+  decide(id: string, approve: boolean, note: string): Promise<ToolApproval>;
+  mcpServers(): Promise<McpServer[]>;
+  addMcpServer(input: { name: string; slug: string; url: string; credentialId: string | null }): Promise<McpServer>;
+  discover(id: string): Promise<McpServer>;
+  setAllowedTools(id: string, allowedTools: string[]): Promise<McpServer>;
+  removeMcpServer(id: string): Promise<void>;
+  credentials(): Promise<ToolCredential[]>;
+  /** The secret is sent once and never returned (the server stores it encrypted). */
+  addCredential(input: { provider: ToolCredential['provider']; name: string; secret: string }): Promise<ToolCredential>;
+  removeCredential(id: string): Promise<void>;
 }
 
 export interface SendMessageOptions {
@@ -543,6 +636,13 @@ export interface Repositories {
   account: AccountRepository;
   team: TeamRepository;
   apiKeys: ApiKeyRepository;
+  webhooks: WebhookRepository;
+  support: SupportRepository;
+  audit: AuditRepository;
+  consents: ConsentRepository;
+  agents: AgentRepository;
+  automations: AutomationRepository;
+  tools: ToolsRepository;
   chat: ChatRepository;
   history: HistoryRepository;
   billing: BillingRepository;

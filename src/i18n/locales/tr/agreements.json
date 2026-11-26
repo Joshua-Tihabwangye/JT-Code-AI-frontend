@@ -1,0 +1,22 @@
+{
+  "title": "Anlaşmalarınız",
+  "desc": "Neyi, hangi sürümü ve ne zaman kabul ettiğiniz. Tuttuğumuz kayıt bu.",
+  "none": "Bu hesap için kayıtlı sözleşme yok.",
+  "version": "Sürüm {{version}}",
+  "withdrawnOn": "geri çekildi {{date}}",
+  "endHelp": "Hesabınız varken şartlar ve gizlilik politikası geçerlidir. Bunları sonlandırmak için aşağıdaki hesabınızı silin.",
+  "types": {
+    "terms": "Hizmet şartları",
+    "privacy": "Gizlilik politikası",
+    "data_processing": "Veri işleme sözleşmesi",
+    "marketing": "Pazarlama e-postaları",
+    "analytics": "Kullanım analitiği",
+    "ai_training": "Verilerimin yapay zeka eğitimi için kullanılması",
+    "third_party": "Üçüncü taraflarla paylaşma"
+  },
+  "status": {
+    "granted": "Kabul edildi",
+    "denied": "Reddedildi",
+    "withdrawn": "Geri çekildi"
+  }
+}

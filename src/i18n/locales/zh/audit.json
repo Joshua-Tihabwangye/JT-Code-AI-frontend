@@ -1,0 +1,38 @@
+{
+  "tab": "审核日志",
+  "title": "审核日志",
+  "desc": "谁更改了此工作区中的内容以及更改时间。无法编辑或删除条目。",
+  "adminOnly": "只有工作区管理员才能查看审核日志。",
+  "mockNote": "演示模式没有服务器，所以这里不记录任何内容。",
+  "category": "区域",
+  "allCategories": "所有区域",
+  "from": "从",
+  "to": "到",
+  "badRange": "开始日期晚于结束日期。",
+  "export": "下载 CSV 文件",
+  "none": "这些过滤器没有条目。",
+  "when": "什么时候",
+  "who": "WHO",
+  "what": "什么",
+  "result": "结果",
+  "ip": "IP地址",
+  "system": "系统",
+  "more": "显示更多",
+  "categories": {
+    "auth": "登入",
+    "authorization": "使用权",
+    "data_access": "数据读取",
+    "data_modification": "数据变更",
+    "configuration": "设置",
+    "billing": "计费",
+    "security": "安全",
+    "admin": "行政",
+    "ai_usage": "人工智能的使用",
+    "file_operation": "文件"
+  },
+  "outcomes": {
+    "success": "完毕",
+    "denied": "被拒绝",
+    "failure": "失败的"
+  }
+}

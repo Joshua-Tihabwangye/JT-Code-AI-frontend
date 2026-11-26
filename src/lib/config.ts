@@ -15,17 +15,17 @@ const baseSchema = z.object({
 });
 
 // Supabase credentials are only required when talking to a real backend.
-const supabaseSchema = isMock
-  ? z.object({
-      VITE_SUPABASE_URL: z.string().optional(),
-      VITE_SUPABASE_ANON_KEY: z.string().optional(),
-    })
-  : z.object({
-      VITE_SUPABASE_URL: z.string().min(1),
-      VITE_SUPABASE_ANON_KEY: z.string().min(1),
-    });
-
-const schema = baseSchema.merge(supabaseSchema);
+const schema = baseSchema
+  .extend({
+    VITE_SUPABASE_URL: z.string().optional(),
+    VITE_SUPABASE_ANON_KEY: z.string().optional(),
+  })
+  .superRefine((values, context) => {
+    if (isMock) return;
+    for (const key of ['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY'] as const) {
+      if (!values[key]) context.addIssue({ code: 'custom', path: [key], message: `${key} is required when VITE_DATA_MODE=api.` });
+    }
+  });
 
 const parsed = schema.safeParse(env);
 

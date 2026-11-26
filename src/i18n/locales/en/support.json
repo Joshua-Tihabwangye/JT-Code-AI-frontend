@@ -1,0 +1,51 @@
+{
+  "tab": "Support",
+  "mockNote": "Demo mode: cases stay in this browser and nobody answers them.",
+  "newTitle": "Contact support",
+  "newDesc": "Tell us what happened. The {{brand}} support team answers here and by e-mail.",
+  "subject": "Subject",
+  "category": "Topic",
+  "priority": "Urgency",
+  "description": "What happened? Include what you expected and the steps to see the problem.",
+  "open": "Send to support",
+  "opened": "Your case was sent. You will get an e-mail when support answers.",
+  "listTitle": "Your cases",
+  "listDesc": "Members see the cases they opened; admins see every case of this workspace.",
+  "none": "No cases yet.",
+  "categories": {
+    "technical": "Technical problem",
+    "bug": "Something is broken",
+    "billing": "Billing",
+    "account": "Account access",
+    "feature": "Feature idea",
+    "security": "Security concern",
+    "compliance": "Compliance",
+    "other": "Something else"
+  },
+  "priorities": {
+    "low": "Low",
+    "medium": "Normal",
+    "high": "High",
+    "urgent": "Urgent: work is blocked"
+  },
+  "status": {
+    "open": "Open",
+    "in_progress": "In progress",
+    "waiting_user": "Waiting for you",
+    "waiting_third_party": "Waiting for a partner",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
+  "fromSupport": "{{brand}} support",
+  "reply": "Your reply",
+  "send": "Send reply",
+  "close": "Close case",
+  "closeTitle": "Close this case",
+  "closeConfirm": "Close “{{subject}}”? You can open a new case at any time.",
+  "closedHelp": "This case is closed. Open a new case if you need more help.",
+  "closedNotice": "Case closed.",
+  "errors": {
+    "notFound": "This case no longer exists.",
+    "closed": "This case is closed. Open a new one."
+  }
+}

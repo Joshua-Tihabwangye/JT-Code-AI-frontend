@@ -151,6 +151,23 @@ async function checkStaleDeploy(browser) {
   }
 }
 
+/** Security headers on Vercel, like nginx.conf: no framing except /embed/, no MIME sniffing. */
+async function checkHeaders() {
+  const headers = async (path) => (await fetch(`${BASE}${path}`)).headers;
+  const app = await headers('/app/chat');
+  const embed = await headers('/embed/abc');
+  const problems = [];
+  if (app.get('x-frame-options') !== 'DENY') problems.push('/app/chat lacks X-Frame-Options: DENY');
+  if (!app.get('content-security-policy')?.includes("frame-ancestors 'none'")) problems.push("/app/chat lacks frame-ancestors 'none'");
+  if (app.get('x-content-type-options') !== 'nosniff') problems.push('/app/chat lacks nosniff');
+  if (!app.get('strict-transport-security')) problems.push('/app/chat lacks HSTS');
+  if (embed.get('x-frame-options')) problems.push('/embed/ must be frameable but sends X-Frame-Options');
+  if (!embed.get('content-security-policy')?.includes('frame-ancestors *')) problems.push('/embed/ lacks frame-ancestors *');
+  if ((embed.get('content-security-policy') ?? '').split(',').length > 1) problems.push('/embed/ gets two CSP headers');
+  if (problems.length) fail('security headers', problems.join('; '));
+  else ok('security headers: pages refuse framing (embeds allow it), nosniff, HSTS');
+}
+
 async function main() {
   if (!CHROME) throw new Error('No Chrome found; set CHROME_PATH.');
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
@@ -161,6 +178,7 @@ async function main() {
     const asset = resolveRequest('/assets/does-not-exist.js');
     if (asset.status !== 404) fail('missing asset', 'a missing /assets file is answered with index.html (JavaScript would get HTML)');
     else ok('missing /assets file → 404 (never index.html)');
+    await checkHeaders();
     await checkRoutes(browser);
     await checkStaleDeploy(browser);
   } finally {

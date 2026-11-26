@@ -1,0 +1,51 @@
+{
+  "tab": "Msaada",
+  "mockNote": "Hali ya onyesho: kesi hukaa kwenye kivinjari hiki na hakuna mtu anayezijibu.",
+  "newTitle": "Wasiliana na usaidizi",
+  "subject": "Somo",
+  "category": "Mada",
+  "priority": "Uharaka",
+  "description": "Nini kilitokea? Jumuisha ulichotarajia na hatua za kuona shida.",
+  "open": "Tuma kwa usaidizi",
+  "opened": "Kesi yako ilitumwa. Utapata barua pepe wakati usaidizi unajibu.",
+  "listTitle": "Kesi zako",
+  "listDesc": "Wajumbe waone kesi walizofungua; wasimamizi wanaona kila kesi ya nafasi hii ya kazi.",
+  "none": "Bado hakuna kesi.",
+  "categories": {
+    "technical": "Tatizo la kiufundi",
+    "bug": "Kitu kimevunjika",
+    "billing": "Bili",
+    "account": "Ufikiaji wa akaunti",
+    "feature": "Wazo la kipengele",
+    "security": "Wasiwasi wa usalama",
+    "compliance": "Kuzingatia",
+    "other": "Kitu kingine"
+  },
+  "priorities": {
+    "low": "Chini",
+    "medium": "Kawaida",
+    "high": "Juu",
+    "urgent": "Haraka: kazi imezuiwa"
+  },
+  "status": {
+    "open": "Fungua",
+    "in_progress": "Inaendelea",
+    "waiting_user": "Inakungoja",
+    "waiting_third_party": "Kusubiri kwa mpenzi",
+    "resolved": "Imetatuliwa",
+    "closed": "Imefungwa"
+  },
+  "reply": "Jibu lako",
+  "send": "Tuma jibu",
+  "close": "Funga kesi",
+  "closeTitle": "Funga kesi hii",
+  "closeConfirm": "Ungependa kufunga “{{subject}}”? Unaweza kufungua kesi mpya wakati wowote.",
+  "closedHelp": "Kesi hii imefungwa. Fungua kesi mpya ikiwa unahitaji usaidizi zaidi.",
+  "closedNotice": "Kesi imefungwa.",
+  "errors": {
+    "notFound": "Kesi hii haipo tena.",
+    "closed": "Kesi hii imefungwa. Fungua mpya."
+  },
+  "newDesc": "Tuambie nini kilitokea. Timu ya usaidizi {{brand}} inajibu hapa na kwa barua pepe.",
+  "fromSupport": "{{brand}} support"
+}

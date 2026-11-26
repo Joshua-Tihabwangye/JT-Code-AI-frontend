@@ -1,0 +1,22 @@
+{
+  "title": "Perjanjian Anda",
+  "desc": "Apa yang Anda setujui, versi apa, dan kapan. Ini adalah rekor yang kami simpan.",
+  "none": "Tidak ada perjanjian yang dicatat untuk akun ini.",
+  "version": "Versi {{version}}",
+  "withdrawnOn": "ditarik {{date}}",
+  "endHelp": "Syarat dan kebijakan privasi berlaku selama Anda memiliki akun. Untuk mengakhirinya, hapus akun Anda di bawah.",
+  "types": {
+    "terms": "Persyaratan layanan",
+    "privacy": "Kebijakan privasi",
+    "data_processing": "Perjanjian pemrosesan data",
+    "marketing": "Email pemasaran",
+    "analytics": "Analisis penggunaan",
+    "ai_training": "Penggunaan data saya untuk pelatihan AI",
+    "third_party": "Berbagi dengan pihak ketiga"
+  },
+  "status": {
+    "granted": "Diterima",
+    "denied": "Ditolak",
+    "withdrawn": "Ditarik"
+  }
+}

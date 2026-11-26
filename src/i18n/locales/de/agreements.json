@@ -1,0 +1,22 @@
+{
+  "title": "Ihre Vereinbarungen",
+  "desc": "Was Sie vereinbart haben, welche Version und wann. Dies ist die Aufzeichnung, die wir führen.",
+  "none": "Für dieses Konto sind keine Vereinbarungen erfasst.",
+  "version": "Version {{version}}",
+  "withdrawnOn": "zurückgezogen {{date}}",
+  "endHelp": "Die Allgemeinen Geschäftsbedingungen und Datenschutzbestimmungen gelten, solange Sie über ein Konto verfügen. Um sie zu beenden, löschen Sie unten Ihr Konto.",
+  "types": {
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzrichtlinie",
+    "data_processing": "Datenverarbeitungsvereinbarung",
+    "marketing": "Marketing-E-Mails",
+    "analytics": "Nutzungsanalyse",
+    "ai_training": "Nutzung meiner Daten für KI-Training",
+    "third_party": "Weitergabe an Dritte"
+  },
+  "status": {
+    "granted": "Akzeptiert",
+    "denied": "Abgelehnt",
+    "withdrawn": "Zurückgezogen"
+  }
+}

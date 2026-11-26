@@ -1,0 +1,38 @@
+{
+  "tab": "Registro de auditoria",
+  "title": "Registro de auditoria",
+  "desc": "Quem mudou o quê neste espaço de trabalho e quando. As entradas não podem ser editadas ou excluídas.",
+  "adminOnly": "Somente administradores do workspace podem ver o log de auditoria.",
+  "mockNote": "O modo de demonstração não possui servidor, então nada é gravado aqui.",
+  "category": "Área",
+  "allCategories": "Todas as áreas",
+  "from": "De",
+  "to": "Para",
+  "badRange": "A data de início é posterior à data de término.",
+  "export": "Baixar CSV",
+  "none": "Nenhuma entrada para esses filtros.",
+  "when": "Quando",
+  "who": "Quem",
+  "what": "O que",
+  "result": "Resultado",
+  "ip": "Endereço IP",
+  "system": "Sistema",
+  "more": "Mostrar mais",
+  "categories": {
+    "auth": "Entrar",
+    "authorization": "Acesso",
+    "data_access": "Leitura de dados",
+    "data_modification": "Alteração de dados",
+    "configuration": "Configurações",
+    "billing": "Cobrança",
+    "security": "Segurança",
+    "admin": "Administração",
+    "ai_usage": "Uso de IA",
+    "file_operation": "Arquivos"
+  },
+  "outcomes": {
+    "success": "Feito",
+    "denied": "Negado",
+    "failure": "Fracassado"
+  }
+}

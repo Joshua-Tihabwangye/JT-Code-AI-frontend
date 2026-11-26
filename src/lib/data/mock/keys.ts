@@ -19,5 +19,7 @@ export const KEYS = {
   images: 'jtcode:image-generations',
   team: 'jtcode:team',
   apiKeys: 'jtcode:api-keys',
+  webhooks: 'jtcode:webhooks',
+  support: 'jtcode:support-cases',
   seeded: 'jtcode:seeded',
 } as const;

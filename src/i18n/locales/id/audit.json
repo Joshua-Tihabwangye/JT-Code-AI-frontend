@@ -1,0 +1,38 @@
+{
+  "tab": "Catatan audit",
+  "title": "Catatan audit",
+  "desc": "Siapa yang mengubah apa yang ada di ruang kerja ini, dan kapan. Entri tidak dapat diedit atau dihapus.",
+  "adminOnly": "Hanya admin ruang kerja yang dapat melihat log audit.",
+  "mockNote": "Mode demo tidak memiliki server, jadi tidak ada yang direkam di sini.",
+  "category": "Daerah",
+  "allCategories": "Semua area",
+  "from": "Dari",
+  "to": "Ke",
+  "badRange": "Tanggal mulai adalah setelah tanggal akhir.",
+  "export": "Unduh CSV",
+  "none": "Tidak ada entri untuk filter ini.",
+  "when": "Kapan",
+  "who": "Siapa",
+  "what": "Apa",
+  "result": "Hasil",
+  "ip": "alamat IP",
+  "system": "Sistem",
+  "more": "Tampilkan lebih banyak",
+  "categories": {
+    "auth": "Masuk",
+    "authorization": "Mengakses",
+    "data_access": "Data dibaca",
+    "data_modification": "Perubahan data",
+    "configuration": "Pengaturan",
+    "billing": "Penagihan",
+    "security": "Keamanan",
+    "admin": "Administrasi",
+    "ai_usage": "penggunaan AI",
+    "file_operation": "File"
+  },
+  "outcomes": {
+    "success": "Selesai",
+    "denied": "Ditolak",
+    "failure": "Gagal"
+  }
+}

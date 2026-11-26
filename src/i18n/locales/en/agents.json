@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Automation",
+  "title": "Agents",
+  "subtitle": "Give AI agents a task, follow every step, and schedule work that runs on its own.",
+  "tabAgents": "Agents",
+  "tabAutomations": "Scheduled",
+  "editorsOnly": "Agents are for editors and admins of this workspace: each run uses credits.",
+  "runTitle": "Run a task",
+  "runDesc": "Describe what you need. The agent works step by step; you can watch and cancel it.",
+  "agent": "Agent",
+  "defaultAssistant": "Default assistant (picks the right approach)",
+  "input": "Task",
+  "run": "Start",
+  "usage": "{{models}} model calls · {{tools}} tool calls",
+  "cancel": "Cancel",
+  "steps_one": "{{count}} step",
+  "steps_other": "{{count}} steps",
+  "status": {
+    "queued": "Queued",
+    "running": "Running",
+    "waiting_approval": "Waiting for approval",
+    "completed": "Done",
+    "failed": "Failed",
+    "cancelled": "Cancelled"
+  },
+  "listTitle": "Your agents",
+  "listDesc": "Reusable agents with their own instructions.",
+  "new": "New agent",
+  "name": "Name",
+  "graph": "How it works",
+  "graphs": {
+    "direct_answer": "Answers directly",
+    "tool_agent": "Uses tools",
+    "research": "Researches with read-only tools"
+  },
+  "description": "Description",
+  "instructions": "Instructions (what the agent should always do)",
+  "create": "Create agent",
+  "none": "No agents yet. The default assistant is always available.",
+  "inactive": "Inactive",
+  "activate": "Activate",
+  "deactivate": "Deactivate",
+  "delete": "Delete",
+  "deleteFor": "Delete {{name}}",
+  "deleteTitle": "Delete agent",
+  "deleteConfirm": "“{{name}}” is deleted. Its past runs stay in the history.",
+  "recentTitle": "Recent runs",
+  "noRuns": "No runs yet.",
+  "errors": {
+    "demo": "Demo mode: agents and automations run on the server, so nothing runs here."
+  },
+  "tabTools": "Tools"
+}

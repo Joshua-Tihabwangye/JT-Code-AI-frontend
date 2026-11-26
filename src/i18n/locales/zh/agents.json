@@ -1,0 +1,53 @@
+{
+  "eyebrow": "自动化",
+  "title": "智能体",
+  "subtitle": "给人工智能代理一项任务，遵循每一步，并安排独立运行的工作。",
+  "tabAgents": "智能体",
+  "tabAutomations": "预定",
+  "editorsOnly": "代理适用于该工作区的编辑者和管理员：每次运行都使用积分。",
+  "runTitle": "运行任务",
+  "runDesc": "描述您需要什么。代理工作按部就班；您可以观看并取消它。",
+  "agent": "代理人",
+  "defaultAssistant": "默认助手（选择正确的方法）",
+  "input": "任务",
+  "usage": "{{models}} 模型调用 · {{tools}} 工具调用",
+  "cancel": "取消",
+  "steps_one": "{{count}} 步骤",
+  "steps_other": "{{count}} 步骤",
+  "status": {
+    "queued": "排队",
+    "running": "跑步",
+    "waiting_approval": "等待批准",
+    "completed": "完毕",
+    "failed": "失败的",
+    "cancelled": "取消"
+  },
+  "listTitle": "您的代理商",
+  "listDesc": "可重复使用的代理有自己的说明。",
+  "new": "新代理",
+  "name": "姓名",
+  "graph": "它是如何运作的",
+  "graphs": {
+    "direct_answer": "直接回答",
+    "tool_agent": "使用工具",
+    "research": "使用只读工具进行研究"
+  },
+  "description": "描述",
+  "instructions": "说明（代理应始终执行的操作）",
+  "create": "创建代理",
+  "none": "还没有代理。默认助手始终可用。",
+  "inactive": "不活跃",
+  "activate": "激活",
+  "deactivate": "停用",
+  "delete": "删除",
+  "deleteFor": "删除 {{name}}",
+  "deleteTitle": "删除代理",
+  "deleteConfirm": "“{{name}}”被删除。它的过去运行留在历史中。",
+  "recentTitle": "最近的跑步",
+  "noRuns": "还没有运行。",
+  "errors": {
+    "demo": "演示模式：代理和自动化在服务器上运行，因此此处不运行任何内容。"
+  },
+  "run": "开始",
+  "tabTools": "工具"
+}

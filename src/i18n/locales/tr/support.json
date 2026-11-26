@@ -1,0 +1,51 @@
+{
+  "tab": "Destek",
+  "mockNote": "Demo modu: vakalar bu tarayıcıda kalır ve kimse onlara cevap vermez.",
+  "newTitle": "Desteğe başvurun",
+  "subject": "Ders",
+  "category": "Başlık",
+  "priority": "Aciliyet",
+  "description": "Ne oldu? Beklediklerinizi ve sorunu görmeye yönelik adımları ekleyin.",
+  "open": "Desteğe gönder",
+  "opened": "Davanız gönderildi. Destek yanıt verdiğinde bir e-posta alacaksınız.",
+  "listTitle": "Vakalarınız",
+  "listDesc": "Üyeler açtıkları davaları görürler; yöneticiler bu çalışma alanının her durumunu görür.",
+  "none": "Henüz vaka yok.",
+  "categories": {
+    "technical": "Teknik sorun",
+    "bug": "Bir şey kırıldı",
+    "billing": "Faturalandırma",
+    "account": "Hesap erişimi",
+    "feature": "Özellik fikri",
+    "security": "Güvenlik endişesi",
+    "compliance": "Uyumluluk",
+    "other": "Başka bir şey"
+  },
+  "priorities": {
+    "low": "Düşük",
+    "medium": "Normal",
+    "high": "Yüksek",
+    "urgent": "Acil: iş engellendi"
+  },
+  "status": {
+    "open": "Açık",
+    "in_progress": "Devam etmekte",
+    "waiting_user": "Seni bekliyor",
+    "waiting_third_party": "Bir ortak bekliyorum",
+    "resolved": "Çözüldü",
+    "closed": "Kapalı"
+  },
+  "reply": "Cevabınız",
+  "send": "Yanıt gönder",
+  "close": "Vakayı kapat",
+  "closeTitle": "Bu vakayı kapat",
+  "closeConfirm": "“{{subject}}” kapatılsın mı? İstediğiniz zaman yeni bir dava açabilirsiniz.",
+  "closedHelp": "Bu dava kapandı. Daha fazla yardıma ihtiyacınız varsa yeni bir vaka açın.",
+  "closedNotice": "Dava kapandı.",
+  "errors": {
+    "notFound": "Bu dava artık mevcut değil.",
+    "closed": "Bu dava kapandı. Yeni bir tane açın."
+  },
+  "newDesc": "Bize ne olduğunu anlat. {{brand}} destek ekibi burada ve e-posta yoluyla yanıt verir.",
+  "fromSupport": "{{brand}} desteği"
+}

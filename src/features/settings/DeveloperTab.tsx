@@ -8,6 +8,7 @@ import { config } from '@/lib/config';
 import { formatDate } from '@/i18n/format';
 import { apiAddress, EXPIRY_DAYS, expiryFrom, type Expiry } from '@/features/settings/developer';
 import { Alert, Badge, Button, Input, Select, Spinner, useConfirm } from '@/shared/components';
+import { WebhooksSection } from '@/features/settings/WebhooksSection';
 
 /** Settings → Developer: organization API keys for server-to-server calls (`X-API-Key`). */
 export function DeveloperTab() {
@@ -194,6 +195,7 @@ export function DeveloperTab() {
           </ul>
         )}
       </section>
+      <WebhooksSection />
       {dialog}
     </div>
   );

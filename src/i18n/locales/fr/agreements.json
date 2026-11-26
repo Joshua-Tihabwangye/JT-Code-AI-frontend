@@ -1,0 +1,22 @@
+{
+  "title": "Vos accords",
+  "desc": "Ce que vous avez accepté, quelle version et quand. C'est le registre que nous gardons.",
+  "none": "Aucun accord n'est enregistré pour ce compte.",
+  "version": "Version {{version}}",
+  "withdrawnOn": "retiré {{date}}",
+  "endHelp": "Les conditions et la politique de confidentialité s’appliquent tant que vous avez un compte. Pour y mettre fin, supprimez votre compte ci-dessous.",
+  "types": {
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "data_processing": "Accord de traitement des données",
+    "marketing": "E-mails marketing",
+    "analytics": "Analyse d'utilisation",
+    "ai_training": "Utilisation de mes données pour la formation en IA",
+    "third_party": "Partage avec des tiers"
+  },
+  "status": {
+    "granted": "Accepté",
+    "denied": "Refusé",
+    "withdrawn": "Retiré"
+  }
+}

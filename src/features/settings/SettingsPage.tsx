@@ -11,6 +11,9 @@ import { config } from '@/lib/config';
 import { Alert, Button, Input, Modal, PasswordInput, PhoneNumberInput, Select, Spinner, Tabs, TabsContent, TabsList, TabsTrigger, useConfirm } from '@/shared/components';
 import { TeamTab } from '@/features/settings/TeamTab';
 import { DeveloperTab } from '@/features/settings/DeveloperTab';
+import { SupportTab } from '@/features/settings/SupportTab';
+import { AuditTab } from '@/features/settings/AuditTab';
+import { AgreementsSection } from '@/features/settings/AgreementsSection';
 import { COUNTRY_METADATA, getCountryMetadata, type CountryMetadata } from '@/features/auth/lib/countryMetadata';
 import { formatPhoneNumberForCountry } from '@/features/auth/lib/phone';
 
@@ -71,7 +74,7 @@ export function SettingsPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedTab = searchParams.get('tab');
-  const tab = requestedTab === 'team' || requestedTab === 'developer' ? requestedTab : 'profile';
+  const tab = (['team', 'developer', 'audit', 'support'] as const).find((name) => name === requestedTab) ?? 'profile';
   const accounts = useRepository('account');
   const client = useApiClient();
   const queryClient = useQueryClient();
@@ -212,12 +215,20 @@ export function SettingsPage() {
           <TabsTrigger value="profile">{t('team.tabProfile')}</TabsTrigger>
           <TabsTrigger value="team">{t('team.tabTeam')}</TabsTrigger>
           <TabsTrigger value="developer">{t('developer.tab')}</TabsTrigger>
+          <TabsTrigger value="audit">{t('audit.tab')}</TabsTrigger>
+          <TabsTrigger value="support">{t('support.tab')}</TabsTrigger>
         </TabsList>
         <TabsContent value="team" className="max-w-4xl mx-auto">
           <TeamTab />
         </TabsContent>
         <TabsContent value="developer" className="max-w-4xl mx-auto">
           <DeveloperTab />
+        </TabsContent>
+        <TabsContent value="audit" className="max-w-5xl mx-auto">
+          <AuditTab />
+        </TabsContent>
+        <TabsContent value="support" className="max-w-4xl mx-auto">
+          <SupportTab />
         </TabsContent>
         <TabsContent value="profile">
           {error && (
@@ -412,6 +423,8 @@ export function SettingsPage() {
                 </div>
               </form>
             </section>
+
+            <AgreementsSection />
 
             <section className="settings-danger-panel">
               <h2 className="text-lg font-semibold text-destructive mb-1">{t('settings.dangerZone')}</h2>

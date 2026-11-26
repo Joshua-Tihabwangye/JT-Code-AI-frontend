@@ -17,6 +17,7 @@ import { ChatPage } from '@/features/chat/ChatPage';
 // ECharts are large): the first load stays small and fast.
 const ImagePlaygroundPage = lazy(() => import('@/features/image/ImagePlaygroundPage').then((module) => ({ default: module.ImagePlaygroundPage })));
 const BillingPage = lazy(() => import('@/features/billing/BillingPage').then((module) => ({ default: module.BillingPage })));
+const AgentsPage = lazy(() => import('@/features/agents/AgentsPage').then((module) => ({ default: module.AgentsPage })));
 const SettingsPage = lazy(() => import('@/features/settings/SettingsPage').then((module) => ({ default: module.SettingsPage })));
 const HistoryPage = lazy(() => import('@/features/history/HistoryPage').then((module) => ({ default: module.HistoryPage })));
 const VisualizeLayout = lazy(() => import('@/features/visualize/VisualizeLayout').then((module) => ({ default: module.VisualizeLayout })));
@@ -85,6 +86,7 @@ export function App() {
           <Route path="dashboards/:dashboardId/edit" element={<Page><DashboardEditor /></Page>} />
         </Route>
         <Route path="billing" element={<RequireAuth><Page><BillingPage /></Page></RequireAuth>} />
+        <Route path="agents" element={<RequireAuth><Page><AgentsPage /></Page></RequireAuth>} />
         <Route path="settings" element={<RequireAuth><Page><SettingsPage /></Page></RequireAuth>} />
       </Route>
 

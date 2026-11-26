@@ -1,0 +1,38 @@
+{
+  "tab": "監査ログ",
+  "title": "監査ログ",
+  "desc": "誰が、いつ、このワークスペースで何を変更したか。エントリは編集または削除できません。",
+  "adminOnly": "ワークスペース管理者のみが監査ログを表示できます。",
+  "mockNote": "デモ モードにはサーバーがないため、ここには何も記録されません。",
+  "category": "エリア",
+  "allCategories": "全エリア",
+  "from": "から",
+  "to": "に",
+  "badRange": "開始日が終了日より後になっています。",
+  "export": "CSVをダウンロード",
+  "none": "これらのフィルタにはエントリがありません。",
+  "when": "いつ",
+  "who": "誰が",
+  "what": "何",
+  "result": "結果",
+  "ip": "IPアドレス",
+  "system": "システム",
+  "more": "もっと見る",
+  "categories": {
+    "auth": "サインイン",
+    "authorization": "アクセス",
+    "data_access": "データの読み取り",
+    "data_modification": "データ変更",
+    "configuration": "設定",
+    "billing": "請求する",
+    "security": "安全",
+    "admin": "管理",
+    "ai_usage": "AIの活用",
+    "file_operation": "ファイル"
+  },
+  "outcomes": {
+    "success": "終わり",
+    "denied": "拒否されました",
+    "failure": "失敗した"
+  }
+}

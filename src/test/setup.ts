@@ -23,19 +23,16 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+// Observers jsdom lacks. Classes, not arrow functions: from vitest 4 a mock built on an arrow function
+// cannot be called with `new`.
+class StubObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  takeRecords = vi.fn(() => []);
+}
+global.ResizeObserver = StubObserver;
+global.IntersectionObserver = StubObserver as unknown as typeof IntersectionObserver;
 
 // Suppress console.error in tests (optional)
 // vi.spyOn(console, 'error').mockImplementation(() => {});

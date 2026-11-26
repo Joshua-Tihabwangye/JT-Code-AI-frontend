@@ -1,0 +1,38 @@
+{
+  "tab": "Journal d'audit",
+  "title": "Journal d'audit",
+  "desc": "Qui a changé quoi dans cet espace de travail et quand. Les entrées ne peuvent pas être modifiées ou supprimées.",
+  "adminOnly": "Seuls les administrateurs de l'espace de travail peuvent voir le journal d'audit.",
+  "mockNote": "Le mode démo n'a pas de serveur, donc rien n'est enregistré ici.",
+  "category": "Zone",
+  "allCategories": "Tous les domaines",
+  "from": "Depuis",
+  "to": "À",
+  "badRange": "La date de début est postérieure à la date de fin.",
+  "export": "Télécharger CSV",
+  "none": "Aucune entrée pour ces filtres.",
+  "when": "Quand",
+  "who": "OMS",
+  "what": "Quoi",
+  "result": "Résultat",
+  "ip": "Adresse IP",
+  "system": "Système",
+  "more": "Afficher plus",
+  "categories": {
+    "auth": "Se connecter",
+    "authorization": "Accéder",
+    "data_access": "Données lues",
+    "data_modification": "Modification des données",
+    "configuration": "Paramètres",
+    "billing": "Facturation",
+    "security": "Sécurité",
+    "admin": "Administration",
+    "ai_usage": "Utilisation de l'IA",
+    "file_operation": "Fichiers"
+  },
+  "outcomes": {
+    "success": "Fait",
+    "denied": "Refusé",
+    "failure": "Échoué"
+  }
+}

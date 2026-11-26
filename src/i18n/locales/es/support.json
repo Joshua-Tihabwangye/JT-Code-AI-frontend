@@ -1,0 +1,51 @@
+{
+  "tab": "Soporte",
+  "mockNote": "Modo demo: los casos quedan en este navegador y nadie los contesta.",
+  "newTitle": "Contactar con soporte",
+  "subject": "Sujeto",
+  "category": "Tema",
+  "priority": "Urgencia",
+  "description": "¿Qué pasó? Incluye lo que esperabas y los pasos para ver el problema.",
+  "open": "Enviar a soporte",
+  "opened": "Su caso fue enviado. Recibirá un correo electrónico cuando el soporte responda.",
+  "listTitle": "Tus casos",
+  "listDesc": "Los miembros ven los casos que abrieron; Los administradores ven todos los casos de este espacio de trabajo.",
+  "none": "Aún no hay casos.",
+  "categories": {
+    "technical": "problema técnico",
+    "bug": "algo esta roto",
+    "billing": "Facturación",
+    "account": "Acceso a la cuenta",
+    "feature": "Idea de característica",
+    "security": "Preocupación por la seguridad",
+    "compliance": "Cumplimiento",
+    "other": "Otra cosa"
+  },
+  "priorities": {
+    "low": "Bajo",
+    "medium": "Normal",
+    "high": "Alto",
+    "urgent": "Urgente: el trabajo está bloqueado"
+  },
+  "status": {
+    "open": "Abierto",
+    "in_progress": "En curso",
+    "waiting_user": "Esperando por ti",
+    "waiting_third_party": "esperando pareja",
+    "resolved": "Resuelto",
+    "closed": "Cerrado"
+  },
+  "reply": "Tu respuesta",
+  "send": "Enviar respuesta",
+  "close": "Cerrar caso",
+  "closeTitle": "Cerrar este caso",
+  "closeConfirm": "¿Cerrar “{{subject}}”? Puede abrir un nuevo caso en cualquier momento.",
+  "closedHelp": "Este caso está cerrado. Abra un nuevo caso si necesita más ayuda.",
+  "closedNotice": "Caso cerrado.",
+  "errors": {
+    "notFound": "Este caso ya no existe.",
+    "closed": "Este caso está cerrado. Abre uno nuevo."
+  },
+  "newDesc": "Cuéntanos qué pasó. El equipo de soporte de {{brand}} responde aquí y por correo electrónico.",
+  "fromSupport": "Soporte de {{brand}}"
+}

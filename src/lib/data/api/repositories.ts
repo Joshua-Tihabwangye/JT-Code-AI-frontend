@@ -10,6 +10,26 @@ import type {
   ApiKey,
   ApiKeyScope,
   NewApiKey,
+  NewWebhook,
+  Webhook,
+  WebhookDelivery,
+  WebhookEvent,
+  NewSupportCase,
+  AuditEvent,
+  AuditFilter,
+  ConsentEntry,
+  Agent,
+  AgentRun,
+  AgentStep,
+  NewAgent,
+  Automation,
+  NewAutomation,
+  McpServer,
+  ToolApproval,
+  ToolCredential,
+  ToolInfo,
+  SupportCase,
+  SupportMessage,
   AnalysisRun,
   TeamInvite,
   TeamMember,
@@ -77,6 +97,13 @@ import type {
 import type {
   TeamRepository,
   ApiKeyRepository,
+  WebhookRepository,
+  SupportRepository,
+  AuditRepository,
+  ConsentRepository,
+  AgentRepository,
+  AutomationRepository,
+  ToolsRepository,
   AccountRepository,
   AnalyticsRepository,
   AuthRepository,
@@ -294,6 +321,357 @@ class ApiApiKeyRepository implements ApiKeyRepository {
   async revoke(id: string) {
     const { data } = await api.post<ApiApiKey>(`/api-keys/${encodeURIComponent(id)}/revoke/`);
     return toApiKey(data);
+  }
+}
+
+// --- Outbound webhooks -------------------------------------------------------------------------------
+
+interface ApiWebhook {
+  id: string;
+  name: string;
+  url: string;
+  status: Webhook['status'];
+  event_filter: 'all' | 'custom';
+  events: WebhookEvent[];
+  is_verified: boolean;
+  last_success_at: string | null;
+  last_failure_at: string | null;
+  failure_count: number;
+  created_at: string;
+  secret?: string;
+}
+
+interface ApiWebhookDelivery {
+  id: string;
+  event_type: string;
+  status: WebhookDelivery['status'];
+  attempt: number;
+  max_attempts: number;
+  response_status: number | null;
+  error_message: string;
+  created_at: string;
+  delivered_at: string | null;
+  next_retry_at: string | null;
+}
+
+function toWebhook(hook: ApiWebhook): Webhook {
+  return {
+    id: hook.id,
+    name: hook.name,
+    url: hook.url,
+    status: hook.status,
+    events: hook.event_filter === 'all' ? [] : (hook.events ?? []),
+    isVerified: hook.is_verified,
+    lastSuccessAt: hook.last_success_at,
+    lastFailureAt: hook.last_failure_at,
+    failureCount: hook.failure_count,
+    createdAt: hook.created_at,
+  };
+}
+
+function toDelivery(delivery: ApiWebhookDelivery): WebhookDelivery {
+  return {
+    id: delivery.id,
+    eventType: delivery.event_type,
+    status: delivery.status,
+    attempt: delivery.attempt,
+    maxAttempts: delivery.max_attempts,
+    responseStatus: delivery.response_status,
+    errorMessage: delivery.error_message ?? '',
+    createdAt: delivery.created_at,
+    deliveredAt: delivery.delivered_at,
+    nextRetryAt: delivery.next_retry_at,
+  };
+}
+
+class ApiWebhookRepository implements WebhookRepository {
+  async list() {
+    return (await list<ApiWebhook>('/webhooks/')).map(toWebhook);
+  }
+  async create(input: NewWebhook) {
+    const { data } = await api.post<ApiWebhook>('/webhooks/', {
+      name: input.name,
+      url: input.url,
+      event_filter: input.events.length ? 'custom' : 'all',
+      events: input.events,
+    });
+    return { ...toWebhook(data), secret: data.secret ?? '' };
+  }
+  async setStatus(id: string, status: 'active' | 'paused') {
+    const { data } = await api.patch<ApiWebhook>(`/webhooks/${encodeURIComponent(id)}/`, { status });
+    return toWebhook(data);
+  }
+  async remove(id: string) {
+    await api.delete(`/webhooks/${encodeURIComponent(id)}/`);
+  }
+  async sendTest(id: string) {
+    const { data } = await api.post<ApiWebhookDelivery>(`/webhooks/${encodeURIComponent(id)}/test/`);
+    return toDelivery(data);
+  }
+  async rotateSecret(id: string) {
+    const { data } = await api.post<ApiWebhook>(`/webhooks/${encodeURIComponent(id)}/rotate-secret/`);
+    return { ...toWebhook(data), secret: data.secret ?? '' };
+  }
+  async deliveries(id: string) {
+    return (await list<ApiWebhookDelivery>(`/webhooks/${encodeURIComponent(id)}/deliveries/`)).map(toDelivery);
+  }
+}
+
+// --- Support cases ------------------------------------------------------------------------------------
+
+interface ApiSupportCase {
+  id: string;
+  subject: string;
+  description: string;
+  category: SupportCase['category'];
+  priority: SupportCase['priority'];
+  status: SupportCase['status'];
+  user_email: string;
+  message_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ApiSupportMessage {
+  id: string;
+  author_role: SupportMessage['author'];
+  author_name: string;
+  body: string;
+  created_at: string;
+}
+
+function toSupportCase(item: ApiSupportCase): SupportCase {
+  return {
+    id: item.id,
+    subject: item.subject,
+    description: item.description,
+    category: item.category,
+    priority: item.priority,
+    status: item.status,
+    userEmail: item.user_email,
+    messageCount: item.message_count,
+    createdAt: item.created_at,
+    updatedAt: item.updated_at,
+  };
+}
+
+function toSupportMessage(item: ApiSupportMessage): SupportMessage {
+  return { id: item.id, author: item.author_role, authorName: item.author_name, body: item.body, createdAt: item.created_at };
+}
+
+class ApiSupportRepository implements SupportRepository {
+  async list() {
+    return (await list<ApiSupportCase>('/support-cases/')).map(toSupportCase);
+  }
+  async open(input: NewSupportCase) {
+    const { data } = await api.post<ApiSupportCase>('/support-cases/', input);
+    return toSupportCase(data);
+  }
+  async messages(caseId: string) {
+    const { data } = await api.get<ApiSupportMessage[]>(`/support-cases/${encodeURIComponent(caseId)}/messages/`);
+    return data.map(toSupportMessage);
+  }
+  async reply(caseId: string, body: string) {
+    const { data } = await api.post<ApiSupportMessage>(`/support-cases/${encodeURIComponent(caseId)}/messages/`, { body });
+    return toSupportMessage(data);
+  }
+  async close(caseId: string) {
+    const { data } = await api.post<ApiSupportCase>(`/support-cases/${encodeURIComponent(caseId)}/close/`);
+    return toSupportCase(data);
+  }
+}
+
+// --- Audit log ----------------------------------------------------------------------------------------
+
+interface ApiAuditEvent {
+  id: string;
+  created_at: string;
+  actor_email?: string | null;
+  category: AuditEvent['category'];
+  action: string;
+  severity: string;
+  outcome?: string;
+  description: string;
+  ip_address?: string | null;
+}
+
+function auditParams(filter: AuditFilter): Record<string, string> {
+  const params: Record<string, string> = {};
+  if (filter.category) params.category = filter.category;
+  if (filter.startDate) params.start_date = filter.startDate;
+  if (filter.endDate) params.end_date = filter.endDate;
+  return params;
+}
+
+class ApiAuditRepository implements AuditRepository {
+  async list(filter: AuditFilter, page: number) {
+    const { data } = await api.get<Paginated<ApiAuditEvent>>('/audit-events/', { params: { ...auditParams(filter), page } });
+    return {
+      events: items(data).map((event) => ({
+        id: event.id,
+        createdAt: event.created_at,
+        actorEmail: event.actor_email ?? '',
+        category: event.category,
+        action: event.action,
+        severity: event.severity,
+        outcome: event.outcome ?? '',
+        description: event.description,
+        ipAddress: event.ip_address ?? '',
+      })),
+      hasMore: Boolean((data as { next?: string | null }).next),
+    };
+  }
+  async exportCsv(filter: AuditFilter) {
+    const { data } = await api.get<Blob>('/audit-events/export/', { params: auditParams(filter), responseType: 'blob' });
+    return data;
+  }
+}
+
+// --- Consents ----------------------------------------------------------------------------------------
+
+interface ApiConsent {
+  id: string;
+  consent_type: string;
+  status: ConsentEntry['status'];
+  version: string;
+  granted_at: string | null;
+  withdrawn_at: string | null;
+  created_at: string;
+}
+
+class ApiConsentRepository implements ConsentRepository {
+  async list() {
+    return (await list<ApiConsent>('/consents/')).map((item) => ({
+      id: item.id,
+      type: item.consent_type,
+      status: item.status,
+      version: item.version,
+      grantedAt: item.granted_at,
+      withdrawnAt: item.withdrawn_at,
+      createdAt: item.created_at,
+    }));
+  }
+}
+
+// --- Agents and automations ---------------------------------------------------------------------------
+
+function toAgentRun(run: AgentRun & Record<string, unknown>): AgentRun {
+  return {
+    id: run.id,
+    agentId: run.agentId ?? null,
+    status: run.status,
+    graph: run.graph,
+    inputText: run.inputText ?? '',
+    finalOutput: run.finalOutput ?? '',
+    errorMessage: run.errorMessage ?? '',
+    modelCalls: run.modelCalls ?? 0,
+    toolCalls: run.toolCalls ?? 0,
+    costUsd: String(run.costUsd ?? '0'),
+    createdAt: run.createdAt,
+    completedAt: run.completedAt ?? null,
+  };
+}
+
+class ApiAgentRepository implements AgentRepository {
+  async list() {
+    return list<Agent>('/agents/');
+  }
+  async create(input: NewAgent) {
+    const { data } = await api.post<Agent>('/agents/', input);
+    return data;
+  }
+  async setActive(id: string, isActive: boolean) {
+    const { data } = await api.patch<Agent>(`/agents/${encodeURIComponent(id)}/`, { isActive });
+    return data;
+  }
+  async remove(id: string) {
+    await api.delete(`/agents/${encodeURIComponent(id)}/`);
+  }
+  async run(agentId: string | null, input: string) {
+    const path = agentId ? `/agents/${encodeURIComponent(agentId)}/runs/` : '/agent-runs/';
+    const { data } = await api.post<AgentRun & Record<string, unknown>>(path, { input }, { headers: { 'Idempotency-Key': crypto.randomUUID() } });
+    return toAgentRun(data);
+  }
+  async getRun(id: string) {
+    const { data } = await api.get<AgentRun & Record<string, unknown>>(`/agent-runs/${encodeURIComponent(id)}/`);
+    return toAgentRun(data);
+  }
+  async steps(runId: string) {
+    const { data } = await api.get<AgentStep[]>(`/agent-runs/${encodeURIComponent(runId)}/steps/`);
+    return data;
+  }
+  async cancel(runId: string) {
+    const { data } = await api.post<AgentRun & Record<string, unknown>>(`/agent-runs/${encodeURIComponent(runId)}/cancel/`);
+    return toAgentRun(data);
+  }
+  async runs() {
+    return (await list<AgentRun & Record<string, unknown>>('/agent-runs/')).map(toAgentRun);
+  }
+}
+
+class ApiAutomationRepository implements AutomationRepository {
+  async list() {
+    return list<Automation>('/automations/');
+  }
+  async create(input: NewAutomation) {
+    const { data } = await api.post<Automation>('/automations/', input);
+    return data;
+  }
+  async setActive(id: string, isActive: boolean) {
+    const { data } = await api.patch<Automation>(`/automations/${encodeURIComponent(id)}/`, { isActive });
+    return data;
+  }
+  async remove(id: string) {
+    await api.delete(`/automations/${encodeURIComponent(id)}/`);
+  }
+  async runNow(id: string) {
+    const { data } = await api.post<{ jobId: string; status: string }>(`/automations/${encodeURIComponent(id)}/run/`);
+    return data;
+  }
+}
+
+// --- Agent tools ------------------------------------------------------------------------------------
+
+class ApiToolsRepository implements ToolsRepository {
+  async catalog() {
+    return list<ToolInfo>('/tools/');
+  }
+  async approvals(status?: ToolApproval['status']) {
+    return list<ToolApproval>('/tool-approvals/', status ? { status } : undefined);
+  }
+  async decide(id: string, approve: boolean, note: string) {
+    // Two literal paths keep the call checkable by the API contract test.
+    const path = approve ? `/tool-approvals/${encodeURIComponent(id)}/approve/` : `/tool-approvals/${encodeURIComponent(id)}/reject/`;
+    const { data } = await api.post<{ approval: ToolApproval }>(path, { note });
+    return data.approval;
+  }
+  async mcpServers() {
+    return list<McpServer>('/mcp/servers/');
+  }
+  async addMcpServer(input: { name: string; slug: string; url: string; credentialId: string | null }) {
+    const { data } = await api.post<McpServer>('/mcp/servers/', input);
+    return data;
+  }
+  async discover(id: string) {
+    const { data } = await api.post<McpServer>(`/mcp/servers/${encodeURIComponent(id)}/discover/`);
+    return data;
+  }
+  async setAllowedTools(id: string, allowedTools: string[]) {
+    const { data } = await api.patch<McpServer>(`/mcp/servers/${encodeURIComponent(id)}/`, { allowedTools });
+    return data;
+  }
+  async removeMcpServer(id: string) {
+    await api.delete(`/mcp/servers/${encodeURIComponent(id)}/`);
+  }
+  async credentials() {
+    return list<ToolCredential>('/tool-credentials/');
+  }
+  async addCredential(input: { provider: ToolCredential['provider']; name: string; secret: string }) {
+    const { data } = await api.post<ToolCredential>('/tool-credentials/', input);
+    return data;
+  }
+  async removeCredential(id: string) {
+    await api.delete(`/tool-credentials/${encodeURIComponent(id)}/`);
   }
 }
 
@@ -1341,6 +1719,13 @@ export function createApiRepositories(): Repositories {
     account: new ApiAccountRepository(),
     team: new ApiTeamRepository(),
     apiKeys: new ApiApiKeyRepository(),
+    webhooks: new ApiWebhookRepository(),
+    support: new ApiSupportRepository(),
+    audit: new ApiAuditRepository(),
+    consents: new ApiConsentRepository(),
+    agents: new ApiAgentRepository(),
+    automations: new ApiAutomationRepository(),
+    tools: new ApiToolsRepository(),
     chat: new ApiChatRepository(),
     history: new ApiHistoryRepository(),
     billing: new ApiBillingRepository(),

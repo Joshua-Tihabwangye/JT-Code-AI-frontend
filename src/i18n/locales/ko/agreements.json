@@ -1,0 +1,22 @@
+{
+  "title": "귀하의 계약",
+  "desc": "귀하가 동의한 내용, 버전 및 시기. 이것이 우리가 보관하는 기록입니다.",
+  "none": "이 계정에 기록된 계약이 없습니다.",
+  "version": "버전 {{version}}",
+  "withdrawnOn": "철회됨 {{date}}",
+  "endHelp": "귀하가 계정을 보유하고 있는 동안에는 약관 및 개인정보 보호정책이 적용됩니다. 이를 종료하려면 아래에서 계정을 삭제하세요.",
+  "types": {
+    "terms": "서비스 약관",
+    "privacy": "개인 정보 보호 정책",
+    "data_processing": "데이터 처리 계약",
+    "marketing": "마케팅 이메일",
+    "analytics": "사용량 분석",
+    "ai_training": "AI 훈련을 위해 내 데이터 사용",
+    "third_party": "제3자와 공유"
+  },
+  "status": {
+    "granted": "수락됨",
+    "denied": "거절됨",
+    "withdrawn": "빼는"
+  }
+}

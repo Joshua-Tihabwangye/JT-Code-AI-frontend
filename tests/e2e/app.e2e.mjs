@@ -1008,6 +1008,97 @@ async function main() {
       if (after.status !== 401) throw new Error(`a revoked key answered ${after.status}`);
     });
 
+    await step(page, 'settings: add a webhook, send a test, see its delivery, delete it', async () => {
+      await page.goto(`${BASE}/app/settings?tab=developer`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="webhooks-section"]');
+      const fields = await page.$$('[data-testid="webhooks-section"] form input:not([type="checkbox"])');
+      await fields[0].type(`e2e hook ${run}`);
+      // example.com is the IANA documentation domain: it refuses the POST, which is the answer we record.
+      await fields[1].type('https://example.com/jt-code-e2e');
+      await domClick(page, '[data-testid="create-webhook"]');
+      const secretField = await page.waitForSelector('[data-testid="webhook-secret"]');
+      const secret = await secretField.evaluate((input) => input.value);
+      if (!secret.startsWith('whsec_')) throw new Error('no signing secret shown');
+      await domClick(page, '[data-testid="webhooks"] [data-testid^="webhook-test-"]');
+      await page.waitForFunction(
+        () => /HTTP [0-9]{3}/.test(document.querySelector('[data-testid^="webhook-deliveries-"]')?.textContent ?? ''),
+        { timeout: 90_000 },
+      );
+      await page.$$eval('[data-testid="webhooks"] li button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForSelector('[role="alertdialog"]');
+      await page.$$eval('[role="alertdialog"] button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForFunction(() => !document.querySelector('[data-testid="webhooks"]'), { timeout: 30_000 });
+    });
+
+    await step(page, 'agents: run a task to completion, then create an agent', async () => {
+      await page.click('nav.nav-links a[href="/app/agents"]');
+      await page.waitForSelector('[data-testid="agents-tab"]');
+      await setInput(page, '[data-testid="agents-tab"] form textarea', 'Say hello to the end-to-end test.');
+      await domClick(page, '[data-testid="agent-run-start"]');
+      await page.waitForSelector('[data-testid="agent-run"]', { timeout: 30_000 });
+      await page.waitForFunction(
+        () => /completed|failed|cancelled|Done|Failed|Cancelled/.test(document.querySelector('[data-testid="agent-run-status"]')?.textContent ?? ''),
+        { timeout: 120_000 },
+      );
+      const outcome = await page.$eval('[data-testid="agent-run"]', (panel) => panel.textContent ?? '');
+      if (!/Done/.test(outcome)) throw new Error(`agent run did not complete: ${outcome.slice(0, 300)}`);
+      await page.waitForSelector('[data-testid="agent-run-output"]');
+      await domClick(page, '[data-testid="agent-new"]');
+      await setInput(page, '[data-testid="agent-form"] input', `E2E agent ${run}`);
+      await domClick(page, '[data-testid="agent-create"]');
+      await waitForText(page, '[data-testid="agents"]', new RegExp(`E2E agent ${run}`));
+    });
+
+    await step(page, 'agents: the tools tab lists tools and stores a credential without showing its secret', async () => {
+      await page.goto(`${BASE}/app/agents?tab=tools`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="tool-catalog"]', { timeout: 30_000 });
+      const secret = `e2e-secret-${run}`;
+      await setInput(page, 'input[type="password"]', secret);
+      const nameField = await page.$$('[data-testid="tools-tab"] form input:not([type="password"]):not([type="url"])');
+      await nameField[nameField.length - 1].type(`E2E credential ${run}`);
+      await domClick(page, '[data-testid="credential-add"]');
+      await waitForText(page, '[data-testid="tool-credentials"]', new RegExp(`e2e-credential-${run}`));
+      if ((await page.content()).includes(secret)) throw new Error('the credential secret is visible after saving');
+    });
+
+    await step(page, 'settings: your agreements show the terms and privacy policy accepted at sign-up', async () => {
+      await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="agreements"] li', { timeout: 30_000 });
+      const text = await page.$eval('[data-testid="agreements"]', (section) => section.textContent ?? '');
+      if (!/Terms of service/.test(text) || !/Privacy policy/.test(text) || !/Accepted/.test(text)) {
+        throw new Error(`agreements: ${text.slice(0, 200)}`);
+      }
+    });
+
+    await step(page, 'settings: the audit log shows the key and webhook changes and downloads as CSV', async () => {
+      await page.goto(`${BASE}/app/settings?tab=audit`, { waitUntil: 'networkidle2' });
+      await waitForText(page, '[data-testid="audit-events"]', /api-key/, 30_000);
+      const [csv] = await Promise.all([
+        page.waitForResponse((response) => response.url().includes('/audit-events/export/'), { timeout: 30_000 }),
+        domClick(page, '[data-testid="audit-export"]'),
+      ]);
+      if (csv.status() !== 200 || !(csv.headers()['content-type'] ?? '').startsWith('text/csv')) {
+        throw new Error(`audit export answered ${csv.status()} ${csv.headers()['content-type']}`);
+      }
+    });
+
+    await step(page, 'settings: open a support case, reply, and close it', async () => {
+      await page.goto(`${BASE}/app/settings?tab=support`, { waitUntil: 'networkidle2' });
+      await page.waitForSelector('[data-testid="support-tab"]');
+      await setInput(page, '[data-testid="support-tab"] form input', `e2e case ${run}`);
+      await setInput(page, '[data-testid="support-tab"] form textarea', 'Opened by the browser end-to-end test.');
+      await domClick(page, '[data-testid="support-open-case"]');
+      await page.waitForSelector('[data-testid="support-thread"]', { timeout: 30_000 });
+      await setInput(page, '[data-testid="support-thread"] textarea', 'A follow-up from the test.');
+      await domClick(page, '[data-testid="support-send-reply"]');
+      await waitForText(page, '[data-testid="support-message-customer"]', /A follow-up from the test/);
+      // Close: the outline button next to Send, then confirm.
+      await page.$$eval('[data-testid="support-thread"] form button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForSelector('[role="alertdialog"]');
+      await page.$$eval('[role="alertdialog"] button', (buttons) => buttons[buttons.length - 1].click());
+      await page.waitForFunction(() => !document.querySelector('[data-testid="support-send-reply"]'), { timeout: 30_000 });
+    });
+
     await step(page, 'settings: edit and save the profile', async () => {
       await page.goto(`${BASE}/app/settings`, { waitUntil: 'networkidle0' });
       await waitForText(page, 'body', new RegExp(email.replace(/[.@]/g, '\\$&')));

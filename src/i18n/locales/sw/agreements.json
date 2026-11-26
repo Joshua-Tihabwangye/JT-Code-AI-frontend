@@ -1,0 +1,22 @@
+{
+  "title": "Makubaliano yako",
+  "desc": "Ulikubali nini, toleo gani, na lini. Hii ndio rekodi tunayohifadhi.",
+  "none": "Hakuna makubaliano yaliyorekodiwa kwa akaunti hii.",
+  "version": "Toleo {{version}}",
+  "withdrawnOn": "imeondolewa {{date}}",
+  "endHelp": "Masharti na sera ya faragha hutumika ukiwa na akaunti. Ili kuzimaliza, futa akaunti yako hapa chini.",
+  "types": {
+    "terms": "Masharti ya huduma",
+    "privacy": "Sera ya faragha",
+    "data_processing": "Mkataba wa usindikaji wa data",
+    "marketing": "Barua pepe za uuzaji",
+    "analytics": "Uchambuzi wa matumizi",
+    "ai_training": "Matumizi ya data yangu kwa mafunzo ya AI",
+    "third_party": "Kushiriki na wahusika wengine"
+  },
+  "status": {
+    "granted": "Imekubaliwa",
+    "denied": "Imekataliwa",
+    "withdrawn": "Imetolewa"
+  }
+}

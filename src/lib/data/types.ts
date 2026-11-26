@@ -99,6 +99,263 @@ export interface NewApiKey {
   expiresAt: string | null;
 }
 
+/** Events an outbound webhook can receive (the server's published catalogue). */
+export const WEBHOOK_EVENTS = [
+  'chat.request.completed',
+  'chat.request.failed',
+  'jobs.job.completed',
+  'jobs.job.failed',
+  'document.render.completed',
+  'document.render.failed',
+  'conversion.job.completed',
+  'conversion.job.failed',
+  'knowledge.document.indexed',
+  'knowledge.document.index_failed',
+  'images.generated',
+  'agents.run.completed',
+  'agents.run.failed',
+] as const;
+export type WebhookEvent = (typeof WEBHOOK_EVENTS)[number];
+
+export interface Webhook {
+  id: string;
+  name: string;
+  url: string;
+  /** `disabled`: the platform stopped it after repeated failures (resume it to try again). */
+  status: 'active' | 'paused' | 'disabled' | 'error';
+  /** Empty: every event in the catalogue. */
+  events: WebhookEvent[];
+  isVerified: boolean;
+  lastSuccessAt: string | null;
+  lastFailureAt: string | null;
+  failureCount: number;
+  createdAt: string;
+}
+
+/** A new endpoint (or a rotated secret): the signing secret is shown once. */
+export interface CreatedWebhook extends Webhook {
+  secret: string;
+}
+
+export interface NewWebhook {
+  name: string;
+  url: string;
+  /** Empty: every event. */
+  events: WebhookEvent[];
+}
+
+export interface WebhookDelivery {
+  id: string;
+  eventType: string;
+  status: 'pending' | 'delivered' | 'retrying' | 'failed';
+  attempt: number;
+  maxAttempts: number;
+  responseStatus: number | null;
+  errorMessage: string;
+  createdAt: string;
+  deliveredAt: string | null;
+  nextRetryAt: string | null;
+}
+
+export const SUPPORT_CATEGORIES = ['technical', 'bug', 'billing', 'account', 'feature', 'security', 'compliance', 'other'] as const;
+export type SupportCategory = (typeof SUPPORT_CATEGORIES)[number];
+export const SUPPORT_PRIORITIES = ['low', 'medium', 'high', 'urgent'] as const;
+export type SupportPriority = (typeof SUPPORT_PRIORITIES)[number];
+
+export interface SupportCase {
+  id: string;
+  subject: string;
+  description: string;
+  category: SupportCategory;
+  priority: SupportPriority;
+  status: 'open' | 'in_progress' | 'waiting_user' | 'waiting_third_party' | 'resolved' | 'closed';
+  userEmail: string;
+  messageCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SupportMessage {
+  id: string;
+  author: 'customer' | 'support';
+  authorName: string;
+  body: string;
+  createdAt: string;
+}
+
+export interface NewSupportCase {
+  subject: string;
+  description: string;
+  category: SupportCategory;
+  priority: SupportPriority;
+}
+
+export const AUDIT_CATEGORIES = [
+  'auth',
+  'authorization',
+  'data_access',
+  'data_modification',
+  'configuration',
+  'billing',
+  'security',
+  'admin',
+  'ai_usage',
+  'file_operation',
+] as const;
+export type AuditCategory = (typeof AUDIT_CATEGORIES)[number];
+
+export interface AuditEvent {
+  id: string;
+  createdAt: string;
+  actorEmail: string;
+  category: AuditCategory;
+  action: string;
+  severity: string;
+  outcome: string;
+  description: string;
+  ipAddress: string;
+}
+
+export interface AuditFilter {
+  category?: AuditCategory | '';
+  /** YYYY-MM-DD, inclusive. */
+  startDate?: string;
+  /** YYYY-MM-DD, inclusive (the whole day). */
+  endDate?: string;
+}
+
+export interface AuditPage {
+  events: AuditEvent[];
+  hasMore: boolean;
+}
+
+/** A consent the user gave (terms and privacy at sign-up; optional ones later). */
+export interface ConsentEntry {
+  id: string;
+  type: string;
+  status: 'granted' | 'denied' | 'withdrawn';
+  version: string;
+  grantedAt: string | null;
+  withdrawnAt: string | null;
+  createdAt: string;
+}
+
+/** How an agent works: one model turn, a tool-using loop, or a read-only research loop. */
+export const AGENT_GRAPHS = ['direct_answer', 'tool_agent', 'research'] as const;
+export type AgentGraph = (typeof AGENT_GRAPHS)[number];
+
+export interface Agent {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  graph: AgentGraph;
+  systemPrompt: string;
+  maxSteps: number;
+  isActive: boolean;
+  updatedAt: string;
+}
+
+export interface NewAgent {
+  name: string;
+  slug: string;
+  description: string;
+  graph: AgentGraph;
+  systemPrompt: string;
+}
+
+export type AgentRunStatus = 'queued' | 'running' | 'waiting_approval' | 'completed' | 'failed' | 'cancelled';
+
+export interface AgentRun {
+  id: string;
+  agentId: string | null;
+  status: AgentRunStatus;
+  graph: string;
+  inputText: string;
+  finalOutput: string;
+  errorMessage: string;
+  modelCalls: number;
+  toolCalls: number;
+  costUsd: string;
+  createdAt: string;
+  completedAt: string | null;
+}
+
+export interface AgentStep {
+  sequence: number;
+  node: string;
+  kind: string;
+  outcome: string;
+  summary: string;
+  createdAt: string;
+}
+
+export const AUTOMATION_ACTIONS = ['email', 'webhook', 'slack_message'] as const;
+export type AutomationAction = (typeof AUTOMATION_ACTIONS)[number];
+
+export interface Automation {
+  id: string;
+  name: string;
+  description: string;
+  schedule: string;
+  input: Record<string, unknown> & { action: AutomationAction };
+  isActive: boolean;
+  nextRunAt: string | null;
+  lastRunAt: string | null;
+  lastError: string;
+  runCount: number;
+}
+
+export interface NewAutomation {
+  name: string;
+  schedule: string;
+  input: Record<string, unknown> & { action: AutomationAction };
+}
+
+export interface ToolInfo {
+  name: string;
+  description: string;
+  /** true, false, or 'conditional' (depends on the arguments). */
+  requiresApproval: boolean | 'conditional';
+  minRole: string;
+  /** Whether the signed-in user's role may call it. */
+  available: boolean;
+}
+
+export interface ToolApproval {
+  id: string;
+  toolName: string;
+  summary: string;
+  arguments: Record<string, unknown>;
+  status: 'pending' | 'approved' | 'rejected' | 'expired' | 'executed';
+  agentRunId: string | null;
+  decisionNote: string;
+  expiresAt: string | null;
+  createdAt: string;
+}
+
+export interface McpServer {
+  id: string;
+  slug: string;
+  name: string;
+  url: string;
+  credentialId: string | null;
+  status: 'active' | 'disabled' | 'error';
+  discoveredTools: { name: string; description?: string }[];
+  allowedTools: string[];
+  lastDiscoveredAt: string | null;
+  lastError: string;
+}
+
+export interface ToolCredential {
+  id: string;
+  provider: 'github' | 'slack' | 'http' | 'mcp';
+  name: string;
+  hasSecret: boolean;
+  isActive: boolean;
+  createdAt: string;
+}
+
 export interface AccountUpdate {
   firstName?: string;
   lastName?: string;

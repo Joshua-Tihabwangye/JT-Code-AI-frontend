@@ -1,0 +1,22 @@
+{
+  "title": "I tuoi accordi",
+  "desc": "Cosa hai accettato, quale versione e quando. Questo è il registro che conserviamo.",
+  "none": "Nessun accordo registrato per questo account.",
+  "version": "Versione {{version}}",
+  "withdrawnOn": "ritirato {{date}}",
+  "endHelp": "I termini e l'informativa sulla privacy si applicano mentre hai un account. Per terminarli, elimina il tuo account di seguito.",
+  "types": {
+    "terms": "Termini di servizio",
+    "privacy": "Politica sulla riservatezza",
+    "data_processing": "Accordo sul trattamento dei dati",
+    "marketing": "E-mail di marketing",
+    "analytics": "Analisi dell'utilizzo",
+    "ai_training": "Utilizzo dei miei dati per la formazione sull'intelligenza artificiale",
+    "third_party": "Condivisione con terze parti"
+  },
+  "status": {
+    "granted": "Accettato",
+    "denied": "Rifiutato",
+    "withdrawn": "Ritirato"
+  }
+}

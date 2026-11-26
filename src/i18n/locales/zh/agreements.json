@@ -1,0 +1,22 @@
+{
+  "title": "您的协议",
+  "desc": "您同意什么、哪个版本以及何时。这是我们保留的记录。",
+  "none": "此帐户没有记录任何协议。",
+  "version": "版本 {{version}}",
+  "withdrawnOn": "撤回{{date}}",
+  "endHelp": "当您拥有帐户时，条款和隐私政策适用。要结束它们，请删除下面您的帐户。",
+  "types": {
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "data_processing": "数据处理协议",
+    "marketing": "营销电子邮件",
+    "analytics": "使用情况分析",
+    "ai_training": "使用我的数据进行 AI 训练",
+    "third_party": "与第三方共享"
+  },
+  "status": {
+    "granted": "已接受",
+    "denied": "拒绝",
+    "withdrawn": "撤回"
+  }
+}
