@@ -760,7 +760,7 @@ class MockImageRepository implements ImageRepository {
       { id: 'auto', label: i18n.t('images.autoModel') },
       { id: 'dall-e-3', label: 'DALL·E 3' },
       { id: 'stable-diffusion', label: 'Stable Diffusion' },
-      { id: 'imagen', label: 'Imagen' },
+      { id: 'imagen', label: 'Gemini' },
     ]);
   }
 

@@ -117,18 +117,13 @@ export function SignupForm({ onSignedUp }: Props) {
         <SubmitButton isSubmitting={isSubmitting} label={t('signup.submit')} />
       </form>
 
-      <div className="signup-divider">
-        <span />
-        <span>{t('common.or')}</span>
-        <span />
-      </div>
-
       <SocialAuthButtons
         onGoogle={() => void handleOAuth('google')}
         onApple={() => void handleOAuth('apple')}
         disabled={isSubmitting}
         loadingProvider={loadingProvider}
         layout="vertical"
+        dividerClassName="signup-divider"
       />
 
       <footer className="signup-footer">

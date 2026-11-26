@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import { fetchEnabledProviders, type OAuthProvider } from '@/lib/supabase';
 
 interface SocialAuthButtonsProps {
   onGoogle?: () => void;
@@ -8,6 +10,23 @@ interface SocialAuthButtonsProps {
   loadingProvider?: 'google' | 'apple' | null;
   /** Defaults to horizontal; authentication screens can request a vertical stack. */
   layout?: 'horizontal' | 'vertical';
+  /** Class of the "or" divider shown above the buttons. */
+  dividerClassName?: string;
+}
+
+/** Providers to offer; null while Supabase Auth is being asked. */
+function useEnabledProviders(): OAuthProvider[] | null {
+  const [providers, setProviders] = useState<OAuthProvider[] | null>(null);
+  useEffect(() => {
+    let active = true;
+    void fetchEnabledProviders().then((enabled) => {
+      if (active) setProviders(enabled);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+  return providers;
 }
 
 function GoogleIcon() {
@@ -47,28 +66,32 @@ export function SocialAuthButtons({
   disabled,
   loadingProvider = null,
   layout = 'horizontal',
+  dividerClassName = 'signup-divider',
 }: SocialAuthButtonsProps) {
   const { t } = useTranslation();
+  const providers = useEnabledProviders();
+  if (!providers || providers.length === 0) return null;
   return (
-    <div className={clsx('social-auth-grid', layout === 'vertical' && 'social-auth-grid--vertical')}>
-      <button
-        type="button"
-        className="social-auth-button"
-        onClick={() => void onGoogle?.()}
-        disabled={disabled}
-      >
-        <GoogleIcon />
-        <span>{loadingProvider === 'google' ? t('signin.connecting') : t('signin.signInWithGoogle')}</span>
-      </button>
-      <button
-        type="button"
-        className="social-auth-button"
-        onClick={() => void onApple?.()}
-        disabled={disabled}
-      >
-        <AppleIcon />
-        <span>{loadingProvider === 'apple' ? t('signin.connecting') : t('signin.signInWithApple')}</span>
-      </button>
-    </div>
+    <>
+      <div className={dividerClassName}>
+        <span />
+        <span>{t('common.or')}</span>
+        <span />
+      </div>
+      <div className={clsx('social-auth-grid', layout === 'vertical' && 'social-auth-grid--vertical')}>
+        {providers.includes('google') && (
+          <button type="button" className="social-auth-button" onClick={() => void onGoogle?.()} disabled={disabled}>
+            <GoogleIcon />
+            <span>{loadingProvider === 'google' ? t('signin.connecting') : t('signin.signInWithGoogle')}</span>
+          </button>
+        )}
+        {providers.includes('apple') && (
+          <button type="button" className="social-auth-button" onClick={() => void onApple?.()} disabled={disabled}>
+            <AppleIcon />
+            <span>{loadingProvider === 'apple' ? t('signin.connecting') : t('signin.signInWithApple')}</span>
+          </button>
+        )}
+      </div>
+    </>
   );
 }

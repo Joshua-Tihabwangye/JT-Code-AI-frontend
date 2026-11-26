@@ -103,18 +103,13 @@ export function SignInForm({ onSignedIn }: Props) {
         </div>
       )}
 
-      <div className="signup-divider signin-divider--secondary">
-        <span />
-        <span>{t('common.or')}</span>
-        <span />
-      </div>
-
       <SocialAuthButtons
         onGoogle={() => void handleOAuth('google')}
         onApple={() => void handleOAuth('apple')}
         disabled={isSubmitting}
         loadingProvider={loadingProvider}
         layout="vertical"
+        dividerClassName="signup-divider signin-divider--secondary"
       />
 
       <footer className="signup-footer">

@@ -74,6 +74,22 @@ export async function getAccessToken(): Promise<string | null> {
 export type OAuthProvider = 'google' | 'apple';
 
 /**
+ * The social providers Supabase Auth has enabled (GET /auth/v1/settings). Mock mode offers both, since
+ * the local stand-in handles them. A failed request offers none: a button that cannot work is not shown.
+ */
+export async function fetchEnabledProviders(): Promise<OAuthProvider[]> {
+  if (!realAuth) return ['google', 'apple'];
+  try {
+    const response = await fetch(`${config.supabaseUrl}/auth/v1/settings`, { headers: { apikey: config.supabaseAnonKey } });
+    if (!response.ok) return [];
+    const settings = (await response.json()) as { external?: Record<string, boolean> };
+    return (['google', 'apple'] as const).filter((provider) => settings.external?.[provider] === true);
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Starts provider sign-in. Real mode redirects the browser to the provider and
  * back to /sso-callback; it first checks that the provider is enabled in
  * Supabase Auth so users never land on a raw error page.

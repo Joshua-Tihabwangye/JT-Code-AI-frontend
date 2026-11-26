@@ -99,7 +99,7 @@ describe('keys used in code', () => {
 const ALLOWED = [
   /^JT-Code(, Inc\.)?$/,
   /^JT-Code (Pro|Mini)$/,
-  /^(Stable Diffusion|Imagen|DALL·E 3)$/,
+  /^(Stable Diffusion|Imagen|Gemini|DALL·E 3)$/,
   /must be used (inside|within)/,
   /^Root element not found$/,
   /^IndexedDB (open|request) failed$/,
