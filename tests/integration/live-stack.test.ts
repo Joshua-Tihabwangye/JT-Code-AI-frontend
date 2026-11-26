@@ -19,7 +19,8 @@ import type { Repositories, VizFields } from '@/lib/data';
 
 const repos: Repositories = createApiRepositories();
 const runId = Date.now().toString(36);
-const password = `Integration-${runId}-pass!`;
+// A fixed digit: the server policy requires letters and digits, and the time-based runId may have no digit.
+const password = `Integration-${runId}-pass1!`;
 const userA = `int-a-${runId}@jt-code.local`;
 const userB = `int-b-${runId}@jt-code.local`;
 const MAILPIT = process.env.MAILPIT_URL ?? 'http://127.0.0.1:8025';
